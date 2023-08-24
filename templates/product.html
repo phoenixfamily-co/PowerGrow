@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script src="https://kit.fontawesome.com/1228ed801f.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.css" />
+<script src="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.js"></script>
+<title>PowerGrow</title>
+
+
+	<style>
+
+		@font-face {
+			font-family: BYekan;
+  			font-style: normal;
+  			font-weight: normal;
+  			src: url("../static/fonts/BYekan.eot");/* IE9 Compat Modes */
+			src: url("../static/fonts/BYekan.woff") format('woff'),
+        		 url("../static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */
+        		 url("../static/fonts/BYekan.ttf")  format('truetype') /* Safari, Android, iOS */
+		}
+
+		* {box-sizing: border-box}
+		img {vertical-align: middle;}
+
+	.mySlides {
+		display: block;
+		width: 70%;
+		right: 0;
+		height: 500px;
+		float: right;
+		}
+
+		.tab{
+			direction:rtl ;
+			unicode-bidi: bidi-override ;
+			right:0;
+			position: absolute;
+			margin-top: 4%;
+			margin-right: 5%;
+    		z-index: 10!important;
+
+
+		}
+
+		.tab-button{
+			background-color: transparent;
+			border-color: transparent;
+			color: white;
+            font-family: BYekan, serif !important;
+			font-size: 16px;
+		}
+
+		.logoHolder{
+			width: 50px;
+			margin-left: 50%;
+			position: absolute;
+			margin-top: 1%;
+    		z-index: 10!important;
+
+		}
+
+		.logo{
+			width: 50px;
+			height: 50px;
+			border-radius: 25px;
+			position: absolute;
+			direction: ltr
+
+		}
+
+		.typography{
+			position: absolute;
+			margin-left: 60px;
+			margin-top: 20%;
+			color: white;
+			font-size: 20px
+
+		}
+
+		.login{
+			width: 150px;
+			position: absolute;
+			margin-top: 4%;
+			margin-left: 28%;
+    		z-index: 10!important;
+			direction:rtl ;
+			unicode-bidi: bidi-override ;
+		}
+
+		.loginTypography{
+			color: white;
+			position: absolute;
+			background-color: transparent;
+			border-color: transparent;
+            font-family: BYekan, serif !important;
+			direction: rtl;
+			font-size: 16px;
+			margin-right: 10%;
+
+		}
+
+	.slideshow-container {
+		max-width: 100%;
+  		position: relative;
+  		margin: auto;
+		}
+
+		.dropdown {
+ 			position: relative;
+  			display: inline-block;
+		}
+
+		.dropdown-content {
+  			display: none;
+  			position: absolute;
+			width: 100px;
+		    background-color: #f9f9f9;
+  			box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+		    padding: 12px 16px;
+			z-index: 1;
+		}
+
+		.dropdown:hover .dropdown-content {
+ 			 display: block;
+
+		}
+
+		.dropdown-content a {
+  			color: black;
+		    padding: 5px 16px;
+			font-size: 16px;
+			text-decoration: none;
+		  	display: block;
+		}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+
+		@keyframes fade {
+		  from {opacity: .4}
+		  to {opacity: 1}
+		}
+
+		/* On smaller screens, decrease text size */
+		@media only screen and (max-width: 300px) {
+		}
+
+			.card {
+			 	width: 390px;
+				height: 500px;
+				background: #FFFFFF ;
+				border-top-right-radius: 20px;
+				border-bottom-right-radius: 20px ;
+				position: fixed ;
+				flex: 0 0 auto;
+				margin-right: 1%;
+			}
+
+		.card-title {
+			color: black;
+			width: 95%;
+            font-family: BYekan, serif !important;
+			list-style-type: none;
+			float: right;
+			display: inline-block;
+			direction: rtl;
+
+		}
+
+		.card-button{
+			position: absolute ;
+            bottom: 0 ;
+            height: 60px ;
+            width: 370px;
+            margin-right: 10px ;
+            margin-left: 10px ;
+            margin-bottom: 20px ;
+            background:#5cdb5c ;
+            border-color: transparent ;
+            color: white
+		}
+
+		.contentWrapper {
+			height:250px; // Replace with the height your footer should be
+			width: 100%; // Don't change
+			background-position: 0% 0%;
+			padding: 2rem;
+			background: #303030;
+			color: white;
+			font-weight: 500;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 0.2rem;
+			position: absolute;
+			margin-top: 1030px;
+			right: 0;
+			left: 0;
+
+		}
+
+		.content {
+			height:250px; // Replace with the height your footer should be
+			width: 1000px; // Visible width of footer
+			margin:auto;
+		}
+
+		.footer{
+			  height: 50px;
+			  font-weight: 500;
+			  display: flex;
+			  justify-content: flex-start;
+			  align-items: center;
+			  font-size: 12px;
+			  gap: 0.2rem;
+			  padding-top: 10px;
+			  padding-left: 20px;
+			  bottom: 0;
+			  right: 0;
+			  left: 0;
+			  position: absolute;
+			  color: #B1B2B2;
+			  background: #151111;
+
+		}
+
+		body,html{
+			height: auto;
+			position: relative;
+            font-family: BYekan, serif !important;
+			background: #ACACAC;
+
+		}
+
+		hr{
+			height: 1px ;
+			background-color: black ;
+			width: 325px;
+			margin-right: 20px;
+			margin-left: 20px;
+			right: 0;
+			left: 0;
+		}
+
+
+		</style>
+
+</head>
+<body>
+
+	<div class="tab">
+		<button class="tab-button"  onclick="redirect('../Templates/home.html')">صفحه اصلی</button>
+		<div class="dropdown">
+  		<button class="tab-button" onclick="">ورزش ها</button>
+			<i class="fa-solid fa-caret-down" style="color: #ffffff;margin-right: -7px"></i>
+			 <div class="dropdown-content">
+   				 <a href="#">فیتنس</a>
+    			 <a href="#">رزمی</a>
+   				 <a href="#">توپی</a>
+			</div>
+		</div>
+  		<button class="tab-button" onclick="redirect('../Templates/reservation.html')">اجاره سالن</button>
+		<button class="tab-button" onclick="redirect('../Templates/about.html')">درباره ما</button>
+
+	</div>
+
+	<div class="logoHolder">
+
+			 <img alt="" src="../static/images/logo.jpg" class="logo">
+	  		<div class="typography">PowerGrow</div>
+
+		</div>
+
+	<div class="login">
+		<i class="fa-solid fa-user" style="color: #ffff; position:absolute ; margin-top:5px ; font-size: 16px"></i>
+		<button class="loginTypography" onclick="redirect('../Templates/login.html')">ورود/عضویت</button>
+	</div>
+
+	<div class="slideshow-container">
+
+		<div class="mySlides fade">
+			<img alt="" src="../static/images/reservation.jpeg" style="width:100%;height:100% ; border-bottom-left-radius:  20px ; border-top-left-radius: 20px" >
+		</div>
+
+	</div>
+
+
+
+	<div class="card" id="card">
+
+
+		<ul class="card-title">
+			<li style="font-size: 16px;font-weight: bold ;display: inline">نام سالن:</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ;float: left">نام سالن:</li>
+
+		</ul>
+
+		<hr style="margin-top: 50px ; position: absolute">
+
+		<ul class="card-title">
+			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">تاریخ رزرو:</li>
+			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin: -4px">تاریخ رزرو:</li>
+
+		</ul>
+
+		<hr style="margin-top: 100px ; position: absolute">
+
+		<ul class="card-title">
+
+			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">روز های رزرو:
+			</li>
+			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin-bottom:  -4px">روز های رزرو:
+			</li>
+
+		</ul>
+
+
+		<hr style="margin-top: 150px ; position: absolute">
+
+			<ul class="card-title">
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">ساعت رزرو:</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">ساعت رزرو:</li>
+		</ul>
+
+		<hr style="margin-top: 200px ; position: absolute">
+
+			<ul class="card-title">
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">تعداد جلسات</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">تعداد جلسات</li>
+		</ul>
+
+		<hr style="margin-top: 250px ; position: absolute">
+
+			<ul class="card-title">
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right; margin-top: -4px">اجاره ثابت:</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left; margin-top: -4px">اجاره ثابت:</li>
+		</ul>
+
+		<hr style="margin-top: 300px ; position: absolute">
+
+
+
+
+			<ul class="card-title">
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; ; margin-top: -4px">تخفیف:</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; ; margin-top: -4px">تخفیف:</li>
+		</ul>
+
+		<hr style="margin-top: 350px ; position: absolute">
+
+		<ul class="card-title">
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -10px">قیمت نهایی:</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -10px">قیمت نهایی:</li>
+		</ul>
+
+		<ul class="card-title ">
+			<li style="font-size: 12px;font-weight: bold ;display: inline ; float: right ; margin-top: -25px ; direction: rtl">
+                <label>
+                    <input type="checkbox" checked="checked" style="margin-top: 3px ; position: absolute">
+                </label>
+                <a style="margin-right: 15px">شرابط این قرارداد را میپذیرم</a>
+			</li>
+			<li style="font-size: 12px;font-weight: bold ;display: inline ; float: left ; margin-top: -22px ; color: blue">
+				مشاهده قرارداد
+			</li>
+		</ul>
+
+
+
+		<button class="card-button">
+		ثبت نام کنید
+		</button>
+
+
+	</div>
+
+
+
+	<div style="width: 70%; height: 500px; background: #FFFFFF ; float: right;border-top-left-radius: 20px; border-bottom-left-radius: 20px; margin-top: 15px">
+
+
+		<div class="range-example" style="width: 30% ; position: absolute ; right: 0" ></div>
+
+	</div>
+
+    <div class="contentWrapper">
+		<div class="content">
+			<div style="width:160px;left: 0;bottom: 0; top: 0; position: absolute;margin-left: 20px">
+
+				<h2>PowerGrow</h2>
+		 <img class="" src="../static/images/logo-transparent.png" style="position: absolute;width:160px;margin-top: -22px" , alt="" >
+
+				</div>
+
+      <div id="map" style="width: 300px; background: #eee; border: 2px solid #aaa;top: 0 ; bottom:0;
+						   position: absolute;margin-left: -170px;">
+
+
+			</div>
+
+
+
+			<i class="fa-solid fa-location-dot" style="color: #ffffff; right: 0 ; position: absolute; margin-top: 20px ; margin-right: 20px; font-size: 30px"></i>
+			<h5 style="right: 0 ; margin-right: 50px;position: absolute;direction: rtl ; margin-top: 20px;">
+			تهران ، بلوار کشاورز ، خیابان حجاب ، روبه روی درب شرقی <br>پارک لاله ، مجموعه ورزشی حجاب
+			</h5>
+
+			<i class="fa-solid fa-phone-flip" style="color: #ffffff; right: 0 ; position: absolute; margin-top: 95px ; margin-right: 20px; font-size: 30px"></i>
+			<h5 style="right: 0 ; margin-right: 60px;position: absolute;direction: rtl ; margin-top: 95px;">
+				09911177140<br> 0218896138
+			</h5>
+
+			<a href="//www.instagram.com/phoenixfamily.co?igshid=OGQ5ZDc2ODk2ZA==" style="right: 0 ; position: absolute ; margin-right:20px ; margin-top: 165px;display: inline">
+		<i class="fa-brands fa-instagram" style="color: #ffffff ; font-size: 30px ;"></i>
+		</a>
+
+			<h5 style="right: 0 ; margin-right: 60px;position: absolute;direction: ltr ; margin-top: 167px;">
+				power_grow
+			</h5>
+		</div>
+		<div class="footer">&copy;<span id="year" style="font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif'">2023 </span><span> PhoenixFamily. All rights reserved.</span>
+		<a href="//www.instagram.com/phoenixfamily.co?igshid=OGQ5ZDc2ODk2ZA==" style="right: 0 ; position: absolute ; margin-right:15px">
+		<i class="fa-brands fa-instagram" style="color: #ffffff ; font-size: 30px"></i>
+		</a>
+		<a href="//www.linkedin.com/company/phoenixfamily" style="right: 0 ; position: absolute ; margin-right:55px">
+		<i class="fa-brands fa-linkedin" style="color: #ffffff ; font-size: 30px"></i>
+		</a>
+		<span style="right: 0;margin-right: 90px; position: absolute">Follow us:</span>
+		</div>
+</div>
+
+    <script>
+
+const map = new nmp_mapboxgl.Map({
+            mapType: nmp_mapboxgl.Map.neshanVector,
+            container: "map",
+            zoom: 15,
+            pitch: 0,
+            center: [51.39745238274448,35.71150972541361 ],
+            minZoom: 2,
+            maxZoom: 21,
+            trackResize: false,
+            mapKey: "web.eb9c250015c247e08c5122f824c1541c",
+            poi: true,
+            traffic: true,
+            mapTypeControllerStatus: {
+                show: false,
+            }
+        });
+</script>
+
+	<script>
+		function redirect(direction) {
+		  window.location.assign(direction)
+		}
+
+</script>
+
+</body>
+</html>
