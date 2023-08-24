@@ -183,7 +183,7 @@
 		.card-button{
 			position: absolute ;
             bottom: 0 ;
-            height: 60px ;
+            height: 55px ;
             width: 370px;
             margin-right: 10px ;
             margin-left: 10px ;
@@ -262,18 +262,18 @@
 <body>
 
 	<div class="tab">
-		<button class="tab-button"  onclick="redirect('../Templates/home.html')">صفحه اصلی</button>
+		<button class="tab-button"  onclick="redirect({% url 'home:home' %})">صفحه اصلی</button>
 		<div class="dropdown">
   		<button class="tab-button" onclick="">ورزش ها</button>
 			<i class="fa-solid fa-caret-down" style="color: #ffffff;margin-right: -7px"></i>
 			 <div class="dropdown-content">
-   				 <a href="#">فیتنس</a>
-    			 <a href="#">رزمی</a>
-   				 <a href="#">توپی</a>
+   				 <a href="{% url 'product:sports' %}">فیتنس</a>
+    			 <a href="{% url 'product:sports' %}">رزمی</a>
+   				 <a href="{% url 'product:sports' %}">توپی</a>
 			</div>
 		</div>
-  		<button class="tab-button" onclick="redirect('../Templates/reservation.html')" style="font-weight: bold;text-decoration: underline; text-underline-position: under">اجاره سالن</button>
-		<button class="tab-button" onclick="redirect('../Templates/about.html')">درباره ما</button>
+  		<button class="tab-button" onclick="redirect({% url 'reservation:reservation' %})" style="font-weight: bold;text-decoration: underline; text-underline-position: under">اجاره سالن</button>
+		<button class="tab-button" onclick="redirect({% url 'about:about' %})">درباره ما</button>
 
 	</div>
 
@@ -286,7 +286,7 @@
 
 	<div class="login">
 		<i class="fa-solid fa-user" style="color: #ffff; position:absolute ; margin-top:5px ; font-size: 16px"></i>
-		<button class="loginTypography" onclick="redirect('../Templates/login.html')">ورود/عضویت</button>
+		<button class="loginTypography" onclick="redirect({% url 'user:login' %})">ورود/عضویت</button>
 	</div>
 
 	<div class="slideshow-container">
@@ -304,7 +304,7 @@
 
 		<ul class="card-title">
 			<li style="font-size: 16px;font-weight: bold ;display: inline">نام سالن:</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ;float: left">نام سالن:</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ;float: left">سالن چند منظوره جحاب</li>
 
 		</ul>
 
@@ -312,7 +312,7 @@
 
 		<ul class="card-title">
 			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">تاریخ رزرو:</li>
-			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin: -4px">تاریخ رزرو:</li>
+			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin: -4px">از 28/02/1402 تا 4/03/1402</li>
 
 		</ul>
 
@@ -322,7 +322,7 @@
 
 			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">روز های رزرو:
 			</li>
-			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin-bottom:  -4px">روز های رزرو:
+			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin-bottom:  -4px">شنبه ها وسه شنبه ها
 			</li>
 
 		</ul>
@@ -332,21 +332,21 @@
 
 			<ul class="card-title">
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">ساعت رزرو:</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">ساعت رزرو:</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">از ساعت 2 تا 16</li>
 		</ul>
 
 		<hr style="margin-top: 200px ; position: absolute">
 
 			<ul class="card-title">
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">تعداد جلسات</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">تعداد جلسات</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">8 جلسه</li>
 		</ul>
 
 		<hr style="margin-top: 250px ; position: absolute">
 
 			<ul class="card-title">
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right; margin-top: -4px">اجاره ثابت:</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left; margin-top: -4px">اجاره ثابت:</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left; margin-top: -4px">1500000 تومان</li>
 		</ul>
 
 		<hr style="margin-top: 300px ; position: absolute">
@@ -356,20 +356,20 @@
 
 			<ul class="card-title">
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; ; margin-top: -4px">تخفیف:</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; ; margin-top: -4px">تخفیف:</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; ; margin-top: -4px">20%</li>
 		</ul>
 
 		<hr style="margin-top: 350px ; position: absolute">
 
 		<ul class="card-title">
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -10px">قیمت نهایی:</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -10px">قیمت نهایی:</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -10px">1200000 تومان</li>
 		</ul>
 
 		<ul class="card-title ">
 			<li style="font-size: 12px;font-weight: bold ;display: inline ; float: right ; margin-top: -25px ; direction: rtl">
                 <label>
-                    <input type="checkbox" checked="checked" style="margin-top: 3px ; position: absolute">
+                    <input type="checkbox" style="margin-top: 3px ; position: absolute">
                 </label>
                 <a style="margin-right: 15px">شرابط این قرارداد را میپذیرم</a>
 			</li>

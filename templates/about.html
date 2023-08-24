@@ -8,6 +8,8 @@
 <link rel="stylesheet" href="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.css" />
 <script src="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.js"></script>
 
+    <title>PowerGrow</title>
+
 	<style>
 
 		@font-face {
@@ -214,18 +216,18 @@
 <body>
 
 	  <div class="tab">
-		<button class="tab-button" onclick="redirect('../Templates/home.html')">صفحه اصلی</button>
+		<button class="tab-button" onclick="redirect({% url 'home:home' %})">صفحه اصلی</button>
 		<div class="dropdown">
   		<button class="tab-button" onclick="">ورزش ها</button>
 			<i class="fa-solid fa-caret-down" style="color: #000;margin-right: -7px"></i>
 			 <div class="dropdown-content">
-   				 <a href="#">فیتنس</a>
-    			 <a href="#">رزمی</a>
-   				 <a href="#">توپی</a>
+   				 <a href="{% url 'product:sports' %}">فیتنس</a>
+    			 <a href="{% url 'product:sports' %}">رزمی</a>
+   				 <a href="{% url 'product:sports' %}">توپی</a>
 			</div>
 		</div>
-  		<button class="tab-button" onclick="redirect('../Templates/reservation.html')">اجاره سالن</button>
-		<button class="tab-button" style="font-weight: bold;text-decoration: underline; text-underline-position: under" onclick="redirect('../Templates/aboutUs.html')">درباره ما</button>
+  		<button class="tab-button" onclick="redirect({% url 'reservation:reservation' %})">اجاره سالن</button>
+		<button class="tab-button" style="font-weight: bold;text-decoration: underline; text-underline-position: under" onclick="redirect({% url 'about:about' %})">درباره ما</button>
 
 	</div>
 
@@ -238,7 +240,7 @@
 
 	<div class="login">
 		<i class="fa-solid fa-user" style="color: #000; position:absolute ; margin-top:5px ; font-size: 16px"></i>
-		<button class="loginTypography" onclick="redirect('../Templates/login.html')">ورود/عضویت</button>
+		<button class="loginTypography" onclick="redirect({% url 'user:login' %})">ورود/عضویت</button>
 	</div>
 
 	<div style="width: 100%;height: 500px">
