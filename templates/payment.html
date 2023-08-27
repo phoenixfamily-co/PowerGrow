@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script src="https://kit.fontawesome.com/1228ed801f.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.css" />
+<script src="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.js"></script>
+<title>PowerGrow</title>
+
+
+	<style>
+
+		@font-face {
+			font-family: BYekan;
+  			font-style: normal;
+  			font-weight: normal;
+  			src: url("../static/fonts/BYekan.eot");/* IE9 Compat Modes */
+			src: url("../static/fonts/BYekan.woff") format('woff'),
+        		 url("../static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */
+        		 url("../static/fonts/BYekan.ttf")  format('truetype') /* Safari, Android, iOS */
+		}
+
+		* {box-sizing: border-box}
+		img {vertical-align: middle;}
+
+	.mySlides {
+        height: 100vh;
+        width: 50%;
+        float: right;
+        overflow-y: hidden;
+        overflow-x: hidden;
+
+		}
+
+
+	.slideshow-container {
+		max-width: 100%;
+  		position: relative;
+  		margin: auto;
+		}
+
+
+		.dropdown-content a {
+  			color: black;
+		    padding: 5px 16px;
+			font-size: 16px;
+			text-decoration: none;
+		  	display: block;
+		}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+
+		@keyframes fade {
+		  from {opacity: .4}
+		  to {opacity: 1}
+		}
+
+		/* On smaller screens, decrease text size */
+		@media only screen and (max-width: 300px) {
+		}
+
+			.card {
+			 	width: 70vh;
+                height: 80vh;
+				background: rgba(193, 193, 193, 0.3);
+				position: fixed ;
+                border-radius: 15px;
+				flex: 0 0 auto;
+                margin-left: 18vh;
+                margin-top: 10vh;
+			}
+
+		.card-title {
+			color: black;
+			width: 95%;
+            font-family: BYekan, serif !important;
+			list-style-type: none;
+			float: right;
+			display: inline-block;
+			direction: rtl;
+
+		}
+
+		.card-button{
+			position: absolute ;
+            bottom: 0 ;
+            height: 50px ;
+            width: 100px;
+            margin-right: 10px ;
+            margin-left: 15px ;
+            margin-bottom: 15px ;
+            background:#5cdb5c ;
+            border-color: transparent ;
+            color: white
+		}
+
+		body,html{
+			position: relative;
+            font-family: BYekan, serif !important;
+            background: #ffffff;
+
+
+		}
+
+		hr{
+			height: 1px ;
+			background-color: black ;
+			width: 325px;
+			margin-right: 20px;
+			margin-left: 20px;
+			right: 0;
+			left: 0;
+		}
+
+		</style>
+
+</head>
+<body>
+
+	<div class="slideshow-container">
+
+		<div class="mySlides fade">
+			<img alt="" src="../static/images/product.jpg" style="width:100%;height:100% " >
+		</div>
+
+	</div>
+
+    	<div class="card" id="card">
+
+
+		<ul class="card-title">
+			<li style="font-size: 16px;font-weight: bold ;display: inline">نام دوره:</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ;float: left">فوتبال (آقایان)</li>
+
+		</ul>
+
+		<hr style="margin-top: 50px ;width:90%  ; position: absolute">
+
+		<ul class="card-title">
+			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">تاریخ شروع:</li>
+			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin: -4px">18/04/1402</li>
+
+		</ul>
+
+		<hr style="margin-top: 100px ;width:90% ; position: absolute">
+
+		<ul class="card-title">
+
+			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">روز های برگزاری:
+			</li>
+			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin-bottom:  -4px">شنبه ها و سه شنبه ها
+			</li>
+		</ul>
+
+
+		<hr style="margin-top: 150px ;width:90% ; position: absolute">
+
+             <ul class="card-title">
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">نام مربی:</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">مهدیس رجبی</li>
+		</ul>
+
+			<ul class="card-title">
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">ساعت برگزاری:</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">از 14 تا 16</li>
+		</ul>
+
+		<hr style="margin-top: 200px ;width:90% ; position: absolute">
+
+			<ul class="card-title">
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">تعداد جلسات</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">8 جلسه</li>
+		</ul>
+
+		<hr style="margin-top: 250px ;width:90% ; position: absolute">
+
+		<hr style="margin-top: 300px ;width:90% ; position: absolute">
+
+			<ul class="card-title">
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right; margin-top: -4px">شهریه ثابت:</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left; margin-top: -4px">1500000 تومان</li>
+		</ul>
+
+		<hr style="margin-top: 350px ;width:90% ; position: absolute">
+
+			<ul class="card-title">
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; ; margin-top: -4px">تخفیف:</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; ; margin-top: -4px">10%</li>
+		</ul>
+
+		<hr style="margin-top: 400px ;width:90% ; position: absolute">
+
+		<ul class="card-title">
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -10px">قیمت نهایی:</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -10px">1300000 تومان</li>
+		</ul>
+
+
+		<button class="card-button" onclick="redirect({% url 'home:home' %})">
+		پرداخت
+		</button>
+
+            <label>
+                <input type="text" placeholder="کد تخفیف" style="direction: rtl ; height: 50px ; float: right ; margin-right: 15px ; width: 300px">
+            </label>
+
+        </div>
+
+
+
+
+
+	<script>
+		function redirect(direction) {
+		  window.location.assign(direction)
+		}
+
+</script>
+
+</body>
+</html>

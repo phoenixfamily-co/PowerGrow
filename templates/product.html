@@ -16,10 +16,10 @@
 			font-family: BYekan;
   			font-style: normal;
   			font-weight: normal;
-  			src: url("../static/fonts/BYekan.eot");/* IE9 Compat Modes */
-			src: url("../static/fonts/BYekan.woff") format('woff'),
-        		 url("../static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */
-        		 url("../static/fonts/BYekan.ttf")  format('truetype') /* Safari, Android, iOS */
+  			src: url("/static/fonts/BYekan.eot");/* IE9 Compat Modes */
+			src: url("/static/fonts/BYekan.woff") format('woff'),
+        		 url("/static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */
+        		 url("/static/fonts/BYekan.ttf")  format('truetype') /* Safari, Android, iOS */
 		}
 
 		* {box-sizing: border-box}
@@ -252,37 +252,37 @@
 <body>
 
 	<div class="tab">
-		<button class="tab-button"  onclick="redirect('../Templates/home.html')">صفحه اصلی</button>
+		<button class="tab-button"  onclick="redirect({% url 'home:home' %})">صفحه اصلی</button>
 		<div class="dropdown">
   		<button class="tab-button" onclick="">ورزش ها</button>
-			<i class="fa-solid fa-caret-down" style="color: #ffffff;margin-right: -7px"></i>
+			<i class="fa-solid fa-caret-down" style="color: #ffffff;margin-right: -6px"></i>
 			 <div class="dropdown-content">
    				 <a href="#">فیتنس</a>
     			 <a href="#">رزمی</a>
    				 <a href="#">توپی</a>
 			</div>
 		</div>
-  		<button class="tab-button" onclick="redirect('../Templates/reservation.html')">اجاره سالن</button>
-		<button class="tab-button" onclick="redirect('../Templates/about.html')">درباره ما</button>
+  		<button class="tab-button" onclick="redirect({% url 'reservation:reservation' %})">اجاره سالن</button>
+		<button class="tab-button" onclick="redirect({% url 'about:about' %})">درباره ما</button>
 
 	</div>
 
 	<div class="logoHolder">
 
-			 <img alt="" src="../static/images/logo.jpg" class="logo">
+			 <img alt="" src="/static/images/logo.jpg" class="logo">
 	  		<div class="typography">PowerGrow</div>
 
 		</div>
 
 	<div class="login">
 		<i class="fa-solid fa-user" style="color: #ffff; position:absolute ; margin-top:5px ; font-size: 16px"></i>
-		<button class="loginTypography" onclick="redirect('../Templates/login.html')">ورود/عضویت</button>
+		<button class="loginTypography" onclick="redirect({% url 'user:login' %})">ورود/عضویت</button>
 	</div>
 
 	<div class="slideshow-container">
 
 		<div class="mySlides fade">
-			<img alt="" src="../static/images/product.jpg" style="width:100%;height:100% ; border-bottom-left-radius:  20px ; border-top-left-radius: 20px" >
+			<img alt="" src="/static/images/product.jpg" style="width:100%;height:100% ; border-bottom-left-radius:  20px ; border-top-left-radius: 20px" >
 		</div>
 
 	</div>
@@ -369,7 +369,7 @@
 
 
 
-		<button class="card-button">
+		<button class="card-button" onclick="redirect({% url 'home:home' %})">
 		ثبت نام کنید
 		</button>
 
@@ -377,6 +377,8 @@
 	</div>
 
     <div class="card" style="margin-top: 515px ; height: 120px">
+        
+        <img src="" alt="">
 
         <i class="fa-solid fa-circle-user" STYLE="float: right ; margin-top: 45px ; margin-right: 60px ; font-size: 40px ;direction: rtl"> مهدیس نبوی</i>
 
@@ -414,7 +416,7 @@
 			<div style="width:160px;left: 0;bottom: 0; top: 0; position: absolute;margin-left: 20px">
 
 				<h2>PowerGrow</h2>
-		 <img class="" src="../static/images/logo-transparent.png" style="position: absolute;width:160px;margin-top: -22px" , alt="" >
+		 <img class="" src="/static/images/logo-transparent.png" style="position: absolute;width:160px;margin-top: -22px" , alt="" >
 
 				</div>
 
