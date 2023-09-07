@@ -14,14 +14,14 @@ def home_view(request):
 
 @api_view(['GET'])
 def get_slider(request):
-    images = Slider.objects.all()
+    images = Slider.objects.order_by("datetime")
     ser = SliderSerializer(images, many=True)
     return Response(ser.data, status=status.HTTP_200_OK)
 
 
 @api_view(['GET'])
 def get_article(request):
-    articles = Article.objects.all()
+    articles = Article.objects.order_by("datetime")
     ser = ArticleSerializer(articles, many=True)
     return Response(ser.data, status=status.HTTP_200_OK)
 
