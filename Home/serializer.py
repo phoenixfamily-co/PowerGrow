@@ -5,7 +5,7 @@ from .models import *
 class SliderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Slider
-        fields = '__all__'
+        fields = ["id" , "image" , "description"]
 
 
 class ArticleSerializer(serializers.ModelSerializer):

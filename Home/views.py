@@ -31,12 +31,11 @@ class UploadImage(viewsets.ModelViewSet):
     serializer_class = SliderSerializer
     parser_classes = (MultiPartParser, FormParser)
 
-    def perform_create(self, request, *args, **kwargs):
-        serializer = self.serializer_class(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    def create(self, request, *args, **kwargs):
+        picture = request.data["image"]
+        name = request.data["description"]
+        Slider.objects.create(description=name,image=picture)
+        return Response(status=status.HTTP_201_CREATED)
 
 
 @api_view(['POST'])
