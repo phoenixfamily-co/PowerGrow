@@ -16,4 +16,3 @@ class Article(models.Model):
     title = models.TextField()
     body = models.TextField()
     datetime = models.DateTimeField(default=timezone.now())
-

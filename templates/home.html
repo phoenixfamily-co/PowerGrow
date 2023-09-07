@@ -704,12 +704,12 @@
     .then(data => data.json())
     .then(
         data => {
-            document.getElementById('image0').setAttribute("src",data[0].image)
-            document.getElementById('image1').setAttribute("src",data[1].image)
-            document.getElementById('image2').setAttribute("src",data[2].image)
-            document.getElementById('caption0').innerHTML = data[0].description
-            document.getElementById('caption1').innerHTML = data[1].description
-            document.getElementById('caption2').innerHTML = data[2].description
+            document.getElementById('image0').setAttribute("src",data[0].image);
+            document.getElementById('caption0').innerHTML = data[0].description;
+            document.getElementById('image1').setAttribute("src",data[1].image);
+            document.getElementById('caption1').innerHTML = data[1].description;
+            document.getElementById('image2').setAttribute("src",data[2].image);
+            document.getElementById('caption2').innerHTML = data[2].description;
         }
         )
         });
