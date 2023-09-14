@@ -1,4 +1,5 @@
 <!doctype html>
+{% load static %}
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -29,7 +30,7 @@
 	.mySlides {
 		display: block;
 		width: 100%;
-		height: 500px;
+		height: 100%;
 		}
 
 		.tab{
@@ -104,7 +105,8 @@
 		}
 
 	.slideshow-container {
-		max-width: 100%;
+        width: 100%;
+        height: 80vh;
   		position: relative;
   		margin: auto;
 		}
@@ -264,7 +266,7 @@
             font-family: BYekan, serif !important;
 			list-style-type: none;
 			direction: rtl;
-			margin-right: 250px;
+			margin-right: 240px;
 			margin-top: -215px;
 
 		}
@@ -372,7 +374,7 @@
 <body>
 
 	<div class="tab">
-		<button class="tab-button" style="font-weight: bold;text-decoration: underline; text-underline-position: under" onclick="redirect({% url 'home:home' %})">صفحه اصلی</button>
+		<button class="tab-button" style="font-weight: bold;text-decoration: underline; text-underline-position: under" onclick="location.assign({% url 'home:home' %})">صفحه اصلی</button>
 
         <div class="dropdown">
   		<button class="tab-button" onclick="">ورزش ها</button>
@@ -383,8 +385,8 @@
    				 <a href="{% url 'product:category' %}">توپی</a>
 			</div>
 		</div>
-  		<button class="tab-button" onclick="redirect({% url 'reservation:reservation' %})">اجاره سالن</button>
-		<button class="tab-button" onclick="redirect({% url 'about:about' %})">درباره ما</button>
+  		<button class="tab-button" onclick="location.assign({% url 'reservation:reservation' %})">اجاره سالن</button>
+		<button class="tab-button" onclick="location.assign({% url 'about:about' %})">درباره ما</button>
 	</div>
 
 	<div class="logoHolder">
@@ -401,21 +403,14 @@
 
 	<div class="slideshow-container">
 
+        {% for x in images %}
+
 		<div class="mySlides fade">
-            <img alt="" src="" style="width:100%;height:100%" id="image0">
-            <div class="caption" id="caption0"></div>
+            <img alt="" src="/media/{{ x.image }}" style="width:100%;height:100%">
+            <div class="caption">{{ x.description }}</div>
 		</div>
 
-
-	<div class="mySlides fade">
-        <img alt="" src="" style="width:100%;height:100%" id="image1">
-        <div class="caption" id="caption1"></div>
-	</div>
-
-	<div class="mySlides fade">
-  		<img alt="" src="" style="width:100%;height:100%" id="image2">
-        <div class="caption" id="caption2"></div>
-	</div>
+        {% endfor %}
 
 	<a class="prev" onclick="plusSlides(-1)">❮</a>
 	<a class="next" onclick="plusSlides(1)">❯</a>
@@ -433,112 +428,12 @@
 
 	<div class="scrolling-wrapper">
 
-		<div class="card">
+        {% for x in selected %}
 
-		  <img class="" src="../static/images/wall.jpg" alt="" style="width: 40%;height: 100%">
-
-
-		<ol class="card-title">
-			<li style="font-size: 16px;font-weight: bold">نام دوره:</li>
-			<li style="margin-top: 20px; font-size: 16px; font-weight: bold">نام مربی:</li>
-			<li style="margin-top: 20px; font-size: 16px;font-weight: bold">روز های برگزاری:</li>
-			<li style="margin-top: 20px; font-size: 16px;font-weight: bold">نوع دوره:</li>
-			<li style="margin-top: 20px; font-size: 16px;font-weight: bold">ساعت برگزاری:</li>
-		</ol>
-
-		<ol class="card-value">
-			<li style="font-size: 16px; font-weight: bold">والیبال(بانوان)</li>
-			<li style="margin-top: 20px; font-size: 16px;font-weight: bold">خانم رشیدی</li>
-			<li style="margin-top: 23px; font-size: 12px;font-weight: bold">شنبه،دوشنبه؛چهارشنبه</li>
-			<li style="margin-top: 21px; font-size: 16px;font-weight: bold">نیمه خصوصی</li>
-			<li style="margin-top: 24px; font-size: 16px;font-weight: bold">12 تا 13</li>
-		</ol>
-
-
-		<button class="card-button" onclick="redirect({% url "product:product" %})">ثبت نام کنید</button>
-
-		</div>
-
-    <div class="card">
-
-		  <img class="" src="../static/images/wall.jpg" alt="" style="width: 40%;height: 100%">
-
-		<ol class="card-title">
-			<li style="font-size: 16px;font-weight: bold">نام دوره:</li>
-			<li style="margin-top: 20px; font-size: 16px; font-weight: bold">نام مربی:</li>
-			<li style="margin-top: 20px; font-size: 16px;font-weight: bold">روز های برگزاری:</li>
-			<li style="margin-top: 20px; font-size: 16px;font-weight: bold">نوع دوره:</li>
-			<li style="margin-top: 20px; font-size: 16px;font-weight: bold">ساعت برگزاری:</li>
-		</ol>
-
-		<ol class="card-value">
-			<li style="font-size: 16px; font-weight: bold">والیبال(بانوان)</li>
-			<li style="margin-top: 20px; font-size: 16px;font-weight: bold">خانم رشیدی</li>
-			<li style="margin-top: 23px; font-size: 12px;font-weight: bold">شنبه،دوشنبه؛چهارشنبه</li>
-			<li style="margin-top: 21px; font-size: 16px;font-weight: bold">نیمه خصوصی</li>
-			<li style="margin-top: 24px; font-size: 16px;font-weight: bold">12 تا 13</li>
-		</ol>
-
-		<button class="card-button" onclick="redirect({% url "product:product" %})">ثبت نام کنید</button>
-
-		</div>
-
-   <div class="card">
-
-		  <img class="" src="../static/images/wall.jpg" alt="" style="width: 40%;height: 100%">
-
-		<ol class="card-title">
-			<li style="font-size: 16px;font-weight: bold">نام دوره:</li>
-			<li style="margin-top: 20px; font-size: 16px; font-weight: bold">نام مربی:</li>
-			<li style="margin-top: 20px; font-size: 16px;font-weight: bold">روز های برگزاری:</li>
-			<li style="margin-top: 20px; font-size: 16px;font-weight: bold">نوع دوره:</li>
-			<li style="margin-top: 20px; font-size: 16px;font-weight: bold">ساعت برگزاری:</li>
-		</ol>
-
-		<ol class="card-value">
-			<li style="font-size: 16px; font-weight: bold">والیبال(بانوان)</li>
-			<li style="margin-top: 20px; font-size: 16px;font-weight: bold">خانم رشیدی</li>
-		<li style="margin-top: 23px; font-size: 12px;font-weight: bold">شنبه،دوشنبه؛چهارشنبه</li>
-			<li style="margin-top: 21px; font-size: 16px;font-weight: bold">نیمه خصوصی</li>
-			<li style="margin-top: 24px; font-size: 16px;font-weight: bold">12 تا 13</li>
-		</ol>
-
-
-		<button class="card-button" onclick="redirect({% url 'product:product' %})">ثبت نام کنید</button>
-
-		</div>
-
-
-  <div class="card">
-
-		  <img class="" src="../static/images/wall.jpg" alt="" style="width: 40%;height: 100%">
-
-
-		<ol class="card-title">
-			<li style="font-size: 16px;font-weight: bold">نام دوره:</li>
-			<li style="margin-top: 20px; font-size: 16px; font-weight: bold">نام مربی:</li>
-			<li style="margin-top: 20px; font-size: 16px;font-weight: bold">روز های برگزاری:</li>
-			<li style="margin-top: 20px; font-size: 16px;font-weight: bold">نوع دوره:</li>
-			<li style="margin-top: 20px; font-size: 16px;font-weight: bold">ساعت برگزاری:</li>
-		</ol>
-
-		<ol class="card-value">
-			<li style="font-size: 16px; font-weight: bold">والیبال(بانوان)</li>
-			<li style="margin-top: 20px; font-size: 16px;font-weight: bold">خانم رشیدی</li>
-			<li style="margin-top: 23px; font-size: 12px;font-weight: bold">شنبه،دوشنبه؛چهارشنبه</li>
-			<li style="margin-top: 21px; font-size: 16px;font-weight: bold">نیمه خصوصی</li>
-			<li style="margin-top: 24px; font-size: 16px;font-weight: bold">12 تا 13</li>
-		</ol>
-
-
-		<button class="card-button" onclick="redirect({% url 'product:product' %})">ثبت نام کنید</button>
-
-		</div>
 
 		<div class="card">
 
-		  <img class="" src="../static/images/wall.jpg" alt="" style="width: 40%;height: 100%">
-
+		 <img id="id_image0" class="" src="media/{{ x.image }}" alt="" style="width: 40%;height: 100%">
 
 		<ol class="card-title">
 			<li style="font-size: 16px;font-weight: bold">نام دوره:</li>
@@ -549,17 +444,21 @@
 		</ol>
 
 		<ol class="card-value">
-			<li style="font-size: 16px; font-weight: bold">والیبال(بانوان)</li>
-			<li style="margin-top: 20px; font-size: 16px;font-weight: bold">خانم رشیدی</li>
-			<li style="margin-top: 23px; font-size: 12px;font-weight: bold">شنبه،دوشنبه؛چهارشنبه</li>
-			<li style="margin-top: 21px; font-size: 16px;font-weight: bold">نیمه خصوصی</li>
-			<li style="margin-top: 24px; font-size: 16px;font-weight: bold">12 تا 13</li>
+			<li style="font-size: 16px; font-weight: bold">{{ x.title }} ({{ x.gender }})</li>
+			<li style="margin-top: 20px; font-size: 16px;font-weight: bold">{{ x.name }}</li>
+		    <li style="margin-top: 24px; font-size: 12px;font-weight: bold">{{ x.day }}</li>
+			<li style="margin-top: 22px; font-size: 16px;font-weight: bold ">{{ x.type }}</li>
+			<li style="margin-top: 20px; font-size: 16px;font-weight: bold">{{ x.time }}</li>
 		</ol>
 
 
-		<button class="card-button" onclick="redirect({% url 'product:product' %})">ثبت نام کنید</button>
+		<button class="card-button" onclick="{% url "product:product" pk=x.id %}">ثبت نام کنید</button>
 
 		</div>
+
+        {% endfor %}
+
+
 </div>
 
 	<div style="width: 100%;height: 500px">
@@ -615,7 +514,7 @@
 	</div>
 
 
-	 <img src="../static/images/children.jpg" alt="" style="width: 50%;height: 500px ; position: absolute ; right: 0">
+	 <img src="../static/images/children.jpg" alt="" style="width: 50%;height: 450px ; position: absolute ; right: 0">
 
 
 	</div>
@@ -664,8 +563,7 @@
 		<span style="right: 0;margin-right: 90px; position: absolute">Follow us:</span>
 		</div>
 </div>
-
-
+</body>
 
 	<script>
 		let slideIndex = 1;
@@ -696,25 +594,6 @@
   		slides[slideIndex-1].style.display = "block";
 		}
 
-        document.addEventListener("DOMContentLoaded", function() {
-
-            fetch('api/slider', {
-                method: 'get',
-            })
-    .then(data => data.json())
-    .then(
-        data => {
-            document.getElementById('image0').setAttribute("src",data[0].image);
-            document.getElementById('caption0').innerHTML = data[0].description;
-            document.getElementById('image1').setAttribute("src",data[1].image);
-            document.getElementById('caption1').innerHTML = data[1].description;
-            document.getElementById('image2').setAttribute("src",data[2].image);
-            document.getElementById('caption2').innerHTML = data[2].description;
-        }
-        )
-        });
-
-
 </script>
 
 <script>
@@ -737,12 +616,4 @@ const map = new nmp_mapboxgl.Map({
         });
 </script>
 
-	<script>
-		function redirect(direction) {
-		  window.location.assign(direction)
-		}
-
-</script>
-
-</body>
 </html>

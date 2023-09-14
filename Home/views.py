@@ -1,28 +1,37 @@
 from rest_framework.decorators import api_view
-from rest_framework.parsers import FormParser , MultiPartParser
+from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import viewsets
-
+from Product.models import Course
+from Product.serializer import CourseSerializer
+from django.template import loader
 from .serializer import *
-from django.shortcuts import render
+from django.http import HttpResponse
 
 
 def home_view(request):
-    return render(request, "home.html")
+    images = Slider.objects.all().order_by("datetime").values()
+    selected = Course.objects.filter(selected=True).order_by("datetime").values()
+    template = loader.get_template('home.html')
+    context = {
+        "images": images,
+        "selected": selected,
+    }
+    return HttpResponse(template.render(context, request))
 
 
 @api_view(['GET'])
 def get_slider(request):
-    images = Slider.objects.order_by("datetime")
+    images = Slider.objects.all().order_by("datetime")
     ser = SliderSerializer(images, many=True)
     return Response(ser.data, status=status.HTTP_200_OK)
 
 
 @api_view(['GET'])
-def get_article(request):
-    articles = Article.objects.order_by("datetime")
-    ser = ArticleSerializer(articles, many=True)
+def get_selected(request):
+    selected = Course.objects.filter(selected=True).order_by("datetime").first()
+    ser = CourseSerializer(selected, many=True)
     return Response(ser.data, status=status.HTTP_200_OK)
 
 
@@ -34,22 +43,12 @@ class UploadImage(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         picture = request.data["image"]
         name = request.data["description"]
-        Slider.objects.create(description=name,image=picture)
+        Slider.objects.create(description=name, image=picture)
         return Response(status=status.HTTP_201_CREATED)
 
 
-@api_view(['POST'])
-def post_article(request):
-    ser = ArticleSerializer(data=request.data)
-    if ser.is_valid():
-        ser.save()
-        return Response(status=status.HTTP_201_CREATED)
-    else:
-        return Response(ser.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-@api_view(['GET', 'PUT', 'DELETE'])
-def get_update_delete_image(request, pk):
+@api_view(['PUT', 'DELETE'])
+def delete_image(request, pk):
     try:
         image = Slider.objects.get(pk=pk)
 
@@ -71,30 +70,7 @@ def get_update_delete_image(request, pk):
             return Response("article deleted", status=status.HTTP_204_NO_CONTENT)
 
 
-@api_view(['GET', 'PUT', 'DELETE'])
-def get_update_delete_article(request, pk):
-    try:
-        article = Article.objects.get(pk=pk)
-
-    except(Exception,):
-        return Response({"error": "Not Found!"}, status=status.HTTP_404_NOT_FOUND)
-    else:
-        if request.method == "PUT":
-            ser = ArticleSerializer(article, data=request.data)
-            if ser.is_valid():
-                ser.save()
-                return Response(ser.data, status=status.HTTP_200_OK)
-            else:
-                return Response(ser.errors, status=status.HTTP_400_BAD_REQUEST)
-        elif request.method == 'GET':
-            ser = ArticleSerializer(article)
-            return Response(ser.data, status=status.HTTP_200_OK)
-        elif request.method == 'DELETE':
-            article.delete()
-            return Response("article deleted", status=status.HTTP_204_NO_CONTENT)
-
-
-@api_view(['GET'])
+@api_view(['DELETE'])
 def delete_all(request):
     Slider.objects.all().delete()
     return Response("All instances are deleted", status=status.HTTP_204_NO_CONTENT)

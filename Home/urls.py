@@ -9,7 +9,8 @@ app_name = 'home'
 urlpatterns = [
     path('', views.home_view, name='home'),
     path('api/slider', views.get_slider, name='home_slider'),
-    path('api/upload', views.UploadImage.as_view({'post': 'create'}), name='home_upload')
+    path('api/upload', views.UploadImage.as_view({'post': 'create'}), name='home_upload'),
+    path('api/selected', views.get_selected, name='selected_course')
 
 ]
 
