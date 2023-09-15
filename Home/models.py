@@ -8,11 +8,11 @@ from django.utils import timezone
 class Slider(models.Model):
     image = models.ImageField(upload_to="images/")
     description = models.TextField()
-    datetime = models.DateTimeField(default=timezone.now())
+    datetime = models.DateTimeField(default=timezone.now)
 
 
 class Article(models.Model):
     image = models.ImageField(upload_to="images/", blank=True , null=True)
     title = models.TextField()
     body = models.TextField()
-    datetime = models.DateTimeField(default=timezone.now())
+    datetime = models.DateTimeField(default=timezone.now)

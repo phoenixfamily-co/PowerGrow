@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import viewsets
 from Product.models import Course
+from About.models import AboutUs
 from Product.serializer import CourseSerializer
 from django.template import loader
 from .serializer import *
@@ -13,10 +14,21 @@ from django.http import HttpResponse
 def home_view(request):
     images = Slider.objects.all().order_by("datetime").values()
     selected = Course.objects.filter(selected=True).order_by("datetime").values()
+    about = AboutUs.objects.values().first()
     template = loader.get_template('home.html')
     context = {
         "images": images,
         "selected": selected,
+        "instagram": about["instagram"],
+        "telegram": about["telegram"],
+        "telephone": about["telephone"],
+        "phone": about["phone"],
+        "logo": about["logo"],
+        "transparent_logo": about["transparent_logo"],
+        "address": about["address"],
+        "latitude": about["latitude"],
+        "longitude": about["longitude"],
+
     }
     return HttpResponse(template.render(context, request))
 

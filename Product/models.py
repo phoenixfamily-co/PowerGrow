@@ -26,4 +26,4 @@ class Course(models.Model):
     selected = models.BooleanField()
     capacity = models.IntegerField()
     gender = models.CharField(max_length=10, choices=GENDER_CHOICE)
-    datetime = models.DateTimeField(default=timezone.now())
+    datetime = models.DateTimeField(default=timezone.now)

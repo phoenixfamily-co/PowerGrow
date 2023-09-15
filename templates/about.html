@@ -291,15 +291,15 @@
 		<div class="property" style="left: 0 ; margin-top: 400px ; margin-left: 35px">
   		<button class="property-item" onclick=""  style="height: 40px; position: relative ;display: inline">
 				<i class="fa-brands fa-instagram" style="color: white;  font-size: 20px ; position: absolute; left: 0 ; bottom: 0 ; margin-left: 20px ; margin-bottom: 6px"></i>
-			<h6 style="position: absolute ; left: 0 ; bottom: 0 ; margin-left: 50px ; margin-bottom: 5px">power_grow</h6>
+			<h6 style="position: absolute ; left: 0 ; bottom: 0 ; margin-left: 50px ; margin-bottom: 5px">{{ instagram }}</h6>
 			</button>
   		<button class="property-item" onclick=""  style="height: 40px; position: relative ;display: inline">
 				<i class="fa-brands fa-telegram" style="color: white;  font-size: 20px ; position: absolute; left: 0 ; bottom: 0 ; margin-left: 20px ; margin-bottom: 6px"></i>
-			<h6 style="position: absolute ; left: 0 ; bottom: 0 ; margin-left: 50px ; margin-bottom: 5px">power_grow</h6>
+			<h6 style="position: absolute ; left: 0 ; bottom: 0 ; margin-left: 50px ; margin-bottom: 5px">{{ telegram }}</h6>
 			</button>
 		<button class="property-item" onclick=""  style="height: 40px ; position: relative ;display: inline">
 			<i class="fa-brands fa-whatsapp" style="color: white;  font-size: 20px ; position: absolute; left: 0 ; bottom: 0 ; margin-left: 20px ; margin-bottom: 6px"></i>
-			<h6 style="position: absolute ; left: 0 ; bottom: 0 ; margin-left: 50px ; margin-bottom: 5px">09991177140</h6>
+			<h6 style="position: absolute ; left: 0 ; bottom: 0 ; margin-left: 50px ; margin-bottom: 5px">{{ phone }}</h6>
 			</button>
 
 	</div>
@@ -308,11 +308,11 @@
 		<div class="property"  style="left: 0 ; margin-top: 450px ; margin-left: 130px">
   		<button class="property-item" onclick=""  style="height: 40px; position: relative ;display: inline">
 				<i class="fa-solid fa-tty" style="color: white;  font-size: 20px ; position: absolute; left: 0 ; bottom: 0 ; margin-left: 20px ; margin-bottom: 6px"></i>
-			<h6 style="position: absolute ; left: 0 ; bottom: 0 ; margin-left: 50px ; margin-bottom: 5px">02188969128</h6>
+			<h6 style="position: absolute ; left: 0 ; bottom: 0 ; margin-left: 50px ; margin-bottom: 5px">{{ telephone }}</h6>
 			</button>
   		<button class="property-item" onclick=""  style="height: 40px; position: relative ;display: inline">
 				<i class="fa-solid fa-phone" style="color: white;  font-size: 20px ; position: absolute; left: 0 ; bottom: 0 ; margin-left: 20px ; margin-bottom: 6px"></i>
-			<h6 style="position: absolute ; left: 0 ; bottom: 0 ; margin-left: 50px ; margin-bottom: 5px">09991177140</h6>
+			<h6 style="position: absolute ; left: 0 ; bottom: 0 ; margin-left: 50px ; margin-bottom: 5px">{{ phone }}</h6>
 			</button>
 	</div>
 
@@ -327,7 +327,7 @@
 			<div style="width:160px;left: 0;bottom: 0; top: 0; position: absolute;margin-left: 20px">
 
 				<h2>PowerGrow</h2>
-		 <img class="" src="../static/images/logo-transparent.png" style="position: absolute;width:160px;margin-top: -22px"  alt="" >
+		 <img class="" src="{{ transparent_logo }}" style="position: absolute;width:160px;margin-top: -22px"  alt="" >
 
 				</div>
 
@@ -339,20 +339,19 @@
 
 			<i class="fa-solid fa-location-dot" style="color: #ffffff; right: 0 ; position: absolute; margin-top: 20px ; margin-right: 20px; font-size: 30px"></i>
 			<h5 style="right: 0 ; margin-right: 50px;position: absolute;direction: rtl ; margin-top: 20px;">
-			تهران ، بلوار کشاورز ، خیابان حجاب ، روبه روی درب شرقی <br>پارک لاله ، مجموعه ورزشی حجاب
+                {{ address }}
 			</h5>
 
 			<i class="fa-solid fa-phone-flip" style="color: #ffffff; right: 0 ; position: absolute; margin-top: 95px ; margin-right: 20px; font-size: 30px"></i>
 			<h5 style="right: 0 ; margin-right: 60px;position: absolute;direction: rtl ; margin-top: 95px;">
-				09911177140<br> 0218896138
+                {{ phone }}<br> {{ telephone }}
 			</h5>
 
-			<a href="//www.instagram.com/phoenixfamily.co?igshid=OGQ5ZDc2ODk2ZA=="  style="right: 0 ; position: absolute ; margin-right:20px ; margin-top: 165px;display: inline">
+			<a href="//www.instagram.com/{{ instagram }}"  style="right: 0 ; position: absolute ; margin-right:20px ; margin-top: 165px;display: inline">
 		<i class="fa-brands fa-instagram" style="color: #ffffff ; font-size: 30px ;"></i>
 		</a>
-
 			<h5 style="right: 0 ; margin-right: 60px;position: absolute;direction: ltr ; margin-top: 167px;">
-				power_grow
+                {{ instagram }}
 			</h5>
 		</div>
 		<div class="footer">&copy;<span id="year" style="font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif'">2023 </span><span> PhoenixFamily. All rights reserved.</span>
