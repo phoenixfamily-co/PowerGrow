@@ -1,10 +1,139 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script src="https://kit.fontawesome.com/1228ed801f.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.css" />
+<script src="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.js"></script>
+
+        <title>PowerGrow</title>
+    <style>
+
+        	@font-face {
+			font-family: BYekan;
+  			font-style: normal;
+  			font-weight: normal;
+  			src: url("../static/fonts/BYekan.eot");/* IE9 Compat Modes */
+			src: url("../static/fonts/BYekan.woff") format('woff'),
+        		 url("../static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */
+        		 url("../static/fonts/BYekan.ttf")  format('truetype') /* Safari, Android, iOS */
+		}
+        * {
+            box-sizing: border-box
+        }
+        img {
+            vertical-align: middle;
+        }
+
+h2 {
+	text-align: center;
+	color: #277582;
+	padding: 20px;
+}
+label {
+	color: black;
+	font-size: 17px;
+}
+
+span {
+	font-size: 8px;
+}
+a {
+	margin-right: 150px;
+	text-align: center;
+	font-size: 8px;
+}
+.formContainer {
+    width: 30%;
+    direction: rtl;
+	left: 0;
+    margin-top: 12vh;
+    margin-left: 20vh;
+	position: absolute;
+}
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: transparent;
+  background: lightgray;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #000000;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+    font-weight: bold;
+}
+
+img.avatar {
+    width: 60px;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span {
+     display: block;
+     float: none;
+  }
+}
+</style>
+
 </head>
+
 <body>
+
+<a style="font-size: 22px ; position: absolute ; margin-top: 30px ; margin-left: 40px ; cursor: pointer">بازگشت</a>
+
+<div class="formContainer">
+
+    <form action=" " method="post">
+  <div class="imgcontainer" style="direction: ltr">
+    <img src="../static/images/logo.jpg" alt="PowerGrow" class="avatar">
+      PowerGrow
+  </div>
+
+  <div class="container">
+    <label for="uname"><b>شماره تلفن</b>
+    <input type="text" placeholder="09123456789" name="uname" required>
+        </label>
+
+    <button type="submit" style="margin-top: 30px">ارسال</button>
+
+  </div>
+</form>
+
+</div>
+
+<img src="../static/images/otp.jpg" style="width: 50% ; right: 0; position: absolute ; height: 100%" alt="">
 
 </body>
 </html>
