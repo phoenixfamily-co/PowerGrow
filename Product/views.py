@@ -1,13 +1,46 @@
+from django.http import HttpResponse
 from django.shortcuts import render
+from django.template import loader
 from rest_framework import viewsets
+from About.models import AboutUs
 from Product.models import Course
 from Product.serializer import CourseSerializer
 from rest_framework.response import Response
 from rest_framework import status
 
 
-def product_view(request):
-    return render(request, "product.html")
+def product_view(request, pk):
+    product = Course.objects.filter(id=pk).values().first()
+    about = AboutUs.objects.values().first()
+    template = loader.get_template('product.html')
+    context = {
+        "title": product["title"],
+        "name": product["name"],
+        "day": product["day"],
+        "type": product["type"],
+        "time": product["time"],
+        "session": product["session"],
+        "tuition": product["tuition"],
+        # "off": product["off"],
+        "price": product["price"],
+        "description": product["description"],
+        "start": product["start"],
+        "image": product["image"],
+        "selected": product["selected"],
+        "capacity": product["capacity"],
+        "gender": product["gender"],
+        "datetime": product["datetime"],
+        "instagram": about["instagram"],
+        "telegram": about["telegram"],
+        "telephone": about["telephone"],
+        "phone": about["phone"],
+        "logo": about["logo"],
+        "transparent_logo": about["transparent_logo"],
+        "address": about["address"],
+        "latitude": about["latitude"],
+        "longitude": about["longitude"],
+    }
+    return HttpResponse(template.render(context, request))
 
 
 def sport_view(request):
@@ -20,13 +53,14 @@ class Create_Course(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         title = request.data["title"]
-        name = request.data["description"]
+        name = request.data["name"]
         day = request.data["day"]
         type = request.data["type"]
         time = request.data["time"]
         session = request.data["session"]
         tuition = request.data["tuition"]
-        price = request.data["price"]
+        off = request.data["off"]
+        price = tuition - off * tuition / 100
         description = request.data["description"]
         image = request.data["image"]
         selected = bool(request.POST.get("selected", False))

@@ -1,5 +1,4 @@
 <!doctype html>
-{% load static %}
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -452,12 +451,12 @@
 		</ol>
 
 
-		<button class="card-button" onclick="{% url "product:product" pk=x.id %}">ثبت نام کنید</button>
+		<button class="card-button" onclick="location.assign({% url "product:product"  pk=x.id %})">ثبت نام کنید</button>
 
 		</div>
 
         {% endfor %}
-
+/
 
 </div>
 

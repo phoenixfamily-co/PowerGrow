@@ -272,7 +272,7 @@
 
 	<div class="logoHolder">
 
-			 <img alt="" src="/static/images/logo.jpg" class="logo">
+			 <img alt="" src="/media/{{ logo }}" class="logo">
 	  		<div class="typography">PowerGrow</div>
 
 		</div>
@@ -285,7 +285,7 @@
 	<div class="slideshow-container">
 
 		<div class="mySlides fade">
-			<img alt="" src="/static/images/product.jpg" style="width:100%;height:100% ; border-bottom-left-radius:  20px ; border-top-left-radius: 20px" >
+			<img alt="" src="/media/{{ image }}" style="width:100%;height:100% ; border-bottom-left-radius:  20px ; border-top-left-radius: 20px" >
 		</div>
 
 	</div>
@@ -297,7 +297,7 @@
 
 		<ul class="card-title">
 			<li style="font-size: 16px;font-weight: bold ;display: inline">نام دوره:</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ;float: left">فوتبال (آقایان)</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ;float: left">{{ title }}({{ gender }})</li>
 
 		</ul>
 
@@ -305,7 +305,7 @@
 
 		<ul class="card-title">
 			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">تاریخ شروع:</li>
-			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin: -4px">18/04/1402</li>
+			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin: -4px">{{ start }}</li>
 
 		</ul>
 
@@ -315,7 +315,7 @@
 
 			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">روز های برگزاری:
 			</li>
-			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin-bottom:  -4px">شنبه ها و سه شنبه ها
+			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin-bottom:  -4px">{{ day }}
 			</li>
 		</ul>
 
@@ -324,21 +324,21 @@
 
 			<ul class="card-title">
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">ساعت برگزاری:</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">از 14 تا 16</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">{{ time }}</li>
 		</ul>
 
 		<hr style="margin-top: 200px ; position: absolute">
 
 			<ul class="card-title">
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">تعداد جلسات</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">8 جلسه</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">{{ session }} جلسه</li>
 		</ul>
 
 		<hr style="margin-top: 250px ; position: absolute">
 
 			<ul class="card-title">
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right; margin-top: -4px">شهریه ثابت:</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left; margin-top: -4px">1500000 تومان</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left; margin-top: -4px">{{ tuition }} تومان</li>
 		</ul>
 
 		<hr style="margin-top: 300px ; position: absolute">
@@ -348,14 +348,14 @@
 
 			<ul class="card-title">
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; ; margin-top: -4px">تخفیف:</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; ; margin-top: -4px">10%</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; ; margin-top: -4px">{{ off }}%</li>
 		</ul>
 
 		<hr style="margin-top: 350px ; position: absolute">
 
 		<ul class="card-title">
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -10px">قیمت نهایی:</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -10px">1300000 تومان</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -10px">{{ price }} تومان</li>
 		</ul>
 
 		<button class="card-button" onclick="redirect({% url 'home:home' %})">
@@ -367,45 +367,30 @@
 
     <div class="card" style="margin-top: 515px ; height: 120px">
         
-        <img src="" alt="">
+        <img src="{{ profile }}" alt=""  style="float: right ; margin-top: 30px ; margin-right: 20px ; font-size: 40px ;direction: rtl ; height: 60px ; width: 60px">
 
-        <i class="fa-solid fa-circle-user" STYLE="float: right ; margin-top: 45px ; margin-right: 60px ; font-size: 40px ;direction: rtl"> مهدیس نبوی</i>
+        <h5 style="right: 0 ; margin-right: 90px ; margin-top: 45px ; position: absolute">{{ name }}</h5>
+
 
     </div>
-
 
 
 	<div style="width: 70%; height: 500px; background: #FFFFFF ; float: right;border-top-left-radius: 20px; border-bottom-left-radius: 20px; margin-top: 15px">
 
         <p style="direction: rtl ; font-size: 20px ; width: auto ; height: 100% ; margin-right: 10px ; margin-left: 5px ; padding-bottom: 5px">
-             کلاس آموزش فوتبال برای علاقه‌مندان به این ورزش بسیار جذاب است.
- در این کلاس، مهارت‌های پایه فوتبال به شرکت‌کنندگان آموزش داده می‌شود.
- با حضور در این کلاس، شرکت‌کنندگان به دویدن، پاس دادن، تکنیک دروازه‌بانی و... آشنا می‌شوند.
- این کلاس برای همه سطوح سنی مناسب است و مربیان با توجه به سطح شرکت‌کنندگان، برنامه آموزشی را طراحی می‌کنند.
- در کلاس فوتبال، شرکت‌کنندگان می‌توانند با دوستان خود رقابت کنند و از یادگیری بهتر استفاده کنند.
- این کلاس به علاقه‌مندان به فوتبال کمک می‌کند تا مهارت‌های خود را بهبود بخشند و به یک بازیکن حرفه‌ای تبدیل شوند.
- شرکت در این کلاس، فرصتی است برای تقویت سلامتی و قوی کردن عضلات پا و بدن.
- مربیان این کلاس با تجربه‌ی زیاد، به شرکت‌کنندگان نکات و توصیه‌های مفیدی در مورد فوتبال می‌دهند.
- با حضور در این کلاس، شرکت‌کنندگان فرصتی دارند تا با دیگران با علاقه به فوتبال آشنا شوند و با هم به بازی بپردازند.
- در کلاس فوتبال، علاقه‌مندان به این ورزش می‌توانند با چالش‌های جدید روبرو شوند و از یادگیری بیشتری بهره ببرند.
- در این کلاس، مهارت‌های پایه فوتبال به شرکت‌کنندگان آموزش داده می‌شود.
- با حضور در این کلاس، شرکت‌کنندگان به دویدن، پاس دادن، تکنیک دروازه‌بانی و... آشنا می‌شوند.
- این کلاس برای همه سطوح سنی مناسب است و مربیان با توجه به سطح شرکت‌کنندگان، برنامه آموزشی را طراحی می‌کنند.
- در کلاس فوتبال، شرکت‌کنندگان می‌توانند با دوستان خود رقابت کنند و از یادگیری بهتر استفاده کنند.
- این کلاس به علاقه‌مندان به فوتبال کمک می‌کند تا مهارت‌های خود را بهبود بخشند و به یک بازیکن حرفه‌ای تبدیل شوند.
- شرکت در این کلاس، فرصتی است برای تقویت سلامتی و قوی کردن عضلات پا و بدن.
- مربیان این کلاس با تجربه‌ی زیاد، به شرکت‌کنندگان نکات و توصیه‌های مفیدی در مورد فوتبال می‌دهند.
- با حضور در این کلاس، شرکت‌کنندگان فرصتی دارند تا با دیگران با علاقه به فوتبال آشنا شوند و با هم به بازی بپردازند.
- در کلاس فوتبال، علاقه‌مندان به این ورزش می‌توانند با چالش‌های جدید روبرو شوند و از یادگیری بیشتری بهره ببرند.
+            {{ description }}
    </p>
 	</div>
 
-    <div class="contentWrapper">
+    </div>
+
+	<div class="contentWrapper">
 		<div class="content">
 			<div style="width:160px;left: 0;bottom: 0; top: 0; position: absolute;margin-left: 20px">
 
 				<h2>PowerGrow</h2>
-		 <img class="" src="/static/images/logo-transparent.png" style="position: absolute;width:160px;margin-top: -22px" , alt="" >
+		 <img class="" src="/media/{{ transparent_logo }}" style="position: absolute;width:160px;margin-top: -22px"
+              alt="" >
 
 				</div>
 
@@ -415,28 +400,26 @@
 
 			</div>
 
-
-
 			<i class="fa-solid fa-location-dot" style="color: #ffffff; right: 0 ; position: absolute; margin-top: 20px ; margin-right: 20px; font-size: 30px"></i>
 			<h5 style="right: 0 ; margin-right: 50px;position: absolute;direction: rtl ; margin-top: 20px;">
-			تهران ، بلوار کشاورز ، خیابان حجاب ، روبه روی درب شرقی <br>پارک لاله ، مجموعه ورزشی حجاب
+                {{ address }}
 			</h5>
 
 			<i class="fa-solid fa-phone-flip" style="color: #ffffff; right: 0 ; position: absolute; margin-top: 95px ; margin-right: 20px; font-size: 30px"></i>
 			<h5 style="right: 0 ; margin-right: 60px;position: absolute;direction: rtl ; margin-top: 95px;">
-				09911177140<br> 0218896138
+                {{ phone }}<br> {{ telephone }}
 			</h5>
 
-			<a href="//www.instagram.com/phoenixfamily.co?igshid=OGQ5ZDc2ODk2ZA==" style="right: 0 ; position: absolute ; margin-right:20px ; margin-top: 165px;display: inline">
+			<a href="https://www.instagram.com/{{ instagram }}"  style="right: 0 ; position: absolute ; margin-right:20px ; margin-top: 165px;display: inline">
 		<i class="fa-brands fa-instagram" style="color: #ffffff ; font-size: 30px ;"></i>
 		</a>
 
 			<h5 style="right: 0 ; margin-right: 60px;position: absolute;direction: ltr ; margin-top: 167px;">
-				power_grow
+				{{ instagram }}
 			</h5>
 		</div>
-		<div class="footer">&copy;<span id="year" style="font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif'">2023 </span><span> PhoenixFamily. All rights reserved.</span>
-		<a href="//www.instagram.com/phoenixfamily.co?igshid=OGQ5ZDc2ODk2ZA==" style="right: 0 ; position: absolute ; margin-right:15px">
+		<div class="footer">&copy;<span id="year"  style="font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif'">2023 </span><span> PhoenixFamily. All rights reserved.</span>
+		<a href="//www.instagram.com/phoenixfamily.co?igshid=OGQ5ZDc2ODk2ZA=="  style="right: 0 ; position: absolute ; margin-right:15px">
 		<i class="fa-brands fa-instagram" style="color: #ffffff ; font-size: 30px"></i>
 		</a>
 		<a href="//www.linkedin.com/company/phoenixfamily" style="right: 0 ; position: absolute ; margin-right:55px">
@@ -445,6 +428,8 @@
 		<span style="right: 0;margin-right: 90px; position: absolute">Follow us:</span>
 		</div>
 </div>
+
+</body>
 
     <script>
 
@@ -466,12 +451,4 @@ const map = new nmp_mapboxgl.Map({
         });
 </script>
 
-	<script>
-		function redirect(direction) {
-		  window.location.assign(direction)
-		}
-
-</script>
-
-</body>
 </html>
