@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.views.generic import RedirectView
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', RedirectView.as_view(url='https://powergrow.net/home')),
@@ -27,7 +28,7 @@ urlpatterns = [
     path('product/', include('Product.urls', namespace='product')),
     path('reservation/', include('Reservation.urls', namespace='reservation')),
     path('about/', include('About.urls', namespace='about')),
-    path('login/', include('User.urls', namespace='user')),
+    path('user/', include('User.urls', namespace='user')),
 
 ]
 

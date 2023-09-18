@@ -24,7 +24,7 @@ class Course(models.Model):
     price = models.IntegerField()
     description = models.TextField()
     image = models.ImageField(upload_to="images/")
-    # profile = models.ImageField(upload_to="images/")
+    profile = models.ImageField(upload_to="images/")
     selected = models.BooleanField()
     capacity = models.IntegerField()
     gender = models.CharField(max_length=10, choices=GENDER_CHOICE)
