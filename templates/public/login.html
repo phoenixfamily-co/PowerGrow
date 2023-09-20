@@ -111,7 +111,7 @@ span {
 
 <body>
 
-<a style="font-size: 22px ; position: absolute ; margin-top: 30px ; margin-left: 40px ; cursor: pointer">بازگشت</a>
+<a href="{% url 'home:home' %}"  style="font-size: 22px ; position: absolute ; margin-top: 30px ; margin-left: 40px ; cursor: pointer">بازگشت</a>
 
 <div class="formContainer">
 
@@ -143,6 +143,8 @@ span {
        <label>
       <a href="{% url 'user:register' %}" style="font-size: 16px ; font-weight: bold ; cursor: pointer"> هنوز ثبت نام نکردید؟</a>
     </label>
+          <h5 id="error" style="margin-top: 30px ; position: absolute ; color: red ; margin-right: 150px"></h5>
+
   </div>
 </form>
 

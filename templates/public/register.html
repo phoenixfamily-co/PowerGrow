@@ -114,7 +114,7 @@ span {
 
 <body>
 
-<a style="font-size: 22px ; position: absolute ; margin-top: 25px ; margin-left: 40px ; cursor: pointer">بازگشت</a>
+<a href="{% url 'user:login' %}" style="font-size: 22px ; position: absolute ; margin-top: 25px ; margin-left: 40px ; cursor: pointer">بازگشت</a>
 
 <div class="formContainer">
 
@@ -132,7 +132,7 @@ span {
         </label>
 
     <label for="number"><b>شماره موبایل</b>
-    <input type="text" placeholder="09123456789" name="number" required>
+    <input id="phone" type="text" placeholder="9123456789" name="number" required>
         </label>
 
       <label for="birthdate"><b>تاریخ تولد</b>
@@ -168,9 +168,9 @@ span {
 <script>
 
     const registerForm = document.getElementById('registerForm');
+    const num = document.getElementById('phone');
     const pass1 = document.getElementById('pass1');
     const pass2 = document.getElementById('pass2');
-
 
     registerForm.addEventListener("submit", async function (event) {
     event.preventDefault();
@@ -185,7 +185,7 @@ span {
         body: JSON.stringify(Object.fromEntries(formData.entries()))
     });
     if (response.status===201){
-        window.location.assign("{% url "user:verification" %}")
+        window.location.assign(('../verification/'+num.value+'/').toString())
     }else {
             document.getElementById('error').innerHTML = response.statusText
     }

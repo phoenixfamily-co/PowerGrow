@@ -111,7 +111,7 @@ span {
 
 <body>
 
-<a style="font-size: 22px ; position: absolute ; margin-top: 30px ; margin-left: 40px ; cursor: pointer">بازگشت</a>
+<a href="{% url 'user:forget' %}" style="font-size: 22px ; position: absolute ; margin-top: 30px ; margin-left: 40px ; cursor: pointer">بازگشت</a>
 
 <div class="formContainer">
 
@@ -123,10 +123,12 @@ span {
 
   <div class="container">
     <label for="code"><b>کد پیامکی</b>
-    <input type="text" placeholder="123456" name="code" required>
+    <input id="otp" type="text" placeholder="123456" name="code" required>
         </label>
 
     <button type="submit" style="margin-top: 30px">تایید</button>
+
+                  <h5 id="error" style="margin-top: 50px ; position: absolute ; color: red"></h5>
 
   </div>
 </form>
@@ -136,4 +138,43 @@ span {
 <img src="../../static/images/otp.jpg" style="width: 50% ; right: 0; position: absolute ; height: 100%" alt="">
 
 </body>
+
+
+<script>
+
+    const verificationForm = document.getElementById('verificationForm');
+    const code = document.getElementById('otp');
+    const number = {{ number }};
+    const param = {'is_active' : 'True'};
+
+    verificationForm.addEventListener("submit", async function (event) {
+    event.preventDefault();
+    console.log(param)
+    const response = await fetch('../api/'+'+'+number+'/'+code.value , {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+    if (response.status===200){
+        window.location.assign("../password/"+number)
+    }else if (response.status===401) {
+        const result = await fetch('../api/'+'+'+number+'/activate/', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+            body:JSON.stringify(param)
+    });
+        if (result.status===200){
+                    window.location.assign("{% url 'user:login' %}")
+        }
+        else {
+            document.getElementById('error').innerHTML = response.statusText
+        }
+    }
+});
+
+</script>
+
 </html>

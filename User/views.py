@@ -6,7 +6,6 @@ from rest_framework import generics, status
 from rest_framework.decorators import api_view
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-
 from User.models import User
 from User.serializer import RegisterSerializer, ChangePasswordSerializer, UpdateProfileSerializer, \
     DeleteAccountSerializer, GetAccountSerializer, ManagePermissionSerializer
@@ -22,8 +21,12 @@ def register_view(request):
     return render(request, "public/register.html")
 
 
-def verification_view(request):
-    return render(request, "public/verification.html")
+def verification_view(request, number):
+    template = loader.get_template('public/verification.html')
+    context = {
+        "number": number
+    }
+    return HttpResponse(template.render(context, request))
 
 
 def forget_view(request):
@@ -33,7 +36,7 @@ def forget_view(request):
 def pass_view(request, number):
     template = loader.get_template('public/password.html')
     context = {
-        "number" : number
+        "number": number
     }
     return HttpResponse(template.render(context, request))
 
@@ -69,14 +72,30 @@ class DeleteAccount(generics.UpdateAPIView, ):
     serializer_class = DeleteAccountSerializer
 
 
+class ActivateAccount(generics.UpdateAPIView, ):
+    queryset = User.objects.all()
+    lookup_field = "number"
+    permission_classes = (AllowAny,)
+    serializer_class = DeleteAccountSerializer
+
+
 @api_view(['GET'])
-def get_selected(request, number):
+def get_user(request, number):
     user = User.objects.filter(number=number)
     ser = GetAccountSerializer(user, many=True)
     if not user:
         return Response(status=status.HTTP_404_NOT_FOUND)
     else:
         return Response(ser.data, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+def get_verification(request, number, code):
+    user = User.objects.filter(number=number).values().first()
+    if user["is_active"]:
+        return Response(status=status.HTTP_200_OK)
+    else:
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 
 class GetAccount(generics.ListAPIView, ):

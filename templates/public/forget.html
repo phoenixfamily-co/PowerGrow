@@ -111,7 +111,7 @@ span {
 
 <body>
 
-<a style="font-size: 22px ; position: absolute ; margin-top: 30px ; margin-left: 40px ; cursor: pointer">بازگشت</a>
+<a href="{% url 'user:login' %}" style="font-size: 22px ; position: absolute ; margin-top: 30px ; margin-left: 40px ; cursor: pointer">بازگشت</a>
 
 <div class="formContainer">
 
@@ -128,7 +128,7 @@ span {
 
     <button type="submit" style="margin-top: 30px">ارسال</button>
 
-            <h5 id="error" style="margin-top: 50px ; position: absolute ; color: red"></h5>
+            <h5 id="error" style="margin-top: 30px ; position: absolute ; color: red ; margin-right: 150px"></h5>
 
   </div>
 </form>
@@ -155,7 +155,7 @@ span {
         },
     });
     if (response.status===200){
-        window.location.assign("{% url "user:home"  %}")
+        window.location.assign("../verification/"+number.value)
     }else {
             document.getElementById('error').innerHTML = response.statusText
     }
