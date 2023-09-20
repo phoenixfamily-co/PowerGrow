@@ -15,10 +15,10 @@
 			font-family: BYekan;
   			font-style: normal;
   			font-weight: normal;
-  			src: url("../static/fonts/BYekan.eot");/* IE9 Compat Modes */
-			src: url("../static/fonts/BYekan.woff") format('woff'),
-        		 url("../static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */
-        		 url("../static/fonts/BYekan.ttf")  format('truetype') /* Safari, Android, iOS */
+  			src: url("../../static/fonts/BYekan.eot");/* IE9 Compat Modes */
+			src: url("../../static/fonts/BYekan.woff") format('woff'),
+        		 url("../../static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */
+        		 url("../../static/fonts/BYekan.ttf")  format('truetype') /* Safari, Android, iOS */
 		}
         * {
             box-sizing: border-box
@@ -49,7 +49,7 @@ a {
     width: 30%;
     direction: rtl;
 	left: 0;
-    margin-top: -10px;
+    margin-top: 12vh;
     margin-left: 20vh;
 	position: absolute;
 }
@@ -111,49 +111,56 @@ span {
 
 <body>
 
-<a style="font-size: 22px ; position: absolute ; margin-top: 25px ; margin-left: 40px ; cursor: pointer">بازگشت</a>
+<a style="font-size: 22px ; position: absolute ; margin-top: 30px ; margin-left: 40px ; cursor: pointer">بازگشت</a>
 
 <div class="formContainer">
 
-    <form action=" " method="post">
+    <form id="forgetForm">
   <div class="imgcontainer" style="direction: ltr">
-    <img src="../static/images/logo.jpg" alt="PowerGrow" class="avatar">
+    <img src="../../static/images/logo.jpg" alt="PowerGrow" class="avatar">
       PowerGrow
   </div>
 
   <div class="container">
-
-      <label for="uname"><b>نام نام خانوادگی</b>
-    <input type="text" placeholder="نام نام خانوادگی" name="uname" required>
+    <label for="number"><b>شماره تلفن</b>
+    <input id="phone" type="text" placeholder="9123456789" name="number" required>
         </label>
 
-    <label for="uname"><b>شماره موبایل</b>
-    <input type="text" placeholder="09123456789" name="uname" required>
-        </label>
+    <button type="submit" style="margin-top: 30px">ارسال</button>
 
-    <label for="psw"><b>رمز عبور</b>
-    <input type="password" placeholder="پسورد" name="psw" required>
-        </label>
-      <label for="psw"><b>تایید رمز عبور</b>
-    <input type="password" placeholder="تایید پسورد" name="psw" required>
-        </label>
-      <label for="psw"><b>جنسیت</b>
-          <input type="radio" checked="checked" name="remember">
-          آقایان
-
-          <input type="radio" checked="checked" name="remember">
-          بانوان
-
-        </label>
-
-    <button type="submit" style="margin-top: 30px">ثبت نام</button>
+            <h5 id="error" style="margin-top: 50px ; position: absolute ; color: red"></h5>
 
   </div>
 </form>
 
 </div>
 
-<img src="../static/images/register.jpg" style="width: 50% ; right: 0; position: absolute ; height: 100%" alt="">
+<img src="../../static/images/otp.jpg" style="width: 50% ; right: 0; position: absolute ; height: 100%" alt="">
 
 </body>
+
+
+<script>
+
+    const forgetForm = document.getElementById('forgetForm');
+    const number = document.getElementById('phone');
+
+
+    forgetForm.addEventListener("submit", async function (event) {
+    event.preventDefault();
+    const response = await fetch('api/'+number.value , {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+    if (response.status===200){
+        window.location.assign("{% url "user:home"  %}")
+    }else {
+            document.getElementById('error').innerHTML = response.statusText
+    }
+});
+
+</script>
+
 </html>

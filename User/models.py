@@ -1,11 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
+from django.utils import timezone
 from phonenumber_field.modelfields import PhoneNumberField
-
-GENDER_CHOICE = (
-    ('آقایان', 'men'),
-    ('بانوان', 'women'),
-)
 
 
 class CustomAccountManager(BaseUserManager):
@@ -26,16 +22,16 @@ class CustomAccountManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    name = models.CharField(max_length=50, null=True, blank=True)
-    number = PhoneNumberField(unique=True)
+    name = models.CharField(max_length=50, default="unknown")
+    number = PhoneNumberField(unique=True, )
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_superuser = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
     password = models.CharField(max_length=32)
-    birthdate = models.DateField(null=True, blank=True)
+    birthdate = models.CharField(max_length=10, default=timezone.now)
     national = PhoneNumberField(unique=True, blank=True, null=True)
-    gender = models.CharField(max_length=10, choices=GENDER_CHOICE)
+    gender = models.CharField(max_length=10)
     USERNAME_FIELD = 'number'
     REQUIRED_FIELDS = ['name', 'password', 'gender', 'birthdate']
 

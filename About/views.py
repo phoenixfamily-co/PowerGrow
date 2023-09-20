@@ -11,7 +11,7 @@ from About.models import AboutUs
 
 def about_view(request):
     about = AboutUs.objects.values().first()
-    template = loader.get_template('about.html')
+    template = loader.get_template('public/about.html')
     context = {
         "instagram": about["instagram"],
         "telegram": about["telegram"],

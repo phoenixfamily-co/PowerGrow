@@ -15,10 +15,10 @@
 			font-family: BYekan;
   			font-style: normal;
   			font-weight: normal;
-  			src: url("../static/fonts/BYekan.eot");/* IE9 Compat Modes */
-			src: url("../static/fonts/BYekan.woff") format('woff'),
-        		 url("../static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */
-        		 url("../static/fonts/BYekan.ttf")  format('truetype') /* Safari, Android, iOS */
+  			src: url("../../static/fonts/BYekan.eot");/* IE9 Compat Modes */
+			src: url("../../static/fonts/BYekan.woff") format('woff'),
+        		 url("../../static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */
+        		 url("../../static/fonts/BYekan.ttf")  format('truetype') /* Safari, Android, iOS */
 		}
         * {
             box-sizing: border-box
@@ -115,40 +115,67 @@ span {
 
 <div class="formContainer">
 
-    <form action=" " method="post">
+    <form id="loginForm">
   <div class="imgcontainer" style="direction: ltr">
-    <img src="../static/images/logo.jpg" alt="PowerGrow" class="avatar">
+    <img src="../../static/images/logo.jpg" alt="PowerGrow" class="avatar">
       PowerGrow
   </div>
 
   <div class="container">
-    <label for="uname"><b>نام کاربری</b>
-    <input type="text" placeholder="شماره موبایل" name="uname" required>
+    <label for="number"><b>نام کاربری</b>
+    <input type="text" placeholder="شماره موبایل" name="number" required>
         </label>
 
-    <label for="psw"><b>رمز عبور</b>
-    <input type="password" placeholder="پسورد" name="psw" required>
+    <label for="password"><b>رمز عبور</b>
+    <input type="password" placeholder="پسورد" name="password" required>
         </label>
 
     <button type="submit" style="margin-top: 30px">ورود</button>
     <label>
-      <input type="checkbox" checked="checked" name="remember"> من را به خاطر داشته باش.
+      <input type="checkbox" name="remember"> من را به خاطر داشته باش.
     </label>
 
-      <a style="font-size: 14px ; margin-right: 25% ; cursor: pointer">فراموشی رمز عبور؟</a>
+      <a href="{% url 'user:forget' %}" style="font-size: 14px ; margin-right: 25% ; cursor: pointer">فراموشی رمز عبور؟</a>
 
       <br>
       <br>
 
        <label>
-      <a style="font-size: 16px ; font-weight: bold ; cursor: pointer"> هنوز ثبت نام نکردید؟</a>
+      <a href="{% url 'user:register' %}" style="font-size: 16px ; font-weight: bold ; cursor: pointer"> هنوز ثبت نام نکردید؟</a>
     </label>
   </div>
 </form>
 
 </div>
 
-<img src="../static/images/login.jpg" style="width: 50% ; right: 0; position: absolute ; height: 100%" alt="">
+<img src="../../static/images/login.jpg" style="width: 50% ; right: 0; position: absolute ; height: 100%" alt="">
 
 </body>
+
+
+<script>
+
+    const loginForm = document.getElementById('loginForm');
+
+
+    loginForm.addEventListener("submit", async function (event) {
+    event.preventDefault();
+    const formData = new FormData(loginForm)
+          console.log(JSON.stringify(Object.fromEntries(formData.entries())));
+    const response = await fetch('api/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(Object.fromEntries(formData.entries()))
+    });
+    if (response.status===200){
+        window.location.assign("{% url "user:home" %}")
+    }else {
+            document.getElementById('error').innerHTML = response.statusText
+    }
+});
+
+</script>
+
 </html>

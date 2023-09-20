@@ -27,10 +27,15 @@ SECRET_KEY = 'django-insecure-4d1zr0@xm8ov^a*+$1%p4l(5(uf_z-!cf+w&6&3+h*609r#)d@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+DATE_INPUT_FORMATS = ('%d-%m-%Y', '%Y-%m-%d')
+USE_I18N = True
+USE_L10N = True
+USE_TZ = True
+
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
-    'powergrow.net'
+    'powergrow.net',
 ]
 
 # Application definition
@@ -51,6 +56,15 @@ INSTALLED_APPS = [
     'Reservation',
     'Seo',
     'User',
+    'django_otp',
+    'django_otp.plugins.otp_static',
+    'django_otp.plugins.otp_totp',
+    'django_otp.plugins.otp_email',  # <- if you want email capability.
+    'two_factor',
+    'two_factor.plugins.phonenumber',  # <- if you want phone number capability.
+    'two_factor.plugins.email',  # <- if you want email capability.
+    'two_factor.plugins.yubikey',
+    'otp_yubikey',
 ]
 
 REST_FRAMEWORK = {
@@ -72,7 +86,6 @@ SIMPLE_JWT = {
 
 AUTH_USER_MODEL = 'User.User'
 
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -81,9 +94,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django_otp.middleware.OTPMiddleware',
 ]
 
 ROOT_URLCONF = 'PowerGrow.urls'
+
 
 TEMPLATES = [
     {
@@ -138,10 +154,6 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
-
-USE_I18N = True
-
-USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/

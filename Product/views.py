@@ -12,7 +12,7 @@ from rest_framework import status
 def product_view(request, pk):
     product = Course.objects.filter(id=pk).values().first()
     about = AboutUs.objects.values().first()
-    template = loader.get_template('product.html')
+    template = loader.get_template('public/product.html')
     context = {
         "title": product["title"],
         "name": product["name"],
@@ -44,7 +44,7 @@ def product_view(request, pk):
 
 
 def sport_view(request):
-    return render(request, "product.html")
+    return render(request, "public/product.html")
 
 
 class Create_Course(viewsets.ModelViewSet):
