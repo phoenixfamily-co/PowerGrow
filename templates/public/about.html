@@ -220,7 +220,7 @@
 <body>
 
 	  <div class="tab">
-		<button class="tab-button" onclick="redirect({% url 'home:home' %})">صفحه اصلی</button>
+		<button class="tab-button" onclick="window.location.assign('{% url 'home:home' %}')">صفحه اصلی</button>
 		<div class="dropdown">
   		<button class="tab-button" onclick="">ورزش ها</button>
 			<i class="fa-solid fa-caret-down" style="color: #000;margin-right: -7px"></i>
@@ -230,21 +230,21 @@
    				 <a href="{% url 'product:category' %}">توپی</a>
 			</div>
 		</div>
-  		<button class="tab-button" onclick="redirect({% url 'reservation:reservation' %})">اجاره سالن</button>
-		<button class="tab-button" style="font-weight: bold;text-decoration: underline; text-underline-position: under" onclick="redirect({% url 'about:about' %})">درباره ما</button>
+  		<button class="tab-button" onclick="window.location.assign({% url 'reservation:reservation' %})">اجاره سالن</button>
+		<button class="tab-button" style="font-weight: bold;text-decoration: underline; text-underline-position: under" onclick="window.location.assign({% url 'about:about' %})">درباره ما</button>
 
 	</div>
 
 	<div class="logoHolder">
 
-			 <img alt="" src="../../static/images/logo.jpg" class="logo">
+			 <img alt="" src="/media/{{ logo }}" class="logo">
 	  		<div class="typography">PowerGrow</div>
 
 		</div>
 
 	<div class="login">
 		<i class="fa-solid fa-user" style="color: #000; position:absolute ; margin-top:5px ; font-size: 16px"></i>
-		<button class="loginTypography" onclick="redirect({% url 'user:login' %})">ورود/عضویت</button>
+		<button class="loginTypography" onclick="location.assign({% url 'user:login' %}">ورود/عضویت</button>
 	</div>
 
 	<div style="width: 100%;height: 500px">
@@ -328,7 +328,7 @@
 			<div style="width:160px;left: 0;bottom: 0; top: 0; position: absolute;margin-left: 20px">
 
 				<h2>PowerGrow</h2>
-		 <img class="" src="{{ transparent_logo }}" style="position: absolute;width:160px;margin-top: -22px"  alt="" >
+		 <img class="" src="/media/{{ transparent_logo }}" style="position: absolute;width:160px;margin-top: -22px"  alt="" >
 
 				</div>
 

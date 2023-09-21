@@ -264,7 +264,7 @@
 <body>
 
 	<div class="tab">
-		<button class="tab-button"  onclick="redirect({% url 'home:home' %})">صفحه اصلی</button>
+		<button class="tab-button"  onclick="window.location.assign({% url 'home:home' %})">صفحه اصلی</button>
 		<div class="dropdown">
   		<button class="tab-button" onclick="">ورزش ها</button>
 			<i class="fa-solid fa-caret-down" style="color: #ffffff;margin-right: -7px"></i>
@@ -274,21 +274,21 @@
    				 <a href="{% url 'product:category' %}">توپی</a>
 			</div>
 		</div>
-  		<button class="tab-button" onclick="redirect({% url 'reservation:reservation' %})" style="font-weight: bold;text-decoration: underline; text-underline-position: under">اجاره سالن</button>
-		<button class="tab-button" onclick="redirect({% url 'about:about' %})">درباره ما</button>
+  		<button class="tab-button" onclick="location.assign({% url 'reservation:reservation' %})">اجاره سالن</button>
+		<button class="tab-button" onclick="window.location.assign({% url 'about:about' %})">درباره ما</button>
 
 	</div>
 
 	<div class="logoHolder">
 
-			 <img alt="" src="../../static/images/logo.jpg" class="logo">
+			 <img alt="" src="/media/{{ logo }}" class="logo">
 	  		<div class="typography">PowerGrow</div>
 
 		</div>
 
 	<div class="login">
 		<i class="fa-solid fa-user" style="color: #ffff; position:absolute ; margin-top:5px ; font-size: 16px"></i>
-		<button class="loginTypography" onclick="redirect({% url 'user:login' %})">ورود/عضویت</button>
+		<button class="loginTypography" onclick="window.location.assign({% url 'user:login' %})">ورود/عضویت</button>
 	</div>
 
 	<div class="slideshow-container">
@@ -413,14 +413,13 @@
 		</script>
 
 
-
-
 	<div class="contentWrapper">
 		<div class="content">
 			<div style="width:160px;left: 0;bottom: 0; top: 0; position: absolute;margin-left: 20px">
 
 				<h2>PowerGrow</h2>
-		 <img class="" src="../../static/images/logo-transparent.png" style="position: absolute;width:160px;margin-top: -22px" , alt="" >
+		 <img class="" src="/media/{{ transparent_logo }}" style="position: absolute;width:160px;margin-top: -22px"
+              alt="" >
 
 				</div>
 
@@ -430,28 +429,26 @@
 
 			</div>
 
-
-
 			<i class="fa-solid fa-location-dot" style="color: #ffffff; right: 0 ; position: absolute; margin-top: 20px ; margin-right: 20px; font-size: 30px"></i>
 			<h5 style="right: 0 ; margin-right: 50px;position: absolute;direction: rtl ; margin-top: 20px;">
-			تهران ، بلوار کشاورز ، خیابان حجاب ، روبه روی درب شرقی <br>پارک لاله ، مجموعه ورزشی حجاب
+                {{ address }}
 			</h5>
 
 			<i class="fa-solid fa-phone-flip" style="color: #ffffff; right: 0 ; position: absolute; margin-top: 95px ; margin-right: 20px; font-size: 30px"></i>
 			<h5 style="right: 0 ; margin-right: 60px;position: absolute;direction: rtl ; margin-top: 95px;">
-				09911177140<br> 0218896138
+                {{ phone }}<br> {{ telephone }}
 			</h5>
 
-			<a href="//www.instagram.com/phoenixfamily.co?igshid=OGQ5ZDc2ODk2ZA==" style="right: 0 ; position: absolute ; margin-right:20px ; margin-top: 165px;display: inline">
+			<a href="https://www.instagram.com/{{ instagram }}"  style="right: 0 ; position: absolute ; margin-right:20px ; margin-top: 165px;display: inline">
 		<i class="fa-brands fa-instagram" style="color: #ffffff ; font-size: 30px ;"></i>
 		</a>
 
 			<h5 style="right: 0 ; margin-right: 60px;position: absolute;direction: ltr ; margin-top: 167px;">
-				power_grow
+				{{ instagram }}
 			</h5>
 		</div>
-		<div class="footer">&copy;<span id="year" style="font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif'">2023 </span><span> PhoenixFamily. All rights reserved.</span>
-		<a href="//www.instagram.com/phoenixfamily.co?igshid=OGQ5ZDc2ODk2ZA==" style="right: 0 ; position: absolute ; margin-right:15px">
+		<div class="footer">&copy;<span id="year"  style="font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif'">2023 </span><span> PhoenixFamily. All rights reserved.</span>
+		<a href="//www.instagram.com/phoenixfamily.co?igshid=OGQ5ZDc2ODk2ZA=="  style="right: 0 ; position: absolute ; margin-right:15px">
 		<i class="fa-brands fa-instagram" style="color: #ffffff ; font-size: 30px"></i>
 		</a>
 		<a href="//www.linkedin.com/company/phoenixfamily" style="right: 0 ; position: absolute ; margin-right:55px">
@@ -460,8 +457,6 @@
 		<span style="right: 0;margin-right: 90px; position: absolute">Follow us:</span>
 		</div>
 </div>
-
-
 <script>
 
 const map = new nmp_mapboxgl.Map({
@@ -480,13 +475,6 @@ const map = new nmp_mapboxgl.Map({
                 show: false,
             }
         });
-</script>
-
-	<script>
-		function redirect(direction) {
-		  window.location.assign(direction)
-		}
-
 </script>
 
 </body>

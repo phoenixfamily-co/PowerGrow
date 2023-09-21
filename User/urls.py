@@ -14,7 +14,7 @@ app_name = 'user'
 
 urlpatterns = [
 
-    path('login/', login_view, name='login'),
+    path('', login_view, name='login'),
     path('login/api/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('login/api/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('register/', register_view, name='register'),

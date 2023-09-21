@@ -117,7 +117,7 @@ span {
 
     <form id="loginForm">
   <div class="imgcontainer" style="direction: ltr">
-    <img src="../../static/images/logo.jpg" alt="PowerGrow" class="avatar">
+    <img src="/media/{{ logo }}" alt="PowerGrow" class="avatar">
       PowerGrow
   </div>
 
@@ -164,7 +164,7 @@ span {
     event.preventDefault();
     const formData = new FormData(loginForm)
           console.log(JSON.stringify(Object.fromEntries(formData.entries())));
-    const response = await fetch('api/', {
+    const response = await fetch('login/api/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

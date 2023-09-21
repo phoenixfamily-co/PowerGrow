@@ -1,48 +1,74 @@
 from django.http import HttpResponse
-from django.shortcuts import render
 from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import generics, status
 from rest_framework.decorators import api_view
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
+
+from About.models import AboutUs
 from User.models import User
 from User.serializer import RegisterSerializer, ChangePasswordSerializer, UpdateProfileSerializer, \
     DeleteAccountSerializer, GetAccountSerializer, ManagePermissionSerializer
 
 
-@csrf_exempt
 def login_view(request):
-    return render(request, "public/login.html")
+    about = AboutUs.objects.values().first()
+    template = loader.get_template('public/login.html')
+    context = {
+        "logo": about["logo"],
+    }
+    return HttpResponse(template.render(context, request))
 
 
 @csrf_exempt
 def register_view(request):
-    return render(request, "public/register.html")
+    about = AboutUs.objects.values().first()
+    template = loader.get_template('public/register.html')
+    context = {
+        "logo": about["logo"],
+    }
+    return HttpResponse(template.render(context, request))
 
 
 def verification_view(request, number):
+    about = AboutUs.objects.values().first()
     template = loader.get_template('public/verification.html')
     context = {
-        "number": number
+        "number": number,
+        "logo": about["logo"],
+
     }
     return HttpResponse(template.render(context, request))
 
 
 def forget_view(request):
-    return render(request, "public/forget.html")
+    about = AboutUs.objects.values().first()
+    template = loader.get_template('public/forget.html')
+    context = {
+        "logo": about["logo"],
+    }
+    return HttpResponse(template.render(context, request))
 
 
 def pass_view(request, number):
+    about = AboutUs.objects.values().first()
     template = loader.get_template('public/password.html')
     context = {
-        "number": number
+        "number": number,
+        "logo": about["logo"],
+
     }
     return HttpResponse(template.render(context, request))
 
 
 def home_view(request):
-    return render(request, "user/home.html")
+    about = AboutUs.objects.values().first()
+    template = loader.get_template('public/home.html')
+    context = {
+        "logo": about["logo"],
+    }
+    return HttpResponse(template.render(context, request))
 
 
 class RegisterView(generics.CreateAPIView):
@@ -90,7 +116,7 @@ def get_user(request, number):
 
 
 @api_view(['GET'])
-def get_verification(request, number, code):
+def get_verification(request, number):
     user = User.objects.filter(number=number).values().first()
     if user["is_active"]:
         return Response(status=status.HTTP_200_OK)
