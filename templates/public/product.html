@@ -255,7 +255,7 @@
 <body>
 
 	<div class="tab">
-		<button class="tab-button"  onclick="redirect({% url 'home:home' %})">صفحه اصلی</button>
+		<button class="tab-button"  onclick="window.location.assign({% url 'home:home' %})">صفحه اصلی</button>
 		<div class="dropdown">
   		<button class="tab-button" onclick="">ورزش ها</button>
 			<i class="fa-solid fa-caret-down" style="color: #ffffff;margin-right: -6px"></i>
@@ -265,8 +265,8 @@
    				 <a href="#">توپی</a>
 			</div>
 		</div>
-  		<button class="tab-button" onclick="redirect({% url 'reservation:reservation' %})">اجاره سالن</button>
-		<button class="tab-button" onclick="redirect({% url 'about:about' %})">درباره ما</button>
+  		<button class="tab-button" onclick="window.location.assign({% url 'reservation:reservation' %})">اجاره سالن</button>
+		<button class="tab-button" onclick="window.location.assign({% url 'about:about' %})">درباره ما</button>
 
 	</div>
 
@@ -279,7 +279,7 @@
 
 	<div class="login">
 		<i class="fa-solid fa-user" style="color: #ffff; position:absolute ; margin-top:5px ; font-size: 16px"></i>
-		<button class="loginTypography" onclick="redirect({% url 'user:login' %})">ورود/عضویت</button>
+		<button class="loginTypography" onclick="window.location.assign({% url 'user:login' %})">ورود/عضویت</button>
 	</div>
 
 	<div class="slideshow-container">
@@ -381,8 +381,6 @@
             {{ description }}
    </p>
 	</div>
-
-    </div>
 
 	<div class="contentWrapper">
 		<div class="content">
