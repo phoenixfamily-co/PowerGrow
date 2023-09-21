@@ -116,7 +116,7 @@ def get_user(request, number):
 
 
 @api_view(['GET'])
-def get_verification(request, number):
+def get_verification(request, number, code):
     user = User.objects.filter(number=number).values().first()
     if user["is_active"]:
         return Response(status=status.HTTP_200_OK)

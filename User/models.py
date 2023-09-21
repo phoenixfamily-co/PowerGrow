@@ -28,7 +28,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
-    password = models.TextField(max_length=32)
+    password = models.TextField()
     birthdate = models.CharField(max_length=10, default=timezone.now)
     national = PhoneNumberField(unique=True, blank=True, null=True)
     gender = models.CharField(max_length=10)
