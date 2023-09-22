@@ -59,7 +59,7 @@ class Create_Course(viewsets.ModelViewSet):
         time = request.data["time"]
         session = request.data["session"]
         tuition = request.data["tuition"]
-        off = int(request.data["off"])
+        off = int(request.POST.get("off", 0))
         price = int(int(tuition) - int(off) * int(tuition) / 100)
         description = request.data["description"]
         image = request.data["image"]

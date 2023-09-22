@@ -21,7 +21,7 @@ class Course(models.Model):
     session = models.IntegerField()
     tuition = models.IntegerField()
     off = models.IntegerField()
-    price = models.IntegerField()
+    price = models.IntegerField(default=0)
     description = models.TextField()
     image = models.ImageField(upload_to="images/")
     profile = models.ImageField(upload_to="images/")
