@@ -10,10 +10,19 @@ from rest_framework import status
 
 
 def product_view(request, pk):
-    product = Course.objects.filter(id=pk).values().first()
     about = AboutUs.objects.values().first()
+    product = Course.objects.filter(id=pk).values().first()
     template = loader.get_template('public/product.html')
     context = {
+        "instagram": about["instagram"],
+        "telegram": about["telegram"],
+        "telephone": about["telephone"],
+        "phone": about["phone"],
+        "logo": about["logo"],
+        "transparent_logo": about["transparent_logo"],
+        "address": about["address"],
+        "latitude": about["latitude"],
+        "longitude": about["longitude"],
         "title": product["title"],
         "name": product["name"],
         "day": product["day"],
@@ -30,15 +39,6 @@ def product_view(request, pk):
         "capacity": product["capacity"],
         "gender": product["gender"],
         "datetime": product["datetime"],
-        "instagram": about["instagram"],
-        "telegram": about["telegram"],
-        "telephone": about["telephone"],
-        "phone": about["phone"],
-        "logo": about["logo"],
-        "transparent_logo": about["transparent_logo"],
-        "address": about["address"],
-        "latitude": about["latitude"],
-        "longitude": about["longitude"],
     }
     return HttpResponse(template.render(context, request))
 
