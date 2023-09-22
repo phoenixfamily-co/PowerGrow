@@ -452,7 +452,16 @@
 
 		<div class="mySlides fade">
             <img alt="" src="/media/{{ x.image }}" style="width:100%;height:100%">
-            <div class="caption">{{ x.description }}</div>
+
+            <div class="caption">
+
+                 {% autoescape off %}
+
+                {{ x.description|linebreaksbr  }}
+
+                {% endautoescape %}
+
+            </div>
 		</div>
 
         {% endfor %}
@@ -694,9 +703,6 @@
      registerButton = document.getElementById("registerButton")
      closeButton = document.getElementById("closeButton")
      myPopup = document.getElementById("myPopup")
-
-     myPopup.classList.toggle("show");
-
 
         registerButton.addEventListener("click", function () {
             myPopup.classList.toggle("show");
