@@ -518,7 +518,7 @@
     <div id="myPopup" class="popup">
         <div class="popup-content" style="direction: rtl">
             <label for="membership">تعداد جلسات در ماه را انتخاب کنید:</label>
-            <select name="membership" id="membership" style="margin-right: 50px">
+            <select name="membership" id="membership" style="margin-right: 83px">
               <option value="free">1جلسه</option>
               <option value="bronze">3جلسه</option>
               <option value="silver" >8جلسه</option>
@@ -528,11 +528,13 @@
             <label for="membership">روزهای برگزاری در هفته را مشخص کنید:</label>
               <select name="membership" id="membership" style="margin-right: 50px">
               <option value="free">شنبه</option>
-              <option value="bronze">3جلسه</option>
-              <option value="silver" >8جلسه</option>
+              <option value="bronze">دوشنبه</option>
+              <option value="silver" >سه شنبه</option>
             </select>
+            <br>
+            <br>
             <button id="closeButton">
-                  تایید
+                  ادامه
               </button>
         </div>
     </div>
@@ -704,6 +706,8 @@
      registerButton = document.getElementById("registerButton")
      closeButton = document.getElementById("closeButton")
      myPopup = document.getElementById("myPopup")
+
+                 myPopup.classList.toggle("show");
 
         registerButton.addEventListener("click", function () {
             myPopup.classList.toggle("show");
