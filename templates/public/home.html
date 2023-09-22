@@ -365,8 +365,39 @@
 			color: white;
             font-family: BYekan, serif !important;
 			font-size: 16px;
+
 		}
 
+
+         .popup {
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            display: none;
+        }
+        .popup-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888888;
+            width: 30%;
+            font-weight: bolder;
+        }
+        .popup-content button {
+            display: block;
+            margin: 0 auto;
+        }
+        .show {
+            display: block;
+        }
+        h1 {
+            color: green;
+        }
 
 		</style>
 
@@ -451,7 +482,7 @@
 		</ol>
 
 
-		<button class="card-button" onclick="window.location.assign('{% url "product:product"  pk=x.id %}')">ثبت نام کنید</button>
+		<button id="registerButton" class="card-button" onclick="window.location.assign('{% url "product:product"  pk=x.id %}')">ثبت نام کنید</button>
 
 		</div>
 
@@ -459,6 +490,19 @@
 /
 
 </div>
+
+    <div id="myPopup" class="popup">
+        <div class="popup-content">
+            <h1 style="color:green;">
+                  GeekforGeeks !
+              </h1>
+            <p>This is a popup box!</p>
+            <button id="closeButton">
+                  Close
+              </button>
+        </div>
+    </div>
+
 
 	<div style="width: 100%;height: 500px">
 
@@ -614,5 +658,23 @@
             }
         });
 </script>
+
+ <script>
+     registerButton = document.getElementById("registerButton")
+     closeButton = document.getElementById("closeButton")
+     myPopup = document.getElementById("myPopup")
+
+        registerButton.addEventListener("click", function () {
+            registerButton.classList.add("show");
+        });
+        closeButton.addEventListener("click", function () {
+            myPopup.classList.remove("show");
+        });
+        window.addEventListener("click", function (event) {
+            if (event.target === myPopup) {
+                myPopup.classList.remove("show");
+            }
+        });
+    </script>
 
 </html>
