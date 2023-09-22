@@ -369,7 +369,7 @@
         
         <img src="{{ profile }}" alt=""  style="float: right ; margin-top: 30px ; margin-right: 20px ; font-size: 40px ;direction: rtl ; height: 60px ; width: 60px">
 
-        <h5 style="right: 0 ; margin-right: 90px ; margin-top: 45px ; position: absolute">{{ name }}</h5>
+        <h5 style="right: 0 ; margin-right: 90px ; margin-top: 45px ; position: absolute ; font-weight: bold">{{ name }}</h5>
 
 
     </div>
@@ -400,7 +400,13 @@
 
 			<i class="fa-solid fa-location-dot" style="color: #ffffff; right: 0 ; position: absolute; margin-top: 20px ; margin-right: 20px; font-size: 30px"></i>
 			<h5 style="right: 0 ; margin-right: 50px;position: absolute;direction: rtl ; margin-top: 20px;">
-                {{ address }}
+
+                   {% autoescape off %}
+
+                {{ address|linebreaksbr  }}
+
+                {% endautoescape %}
+
 			</h5>
 
 			<i class="fa-solid fa-phone-flip" style="color: #ffffff; right: 0 ; position: absolute; margin-top: 95px ; margin-right: 20px; font-size: 30px"></i>
