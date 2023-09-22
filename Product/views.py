@@ -60,7 +60,7 @@ class Create_Course(viewsets.ModelViewSet):
         session = request.data["session"]
         tuition = request.data["tuition"]
         off = request.data["off"]
-        price = int(tuition) - int(off) * int(tuition) / 100
+        price = (int(tuition) - int(off) * int(tuition) / 100)
         description = request.data["description"]
         image = request.data["image"]
         selected = bool(request.POST.get("selected", False))
