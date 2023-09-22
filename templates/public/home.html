@@ -507,11 +507,22 @@
 </div>
 
     <div id="myPopup" class="popup">
-        <div class="popup-content">
-            <h1 style="color:green;">
-              </h1>
+        <div class="popup-content" style="direction: rtl">
+            <label for="membership">تعداد جلسات در ماه را انتخاب کنید:</label>
+            <select name="membership" id="membership" style="margin-right: 50px">
+              <option value="free">1جلسه</option>
+              <option value="bronze">3جلسه</option>
+              <option value="silver" >8جلسه</option>
+            </select>
+            <br>
+            <label for="membership">روزهای برگزاری در هفته را مشخص کنید:</label>
+              <select name="membership" id="membership" style="margin-right: 50px">
+              <option value="free">شنبه</option>
+              <option value="bronze">3جلسه</option>
+              <option value="silver" >8جلسه</option>
+            </select>
             <button id="closeButton">
-                  Close
+                  تایید
               </button>
         </div>
     </div>
@@ -593,7 +604,14 @@
 
 			<i class="fa-solid fa-location-dot" style="color: #ffffff; right: 0 ; position: absolute; margin-top: 20px ; margin-right: 20px; font-size: 30px"></i>
 			<h5 style="right: 0 ; margin-right: 50px;position: absolute;direction: rtl ; margin-top: 20px;">
-                {{ address }}
+
+                {% autoescape off %}
+
+                {{ address|linebreaksbr  }}
+
+                {% endautoescape %}
+
+
 			</h5>
 
 			<i class="fa-solid fa-phone-flip" style="color: #ffffff; right: 0 ; position: absolute; margin-top: 95px ; margin-right: 20px; font-size: 30px"></i>
@@ -610,7 +628,7 @@
 			</h5>
 		</div>
 		<div class="footer">&copy;<span id="year"  style="font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif'">2023 </span><span> PhoenixFamily. All rights reserved.</span>
-		<a href="//www.instagram.com/phoenixfamily.co?igshid=OGQ5ZDc2ODk2ZA=="  style="right: 0 ; position: absolute ; margin-right:15px">
+		<a href="//www.instagram.com/phoenixfamily.co?igshid=OGQ5ZDc2ODk2ZA=="  style="right: 0 ; position: absolute ; margin-right:15px" >
 		<i class="fa-brands fa-instagram" style="color: #ffffff ; font-size: 30px"></i>
 		</a>
 		<a href="//www.linkedin.com/company/phoenixfamily" style="right: 0 ; position: absolute ; margin-right:55px">
@@ -676,6 +694,9 @@
      registerButton = document.getElementById("registerButton")
      closeButton = document.getElementById("closeButton")
      myPopup = document.getElementById("myPopup")
+
+     myPopup.classList.toggle("show");
+
 
         registerButton.addEventListener("click", function () {
             myPopup.classList.toggle("show");
