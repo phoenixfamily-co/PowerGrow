@@ -30,7 +30,7 @@ def product_view(request, pk):
         "time": product["time"],
         "session": product["session"],
         "tuition": product["tuition"],
-        # "off": product["off"],
+        "off": product["off"],
         "price": product["price"],
         "description": product["description"],
         "start": product["start"],
