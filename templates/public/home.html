@@ -394,12 +394,27 @@
         }
         .show {
             display: block;
+            visibility: visible;
+            -webkit-animation: fadeIn 1s;
+            animation: fadeIn 1s;
         }
         h1 {
             color: green;
         }
 
+        @-webkit-keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity:1 ;}
+        }
+
 		</style>
+
+
 
 </head>
 <body>
@@ -665,7 +680,7 @@
      myPopup = document.getElementById("myPopup")
 
         registerButton.addEventListener("click", function () {
-            registerButton.classList.add("show");
+            myPopup.classList.toggle("show");
         });
         closeButton.addEventListener("click", function () {
             myPopup.classList.remove("show");
