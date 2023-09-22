@@ -20,7 +20,7 @@ class Course(models.Model):
     time = models.CharField(max_length=50)
     session = models.IntegerField()
     tuition = models.IntegerField()
-    off = models.IntegerField
+    off = models.IntegerField()
     price = models.IntegerField()
     description = models.TextField()
     image = models.ImageField(upload_to="images/")
@@ -30,4 +30,3 @@ class Course(models.Model):
     gender = models.CharField(max_length=10, choices=GENDER_CHOICE)
     start = models.DateTimeField(default=timezone.now)
     datetime = models.DateTimeField(default=timezone.now)
-
