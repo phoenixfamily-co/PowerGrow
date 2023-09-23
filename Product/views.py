@@ -10,7 +10,7 @@ from Product.serializer import CourseSerializer, DaysSerializer
 def product_view(request, pk, session, day):
     about = AboutUs.objects.values().first()
     product = Course.objects.filter(id=pk).values().first()
-    course = Course.objects.all()
+    course = Course.objects.get()
     days = course.days.get(id=day, course=pk).first()
     template = loader.get_template('public/product.html')
     context = {
