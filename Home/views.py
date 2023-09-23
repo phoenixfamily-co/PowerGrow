@@ -13,7 +13,7 @@ from django.http import HttpResponse
 
 def home_view(request):
     images = Slider.objects.all().order_by("datetime").values()
-    selected = list(Course.objects.get(selected=True).values())
+    selected = list(Course.objects.get(selected=True))
     about = AboutUs.objects.values().first()
     template = loader.get_template('public/home.html')
     context = {
