@@ -505,7 +505,7 @@
 		</ol>
 
 
-		<button id="registerButton" name="{{ x.id }}" class="card-button">ثبت نام کنید</button>
+		<button id="registerButton" itemid="{{ x.id }}" class="card-button">ثبت نام کنید</button>
 
 		</div>
 
@@ -713,7 +713,7 @@
      let course
 
      registerButton.addEventListener("click", function () {
-         course = this.getAttribute("name")
+         course = this.getAttribute("itemid")
             myPopup.classList.toggle("show");
         });
         closeButton.addEventListener("click", function () {
