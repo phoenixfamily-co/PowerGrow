@@ -712,9 +712,13 @@
      myPopup = document.getElementById("myPopup")
      session = document.getElementById("number")
      week = document.getElementById("week")
-     const selectedId = {{ selected.id }};
-     const number = session.value;
-     const day = week.value;
+     number = session.value
+     day = week.value
+     const obj=
+     {
+         {{ selected.id }}
+     }
+
 
      registerButton.addEventListener("click", function () {
             myPopup.classList.toggle("show");
