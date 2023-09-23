@@ -7,9 +7,10 @@ from Product.models import Course, Days
 from Product.serializer import CourseSerializer, DaysSerializer
 
 
-def product_view(request, pk):
+def product_view(request, pk, session, day):
     about = AboutUs.objects.values().first()
     product = Course.objects.filter(id=pk).values().first()
+    days = Days.objects.filter(id=day,course=pk)
     template = loader.get_template('public/product.html')
     context = {
         "instagram": about["instagram"],
@@ -26,7 +27,7 @@ def product_view(request, pk):
         "day": product["day"],
         "type": product["type"],
         "time": product["time"],
-        "session": product["session"],
+        "session": session,
         "tuition": product["tuition"],
         "off": product["off"],
         "price": product["price"],
