@@ -705,7 +705,6 @@
         });
 </script>
 
-{{ selected.id|json_script:"selected.id" }}
 <script>
      registerButton = document.getElementById("registerButton")
      closeButton = document.getElementById("closeButton")
@@ -714,7 +713,7 @@
      week = document.getElementById("week")
      let number
      let day
-    const course = JSON.parse(document.getElementById('selected.id').textContent);
+     var course = "{{selected.id}}";
 
 
 
