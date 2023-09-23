@@ -705,7 +705,7 @@
         });
 </script>
 
-
+{{ seleted.id|json_script:"seleted.id" }}
 <script>
      registerButton = document.getElementById("registerButton")
      closeButton = document.getElementById("closeButton")
@@ -714,6 +714,7 @@
      week = document.getElementById("week")
      let number
      let day
+    const course = JSON.parse(document.getElementById('seleted.id').textContent);
 
 
 
@@ -724,7 +725,7 @@
         closeButton.addEventListener("click", function () {
             number=session.value
             day = week.value
-            window.location.assign(`/product/{{ seleted.id }}/${day}/${number}/`)
+            window.location.assign(`/product/${course}/${day}/${number}/`)
         });
         window.addEventListener("click", function (event) {
             if (event.target === myPopup) {
