@@ -711,16 +711,12 @@
      const myPopup = document.getElementById("myPopup");
      const session = document.getElementById("number");
      const week = document.getElementById("week");
-     let course = {{ selected.id }};
-
-
-
 
      registerButton.addEventListener("click", function () {
             myPopup.classList.toggle("show");
         });
         closeButton.addEventListener("click", function () {
-            window.location.assign(`/product/${course}/${week.value}/${session.value}/`)
+            window.location.assign(`/product/"{{ selected.id }}"/${week.value}/${session.value}/`)
         });
         window.addEventListener("click", function (event) {
             if (event.target === myPopup) {
