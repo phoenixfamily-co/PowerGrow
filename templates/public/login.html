@@ -173,7 +173,7 @@ span {
     });
     if (response.status===200){
         {#let result = JSON.parse(response.body)#}
-        console.log(response.body.toString())
+        console.log(response.json().toString())
         document.cookie = `access=ad ; max-age=3600*24 ; path=/`
         window.location.assign("{% url "user:home" %}")
     }else {
