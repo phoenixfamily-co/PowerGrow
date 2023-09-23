@@ -35,6 +35,7 @@ def product_view(request, pk, session, day):
         "description": product["description"],
         "start": product["start"],
         "image": product["image"],
+        "profile":product["profile"],
         "selected": product["selected"],
         "capacity": product["capacity"],
         "gender": product["gender"],
