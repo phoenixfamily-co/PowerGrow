@@ -713,7 +713,7 @@
      week = document.getElementById("week")
      let number
      let day
-     var course = "2"
+     let course
 
 
 
@@ -724,6 +724,7 @@
         closeButton.addEventListener("click", function () {
             number=session.value
             day = week.value
+            course = {{ selected.id }};
             window.location.assign(`/product/${course}/${day}/${number}/`)
         });
         window.addEventListener("click", function (event) {
