@@ -1,11 +1,11 @@
 from django.urls import path
-from Product import views
+from Product.views import CourseView, sport_view, product_view, DaysView
 
 app_name = 'product'
 
 urlpatterns = [
-    path('<int:pk>/', views.product_view, name='product'),
-    path('category/', views.sport_view, name='category'),
-    path('api/create/', views.Create_Course.as_view({'post': 'create'}), name='create_product'),
-
+    path('api/course/', CourseView.as_view({'post': 'create'}), name='courses'),
+    path('api/day/', DaysView.as_view({'post': 'create'}), name='days'),
+    path('<int:pk>/', product_view, name='product'),
+    path('category/', sport_view, name='category'),
 ]

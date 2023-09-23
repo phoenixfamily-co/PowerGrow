@@ -1,9 +1,16 @@
 from rest_framework import serializers
-from .models import Course
+from .models import Course, Days
+
+
+class DaysSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Days
+        fields = "__all__"
 
 
 class CourseSerializer(serializers.ModelSerializer):
+    days = DaysSerializer(read_only=True, many=True)
+
     class Meta:
         model = Course
-        fields = ["id", "image", "title", "name", "day", "type", "time", "session", "tuition" , "description"
-            , "selected", "capacity", "gender", "start", 'off']
+        exclude = ['datetime']
