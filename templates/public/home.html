@@ -519,16 +519,16 @@
         <div class="popup-content" style="direction: rtl">
             <label for="membership">تعداد جلسات در ماه را انتخاب کنید:</label>
             <select name="membership" id="membership" style="margin-right: 83px">
-              <option value="free">1جلسه</option>
-              <option value="bronze">3جلسه</option>
-              <option value="silver" >8جلسه</option>
+              <option value="1">1جلسه</option>
+              <option value="3">3جلسه</option>
+              <option value="8" >8جلسه</option>
             </select>
             <br>
             <br>
             <label for="membership">روزهای برگزاری در هفته را مشخص کنید:</label>
               <select name="membership" id="membership" style="margin-right: 50px">
 
-                  {% for x in selected.days %}
+                  {% for x in days %}
 
               <option value=x.day>x.day</option>
 
