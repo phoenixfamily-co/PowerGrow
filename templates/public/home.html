@@ -714,17 +714,17 @@
      week = document.getElementById("week")
      number = session.value
      day = week.value
-     const obj=
-     {
-         {{ selected.id }}
-     }
+     {#const obj=#}
+     {#{#}
+     {#    {{ selected.id }}#}
+
 
 
      registerButton.addEventListener("click", function () {
             myPopup.classList.toggle("show");
         });
         closeButton.addEventListener("click", function () {
-            window.location.assign(`/product/${obj}/${day}/${number}/`)
+            window.location.assign(`/product/1/${day}/${number}/`)
         });
         window.addEventListener("click", function (event) {
             if (event.target === myPopup) {
