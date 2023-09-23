@@ -172,6 +172,8 @@ span {
         body: JSON.stringify(Object.fromEntries(formData.entries()))
     });
     if (response.status===200){
+        console.log(response.body['access'])
+        document.cookie = `access=${response.body['access']} ; max-age=3600*24 ; path=/`
         window.location.assign("{% url "user:home" %}")
     }else {
             document.getElementById('error').innerHTML = response.statusText
@@ -179,5 +181,5 @@ span {
 });
 
 </script>
-
+;
 </html>
