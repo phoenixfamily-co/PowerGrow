@@ -517,24 +517,22 @@
 
     <div id="myPopup" class="popup">
         <div class="popup-content" style="direction: rtl">
-            <label for="membership">تعداد جلسات در ماه را انتخاب کنید:</label>
-            <select name="member" id="membership" style="margin-right: 83px">
+            <label for="number">تعداد جلسات در ماه را انتخاب کنید:</label>
+            <select name="session" id="number" style="margin-right: 83px">
               <option value="1">1جلسه</option>
               <option value="3">3جلسه</option>
               <option value="8" >8جلسه</option>
             </select>
             <br>
             <br>
-            <label for="membership">روزهای برگزاری در هفته را مشخص کنید:</label>
-              <select name="membership" id="membership" style="margin-right: 50px">
+            <label for="week">روزهای برگزاری در هفته را مشخص کنید:</label>
+              <select name="days" id="week" style="margin-right: 50px">
 
                   {% for x in days %}
 
-              <option value={{ x.day }}>{{ x.day }}</option>
+              <option value={{ x.id }}>{{ x.day }}</option>
 
                   {% endfor %}
-
-
             </select>
             <br>
             <br>
@@ -709,18 +707,20 @@
 
 
 <script>
-     registerButton = document.getElementById("registerButton")
-     closeButton = document.getElementById("closeButton")
-     myPopup = document.getElementById("myPopup")
-     session = document.getElementById("membership");
-     let value = session.value;
-
+     registerButton = document.getElementById("registerButton");
+     closeButton = document.getElementById("closeButton");
+     myPopup = document.getElementById("myPopup");
+     session = document.getElementById("number");
+     week = document.getElementById("week");
+     number = session.value;
+     day = week.value;
+     selectedId = {{ selected.id }};
 
      registerButton.addEventListener("click", function () {
             myPopup.classList.toggle("show");
         });
         closeButton.addEventListener("click", function () {
-            window.location.assign(`/product/{{ selected.id }}/${value}/`)
+            window.location.assign(`/product/${selectedId}/${day}/${number}/`)
         });
         window.addEventListener("click", function (event) {
             if (event.target === myPopup) {
