@@ -484,7 +484,6 @@
 
         {% for x in selected %}
 
-
 		<div class="card">
 
 		 <img id="id_image0" class="" src="/media/{{ x.image }}" alt="" style="width: 40%;height: 100%">
@@ -506,7 +505,7 @@
 		</ol>
 
 
-		<button id="registerButton" class="card-button">ثبت نام کنید</button>
+		<button id="registerButton" name="{{ x.id }}" class="card-button">ثبت نام کنید</button>
 
 		</div>
 
@@ -711,12 +710,14 @@
      const myPopup = document.getElementById("myPopup");
      const session = document.getElementById("number");
      const week = document.getElementById("week");
+     let course
 
      registerButton.addEventListener("click", function () {
+         course = this.getAttribute("name")
             myPopup.classList.toggle("show");
         });
         closeButton.addEventListener("click", function () {
-            window.location.assign(`/product/"{{ selected.id }}"/${week.value}/${session.value}/`)
+            window.location.assign(`/product/""/${week.value}/${session.value}/`)
         });
         window.addEventListener("click", function (event) {
             if (event.target === myPopup) {
