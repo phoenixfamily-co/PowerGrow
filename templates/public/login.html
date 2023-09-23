@@ -172,8 +172,10 @@ span {
         body: JSON.stringify(Object.fromEntries(formData.entries()))
     });
     const result = await response.json()
+        JSON.stringify(result)
     if (response.status===200){
-        console.log(JSON.stringify(result))
+        JSON.stringify(result)
+        console.log(result.access)
         document.cookie = `access=ad ; max-age=3600*24 ; path=/`
         window.location.assign("{% url "user:home" %}")
     }else {
