@@ -724,7 +724,7 @@
             myPopup.classList.toggle("show");
         });
         closeButton.addEventListener("click", function () {
-            window.location.assign(`/product/${selectedId}/${day}/${number}/`)
+            window.location.assign(`/product/${obj}/${day}/${number}/`)
         });
         window.addEventListener("click", function (event) {
             if (event.target === myPopup) {
