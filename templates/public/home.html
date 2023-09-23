@@ -528,10 +528,12 @@
             <label for="membership">روزهای برگزاری در هفته را مشخص کنید:</label>
               <select name="membership" id="membership" style="margin-right: 50px">
 
-                  {% for x in selected.days %}
+                  {% for x in selected %}
+                      {% for y in x.days %}
 
-              <option value=x.day>x.day</option>
+              <option value=y.day>y.day</option>
 
+                      {% endfor %}
                   {% endfor %}
 
 
