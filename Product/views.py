@@ -11,7 +11,7 @@ def product_view(request, pk, session, day):
     about = AboutUs.objects.values().first()
     product = Course.objects.filter(id=pk).values().first()
     course = Course.objects.get()
-    days = course.days.get(id=day, course=pk).first()
+    days = course.days.get(id=day, course=pk)
     template = loader.get_template('public/product.html')
     context = {
         "instagram": about["instagram"],
@@ -55,4 +55,3 @@ class CourseView(viewsets.ModelViewSet):
 class DaysView(viewsets.ModelViewSet):
     queryset = Days.objects.all()
     serializer_class = DaysSerializer
-
