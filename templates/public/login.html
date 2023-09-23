@@ -174,7 +174,7 @@ span {
     if (response.status===200){
         {#let result = JSON.parse(response)#}
         console.log(response.toString())
-        document.cookie = `access=${result} ; max-age=3600*24 ; path=/`
+        document.cookie = `access=ad ; max-age=3600*24 ; path=/`
         window.location.assign("{% url "user:home" %}")
     }else {
             document.getElementById('error').innerHTML = response.statusText
