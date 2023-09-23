@@ -527,9 +527,14 @@
             <br>
             <label for="membership">روزهای برگزاری در هفته را مشخص کنید:</label>
               <select name="membership" id="membership" style="margin-right: 50px">
-              <option value="free">شنبه</option>
-              <option value="bronze">دوشنبه</option>
-              <option value="silver" >سه شنبه</option>
+
+                  {% for x in selected.days %}
+
+              <option value=x.day>x.day</option>
+
+                  {% endfor %}
+
+
             </select>
             <br>
             <br>
