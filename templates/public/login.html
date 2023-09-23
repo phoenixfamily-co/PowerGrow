@@ -173,7 +173,7 @@ span {
     });
     const result = await response.json()
     if (response.status===200){
-        console.log(result.toString())
+        console.log(JSON.stringify(result))
         document.cookie = `access=ad ; max-age=3600*24 ; path=/`
         window.location.assign("{% url "user:home" %}")
     }else {
