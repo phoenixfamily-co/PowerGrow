@@ -706,14 +706,12 @@
 </script>
 
 <script>
-     registerButton = document.getElementById("registerButton")
-     closeButton = document.getElementById("closeButton")
-     myPopup = document.getElementById("myPopup")
-     session = document.getElementById("number")
-     week = document.getElementById("week")
-     let number
-     let day
-     let course
+     const registerButton = document.getElementById("registerButton");
+     const closeButton = document.getElementById("closeButton");
+     const myPopup = document.getElementById("myPopup");
+     const session = document.getElementById("number");
+     const week = document.getElementById("week");
+     const course = {{ selected.id }};
 
 
 
@@ -724,8 +722,7 @@
         closeButton.addEventListener("click", function () {
             number=session.value
             day = week.value
-            course = {{ selected.id }};
-            window.location.assign(`/product/${course}/${day}/${number}/`)
+            window.location.assign(`/product/${course}/${week.value}/${session.value}/`)
         });
         window.addEventListener("click", function (event) {
             if (event.target === myPopup) {
