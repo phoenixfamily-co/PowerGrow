@@ -21,7 +21,7 @@ def home_view(request):
     context = {
         "images": images,
         "selected": selected,
-        "days":days,
+        "days": days,
         "instagram": about["instagram"],
         "telegram": about["telegram"],
         "telephone": about["telephone"],
