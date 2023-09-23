@@ -712,8 +712,8 @@
      myPopup = document.getElementById("myPopup")
      session = document.getElementById("number")
      week = document.getElementById("week")
-     let number = session.value
-     let day = week.value
+     let number
+     let day
      {#const obj=#}
      {#{#}
      {#    {{ selected.id }}#}
@@ -724,6 +724,8 @@
             myPopup.classList.toggle("show");
         });
         closeButton.addEventListener("click", function () {
+            number=session.value
+            day = week.value
             window.location.assign(`/product/1/${day}/${number}/`)
         });
         window.addEventListener("click", function (event) {
