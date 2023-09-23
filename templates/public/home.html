@@ -714,7 +714,7 @@
      week = document.getElementById("week")
      let number
      let day
-     const course = {{ seleted.id }};
+
 
 
 
@@ -724,7 +724,7 @@
         closeButton.addEventListener("click", function () {
             number=session.value
             day = week.value
-            window.location.assign(`/product/1/${day}/${number}/`)
+            window.location.assign(`/product/{{ seleted.id }}/${day}/${number}/`)
         });
         window.addEventListener("click", function (event) {
             if (event.target === myPopup) {
