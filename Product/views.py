@@ -1,5 +1,4 @@
 from django.http import HttpResponse
-from django.shortcuts import render
 from django.template import loader
 from rest_framework import viewsets
 from About.models import AboutUs
@@ -44,7 +43,7 @@ def product_view(request, pk, session, day):
     return HttpResponse(template.render(context, request))
 
 
-def category_view(request):
+def sport_view(request, category):
     template = loader.get_template('public/category.html')
     about = AboutUs.objects.values().first()
     sport = Sport.objects.all().values()
@@ -76,5 +75,3 @@ class DaysView(viewsets.ModelViewSet):
 class SportView(viewsets.ModelViewSet):
     queryset = Sport.objects.all()
     serializer_class = SportSerializer
-
-
