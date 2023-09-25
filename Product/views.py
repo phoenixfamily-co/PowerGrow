@@ -74,7 +74,7 @@ class DaysView(viewsets.ModelViewSet):
 
 class SessionView(viewsets.ModelViewSet):
     queryset = Days.objects.all()
-    serializer_class = DaysSerializer
+    serializer_class = SessionSerializer
 
 
 class SportView(viewsets.ModelViewSet):
