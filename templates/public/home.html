@@ -428,7 +428,7 @@
 
                  {% for x in sport %}
 
-   				 <a href="{% url 'product:category' x.id %}">x.title</a>
+   				 <a href="{% url 'product:category' x.id %}">{{ x.title }}</a>
 
                  {% endfor %}
 
