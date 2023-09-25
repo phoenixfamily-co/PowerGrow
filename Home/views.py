@@ -3,7 +3,7 @@ from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import viewsets
-from Product.models import Course
+from Product.models import Course, Sport
 from About.models import AboutUs
 from Product.serializer import CourseSerializer
 from django.template import loader
@@ -17,6 +17,7 @@ def home_view(request):
     course = Course.objects.get(selected=True)
     days = course.days.all()
     about = AboutUs.objects.values().first()
+    sport = Sport.objects.all().values()
     template = loader.get_template('public/home.html')
     context = {
         "images": images,
@@ -31,6 +32,7 @@ def home_view(request):
         "address": about["address"],
         "latitude": about["latitude"],
         "longitude": about["longitude"],
+        "sport": sport,
 
     }
     return HttpResponse(template.render(context, request))

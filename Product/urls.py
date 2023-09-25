@@ -7,7 +7,8 @@ urlpatterns = [
     path('<int:pk>/<int:session>/<int:day>/', product_view, name='product'),
     path('api/course/', CourseView.as_view({'post': 'create', 'get': 'list'}), name='courses'),
     path('api/day/', DaysView.as_view({'post': 'create', 'get': 'list'}), name='days'),
-    path('category/', category_view, name='category'),
-    path('api/category/', SportView.as_view({'post': 'create', 'get': 'list'}), name='sports'),
+    path('api/session/', DaysView.as_view({'post': 'create', 'get': 'list'}), name='days'),
+    path('sport/<int:category>', category_view, name='category'),
+    path('api/sport/', SportView.as_view({'post': 'create', 'get': 'list'}), name='sports'),
 
 ]
