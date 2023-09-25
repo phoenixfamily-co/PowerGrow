@@ -3,8 +3,8 @@ from django.shortcuts import render
 from django.template import loader
 from rest_framework import viewsets
 from About.models import AboutUs
-from Product.models import Course, Days
-from Product.serializer import CourseSerializer, DaysSerializer
+from Product.models import Course, Days, Sport
+from Product.serializer import CourseSerializer, DaysSerializer, SportSerializer
 
 
 def product_view(request, pk, session, day):
@@ -44,8 +44,23 @@ def product_view(request, pk, session, day):
     return HttpResponse(template.render(context, request))
 
 
-def sport_view(request):
-    return render(request, "public/product.html")
+def category_view(request):
+    template = loader.get_template('public/category.html')
+    about = AboutUs.objects.values().first()
+    sport = Sport.objects.all().values()
+    context = {
+        "instagram": about["instagram"],
+        "telegram": about["telegram"],
+        "telephone": about["telephone"],
+        "phone": about["phone"],
+        "logo": about["logo"],
+        "transparent_logo": about["transparent_logo"],
+        "address": about["address"],
+        "latitude": about["latitude"],
+        "longitude": about["longitude"],
+        "sport": sport,
+    }
+    return HttpResponse(template.render(context, request))
 
 
 class CourseView(viewsets.ModelViewSet):
@@ -56,3 +71,10 @@ class CourseView(viewsets.ModelViewSet):
 class DaysView(viewsets.ModelViewSet):
     queryset = Days.objects.all()
     serializer_class = DaysSerializer
+
+
+class SportView(viewsets.ModelViewSet):
+    queryset = Sport.objects.all()
+    serializer_class = SportSerializer
+
+

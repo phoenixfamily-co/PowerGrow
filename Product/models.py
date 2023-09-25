@@ -12,6 +12,10 @@ GENDER_CHOICE = (
 )
 
 
+class Sport(models.Model):
+    title = models.CharField(max_length=50)
+
+
 class Course(models.Model):
     title = models.CharField(max_length=60)
     name = models.CharField(max_length=60)
@@ -29,6 +33,7 @@ class Course(models.Model):
     gender = models.CharField(max_length=10, choices=GENDER_CHOICE)
     start = models.DateField(null=True,blank=True)
     datetime = models.DateTimeField(default=timezone.now)
+    sport = models.ForeignKey(Sport, on_delete=models.CASCADE, related_name='course', null=True, blank=True)
 
 
 class Days(models.Model):
