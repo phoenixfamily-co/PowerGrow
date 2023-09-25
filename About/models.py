@@ -9,5 +9,5 @@ class AboutUs(models.Model):
     logo = models.ImageField(upload_to="images/", blank=True, null=True)
     transparent_logo = models.ImageField(upload_to="images/", blank=True, null=True)
     address = models.TextField(null=True, blank=True)
-    latitude = models.FloatField(null=True, blank=True)
-    longitude = models.FloatField(null=True, blank=True)
+    latitude = models.FloatField(default=0 , blank=True, null=True)
+    longitude = models.FloatField(default=0 , blank=True, null=True)

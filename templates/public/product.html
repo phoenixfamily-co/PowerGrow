@@ -260,9 +260,11 @@
   		<button class="tab-button" onclick="">ورزش ها</button>
 			<i class="fa-solid fa-caret-down" style="color: #ffffff;margin-right: -6px"></i>
 			 <div class="dropdown-content">
-   				 <a href="#">فیتنس</a>
-    			 <a href="#">رزمی</a>
-   				 <a href="#">توپی</a>
+   				  {% for x in sport %}
+
+   				 <a href="{% url 'product:category' x.id %}">{{ x.title }}</a>
+
+                 {% endfor %}
 			</div>
 		</div>
   		<button class="tab-button" onclick="window.location.assign({% url 'reservation:reservation' %})">اجاره سالن</button>

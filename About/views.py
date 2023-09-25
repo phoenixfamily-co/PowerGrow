@@ -3,6 +3,7 @@ from django.template import loader
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 
+from Product.models import Sport
 from .serializer import *
 
 
@@ -11,6 +12,7 @@ from About.models import AboutUs
 
 def about_view(request):
     about = AboutUs.objects.values().first()
+    sport = Sport.objects.all().values()
     template = loader.get_template('public/about.html')
     context = {
         "instagram": about["instagram"],
@@ -22,6 +24,8 @@ def about_view(request):
         "address": about["address"],
         "latitude": about["latitude"],
         "longitude": about["longitude"],
+        "sport": sport,
+
     }
     return HttpResponse(template.render(context, request))
 
