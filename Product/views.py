@@ -79,4 +79,4 @@ class SessionView(viewsets.ModelViewSet):
 
 class SportView(viewsets.ModelViewSet):
     queryset = Sport.objects.all()
-    serializer_class = SessionSerializer
+    serializer_class = SportSerializer
