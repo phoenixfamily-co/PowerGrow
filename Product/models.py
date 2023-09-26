@@ -41,5 +41,5 @@ class Days(models.Model):
 
 
 class Sessions(models.Model):
-    sessions = models.IntegerField(blank=True, null=True)
+    session = models.IntegerField(blank=True, null=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='sessions', null=True, blank=True)

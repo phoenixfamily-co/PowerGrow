@@ -8,7 +8,7 @@ urlpatterns = [
     path('api/course/', CourseView.as_view({'post': 'create', 'get': 'list'}), name='courses'),
     path('api/day/', DaysView.as_view({'post': 'create', 'get': 'list'}), name='days'),
     path('api/session/', SessionView.as_view({'post': 'create', 'get': 'list'}), name='days'),
-    path('sport/<int:category>', sport_view, name='category'),
+    path('sport/<int:pk>/', sport_view, name='category'),
     path('api/sport/', SportView.as_view({'post': 'create', 'get': 'list'}), name='sports'),
 
 ]

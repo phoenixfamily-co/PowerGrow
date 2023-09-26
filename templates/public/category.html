@@ -25,12 +25,6 @@
 		* {box-sizing: border-box}
 		img {vertical-align: middle;}
 
-	.mySlides {
-		display: block;
-		width: 100%;
-		height: 100%;
-		}
-
 		.tab{
 			direction:rtl ;
 			unicode-bidi: bidi-override ;
@@ -46,7 +40,7 @@
 		.tab-button{
 			background-color: transparent;
 			border-color: transparent;
-			color: white;
+			color: black;
             font-family: BYekan, serif !important;
 			font-size: 16px;
             cursor: pointer;
@@ -102,54 +96,6 @@
 
 		}
 
-	.slideshow-container {
-        width: 100%;
-        height: 80vh;
-  		position: relative;
-  		margin: auto;
-		}
-
-		.prev, .next {
-			cursor: pointer;
-  			position: absolute;
-  			top: 50%;
- 		 	width: auto;
- 		 	padding: 16px;
- 		 	margin-top: -22px;
- 		 	color: white;
- 		 	font-weight: bold;
-  			font-size: 18px;
-  			transition: 0.6s ease;
- 			border-radius: 0 3px 3px 0;
-  			user-select: none;
-
-		}
-
-		.next {
-			right: 0;
- 			border-radius: 3px 0 0 3px;
-		}
-
-		.prev {
-			left: 0;
- 			border-radius: 3px 0 0 3px;
-}
-
-		.prev:hover, .next:hover {
-			background-color: rgba(0,0,0,0.8);
-		}
-
-		.caption {
-  			color: #f2f2f2;
-  			font-size: 40px;
-  			padding: 8px 12px;
- 			position: absolute;
-			margin-left: 10%;
-            font-family: BYekan, serif !important;
- 			bottom: 40%;
-  			min-width:160px;
-  			text-align: center;
-}
 
 		.dropdown {
  			position: relative;
@@ -182,37 +128,6 @@
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {background-color: #f1f1f1}
 
-/* Number text (1/3 etc) */
-{% comment %}		.numbertext {
-		  	color: #f2f2f2;
-		  	font-size: 12px;
-		  	padding: 8px 12px;
-		  	position: absolute;
-		 	top: 0;
-		}{% endcomment %}
-
-/* The dots/bullets/indicators */
-		.dot {
-		  cursor: pointer;
-		  height: 15px;
-		  width: 15px;
-		  margin: 0 2px;
-		  background-color: #bbb;
-		  border-radius: 50%;
-		  display: inline-block;
-		  transition: background-color 0.6s ease;
-		}
-{% comment %}
-		.active, .dot:hover {
-		  background-color: #717171;
-		}{% endcomment %}
-
-/* Fading animation */
-		.fade {
-		  animation-name: fade;
-		  animation-duration: 1.5s;
-		}
-
 		@keyframes fade {
 		  from {opacity: .4}
 		  to {opacity: 1}
@@ -220,7 +135,6 @@
 
 		/* On smaller screens, decrease text size */
 		@media only screen and (max-width: 300px) {
-		  .prev, .next {font-size: 11px}
 		}
 
 		.title{
@@ -228,7 +142,9 @@
 			font-size: 30px;
 			font-style: normal;
 			position: absolute;
-			margin-left: 40%;
+            right: 0;
+            float: right;
+            margin-right: 30px;
 			margin-top: 1%
 		}
 
@@ -346,27 +262,6 @@
 		}
 
 
-		.property{
-			direction:rtl ;
-			unicode-bidi: bidi-override ;
-			position: absolute;
-			margin-top: 20px;
-			margin-right: 20px;
-    		z-index: 10!important;
-		}
-
-		.property-item{
-			width: 200px;
-			background-color: #E16539;
-			border-color: transparent;
-			border-radius: 5px;
-			color: white;
-            font-family: BYekan, serif !important;
-			font-size: 16px;
-
-		}
-
-
          .popup {
             position: fixed;
             z-index: 1;
@@ -415,8 +310,36 @@
 </head>
 <body>
 
+    <div class="tab">
+		<button class="tab-button" onclick="window.location.assign('{% url 'home:home' %}')">صفحه اصلی</button>
+		<div class="dropdown">
+  		<button class="tab-button" onclick="">ورزش ها</button>
+			<i class="fa-solid fa-caret-down" style="color: #000;margin-right: -7px"></i>
+			 <div class="dropdown-content">
+   			  {% for x in sport %}
 
-<div class="title">دوره های منتخب</div>
+   				 <a href="{% url 'product:category' x.id %}">{{ x.title }}</a>
+
+                 {% endfor %}
+			</div>
+		</div>
+  		<button class="tab-button" onclick="window.location.assign({% url 'reservation:reservation' %})">اجاره سالن</button>
+		<button class="tab-button" style="font-weight: bold;text-decoration: underline; text-underline-position: under" onclick="window.location.assign({% url 'about:about' %})">درباره ما</button>
+
+	</div>
+
+	<div class="logoHolder">
+
+			 <img alt="" src="/media/{{ logo }}" class="logo">
+	  		<div class="typography">PowerGrow</div>
+
+		</div>
+
+	<div class="login">
+		<i class="fa-solid fa-user" style="color: #000; position:absolute ; margin-top:5px ; font-size: 16px"></i>
+		<button class="loginTypography" onclick="window.location.assign({% url 'user:login' %})">ورود/عضویت</button>
+	</div>
+<div class="title"></div>
 
 	<div class="scrolling-wrapper">
 
@@ -451,11 +374,14 @@
 
     <div id="myPopup" class="popup">
         <div class="popup-content" style="direction: rtl">
-            <label for="number">تعداد جلسات در ماه را انتخاب کنید:</label>
-            <select name="session" id="number" style="margin-right: 83px">
-              <option value="1">1جلسه</option>
-              <option value="3">3جلسه</option>
-              <option value="8" >8جلسه</option>
+             <label for="session">تعداد جلسات در ماه را انتخاب کنید:</label>
+             <select name="numbers" id="session" style="margin-right: 50px">
+
+                  {% for x in days %}
+
+              <option value={{ x.id }}>{{ x.session }}</option>
+
+                  {% endfor %}
             </select>
             <br>
             <br>
@@ -477,6 +403,55 @@
     </div>
 
 </div>
+<div class="contentWrapper">
+		<div class="content">
+			<div style="width:160px;left: 0;bottom: 0; top: 0; position: absolute;margin-left: 20px">
+
+				<h2>PowerGrow</h2>
+		 <img class="" src="/media/{{ transparent_logo }}" style="position: absolute;width:160px;margin-top: -22px"  alt="" >
+
+				</div>
+
+      <div id="map" style="width: 300px; background: #eee; border: 2px solid #aaa;top: 0 ; bottom:0;
+						   position: absolute;margin-left: -170px;">
+
+
+			</div>
+
+			<i class="fa-solid fa-location-dot" style="color: #ffffff; right: 0 ; position: absolute; margin-top: 20px ; margin-right: 20px; font-size: 30px"></i>
+			<h5 style="right: 0 ; margin-right: 50px;position: absolute;direction: rtl ; margin-top: 20px;">
+
+                   {% autoescape off %}
+
+                {{ address|linebreaksbr  }}
+
+                {% endautoescape %}
+
+			</h5>
+
+			<i class="fa-solid fa-phone-flip" style="color: #ffffff; right: 0 ; position: absolute; margin-top: 95px ; margin-right: 20px; font-size: 30px"></i>
+			<h5 style="right: 0 ; margin-right: 60px;position: absolute;direction: rtl ; margin-top: 95px;">
+                {{ phone }}<br> {{ telephone }}
+			</h5>
+
+			<a href="//www.instagram.com/{{ instagram }}"  style="right: 0 ; position: absolute ; margin-right:20px ; margin-top: 165px;display: inline">
+		<i class="fa-brands fa-instagram" style="color: #ffffff ; font-size: 30px ;"></i>
+		</a>
+			<h5 style="right: 0 ; margin-right: 60px;position: absolute;direction: ltr ; margin-top: 167px;">
+                {{ instagram }}
+			</h5>
+		</div>
+		<div class="footer">&copy;<span id="year" style="font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif'">2023 </span><span> PhoenixFamily. All rights reserved.</span>
+		<a href="//www.instagram.com/phoenixfamily.co?igshid=OGQ5ZDc2ODk2ZA==" style="right: 0 ; position: absolute ; margin-right:15px">
+		<i class="fa-brands fa-instagram" style="color: #ffffff ; font-size: 30px"></i>
+		</a>
+		<a href="//www.linkedin.com/company/phoenixfamily" style="right: 0 ; position: absolute ; margin-right:55px">
+		<i class="fa-brands fa-linkedin" style="color: #ffffff ; font-size: 30px"></i>
+		</a>
+		<span style="right: 0;margin-right: 90px; position: absolute">Follow us:</span>
+		</div>
+</div>
+
 
 </body>
 </html>

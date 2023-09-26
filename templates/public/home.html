@@ -242,7 +242,7 @@
 			margin-top: 5%;
         }
 
-	
+
 			.card {
                 flex: 0 0 auto;
                 margin-right: 1%;
@@ -520,11 +520,14 @@
 
     <div id="myPopup" class="popup">
         <div class="popup-content" style="direction: rtl">
-            <label for="number">تعداد جلسات در ماه را انتخاب کنید:</label>
-            <select name="session" id="number" style="margin-right: 83px">
-              <option value="1">1جلسه</option>
-              <option value="3">3جلسه</option>
-              <option value="8" >8جلسه</option>
+            <label for="session">تعداد جلسات در ماه را انتخاب کنید:</label>
+             <select name="numbers" id="session" style="margin-right: 50px">
+
+                  {% for x in days %}
+
+              <option value={{ x.id }}>{{ x.session }}</option>
+
+                  {% endfor %}
             </select>
             <br>
             <br>

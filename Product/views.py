@@ -43,10 +43,11 @@ def product_view(request, pk, session, day):
     return HttpResponse(template.render(context, request))
 
 
-def sport_view(request, category):
-    template = loader.get_template('public/category.html')
+def sport_view(request, pk):
     about = AboutUs.objects.values().first()
-    sport = Sport.objects.all().values()
+    category = Sport.objects.all().values()
+    sport = Sport.objects.get(id=pk)
+    template = loader.get_template('public/category.html')
     context = {
         "instagram": about["instagram"],
         "telegram": about["telegram"],
@@ -58,6 +59,7 @@ def sport_view(request, category):
         "latitude": about["latitude"],
         "longitude": about["longitude"],
         "sport": sport,
+        "category": category
     }
     return HttpResponse(template.render(context, request))
 
