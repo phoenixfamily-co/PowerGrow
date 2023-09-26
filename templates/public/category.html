@@ -83,7 +83,7 @@
 		}
 
 		.loginTypography{
-			color: white;
+			color: black;
 			position: absolute;
 			background-color: transparent;
 			border-color: transparent;
@@ -195,22 +195,6 @@
 			}::-webkit-scrollbar {
     display: none;
 }
-
-
-		.card-button{
-			width: 100px;
-			height: 30px;
-			background-color: #E16539;
-			border-color: transparent;
-			border-radius: 7px;
-			margin-right: 290px;
-			margin-top: 15px;
-            font-family: BYekan, serif !important;
-			color: white;
-            cursor: pointer;
-
-		}
-
 		.contentWrapper {
 			height:250px; // Replace with the height your footer should be
 			width: 100%; // Don't change
@@ -260,7 +244,6 @@
             font-family: BYekan, serif !important;
 
 		}
-
 
          .popup {
             position: fixed;
@@ -316,7 +299,7 @@
   		<button class="tab-button" onclick="">ورزش ها</button>
 			<i class="fa-solid fa-caret-down" style="color: #000;margin-right: -7px"></i>
 			 <div class="dropdown-content">
-   			  {% for x in sport %}
+   			  {% for x in category %}
 
    				 <a href="{% url 'product:category' x.id %}">{{ x.title }}</a>
 
@@ -401,8 +384,9 @@
               </button>
         </div>
     </div>
-
 </div>
+
+
 <div class="contentWrapper">
 		<div class="content">
 			<div style="width:160px;left: 0;bottom: 0; top: 0; position: absolute;margin-left: 20px">
@@ -451,7 +435,6 @@
 		<span style="right: 0;margin-right: 90px; position: absolute">Follow us:</span>
 		</div>
 </div>
-
 
 </body>
 </html>

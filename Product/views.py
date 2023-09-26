@@ -46,7 +46,7 @@ def product_view(request, pk, session, day):
 def sport_view(request, pk):
     about = AboutUs.objects.values().first()
     category = Sport.objects.all().values()
-    sport = Sport.objects.get(id=pk).values().first()
+    sport = Sport.objects.filter(id=pk)
     template = loader.get_template('public/category.html')
     context = {
         "instagram": about["instagram"],
