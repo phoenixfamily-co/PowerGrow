@@ -128,7 +128,6 @@
 .dropdown-content a:hover {background-color: #f1f1f1}
 
 
-
 		.title {
             font-family: BYekan, serif !important;
             font-size: 30px;
@@ -137,16 +136,20 @@
             color: black;
             width: 100%;
             direction: rtl;
-            padding-right: 50%;
+            padding-right: 103vh;
             margin-top: 3vh;
         }
 			.card {
                 flex: 0 0 auto;
-                margin-right: 1%;
-                display: inline-block;
-                width: 400px;
+                display: inline-grid;
                 height: 300px;
                 background: #C1C1C1;
+                grid-template-columns: 1fr;
+                width: calc(100% - 20px);
+                justify-content: center;
+                align-items: center;
+                color: #FFFFFA;
+
 			}
 
 		.card-title {
@@ -154,35 +157,43 @@
             font-family: BYekan, serif !important;
 			list-style-type: none;
 			direction: rtl;
-			margin-right: 130px;
-			margin-top: -280px;
+            position: absolute;;
+			margin-right: 180px;
+            margin-top: -10vh;
+
 		}
 
 		.card-value {
 			color: black;
             font-family: BYekan, serif !important;
 			list-style-type: none;
-			direction: rtl;
-			margin-right: 240px;
-			margin-top: -215px;
-
+			margin-top: -10vh;
+            position: absolute;
+            margin-right: 45vh;
 		}
 
-		.scrolling-wrapper {
-            width: 100%;
-            margin-bottom: 50px;
-            direction: rtl;
-            display: flex;
-			flex-wrap: nowrap;
-			overflow-x: auto;
-			overflow-y: hidden;
-			margin-top: 13vh;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none; /* Firefox */
-			}::-webkit-scrollbar {
-    display: none;
-}
+        .card-image {
+            float: right;
+            height: 100%;
+            width: 50%;
+		}
 
+		.container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 8vh;
+            margin-left: 5vh;
+            margin-top: 15vh;
+            min-height: 50vh;
+            flex-direction: column;
+            direction: rtl;
+        }
+            .wrapper {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                width: 100%;
+            }
 
 		.card-button{
 			width: 100px;
@@ -191,7 +202,8 @@
 			border-color: transparent;
 			border-radius: 7px;
 			margin-right: 290px;
-			margin-top: 15px;
+            position: absolute;
+			margin-top: 37vh;
             font-family: BYekan, serif !important;
 			color: white;
             cursor: pointer;
@@ -205,6 +217,7 @@
 			padding: 2rem;
 			background: #303030;
 			color: white;
+            margin-top: 5vh;
 			font-weight: 500;
 			display: flex;
 			justify-content: center;
@@ -282,8 +295,8 @@
         }
 
         .searchbar {
-          overflow: hidden;
-          background-color: #e9e9e9;
+            overflow: hidden;
+            background-color: #e9e9e9;
             margin-right: 5%;
             margin-left: 3%;
             height: 6vh;
@@ -362,7 +375,7 @@
 
     <div class="searchbar">
         <label>
-            <input type="text" placeholder="نام دوره یا نام مربی را وارد کنید . . .">
+            <input id="search" type="text" placeholder="نام دوره یا نام مربی را وارد کنید . . .">
         </label>
     </div>
 
@@ -370,37 +383,9 @@
 <div class="title">{{ title }}</div>
 
 
-
-	<div class="scrolling-wrapper">
-
-        {% for x in sport.all %}
-
-		<div class="card">
-
-		 <img id="id_image0" class="" src="/media/{{ x.image }}" alt="" style="width: 40%;height: 100%">
-
-		<ol class="card-title">
-			<li style="font-size: 16px;font-weight: bold">نام دوره:</li>
-			<li style="margin-top: 20px; font-size: 16px; font-weight: bold">نام مربی:</li>
-			<li style="margin-top: 20px; font-size: 16px;font-weight: bold">مناسب برای:</li>
-			<li style="margin-top: 20px; font-size: 16px;font-weight: bold">نوع دوره:</li>
-			<li style="margin-top: 20px; font-size: 16px;font-weight: bold">شهریه ثابت:</li>
-		</ol>
-
-		<ol class="card-value">
-			<li style="font-size: 16px; font-weight: bold">{{ x.title }}</li>
-			<li style="margin-top: 20px; font-size: 16px;font-weight: bold">{{ x.name }}</li>
-		    <li style="margin-top: 24px; font-size: 16px;font-weight: bold">{{ x.gender }}</li>
-			<li style="margin-top: 22px; font-size: 16px;font-weight: bold ">{{ x.type }}</li>
-			<li style="margin-top: 20px; font-size: 16px;font-weight: bold">{{ x.tuition }}</li>
-		</ol>
-
-
-		<button id="registerButton" itemid="{{ x.id }}" class="card-button">ثبت نام کنید</button>
-
-		</div>
-
-        {% endfor %}
+<div id="container" class="container">
+      <div class="wrapper" id="wrapper"></div>
+</div>
 
     <div id="myPopup" class="popup">
         <div class="popup-content" style="direction: rtl">
@@ -428,11 +413,9 @@
             <br>
             <button id="closeButton">
                   ادامه
-              </button>
+            </button>
         </div>
     </div>
-</div>
-
 
 <div class="contentWrapper">
 		<div class="content">
@@ -506,25 +489,121 @@
 </script>
 
 <script>
-     const registerButton = document.getElementById("registerButton");
-     const closeButton = document.getElementById("closeButton");
-     const myPopup = document.getElementById("myPopup");
-     const session = document.getElementById("number");
-     const week = document.getElementById("week");
-     let course
 
-     registerButton.addEventListener("click", function () {
-         course = this.getAttribute("itemid")
-            myPopup.classList.toggle("show");
+    const searchInput = document.getElementById("search")
+    const container = document.getElementById("container")
+    const wrapper = document.getElementById("wrapper")
+    const closeButton = document.getElementById("closeButton");
+    const myPopup = document.getElementById("myPopup");
+    const session = document.getElementById("number");
+    const week = document.getElementById("week");
+    let course
+
+    window.onload = function (){
+        search('')
+    }
+
+    searchInput.addEventListener("input", function (event) {
+
+        search(event.target.value)
+
+    })
+
+    async function search(query) {
+
+        const response = await fetch(`/product/api/search/{{ id }}?search=${query}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
         });
-        closeButton.addEventListener("click", function () {
-            window.location.assign(`/product/${course}/${session.value}/${week.value}/`)
-        });
-        window.addEventListener("click", function (event) {
-            if (event.target === myPopup) {
-                myPopup.classList.remove("show");
+        const result = await response.json()
+        if (response.status === 200 && result.length !== 0) {
+            const res = JSON.stringify(result)
+            const sum = JSON.parse(res)
+            const size = JSON.parse(res).length
+            wrapper.innerHTML = ''
+            for (let i = 0; i < size; i++) {
+                const course = document.createElement("div")
+                const imageElement = document.createElement("img")
+                const cardButton = document.createElement("button")
+                const listTitle = document.createElement("ol")
+                const firstTitle = document.createElement("li")
+                const secondTitle = document.createElement("li")
+                const thirdTitle = document.createElement("li")
+                const forthTitle = document.createElement("li")
+                const fifthTitle = document.createElement("li")
+                const listValue = document.createElement("ol")
+                const firstValue = document.createElement("li")
+                const secondValue = document.createElement("li")
+                const thirdValue = document.createElement("li")
+                const forthValue = document.createElement("li")
+                const fifthValue= document.createElement("li")
+                firstTitle.style.cssText = 'font-size: 16px;font-weight: bold'
+                firstTitle.innerHTML = "نام دوره:"
+                secondTitle.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'
+                secondTitle.innerHTML = "نام مربی:"
+                thirdTitle.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'
+                thirdTitle.innerHTML = "مناسب برای:"
+                forthTitle.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'
+                forthTitle.innerHTML = "نوع دوره:"
+                fifthTitle.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'
+                fifthTitle.innerHTML = "شهریه ثابت:"
+                firstValue.style.cssText = 'font-size: 16px;font-weight: bold'
+                firstValue.innerHTML = sum[i].title
+                secondValue.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'
+                secondValue.innerHTML = sum[i].name
+                thirdValue.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'
+                thirdValue.innerHTML = sum[i].gender
+                forthValue.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'
+                forthValue.innerHTML = sum[i].type
+                fifthValue.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'
+                fifthValue.innerHTML = sum[i].tuition
+                listTitle.appendChild(firstTitle)
+                listTitle.appendChild(secondTitle)
+                listTitle.appendChild(thirdTitle)
+                listTitle.appendChild(forthTitle)
+                listTitle.appendChild(fifthTitle)
+                listValue.appendChild(firstValue)
+                listValue.appendChild(secondValue)
+                listValue.appendChild(thirdValue)
+                listValue.appendChild(forthValue)
+                listValue.appendChild(fifthValue)
+                listTitle.classList.add("card-title")
+                listValue.classList.add("card-value")
+                imageElement.setAttribute('src', sum[i].image)
+                imageElement.classList.add("card-image")
+                cardButton.classList.add("card-button")
+                cardButton.innerHTML = "ثبت نام کنید"
+                cardButton.setAttribute("itemid", sum[i].id)
+                course.appendChild(imageElement)
+                course.appendChild(cardButton)
+                course.appendChild(listTitle)
+                course.appendChild(listValue)
+                course.classList.add("card")
+                wrapper.appendChild(course)
             }
-        });
-    </script>
+            const buttons = document.querySelectorAll('.card-button');
+            Array.from(buttons).forEach(function (button){
+
+                button.addEventListener('click',function (){
+                 course = this.getAttribute("itemid")
+                                console.log(course)
+                    myPopup.classList.toggle("show");
+            })
+
+            })
+        }
+    }
+        closeButton.addEventListener("click", function () {
+             window.location.assign(`/product/${course}/${session.value}/${week.value}/`)
+         });
+         window.addEventListener("click", function (event) {
+             if (event.target === myPopup) {
+                 myPopup.classList.remove("show");
+             }
+     })
+
+</script>
 
 </html>

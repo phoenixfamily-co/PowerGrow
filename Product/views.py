@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.template import loader
-from rest_framework import viewsets
+from rest_framework import viewsets, filters
 from About.models import AboutUs
 from Product.models import Course, Days, Sport, Sessions
 from Product.serializer import CourseSerializer, DaysSerializer, SportSerializer, SessionSerializer
@@ -34,7 +34,7 @@ def product_view(request, pk, session, day):
         "description": product["description"],
         "start": product["start"],
         "image": product["image"],
-        "profile":product["profile"],
+        "profile": product["profile"],
         "selected": product["selected"],
         "capacity": product["capacity"],
         "gender": product["gender"],
@@ -60,7 +60,8 @@ def sport_view(request, pk):
         "longitude": about["longitude"],
         "sport": sport.course,
         "title": sport.title,
-        "category": category
+        "category": category,
+        "id": pk
     }
     return HttpResponse(template.render(context, request))
 
@@ -68,6 +69,17 @@ def sport_view(request, pk):
 class CourseView(viewsets.ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
+    filter_backends = [filters.SearchFilter]
+
+
+class SearchView(viewsets.generics.ListAPIView):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name', 'title']
+
+    def get_queryset(self):
+        return Course.objects.filter(sport=self.kwargs['pk'])
 
 
 class DaysView(viewsets.ModelViewSet):
