@@ -9,15 +9,12 @@ from django.http import HttpResponse
 def home_view(request):
     images = Slider.objects.all().order_by("datetime").values()
     selected = Course.objects.filter(selected=True).order_by("datetime").values()
-    course = Course.objects.get(selected=True)
-    days = course.days.all()
     about = AboutUs.objects.values().first()
     sport = Sport.objects.all().values()
     template = loader.get_template('public/home.html')
     context = {
         "images": images,
         "selected": selected,
-        "days": days,
         "instagram": about["instagram"],
         "telegram": about["telegram"],
         "telephone": about["telephone"],

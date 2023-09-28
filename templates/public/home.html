@@ -386,7 +386,7 @@
             margin: 10% auto;
             padding: 20px;
             border: 1px solid #888888;
-            width: 40%;
+            width: 80vh;
             font-weight: bolder;
         }
         .popup-content button {
@@ -474,16 +474,9 @@
 	<a class="prev" onclick="plusSlides(-1)">❮</a>
 	<a class="next" onclick="plusSlides(1)">❯</a>
 
-
-		<!--<div style="text-align:center">
-  			<span class="dot" onclick="currentSlide(1)"></span>
-  			<span class="dot" onclick="currentSlide(2)"></span>
-  			<span class="dot" onclick="currentSlide(3)"></span>
-		</div>-->
-
 	</div>
 
-	<div class="title">{{ category.title }}</div>
+	<div class="title">دوره های منتخب</div>
 
 	<div class="scrolling-wrapper">
 
@@ -515,31 +508,19 @@
 		</div>
 
         {% endfor %}
-/
+
 
 </div>
 
     <div id="myPopup" class="popup">
         <div class="popup-content" style="direction: rtl">
-            <label for="session">تعداد جلسات در ماه را انتخاب کنید:</label>
-             <select name="numbers" id="session" style="margin-right: 50px">
-
-                  {% for x in days %}
-
-              <option value={{ x.id }}>{{ x.session }}</option>
-
-                  {% endfor %}
+            <label for="session">تعداد جلسات در ماه را انتخاب کنید :</label>
+             <select name="numbers" id="session" style="margin-right: 14.5vh">
             </select>
             <br>
             <br>
             <label for="week">روزهای برگزاری در هفته را مشخص کنید:</label>
-              <select name="days" id="week" style="margin-right: 50px">
-
-                  {% for x in days %}
-
-              <option value={{ x.id }}>{{ x.day }}</option>
-
-                  {% endfor %}
+              <select name="days" id="week" style="margin-right: 10vh">
             </select>
             <br>
             <br>
@@ -718,20 +699,72 @@
      const myPopup = document.getElementById("myPopup");
      const session = document.getElementById("number");
      const week = document.getElementById("week");
+     const sessionList = document.getElementById("session")
      let course
 
-     registerButton.addEventListener("click", function () {
+     registerButton.addEventListener("click", async function () {
          course = this.getAttribute("itemid")
-            myPopup.classList.toggle("show");
-        });
-        closeButton.addEventListener("click", function () {
-            window.location.assign(`/product/${course}/${session.value}/${week.value}/`)
+                     myPopup.classList.toggle("show");
+          const response = await fetch(`/product/api/sessions/${course}/`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+
+      const result = await response.json()
+    if (response.status===200){
+        const res = JSON.stringify(result)
+        const sum = JSON.parse(res)
+        const size = JSON.parse(res).length
+        sessionList.innerHTML = ''
+        for (let i = 0 ; i<size ; i++){
+            const item = document.createElement("option")
+            item.innerHTML = sum[i].number + 'جلسه'
+            item.setAttribute("value", sum[i].id)
+            sessionList.appendChild(item)
+        }
+        await getDays(sum[0].id)
+    }
+     });
+         sessionList.addEventListener('change', function () {
+        getDays(this.value)
+    })
+
+    async function getDays(query) {
+
+        const response = await fetch(`/product/api/days/${query}/`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+
+      const result = await response.json()
+    if (response.status===200){
+        const res = JSON.stringify(result)
+        const sum = JSON.parse(res)
+        const size = JSON.parse(res).length
+        week.innerHTML = ''
+        for (let i = 0 ; i<size ; i++){
+            const item = document.createElement("option")
+            item.innerHTML = sum[i].title
+            item.setAttribute("value", sum[i].id)
+            week.appendChild(item)
+        }
+    }
+
+    }
+     closeButton.addEventListener("click", function () {
+         window.location.assign(`/product/${course}/${sessionList.value}/${week.value}/`)
         });
         window.addEventListener("click", function (event) {
             if (event.target === myPopup) {
                 myPopup.classList.remove("show");
             }
         });
+
+
     </script>
 
 </html>

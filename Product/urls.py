@@ -12,5 +12,7 @@ urlpatterns = [
     path('api/sessions/<int:pk>/', SessionView.as_view({'post': 'create', 'get': 'list'}), name='sessions'),
     path('sport/<int:pk>/', sport_view, name='category'),
     path('api/sport/', SportView.as_view({'post': 'create', 'get': 'list'}), name='sports'),
+    path('payment/<int:pk>/<int:session>/<int:day>/', payment_view, name='payment'),
+    path('check/<int:pk>/<int:session>/<int:day>/', check_view, name='check'),
 
 ]

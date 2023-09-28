@@ -7,7 +7,7 @@ app_name = 'reservation'
 urlpatterns = [
 
     path('', reservation_view, name='reservation'),
-    path('api/reserve/', ReservationView.as_view({'post': 'create', 'get': 'list'}), name='reservation'),
+    path('api/reserve/', ReservationView.as_view({'post': 'create', 'get': 'list'}), name='reserve'),
     path('api/gym/', GymView.as_view({'post': 'create', 'get': 'list'}), name='gym'),
     path('api/dates/<int:pk>/', DateView.as_view({'post': 'create', 'get': 'list'}), name='dates'),
     path('api/times/<int:pk>/', TimeView.as_view({'post': 'create', 'get': 'list'}), name='times'),
