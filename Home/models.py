@@ -7,12 +7,6 @@ from django.utils import timezone
 
 class Slider(models.Model):
     image = models.ImageField(upload_to="images/")
-    description = models.TextField()
-    datetime = models.DateTimeField(default=timezone.now)
-
-
-class Article(models.Model):
-    image = models.ImageField(upload_to="images/", blank=True , null=True)
-    title = models.TextField()
-    body = models.TextField()
+    title = models.TextField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
     datetime = models.DateTimeField(default=timezone.now)

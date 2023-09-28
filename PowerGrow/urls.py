@@ -18,18 +18,15 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
-from django.views.generic import RedirectView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', RedirectView.as_view(url='https://powergrow.net/home')),
     path('home/', include('Home.urls', namespace='home')),
     path('product/', include('Product.urls', namespace='product')),
     path('reservation/', include('Reservation.urls', namespace='reservation')),
     path('about/', include('About.urls', namespace='about')),
     path('user/', include('User.urls', namespace='user')),
-
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

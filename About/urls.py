@@ -1,11 +1,11 @@
 from django.urls import path
-from About import views
+from About.views import *
 
 
-app_name = 'about'
+app_name = 'aboutUs'
 
 urlpatterns = [
-    path('', views.about_view, name='about'),
-    path('api/info/', views.ChangeInfo.as_view({'post': 'create'}), name='change_info'),
+    path('', about_view, name='aboutUs'),
+    path('api/', About.as_view({'post': 'create', 'get': 'list'}), name='aboutUs'),
 
 ]

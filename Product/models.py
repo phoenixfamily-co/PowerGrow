@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils import timezone
 
+from User.models import User
+
 TYPE_CHOICE = (
     ('خصوصی', 'private'),
     ('نیمه خصوصی', 'semiprivate'),
@@ -17,29 +19,40 @@ class Sport(models.Model):
 
 
 class Course(models.Model):
-    title = models.CharField(max_length=60)
-    name = models.CharField(max_length=60)
-    type = models.CharField(max_length=60, choices=TYPE_CHOICE, default='public')
-    time = models.CharField(max_length=50)
+    title = models.TextField(blank=True,null=True)
+    name = models.CharField(max_length=100,blank=True, null=True)
+    type = models.CharField(max_length=100, choices=TYPE_CHOICE, default='public')
+    start = models.DateField(null=True, blank=True)
+    time = models.TextField(blank=True, null=True)
     tuition = models.IntegerField()
-    off = models.IntegerField(null=True, blank=True)
-    price = models.IntegerField(default=0)
+    off = models.IntegerField(default=0, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     image = models.ImageField(upload_to="images/", blank=True, null=True)
     profile = models.ImageField(upload_to="images/", blank=True, null=True)
-    selected = models.BooleanField()
-    capacity = models.IntegerField()
+    selected = models.BooleanField(default=False, blank=True, null=True)
+    capacity = models.IntegerField(default=24 , blank=True, null=True)
     gender = models.CharField(max_length=10, choices=GENDER_CHOICE)
-    start = models.DateField(null=True,blank=True)
     datetime = models.DateTimeField(default=timezone.now)
-    sport = models.ForeignKey(Sport, on_delete=models.CASCADE, related_name='course', null=True, blank=True)
+    sport = models.ForeignKey(Sport, on_delete=models.CASCADE, related_name='courses', null=True, blank=True)
 
 
-class Days(models.Model):
+class Participants(models.Model):
+    title = models.TextField(blank=True, null=True)
+    Session = models.IntegerField(blank=True, null=True)
     day = models.TextField(blank=True, null=True)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='days', null=True, blank=True)
+    price = models.IntegerField(blank=True, null=True)
+    datetime = models.DateTimeField(default=timezone.now)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='courses')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='participants', null=True, blank=True)
 
 
 class Sessions(models.Model):
-    session = models.IntegerField(blank=True, null=True)
+    number = models.IntegerField(blank=True, null=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='sessions', null=True, blank=True)
+
+
+class Days(models.Model):
+    reserved = models.BooleanField(blank=True, null=True)
+    title = models.TextField(blank=True, null=True)
+    price = models.IntegerField(blank=True, null=True)
+    day = models.ForeignKey(Sessions, on_delete=models.CASCADE, related_name='days', null=True, blank=True)

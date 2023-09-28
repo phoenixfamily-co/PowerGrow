@@ -2,8 +2,8 @@ from django.http import HttpResponse
 from django.template import loader
 from rest_framework import viewsets, filters
 from About.models import AboutUs
-from Product.models import Course, Days, Sport, Sessions
-from Product.serializer import CourseSerializer, DaysSerializer, SportSerializer, SessionSerializer
+from Product.models import *
+from Product.serializer import *
 
 
 def product_view(request, pk, session, day):
@@ -90,6 +90,11 @@ class DaysView(viewsets.ModelViewSet):
 class SessionView(viewsets.ModelViewSet):
     queryset = Sessions.objects.all()
     serializer_class = SessionSerializer
+
+
+class ParticipationView(viewsets.ModelViewSet):
+    queryset = Participants.objects.all()
+    serializer_class = ParticipantsSerializer
 
 
 class SportView(viewsets.ModelViewSet):

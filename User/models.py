@@ -32,7 +32,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     birthdate = models.CharField(max_length=10, default=timezone.now)
     national = PhoneNumberField(unique=True, blank=True, null=True)
     gender = models.CharField(max_length=10)
+
     USERNAME_FIELD = 'number'
     REQUIRED_FIELDS = ['name', 'password', 'gender', 'birthdate']
 
     objects = CustomAccountManager()
+
+    def __str__(self):
+        return str(self.number)
