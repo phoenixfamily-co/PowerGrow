@@ -115,7 +115,8 @@ def sport_view(request, pk):
         "address": about["address"],
         "latitude": about["latitude"],
         "longitude": about["longitude"],
-        "title": sport.title,
+        "title": sport.
+        title,
         "category": category,
         "id": pk
     }

@@ -172,6 +172,7 @@
 			float: right;
 			display: inline-block;
 			direction: rtl;
+            margin-top: 1px;
 
 		}
 
@@ -189,7 +190,7 @@
             cursor: pointer;
 		}
 
-		.contentWrapper {
+	.contentWrapper {
 			height:250px; // Replace with the height your footer should be
 			width: 100%; // Don't change
 			background-position: 0% 0%;
@@ -201,8 +202,8 @@
 			justify-content: center;
 			align-items: center;
 			gap: 0.2rem;
+            margin-top: 100%;
 			position: absolute;
-			margin-top: 1030px;
 			right: 0;
 			left: 0;
 
@@ -244,7 +245,8 @@
 		hr{
 			height: 1px ;
 			background-color: black ;
-			width: 325px;
+			width: 330px;
+            margin-top: 55px;
 			margin-right: 20px;
 			margin-left: 20px;
 			right: 0;
@@ -291,7 +293,7 @@
 	<div class="slideshow-container">
 
 		<div class="mySlides fade">
-			<img alt="" src="../../static/images/reservation.jpeg" style="width:100%;height:100% ; border-bottom-left-radius:  20px ; border-top-left-radius: 20px" >
+			<img alt="" src="/media/{{ reservation.image  }}" style="width:100%;height:100% ; border-bottom-left-radius:  20px ; border-top-left-radius: 20px" >
 		</div>
 
 	</div>
@@ -301,13 +303,13 @@
 	<div class="card" id="card">
 
 
-		<ul class="card-title">
+		<ul class="card-title" style="margin-top: 15px">
 			<li style="font-size: 16px;font-weight: bold ;display: inline">نام سالن:</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ;float: left">سالن چند منظوره جحاب</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ;float: left">{{ reservation.title }}</li>
 
 		</ul>
 
-		<hr style="margin-top: 50px ; position: absolute">
+		<hr>
 
 		<ul class="card-title">
 			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">تاریخ رزرو:</li>
@@ -315,54 +317,42 @@
 
 		</ul>
 
-		<hr style="margin-top: 100px ; position: absolute">
-
-		<ul class="card-title">
-
-			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">روز های رزرو:
-			</li>
-			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin-bottom:  -4px">شنبه ها وسه شنبه ها
-			</li>
-
-		</ul>
-
-
-		<hr style="margin-top: 150px ; position: absolute">
+		<hr>
 
 			<ul class="card-title">
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">ساعت رزرو:</li>
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">از ساعت 2 تا 16</li>
 		</ul>
 
-		<hr style="margin-top: 200px ; position: absolute">
+		<hr>
 
 			<ul class="card-title">
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">تعداد جلسات</li>
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">8 جلسه</li>
 		</ul>
 
-		<hr style="margin-top: 250px ; position: absolute">
+		<hr>
 
 			<ul class="card-title">
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right; margin-top: -4px">اجاره ثابت:</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left; margin-top: -4px">1500000 تومان</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left; margin-top: -4px">{{ reservation.tuition }} تومان</li>
 		</ul>
 
-		<hr style="margin-top: 300px ; position: absolute">
+		<hr >
 
 			<ul class="card-title">
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; ; margin-top: -4px">تخفیف:</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; ; margin-top: -4px">20%</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; ; margin-top: -4px"> % {{ reservation.off }}</li>
 		</ul>
 
-		<hr style="margin-top: 350px ; position: absolute">
+		<hr>
 
 		<ul class="card-title">
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -10px">قیمت نهایی:</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -10px">1200000 تومان</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -10px"> تومان</li>
 		</ul>
 
-		<ul class="card-title ">
+		<ul class="card-title" style="margin-top: 20px">
 			<li style="font-size: 12px;font-weight: bold ;display: inline ; float: right ; margin-top: -25px ; direction: rtl">
                 <label>
                     <input type="checkbox" style="margin-top: 3px ; position: absolute; cursor: pointer;">
@@ -370,13 +360,13 @@
                 <a style="margin-right: 15px">شرابط این قرارداد را میپذیرم</a>
 			</li>
 			<li style="font-size: 12px;font-weight: bold ;display: inline ; float: left ; margin-top: -22px ; color: blue ; cursor: pointer;">
-				مشاهده قرارداد
+                <a href="/media/{{ reservation.contract }}">مشاهده قرارداد</a>
 			</li>
 		</ul>
 
 
 
-		<button class="card-button">
+		<button id="registerButton" class="card-button">
 		ثبت نام کنید
 		</button>
 
@@ -384,11 +374,17 @@
 	</div>
 
 
+    <div style="width: 70%; height: 300px; background: #FFFFFF ; float: right;border-top-left-radius: 20px; border-bottom-left-radius: 20px; margin-top: 15px">
+
+	</div>
 
 	<div style="width: 70%; height: 500px; background: #FFFFFF ; float: right;border-top-left-radius: 20px; border-bottom-left-radius: 20px; margin-top: 15px">
 
 
-		<div class="range-example" style="width: 30% ; position: absolute ; right: 0" ></div>
+
+             <p style="direction: rtl ; font-size: 20px ; width: auto ; height: 100% ; margin-right: 10px ; margin-left: 5px ; padding-bottom: 5px">
+            {{ reservation.description }}
+   </p>
 
 	</div>
 
@@ -463,6 +459,28 @@ const map = new nmp_mapboxgl.Map({
                 show: false,
             }
         });
+</script>
+
+<script>
+
+    const cookieValue = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("accedss="))
+        ?.split("=")[1];
+
+    const registerButton = document.getElementById("registerButton")
+
+
+    registerButton.addEventListener('click',function () {
+        console.log(cookieValue)
+
+          if(!cookieValue){
+            window.location.assign(`/reservation/payment/{{ course }}/{{ session.id }}/{{ days.id }}/`)
+        } else {
+            window.location.assign(`{% url 'user:login'  %}`)
+          }
+    })
+
 </script>
 
 </html>

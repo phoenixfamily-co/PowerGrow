@@ -1,8 +1,6 @@
-from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.template import loader
 from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticated
 
 from About.models import AboutUs
 from Product.models import Sport
@@ -12,8 +10,8 @@ from Reservation.serializer import GymSerializer, ReservationSerializer, DatesSe
 
 def reservation_view(request):
     about = AboutUs.objects.values().first()
+    reservation = Gym.objects.values().first()
     sport = Sport.objects.all().values()
-
     template = loader.get_template('public/reservation.html')
     context = {
         "logo": about["logo"],
@@ -25,15 +23,21 @@ def reservation_view(request):
         "address": about["address"],
         "latitude": about["latitude"],
         "longitude": about["longitude"],
+        "reservation" : reservation,
         "sport": sport,
+
 
     }
     return HttpResponse(template.render(context, request))
 
 
 class GymView(viewsets.ModelViewSet):
-    queryset = Gym.objects.all()
+    queryset = Gym.objects.all().first()
     serializer_class = GymSerializer
+
+    def create(self, request, *args, **kwargs):
+        Gym.objects.all().delete()
+        return super().create(request)
 
 
 class ReservationView(viewsets.ModelViewSet):

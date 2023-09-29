@@ -217,7 +217,7 @@
 			padding: 2rem;
 			background: #303030;
 			color: white;
-            margin-top: 5vh;
+            margin-top: 10vh;
 			font-weight: 500;
 			display: flex;
 			justify-content: center;
@@ -392,11 +392,6 @@
              <label for="session">تعداد جلسات در ماه را انتخاب کنید:</label>
              <select name="numbers" id="session" style="margin-right: 50px">
 
-                  {% for x in days %}
-
-              <option value={{ x.id }}>{{ x.session }}</option>
-
-                  {% endfor %}
             </select>
             <br>
             <br>
@@ -497,6 +492,7 @@
     const myPopup = document.getElementById("myPopup");
     const session = document.getElementById("number");
     const week = document.getElementById("week");
+    const sessionList = document.getElementById("session")
     let course
 
     window.onload = function (){
@@ -585,24 +581,72 @@
             }
             const buttons = document.querySelectorAll('.card-button');
             Array.from(buttons).forEach(function (button){
+                button.addEventListener('click',async function (){
+         course = this.getAttribute("itemid")
+                     myPopup.classList.toggle("show");
+             const response = await fetch(`/product/api/sessions/${course}/`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
 
-                button.addEventListener('click',function (){
-                 course = this.getAttribute("itemid")
-                                console.log(course)
-                    myPopup.classList.toggle("show");
+      const result = await response.json()
+    if (response.status===200){
+        const res = JSON.stringify(result)
+        const sum = JSON.parse(res)
+        const size = JSON.parse(res).length
+        sessionList.innerHTML = ''
+        for (let i = 0 ; i<size ; i++){
+            const item = document.createElement("option")
+            item.innerHTML = sum[i].number + 'جلسه'
+            item.setAttribute("value", sum[i].id)
+            sessionList.appendChild(item)
+        }
+        await getDays(sum[0].id)
+    }
             })
+                sessionList.addEventListener('change', function () {
+                    getDays(this.value)
+    })
 
             })
         }
     }
+
+    async function getDays(query) {
+
+        const response = await fetch(`/product/api/days/${query}/`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+
+        const result = await response.json()
+    if (response.status===200){
+        const res = JSON.stringify(result)
+        const sum = JSON.parse(res)
+        const size = JSON.parse(res).length
+        week.innerHTML = ''
+        for (let i = 0 ; i<size ; i++){
+            const item = document.createElement("option")
+            item.innerHTML = sum[i].title
+            item.setAttribute("value", sum[i].id)
+            week.appendChild(item)
+        }
+    }
+
+    }
         closeButton.addEventListener("click", function () {
-             window.location.assign(`/product/${course}/${session.value}/${week.value}/`)
+             window.location.assign(`/product/${course}/${sessionList.value}/${week.value}/`)
          });
          window.addEventListener("click", function (event) {
              if (event.target === myPopup) {
                  myPopup.classList.remove("show");
              }
-     })
+
+         })
 
 </script>
 

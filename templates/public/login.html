@@ -175,7 +175,6 @@ span {
         JSON.stringify(result)
     if (response.status===200){
         JSON.stringify(result)
-        console.log(result.access)
         document.cookie = `access=${result.access}; max-age=3600*24 ; path=/`
         document.cookie = `refresh=${result.refresh}; max-age=3600*24 ; path=/`
         window.location.assign("{% url "user:home" %}")
