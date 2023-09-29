@@ -7,6 +7,8 @@
 <script src="https://kit.fontawesome.com/1228ed801f.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.css" />
 <script src="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.css">
+<script type="text/javascript" src="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.js"></script>
 
 
 
@@ -44,7 +46,6 @@
 			margin-top: 4%;
 			margin-right: 5%;
     		z-index: 10!important;
-
 
 		}
 
@@ -190,10 +191,10 @@
             cursor: pointer;
 		}
 
-	.contentWrapper {
-			height:250px; // Replace with the height your footer should be
-			width: 100%; // Don't change
-			background-position: 0% 0%;
+
+		.contentWrapper {
+			height:250px;
+            width: 100%;
 			padding: 2rem;
 			background: #303030;
 			color: white;
@@ -202,21 +203,17 @@
 			justify-content: center;
 			align-items: center;
 			gap: 0.2rem;
-            margin-top: 100%;
-			position: absolute;
-			right: 0;
-			left: 0;
+            position: relative;
 
 		}
 
 		.content {
-			height:250px; // Replace with the height your footer should be
-			width: 1000px; // Visible width of footer
-			margin:auto;
+			height:250px;
 		}
 
 		.footer{
 			  height: 50px;
+            width: 100%;
 			  font-weight: 500;
 			  display: flex;
 			  justify-content: flex-start;
@@ -225,18 +222,14 @@
 			  gap: 0.2rem;
 			  padding-top: 10px;
 			  padding-left: 20px;
-			  bottom: 0;
-			  right: 0;
-			  left: 0;
 			  position: absolute;
+              bottom: 0;
 			  color: #B1B2B2;
 			  background: #151111;
 
 		}
-
 		body,html{
 			height: auto;
-			position: relative;
             font-family: BYekan, serif !important;
 			background: #ACACAC;
 
@@ -312,30 +305,30 @@
 		<hr>
 
 		<ul class="card-title">
-			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">تاریخ رزرو:</li>
-			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin: -4px">از 28/02/1402 تا 4/03/1402</li>
+			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">شروع رزور :</li>
+			<li id="start" style="direction:ltr ; font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin: -4px"></li>
 
 		</ul>
 
 		<hr>
 
 			<ul class="card-title">
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">ساعت رزرو:</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">از ساعت 2 تا 16</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">پایان رزور:</li>
+			<li id="end" style="direction:ltr ;font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px"> </li>
 		</ul>
 
 		<hr>
 
 			<ul class="card-title">
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">تعداد جلسات</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">8 جلسه</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">تعداد جلسه در هفته:</li>
+			<li id="number" style="direction:rtl ; font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">1 جلسه</li>
 		</ul>
 
 		<hr>
 
 			<ul class="card-title">
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right; margin-top: -4px">اجاره ثابت:</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left; margin-top: -4px">{{ reservation.tuition }} تومان</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left; margin-top: -4px">{{ reservation.tuition}} تومان</li>
 		</ul>
 
 		<hr >
@@ -374,11 +367,26 @@
 	</div>
 
 
-    <div style="width: 70%; height: 300px; background: #FFFFFF ; float: right;border-top-left-radius: 20px; border-bottom-left-radius: 20px; margin-top: 15px">
+    <div style="width: 70%; height: 100px; background: #FFFFFF ; float: right;border-top-left-radius: 20px; border-bottom-left-radius: 20px; margin-top: 15px">
 
-	</div>
+        <label style="float: right; margin-top: 5vh ; margin-right: 10vh ; direction: rtl">
+                                شروع رزرو:
+            <input id="startDate" style="width:30vh; cursor: pointer; border-radius: 10px;background: #e5e5e5  ;text-align: center ; height: 6vh" type="text" data-jdp placeholder="تاریخ و ساعت شروع رزور" />
+        </label>
+       <label style="float: right; margin-top: 5vh ; margin-right: 10vh ; direction: rtl">
+                                پایان رزرو:
+            <input id="endDate" style="width:30vh; cursor: pointer; border-radius: 10px;background: #e5e5e5  ;text-align: center ; height: 6vh" type="text" data-jdp placeholder="تاریخ و ساعت شروع رزور" />
+       </label>
 
-	<div style="width: 70%; height: 500px; background: #FFFFFF ; float: right;border-top-left-radius: 20px; border-bottom-left-radius: 20px; margin-top: 15px">
+          <label style="float: right; margin-top: 5vh ; margin-right: 10vh ; direction: rtl">
+                               تعداد جلسات در هفته:
+            <input id="sessionNumber" style="width:10vh; cursor: pointer; border-radius: 10px;background: #e5e5e5  ;text-align: center ; height: 6vh " type="number" min="1" max="7" value="1" />
+
+          </label>
+
+    </div>
+
+	<div style="margin-bottom:2vh ; width: 70%; height: 500px; background: #FFFFFF ; float: right;border-top-left-radius: 20px; border-bottom-left-radius: 20px; margin-top: 15px">
 
 
 
@@ -391,7 +399,6 @@
 	<div class="contentWrapper">
 		<div class="content">
 			<div style="width:160px;left: 0;bottom: 0; top: 0; position: absolute;margin-left: 20px">
-
 				<h2>PowerGrow</h2>
 		 <img class="" src="/media/{{ transparent_logo }}" style="position: absolute;width:160px;margin-top: -22px"
               alt="" >
@@ -428,6 +435,7 @@
 				{{ instagram }}
 			</h5>
 		</div>
+
 		<div class="footer">&copy;<span id="year"  style="font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif'">2023 </span><span> PhoenixFamily. All rights reserved.</span>
 		<a href="//www.instagram.com/phoenixfamily.co?igshid=OGQ5ZDc2ODk2ZA=="  style="right: 0 ; position: absolute ; margin-right:15px">
 		<i class="fa-brands fa-instagram" style="color: #ffffff ; font-size: 30px"></i>
@@ -440,6 +448,42 @@
 </div>
 
 </body>
+
+<script>
+         let start=document.getElementById("startDate")
+         let end=document.getElementById("endDate")
+         let number=document.getElementById("sessionNumber")
+         let startValue=document.getElementById("start")
+         let endValue=document.getElementById("end")
+         let numberValue=document.getElementById("number")
+
+        jalaliDatepicker.startWatch({
+      time: true,
+    });
+
+
+         start.addEventListener("change",function () {
+
+             startValue.innerHTML = start.value
+         })
+
+          end.addEventListener("change",function () {
+
+             endValue.innerHTML = end.value
+
+
+         })
+
+
+          number.addEventListener("change",function () {
+
+             numberValue.innerHTML = number.value + ' ' + 'جلسه'
+
+         })
+
+
+
+</script>
 
 <script>
 
