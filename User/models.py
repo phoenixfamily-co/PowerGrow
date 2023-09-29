@@ -4,6 +4,18 @@ from django.utils import timezone
 from phonenumber_field.modelfields import PhoneNumberField
 
 
+GENDER_CHOICE = (
+    ('آقا', 'man'),
+    ('خانم', 'woman'),
+)
+
+SALARY_CHOICE = (
+    ('آزاد', 'free'),
+    ('درصدی', 'percentage'),
+    ('ثابت', 'static'),
+)
+
+
 class CustomAccountManager(BaseUserManager):
 
     def create_superuser(self, number, password, **other_fields):
@@ -22,17 +34,17 @@ class CustomAccountManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    name = models.CharField(max_length=50, default="unknown")
-    number = PhoneNumberField(unique=True, )
+    name = models.CharField(max_length=50, blank=True, null=True)
+    number = PhoneNumberField(unique=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
-    password = models.TextField()
     birthdate = models.CharField(max_length=10, default=timezone.now)
-    national = PhoneNumberField(unique=True, blank=True, null=True)
-    gender = models.CharField(max_length=10)
-
+    national = models.IntegerField(blank=True, null=True, unique=True)
+    gender = models.CharField(max_length=10, choices=GENDER_CHOICE)
+    salary = models.CharField(max_length=20, choices=SALARY_CHOICE)
+    fee = models.IntegerField(null=True, blank=True)
     USERNAME_FIELD = 'number'
     REQUIRED_FIELDS = ['name', 'password', 'gender', 'birthdate']
 

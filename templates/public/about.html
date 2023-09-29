@@ -218,7 +218,7 @@
 		<button class="tab-button" onclick="window.location.assign('{% url 'home:home' %}')">صفحه اصلی</button>
 		<div class="dropdown">
   		<button class="tab-button" onclick="">ورزش ها</button>
-			<i class="fa-solid fa-caret-down" style="color: #000;margin-right: -7px"></i>
+			<i class="fa-solid fa-caret-down" style="color: #000"></i>
 			 <div class="dropdown-content">
    			  {% for x in sport %}
 
@@ -234,7 +234,7 @@
 
 	<div class="logoHolder">
 
-			 <img alt="" src="/media/{{ logo }}" class="logo">
+			 <img alt="" src="/media/{{ about.logo }}" class="logo">
 	  		<div class="typography">PowerGrow</div>
 
 		</div>
@@ -250,9 +250,7 @@
 		<h2 style="right: 0;position: absolute;margin-right: 20px; font-weight: bold ; margin-top: 150px">درباره ما</h2>
 
 		<p style="position: absolute ; right: 0 ; margin-right: 20px ; font-size: 18px ; width: 550px; height: 1px ;margin-top: 200px ; direction: rtl">
-مجموعه ورزشی حجاب مفتخر است با فراهم آوردن محیطی شاد و جذاب برای ورزش و سلامتی به شما و فرزندانتان خدمات ارائه دهد.
-این مجموعه شامل 3 سالن ورزشی میباشد که به صورت همزمان فعالیت می کنند و کلاس های توپی ، رزمی و بدنسازی را برگزار میکنند.
-مجموعه حجاب با برگزاری کلاس برای سنین مختلف از 3 سال به بالا آماده خدمت رسانی به شما عزیزان میباشد.
+            {{ about.description }}
 		</p>
 
 		<div class="property"  style="right: 0 ; margin-top: 450px">
@@ -289,15 +287,15 @@
 		<div class="property" style="left: 0 ; margin-top: 400px ; margin-left: 35px">
   		<button class="property-item" onclick=""  style="height: 40px; position: relative ;display: inline">
 				<i class="fa-brands fa-instagram" style="color: white;  font-size: 20px ; position: absolute; left: 0 ; bottom: 0 ; margin-left: 20px ; margin-bottom: 6px"></i>
-			<h6 style="position: absolute ; left: 0 ; bottom: 0 ; margin-left: 50px ; margin-bottom: 5px">{{ instagram }}</h6>
+			<h6 style="position: absolute ; left: 0 ; bottom: 0 ; margin-left: 50px ; margin-bottom: 5px">{{ about.instagram }}</h6>
 			</button>
   		<button class="property-item" onclick=""  style="height: 40px; position: relative ;display: inline">
 				<i class="fa-brands fa-telegram" style="color: white;  font-size: 20px ; position: absolute; left: 0 ; bottom: 0 ; margin-left: 20px ; margin-bottom: 6px"></i>
-			<h6 style="position: absolute ; left: 0 ; bottom: 0 ; margin-left: 50px ; margin-bottom: 5px">{{ telegram }}</h6>
+			<h6 style="position: absolute ; left: 0 ; bottom: 0 ; margin-left: 50px ; margin-bottom: 5px">{{ about.telegram }}</h6>
 			</button>
 		<button class="property-item" onclick=""  style="height: 40px ; position: relative ;display: inline">
 			<i class="fa-brands fa-whatsapp" style="color: white;  font-size: 20px ; position: absolute; left: 0 ; bottom: 0 ; margin-left: 20px ; margin-bottom: 6px"></i>
-			<h6 style="position: absolute ; left: 0 ; bottom: 0 ; margin-left: 50px ; margin-bottom: 5px">{{ phone }}</h6>
+			<h6 style="position: absolute ; left: 0 ; bottom: 0 ; margin-left: 50px ; margin-bottom: 5px">{{ about.phone }}</h6>
 			</button>
 
 	</div>
@@ -306,11 +304,11 @@
 		<div class="property"  style="left: 0 ; margin-top: 450px ; margin-left: 130px">
   		<button class="property-item" onclick=""  style="height: 40px; position: relative ;display: inline">
 				<i class="fa-solid fa-tty" style="color: white;  font-size: 20px ; position: absolute; left: 0 ; bottom: 0 ; margin-left: 20px ; margin-bottom: 6px"></i>
-			<h6 style="position: absolute ; left: 0 ; bottom: 0 ; margin-left: 50px ; margin-bottom: 5px">{{ telephone }}</h6>
+			<h6 style="position: absolute ; left: 0 ; bottom: 0 ; margin-left: 50px ; margin-bottom: 5px">{{ about.telephone }}</h6>
 			</button>
   		<button class="property-item" onclick=""  style="height: 40px; position: relative ;display: inline">
 				<i class="fa-solid fa-phone" style="color: white;  font-size: 20px ; position: absolute; left: 0 ; bottom: 0 ; margin-left: 20px ; margin-bottom: 6px"></i>
-			<h6 style="position: absolute ; left: 0 ; bottom: 0 ; margin-left: 50px ; margin-bottom: 5px">{{ phone }}</h6>
+			<h6 style="position: absolute ; left: 0 ; bottom: 0 ; margin-left: 50px ; margin-bottom: 5px">{{ about.phone }}</h6>
 			</button>
 	</div>
 
@@ -325,7 +323,7 @@
 			<div style="width:160px;left: 0;bottom: 0; top: 0; position: absolute;margin-left: 20px">
 
 				<h2>PowerGrow</h2>
-		 <img class="" src="/media/{{ transparent_logo }}" style="position: absolute;width:160px;margin-top: -22px"  alt="" >
+		 <img class="" src="/media/{{ about.transparent_logo }}" style="position: absolute;width:160px;margin-top: -22px"  alt="" >
 
 				</div>
 
@@ -340,7 +338,7 @@
 
                    {% autoescape off %}
 
-                {{ address|linebreaksbr  }}
+                {{ about.address|linebreaksbr  }}
 
                 {% endautoescape %}
 
@@ -348,14 +346,14 @@
 
 			<i class="fa-solid fa-phone-flip" style="color: #ffffff; right: 0 ; position: absolute; margin-top: 95px ; margin-right: 20px; font-size: 30px"></i>
 			<h5 style="right: 0 ; margin-right: 60px;position: absolute;direction: rtl ; margin-top: 95px;">
-                {{ phone }}<br> {{ telephone }}
+                {{ about.phone }}<br> {{ about.telephone }}
 			</h5>
 
 			<a href="//www.instagram.com/{{ instagram }}"  style="right: 0 ; position: absolute ; margin-right:20px ; margin-top: 165px;display: inline">
 		<i class="fa-brands fa-instagram" style="color: #ffffff ; font-size: 30px ;"></i>
 		</a>
 			<h5 style="right: 0 ; margin-right: 60px;position: absolute;direction: ltr ; margin-top: 167px;">
-                {{ instagram }}
+                {{ about.instagram }}
 			</h5>
 		</div>
 		<div class="footer">&copy;<span id="year" style="font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif'">2023 </span><span> PhoenixFamily. All rights reserved.</span>
@@ -375,12 +373,16 @@
 
 <script>
 
+    let lat = {{ about.latitude }};
+    let long =     {{ about.longitude }};
+
+
 const map = new nmp_mapboxgl.Map({
             mapType: nmp_mapboxgl.Map.neshanVector,
             container: "map",
             zoom: 15,
             pitch: 0,
-            center: [51.39745238274448,35.71150972541361 ],
+            center: [long,lat],
             minZoom: 2,
             maxZoom: 21,
             trackResize: true,

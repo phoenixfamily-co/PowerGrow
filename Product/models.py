@@ -19,18 +19,18 @@ class Sport(models.Model):
 
 
 class Course(models.Model):
-    title = models.TextField(blank=True,null=True)
-    name = models.CharField(max_length=100,blank=True, null=True)
+    title = models.TextField(blank=True, null=True)
+    name = models.CharField(max_length=100, blank=True, null=True)
     type = models.CharField(max_length=100, choices=TYPE_CHOICE, default='public')
     start = models.DateField(null=True, blank=True)
     time = models.TextField(blank=True, null=True)
     tuition = models.IntegerField()
-    off = models.IntegerField(default=0, blank=True, null=True)
+    off = models.IntegerField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     image = models.ImageField(upload_to="images/", blank=True, null=True)
     profile = models.ImageField(upload_to="images/", blank=True, null=True)
     selected = models.BooleanField(default=False, blank=True, null=True)
-    capacity = models.IntegerField(default=24 , blank=True, null=True)
+    capacity = models.IntegerField(blank=True, null=True)
     gender = models.CharField(max_length=10, choices=GENDER_CHOICE)
     datetime = models.DateTimeField(default=timezone.now)
     sport = models.ForeignKey(Sport, on_delete=models.CASCADE, related_name='courses', null=True, blank=True)

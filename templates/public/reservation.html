@@ -273,7 +273,7 @@
 
 	<div class="logoHolder">
 
-			 <img alt="" src="/media/{{ logo }}" class="logo">
+			 <img alt="" src="/media/{{ about.logo }}" class="logo">
 	  		<div class="typography">PowerGrow</div>
 
 		</div>
@@ -400,7 +400,7 @@
 		<div class="content">
 			<div style="width:160px;left: 0;bottom: 0; top: 0; position: absolute;margin-left: 20px">
 				<h2>PowerGrow</h2>
-		 <img class="" src="/media/{{ transparent_logo }}" style="position: absolute;width:160px;margin-top: -22px"
+		 <img class="" src="/media/{{ about.transparent_logo }}" style="position: absolute;width:160px;margin-top: -22px"
               alt="" >
 
 				</div>
@@ -416,7 +416,7 @@
 
                   {% autoescape off %}
 
-                {{ address|linebreaksbr  }}
+                {{ about.address|linebreaksbr  }}
 
                 {% endautoescape %}
 
@@ -424,7 +424,7 @@
 
 			<i class="fa-solid fa-phone-flip" style="color: #ffffff; right: 0 ; position: absolute; margin-top: 95px ; margin-right: 20px; font-size: 30px"></i>
 			<h5 style="right: 0 ; margin-right: 60px;position: absolute;direction: rtl ; margin-top: 95px;">
-                {{ phone }}<br> {{ telephone }}
+                {{ about.phone }}<br> {{ about.telephone }}
 			</h5>
 
 			<a href="https://www.instagram.com/{{ instagram }}"  style="right: 0 ; position: absolute ; margin-right:20px ; margin-top: 165px;display: inline">
@@ -432,7 +432,7 @@
 		</a>
 
 			<h5 style="right: 0 ; margin-right: 60px;position: absolute;direction: ltr ; margin-top: 167px;">
-				{{ instagram }}
+				{{ about.instagram }}
 			</h5>
 		</div>
 
@@ -487,12 +487,15 @@
 
 <script>
 
+      let lat = {{ about.latitude }};
+      let long =     {{ about.longitude }};
+
 const map = new nmp_mapboxgl.Map({
             mapType: nmp_mapboxgl.Map.neshanVector,
             container: "map",
             zoom: 15,
             pitch: 0,
-            center: [51.39745238274448,35.71150972541361 ],
+            center: [long,lat ],
             minZoom: 2,
             maxZoom: 21,
             trackResize: true,

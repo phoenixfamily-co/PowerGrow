@@ -15,15 +15,7 @@ def home_view(request):
     context = {
         "images": images,
         "selected": selected,
-        "instagram": about["instagram"],
-        "telegram": about["telegram"],
-        "telephone": about["telephone"],
-        "phone": about["phone"],
-        "logo": about["logo"],
-        "transparent_logo": about["transparent_logo"],
-        "address": about["address"],
-        "latitude": about["latitude"],
-        "longitude": about["longitude"],
+        "about": about,
         "sport": sport,
 
     }

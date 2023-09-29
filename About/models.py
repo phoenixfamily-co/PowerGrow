@@ -15,4 +15,3 @@ class AboutUs(models.Model):
     latitude = models.FloatField(default=0 , blank=True, null=True)
     longitude = models.FloatField(default=0 , blank=True, null=True)
     datetime = models.DateTimeField(default=timezone.now)
-

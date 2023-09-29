@@ -12,33 +12,10 @@ def product_view(request, pk, session, day):
     days = Days.objects.filter(id=day).values().first()
     template = loader.get_template('public/product.html')
     context = {
-        "instagram": about["instagram"],
-        "telegram": about["telegram"],
-        "telephone": about["telephone"],
-        "phone": about["phone"],
-        "logo": about["logo"],
-        "transparent_logo": about["transparent_logo"],
-        "address": about["address"],
-        "latitude": about["latitude"],
-        "longitude": about["longitude"],
-        "title": product["title"],
-        "name": product["name"],
-        "type": product["type"],
-        "time": product["time"],
-        "tuition": product["tuition"],
-        "off": product["off"],
-        "description": product["description"],
-        "start": product["start"],
-        "image": product["image"],
-        "profile": product["profile"],
-        "selected": product["selected"],
-        "capacity": product["capacity"],
-        "gender": product["gender"],
-        "datetime": product["datetime"],
+        "about": about,
+        "product": product,
         "session": sessions,
         "days": days,
-        "price": product["tuition"],
-        "course": pk,
 
     }
     return HttpResponse(template.render(context, request))
@@ -50,24 +27,9 @@ def payment_view(request, pk, session, day):
     days = Days.objects.filter(id=day).values().first()
     template = loader.get_template('public/payment.html')
     context = {
-        "title": product["title"],
-        "name": product["name"],
-        "type": product["type"],
-        "time": product["time"],
-        "tuition": product["tuition"],
-        "off": product["off"],
-        "description": product["description"],
-        "start": product["start"],
-        "image": product["image"],
-        "profile": product["profile"],
-        "selected": product["selected"],
-        "capacity": product["capacity"],
-        "gender": product["gender"],
-        "datetime": product["datetime"],
+        "product": product,
         "session": sessions,
         "days": days,
-        "price": product["tuition"],
-        "course": pk,
     }
     return HttpResponse(template.render(context, request))
 
@@ -78,47 +40,26 @@ def check_view(request, pk, session, day):
     days = Days.objects.filter(id=day).values().first()
     template = loader.get_template('public/check.html')
     context = {
-        "title": product["title"],
-        "name": product["name"],
-        "type": product["type"],
-        "time": product["time"],
-        "tuition": product["tuition"],
-        "off": product["off"],
-        "description": product["description"],
-        "start": product["start"],
-        "image": product["image"],
-        "profile": product["profile"],
-        "selected": product["selected"],
-        "capacity": product["capacity"],
-        "gender": product["gender"],
-        "datetime": product["datetime"],
+        "product": product,
         "session": sessions,
         "days": days,
-        "price": product["tuition"],
 
     }
     return HttpResponse(template.render(context, request))
 
 
 def sport_view(request, pk):
-    about = AboutUs.objects.values().first()
-    category = Sport.objects.all().values()
-    sport = Sport.objects.get(id=pk)
     template = loader.get_template('public/category.html')
+    about = AboutUs.objects.values().first()
+    sport = Sport.objects.all().values()
+    if not sport.exists():
+        return HttpResponse(template.render({}, request))
+    else:
+        title = Sport.objects.get(id=pk).title
     context = {
-        "instagram": about["instagram"],
-        "telegram": about["telegram"],
-        "telephone": about["telephone"],
-        "phone": about["phone"],
-        "logo": about["logo"],
-        "transparent_logo": about["transparent_logo"],
-        "address": about["address"],
-        "latitude": about["latitude"],
-        "longitude": about["longitude"],
-        "title": sport.
-        title,
-        "category": category,
-        "id": pk
+        "about": about,
+        "title": title,
+        "sport": sport,
     }
     return HttpResponse(template.render(context, request))
 

@@ -1,7 +1,6 @@
 from django.http import HttpResponse
 from django.template import loader
 from rest_framework import viewsets
-
 from About.models import AboutUs
 from Product.models import Sport
 from Reservation.models import *
@@ -10,30 +9,50 @@ from Reservation.serializer import GymSerializer, ReservationSerializer, DatesSe
 
 def reservation_view(request):
     about = AboutUs.objects.values().first()
-    reservation = Gym.objects.values().first()
+    gym = Gym.objects.values().first()
     sport = Sport.objects.all().values()
     template = loader.get_template('public/reservation.html')
     context = {
-        "logo": about["logo"],
-        "instagram": about["instagram"],
-        "telegram": about["telegram"],
-        "telephone": about["telephone"],
-        "phone": about["phone"],
-        "transparent_logo": about["transparent_logo"],
-        "address": about["address"],
-        "latitude": about["latitude"],
-        "longitude": about["longitude"],
-        "reservation" : reservation,
+        "about": about,
+        "reservation" : gym,
         "sport": sport,
-
-
     }
     return HttpResponse(template.render(context, request))
 
 
+def transaction_view(request):
+    about = AboutUs.objects.values().first()
+    gym = Gym.objects.values().first()
+    sport = Sport.objects.all().values()
+    template = loader.get_template('public/reservation.html')
+    context = {
+        "about": about,
+        "gym" : gym,
+        "sport": sport,
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def successful_view(request):
+    about = AboutUs.objects.values().first()
+    gym = Gym.objects.values().first()
+    sport = Sport.objects.all().values()
+    template = loader.get_template('public/reservation.html')
+    context = {
+        "about": about,
+        "gym" : gym,
+        "sport": sport,
+    }
+
+    return HttpResponse(template.render(context, request))
+
+
 class GymView(viewsets.ModelViewSet):
-    queryset = Gym.objects.all().first()
+    queryset = Gym.objects.all()
     serializer_class = GymSerializer
+
+    def get_queryset(self):
+        return Gym.objects.values().first()
 
     def create(self, request, *args, **kwargs):
         Gym.objects.all().delete()
@@ -43,7 +62,6 @@ class GymView(viewsets.ModelViewSet):
 class ReservationView(viewsets.ModelViewSet):
     queryset = Reservations.objects.all()
     serializer_class = ReservationSerializer
-    # permission_classes = [IsAuthenticated]
 
 
 class DateView(viewsets.ModelViewSet):

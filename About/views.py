@@ -12,15 +12,7 @@ def about_view(request):
     sport = Sport.objects.all().values()
     template = loader.get_template('public/about.html')
     context = {
-        "instagram": about["instagram"],
-        "telegram": about["telegram"],
-        "telephone": about["telephone"],
-        "phone": about["phone"],
-        "logo": about["logo"],
-        "transparent_logo": about["transparent_logo"],
-        "address": about["address"],
-        "latitude": about["latitude"],
-        "longitude": about["longitude"],
+        "about" : about,
         "sport": sport,
 
     }

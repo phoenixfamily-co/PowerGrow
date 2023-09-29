@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils import timezone
-
 from User.models import User
 
 
@@ -15,10 +14,9 @@ class Gym(models.Model):
 
 class Reservations(models.Model):
     title = models.TextField(blank=True, null=True)
-    startDate = models.DateField(blank=True, null=True)
-    endDate = models.DateField(blank=True, null=True)
-    startTime = models.TimeField(blank=True, null=True)
-    endTime = models.TimeField(blank=True, null=True)
+    startDateTime = models.DateTimeField(blank=True, null=True)
+    endDateTime = models.DateTimeField(blank=True, null=True)
+    reserved = models.BooleanField(blank=True, null=True)
     session = models.IntegerField(blank=True, null=True)
     price = models.IntegerField(blank=True, null=True)
     datetime = models.DateTimeField(default=timezone.now)
