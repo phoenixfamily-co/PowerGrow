@@ -59,7 +59,7 @@ def sport_view(request, pk):
     if not sport.exists():
         return HttpResponse(template.render({}, request))
     else:
-        category = Sport.objects.filter(id=pk)
+        category = Sport.objects.get(id=pk)
     context = {
         "about": about,
         "title": category.title,
