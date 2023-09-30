@@ -43,7 +43,7 @@ class Participants(models.Model):
     day = models.TextField(blank=True, null=True)
     price = models.IntegerField(blank=True, null=True)
     datetime = models.DateTimeField(default=timezone.now)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='courses')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='courses',blank=True , null=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='participants', null=True, blank=True)
 
 
