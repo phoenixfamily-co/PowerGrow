@@ -1,518 +1,554 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<script src="https://kit.fontawesome.com/1228ed801f.js" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.css" />
-<script src="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.css">
-<script type="text/javascript" src="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://kit.fontawesome.com/1228ed801f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.css"/>
+    <script src="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.css">
+    <script type="text/javascript"
+            src="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.js"></script>
 
 
+    <title>PowerGrow</title>
 
-<title>PowerGrow</title>
 
+    <style>
 
-	<style>
+        @font-face {
+            font-family: BYekan;
+            font-style: normal;
+            font-weight: normal;
+            src: url("../../static/fonts/BYekan.eot");/* IE9 Compat Modes */
+            src: url("../../static/fonts/BYekan.woff") format('woff'),
+            url("../../static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */ url("../../static/fonts/BYekan.ttf") format('truetype') /* Safari, Android, iOS */
+        }
 
-		@font-face {
-			font-family: BYekan;
-  			font-style: normal;
-  			font-weight: normal;
-  			src: url("../../static/fonts/BYekan.eot");/* IE9 Compat Modes */
-			src: url("../../static/fonts/BYekan.woff") format('woff'),
-        		 url("../../static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */
-        		 url("../../static/fonts/BYekan.ttf")  format('truetype') /* Safari, Android, iOS */
-		}
+        * {
+            box-sizing: border-box
+        }
 
-		* {box-sizing: border-box}
-		img {vertical-align: middle;}
+        img {
+            vertical-align: middle;
+        }
 
-	.mySlides {
-		display: block;
-		width: 70%;
-		right: 0;
-		height: 500px;
-		float: right;
-		}
+        .mySlides {
+            display: block;
+            width: 70%;
+            right: 0;
+            height: 500px;
+            float: right;
+        }
 
-		.tab{
-			direction:rtl ;
-			unicode-bidi: bidi-override ;
-			right:0;
-			position: absolute;
-			margin-top: 4%;
-			margin-right: 5%;
-    		z-index: 10!important;
+        .tab {
+            direction: rtl;
+            unicode-bidi: bidi-override;
+            right: 0;
+            position: absolute;
+            margin-top: 4%;
+            margin-right: 5%;
+            z-index: 10 !important;
 
-		}
+        }
 
-		.tab-button{
-			background-color: transparent;
-			border-color: transparent;
-			color: white;
+        .tab-button {
+            background-color: transparent;
+            border-color: transparent;
+            color: white;
             font-family: BYekan, serif !important;
-			font-size: 16px;
+            font-size: 16px;
             cursor: pointer;
-		}
+        }
 
-		.logoHolder{
-			width: 50px;
-			margin-left: 50%;
-			position: absolute;
-			margin-top: 1%;
-    		z-index: 10!important;
+        .logoHolder {
+            width: 50px;
+            margin-left: 50%;
+            position: absolute;
+            margin-top: 1%;
+            z-index: 10 !important;
 
-		}
+        }
 
-		.logo{
-			width: 50px;
-			height: 50px;
-			border-radius: 25px;
-			position: absolute;
-			direction: ltr
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            position: absolute;
+            direction: ltr
 
-		}
+        }
 
-		.typography{
-			position: absolute;
-			margin-left: 60px;
-			margin-top: 20%;
-			color: white;
-			font-size: 20px
+        .typography {
+            position: absolute;
+            margin-left: 60px;
+            margin-top: 20%;
+            color: white;
+            font-size: 20px
 
-		}
+        }
 
-		.login{
-			width: 150px;
-			position: absolute;
-			margin-top: 4%;
-			margin-left: 28%;
-    		z-index: 10!important;
-			direction:rtl ;
-			unicode-bidi: bidi-override ;
-		}
+        .login {
+            width: 150px;
+            position: absolute;
+            margin-top: 4%;
+            margin-left: 28%;
+            z-index: 10 !important;
+            direction: rtl;
+            unicode-bidi: bidi-override;
+        }
 
-		.loginTypography{
-			color: white;
-			position: absolute;
-			background-color: transparent;
-			border-color: transparent;
+        .loginTypography {
+            color: white;
+            position: absolute;
+            background-color: transparent;
+            border-color: transparent;
             font-family: BYekan, serif !important;
-			direction: rtl;
-			font-size: 16px;
-			margin-right: 10%;
+            direction: rtl;
+            font-size: 16px;
+            margin-right: 10%;
             cursor: pointer;
-		}
+        }
 
-	.slideshow-container {
-		max-width: 100%;
-  		position: relative;
-  		margin: auto;
-		}
+        .slideshow-container {
+            max-width: 100%;
+            position: relative;
+            margin: auto;
+        }
 
-		.dropdown {
- 			position: relative;
-  			display: inline-block;
-		}
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
 
-		.dropdown-content {
-  			display: none;
-  			position: absolute;
-			width: 100px;
-		    background-color: #f9f9f9;
-  			box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-		    padding: 12px 16px;
-			z-index: 1;
-		}
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            width: 100px;
+            background-color: #f9f9f9;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            padding: 12px 16px;
+            z-index: 1;
+        }
 
-		.dropdown:hover .dropdown-content {
- 			 display: block;
+        .dropdown:hover .dropdown-content {
+            display: block;
 
-		}
+        }
 
-		.dropdown-content a {
-  			color: black;
-		    padding: 5px 16px;
-			font-size: 16px;
-			text-decoration: none;
-		  	display: block;
-		}
+        .dropdown-content a {
+            color: black;
+            padding: 5px 16px;
+            font-size: 16px;
+            text-decoration: none;
+            display: block;
+        }
 
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #f1f1f1}
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {
+            background-color: #f1f1f1
+        }
 
 
-		@keyframes fade {
-		  from {opacity: .4}
-		  to {opacity: 1}
-		}
+        @keyframes fade {
+            from {
+                opacity: .4
+            }
+            to {
+                opacity: 1
+            }
+        }
 
-		/* On smaller screens, decrease text size */
-		@media only screen and (max-width: 300px) {
-		}
+        /* On smaller screens, decrease text size */
+        @media only screen and (max-width: 300px) {
+        }
 
-			.card {
-			 	width: 390px;
-				height: 500px;
-				background: #FFFFFF ;
-				border-top-right-radius: 20px;
-				border-bottom-right-radius: 20px ;
-				position: fixed ;
-				flex: 0 0 auto;
-				margin-right: 1%;
-			}
+        .card {
+            width: 390px;
+            height: 500px;
+            background: #FFFFFF;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            position: fixed;
+            flex: 0 0 auto;
+            margin-right: 1%;
+        }
 
-		.card-title {
-			color: black;
-			width: 95%;
+        .card-title {
+            color: black;
+            width: 95%;
             font-family: BYekan, serif !important;
-			list-style-type: none;
-			float: right;
-			display: inline-block;
-			direction: rtl;
+            list-style-type: none;
+            float: right;
+            display: inline-block;
+            direction: rtl;
             margin-top: 1px;
 
-		}
+        }
 
-		.card-button{
-			position: absolute ;
-            bottom: 0 ;
-            height: 55px ;
+        .card-button {
+            position: absolute;
+            bottom: 0;
+            height: 55px;
             width: 370px;
-            margin-right: 10px ;
-            margin-left: 10px ;
-            margin-bottom: 20px ;
-            background:#5cdb5c ;
-            border-color: transparent ;
+            margin-right: 10px;
+            margin-left: 10px;
+            margin-bottom: 20px;
+            background: #5cdb5c;
+            border-color: transparent;
             color: white;
             cursor: pointer;
-		}
+        }
 
 
-		.contentWrapper {
-			height:250px;
+        .contentWrapper {
+            height: 250px;
             width: 100%;
-			padding: 2rem;
-			background: #303030;
-			color: white;
-			font-weight: 500;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			gap: 0.2rem;
+            padding: 2rem;
+            background: #303030;
+            color: white;
+            font-weight: 500;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.2rem;
             position: relative;
 
-		}
+        }
 
-		.content {
-			height:250px;
-		}
+        .content {
+            height: 250px;
+        }
 
-		.footer{
-			  height: 50px;
+        .footer {
+            height: 50px;
             width: 100%;
-			  font-weight: 500;
-			  display: flex;
-			  justify-content: flex-start;
-			  align-items: center;
-			  font-size: 12px;
-			  gap: 0.2rem;
-			  padding-top: 10px;
-			  padding-left: 20px;
-			  position: absolute;
-              bottom: 0;
-			  color: #B1B2B2;
-			  background: #151111;
+            font-weight: 500;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            font-size: 12px;
+            gap: 0.2rem;
+            padding-top: 10px;
+            padding-left: 20px;
+            position: absolute;
+            bottom: 0;
+            color: #B1B2B2;
+            background: #151111;
 
-		}
-		body,html{
-			height: auto;
+        }
+
+        body, html {
+            height: auto;
             font-family: BYekan, serif !important;
-			background: #ACACAC;
+            background: #ACACAC;
 
-		}
+        }
 
-		hr{
-			height: 1px ;
-			background-color: black ;
-			width: 330px;
+        hr {
+            height: 1px;
+            background-color: black;
+            width: 330px;
             margin-top: 55px;
-			margin-right: 20px;
-			margin-left: 20px;
-			right: 0;
-			left: 0;
-		}
+            margin-right: 20px;
+            margin-left: 20px;
+            right: 0;
+            left: 0;
+        }
 
 
-		</style>
+    </style>
 
 </head>
 
 <body>
 
-	<div class="tab">
-		<button class="tab-button"  onclick="window.location.assign({% url 'home:home' %})">صفحه اصلی</button>
-		<div class="dropdown">
-  		<button class="tab-button" onclick="">ورزش ها</button>
-			<i class="fa-solid fa-caret-down" style="color: #ffffff"></i>
-			 <div class="dropdown-content">
-   				  {% for x in sport %}
+<div class="tab">
+    <button class="tab-button" onclick="window.location.assign({% url 'home:home' %})">صفحه اصلی</button>
+    <div class="dropdown">
+        <button class="tab-button" onclick="">ورزش ها</button>
+        <i class="fa-solid fa-caret-down" style="color: #ffffff"></i>
+        <div class="dropdown-content">
+            {% for x in sport %}
 
-   				 <a href="{% url 'product:category' x.id %}">{{ x.title }}</a>
+                <a href="{% url 'product:category' x.id %}">{{ x.title }}</a>
 
-                 {% endfor %}
-			</div>
-		</div>
-  		<button class="tab-button"  style="font-weight: bold;text-decoration: underline; text-underline-position: under" onclick="location.assign({% url 'reservation:reservation' %})">اجاره سالن</button>
-		<button class="tab-button" onclick="window.location.assign({% url 'about:aboutUs' %})">درباره ما</button>
-
-	</div>
-
-	<div class="logoHolder">
-
-			 <img alt="" src="/media/{{ about.logo }}" class="logo">
-	  		<div class="typography">PowerGrow</div>
-
-		</div>
-
-	<div class="login">
-		<i class="fa-solid fa-user" style="color: #ffff; position:absolute ; margin-top:5px ; font-size: 16px"></i>
-		<button class="loginTypography" onclick="window.location.assign({% url 'user:login' %})">ورود/عضویت</button>
-	</div>
-
-	<div class="slideshow-container">
-
-		<div class="mySlides fade">
-			<img alt="" src="/media/{{ gym.image  }}" style="width:100%;height:100% ; border-bottom-left-radius:  20px ; border-top-left-radius: 20px" >
-		</div>
-
-	</div>
-
-
-
-	<div class="card" id="card">
-
-
-		<ul class="card-title" style="margin-top: 15px">
-			<li style="font-size: 16px;font-weight: bold ;display: inline">نام سالن:</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ;float: left">{{ gym.title }}</li>
-
-		</ul>
-
-		<hr>
-
-		<ul class="card-title">
-			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">شروع رزور :</li>
-			<li id="start" style="direction:ltr ; font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin: -4px"></li>
-
-		</ul>
-
-		<hr>
-
-			<ul class="card-title">
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">پایان رزور:</li>
-			<li id="end" style="direction:ltr ;font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px"> </li>
-		</ul>
-
-		<hr>
-
-			<ul class="card-title">
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">تعداد جلسه در هفته:</li>
-			<li id="number" style="direction:rtl ; font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">1 جلسه</li>
-		</ul>
-
-		<hr>
-
-			<ul class="card-title">
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right; margin-top: -4px">اجاره ثابت:</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left; margin-top: -4px">{{ gym.tuition}} تومان</li>
-		</ul>
-
-		<hr >
-
-			<ul class="card-title">
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; ; margin-top: -4px">تخفیف:</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; ; margin-top: -4px"> % {{ gym.off }}</li>
-		</ul>
-
-		<hr>
-
-		<ul class="card-title">
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -10px">قیمت نهایی:</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -10px"> تومان</li>
-		</ul>
-
-		<ul class="card-title" style="margin-top: 20px">
-			<li style="font-size: 12px;font-weight: bold ;display: inline ; float: right ; margin-top: -25px ; direction: rtl">
-                <label>
-                    <input type="checkbox" style="margin-top: 3px ; position: absolute; cursor: pointer;">
-                </label>
-                <a style="margin-right: 15px">شرابط این قرارداد را میپذیرم</a>
-			</li>
-			<li style="font-size: 12px;font-weight: bold ;display: inline ; float: left ; margin-top: -22px ; color: blue ; cursor: pointer;">
-                <a href="/media/{{ gym.contract }}">مشاهده قرارداد</a>
-			</li>
-		</ul>
-
-
-
-		<button id="registerButton" class="card-button">
-		ثبت نام کنید
-		</button>
-
-
-	</div>
-
-
-    <div style="width: 70%; height: 100px; background: #FFFFFF ; float: right;border-top-left-radius: 20px; border-bottom-left-radius: 20px; margin-top: 15px">
-
-        <label style="float: right; margin-top: 5vh ; margin-right: 10vh ; direction: rtl">
-                                شروع رزرو:
-            <input id="startDate" style="width:30vh; cursor: pointer; border-radius: 10px;background: #e5e5e5  ;text-align: center ; height: 6vh" type="text" data-jdp placeholder="تاریخ و ساعت شروع رزور" />
-        </label>
-       <label style="float: right; margin-top: 5vh ; margin-right: 10vh ; direction: rtl">
-                                پایان رزرو:
-            <input id="endDate" style="width:30vh; cursor: pointer; border-radius: 10px;background: #e5e5e5  ;text-align: center ; height: 6vh" type="text" data-jdp placeholder="تاریخ و ساعت شروع رزور" />
-       </label>
-
-          <label style="float: right; margin-top: 5vh ; margin-right: 10vh ; direction: rtl">
-                               تعداد جلسات در هفته:
-            <input id="sessionNumber" style="width:10vh; cursor: pointer; border-radius: 10px;background: #e5e5e5  ;text-align: center ; height: 6vh " type="number" min="1" max="7" value="1" />
-
-          </label>
-
+            {% endfor %}
+        </div>
     </div>
+    <button class="tab-button" style="font-weight: bold;text-decoration: underline; text-underline-position: under"
+            onclick="location.assign({% url 'reservation:reservation' %})">اجاره سالن
+    </button>
+    <button class="tab-button" onclick="window.location.assign({% url 'about:aboutUs' %})">درباره ما</button>
 
-	<div style="margin-bottom:2vh ; width: 70%; height: 500px; background: #FFFFFF ; float: right;border-top-left-radius: 20px; border-bottom-left-radius: 20px; margin-top: 15px">
-
-
-
-             <p style="direction: rtl ; font-size: 20px ; width: auto ; height: 100% ; margin-right: 10px ; margin-left: 5px ; padding-bottom: 5px">
-            {{ gym.description }}
-   </p>
-
-	</div>
-
-	<div class="contentWrapper">
-		<div class="content">
-			<div style="width:160px;left: 0;bottom: 0; top: 0; position: absolute;margin-left: 20px">
-				<h2>PowerGrow</h2>
-		 <img class="" src="/media/{{ about.transparent_logo }}" style="position: absolute;width:160px;margin-top: -22px"
-              alt="" >
-
-				</div>
-
-      <div id="map" style="width: 300px; background: #eee; border: 2px solid #aaa;top: 0 ; bottom:0;
-						   position: absolute;margin-left: -170px;">
-
-
-			</div>
-
-			<i class="fa-solid fa-location-dot" style="color: #ffffff; right: 0 ; position: absolute; margin-top: 20px ; margin-right: 20px; font-size: 30px"></i>
-			<h5 style="right: 0 ; margin-right: 50px;position: absolute;direction: rtl ; margin-top: 20px;">
-
-                  {% autoescape off %}
-
-                {{ about.address|linebreaksbr  }}
-
-                {% endautoescape %}
-
-			</h5>
-
-			<i class="fa-solid fa-phone-flip" style="color: #ffffff; right: 0 ; position: absolute; margin-top: 95px ; margin-right: 20px; font-size: 30px"></i>
-			<h5 style="right: 0 ; margin-right: 60px;position: absolute;direction: rtl ; margin-top: 95px;">
-                {{ about.phone }}<br> {{ about.telephone }}
-			</h5>
-
-			<a href="https://www.instagram.com/{{ instagram }}"  style="right: 0 ; position: absolute ; margin-right:20px ; margin-top: 165px;display: inline">
-		<i class="fa-brands fa-instagram" style="color: #ffffff ; font-size: 30px ;"></i>
-		</a>
-
-			<h5 style="right: 0 ; margin-right: 60px;position: absolute;direction: ltr ; margin-top: 167px;">
-				{{ about.instagram }}
-			</h5>
-		</div>
-
-		<div class="footer">&copy;<span id="year"  style="font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif'">2023 </span><span> PhoenixFamily. All rights reserved.</span>
-		<a href="//www.instagram.com/phoenixfamily.co?igshid=OGQ5ZDc2ODk2ZA=="  style="right: 0 ; position: absolute ; margin-right:15px">
-		<i class="fa-brands fa-instagram" style="color: #ffffff ; font-size: 30px"></i>
-		</a>
-		<a href="//www.linkedin.com/company/phoenixfamily" style="right: 0 ; position: absolute ; margin-right:55px">
-		<i class="fa-brands fa-linkedin" style="color: #ffffff ; font-size: 30px"></i>
-		</a>
-		<span style="right: 0;margin-right: 90px; position: absolute">Follow us:</span>
-		</div>
 </div>
 
+<div class="logoHolder">
+
+    <img alt="" src="/media/{{ about.logo }}" class="logo">
+    <div class="typography">PowerGrow</div>
+
+</div>
+
+<div class="login">
+    <i class="fa-solid fa-user" style="color: #ffff; position:absolute ; margin-top:5px ; font-size: 16px"></i>
+    <button class="loginTypography" onclick="window.location.assign({% url 'user:login' %})">ورود/عضویت</button>
+</div>
+
+<div class="slideshow-container">
+
+    <div class="mySlides fade">
+        <img alt="" src="/media/{{ gym.image }}"
+             style="width:100%;height:100% ; border-bottom-left-radius:  20px ; border-top-left-radius: 20px">
+    </div>
+
+</div>
+
+
+<div class="card" id="card">
+
+
+    <ul class="card-title" style="margin-top: 15px">
+        <li style="font-size: 16px;font-weight: bold ;display: inline">نام سالن:</li>
+        <li style="font-size: 16px;font-weight: bold ;display: inline ;float: left">{{ gym.title }}</li>
+
+    </ul>
+
+    <hr>
+
+    <ul class="card-title">
+        <li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">شروع رزور :
+        </li>
+        <li id="start"
+            style="direction:ltr ; font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin: -4px"></li>
+
+    </ul>
+
+    <hr>
+
+    <ul class="card-title">
+        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">پایان رزور:
+        </li>
+        <li id="end"
+            style="direction:ltr ;font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px"></li>
+    </ul>
+
+    <hr>
+
+    <ul class="card-title">
+        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">تعداد جلسه در
+            هفته:
+        </li>
+        <li id="number"
+            style="direction:rtl ; font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">
+            1 جلسه
+        </li>
+    </ul>
+
+    <hr>
+
+    <ul class="card-title">
+        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right; margin-top: -4px">اجاره ثابت:</li>
+        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: left; margin-top: -4px">{{ gym.tuition }}
+            تومان
+        </li>
+    </ul>
+
+    <hr>
+
+    <ul class="card-title">
+        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; ; margin-top: -4px">تخفیف:</li>
+        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; ; margin-top: -4px">
+            % {{ gym.off }}</li>
+    </ul>
+
+    <hr>
+
+    <ul class="card-title">
+        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -10px">قیمت نهایی:
+        </li>
+        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -10px"> تومان</li>
+    </ul>
+
+    <ul class="card-title" style="margin-top: 20px">
+        <li style="font-size: 12px;font-weight: bold ;display: inline ; float: right ; margin-top: -25px ; direction: rtl">
+            <label>
+                <input type="checkbox" style="margin-top: 3px ; position: absolute; cursor: pointer;">
+            </label>
+            <a style="margin-right: 15px">شرابط این قرارداد را میپذیرم</a>
+        </li>
+        <li style="font-size: 12px;font-weight: bold ;display: inline ; float: left ; margin-top: -22px ; color: blue ; cursor: pointer;">
+            <a href="/media/{{ gym.contract }}">مشاهده قرارداد</a>
+        </li>
+    </ul>
+
+
+    <button id="registerButton" class="card-button">
+        ثبت نام کنید
+    </button>
+
+
+</div>
+
+
+<div style="width: 70%; height: 100px; background: #FFFFFF ; float: right;border-top-left-radius: 20px; border-bottom-left-radius: 20px; margin-top: 15px">
+
+    <label style="float: right; margin-top: 5vh ; margin-right: 10vh ; direction: rtl">
+        شروع رزرو:
+        <input id="startDate"
+               style="width:30vh; cursor: pointer; border-radius: 10px;background: #e5e5e5  ;text-align: center ; height: 6vh"
+               type="text" data-jdp placeholder="تاریخ و ساعت شروع رزور"/>
+    </label>
+    <label style="float: right; margin-top: 5vh ; margin-right: 10vh ; direction: rtl">
+        پایان رزرو:
+        <input id="endDate"
+               style="width:30vh; cursor: pointer; border-radius: 10px;background: #e5e5e5  ;text-align: center ; height: 6vh"
+               type="text" data-jdp placeholder="تاریخ و ساعت شروع رزور"/>
+    </label>
+
+    <label style="float: right; margin-top: 5vh ; margin-right: 10vh ; direction: rtl">
+        تعداد جلسات در هفته:
+        <input id="sessionNumber"
+               style="width:10vh; cursor: pointer; border-radius: 10px;background: #e5e5e5  ;text-align: center ; height: 6vh "
+               type="number" min="1" max="7" value="1"/>
+
+    </label>
+
+</div>
+
+<div style="margin-bottom:2vh ; width: 70%; height: 500px; background: #FFFFFF ; float: right;border-top-left-radius: 20px; border-bottom-left-radius: 20px; margin-top: 15px">
+
+
+    <p style="direction: rtl ; font-size: 20px ; width: auto ; height: 100% ; margin-right: 10px ; margin-left: 5px ; padding-bottom: 5px">
+        {{ gym.description }}
+    </p>
+
+</div>
+
+<div class="contentWrapper">
+    <div class="content">
+        <div style="width:160px;left: 0;bottom: 0; top: 0; position: absolute;margin-left: 20px">
+
+            <h2>PowerGrow</h2>
+            <img class="" src="/media/{{ about.transparent_logo }}"
+                 style="position: absolute;width:160px;margin-top: -22px"
+                 alt="">
+
+        </div>
+
+        <div id="map" style="width: 20vw; background: #eee; border: 2px solid #aaa;top: 0 ; bottom:0;
+						   position: absolute;margin-left: -10%">
+
+
+        </div>
+
+        <i class="fa-solid fa-location-dot"
+           style="color: #ffffff; right: 0 ; position: absolute; margin-top: 20px ; margin-right: 20px; font-size: 30px"></i>
+        <h5 style=" width: 33%;right: 0 ; margin-right: 50px;position: absolute;direction: rtl ; margin-top: 20px;">
+
+            {% autoescape off %}
+
+                {{ about.address|linebreaksbr }}
+
+            {% endautoescape %}
+
+
+        </h5>
+
+        <i class="fa-solid fa-phone-flip"
+           style="color: #ffffff; right: 0 ; position: absolute; margin-top: 95px ; margin-right: 20px; font-size: 30px"></i>
+        <h5 style="right: 0 ; margin-right: 60px;position: absolute;direction: rtl ; margin-top: 95px;">
+            {{ about.phone }}<br> {{ about.telephone }}
+        </h5>
+
+        <a href="https://www.instagram.com/{{ instagram }}"
+           style="right: 0 ; position: absolute ; margin-right:20px ; margin-top: 165px;display: inline">
+            <i class="fa-brands fa-instagram" style="color: #ffffff ; font-size: 30px ;"></i>
+        </a>
+
+        <h5 style="right: 0 ; margin-right: 60px;position: absolute;direction: ltr ; margin-top: 167px;">
+            {{ about.instagram }}
+        </h5>
+    </div>
+    <div class="footer">&copy;<span id="year"
+                                    style="font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif'">2023 </span><span> PhoenixFamily. All rights reserved.</span>
+        <a href="//www.instagram.com/phoenixfamily.co?igshid=OGQ5ZDc2ODk2ZA=="
+           style="right: 0 ; position: absolute ; margin-right:15px">
+            <i class="fa-brands fa-instagram" style="color: #ffffff ; font-size: 30px"></i>
+        </a>
+        <a href="//www.linkedin.com/company/phoenixfamily" style="right: 0 ; position: absolute ; margin-right:55px">
+            <i class="fa-brands fa-linkedin" style="color: #ffffff ; font-size: 30px"></i>
+        </a>
+        <span style="right: 0;margin-right: 90px; position: absolute">Follow us:</span>
+    </div>
+</div>
 </body>
 
 <script>
-         let start=document.getElementById("startDate")
-         let end=document.getElementById("endDate")
-         let number=document.getElementById("sessionNumber")
-         let startValue=document.getElementById("start")
-         let endValue=document.getElementById("end")
-         let numberValue=document.getElementById("number")
-         let session = 1
+    let start = document.getElementById("startDate")
+    let end = document.getElementById("endDate")
+    let number = document.getElementById("sessionNumber")
+    let startValue = document.getElementById("start")
+    let endValue = document.getElementById("end")
+    let numberValue = document.getElementById("number")
+    let session = 1
 
 
-        jalaliDatepicker.startWatch({
-      time: true,
+    jalaliDatepicker.startWatch({
+        time: true,
     });
 
 
-         start.addEventListener("change",function () {
+    start.addEventListener("change", function () {
 
-             startValue.innerHTML = start.value
-         })
+        startValue.innerHTML = start.value
+    })
 
-          end.addEventListener("change",function () {
+    end.addEventListener("change", function () {
 
-             endValue.innerHTML = end.value
-
-
-         })
+        endValue.innerHTML = end.value
 
 
-          number.addEventListener("change",function () {
-              session = number.value
-             numberValue.innerHTML = number.value + ' ' + 'جلسه'
+    })
 
-         })
 
+    number.addEventListener("change", function () {
+        session = number.value
+        numberValue.innerHTML = number.value + ' ' + 'جلسه'
+
+    })
 
 
 </script>
 
 <script>
 
-      let lat = {{ about.latitude }};
-      let long =     {{ about.longitude }};
+    let lat = {{ about.latitude }};
+    let long =     {{ about.longitude }};
 
-const map = new nmp_mapboxgl.Map({
-            mapType: nmp_mapboxgl.Map.neshanVector,
-            container: "map",
-            zoom: 15,
-            pitch: 0,
-            center: [long,lat ],
-            minZoom: 2,
-            maxZoom: 21,
-            trackResize: true,
-            mapKey: "web.eb9c250015c247e08c5122f824c1541c",
-            poi: true,
-            traffic: true,
-            mapTypeControllerStatus: {
-                show: false,
-            }
-        });
+    const map = new nmp_mapboxgl.Map({
+        mapType: nmp_mapboxgl.Map.neshanVector,
+        container: "map",
+        zoom: 15,
+        pitch: 0,
+        center: [long, lat],
+        minZoom: 2,
+        maxZoom: 21,
+        trackResize: true,
+        mapKey: "web.eb9c250015c247e08c5122f824c1541c",
+        poi: true,
+        traffic: true,
+        mapTypeControllerStatus: {
+            show: false,
+        }
+    });
 </script>
 
 <script>
 
-      let gym = {{ gym.id }}
+    let gym =
+    {{ gym.id }}
 
     const cookieValue = document.cookie
         .split("; ")
@@ -522,14 +558,14 @@ const map = new nmp_mapboxgl.Map({
     const registerButton = document.getElementById("registerButton")
 
 
-    registerButton.addEventListener('click',function () {
+    registerButton.addEventListener('click', function () {
 
-        if(cookieValue !== undefined){
+        if (cookieValue !== undefined) {
             window.location.assign(`/reservation/transaction/${gym}/${start.value}/${end.value}/${session}/`)
 
         } else {
             window.location.assign(`{% url 'user:login'  %}`)
-          }
+        }
     })
 
 </script>
