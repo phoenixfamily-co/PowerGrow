@@ -109,7 +109,7 @@ class ParticipationView(viewsets.ModelViewSet):
         return queryset
 
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        serializer.save(user=self.request.user, course=self.request.course)
 
 
 class SportView(viewsets.ModelViewSet):
