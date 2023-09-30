@@ -26,7 +26,7 @@ def register_view(request):
     about = AboutUs.objects.values().first()
     template = loader.get_template('public/register.html')
     context = {
-        "logo": about,
+        "about": about,
     }
     return HttpResponse(template.render(context, request))
 
@@ -36,7 +36,7 @@ def verification_view(request, number):
     template = loader.get_template('public/verification.html')
     context = {
         "number": number,
-        "logo": about,
+        "about": about,
 
     }
     return HttpResponse(template.render(context, request))
@@ -46,7 +46,7 @@ def forget_view(request):
     about = AboutUs.objects.values().first()
     template = loader.get_template('public/forget.html')
     context = {
-        "logo": about,
+        "about": about,
     }
     return HttpResponse(template.render(context, request))
 
@@ -56,7 +56,7 @@ def pass_view(request, number):
     template = loader.get_template('public/password.html')
     context = {
         "number": number,
-        "logo": about,
+        "about": about,
 
     }
     return HttpResponse(template.render(context, request))
@@ -66,7 +66,7 @@ def home_view(request):
     about = AboutUs.objects.values().first()
     template = loader.get_template('user/dashboard.html')
     context = {
-        "logo": about,
+        "about": about,
     }
     return HttpResponse(template.render(context, request))
 
