@@ -63,7 +63,7 @@ def sport_view(request, pk):
     context = {
         "about": about,
         "title": category.title,
-        "sport": category,
+        "sport": category.courses,
     }
     return HttpResponse(template.render(context, request))
 
