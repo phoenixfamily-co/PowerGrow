@@ -343,7 +343,7 @@
   		<button class="tab-button" style="font-weight: bold;text-decoration: underline; text-underline-position: under" onclick="">ورزش ها</button>
 			<i class="fa-solid fa-caret-down" style="color: #000"></i>
 			 <div class="dropdown-content">
-   			  {% for x in category %}
+   			  {% for x in sport %}
 
    				 <a href="{% url 'product:category' x.id %}">{{ x.title }}</a>
 
@@ -392,7 +392,7 @@
             <label for="week">روزهای برگزاری در هفته را مشخص کنید:</label>
               <select name="days" id="week" style="margin-right: 50px">
 
-                  {% for x in sport.days %}
+                  {% for x in days %}
 
               <option value={{ x.id }}>{{ x.day }}</option>
 
