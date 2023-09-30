@@ -32,6 +32,9 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
+ALLOW_UNICODE_SLUGS = True
+
+
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
@@ -65,6 +68,9 @@ INSTALLED_APPS = [
     'two_factor.plugins.email',  # <- if you want email capability.
     'two_factor.plugins.yubikey',
     'otp_yubikey',
+    'django_filters',
+    'django_jalali'
+
 ]
 
 REST_FRAMEWORK = {
@@ -72,7 +78,8 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
 
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 
 }
 
@@ -158,8 +165,11 @@ TIME_ZONE = 'UTC'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

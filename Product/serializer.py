@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+from User.serializer import GetAccountSerializer
 from .models import Course, Days, Sport, Sessions, Participants
 
 
@@ -18,6 +19,8 @@ class SessionSerializer(serializers.ModelSerializer):
 
 
 class ParticipantsSerializer(serializers.ModelSerializer):
+    reservations = GetAccountSerializer(read_only=True, many=True)
+
     class Meta:
         model = Participants
         fields = "__all__"

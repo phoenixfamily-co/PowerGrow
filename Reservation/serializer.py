@@ -18,6 +18,8 @@ class DatesSerializer(serializers.ModelSerializer):
 
 
 class ReservationSerializer(serializers.ModelSerializer):
+    times = TimesSerializer(read_only=True, many=True)
+
     class Meta:
         model = Reservations
         exclude = ['datetime']
