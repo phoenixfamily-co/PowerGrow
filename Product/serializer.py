@@ -32,7 +32,7 @@ class ParticipantsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Participants
-        fields = "__all__"
+        exclude = ['datetime']
 
     def create(self, validated_data):
 
