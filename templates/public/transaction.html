@@ -76,6 +76,7 @@
 
 		.card-title {
 			color: black;
+            margin-top: 1px;
 			width: 95%;
             font-family: BYekan, serif !important;
 			list-style-type: none;
@@ -108,12 +109,11 @@
 
 		hr{
 			height: 1px ;
+            width: 95%;
 			background-color: black ;
-			width: 325px;
-			margin-right: 20px;
-			margin-left: 20px;
-			right: 0;
-			left: 0;
+            margin-top: 50px;
+            margin-right: 5px;
+			margin-left: 5px;
 		}
 
 		</style>
@@ -127,7 +127,7 @@
 	<div class="slideshow-container">
 
 		<div class="mySlides fade">
-			<img alt="" src="../../static/images/payment.jpg" style="width:100%;height:100% " >
+			<img alt="" src="/../static/images/payment.jpg" style="width:100%;height:100% " >
 		</div>
 
 	</div>
@@ -135,68 +135,61 @@
     	<div class="card" id="card">
 
 
-		<ul class="card-title">
+		<ul class="card-title" style="margin-top: 15px">
 			<li style="font-size: 16px;font-weight: bold ;display: inline">نام سالن:</li>
 			<li style="font-size: 16px;font-weight: bold ;display: inline ;float: left">{{ reservation.title}}</li>
 
 		</ul>
 
-		<hr style="margin-top: 50px ;width:90%  ; position: absolute">
+		<hr>
 
 		<ul class="card-title">
-			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">تاریخ رزور:</li>
-			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin: -4px">{{ start|date:"m/d/Y"  }}</li>
+			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">َشروع رزرو:</li>
+			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin: -4px">{{ start }}</li>
 
 		</ul>
 
-		<hr style="margin-top: 100px ;width:90% ; position: absolute">
+		<hr >
 
 		<ul class="card-title">
 
-			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">روز های رزور:
+			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">پایان رزور:
 			</li>
 			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin-bottom:  -4px">
-                {{ days.title }}
+                {{ end }}
 			</li>
 		</ul>
 
 
-		<hr style="margin-top: 150px ;width:90% ; position: absolute">
+		<hr>
 
              <ul class="card-title">
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">تاریخ پایان رزور:</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">تعداد جلسات در هفته</li>
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">{{ name }}</li>
 		</ul>
 
-			<ul class="card-title">
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">ساعت برگزاری:</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">{{ time }}</li>
-		</ul>
-
-		<hr style="margin-top: 200px ;width:90% ; position: absolute">
+		<hr>
 
 			<ul class="card-title">
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">تعداد جلسات</li>
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px ; direction: rtl">{{ session.number }} جلسه</li>
 		</ul>
 
-		<hr style="margin-top: 250px ;width:90% ; position: absolute">
-
-		<hr style="margin-top: 300px ;width:90% ; position: absolute">
+		<hr>
 
 			<ul class="card-title">
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right; margin-top: -4px">شهریه ثابت:</li>
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left; margin-top: -4px ; direction: rtl">{{ tuition }} تومان </li>
 		</ul>
 
-		<hr style="margin-top: 350px ;width:90% ; position: absolute">
+		<hr>
 
 			<ul class="card-title">
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; ; margin-top: -4px">تخفیف:</li>
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; ; margin-top: -4px">{{ off }}%</li>
 		</ul>
 
-		<hr style="margin-top: 400px ;width:90% ; position: absolute">
+		<hr>
 
 		<ul class="card-title">
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -10px">قیمت نهایی:</li>
@@ -204,7 +197,7 @@
 		</ul>
 
 
-		<button class="card-button" onclick="window.location.assign(`/product/check/{{ course }}/{{ session.id }}/{{ days.id }}/`)">
+		<button class="card-button" onclick="window.location.assign(`/reservation/successful/{{ gym.id }}/{{ start }}/{{ end}}/{{ session }}/`)">
 		پرداخت
 		</button>
 

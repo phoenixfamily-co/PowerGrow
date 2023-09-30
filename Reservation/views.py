@@ -14,34 +14,40 @@ def reservation_view(request):
     template = loader.get_template('public/reservation.html')
     context = {
         "about": about,
-        "reservation" : gym,
-        "sport": sport,
-    }
-    return HttpResponse(template.render(context, request))
-
-
-def transaction_view(request):
-    about = AboutUs.objects.values().first()
-    gym = Gym.objects.values().first()
-    sport = Sport.objects.all().values()
-    template = loader.get_template('public/reservation.html')
-    context = {
-        "about": about,
         "gym" : gym,
         "sport": sport,
     }
     return HttpResponse(template.render(context, request))
 
 
-def successful_view(request):
+def transaction_view(request, pk, start, end, session):
     about = AboutUs.objects.values().first()
-    gym = Gym.objects.values().first()
+    gym = Gym.objects.filter(id=pk).values().first()
     sport = Sport.objects.all().values()
-    template = loader.get_template('public/reservation.html')
+    template = loader.get_template('public/transaction.html')
     context = {
         "about": about,
         "gym" : gym,
         "sport": sport,
+        "start": start,
+        "end": end,
+        "session": session
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def successful_view(request,  pk, start, end, session):
+    about = AboutUs.objects.values().first()
+    gym = Gym.objects.filter(id=pk).values().first()
+    sport = Sport.objects.all().values()
+    template = loader.get_template('public/sucessful.html')
+    context = {
+        "about": about,
+        "gym": gym,
+        "sport": sport,
+        "start": start,
+        "end": end,
+        "session": session
     }
 
     return HttpResponse(template.render(context, request))

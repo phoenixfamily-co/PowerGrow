@@ -271,7 +271,7 @@
             margin: 10% auto;
             padding: 20px;
             border: 1px solid #888888;
-            width: 85vh;
+            width: 40%;
             font-weight: bolder;
         }
         .popup-content button {
@@ -504,9 +504,7 @@
 
     async function search(query) {
 
-        console.log({{ sport.id }})
-
-        const response = await fetch(`/product/api/search/1?search=${query}`, {
+        const response = await fetch(`/product/api/search/{{ id }}?search=${query}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -539,11 +537,11 @@
                 secondTitle.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'
                 secondTitle.innerHTML = "نام مربی:"
                 thirdTitle.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'
-                thirdTitle.innerHTML = "مناسب برای:"
+                thirdTitle.innerHTML = "تعداد جلسات:"
                 forthTitle.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'
-                forthTitle.innerHTML = "نوع دوره:"
+                forthTitle.innerHTML = "روز های برگزاری:"
                 fifthTitle.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'
-                fifthTitle.innerHTML = "شهریه ثابت:"
+                fifthTitle.innerHTML = "ساعت برگزاری:"
                 firstValue.style.cssText = 'font-size: 16px;font-weight: bold'
                 firstValue.innerHTML = sum[i].title
                 secondValue.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'
@@ -553,7 +551,7 @@
                 forthValue.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'
                 forthValue.innerHTML = sum[i].type
                 fifthValue.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'
-                fifthValue.innerHTML = sum[i].tuition
+                fifthValue.innerHTML = sum[i].course.time
                 listTitle.appendChild(firstTitle)
                 listTitle.appendChild(secondTitle)
                 listTitle.appendChild(thirdTitle)
@@ -580,72 +578,14 @@
             }
             const buttons = document.querySelectorAll('.card-button');
             Array.from(buttons).forEach(function (button){
-                button.addEventListener('click',async function (){
-         course = this.getAttribute("itemid")
-                     myPopup.classList.toggle("show");
-             const response = await fetch(`/product/api/sessions/${course}/`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    });
+                button.addEventListener('click',async function () {
+                    course = this.getAttribute("itemid")
 
-      const result = await response.json()
-    if (response.status===200){
-        const res = JSON.stringify(result)
-        const sum = JSON.parse(res)
-        const size = JSON.parse(res).length
-        sessionList.innerHTML = ''
-        for (let i = 0 ; i<size ; i++){
-            const item = document.createElement("option")
-            item.innerHTML = sum[i].number + 'جلسه'
-            item.setAttribute("value", sum[i].id)
-            sessionList.appendChild(item)
-        }
-        await getDays(sum[0].id)
+                    })
+                })
+
+            }
     }
-            })
-                sessionList.addEventListener('change', function () {
-                    getDays(this.value)
-    })
-
-            })
-        }
-    }
-
-    async function getDays(query) {
-
-        const response = await fetch(`/product/api/days/${query}/`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    });
-
-        const result = await response.json()
-    if (response.status===200){
-        const res = JSON.stringify(result)
-        const sum = JSON.parse(res)
-        const size = JSON.parse(res).length
-        week.innerHTML = ''
-        for (let i = 0 ; i<size ; i++){
-            const item = document.createElement("option")
-            item.innerHTML = sum[i].title
-            item.setAttribute("value", sum[i].id)
-            week.appendChild(item)
-        }
-    }
-
-    }
-        closeButton.addEventListener("click", function () {
-             window.location.assign(`/product/${course}/${sessionList.value}/${week.value}/`)
-         });
-         window.addEventListener("click", function (event) {
-             if (event.target === myPopup) {
-                 myPopup.classList.remove("show");
-             }
-
-         })
 
 </script>
 

@@ -257,7 +257,7 @@
 		<button class="tab-button"  onclick="window.location.assign({% url 'home:home' %})">صفحه اصلی</button>
 		<div class="dropdown">
   		<button class="tab-button" onclick="">ورزش ها</button>
-			<i class="fa-solid fa-caret-down" style="color: #ffffff;margin-right: -7px"></i>
+			<i class="fa-solid fa-caret-down" style="color: #ffffff"></i>
 			 <div class="dropdown-content">
    				  {% for x in sport %}
 
@@ -286,7 +286,7 @@
 	<div class="slideshow-container">
 
 		<div class="mySlides fade">
-			<img alt="" src="/media/{{ reservation.image  }}" style="width:100%;height:100% ; border-bottom-left-radius:  20px ; border-top-left-radius: 20px" >
+			<img alt="" src="/media/{{ gym.image  }}" style="width:100%;height:100% ; border-bottom-left-radius:  20px ; border-top-left-radius: 20px" >
 		</div>
 
 	</div>
@@ -298,7 +298,7 @@
 
 		<ul class="card-title" style="margin-top: 15px">
 			<li style="font-size: 16px;font-weight: bold ;display: inline">نام سالن:</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ;float: left">{{ reservation.title }}</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ;float: left">{{ gym.title }}</li>
 
 		</ul>
 
@@ -328,14 +328,14 @@
 
 			<ul class="card-title">
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right; margin-top: -4px">اجاره ثابت:</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left; margin-top: -4px">{{ reservation.tuition}} تومان</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left; margin-top: -4px">{{ gym.tuition}} تومان</li>
 		</ul>
 
 		<hr >
 
 			<ul class="card-title">
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; ; margin-top: -4px">تخفیف:</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; ; margin-top: -4px"> % {{ reservation.off }}</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; ; margin-top: -4px"> % {{ gym.off }}</li>
 		</ul>
 
 		<hr>
@@ -353,7 +353,7 @@
                 <a style="margin-right: 15px">شرابط این قرارداد را میپذیرم</a>
 			</li>
 			<li style="font-size: 12px;font-weight: bold ;display: inline ; float: left ; margin-top: -22px ; color: blue ; cursor: pointer;">
-                <a href="/media/{{ reservation.contract }}">مشاهده قرارداد</a>
+                <a href="/media/{{ gym.contract }}">مشاهده قرارداد</a>
 			</li>
 		</ul>
 
@@ -391,7 +391,7 @@
 
 
              <p style="direction: rtl ; font-size: 20px ; width: auto ; height: 100% ; margin-right: 10px ; margin-left: 5px ; padding-bottom: 5px">
-            {{ reservation.description }}
+            {{ gym.description }}
    </p>
 
 	</div>
@@ -456,6 +456,8 @@
          let startValue=document.getElementById("start")
          let endValue=document.getElementById("end")
          let numberValue=document.getElementById("number")
+         let session = 1
+
 
         jalaliDatepicker.startWatch({
       time: true,
@@ -476,7 +478,7 @@
 
 
           number.addEventListener("change",function () {
-
+              session = number.value
              numberValue.innerHTML = number.value + ' ' + 'جلسه'
 
          })
@@ -510,6 +512,8 @@ const map = new nmp_mapboxgl.Map({
 
 <script>
 
+      let gym = {{ gym.id }}
+
     const cookieValue = document.cookie
         .split("; ")
         .find((row) => row.startsWith("accedss="))
@@ -519,10 +523,12 @@ const map = new nmp_mapboxgl.Map({
 
 
     registerButton.addEventListener('click',function () {
-        console.log(cookieValue)
 
           if(!cookieValue){
-            window.location.assign(`/reservation/payment/{{ course }}/{{ session.id }}/{{ days.id }}/`)
+
+                  {#window.location.assign(`/reservation/transaction/${gym}/${start.value}/${end.value}/${session}/`)#}
+
+
         } else {
             window.location.assign(`{% url 'user:login'  %}`)
           }

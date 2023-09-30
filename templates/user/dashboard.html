@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet"
+          href="http://babakhani.github.io/PersianWebToolkit/beta/lib/persian-datepicker/dist/css/persian-datepicker.css"/>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="http://babakhani.github.io/PersianWebToolkit/beta/lib/persian-date/dist/persian-date.js"></script>
+    <script src="http://babakhani.github.io/PersianWebToolkit/beta/lib/persian-datepicker/dist/js/persian-datepicker.js"></script>
+
+
+    <style>
+        .calendar {
+            float: right;
+            margin: 20px;
+            padding: 10px;
+        }
+
+
+        .split {
+            width: 70%;
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+        }
+
+        .top {
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 50%;
+            background-color: grey;
+            text-align: center;
+        }
+
+        .bottom {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            background-color: white;
+            text-align: right;
+            margin-right: 20px;
+            margin-top: 20px;
+            color: black;
+        }
+
+        .menuContainer {
+            width: 30%;
+            height: 100%;
+            direction: rtl;
+            right: 0;
+            background-color: white;
+            position: absolute;
+        }
+
+        .list {
+            list-style-type: none;
+            color: black;
+            margin-bottom: 20px;
+        }
+
+        .textMenu {
+            margin-bottom: 20px;
+            font-size: 25px;
+        }
+
+        .exitText {
+            margin-top: 190px;
+            font-size: 25px;
+        }
+
+        .avatar {
+            width: 60px;
+            padding-bottom: 100px;
+            border-radius: 50%;
+        }
+
+    </style>
+    <title>PowerGrow</title>
+</head>
+<body>
+<div class="split">
+    <div class="top">
+        <input type="text" class="calendar"/>
+    </div>
+
+    <div class="bottom">
+        <b style="font-size: xx-large">اطلاعیه ها </b>
+
+        <br><br>
+        <i style="font-size: large"> به اطلاع تمامی شاگردان میرساند به علت تعمیرات سالن های ورزشی تمامی دوره ها به مدت
+            یک هفته تعطیل میباشد</i>
+
+        <br><br>
+        <i style="font-size: large"> به اطلاع تمامی شاگردان میرساند به علت تعمیرات سالن های ورزشی تمامی دوره ها به مدت
+            یک هفته تعطیل میباشد</i>
+
+        <br><br>
+        <i style="font-size: large"> به اطلاع تمامی شاگردان میرساند به علت تعمیرات سالن های ورزشی تمامی دوره ها به مدت
+            یک هفته تعطیل میباشد</i>
+
+
+    </div>
+
+
+</div>
+
+<div class="menuContainer">
+    <div class="imgcontainer" style="direction: ltr" align="center">
+        <img src="../resources/images/logo.jpg" alt="" class="avatar">
+    </div>
+
+    <ol class="list">
+        <li class="textMenu"><strong>داشبورد</strong></li>
+        <li class="textMenu"><strong>دوره های من</strong></li>
+        <li class="textMenu"><strong>دوره های من</strong></li>
+        <li class="textMenu"><strong>پروفایل من</strong></li>
+        <li class="exitText"><strong>خروج</strong></li>
+
+    </ol>
+
+
+</div>
+
+
+</body>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".calendar").pDatepicker();
+    });
+</script>
+</html>

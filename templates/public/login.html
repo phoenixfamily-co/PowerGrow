@@ -177,6 +177,8 @@ span {
         JSON.stringify(result)
         document.cookie = `access=${result.access}; max-age=3600*24 ; path=/`
         document.cookie = `refresh=${result.refresh}; max-age=3600*24 ; path=/`
+
+        console.log(result.access)
         window.location.assign("{% url "user:home" %}")
     }else {
             document.getElementById('error').innerHTML = response.statusText

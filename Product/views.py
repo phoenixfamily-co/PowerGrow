@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 from django.template import loader
 from rest_framework import viewsets, filters
+from rest_framework.permissions import IsAuthenticated
+
 from About.models import AboutUs
 from Product.serializer import *
 
@@ -100,6 +102,14 @@ class SessionView(viewsets.ModelViewSet):
 class ParticipationView(viewsets.ModelViewSet):
     queryset = Participants.objects.all()
     serializer_class = ParticipantsSerializer
+    # permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        queryset = Participants.objects.filter(user=self.request.user)
+        return queryset
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
 
 class SportView(viewsets.ModelViewSet):

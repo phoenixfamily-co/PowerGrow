@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="file://$PROJECT_DIR$" libraries="{1228ed801f, @majidh1/jalalidatepicker, index, w3}" />
+    <file url="file://$PROJECT_DIR$" libraries="{1228ed801f, index, jquery-2.2.4, persian-date, persian-datepicker, w3}" />
   </component>
 </project>

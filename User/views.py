@@ -16,7 +16,7 @@ def login_view(request):
     about = AboutUs.objects.values().first()
     template = loader.get_template('public/login.html')
     context = {
-        "logo": about,
+        "about": about,
     }
     return HttpResponse(template.render(context, request))
 
@@ -64,7 +64,7 @@ def pass_view(request, number):
 
 def home_view(request):
     about = AboutUs.objects.values().first()
-    template = loader.get_template('user/home.html')
+    template = loader.get_template('user/dashboard.html')
     context = {
         "logo": about,
     }

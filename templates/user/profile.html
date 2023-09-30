@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://kit.fontawesome.com/1228ed801f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.css"/>
+    <script src="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.js"></script>
+
+    <style>
+
+        @font-face {
+            font-family: BYekan;
+            font-style: normal;
+            font-weight: normal;
+            src: url("../../static/fonts/BYekan.eot");/* IE9 Compat Modes */
+            src: url("../../static/fonts/BYekan.woff") format('woff'),
+            url("../../static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */ url("../../static/fonts/BYekan.ttf") format('truetype') /* Safari, Android, iOS */
+        }
+
+        .formContainer {
+            width: 70%;
+            direction: rtl;
+            left: 0;
+            position: absolute;
+        }
+
+        .menuContainer {
+            width: 30%;
+            height: 100%;
+            direction: rtl;
+            right: 0;
+            position: absolute;
+        }
+
+        img.avatar {
+            width: 60px;
+            margin-bottom: 100px;
+            border-radius: 50%;
+        }
+
+        i.textMenu {
+            margin: 20px;
+            font-size: 25px;
+        }
+
+        .personalData {
+            margin: 16px 16px 0 0;
+            font-size: x-large;
+        }
+
+        .home {
+            margin: 16px 16px 16px 32px;
+            font-size: x-large;
+        }
+
+        .solid {
+            border-top: 2px solid black;
+            margin: 24px 16px 16px;
+        }
+
+        .birthday {
+            width: 45%;
+            padding: 12px 20px;
+            margin: 8px 0 0 16px;
+            float: left;
+            display: inline-block;
+            border: transparent;
+            background: lightgray;
+            box-sizing: border-box;
+        }
+
+        .name {
+            width: 45%;
+            padding: 12px 20px;
+            margin: 8px 16px 0 16px;
+            float: right;
+            display: inline-block;
+            border: transparent;
+            background: lightgray;
+            box-sizing: border-box;
+        }
+
+        .phoneNumber {
+            width: 45%;
+            padding: 12px 20px;
+            margin: 8px 16px 16px 0;
+            float: right;
+            display: inline-block;
+            border: transparent;
+            background: lightgray;
+            box-sizing: border-box;
+        }
+
+        .email {
+            width: 45%;
+            padding: 12px 20px;
+            margin: 8px 16px 16px 16px;
+            float: left;
+            display: inline-block;
+            border: transparent;
+            background: lightgray;
+            box-sizing: border-box;
+        }
+
+        .fixPhoneNumber {
+            width: 45%;
+            padding: 12px 20px;
+            margin: 0 0 16px 16px;
+            float: left;
+            display: inline-block;
+            border: transparent;
+            background: lightgray;
+            box-sizing: border-box;
+        }
+
+        .postCode {
+            width: 45%;
+            padding: 12px 20px;
+            margin: 0 16px 16px 16px;
+            float: right;
+            display: inline-block;
+            border: transparent;
+            background: lightgray;
+            box-sizing: border-box;
+        }
+
+
+        .address {
+            width: 95%;
+            padding: 12px 20px;
+            margin: 8px 16px 8px 16px;
+            display: inline-block;
+            border: transparent;
+            background: lightgray;
+            box-sizing: border-box;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="formContainer">
+
+    <div class="personalData">
+        <b>اطلاعات شخصی</b>
+    </div>
+
+    <hr class="solid">
+
+    <input type="text" placeholder="12/2/1381" class="birthday"/>
+    <input type="text" placeholder="علی احمدی" class="name"/>
+    <input type="text" placeholder="ایمیل" class="email"/>
+    <input type="text" placeholder="09123456789" class="phoneNumber"/>
+
+    <div class="home">
+        <b>محل سکونت</b>
+    </div>
+
+    <hr class="solid">
+
+    <input type="text" placeholder="آدرس" class="address"/>
+    <input type="text" placeholder="کد پستی" class="postCode"/>
+    <input type="text" placeholder="تلفن ثابت" class="fixPhoneNumber"/>
+
+    <div class="home">
+        <b>حساب بانکی</b>
+    </div>
+
+    <hr class="solid">
+
+    <input type="text" placeholder="شماره حساب" class="postCode"/>
+    <input type="text" placeholder="شماره شبا" class="fixPhoneNumber"/>
+
+    <div class="home">
+        <b>اطلاعات امنیتی</b>
+    </div>
+
+    <hr class="solid">
+
+    <input type="text" placeholder="رمز عبور جدید" class="postCode"/>
+    <input type="text" placeholder="تکرار رمز عبور جدید" class="fixPhoneNumber"/>
+
+</div>
+
+
+<div class="menuContainer">
+    <div class="imgcontainer" style="direction: ltr" align="center">
+        <img src="/media/{{ logo }}" alt="" class="avatar">
+        PowerGrow
+    </div>
+
+    <i class="textMenu"> داشبورد</i>
+    <br><br>
+    <i class="textMenu"> دوره های من</i>
+    <br><br>
+    <i class="textMenu"> رزرو های  من</i>
+    <br><br>
+    <i class="textMenu"> پروفایل من</i>
+
+
+</div>
+</body>
+</html>
