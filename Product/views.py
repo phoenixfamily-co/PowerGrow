@@ -55,7 +55,7 @@ def check_view(request, pk, session, day):
 def sport_view(request, pk):
     template = loader.get_template('public/category.html')
     about = AboutUs.objects.values().first()
-    sport = Sport.objects.get(id=pk)
+    sport = Sport.objects.filter(id=pk)
     if not sport.exists():
         return HttpResponse(template.render({}, request))
     else:
