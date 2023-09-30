@@ -89,7 +89,7 @@ class DaysView(viewsets.ModelViewSet):
     serializer_class = DaysSerializer
 
     def get_queryset(self):
-        queryset = Days.objects.filter(day=self.kwargs.get('pk'))
+        queryset = Days.objects.filter(session=self.kwargs.get('pk'))
         return queryset
 
 
