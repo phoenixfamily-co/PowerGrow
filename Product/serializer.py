@@ -18,21 +18,21 @@ class SessionSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class ParticipantsSerializer(serializers.ModelSerializer):
-    reservations = GetAccountSerializer(read_only=True, many=True)
-
-    class Meta:
-        model = Participants
-        fields = "__all__"
-
-
 class CourseSerializer(serializers.ModelSerializer):
-    participants = ParticipantsSerializer(read_only=True, many=True)
     sessions = SessionSerializer(read_only=True, many=True)
 
     class Meta:
         model = Course
         exclude = ['datetime']
+
+
+class ParticipantsSerializer(serializers.ModelSerializer):
+    user = GetAccountSerializer(read_only=True, many=True)
+    course = CourseSerializer(read_only=True, many=True)
+
+    class Meta:
+        model = Participants
+        fields = "__all__"
 
 
 class SportSerializer(serializers.ModelSerializer):
