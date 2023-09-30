@@ -104,11 +104,11 @@ class ParticipationView(viewsets.ModelViewSet):
     # permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        queryset = Participants.objects.filter(user=self.request.user)
+        queryset = Participants.objects.filter(user=self.request.user.id)
         return queryset
 
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        serializer.save(user=self.request.user.id)
 
 
 class SportView(viewsets.ModelViewSet):
