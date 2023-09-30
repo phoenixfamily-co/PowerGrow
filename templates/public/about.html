@@ -1,212 +1,221 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<script src="https://kit.fontawesome.com/1228ed801f.js" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.css" />
-<script src="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://kit.fontawesome.com/1228ed801f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.css"/>
+    <script src="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.js"></script>
 
     <title>PowerGrow</title>
 
-	<style>
+    <style>
 
-		@font-face {
-			font-family: BYekan;
-  			font-style: normal;
-  			font-weight: normal;
-  			src: url("../../static/fonts/BYekan.eot");/* IE9 Compat Modes */
-			src: url("../../static/fonts/BYekan.woff") format('woff'),
-        		 url("../../static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */
-        		 url("../../static/fonts/BYekan.ttf")  format('truetype') /* Safari, Android, iOS */
-		}
+        @font-face {
+            font-family: BYekan;
+            font-style: normal;
+            font-weight: normal;
+            src: url("../../static/fonts/BYekan.eot");/* IE9 Compat Modes */
+            src: url("../../static/fonts/BYekan.woff") format('woff'),
+            url("../../static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */ url("../../static/fonts/BYekan.ttf") format('truetype') /* Safari, Android, iOS */
+        }
 
-		* {box-sizing: border-box}
-		img {vertical-align: middle;}
+        * {
+            box-sizing: border-box
+        }
 
-		.tab{
-			direction:rtl ;
-			unicode-bidi: bidi-override ;
-			right:0;
-			position: absolute;
-			margin-top: 4%;
-			margin-right: 5%;
-    		z-index: 10!important;
+        img {
+            vertical-align: middle;
+        }
 
-		}
+        .tab {
+            direction: rtl;
+            unicode-bidi: bidi-override;
+            right: 0;
+            position: absolute;
+            margin-top: 4%;
+            margin-right: 5%;
+            z-index: 10 !important;
 
-        .tab-button{
-			background-color: transparent;
-			border-color: transparent;
-			color: black;
+        }
+
+        .tab-button {
+            background-color: transparent;
+            border-color: transparent;
+            color: black;
             font-family: BYekan, serif !important;
-			font-size: 16px;
+            font-size: 16px;
             cursor: pointer;
 
-		}
+        }
 
 
+        .logoHolder {
+            width: 50px;
+            margin-left: 40%;
+            position: absolute;
+            margin-top: 1%;
+            z-index: 10 !important;
 
-		.logoHolder{
-			width: 50px;
-			margin-left: 40%;
-			position: absolute;
-			margin-top: 1%;
-    		z-index: 10!important;
+        }
 
-		}
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            position: absolute;
+            direction: ltr
 
-		.logo{
-			width: 50px;
-			height: 50px;
-			border-radius: 25px;
-			position: absolute;
-			direction: ltr
+        }
 
-		}
+        .typography {
+            color: black;
+            position: absolute;
+            margin-left: 60px;
+            margin-top: 20%;
+            font-size: 20px
 
-		.typography{
-			color: black;
-			position: absolute;
-			margin-left: 60px;
-			margin-top: 20%;
-			font-size: 20px
+        }
 
-		}
+        .login {
+            width: 150px;
+            position: absolute;
+            margin-top: 4%;
+            z-index: 10 !important;
+            direction: rtl;
+            unicode-bidi: bidi-override;
+        }
 
-		.login{
-			width: 150px;
-			position: absolute;
-			margin-top: 4%;
-    		z-index: 10!important;
-			direction:rtl ;
-			unicode-bidi: bidi-override ;
-		}
-
-		.loginTypography{
-			color: black;
-			position: absolute;
-			background-color: transparent;
-			border-color: transparent;
+        .loginTypography {
+            color: black;
+            position: absolute;
+            background-color: transparent;
+            border-color: transparent;
             font-family: BYekan, serif !important;
-			direction: rtl;
-			font-size: 16px;
-			margin-right: 10%;
+            direction: rtl;
+            font-size: 16px;
+            margin-right: 10%;
             cursor: pointer;
 
-		}
+        }
 
-		.dropdown {
- 			position: relative;
-  			display: inline-block;
-		}
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
 
-		.dropdown-content {
-  			display: none;
-  			position: absolute;
-			width: 100px;
-		    background-color: #f9f9f9;
-  			box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-		    padding: 12px 16px;
-			z-index: 1;
-		}
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            width: 100px;
+            background-color: #f9f9f9;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            padding: 12px 16px;
+            z-index: 1;
+        }
 
-		.dropdown:hover .dropdown-content {
- 			 display: block;
+        .dropdown:hover .dropdown-content {
+            display: block;
 
-		}
+        }
 
-		.dropdown-content a {
-  			color: black;
-		    padding: 5px 16px;
-			font-size: 16px;
-			text-decoration: none;
-		  	display: block;
-		}
+        .dropdown-content a {
+            color: black;
+            padding: 5px 16px;
+            font-size: 16px;
+            text-decoration: none;
+            display: block;
+        }
 
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #f1f1f1}
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {
+            background-color: #f1f1f1
+        }
 
-		@keyframes fade {
-		  from {opacity: .4}
-		  to {opacity: 1}
-		}
+        @keyframes fade {
+            from {
+                opacity: .4
+            }
+            to {
+                opacity: 1
+            }
+        }
 
-		/* On smaller screens, decrease text size */
-		@media only screen and (max-width: 300px) {
+        /* On smaller screens, decrease text size */
+        @media only screen and (max-width: 300px) {
 
-		}
+        }
 
 
-		.contentWrapper {
-			height:250px;
+        .contentWrapper {
+            height: 250px;
             width: 100%;
-			padding: 2rem;
-			background: #303030;
-			color: white;
-			font-weight: 500;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			gap: 0.2rem;
-			position: relative;
+            padding: 2rem;
+            background: #303030;
+            color: white;
+            font-weight: 500;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.2rem;
+            position: relative;
 
-		}
+        }
 
-		.content {
-			height:250px
-		}
+        .content {
+            height: 250px
+        }
 
-		.footer{
-			  height: 50px;
-			  font-weight: 500;
-			  display: flex;
-			  justify-content: flex-start;
-			  align-items: center;
-			  font-size: 12px;
-			  gap: 0.2rem;
-			  padding-top: 10px;
-			  padding-left: 20px;
-			  bottom: 0;
-			  right: 0;
-			  left: 0;
-			  position: absolute;
-			  color: #B1B2B2;
-			  background: #151111;
+        .footer {
+            height: 50px;
+            font-weight: 500;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            font-size: 12px;
+            gap: 0.2rem;
+            padding-top: 10px;
+            padding-left: 20px;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            position: absolute;
+            color: #B1B2B2;
+            background: #151111;
 
-		}
+        }
 
-		body,html{
-			height: auto;
-			position: relative;
+        body, html {
+            height: auto;
+            position: relative;
             font-family: BYekan, serif !important;
 
 
-		}
+        }
 
 
-		.property{
-			direction:rtl ;
-			unicode-bidi: bidi-override ;
-			position: absolute;
-			margin-top: 20px;
-			margin-right: 20px;
-    		z-index: 10!important;
-		}
+        .property {
+            direction: rtl;
+            unicode-bidi: bidi-override;
+            position: absolute;
+            margin-top: 20px;
+            margin-right: 20px;
+            z-index: 10 !important;
+        }
 
-		.property-item{
-			width: 200px;
-			background-color: #E16539;
-			border-color: transparent;
-			border-radius: 5px;
-			color: white;
+        .property-item {
+            width: 200px;
+            background-color: #E16539;
+            border-color: transparent;
+            border-radius: 5px;
+            color: white;
             font-family: BYekan, serif !important;
-			font-size: 16px;
-		}
+            font-size: 16px;
+        }
 
 
-		</style>
+    </style>
 
     <title>PowerGrow</title>
 
@@ -214,157 +223,178 @@
 </head>
 <body>
 
-	  <div class="tab">
-		<button class="tab-button" onclick="window.location.assign('{% url 'home:home' %}')">صفحه اصلی</button>
-		<div class="dropdown">
-  		<button class="tab-button" onclick="">ورزش ها</button>
-			<i class="fa-solid fa-caret-down" style="color: #000"></i>
-			 <div class="dropdown-content">
-   			  {% for x in sport %}
+<div class="tab">
+    <button class="tab-button" onclick="window.location.assign('{% url 'home:home' %}')">صفحه اصلی</button>
+    <div class="dropdown">
+        <button class="tab-button" onclick="">ورزش ها</button>
+        <i class="fa-solid fa-caret-down" style="color: #000"></i>
+        <div class="dropdown-content">
+            {% for x in sport %}
 
-   				 <a href="{% url 'product:category' x.id %}">{{ x.title }}</a>
+                <a href="{% url 'product:category' x.id %}">{{ x.title }}</a>
 
-                 {% endfor %}
-			</div>
-		</div>
-  		<button class="tab-button" onclick="window.location.assign({% url 'reservation:reservation' %})">اجاره سالن</button>
-		<button class="tab-button" style="font-weight: bold;text-decoration: underline; text-underline-position: under" onclick="window.location.assign({% url 'about:aboutUs' %})">درباره ما</button>
+            {% endfor %}
+        </div>
+    </div>
+    <button class="tab-button" onclick="window.location.assign({% url 'reservation:reservation' %})">اجاره سالن</button>
+    <button class="tab-button" style="font-weight: bold;text-decoration: underline; text-underline-position: under"
+            onclick="window.location.assign({% url 'about:aboutUs' %})">درباره ما
+    </button>
 
-	</div>
+</div>
 
-	<div class="logoHolder">
+<div class="logoHolder">
 
-			 <img alt="" src="/media/{{ about.logo }}" class="logo">
-	  		<div class="typography">PowerGrow</div>
+    <img alt="" src="/media/{{ about.logo }}" class="logo">
+    <div class="typography">PowerGrow</div>
 
-		</div>
+</div>
 
-	<div class="login">
-		<i class="fa-solid fa-user" style="color: #000; position:absolute ; margin-top:5px ; font-size: 16px"></i>
-		<button class="loginTypography" onclick="window.location.assign({% url 'user:login' %})">ورود/عضویت</button>
-	</div>
+<div class="login">
+    <i class="fa-solid fa-user" style="color: #000; position:absolute ; margin-top:5px ; font-size: 16px"></i>
+    <button class="loginTypography" onclick="window.location.assign({% url 'user:login' %})">ورود/عضویت</button>
+</div>
 
-	<div style="width: 100%;height: 500px">
-
-
-		<h2 style="right: 0;position: absolute;margin-right: 20px; font-weight: bold ; margin-top: 150px">درباره ما</h2>
-
-		<p style="position: absolute ; right: 0 ; margin-right: 20px ; font-size: 18px ; width: 550px; height: 1px ;margin-top: 200px ; direction: rtl">
-            {{ about.description }}
-		</p>
-
-		<div class="property"  style="right: 0 ; margin-top: 450px">
-  		<button class="property-item" onclick="">از مبتدی تا قهرمانی</button>
-  		<button class="property-item" onclick="">ضمانت بازگشت وجه</button>
-		<button class="property-item" onclick="">بهبود خلاقیت</button>
-
-	</div>
-
-		<div class="property" style="right: 0 ; margin-top: 490px ; margin-right: 120px">
-  		<button class="property-item" onclick="">مربیان حرفه ای</button>
-  		<button class="property-item" onclick="">تجهیزات حرفه ای</button>
-
-	</div>
+<div style="width: 100%;height: 500px">
 
 
-	 <img src="../../static/images/aboutUs.jpg" alt="" style="width: 50%;height: 500px ; position: absolute ; left: 0 ; margin-top: 100px">
+    <h2 style="right: 0;position: absolute;margin-right: 20px; font-weight: bold ; margin-top: 150px">درباره ما</h2>
+
+    <p style="position: absolute ; right: 0 ; margin-right: 20px ; font-size: 18px ; width: 550px; height: 1px ;margin-top: 200px ; direction: rtl">
+        {{ about.description }}
+    </p>
+
+    <div class="property" style="right: 0 ; margin-top: 450px">
+        <button class="property-item" onclick="">از مبتدی تا قهرمانی</button>
+        <button class="property-item" onclick="">ضمانت بازگشت وجه</button>
+        <button class="property-item" onclick="">بهبود خلاقیت</button>
+
+    </div>
+
+    <div class="property" style="right: 0 ; margin-top: 490px ; margin-right: 120px">
+        <button class="property-item" onclick="">مربیان حرفه ای</button>
+        <button class="property-item" onclick="">تجهیزات حرفه ای</button>
+
+    </div>
 
 
-	</div>
-
-	<div style="width: 100%;height: 600px">
-
-
-		<h2 style="left: 0;position: absolute;margin-left:510px; font-weight: bold ; margin-top: 80px">ارتباط با ما</h2>
-
-		<p style="position: absolute ; ;left : 0 ; margin-left: 90px ; font-size: 18px ; width: 550px; height: 1px ;margin-top: 130px ; direction: rtl ; ">
-			شما می‌توانید در این بخش با ما در ارتباط باشید و نظرات، پیشنهادات و سوالات خود را با ما در میان بگذارید
-اگر شما تمایل دارید به صورت تلفنی با ما صحبت کنید، شماره تلفن ما نیز در بخش ارتباط با ما قابل دسترس است. شما می‌توانید با شماره تلفن ما تماس بگیرید و با یکی از نمایندگان ما صحبت کنید.
-آدرس ما نیز در بخش ارتباط با ما در دسترس است. اگر شما تمایل دارید به صورت حضوری با ما صحبت کنید، می‌توانید آدرس ما را در بخش ارتباط با ما پیدا کنید و به محل دفتر ما مراجعه کنید.
-در کل، بخش ارتباط با ما در سایت ما، جایی است که شما می‌توانید با ما در ارتباط باشید و نظرات، پیشنهادات و سوالات خود را با ما در میان بگذارید. ما به سرعت به شما پاسخ خواهیم داد و در صورت نیاز، با شما تماس خواهیم گرفت.
-		</p>
-
-		<div class="property" style="left: 0 ; margin-top: 400px ; margin-left: 35px">
-  		<button class="property-item" onclick=""  style="height: 40px; position: relative ;display: inline">
-				<i class="fa-brands fa-instagram" style="color: white;  font-size: 20px ; position: absolute; left: 0 ; bottom: 0 ; margin-left: 20px ; margin-bottom: 6px"></i>
-			<h6 style="position: absolute ; left: 0 ; bottom: 0 ; margin-left: 50px ; margin-bottom: 5px">{{ about.instagram }}</h6>
-			</button>
-  		<button class="property-item" onclick=""  style="height: 40px; position: relative ;display: inline">
-				<i class="fa-brands fa-telegram" style="color: white;  font-size: 20px ; position: absolute; left: 0 ; bottom: 0 ; margin-left: 20px ; margin-bottom: 6px"></i>
-			<h6 style="position: absolute ; left: 0 ; bottom: 0 ; margin-left: 50px ; margin-bottom: 5px">{{ about.telegram }}</h6>
-			</button>
-		<button class="property-item" onclick=""  style="height: 40px ; position: relative ;display: inline">
-			<i class="fa-brands fa-whatsapp" style="color: white;  font-size: 20px ; position: absolute; left: 0 ; bottom: 0 ; margin-left: 20px ; margin-bottom: 6px"></i>
-			<h6 style="position: absolute ; left: 0 ; bottom: 0 ; margin-left: 50px ; margin-bottom: 5px">{{ about.phone }}</h6>
-			</button>
-
-	</div>
+    <img src="../../static/images/aboutUs.jpg" alt=""
+         style="width: 50%;height: 500px ; position: absolute ; left: 0 ; margin-top: 100px">
 
 
-		<div class="property"  style="left: 0 ; margin-top: 450px ; margin-left: 130px">
-  		<button class="property-item" onclick=""  style="height: 40px; position: relative ;display: inline">
-				<i class="fa-solid fa-tty" style="color: white;  font-size: 20px ; position: absolute; left: 0 ; bottom: 0 ; margin-left: 20px ; margin-bottom: 6px"></i>
-			<h6 style="position: absolute ; left: 0 ; bottom: 0 ; margin-left: 50px ; margin-bottom: 5px">{{ about.telephone }}</h6>
-			</button>
-  		<button class="property-item" onclick=""  style="height: 40px; position: relative ;display: inline">
-				<i class="fa-solid fa-phone" style="color: white;  font-size: 20px ; position: absolute; left: 0 ; bottom: 0 ; margin-left: 20px ; margin-bottom: 6px"></i>
-			<h6 style="position: absolute ; left: 0 ; bottom: 0 ; margin-left: 50px ; margin-bottom: 5px">{{ about.phone }}</h6>
-			</button>
-	</div>
+</div>
+
+<div style="width: 100%;height: 600px">
 
 
-	 <img src="../../static/images/contact.jpg" alt="" style="width: 50%;height: 500px ; position: absolute ; right: 0 ; margin-top: 50px">
+    <h2 style="left: 0;position: absolute;margin-left:510px; font-weight: bold ; margin-top: 80px">ارتباط با ما</h2>
+
+    <p style="position: absolute ; ;left : 0 ; margin-left: 90px ; font-size: 18px ; width: 550px; height: 1px ;margin-top: 130px ; direction: rtl ; ">
+        شما می‌توانید در این بخش با ما در ارتباط باشید و نظرات، پیشنهادات و سوالات خود را با ما در میان بگذارید
+        اگر شما تمایل دارید به صورت تلفنی با ما صحبت کنید، شماره تلفن ما نیز در بخش ارتباط با ما قابل دسترس است. شما
+        می‌توانید با شماره تلفن ما تماس بگیرید و با یکی از نمایندگان ما صحبت کنید.
+        آدرس ما نیز در بخش ارتباط با ما در دسترس است. اگر شما تمایل دارید به صورت حضوری با ما صحبت کنید، می‌توانید آدرس
+        ما را در بخش ارتباط با ما پیدا کنید و به محل دفتر ما مراجعه کنید.
+        در کل، بخش ارتباط با ما در سایت ما، جایی است که شما می‌توانید با ما در ارتباط باشید و نظرات، پیشنهادات و سوالات
+        خود را با ما در میان بگذارید. ما به سرعت به شما پاسخ خواهیم داد و در صورت نیاز، با شما تماس خواهیم گرفت.
+    </p>
+
+    <div class="property" style="left: 0 ; margin-top: 400px ; margin-left: 35px">
+        <button class="property-item" onclick="" style="height: 40px; position: relative ;display: inline">
+            <i class="fa-brands fa-instagram"
+               style="color: white;  font-size: 20px ; position: absolute; left: 0 ; bottom: 0 ; margin-left: 20px ; margin-bottom: 6px"></i>
+            <h6 style="position: absolute ; left: 0 ; bottom: 0 ; margin-left: 50px ; margin-bottom: 5px">{{ about.instagram }}</h6>
+        </button>
+        <button class="property-item" onclick="" style="height: 40px; position: relative ;display: inline">
+            <i class="fa-brands fa-telegram"
+               style="color: white;  font-size: 20px ; position: absolute; left: 0 ; bottom: 0 ; margin-left: 20px ; margin-bottom: 6px"></i>
+            <h6 style="position: absolute ; left: 0 ; bottom: 0 ; margin-left: 50px ; margin-bottom: 5px">{{ about.telegram }}</h6>
+        </button>
+        <button class="property-item" onclick="" style="height: 40px ; position: relative ;display: inline">
+            <i class="fa-brands fa-whatsapp"
+               style="color: white;  font-size: 20px ; position: absolute; left: 0 ; bottom: 0 ; margin-left: 20px ; margin-bottom: 6px"></i>
+            <h6 style="position: absolute ; left: 0 ; bottom: 0 ; margin-left: 50px ; margin-bottom: 5px">{{ about.phone }}</h6>
+        </button>
+
+    </div>
 
 
-	</div>
+    <div class="property" style="left: 0 ; margin-top: 450px ; margin-left: 130px">
+        <button class="property-item" onclick="" style="height: 40px; position: relative ;display: inline">
+            <i class="fa-solid fa-tty"
+               style="color: white;  font-size: 20px ; position: absolute; left: 0 ; bottom: 0 ; margin-left: 20px ; margin-bottom: 6px"></i>
+            <h6 style="position: absolute ; left: 0 ; bottom: 0 ; margin-left: 50px ; margin-bottom: 5px">{{ about.telephone }}</h6>
+        </button>
+        <button class="property-item" onclick="" style="height: 40px; position: relative ;display: inline">
+            <i class="fa-solid fa-phone"
+               style="color: white;  font-size: 20px ; position: absolute; left: 0 ; bottom: 0 ; margin-left: 20px ; margin-bottom: 6px"></i>
+            <h6 style="position: absolute ; left: 0 ; bottom: 0 ; margin-left: 50px ; margin-bottom: 5px">{{ about.phone }}</h6>
+        </button>
+    </div>
 
-	<div class="contentWrapper">
-		<div class="content">
-			<div style="width:160px;left: 0;bottom: 0; top: 0; position: absolute;margin-left: 20px">
 
-				<h2>PowerGrow</h2>
-		 <img class="" src="/media/{{ about.transparent_logo }}" style="position: absolute;width:160px;margin-top: -22px"  alt="" >
-
-				</div>
-
-      <div id="map" style="width: 300px; background: #eee; border: 2px solid #aaa;top: 0 ; bottom:0;
-						   position: absolute;margin-left: -170px;">
+    <img src="../../static/images/contact.jpg" alt=""
+         style="width: 50%;height: 500px ; position: absolute ; right: 0 ; margin-top: 50px">
 
 
-			</div>
+</div>
 
-			<i class="fa-solid fa-location-dot" style="color: #ffffff; right: 0 ; position: absolute; margin-top: 20px ; margin-right: 20px; font-size: 30px"></i>
-			<h5 style="right: 0 ; margin-right: 50px;position: absolute;direction: rtl ; margin-top: 20px;">
+<div class="contentWrapper">
+    <div class="content">
+        <div style="width:160px;left: 0;bottom: 0; top: 0; position: absolute;margin-left: 20px">
 
-                   {% autoescape off %}
+            <h2>PowerGrow</h2>
+            <img class="" src="/media/{{ about.transparent_logo }}"
+                 style="position: absolute;width:160px;margin-top: -22px"
+                 alt="">
 
-                {{ about.address|linebreaksbr  }}
+        </div>
 
-                {% endautoescape %}
+        <div id="map" style="width: 20vw; background: #eee; border: 2px solid #aaa;top: 0 ; bottom:0;
+						   position: absolute;margin-left: -10%">
 
-			</h5>
 
-			<i class="fa-solid fa-phone-flip" style="color: #ffffff; right: 0 ; position: absolute; margin-top: 95px ; margin-right: 20px; font-size: 30px"></i>
-			<h5 style="right: 0 ; margin-right: 60px;position: absolute;direction: rtl ; margin-top: 95px;">
-                {{ about.phone }}<br> {{ about.telephone }}
-			</h5>
+        </div>
 
-			<a href="//www.instagram.com/{{ instagram }}"  style="right: 0 ; position: absolute ; margin-right:20px ; margin-top: 165px;display: inline">
-		<i class="fa-brands fa-instagram" style="color: #ffffff ; font-size: 30px ;"></i>
-		</a>
-			<h5 style="right: 0 ; margin-right: 60px;position: absolute;direction: ltr ; margin-top: 167px;">
-                {{ about.instagram }}
-			</h5>
-		</div>
-		<div class="footer">&copy;<span id="year" style="font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif'">2023 </span><span> PhoenixFamily. All rights reserved.</span>
-		<a href="//www.instagram.com/phoenixfamily.co?igshid=OGQ5ZDc2ODk2ZA==" style="right: 0 ; position: absolute ; margin-right:15px">
-		<i class="fa-brands fa-instagram" style="color: #ffffff ; font-size: 30px"></i>
-		</a>
-		<a href="//www.linkedin.com/company/phoenixfamily" style="right: 0 ; position: absolute ; margin-right:55px">
-		<i class="fa-brands fa-linkedin" style="color: #ffffff ; font-size: 30px"></i>
-		</a>
-		<span style="right: 0;margin-right: 90px; position: absolute">Follow us:</span>
-		</div>
+        <i class="fa-solid fa-location-dot"
+           style="color: #ffffff; right: 0 ; position: absolute; margin-top: 20px ; margin-right: 20px; font-size: 30px"></i>
+        <h5 style=" width: 33%;right: 0 ; margin-right: 50px;position: absolute;direction: rtl ; margin-top: 20px;">
+
+            {% autoescape off %}
+
+                {{ about.address|linebreaksbr }}
+
+            {% endautoescape %}
+
+
+        </h5>
+
+        <i class="fa-solid fa-phone-flip"
+           style="color: #ffffff; right: 0 ; position: absolute; margin-top: 95px ; margin-right: 20px; font-size: 30px"></i>
+        <h5 style="right: 0 ; margin-right: 60px;position: absolute;direction: rtl ; margin-top: 95px;">
+            {{ about.phone }}<br> {{ about.telephone }}
+        </h5>
+
+        <a href="https://www.instagram.com/{{ instagram }}"
+           style="right: 0 ; position: absolute ; margin-right:20px ; margin-top: 165px;display: inline">
+            <i class="fa-brands fa-instagram" style="color: #ffffff ; font-size: 30px ;"></i>
+        </a>
+
+        <h5 style="right: 0 ; margin-right: 60px;position: absolute;direction: ltr ; margin-top: 167px;">
+            {{ about.instagram }}
+        </h5>
+    </div>
+    <div class="footer">&copy;<span id="year"
+                                    style="font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif'">2023 </span><span> PhoenixFamily. All rights reserved.</span>
+        <a href="//www.instagram.com/phoenixfamily.co?igshid=OGQ5ZDc2ODk2ZA=="
+           style="right: 0 ; position: absolute ; margin-right:15px">
+            <i class="fa-brands fa-instagram" style="color: #ffffff ; font-size: 30px"></i>
+        </a>
+        <a href="//www.linkedin.com/company/phoenixfamily" style="right: 0 ; position: absolute ; margin-right:55px">
+            <i class="fa-brands fa-linkedin" style="color: #ffffff ; font-size: 30px"></i>
+        </a>
+        <span style="right: 0;margin-right: 90px; position: absolute">Follow us:</span>
+    </div>
 </div>
 
 
@@ -377,22 +407,22 @@
     let long =     {{ about.longitude }};
 
 
-const map = new nmp_mapboxgl.Map({
-            mapType: nmp_mapboxgl.Map.neshanVector,
-            container: "map",
-            zoom: 15,
-            pitch: 0,
-            center: [long,lat],
-            minZoom: 2,
-            maxZoom: 21,
-            trackResize: true,
-            mapKey: "web.eb9c250015c247e08c5122f824c1541c",
-            poi: true,
-            traffic: true,
-            mapTypeControllerStatus: {
-                show: false,
-            }
-        });
+    const map = new nmp_mapboxgl.Map({
+        mapType: nmp_mapboxgl.Map.neshanVector,
+        container: "map",
+        zoom: 15,
+        pitch: 0,
+        center: [long, lat],
+        minZoom: 2,
+        maxZoom: 21,
+        trackResize: true,
+        mapKey: "web.eb9c250015c247e08c5122f824c1541c",
+        poi: true,
+        traffic: true,
+        mapTypeControllerStatus: {
+            show: false,
+        }
+    });
 </script>
 
 </html>
