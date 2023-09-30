@@ -9,6 +9,7 @@ from Product.serializer import *
 
 def product_view(request, pk, session, day):
     about = AboutUs.objects.values().first()
+    sport = Sport.objects.all().values()
     product = Course.objects.filter(id=pk).values().first()
     sessions = Sessions.objects.filter(id=session).values().first()
     days = Days.objects.filter(id=day).values().first()
@@ -17,6 +18,7 @@ def product_view(request, pk, session, day):
         "about": about,
         "product": product,
         "session": sessions,
+        "sport": sport,
         "days": days,
 
     }
