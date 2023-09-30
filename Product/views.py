@@ -105,6 +105,7 @@ class ParticipationView(viewsets.ModelViewSet):
 
     def get_queryset(self):
         queryset = Participants.objects.filter(user=self.request.user.id)
+
         return queryset
 
     def perform_create(self, serializer):
