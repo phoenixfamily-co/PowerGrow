@@ -470,7 +470,6 @@ const map = new nmp_mapboxgl.Map({
 
 
     registerButton.addEventListener('click',function () {
-        console.log(cookieValue)
 
           if(cookieValue !== undefined){
             window.location.assign(`/product/payment/{{ product.id }}/{{ session.id }}/{{ days.id }}/`)
