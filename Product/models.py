@@ -56,4 +56,4 @@ class Days(models.Model):
     reserved = models.BooleanField(blank=True, null=True)
     title = models.TextField(blank=True, null=True)
     price = models.IntegerField(blank=True, null=True)
-    day = models.ForeignKey(Sessions, on_delete=models.CASCADE, related_name='days', null=True, blank=True)
+    session = models.ForeignKey(Sessions, on_delete=models.CASCADE, related_name='days', null=True, blank=True)
