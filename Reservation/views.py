@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 from django.template import loader
 from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
+
 from About.models import AboutUs
 from Product.models import Sport
 from Reservation.models import *
@@ -68,6 +70,7 @@ class GymView(viewsets.ModelViewSet):
 class ReservationView(viewsets.ModelViewSet):
     queryset = Reservations.objects.all()
     serializer_class = ReservationSerializer
+    permission_classes = [IsAuthenticated]
 
 
 class DateView(viewsets.ModelViewSet):
