@@ -506,7 +506,7 @@
 
         console.log({{ sport.id }})
 
-        const response = await fetch(`/product/api/search/1?search=${query}`, {
+        const response = await fetch(`/product/api/search/{{ id }}?search=${query}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
