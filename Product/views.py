@@ -59,11 +59,11 @@ def sport_view(request, pk):
     if not sport.exists():
         return HttpResponse(template.render({}, request))
     else:
-        title = Sport.objects.get(id=pk).title
+        category = Sport.objects.get(id=pk).title
     context = {
         "about": about,
-        "title": title,
-        "sport": sport,
+        "title": category.title,
+        "sport": category,
     }
     return HttpResponse(template.render(context, request))
 
@@ -104,7 +104,7 @@ class SessionView(viewsets.ModelViewSet):
 class ParticipationView(viewsets.ModelViewSet):
     queryset = Participants.objects.all()
     serializer_class = ParticipantsSerializer
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         queryset = Participants.objects.filter(user=self.request.user)
