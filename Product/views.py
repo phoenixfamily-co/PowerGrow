@@ -55,15 +55,12 @@ def check_view(request, pk, session, day):
 def sport_view(request, pk):
     template = loader.get_template('public/category.html')
     about = AboutUs.objects.values().first()
-    sport = Sport.objects.filter(id=pk)
-    if not sport.exists():
-        return HttpResponse(template.render({}, request))
-    else:
-        category = Sport.objects.get(id=pk)
+    sport = Sport.objects.all()
     context = {
         "about": about,
-        "title": category.title,
-        "sport": category.courses,
+        "sport": sport,
+        "title": sport.filter(id=pk).values().first(),
+        "id": pk
     }
     return HttpResponse(template.render(context, request))
 
