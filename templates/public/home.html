@@ -704,34 +704,38 @@
      const sessionList = document.getElementById("session")
      let course
 
-     registerButton.addEventListener("click", async function () {
-         course = this.getAttribute("itemid")
-                     myPopup.classList.toggle("show");
-          const response = await fetch(`/product/api/sessions/${course}/`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    });
+       const buttons = document.querySelectorAll('.card-button');
+            Array.from(buttons).forEach(function (button) {
+                button.addEventListener('click', async function () {
+                    course = this.getAttribute("itemid")
+                    myPopup.classList.toggle("show");
+                    const response = await fetch(`/product/api/sessions/${course}/`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    });
 
-      const result = await response.json()
-    if (response.status===200){
-        const res = JSON.stringify(result)
-        const sum = JSON.parse(res)
-        const size = JSON.parse(res).length
-        sessionList.innerHTML = ''
-        for (let i = 0 ; i<size ; i++){
-            const item = document.createElement("option")
-            item.innerHTML = sum[i].number + 'جلسه'
-            item.setAttribute("value", sum[i].id)
-            sessionList.appendChild(item)
-        }
-        await getDays(sum[0].id)
-    }
-     });
-         sessionList.addEventListener('change', function () {
-        getDays(this.value)
-    })
+                    const result = await response.json()
+                    if (response.status === 200) {
+                        const res = JSON.stringify(result)
+                        const sum = JSON.parse(res)
+                        const size = JSON.parse(res).length
+                        sessionList.innerHTML = ''
+                        for (let i = 0; i < size; i++) {
+                            const item = document.createElement("option")
+                            item.innerHTML = sum[i].number + 'جلسه'
+                            item.setAttribute("value", sum[i].id)
+                            sessionList.appendChild(item)
+                        }
+                        await getDays(sum[0].id)
+                    }
+                })
+                sessionList.addEventListener('change', function () {
+                    getDays(this.value)
+                })
+
+            })
 
     async function getDays(query) {
 
