@@ -71,6 +71,15 @@ def home_view(request):
     return HttpResponse(template.render(context, request))
 
 
+def profile_view(request):
+    about = AboutUs.objects.values().first()
+    template = loader.get_template('user/profile.html')
+    context = {
+        "about": about,
+    }
+    return HttpResponse(template.render(context, request))
+
+
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
     permission_classes = (AllowAny,)

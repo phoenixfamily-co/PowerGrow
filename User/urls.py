@@ -1,7 +1,5 @@
 from django.urls import path
-from User.views import RegisterView, ChangePasswordView, login_view, UpdateProfile, DeleteAccount, GetAccount, \
-    GetAllAccount, ManagePermission, register_view, verification_view, home_view, forget_view, pass_view, \
-    get_user, get_verification, ActivateAccount
+from User.views import *
 
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -32,4 +30,6 @@ urlpatterns = [
     path('all/', GetAllAccount.as_view(), name='get_all_profiles'),
     path('access/<str:number>/', ManagePermission.as_view(), name='manage_permission'),
     path('home/', home_view, name='home'),
+    path('profile/', profile_view, name='profile'),
+
 ]
