@@ -109,11 +109,12 @@ class ParticipationView(viewsets.ModelViewSet):
         return queryset
 
     def perform_create(self, serializer):
-        course = Course.objects.filter(id=self.kwargs.get('course')).first()
-        participants = Participants.objects.update_or_create(title=self.kwargs.get('title'),
-                                              session=self.kwargs.get('session'),
-                                              day=self.kwargs.get('day'),
-                                              price=self.kwargs.get('price'),
+        data = self.request.data
+        course = Course.objects.get(id=data["course"])
+        participants = Participants.objects.update_or_create(title=data["title"],
+                                              session=data["session"],
+                                              day=data["day"],
+                                              price=data["price"],
                                               user=self.request.user,
                                               course=course)
         serializer = ParticipantsSerializer(participants)
