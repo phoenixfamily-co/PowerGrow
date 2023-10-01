@@ -493,6 +493,8 @@
     let endValue = document.getElementById("end")
     let numberValue = document.getElementById("number")
     let session = 1
+    let first
+    let second
 
 
     jalaliDatepicker.startWatch({
@@ -501,12 +503,12 @@
 
 
     start.addEventListener("change", function () {
-
+        first = start.value
         startValue.innerHTML = start.value
     })
 
     end.addEventListener("change", function () {
-
+        second = end.value
         endValue.innerHTML = end.value
 
 
@@ -561,7 +563,11 @@
 
         if (cookieValue !== undefined) {
             if (startValue.value !==undefined && endValue.value !== undefined) {
-                window.location.assign(`/reservation/transaction/${gym}/${startValue.value}/${endValue.value}/${session}/`)
+                {#window.location.assign(`/reservation/transaction/${gym}/${startValue.value}/${endValue.value}/${session}/`)#}
+
+                console.log(first)
+                console.log(second)
+
             }else {
                 alert("فیلدها الزامی میباشد")
             }
