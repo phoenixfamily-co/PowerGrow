@@ -548,8 +548,8 @@
 
 <script>
 
-    let gym =
-    {{ gym.id }}
+    let startData = new Date(first.replace('/','-'))
+    let gym = {{ gym.id }}
 
     const cookieValue = document.cookie
         .split("; ")
@@ -563,9 +563,9 @@
 
         if (cookieValue !== undefined) {
             if (startValue.value !==undefined && endValue.value !== undefined) {
-                {#window.location.assign(`/reservation/transaction/${gym}/${startValue.value}/${endValue.value}/${session}/`)#}
+                window.location.assign(`/reservation/transaction/${gym}/${startValue.value}/${endValue.value}/${session}/`)
 
-                console.log(first)
+                console.log(startData)
                 console.log(second)
 
             }else {
