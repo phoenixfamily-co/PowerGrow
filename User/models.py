@@ -39,7 +39,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
-    is_admin = models.BooleanField(default=False)
+    is_teacher = models.BooleanField(default=False)
     birthdate = models.CharField(max_length=10, default=timezone.now)
     national = models.IntegerField(blank=True, null=True, unique=True)
     gender = models.CharField(max_length=10, choices=GENDER_CHOICE)

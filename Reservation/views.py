@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.template import loader
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 
 from About.models import AboutUs
 from Product.models import Sport
@@ -71,6 +72,24 @@ class ReservationView(viewsets.ModelViewSet):
     queryset = Reservations.objects.all()
     serializer_class = ReservationSerializer
     permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        queryset = Reservations.objects.filter(user=self.request.user.id)
+        return queryset
+
+    def perform_create(self, serializer):
+        data = self.request.data
+        gym = Gym.objects.get(id=data["course"])
+        reservations = Reservations.objects.update_or_create(title=data["title"],
+                                                             startDateTime=data["start"],
+                                                             endDateTime=data["end"],
+                                                             reserved=data["reserved"],
+                                                             session=data["session"],
+                                                             price=data["price"],
+                                                             user=self.request.user,
+                                                             gym=gym)
+        serializer = ReservationSerializer(reservations)
+        return Response(serializer.data)
 
 
 class DateView(viewsets.ModelViewSet):
