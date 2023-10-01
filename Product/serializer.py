@@ -30,6 +30,7 @@ class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
         exclude = ['datetime']
+        depth = 1
 
 
 class SportSerializer(serializers.ModelSerializer):
