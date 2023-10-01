@@ -561,7 +561,7 @@
     registerButton.addEventListener('click', function () {
 
         if (cookieValue !== undefined) {
-            if (startValue.value !==undefined && endValue.value !== undefined) {
+            if (first !==undefined && second!== undefined) {
                 {#window.location.assign(`/reservation/transaction/${gym}/${first}/${second}/${session}/`)#}
 
                 console.log(second)
