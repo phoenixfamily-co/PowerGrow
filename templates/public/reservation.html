@@ -560,8 +560,8 @@
     registerButton.addEventListener('click', function () {
 
         if (cookieValue !== undefined) {
-            if (start.value !==undefined && end.value !== undefined) {
-                window.location.assign(`/reservation/transaction/${gym}/${start.value}/${end.value}/${session}/`)
+            if (startValue.value !==undefined && endValue.value !== undefined) {
+                window.location.assign(`/reservation/transaction/${gym}/${startValue.value}/${endValue.value}/${session}/`)
             }else {
                 alert("فیلدها الزامی میباشد")
             }
