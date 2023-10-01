@@ -562,9 +562,9 @@
 
         if (cookieValue !== undefined) {
             if (first !==undefined && second!== undefined) {
-                window.location.assign(`/reservation/transaction/${gym}/${first}/${second}/${session}/`)
-
-                console.log(second)
+                let startDate = first.replace (/\//g, "_");
+                let endDate = second.replace (/\//g, "_");
+                window.location.assign(`/reservation/transaction/${gym}/${startDate}/${endDate}/${session}/`)
 
             }else {
                 alert("فیلدها الزامی میباشد")
