@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'Reservation',
     'Seo',
     'User',
+    'Calendar',
     'django_otp',
     'django_otp.plugins.otp_static',
     'django_otp.plugins.otp_totp',

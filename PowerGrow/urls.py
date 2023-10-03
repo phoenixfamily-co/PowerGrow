@@ -27,6 +27,8 @@ urlpatterns = [
     path('reservation/', include('Reservation.urls', namespace='reservation')),
     path('about/', include('About.urls', namespace='about')),
     path('user/', include('User.urls', namespace='user')),
+    path('calendar/', include('Calendar.urls', namespace='calendar')),
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
