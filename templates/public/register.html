@@ -132,7 +132,7 @@ span {
         </label>
 
     <label for="number"><b>شماره موبایل</b>
-    <input id="phone" type="text" placeholder="9123456789" name="number" required>
+    <input id="phone" type="text" placeholder="9123456789" name="number" required maxlength="10">
         </label>
 
       <label for="birthdate"><b>تاریخ تولد</b>
@@ -185,7 +185,7 @@ span {
         body: JSON.stringify(Object.fromEntries(formData.entries()))
     });
     if (response.status===201){
-        window.location.assign(('../verification/'+num.value+'/').toString())
+        window.location.assign(('../verification/'+'+98'+num.value+'/').toString())
     }else {
             document.getElementById('error').innerHTML = response.statusText
     }
