@@ -139,7 +139,7 @@ span {
         </label>
 
       <label for="birthdate"><b>تاریخ تولد</b>
-    <input type="text" placeholder="1381/08/15" name="birthdate" required data-jdp>
+    <input data-jdp type="text" placeholder="1381/08/15" name="birthdate" required>
         </label>
 
     <label for="password"><b>رمز عبور</b>
@@ -169,6 +169,11 @@ span {
 </body>
 
 <script>
+
+      jalaliDatepicker.startWatch({
+        time: true,
+    });
+
 
     const registerForm = document.getElementById('registerForm');
     const num = document.getElementById('phone');
