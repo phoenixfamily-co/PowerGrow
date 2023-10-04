@@ -9,19 +9,19 @@ TYPE_CALENDAR = (
 
 class Year(models.Model):
     number = models.IntegerField(unique=True, null=True, blank=True)
-    name = models.CharField(unique=True, blank=True, null=True, max_length=20, choices=TYPE_CALENDAR)
+    name = models.CharField(blank=True, null=True, max_length=20, choices=TYPE_CALENDAR)
     leap = models.BooleanField(blank=True, null=True)
 
 
 class Month(models.Model):
     name = models.CharField(unique=True, blank=True, null=True, max_length=20)
-    number = models.IntegerField(unique=True, blank=True, null=True)
+    number = models.IntegerField(blank=True, null=True)
     max = models.IntegerField(blank=True, null=True)
     year = models.ForeignKey(Year, on_delete=models.CASCADE, related_name='months', null=True, blank=True)
 
 
 class Day(models.Model):
-    number = models.IntegerField(unique=True, blank=True, null=True)
+    number = models.IntegerField(blank=True, null=True)
     name = models.CharField(blank=True, null=True, max_length=20)
     description = models.TextField(blank=True, null=True)
     holiday = models.BooleanField(blank=True, null=True)
@@ -32,4 +32,4 @@ class Time(models.Model):
     time = models.TimeField(blank=True, null=True)
     duration = models.FloatField(blank=True, null=True)
     reserved = models.BooleanField(blank=True, null=True)
-    day = models.OneToOneField(Day, on_delete=models.CASCADE, related_name='times', null=True, blank=True)
+    day = models.ForeignKey(Day, on_delete=models.CASCADE, related_name='times', null=True, blank=True)
