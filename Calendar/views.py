@@ -1,7 +1,6 @@
-
 from rest_framework import viewsets
+from rest_framework.response import Response
 
-from Calendar.models import Day, Month, Year, Time
 from Calendar.serializer import *
 
 
@@ -14,6 +13,18 @@ class MonthView(viewsets.ModelViewSet):
     queryset = Month.objects.all()
     serializer_class = MonthSerializer
 
+    def perform_create(self, serializer):
+        data = self.request.data
+        year = Year.objects.get(id=data["year"])
+        month = Month.objects.update_or_create(
+            name=data["name"],
+            number=data["number"],
+            max=data["max"],
+            year=year
+        )
+        serializer = MonthSerializer(month)
+        return Response(serializer.data)
+
 
 class DayView(viewsets.ModelViewSet):
     queryset = Day.objects.all()
@@ -23,4 +34,3 @@ class DayView(viewsets.ModelViewSet):
 class TimeView(viewsets.ModelViewSet):
     queryset = Time.objects.all()
     serializer_class = TimeSerializer
-
