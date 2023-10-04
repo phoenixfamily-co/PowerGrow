@@ -30,6 +30,19 @@ class DayView(viewsets.ModelViewSet):
     queryset = Day.objects.all()
     serializer_class = DaySerializer
 
+    def perform_create(self, serializer):
+        data = self.request.data
+        month = Month.objects.get(id=data["month"])
+        day = Month.objects.update_or_create(
+            name=data["name"],
+            number=data["number"],
+            description=data["description"],
+            holiday=data["holiday"],
+            month=month
+        )
+        serializer = MonthSerializer(day)
+        return Response(serializer.data)
+
 
 class TimeView(viewsets.ModelViewSet):
     queryset = Time.objects.all()
