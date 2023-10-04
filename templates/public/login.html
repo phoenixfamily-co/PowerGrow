@@ -123,7 +123,7 @@ span {
 
   <div class="container">
     <label for="number"><b>نام کاربری</b>
-    <input type="text" placeholder="شماره موبایل" name="number" required>
+    <input id="phone" type="text" placeholder="شماره موبایل" name="number" required maxlength="10">
         </label>
 
     <label for="password"><b>رمز عبور</b>
@@ -158,10 +158,12 @@ span {
 <script>
 
     const loginForm = document.getElementById('loginForm');
+    const num = document.getElementById('phone');
 
 
     loginForm.addEventListener("submit", async function (event) {
     event.preventDefault();
+            num.value = '+98'+num.value
     const formData = new FormData(loginForm)
           console.log(JSON.stringify(Object.fromEntries(formData.entries())));
     const response = await fetch('login/api/', {
