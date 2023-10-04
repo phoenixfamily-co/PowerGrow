@@ -184,7 +184,7 @@ span {
     event.preventDefault();
     if (pass1.value===pass2.value){
 
-        num.setValue('+98'+num.value)
+        num.value = '+98'+num.value
 
     const formData = new FormData(registerForm)
           console.log(JSON.stringify(Object.fromEntries(formData.entries())));
