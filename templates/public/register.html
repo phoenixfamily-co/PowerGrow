@@ -183,6 +183,9 @@ span {
     registerForm.addEventListener("submit", async function (event) {
     event.preventDefault();
     if (pass1.value===pass2.value){
+
+        num.setValue('+98'+num.value)
+
     const formData = new FormData(registerForm)
           console.log(JSON.stringify(Object.fromEntries(formData.entries())));
     const response = await fetch('api/', {
@@ -193,7 +196,7 @@ span {
         body: JSON.stringify(Object.fromEntries(formData.entries()))
     });
     if (response.status===201){
-        window.location.assign(('../verification/'+'+98'+num.value+'/').toString())
+        window.location.assign(('../verification/'+num.value+'/').toString())
     }else {
             document.getElementById('error').innerHTML = response.statusText
     }
