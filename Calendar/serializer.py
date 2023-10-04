@@ -2,28 +2,38 @@ from rest_framework import serializers
 from Calendar.models import *
 
 
-class YearSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Year
-        fields = "__all__"
-        depth = 1
+class TimeSerializer(serializers.ModelSerializer):
 
-
-class MonthSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Month
+        model = Time
         fields = "__all__"
-        depth = 1
 
 
 class DaySerializer(serializers.ModelSerializer):
+    times = TimeSerializer(read_only=True, many=True)
+
     class Meta:
         model = Day
         fields = "__all__"
         depth = 2
 
 
-class TimeSerializer(serializers.ModelSerializer):
+class MonthSerializer(serializers.ModelSerializer):
+    days = DaySerializer(read_only=True, many=True)
+
     class Meta:
-        model = Time
+        model = Month
         fields = "__all__"
+        depth = 1
+
+
+class YearSerializer(serializers.ModelSerializer):
+    days = MonthSerializer(read_only=True, many=True)
+
+    class Meta:
+        model = Year
+        fields = "__all__"
+        depth = 1
+
+
+
