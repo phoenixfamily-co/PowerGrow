@@ -33,7 +33,7 @@ class DayView(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         data = self.request.data
         month = Month.objects.get(id=data["month"])
-        day = Month.objects.update_or_create(
+        day = Day.objects.update_or_create(
             name=data["name"],
             number=data["number"],
             description=data["description"],
