@@ -1165,7 +1165,7 @@
     let year = "{{ year }}"
     let months = []
 
-    year = year.json()
+    year = JSON.parse(JSON.stringify(year))
 
     console.log(year)
 
