@@ -1162,7 +1162,7 @@
 
 <script>
 
-    let year = JSON.parse("{{ year }}")
+    let year = JSON.parse("{{ year|escapejs }}")
     let months = []
 
     for (let i = 0; i < 5; i++){
