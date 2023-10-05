@@ -1,3 +1,5 @@
+import json
+
 from django.http import HttpResponse
 from django.template import loader
 from rest_framework import viewsets
@@ -23,7 +25,7 @@ def reservation_view(request):
         "about": about,
         "gym" : gym,
         "sport": sport,
-        "year": year,
+        "year": json.dumps(year),
         "month": month,
         "day": day,
     }
