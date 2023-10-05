@@ -25,7 +25,7 @@ def reservation_view(request):
         "about": about,
         "gym" : gym,
         "sport": sport,
-        "year": json.dumps(year),
+        "year": year,
         "month": month,
         "day": day,
     }
