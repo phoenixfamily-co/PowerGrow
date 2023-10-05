@@ -275,6 +275,7 @@
             float: right;
             background: #e4633a;
             text-align: center;
+            border-top-left-radius: 20px
         }
 
         .month ul {
@@ -292,11 +293,13 @@
 .month .prev {
   float: left;
     margin-top: 20px;
+    cursor: pointer;
 }
 
 .month .next {
   float: right;
     margin-top: 20px;
+    cursor: pointer;
 }
 
 
@@ -439,7 +442,7 @@
   <ul>
     <li class="prev">&#10094;</li>
     <li class="next">&#10095;</li>
-      <li>مهر</li>
+      <li id="monthTitle">مهر</li>
     <li>
       <span style="font-size:18px">{{ year.number }}</span>
     </li>
