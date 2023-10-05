@@ -1024,11 +1024,6 @@
     let session = 1
     let first
     let second
-    let month = {{ month.startDay}}
-
-
-            console.log(month.toString())
-
 
 
     jalaliDatepicker.startWatch({
@@ -1082,7 +1077,14 @@
 
 <script>
 
-    let gym = {{ gym.id }}
+    let gym = {{ gym.id }};
+    let month = {{ month.startDay}};
+
+
+    console.log(gym.toString())
+    console.log(month.toString())
+
+
 
     const cookieValue = document.cookie
         .split("; ")
