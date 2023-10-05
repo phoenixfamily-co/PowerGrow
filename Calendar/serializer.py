@@ -28,7 +28,7 @@ class MonthSerializer(serializers.ModelSerializer):
 
 
 class YearSerializer(serializers.ModelSerializer):
-    days = MonthSerializer(read_only=True, many=True)
+    months = MonthSerializer(read_only=True, many=True)
 
     class Meta:
         model = Year

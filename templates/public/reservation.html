@@ -393,27 +393,80 @@
 
 
 <div style="width: 70%; height: 100px; background: #FFFFFF ; float: right;border-top-left-radius: 20px; border-bottom-left-radius: 20px; margin-top: 15px">
+    <ol>
+        <ol>
+        <li>ش</li>
+            {% for x in day   %}
+                {% if x.name == "شنبه" %}
 
-    <label style="float: right; margin-top: 5vh ; margin-right: 10vh ; direction: rtl">
-        شروع رزرو:
-        <input id="startDate"
-               style="width:30vh; cursor: pointer; border-radius: 10px;background: #e5e5e5  ;text-align: center ; height: 6vh ; direction: ltr"
-               type="text" data-jdp placeholder="تاریخ و ساعت شروع رزور"/>
-    </label>
-    <label style="float: right; margin-top: 5vh ; margin-right: 10vh ; direction: rtl">
-        پایان رزرو:
-        <input id="endDate"
-               style="width:30vh; cursor: pointer; border-radius: 10px;background: #e5e5e5  ;text-align: center ; height: 6vh ; direction: ltr"
-               type="text" data-jdp placeholder="تاریخ و ساعت شروع رزور"/>
-    </label>
+                    <li>x.number</li>
 
-    <label style="float: right; margin-top: 5vh ; margin-right: 10vh ; direction: rtl">
-        تعداد جلسات در هفته:
-        <input id="sessionNumber"
-               style="width:10vh; cursor: pointer; border-radius: 10px;background: #e5e5e5  ;text-align: center ; height: 6vh "
-               type="number" min="1" max="7" value="1"/>
+                {% endif %} 
+            {% endfor %}
 
-    </label>
+    </ol>
+        <ol>
+        <li>ی</li>
+            {% for x in day   %}
+                {% if x.name == "یکشنبه" %}
+
+                    <li>x.number</li>
+
+                {% endif %}
+            {% endfor %}
+    </ol>
+        <ol>
+        <li>د</li>
+            {% for x in day   %}
+                {% if x.name == "دوشنبه" %}
+
+                    <li>x.number</li>
+
+                {% endif %}
+            {% endfor %}
+    </ol>
+        <ol>
+        <li>س</li>
+            {% for x in day   %}
+                {% if x.name == "سه شنبه" %}
+
+                    <li>x.number</li>
+
+                {% endif %}
+            {% endfor %}
+    </ol>
+        <ol>
+        <li>چ</li>
+            {% for x in day   %}
+                {% if x.name == "چهارشنبه" %}
+
+                    <li>x.number</li>
+
+                {% endif %}
+            {% endfor %}
+    </ol>
+    <ol>
+        <li>پ</li>
+        {% for x in day   %}
+                {% if x.name == "پنجشنبه" %}
+
+                    <li>x.number</li>
+
+                {% endif %}
+            {% endfor %}
+    </ol>
+        <ol>
+        <li>ج</li>
+            {% for x in day   %}
+                {% if x.name == "جمعه" %}
+
+                    <li>x.number</li>
+
+                {% endif %}
+            {% endfor %}
+    </ol>
+    
+    </ol>
 
 </div>
 

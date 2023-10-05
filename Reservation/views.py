@@ -3,6 +3,7 @@ from django.template import loader
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from Calendar.models import *
 
 from About.models import AboutUs
 from Product.models import Sport
@@ -14,11 +15,17 @@ def reservation_view(request):
     about = AboutUs.objects.values().first()
     gym = Gym.objects.values().first()
     sport = Sport.objects.all().values()
+    year = Year.objects.all().values()
+    month = Month.objects.all().values()
+    day = Day.objects.get(month=3)
     template = loader.get_template('public/reservation.html')
     context = {
         "about": about,
         "gym" : gym,
         "sport": sport,
+        "year": year,
+        "month": month,
+        "day": day,
     }
     return HttpResponse(template.render(context, request))
 
