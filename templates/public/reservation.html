@@ -268,6 +268,35 @@
             padding: 2px;
         }
 
+        .month {
+  padding: 70px 25px;
+  width: 100%;
+  background: #1abc9c;
+  text-align: center;
+}
+
+.month ul {
+  margin: 0;
+  padding: 0;
+}
+
+.month ul li {
+  color: white;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.month .prev {
+  float: left;
+  padding-top: 10px;
+}
+
+.month .next {
+  float: right;
+  padding-top: 10px;
+}
+
 
     </style>
 
@@ -404,7 +433,17 @@
 
 
 <div style="width: 70%; height: 300px; background: #FFFFFF ; float: right;border-top-left-radius: 20px; border-bottom-left-radius: 20px; margin-top: 15px">
-<div style="right: 0; direction: rtl ; position: absolute ; margin-right: 30px ; font-weight: bold ; font-size: 24px ; margin-top: 5px">{{ year.number }}</div>
+    <div class="month">
+  <ul>
+    <li class="prev">&#10094;</li>
+    <li class="next">&#10095;</li>
+    <li>
+      <span style="font-size:18px">{{ year.number }}</span>
+    </li>
+  </ul>
+</div>
+
+
     <ul style="display: flex ; right: 0; direction: rtl ; margin-top: 55px ; margin-right: -50px ; position: absolute">
         {% if month.startDay == "شنبه" %}
                  <ol>
