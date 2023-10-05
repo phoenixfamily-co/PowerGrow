@@ -17,7 +17,7 @@ def reservation_view(request):
     sport = Sport.objects.all().values()
     year = Year.objects.all().values()
     month = Month.objects.all().values()
-    day = Day.objects.filter(month=3).values()
+    day = Day.objects.filter(month=4).values()
     template = loader.get_template('public/reservation.html')
     context = {
         "about": about,
