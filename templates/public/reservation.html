@@ -401,12 +401,12 @@
     <ul style="display: flex ; float: right ; direction: rtl">
         <ol>
         <li>ش</li>
-            {% for x in day   %}
+            {% for x in range(day,5)   %}
                 {% if x.name == "شنبه" %}
 
                     <li>{{ x.number }}</li>
 
-                {% endif %} 
+                {% endif %}
             {% endfor %}
 
     </ol>
