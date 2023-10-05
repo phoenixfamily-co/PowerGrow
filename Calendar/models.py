@@ -16,6 +16,7 @@ class Year(models.Model):
 class Month(models.Model):
     name = models.CharField(unique=True, blank=True, null=True, max_length=20)
     number = models.IntegerField(blank=True, null=True)
+    startDay = models.CharField(blank=True, null=True, max_length=20)
     max = models.IntegerField(blank=True, null=True)
     year = models.ForeignKey(Year, on_delete=models.CASCADE, related_name='months', null=True, blank=True)
 
