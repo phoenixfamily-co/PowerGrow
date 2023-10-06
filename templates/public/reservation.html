@@ -633,11 +633,9 @@
         });
         const result = await response.json()
         const res = JSON.stringify(result)
-        const sum = JSON.parse(res)
-        const size = JSON.parse(sum).length
 
         for (let i = 0 ; i<5 ; i++){
-            console.log(sum.months[i].name.toString())
+            console.log(res.months[i].name)
 
         }
 
