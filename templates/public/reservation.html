@@ -604,14 +604,14 @@
         });
         result = await response.json()
         result = JSON.parse(JSON.stringify(result))
-        monthSize = result.months.length
+        monthSize = result[0].months.length
 
-
-        for (let i = 0; i < result.length; i++) {
+        for (let i = 0 ; i< monthSize ; i++){
 
         }
         monthTitle.innerHTML = result[0].months[currentMonth].name
-        yearTitle.innerHTML = result[0].number
+        yearTitle.innerHTML = res[0].number
+    }
 
         next.addEventListener("click", function () {
             if (currentMonth > 0) {
@@ -620,13 +620,12 @@
             }
         })
 
-        prev.addEventListener("click", function () {
-            if (currentMonth < monthSize - 1) {
-                currentMonth = currentMonth + 1
-                monthTitle.innerHTML = result[0].months[currentMonth].name
-            }
-        })
-    }
+    prev.addEventListener("click",function () {
+         if (currentMonth<monthSize-1){
+            currentMonth = currentMonth+1
+            monthTitle.innerHTML = result[0].months[currentMonth].name
+        }
+    })
 
 
 </script>
