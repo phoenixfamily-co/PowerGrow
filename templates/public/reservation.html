@@ -646,14 +646,14 @@
         monthTitle.innerHTML = monthsList[currentMonth]
     }
 
-    prev.addEventListener("click",function () {
-        if (currentMonth>1){
+    next.addEventListener("click",function () {
+        if (currentMonth>0){
             currentMonth = currentMonth-1
             monthTitle.innerHTML = monthsList[currentMonth]
         }
     })
 
-    next.addEventListener("click",function () {
+    prev.addEventListener("click",function () {
          if (currentMonth<monthsList.length-1){
             currentMonth = currentMonth+1
             monthTitle.innerHTML = monthsList[currentMonth]
