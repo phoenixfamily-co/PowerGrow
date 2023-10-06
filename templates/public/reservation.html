@@ -605,26 +605,26 @@
         result = JSON.parse(JSON.stringify(result))
 
 
-        for (let i = 0 ; i< result.length ; i++){
+        for (let i = 0; i < result.length; i++) {
 
         }
         monthTitle.innerHTML = result[0].months[currentMonth].name
         yearTitle.innerHTML = result[0].number
+
+        next.addEventListener("click", function () {
+            if (currentMonth > 0) {
+                currentMonth = currentMonth - 1
+                monthTitle.innerHTML = result[0].months[currentMonth].name
+            }
+        })
+
+        prev.addEventListener("click", function () {
+            if (currentMonth < monthsList.length - 1) {
+                currentMonth = currentMonth + 1
+                monthTitle.innerHTML = result[0].months[currentMonth].name
+            }
+        })
     }
-
-    next.addEventListener("click",function () {
-        if (currentMonth>0){
-            currentMonth = currentMonth-1
-            monthTitle.innerHTML = result[0].months[currentMonth].name
-        }
-    })
-
-    prev.addEventListener("click",function () {
-         if (currentMonth<monthsList.length-1){
-            currentMonth = currentMonth+1
-            monthTitle.innerHTML = result[0].months[currentMonth].name
-        }
-    })
 
 
 </script>
