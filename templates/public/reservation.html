@@ -322,6 +322,8 @@
   padding: 10px 0;
   background: #eee;
   margin: 0;
+        direction: rtl;
+
 }
 
 .days li {
@@ -684,14 +686,11 @@
 
     function getDays(currentMonth) {
         monthTitle.innerHTML = result[0].months[currentMonth].name
-
+            days.innerHTML=""
         for (let i = 0 ; i< result[0].months[currentMonth].days.length ; i++){
-
             const dayItem = document.createElement("li")
             dayItem.innerHTML = result[0].months[currentMonth].days[i].number
             days.appendChild(dayItem)
-
-
 
         }
     }
