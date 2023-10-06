@@ -605,23 +605,23 @@
         const size = res[0].months.length
 
         for (let i = 0 ; i< size ; i++){
-            monthsList.push(res[0].months[i].name)
+
         }
-        monthTitle.innerHTML = monthsList[currentMonth]
+        monthTitle.innerHTML = res[0].months[currentMonth].name
         yearTitle.innerHTML = res[0].number
     }
 
     next.addEventListener("click",function () {
         if (currentMonth>0){
             currentMonth = currentMonth-1
-            monthTitle.innerHTML = monthsList[currentMonth]
+            monthTitle.innerHTML = res[0].months[currentMonth].name
         }
     })
 
     prev.addEventListener("click",function () {
          if (currentMonth<monthsList.length-1){
             currentMonth = currentMonth+1
-            monthTitle.innerHTML = monthsList[currentMonth]
+            monthTitle.innerHTML = res[0].months[currentMonth].name
         }
     })
 
