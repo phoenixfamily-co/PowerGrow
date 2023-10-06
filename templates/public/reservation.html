@@ -633,8 +633,9 @@
         });
         const result = await response.json()
         const res = JSON.parse(JSON.stringify(result))
+        const size = res[0].months.length
 
-        for (let i = 0 ; i<(res[o].months).length ; i++){
+        for (let i = 0 ; i< size ; i++){
             console.log(res[0].months[i].name)
 
         }
