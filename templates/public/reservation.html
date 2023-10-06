@@ -592,6 +592,7 @@
     let next = document.getElementById("next")
     let currentMonth = 0
     let result
+    let monthSize
 
     async function getYear() {
 
@@ -603,6 +604,7 @@
         });
         result = await response.json()
         result = JSON.parse(JSON.stringify(result))
+        monthSize = result.months.length
 
 
         for (let i = 0; i < result.length; i++) {
@@ -619,7 +621,7 @@
         })
 
         prev.addEventListener("click", function () {
-            if (currentMonth < monthsList.length - 1) {
+            if (currentMonth < monthSize - 1) {
                 currentMonth = currentMonth + 1
                 monthTitle.innerHTML = result[0].months[currentMonth].name
             }
