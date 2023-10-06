@@ -622,6 +622,8 @@
 <script>
 
     let calendar = document.getElementById("calendar")
+    let monthTitle = document.getElementById("monthTitle")
+    let monthsList = []
 
     async function getYear() {
 
@@ -636,9 +638,9 @@
         const size = res[0].months.length
 
         for (let i = 0 ; i< size ; i++){
-            console.log(res[0].months[i].name)
-
+            monthsList.push(res[0].months[i].name)
         }
+        monthTitle.innerHTML = monthsList[0].value
 
     }
 
