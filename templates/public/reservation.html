@@ -440,8 +440,8 @@
 <div style="width: 35%; height: 300px; background: #FFFFFF ; float: right;border-top-left-radius: 20px; border-bottom-left-radius: 20px; margin-top: 15px">
     <div class="month">
   <ul>
-    <li class="prev">&#10094;</li>
-    <li class="next">&#10095;</li>
+    <li id="prev" class="prev">&#10094;</li>
+    <li id="next" class="next">&#10095;</li>
       <li id="monthTitle"></li>
     <li>
       <span style="font-size:18px">{{ year.number }}</span>
@@ -624,6 +624,9 @@
     let calendar = document.getElementById("calendar")
     let monthTitle = document.getElementById("monthTitle")
     let monthsList = []
+    let prev = document.getElementById("prev")
+    let next = document.getElementById("next")
+    let currentMonth = 0
 
     async function getYear() {
 
@@ -640,9 +643,22 @@
         for (let i = 0 ; i< size ; i++){
             monthsList.push(res[0].months[i].name)
         }
-        monthTitle.innerHTML = monthsList[0]
-
+        monthTitle.innerHTML = monthsList[currentMonth]
     }
+
+    prev.addEventListener("click",function () {
+        if (currentMonth>1){
+            currentMonth = currentMonth-1
+            monthTitle.innerHTML = monthsList[currentMonth]
+        }
+    })
+
+    next.addEventListener("click",function () {
+         if (currentMonth<monthsList.length-1){
+            currentMonth = currentMonth+1
+            monthTitle.innerHTML = monthsList[currentMonth]
+        }
+    })
 
 
 </script>
