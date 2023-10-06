@@ -632,7 +632,7 @@
             },
         });
         const result = await response.json()
-        const res = JSON.stringify(result)
+        const res = JSON.parse(JSON.stringify(result))
 
         for (let i = 0 ; i<5 ; i++){
             console.log(res.months[i].name)
