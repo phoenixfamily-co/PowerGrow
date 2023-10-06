@@ -444,7 +444,7 @@
     <li id="next" class="next">&#10095;</li>
       <li id="monthTitle"></li>
     <li>
-      <span style="font-size:18px">{{ year.number }}</span>
+      <span id="yearTitle" style="font-size:18px"></span>
     </li>
   </ul>
 </div>
@@ -586,6 +586,7 @@
 
     let calendar = document.getElementById("calendar")
     let monthTitle = document.getElementById("monthTitle")
+    let yearTitle = document.getElementById("yearTitle")
     let monthsList = []
     let prev = document.getElementById("prev")
     let next = document.getElementById("next")
@@ -607,6 +608,7 @@
             monthsList.push(res[0].months[i].name)
         }
         monthTitle.innerHTML = monthsList[currentMonth]
+        yearTitle.innerHTML = res[0].number
     }
 
     next.addEventListener("click",function () {
