@@ -689,28 +689,36 @@
         const emptyDay = document.createElement("li")
                 emptyDay.innerHTML = ' '
 
-        console.log(result[0].months[currentMonth].startDay)
-
         switch (result[0].months[currentMonth].startDay) {
 
             case "یکشنبه" :
-                days.appendChild(emptyDay)
+                const empty0 = document.createElement("li")
+                days.appendChild(empty0)
                 break
             case "دوشنبه" :
-                days.appendChild(emptyDay)
-                days.appendChild(emptyDay)
+                const empty1 = document.createElement("li")
+                days.appendChild(empty1)
+                const empty2 = document.createElement("li")
+                days.appendChild(empty2)
                 break
 
             case "سه شنبه" :
-                days.appendChild(emptyDay)
-                days.appendChild(emptyDay)
-                days.appendChild(emptyDay)
+               const empty3 = document.createElement("li")
+                days.appendChild(empty3)
+                const empty4 = document.createElement("li")
+                days.appendChild(empty4)
+                const empty5 = document.createElement("li")
+                days.appendChild(empty5)
                 break
              case "چهارشنبه" :
-                 days.appendChild(emptyDay)
-                 days.appendChild(emptyDay)
-                 days.appendChild(emptyDay)
-                 days.appendChild(emptyDay)
+                 const empty6 = document.createElement("li")
+                days.appendChild(empty6)
+                const empty7 = document.createElement("li")
+                days.appendChild(empty7)
+                const empty9 = document.createElement("li")
+                days.appendChild(empty9)
+                 const empty10 = document.createElement("li")
+                days.appendChild(empty10)
 
                 break
              case "پنجشنبه" :
