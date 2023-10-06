@@ -318,6 +318,42 @@
   text-align: center;
 }
 
+.days {
+  padding: 10px 0;
+  background: #eee;
+  margin: 0;
+}
+
+.days li {
+  list-style-type: none;
+  display: inline-block;
+  width: 13.6%;
+  text-align: center;
+  margin-bottom: 5px;
+  font-size:12px;
+  color: #777;
+}
+
+.days li .active {
+  padding: 5px;
+  background: #1abc9c;
+  color: white !important
+}
+
+/* Add media queries for smaller screens */
+@media screen and (max-width:720px) {
+  .weekdays li, .days li {width: 13.1%;}
+}
+
+@media screen and (max-width: 420px) {
+  .weekdays li, .days li {width: 12.5%;}
+  .days li .active {padding: 2px;}
+}
+
+@media screen and (max-width: 290px) {
+  .weekdays li, .days li {width: 12.2%;}
+}
+
 
 
     </style>
@@ -474,6 +510,8 @@
   <li>پ</li>
   <li>ج</li>
 </ul>
+    <ul id="days" class="days">
+    </ul>
 
 </div>
 
@@ -608,6 +646,7 @@
     let yearTitle = document.getElementById("yearTitle")
     let prev = document.getElementById("prev")
     let next = document.getElementById("next")
+    let days = document.getElementById("days")
     let currentMonth = 0
     let result
     let monthSize
@@ -648,13 +687,12 @@
 
         for (let i = 0 ; i< result[0].months[currentMonth].days.length ; i++){
 
-            switch (result[0].months[currentMonth].days[i].name){
-                case "شنبه" :
-                    const dayList = document.createElement("ol")
-                    const dayItem = document.createElement("li")
+            const dayItem = document.createElement("li")
+            dayItem.innerHTML = result[0].months[currentMonth].days[i].number
+            days.appendChild(dayItem)
 
 
-            }
+
         }
     }
 
