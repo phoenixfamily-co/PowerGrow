@@ -632,8 +632,14 @@
             },
         });
         const result = await response.json()
+        const res = JSON.stringify(result)
+        const sum = JSON.parse(res)
+        const size = JSON.parse(sum.months).length
 
-        console.log(JSON.stringify(result))
+        for (let i = 0 ; i<size ; i++){
+            console.log(sum.months[i].name)
+
+        }
 
     }
 
