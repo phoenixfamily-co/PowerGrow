@@ -686,6 +686,49 @@
     function getDays(currentMonth) {
         monthTitle.innerHTML = result[0].months[currentMonth].name
             days.innerHTML=""
+        const emptyDay = document.createElement("li")
+                emptyDay.innerHTML = ' '
+
+        switch (result[0].months[currentMonth].startDay) {
+
+            case "یکشنبه" :
+                days.appendChild(emptyDay)
+                break
+            case "دوشنبه" :
+                days.appendChild(emptyDay)
+                days.appendChild(emptyDay)
+                break
+
+            case "سه شنبه" :
+                days.appendChild(emptyDay)
+                days.appendChild(emptyDay)
+                days.appendChild(emptyDay)
+                break
+             case "چهارشنبه" :
+                 days.appendChild(emptyDay)
+                 days.appendChild(emptyDay)
+                 days.appendChild(emptyDay)
+                 days.appendChild(emptyDay)
+
+                break
+             case "پنجشنبه" :
+                 days.appendChild(emptyDay)
+                 days.appendChild(emptyDay)
+                 days.appendChild(emptyDay)
+                 days.appendChild(emptyDay)
+                 days.appendChild(emptyDay)
+                break
+             case "جمعه" :
+                 days.appendChild(emptyDay)
+                 days.appendChild(emptyDay)
+                 days.appendChild(emptyDay)
+                 days.appendChild(emptyDay)
+                 days.appendChild(emptyDay)
+                 days.appendChild(emptyDay)
+                break
+        }
+
+
         for (let i = 0 ; i< result[0].months[currentMonth].days.length ; i++){
             const dayItem = document.createElement("li")
             dayItem.innerHTML = result[0].months[currentMonth].days[i].number
