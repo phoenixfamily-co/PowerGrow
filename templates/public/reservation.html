@@ -307,7 +307,7 @@
 
 </head>
 
-<body>
+<body onload="getYear()">
 
 <div class="tab">
     <button class="tab-button" onclick="window.location.assign({% url 'home:home' %})">صفحه اصلی</button>
@@ -620,21 +620,22 @@
 </script>
 
 <script>
+
     let calendar = document.getElementById("calendar")
 
-     const response = await fetch('/calendar/api/year/', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    });
-    const result = await response.json()
+    async function getYear() {
 
-    console.log(result.toString())
+        const response = await fetch('/calendar/api/year/', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        const result = await response.json()
 
+        console.log(result.toString())
 
-
-
+    }
 
 
 </script>
