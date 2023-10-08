@@ -325,7 +325,7 @@
     border-bottom-left-radius: 20px;
 }
 
-.days li {
+.disActiveButton {
     list-style-type: none;
     display: inline-block;
     width: 13.3%;
@@ -339,12 +339,6 @@
             border-radius: 50px;
             background: #1a5bbc;
             color: white !important
-        }
-
-         .disActiveButton {
-             border-radius: 0;
-             background-color: #ffffff;
-             color: #000000  !important
         }
 
          .holidayButton {
@@ -768,7 +762,7 @@
             dayItem.innerHTML = result[0].months[currentMonth].days[i].number
             days.appendChild(dayItem)
         }
-         const buttons = document.querySelectorAll('.days li');
+         const buttons = document.querySelectorAll('.disActiveButton');
             Array.from(buttons).forEach(function (button) {
                 button.addEventListener('click', async function () {
                     const selected = document.querySelectorAll('.activeButton')
