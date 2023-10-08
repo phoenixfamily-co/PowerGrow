@@ -763,9 +763,9 @@
          const buttons = document.querySelectorAll('.days li');
             Array.from(buttons).forEach(function (button) {
                 button.addEventListener('click', async function () {
-                    const selected = document.querySelectorAll('activeButton')
-                    Array.from(selected).forEach(function (button) {
-                        button.classList.add("disActiveButton")
+                    const selected = document.querySelectorAll('.activeButton')
+                    Array.from(selected).forEach(function (btn) {
+                        btn.classList.add("disActiveButton")
                     })
                     button.classList.add("activeButton")
                     console.log(button.textContent)
