@@ -336,7 +336,7 @@
     cursor: pointer;
 }
 
-.days li .active {
+        .activeButton {
   padding: 5px;
   background: #1abc9c;
   color: white !important
@@ -757,6 +757,7 @@
          const buttons = document.querySelectorAll('.days li');
             Array.from(buttons).forEach(function (button) {
                 button.addEventListener('click', async function () {
+                    button.classList.add("activeButton")
                     console.log(button.textContent)
                 })
             })
