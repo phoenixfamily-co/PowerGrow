@@ -342,6 +342,11 @@
             color: white !important
         }
 
+         .disActiveButton {
+             background-color: #ddd;
+             color: #000000  !important
+        }
+
 /* Add media queries for smaller screens */
 @media screen and (max-width:720px) {
   .weekdays li, .days li {width: 13.1%;}
@@ -758,7 +763,7 @@
             Array.from(buttons).forEach(function (button) {
                 button.addEventListener('click', async function () {
                     Array.from(buttons).forEach(function (button) {
-                        button.classList.add('.days li')
+                        button.classList.add("disActiveButton")
                     })
                     button.classList.add("activeButton")
                     console.log(button.textContent)
