@@ -337,7 +337,6 @@
 }
 
         .activeButton {
-            width: 10px;
             border-radius: 50px;
             background: #1a5bbc;
             color: white !important
@@ -757,6 +756,7 @@
         }
          const buttons = document.querySelectorAll('.days li');
             Array.from(buttons).forEach(function (button) {
+                button.classList.add("activeButton")
                 button.addEventListener('click', async function () {
                     button.classList.add("activeButton")
                     console.log(button.textContent)
