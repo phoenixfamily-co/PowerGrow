@@ -658,6 +658,7 @@
     let currentMonth = 0
     let result
     let monthSize
+    let start = document.getElementById("start")
 
     async function getYear() {
 
@@ -761,6 +762,7 @@
                 dayItem.classList.add("holidayButton")
             }
             dayItem.innerHTML = result[0].months[currentMonth].days[i].number
+            dayItem.setAttribute()
             days.appendChild(dayItem)
         }
          const buttons = document.querySelectorAll('.days li');
@@ -771,7 +773,8 @@
                         btn.classList.remove("activeButton")
                     })
                     button.classList.add("activeButton")
-                    console.log(button.textContent)
+                    start.innerHTML = `${result[0].number}/${result[0].months[currentMonth].number}/${button.textContent}`
+
                 })
             })
     }
