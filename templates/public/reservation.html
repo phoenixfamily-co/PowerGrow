@@ -335,7 +335,6 @@
     color: #000000;
     cursor: pointer;
 }
-
         .activeButton {
             border-radius: 50px;
             background: #1a5bbc;
@@ -346,6 +345,12 @@
              border-radius: 0;
              background-color: #ffffff;
              color: #000000  !important
+        }
+
+         .holidayButton {
+            border-radius: 50px;
+            background: #ff0c0c;
+            color: white !important
         }
 
 /* Add media queries for smaller screens */
@@ -757,6 +762,11 @@
         }
         for (let i = 0 ; i< result[0].months[currentMonth].days.length ; i++){
             const dayItem = document.createElement("li")
+            if (result[0].months[currentMonth].days[i].holiday === true) {
+                dayItem.classList.add("holidayButton")
+            }else {
+                dayItem.classList.add("disActiveButton")
+            }
             dayItem.innerHTML = result[0].months[currentMonth].days[i].number
             days.appendChild(dayItem)
         }
