@@ -239,14 +239,14 @@
         }
 
         /* For mobile phones: */
-        [class*="col-"] {
-            width: 100%;
+        @media only screen and (min-width: 300px){
+            .col-hieght-13{
+                width: 100%;
+                height: 500px;
+            }
         }
 
-        [class*=col-hieght-13]{
-            width: 80%;
-            height: 500px;
-        }
+
 
         @media only screen and (min-width: 768px) {
             /* For desktop: */
@@ -427,6 +427,7 @@
 
 
         .property {
+            width: 45%;
             direction: rtl;
             unicode-bidi: bidi-override;
             position: absolute;
@@ -639,14 +640,14 @@
         برای سلامت جسمی و روانی اعضای خانواده دارد و باعث تقویت روابط خانوادگی و افزایش همبستگی میان آن‌ها می‌شود.
     </p>
 
-    <div class="property col-5" style="right: 0 ; margin-top: 370px">
+    <div class="property" style="right: 0 ; margin-top: 370px">
         <button class="property-item col-4" onclick="">تقویت روابط خانوادگی</button>
         <button class="property-item col-4" onclick="">افزایش اعتماد به نفس</button>
         <button class="property-item col-4" onclick="">بهبود خلاقیت</button>
 
     </div>
 
-    <div class="property col-5" style="right: 0 ; margin-top: 420px">
+    <div class="property" style="right: 0 ; margin-top: 420px">
         <button class="property-item col-4" onclick="">ایجاد خاطرات به یاد ماندنی</button>
         <button class="property-item col-4" onclick="">افزایش همبستگی</button>
         <button class="property-item col-4" onclick="">لحظات شاد و مفرح</button>
@@ -674,14 +675,14 @@
         انگیزه فرد نیز در انتخاب ورزش مناسب بسیار مهم است.
     </p>
 
-    <div class="property col-5" style="left: 0 ; margin-top: 370px">
+    <div class="property" style="left: 0 ; margin-top: 370px">
         <button class="property-item col-4" onclick="">استفاده از ابزار های حرفه ای</button>
         <button class="property-item col-4" onclick="">دقت و تکرار ارزیابی</button>
         <button class="property-item col-4" onclick="">توجه به عوامل مختلف</button>
 
     </div>
 
-    <div class="property col-5" style="left: 0 ; margin-top: 420px">
+    <div class="property" style="left: 0 ; margin-top: 420px">
         <button class="property-item col-4" onclick="">مربی های حرفه ای</button>
         <button class="property-item col-4" onclick="">برنامه های شخصی سازی شده</button>
         <button class="property-item col-4" onclick="">تمرکز بر سلامت روحی و روانی</button>
