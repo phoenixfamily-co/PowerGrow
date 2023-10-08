@@ -764,7 +764,7 @@
             dayItem.innerHTML = result[0].months[currentMonth].days[i].number
             days.appendChild(dayItem)
         }
-         const buttons = document.querySelectorAll('.disActiveButton');
+         const buttons = document.querySelectorAll('.days li');
             Array.from(buttons).forEach(function (button) {
                 button.addEventListener('click', async function () {
                     const selected = document.querySelectorAll('.activeButton')
