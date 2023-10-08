@@ -756,8 +756,10 @@
         }
          const buttons = document.querySelectorAll('.days li');
             Array.from(buttons).forEach(function (button) {
-                button.classList.add('.days li')
                 button.addEventListener('click', async function () {
+                    Array.from(buttons).forEach(function (button) {
+                        button.classList.add('.days li')
+                    })
                     button.classList.add("activeButton")
                     console.log(button.textContent)
                 })
