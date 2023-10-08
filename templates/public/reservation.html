@@ -325,7 +325,7 @@
     border-bottom-left-radius: 20px;
 }
 
-.disActiveButton {
+.days li {
     list-style-type: none;
     display: inline-block;
     width: 13.3%;
@@ -759,7 +759,7 @@
             if (result[0].months[currentMonth].days[i].holiday === true) {
                 dayItem.classList.add("holidayButton")
             }else{
-                dayItem.classList.add("disActiveButton")
+                dayItem.classList.add(".days li")
             }
             dayItem.innerHTML = result[0].months[currentMonth].days[i].number
             days.appendChild(dayItem)
