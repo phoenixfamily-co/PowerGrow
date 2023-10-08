@@ -767,7 +767,7 @@
                 button.addEventListener('click', async function () {
                     const selected = document.querySelectorAll('.activeButton')
                     Array.from(selected).forEach(function (btn) {
-                        btn.classList.add("disActiveButton")
+                        btn.classList.remove("activeButton")
                     })
                     button.classList.add("activeButton")
                     console.log(button.textContent)
