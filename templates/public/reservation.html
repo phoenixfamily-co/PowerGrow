@@ -758,8 +758,6 @@
             const dayItem = document.createElement("li")
             if (result[0].months[currentMonth].days[i].holiday === true) {
                 dayItem.classList.add("holidayButton")
-            }else{
-                dayItem.classList.add(".days li")
             }
             dayItem.innerHTML = result[0].months[currentMonth].days[i].number
             days.appendChild(dayItem)
