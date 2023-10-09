@@ -145,7 +145,7 @@
 
 		<ul class="card-title">
 			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">تاریخ رزرو :</li>
-			<li id="startDay" style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin: -4px ; direction: rtl">}</li>
+			<li id="startDay" style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin: -4px ; direction: ltr">{{ day }}</li>
 
 		</ul>
 
@@ -198,15 +198,4 @@
 
 </body>
 
-
-<script>
-    let day = {{ day }};
-
-    let start = document.getElementById("startDay")
-
-    start.innerHTML = day.toString()
-
-
-
-</script>
 </html>
