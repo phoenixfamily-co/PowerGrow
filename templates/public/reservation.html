@@ -526,7 +526,9 @@
     <ul class="card-title">
         <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -10px">قیمت نهایی :
         </li>
-        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -10px"> تومان</li>
+        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -10px"> {{ gym.tuition }}
+            تومان
+        </li>
     </ul>
 
     <ul class="card-title" style="margin-top: 20px">
@@ -693,8 +695,6 @@
 
 
     registerButton.addEventListener('click', function () {
-        console.log(checkedValue)
-
         if (cookieValue !== undefined) {
             if (date !==undefined && time!== undefined && checkedValue.checked) {
                 window.location.assign(`/reservation/transaction/${gym}/${date}/${time}/${dur}/`)
