@@ -682,7 +682,7 @@
     let date
     let time
     let dur = 90
-    let checkedValue = document.getElementById("checkbox").value;
+    let checkedValue = document.getElementById("checkbox")
 
     const cookieValue = document.cookie
         .split("; ")
@@ -696,7 +696,7 @@
         console.log(checkedValue)
 
         if (cookieValue !== undefined) {
-            if (date !==undefined && time!== undefined) {
+            if (date !==undefined && time!== undefined && checkedValue.checked) {
                 window.location.assign(`/reservation/transaction/${gym}/${date}/${time}/${dur}/`)
 
             }else {
