@@ -479,7 +479,7 @@
     <ul class="card-title">
         <li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">تاریخ رزرو :
         </li>
-        <li id="start"
+        <li id="startDay"
             style="direction:ltr ; font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin: -4px"></li>
 
     </ul>
@@ -489,7 +489,7 @@
     <ul class="card-title">
         <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">ساعت رزرو :
         </li>
-        <li id="end"
+        <li id="startTime"
             style="direction:ltr ;font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px"></li>
     </ul>
 
@@ -499,7 +499,7 @@
         <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">
             مدت رزرو :
         </li>
-        <li id="number"
+        <li id="timeDuration"
             style="direction:rtl ; font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">
         </li>
     </ul>
@@ -719,7 +719,7 @@
     let monthPosition = 0
     let result
     let monthSize
-    let start = document.getElementById("start")
+    let startDay = document.getElementById("startDay")
     let currentDayId
     let today = new Date().toLocaleDateString('fa-IR');
     today = today.split('/')
@@ -832,7 +832,7 @@
             {
                 dayItem.classList.add("activeButton")
                 currentDayId = result[0].months[monthPosition].days[i].id
-                start.innerHTML = `${result[0].number}/${result[0].months[monthPosition].number}/${result[0].months[monthPosition].days[i].number}`
+                startDay.innerHTML = `${result[0].number}/${result[0].months[monthPosition].number}/${result[0].months[monthPosition].days[i].number}`
 
             }else if (result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number < parseInt(currentDay)){
                                 dayItem.classList.add("disActiveButton")
@@ -850,7 +850,7 @@
                     })
                     button.classList.add("activeButton")
                     await getTimes(button.getAttribute("itemid"))
-                    start.innerHTML = `${result[0].number}/${result[0].months[monthPosition].number}/${button.textContent}`
+                    startDay.innerHTML = `${result[0].number}/${result[0].months[monthPosition].number}/${button.textContent}`
 
                 })
             })
@@ -868,6 +868,9 @@
     let timeSize
     let res
     let times = document.getElementById("times")
+    let startTime = document.getElementById("startTime")
+    let duration = document.getElementById("timeDuration")
+
 
 
         async function getTimes(day) {
@@ -900,6 +903,8 @@
                         btn.classList.remove("selectedTime")
                     })
                    btn.classList.add("selectedTime")
+                    startTime.innerHTML = btn.textContent
+                    duration.innerHTML = " 90 دقیقه"
                 })
             })
     }
