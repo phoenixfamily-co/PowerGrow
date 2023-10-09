@@ -837,6 +837,8 @@
 
         async function getTimes(day) {
 
+        console.log(day)
+
         const param = {'day' : day};
 
         const response = await fetch('/calendar/api/time/', {
