@@ -765,11 +765,6 @@
         const emptyDay = document.createElement("li")
                 emptyDay.innerHTML = ' '
 
-        if(monthPosition===0) {
-            getTimes(currentDayId)
-        }
-
-
         switch (result[0].months[monthPosition].startDay) {
 
             case "یکشنبه" :
@@ -859,6 +854,10 @@
 
                 })
             })
+
+         if(monthPosition===0) {
+            getTimes(currentDayId)
+        }
     }
 
 </script>
