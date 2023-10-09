@@ -1,5 +1,3 @@
-import json
-
 from django.http import HttpResponse
 from django.template import loader
 from rest_framework import viewsets
@@ -28,7 +26,7 @@ def reservation_view(request):
     return HttpResponse(template.render(context, request))
 
 
-def transaction_view(request, pk, start, end, session):
+def transaction_view(request, pk, day, time, duration):
     about = AboutUs.objects.values().first()
     gym = Gym.objects.filter(id=pk).values().first()
     sport = Sport.objects.all().values()
@@ -37,14 +35,14 @@ def transaction_view(request, pk, start, end, session):
         "about": about,
         "gym" : gym,
         "sport": sport,
-        "start": start,
-        "end": end,
-        "session": session
+        "startDay": day,
+        "startTime": time,
+        "duration" : duration,
     }
     return HttpResponse(template.render(context, request))
 
 
-def successful_view(request,  pk, start, end, session):
+def successful_view(request, pk, day, time, duration):
     about = AboutUs.objects.values().first()
     gym = Gym.objects.filter(id=pk).values().first()
     sport = Sport.objects.all().values()
@@ -53,9 +51,10 @@ def successful_view(request,  pk, start, end, session):
         "about": about,
         "gym": gym,
         "sport": sport,
-        "start": start,
-        "end": end,
-        "session": session
+        "startDay": day,
+        "startTime": time,
+        "duration": duration,
+
     }
 
     return HttpResponse(template.render(context, request))
