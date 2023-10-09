@@ -840,17 +840,16 @@
 
         const param = {'day' : day};
 
-        const response = await fetch('/calendar/api/time/', {
+        const result = await fetch('/calendar/api/time/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(param)
         });
-        res = await response.json()
-        res = JSON.parse(JSON.stringify(res))
+        res = await result.json()
+        {#res = JSON.parse(JSON.stringify(res))#}
             console.log(res)
-
     }
 
 </script>
