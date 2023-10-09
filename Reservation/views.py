@@ -35,8 +35,8 @@ def transaction_view(request, pk, day, time, duration):
         "about": about,
         "gym" : gym,
         "sport": sport,
-        "startDay": day,
-        "startTime": time,
+        "day": day,
+        "time": time,
         "duration" : duration,
     }
     return HttpResponse(template.render(context, request))
@@ -51,8 +51,8 @@ def successful_view(request, pk, day, time, duration):
         "about": about,
         "gym": gym,
         "sport": sport,
-        "startDay": day,
-        "startTime": time,
+        "day": day,
+        "time": time,
         "duration": duration,
 
     }
