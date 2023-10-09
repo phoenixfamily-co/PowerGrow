@@ -689,7 +689,7 @@
     let today = new Date().toLocaleDateString('fa-IR');
     today = today.split('/')
     let currentDay = today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
-    let currentMonth = today[1]
+    let currentMonth = today[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
 
     async function getYear() {
 
@@ -791,11 +791,10 @@
             const dayItem = document.createElement("li")
             if (result[0].months[monthPosition].days[i].holiday === true) {
                 dayItem.classList.add("holidayButton")
-            }else if ( result[0].months[monthPosition].days[i].number === parseInt(currentDay))
+            }else if ( result[0].months[monthPosition].number === currentMonth && result[0].months[monthPosition].days[i].number === currentDay)
             {
-                console.log("ok")
+                dayItem.classList.add("activeButton")
             }
-            console.log(currentDay)
             dayItem.innerHTML = result[0].months[monthPosition].days[i].number
             days.appendChild(dayItem)
         }
