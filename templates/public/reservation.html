@@ -855,6 +855,7 @@
                     await getTimes(button.getAttribute("itemid"))
                     startDay.innerHTML = `${result[0].number}/${result[0].months[monthPosition].number}/${button.textContent}`
                     date = `${result[0].number}_${result[0].months[monthPosition].number}_${button.textContent}`
+                    console.log(date)
 
                 })
             })
@@ -909,6 +910,7 @@
                    btn.classList.add("selectedTime")
                     startTime.innerHTML = btn.textContent
                     time = btn.textContent
+                    console.log(time)
                     duration.innerHTML = " 90 دقیقه"
                 })
             })
