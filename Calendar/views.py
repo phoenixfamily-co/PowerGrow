@@ -47,4 +47,8 @@ class DayView(viewsets.ModelViewSet):
 class TimeView(viewsets.ModelViewSet):
     queryset = Time.objects.all()
     serializer_class = TimeSerializer
-    lookup_field = "day"
+
+    def get_queryset(self):
+        queryset = self.queryset
+        query_set = queryset.filter(day=self.request.data["day"])
+        return query_set
