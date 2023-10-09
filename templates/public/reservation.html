@@ -688,7 +688,7 @@
 
     let today = new Date().toLocaleDateString('fa-IR');
     today = today.split('/')
-    let currentDay = today[2]
+    let currentDay = today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
     let currentMonth = today[1]
 
     async function getYear() {
@@ -795,7 +795,7 @@
             {
                 console.log("ok")
             }
-            console.log(Number(currentDay))
+            console.log(currentDay)
             dayItem.innerHTML = result[0].months[monthPosition].days[i].number
             days.appendChild(dayItem)
         }
