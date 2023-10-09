@@ -879,9 +879,9 @@
         }
 
                const timeButton = document.querySelectorAll('.times li');
-            Array.from(timeButton).forEach(function (button) {
-                button.addEventListener('click', async function () {
-                   button.classList.add("selectedTime")
+            Array.from(timeButton).forEach(function (btn) {
+                btn.addEventListener('click', async function () {
+                   this.classList.add("selectedTime")
                 })
             })
     }
