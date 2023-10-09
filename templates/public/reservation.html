@@ -881,6 +881,7 @@
                const timeButton = document.querySelectorAll('.times li');
             Array.from(timeButton).forEach(function (button) {
                 button.addEventListener('click', async function () {
+                    console.log(button.textContent)
                     const selected = document.querySelectorAll('.selectedTime')
                     Array.from(selected).forEach(function (btn) {
                         btn.classList.remove("selectedTime")
@@ -888,7 +889,6 @@
                     button.classList.add("selectedTime")
                 })
             })
-
     }
 
 </script>
