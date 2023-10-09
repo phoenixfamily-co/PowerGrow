@@ -834,6 +834,8 @@
 
     let timeSize
     let res
+    let times = document.getElementById("times")
+
 
         async function getTimes(day) {
 
@@ -845,7 +847,13 @@
         });
         res = await result.json()
         res = JSON.parse(JSON.stringify(res))
-            console.log(res)
+
+              for (let i = 0 ; i< res.length ; i++){
+            const timeItem = document.createElement("li")
+                  timeItem.innerHTML = result[0].months[monthPosition].days[i].number
+                  times.appendChild(timeItem)
+        }
+
     }
 
 </script>
