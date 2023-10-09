@@ -836,8 +836,9 @@
     let res
 
         async function getTimes(day) {
+        day = parseInt(day)
 
-        const param = {'day' : parseInt(day)};
+        const param = {'day' : day};
 
         const response = await fetch('/calendar/api/time/', {
             method: 'POST',
