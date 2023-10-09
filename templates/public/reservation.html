@@ -836,6 +836,7 @@
                 dayItem.classList.add("activeButton")
                 currentDayId = result[0].months[monthPosition].days[i].id
                 startDay.innerHTML = `${result[0].number}/${result[0].months[monthPosition].number}/${result[0].months[monthPosition].days[i].number}`
+                date = `${result[0].number}_${result[0].months[monthPosition].number}_${result[0].months[monthPosition].days[i].number}`
 
             }else if (result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number < parseInt(currentDay)){
                                 dayItem.classList.add("disActiveButton")
