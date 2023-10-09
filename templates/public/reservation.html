@@ -765,6 +765,10 @@
         const emptyDay = document.createElement("li")
                 emptyDay.innerHTML = ' '
 
+        if(monthPosition===0) {
+            getTimes(currentDayId)
+        }
+
 
         switch (result[0].months[monthPosition].startDay) {
 
@@ -865,11 +869,6 @@
     let timeSize
     let res
     let times = document.getElementById("times")
-
-
-     document.addEventListener('DOMContentLoaded', function() {
-        getTimes(currentDayId)
-})
 
 
         async function getTimes(day) {
