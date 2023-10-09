@@ -532,7 +532,7 @@
     <ul class="card-title" style="margin-top: 20px">
         <li style="font-size: 12px;font-weight: bold ;display: inline ; float: right ; margin-top: -25px ; direction: rtl">
             <label>
-                <input type="checkbox" style="margin-top: 3px ; position: absolute; cursor: pointer;">
+                <input id="checkbox" type="checkbox" style="margin-top: 3px ; position: absolute; cursor: pointer;">
             </label>
             <a style="margin-right: 15px">شرابط این قرارداد را میپذیرم</a>
         </li>
@@ -682,6 +682,7 @@
     let date
     let time
     let dur = 90
+    let checkedValue = document.getElementById("checkbox").value;
 
     const cookieValue = document.cookie
         .split("; ")
@@ -692,6 +693,7 @@
 
 
     registerButton.addEventListener('click', function () {
+        console.log(checkedValue)
 
         if (cookieValue !== undefined) {
             if (date !==undefined && time!== undefined) {
