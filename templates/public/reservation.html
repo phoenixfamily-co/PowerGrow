@@ -791,7 +791,7 @@
             const dayItem = document.createElement("li")
             if (result[0].months[monthPosition].days[i].holiday === true) {
                 dayItem.classList.add("holidayButton")
-            }else if ( result[0].months[monthPosition].days[i].number === currentDay)
+            }else if ( result[0].months[monthPosition].days[i].number === parseInt(currentDay))
             {
                 console.log( result[0].months[monthPosition].days[i].number)
             }
