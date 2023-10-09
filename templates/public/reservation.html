@@ -858,6 +858,20 @@
                   times.appendChild(timeItem)
         }
 
+               const buttons = document.querySelectorAll('.times li');
+            Array.from(buttons).forEach(function (button) {
+                button.addEventListener('click', async function () {
+                    const selected = document.querySelectorAll('.activeButton')
+                    Array.from(selected).forEach(function (btn) {
+                        btn.classList.remove("activeButton")
+                    })
+                    button.classList.add("activeButton")
+                    await getTimes(button.getAttribute("itemid"))
+                    start.innerHTML = `${result[0].number}/${result[0].months[monthPosition].number}/${button.textContent}`
+
+                })
+            })
+
     }
 
 </script>
