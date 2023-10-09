@@ -887,11 +887,11 @@
                const buttons = document.querySelectorAll('.times li');
             Array.from(buttons).forEach(function (button) {
                 button.addEventListener('click', async function () {
-                    const selected = document.querySelectorAll('.activeButton')
+                    const selected = document.querySelectorAll('.selectedTime')
                     Array.from(selected).forEach(function (btn) {
-                        btn.classList.remove("activeButton")
+                        btn.classList.remove("selectedTime")
                     })
-                    button.classList.add("activeButton")
+                    button.classList.add("selectedTime")
                     await getTimes(button.getAttribute("itemid"))
                     start.innerHTML = `${result[0].number}/${result[0].months[monthPosition].number}/${button.textContent}`
 
