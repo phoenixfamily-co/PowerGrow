@@ -839,7 +839,7 @@
 
         console.log(day)
 
-        const param = {'day' : day};
+        const param = {'day' : parseInt(day)};
 
         const response = await fetch('/calendar/api/time/', {
             method: 'POST',
