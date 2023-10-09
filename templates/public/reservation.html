@@ -839,7 +839,6 @@
             dayItem.setAttribute("itemid",result[0].months[monthPosition].days[i].id)
             days.appendChild(dayItem)
         }
-        getTimes(currentDayId)
          const buttons = document.querySelectorAll('.days li');
             Array.from(buttons).forEach(function (button) {
                 button.addEventListener('click', async function () {
@@ -854,6 +853,7 @@
                 })
             })
     }
+    getTimes(currentDayId)
 
 </script>
 
