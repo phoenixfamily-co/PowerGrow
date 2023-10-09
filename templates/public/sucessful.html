@@ -180,14 +180,14 @@
 
 			<ul class="card-title">
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; ; margin-top: -4px">تخفیف:</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; ; margin-top: -4px">{{ off }}%</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; ; margin-top: -4px">{{ gym.off }}%</li>
 		</ul>
 
 		<hr>
 
 		<ul class="card-title">
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -10px">قیمت نهایی:</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -10px ; direction: rtl">{{ price }} تومان </li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -10px ; direction: rtl">{{ gym.tuition }} تومان </li>
 		</ul>
 
 
@@ -209,9 +209,8 @@
 
         const param = {
             "title": "{{ gym.title }}",
+            "startDateTime": "{{ day }} {{ time }}",
             "session": {{ session}},
-            "start": "{{ start }}",
-            "end": {{ end}},
             "gym": {{ gym.id }},
             "price": {{ price }},
             "reserved": {{ reserved }},
