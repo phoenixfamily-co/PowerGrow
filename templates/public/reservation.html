@@ -789,13 +789,13 @@
         }
         for (let i = 0 ; i< result[0].months[monthPosition].days.length ; i++){
             const dayItem = document.createElement("li")
+            console.log(result[0].months[monthPosition].days[i].number)
             if (result[0].months[monthPosition].days[i].holiday === true) {
                 dayItem.classList.add("holidayButton")
             }else if ( result[0].months[monthPosition].days[i].number === parseInt(currentDay))
             {
                 console.log("ok")
             }
-            console.log(currentDay)
             dayItem.innerHTML = result[0].months[monthPosition].days[i].number
             days.appendChild(dayItem)
         }
