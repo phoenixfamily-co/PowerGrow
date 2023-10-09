@@ -847,7 +847,7 @@
             body: JSON.stringify(param)
         });
         res = await response.json()
-        res = JSON.parse(JSON.stringify(result))
+        res = JSON.parse(JSON.stringify(res))
         timeSize = res.length
 
             console.log(res)
