@@ -798,7 +798,7 @@
             dayItem.innerHTML = result[0].months[monthPosition].days[i].number
             days.appendChild(dayItem)
         }
-        getDays(currentDay,result[0].months[monthPosition].number)
+        getTimes(currentDay,result[0].months[monthPosition].number)
          const buttons = document.querySelectorAll('.days li');
             Array.from(buttons).forEach(function (button) {
                 button.addEventListener('click', async function () {
@@ -807,7 +807,7 @@
                         btn.classList.remove("activeButton")
                     })
                     button.classList.add("activeButton")
-                    getDays(button.textContent,result[0].months[monthPosition].number)
+                    getTimes(button.textContent,result[0].months[monthPosition].number)
                     start.innerHTML = `${result[0].number}/${result[0].months[monthPosition].number}/${button.textContent}`
 
                 })
