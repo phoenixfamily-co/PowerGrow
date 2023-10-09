@@ -49,6 +49,5 @@ class TimeView(viewsets.ModelViewSet):
     serializer_class = TimeSerializer
 
     def get_queryset(self):
-        queryset = self.queryset
-        query_set = queryset.filter(day=self.request.data["day"])
+        query_set = Time.objects.filter(day=self.kwargs.get('pk'))
         return query_set
