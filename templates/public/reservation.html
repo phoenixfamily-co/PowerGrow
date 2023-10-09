@@ -678,7 +678,10 @@
 
 <script>
 
-    let gym = {{ gym.id }}
+    let gym = {{ gym.id }};
+    let date
+    let time
+    let dur = 90
 
     const cookieValue = document.cookie
         .split("; ")
@@ -691,10 +694,8 @@
     registerButton.addEventListener('click', function () {
 
         if (cookieValue !== undefined) {
-            if (first !==undefined && second!== undefined) {
-                let startDate = first.replace (/\//g, "_");
-                let endDate = second.replace (/\//g, "_");
-                window.location.assign(`/reservation/transaction/${gym}/${startDate}/${endDate}/${session}/`)
+            if (date !==undefined && time!== undefined) {
+                window.location.assign(`/reservation/transaction/${gym}/${date}/${time}/${dur}/`)
 
             }else {
                 alert("فیلدها الزامی میباشد")
@@ -853,6 +854,7 @@
                     button.classList.add("activeButton")
                     await getTimes(button.getAttribute("itemid"))
                     startDay.innerHTML = `${result[0].number}/${result[0].months[monthPosition].number}/${button.textContent}`
+                    date = `${result[0].number}_${result[0].months[monthPosition].number}_${button.textContent}`
 
                 })
             })
@@ -906,6 +908,7 @@
                     })
                    btn.classList.add("selectedTime")
                     startTime.innerHTML = btn.textContent
+                    time = btn.textContent
                     duration.innerHTML = " 90 دقیقه"
                 })
             })
