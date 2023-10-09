@@ -348,6 +348,13 @@
              pointer-events: none;
         }
 
+         .disActiveButton{
+
+             cursor: none;
+             pointer-events: none;
+             opacity:0.6;
+         }
+
 
          .times {
   padding: 5px 0;
@@ -796,6 +803,8 @@
                 dayItem.classList.add("activeButton")
                 start.innerHTML = `${result[0].number}/${result[0].months[monthPosition].number}/${result[0].months[monthPosition].days[i].number}`
 
+            }else if (result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number < parseInt(currentDay)){
+                                dayItem.classList.add("disActiveButton")
             }
             dayItem.innerHTML = result[0].months[monthPosition].days[i].number
             days.appendChild(dayItem)
