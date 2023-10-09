@@ -855,10 +855,6 @@
             })
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
-        getTimes(currentDayId)
-})
-
 </script>
 
 
@@ -867,6 +863,11 @@
     let timeSize
     let res
     let times = document.getElementById("times")
+
+
+     document.addEventListener('DOMContentLoaded', function() {
+        getTimes(currentDayId)
+})
 
 
         async function getTimes(day) {
@@ -885,6 +886,9 @@
               for (let i = 0 ; i< res.length ; i++){
             const timeItem = document.createElement("li")
                   timeItem.innerHTML = res[i].time
+                  if (res[i].reserved ===true){
+                      timeItem.classList.add("reservedTime")
+                  }
                   times.appendChild(timeItem)
         }
 
