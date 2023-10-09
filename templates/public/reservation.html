@@ -791,7 +791,7 @@
             const dayItem = document.createElement("li")
             if (result[0].months[monthPosition].days[i].holiday === true) {
                 dayItem.classList.add("holidayButton")
-            }else if( result[0].months[monthPosition].number === currentMonth && result[0].months[currentMonth].days[i].number === currentDay)
+            }else if ( result[0].months[currentMonth].days[i].number === currentDay)
             {
                 console.log( result[0].months[currentMonth].days[i].number)
             }
@@ -817,8 +817,6 @@
 
 
     function getTimes(day, month) {
-
-
 
     }
 
