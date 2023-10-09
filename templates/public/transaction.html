@@ -145,7 +145,7 @@
 
 		<ul class="card-title">
 			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">تاریخ رزرو :</li>
-			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin: -4px ; direction: rtl">{{ day }}</li>
+			<li id="startDay" style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin: -4px ; direction: rtl">}</li>
 
 		</ul>
 
@@ -194,8 +194,19 @@
 		<button class="card-button" onclick="window.location.assign(`/reservation/successful/{{ gym.id }}/{{ day }}/{{ time}}/{{ duration }}/`)">
 		پرداخت
 		</button>
-
         </div>
 
 </body>
+
+
+<script>
+    let day = {{ day }};
+
+    let start = document.getElementById("startDay")
+
+    start.innerHTML = day.replace('_','/')
+
+
+
+</script>
 </html>
