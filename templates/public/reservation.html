@@ -692,7 +692,7 @@
     let result
     let monthSize
     let start = document.getElementById("start")
-
+    let currentDayId
     let today = new Date().toLocaleDateString('fa-IR');
     today = today.split('/')
     let currentDay = today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
@@ -801,15 +801,17 @@
             }else if ( result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number === parseInt(currentDay))
             {
                 dayItem.classList.add("activeButton")
+                currentDayId = result[0].months[monthPosition].days[i].id
                 start.innerHTML = `${result[0].number}/${result[0].months[monthPosition].number}/${result[0].months[monthPosition].days[i].number}`
 
             }else if (result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number < parseInt(currentDay)){
                                 dayItem.classList.add("disActiveButton")
             }
             dayItem.innerHTML = result[0].months[monthPosition].days[i].number
+            dayItem.setAttribute("itemid",result[0].months[monthPosition].days[i].id)
             days.appendChild(dayItem)
         }
-        getTimes(currentDay,result[0].months[monthPosition].number)
+        getTimes(currentDayId)
          const buttons = document.querySelectorAll('.days li');
             Array.from(buttons).forEach(function (button) {
                 button.addEventListener('click', async function () {
@@ -818,16 +820,37 @@
                         btn.classList.remove("activeButton")
                     })
                     button.classList.add("activeButton")
-                    getTimes(button.textContent,result[0].months[monthPosition].number)
+                    await getTimes(button.getAttribute("itemid"))
                     start.innerHTML = `${result[0].number}/${result[0].months[monthPosition].number}/${button.textContent}`
 
                 })
             })
     }
 
+</script>
 
 
-    function getTimes(day, month) {
+<script>
+
+    let timeSize
+    let res
+
+        async function getTimes(day) {
+
+        const param = {'day' : day};
+
+        const response = await fetch('/calendar/api/time/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(param)
+        });
+        res = await response.json()
+        res = JSON.parse(JSON.stringify(result))
+        timeSize = res.length
+
+            console.log(res)
 
     }
 
