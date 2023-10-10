@@ -834,7 +834,7 @@
         }
         for (let i = 0 ; i< result[0].months[monthPosition].days.length ; i++){
             const dayItem = document.createElement("li")
-            if (result[0].months[monthPosition].days[i].holiday === true) {
+            if (result[0].months[monthPosition].days[i].holiday === true && result[0].months[monthPosition].days[i].number > parseInt(currentDay)) {
                 dayItem.classList.add("holidayButton")
             }else if ( result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number === parseInt(currentDay))
             {
@@ -844,7 +844,6 @@
                 date = `${result[0].number}_${result[0].months[monthPosition].number}_${result[0].months[monthPosition].days[i].number}`
 
             }else if (result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number < parseInt(currentDay)){
-                dayItem.classList.remove("holidayButton")
                 dayItem.classList.add("disActiveButton")
             }
             dayItem.innerHTML = result[0].months[monthPosition].days[i].number
