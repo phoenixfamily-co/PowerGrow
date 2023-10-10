@@ -31,6 +31,6 @@ class Day(models.Model):
 
 class Time(models.Model):
     time = models.TimeField(blank=True, null=True)
-    duration = models.FloatField(blank=True, null=True)
+    duration = models.IntegerField(blank=True, null=True)
     reserved = models.BooleanField(blank=True, null=True)
     day = models.ForeignKey(Day, on_delete=models.CASCADE, related_name='times', null=True, blank=True)
