@@ -3,12 +3,6 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 from django.utils import timezone
 from phonenumber_field.modelfields import PhoneNumberField
 
-
-GENDER_CHOICE = (
-    ('آقا', 'man'),
-    ('خانم', 'woman'),
-)
-
 SALARY_CHOICE = (
     ('آزاد', 'free'),
     ('درصدی', 'percentage'),
@@ -34,7 +28,7 @@ class CustomAccountManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    name = models.CharField(max_length=50, blank=True, null=True)
+    name = models.CharField(max_length=50)
     number = PhoneNumberField(unique=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
@@ -42,7 +36,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_teacher = models.BooleanField(default=False)
     birthdate = models.CharField(max_length=10, default=timezone.now)
     national = models.IntegerField(blank=True, null=True, unique=True)
-    gender = models.CharField(max_length=10, choices=GENDER_CHOICE)
+    gender = models.CharField(max_length=10)
     salary = models.CharField(max_length=20, choices=SALARY_CHOICE)
     fee = models.IntegerField(null=True, blank=True)
     USERNAME_FIELD = 'number'
