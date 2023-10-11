@@ -496,9 +496,9 @@
 
     <ul class="card-title">
         <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">
-            مدت رزرو :
+            تعداد جلسات رزرو :
         </li>
-        <li id="timeDuration"
+        <li id="timeSession"
             style="direction:rtl ; font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">
         </li>
     </ul>
@@ -589,7 +589,7 @@
     </ul>
 
         <label for="number" style="margin-left: 10px ; padding-bottom: 5px; float: left ; position: absolute ; margin-top: -50px">
-        <input id="number" type="number" style="cursor: pointer ; width: 50px ; text-align: center" value="1">
+        <input id="inputSession" type="number" style="cursor: pointer ; width: 50px ; text-align: center" value="1">
         <a > تعداد جلسات رزرو </a>
     </label>
 
@@ -886,7 +886,8 @@
     let res
     let times = document.getElementById("times")
     let startTime = document.getElementById("startTime")
-    let duration = document.getElementById("timeDuration")
+    let session = document.getElementById("timeSession")
+    let inputSession = document.getElementById("inputSession")
 
 
 
@@ -922,11 +923,13 @@
                    btn.classList.add("selectedTime")
                     startTime.innerHTML = btn.textContent
                     time = btn.textContent
-                    console.log(time)
-                    duration.innerHTML = " 90 دقیقه"
                 })
             })
     }
+
+    inputSession.addEventListener("input",function () {
+        session.innerHTML = inputSession.value
+    })
 
 </script>
 

@@ -4,11 +4,10 @@ from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from Calendar.models import *
-
 from About.models import AboutUs
 from Product.models import Sport
 from Reservation.models import *
-from Reservation.serializer import GymSerializer, ReservationSerializer, DatesSerializer, TimesSerializer
+from Reservation.serializer import GymSerializer, ReservationSerializer
 
 
 def reservation_view(request):
@@ -19,7 +18,7 @@ def reservation_view(request):
     template = loader.get_template('public/reservation.html')
     context = {
         "about": about,
-        "gym" : gym,
+        "gym": gym,
         "sport": sport,
         "year": year,
     }
@@ -33,11 +32,11 @@ def transaction_view(request, pk, day, time, duration):
     template = loader.get_template('public/transaction.html')
     context = {
         "about": about,
-        "gym" : gym,
+        "gym": gym,
         "sport": sport,
         "day": day,
         "time": time,
-        "duration" : duration,
+        "duration": duration,
     }
     return HttpResponse(template.render(context, request))
 
@@ -86,21 +85,11 @@ class ReservationView(viewsets.ModelViewSet):
         gym = Gym.objects.get(id=data["course"])
         reservations = Reservations.objects.update_or_create(title=data["title"],
                                                              startDateTime=data["start"],
-                                                             endDateTime=data["end"],
-                                                             reserved=data["reserved"],
+                                                             duration=data["duration"],
+                                                             holiday=data["holiday"],
                                                              session=data["session"],
                                                              price=data["price"],
                                                              user=self.request.user,
                                                              gym=gym)
         serializer = ReservationSerializer(reservations)
         return Response(serializer.data)
-
-
-class DateView(viewsets.ModelViewSet):
-    queryset = Dates.objects.all()
-    serializer_class = DatesSerializer
-
-
-class TimeView(viewsets.ModelViewSet):
-    queryset = Times.objects.all()
-    serializer_class = TimesSerializer
