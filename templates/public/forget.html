@@ -123,7 +123,7 @@ span {
 
   <div class="container">
     <label for="number"><b>شماره تلفن</b>
-    <input id="phone" type="text" placeholder="9123456789" name="number" required>
+    <input id="number" type="text" placeholder="9123456789" name="number" required>
         </label>
 
     <button type="submit" style="margin-top: 30px">ارسال</button>
@@ -143,19 +143,20 @@ span {
 <script>
 
     const forgetForm = document.getElementById('forgetForm');
-    const number = document.getElementById('phone');
+    const username = document.getElementById('number');
 
 
     forgetForm.addEventListener("submit", async function (event) {
     event.preventDefault();
-    const response = await fetch('api/'+number.value , {
+
+    const response = await fetch('api/'+'+98'+username.value, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
         },
     });
     if (response.status===200){
-        window.location.assign("../verification/"+number.value)
+        window.location.assign("../verification/"+'+98'+username.value)
     }else {
             document.getElementById('error').innerHTML = response.statusText
     }

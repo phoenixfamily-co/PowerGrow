@@ -131,15 +131,15 @@ span {
   <div class="container">
 
       <label for="name"><b>نام نام خانوادگی</b>
-    <input type="text" placeholder="نام نام خانوادگی" name="name" required>
+    <input id="name" type="text" placeholder="نام نام خانوادگی" name="name" required>
         </label>
 
     <label for="number"><b>شماره موبایل</b>
-    <input id="phone" type="text" placeholder="9123456789" name="number" required maxlength="10">
+    <input id="number" type="text" placeholder="9123456789" name="number" required maxlength="10">
         </label>
 
       <label for="birthdate"><b>تاریخ تولد</b>
-    <input data-jdp type="text" placeholder="1381/08/15" name="birthdate" required>
+    <input id="birthdate" data-jdp type="text" placeholder="1381/08/15" name="birthdate" required>
         </label>
 
     <label for="password"><b>رمز عبور</b>
@@ -149,10 +149,10 @@ span {
     <input id="pass2" type="password" placeholder="تایید پسورد" name="password" required>
         </label>
       <label for="gender" style="margin-right: 20px; margin-top:75px ; position: absolute ; right: 0 "><b>جنسیت</b>
-          <input type="radio" checked="checked" name="gender" value='آقا'>
+          <input id="man" type="radio" checked="checked" name="gender" value='آقا'>
           آقا
 
-          <input type="radio" checked="checked" name="gender" value='خانم'>
+          <input id="woman" type="radio" checked="checked" name="gender" value='خانم'>
           خانم
         </label>
     <button type="submit">ثبت نام</button>
@@ -176,15 +176,31 @@ span {
 
 
     const registerForm = document.getElementById('registerForm');
-    const num = document.getElementById('phone');
+    const name = document.getElementById('name');
+    const username = document.getElementById('number');
+    const birthdate = document.getElementById('birthdate');
     const pass1 = document.getElementById('pass1');
     const pass2 = document.getElementById('pass2');
+    let man = document.getElementById("man");
+    let gender
 
     registerForm.addEventListener("submit", async function (event) {
     event.preventDefault();
     if (pass1.value===pass2.value){
 
-        num.value = '+98'+num.value
+        if (man.checked){
+            gender = "man"
+        }else {
+            gender = "women"
+        }
+
+     const param = {
+         "number": `+98${username.value}`,
+         "password": pass1.value,
+         "name": name.value,
+         "birthdate": birthdate.value,
+         "gender": gender,
+        }
 
     const formData = new FormData(registerForm)
           console.log(JSON.stringify(Object.fromEntries(formData.entries())));
@@ -193,7 +209,7 @@ span {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(Object.fromEntries(formData.entries()))
+        body: JSON.stringify(param)
     });
     if (response.status===201){
         window.location.assign(('../verification/'+num.value+'/').toString())

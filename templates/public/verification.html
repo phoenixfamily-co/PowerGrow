@@ -150,7 +150,7 @@ span {
     verificationForm.addEventListener("submit", async function (event) {
     event.preventDefault();
     console.log(param)
-    const response = await fetch('../api/'+'+'+number+'/'+code.value , {
+    const response = await fetch('../api/'+number+'/'+code.value , {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -159,7 +159,7 @@ span {
     if (response.status===200){
         window.location.assign("../password/"+number)
     }else if (response.status===401) {
-        const result = await fetch('../api/'+'+'+number+'/activate/', {
+        const result = await fetch('../api/'+number+'/activate/', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
