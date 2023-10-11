@@ -1,9 +1,11 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, status
+from rest_framework.response import Response
+
 from Product.models import Course, Sport
 from About.models import AboutUs
 from django.template import loader
 from .serializer import *
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 
 
 def home_view(request):
@@ -24,6 +26,13 @@ def home_view(request):
 
 class SliderView(viewsets.ModelViewSet):
     queryset = Slider.objects.all()
-    lookup_field = "id"
     serializer_class = SliderSerializer
+
+    def destroy(self, request, *args, **kwargs):
+        try:
+            instance = self.get_object()
+            self.perform_destroy(instance)
+        except Http404:
+            pass
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
