@@ -46,7 +46,7 @@ def successful_view(request, pk, day, time, session, holiday):
     about = AboutUs.objects.values().first()
     gym = Gym.objects.filter(id=pk).values().first()
     sport = Sport.objects.all().values()
-    template = loader.get_template('public/sucessful.html')
+    template = loader.get_template('public/successful.html')
     context = {
         "about": about,
         "gym": gym,
