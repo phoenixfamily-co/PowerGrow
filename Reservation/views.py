@@ -84,7 +84,7 @@ class ReservationView(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         data = self.request.data
-        gym = Gym.objects.get(id=data["course"])
+        gym = Gym.objects.get(id=data["gym"])
         reservations = Reservations.objects.update_or_create(title=data["title"],
                                                              startDateTime=data["start"],
                                                              holiday=data["holiday"],
