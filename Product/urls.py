@@ -6,6 +6,7 @@ app_name = 'product'
 urlpatterns = [
     path('<int:pk>/<int:session>/<int:day>/', product_view, name='product'),
     path('api/course/', CourseView.as_view({'post': 'create', 'get': 'list'}), name='courses'),
+    path('api/course/<int:pk>/', CourseView.as_view({'delete': 'destroy'}), name='delete-courses'),
     path('api/participate/', ParticipationView.as_view({'post': 'create', 'get': 'list'}), name='participate'),
     path('api/search/<int:pk>/', SearchView.as_view(), name='search'),
     path('api/days/<int:pk>/', DaysView.as_view({'post': 'create', 'get': 'list'}), name='days'),
