@@ -709,7 +709,11 @@
     registerButton.addEventListener('click', function () {
         if (cookieValue !== undefined) {
             if (date !==undefined && time!== undefined && checkedValue.checked) {
-                holiday = !!holidayBox.checked;
+                if (holidayBox.checked){
+                    holiday = "False"
+                }else {
+                    holiday = "True"
+                }
                 window.location.assign(`/reservation/transaction/${gym}/${date}/${time}/${session}/${holiday}`)
             }else {
                 alert("فیلدها الزامی میباشد")
