@@ -15,7 +15,6 @@ class Gym(models.Model):
 class Reservations(models.Model):
     title = models.TextField(blank=True, null=True)
     startDateTime = models.DateTimeField(blank=True, null=True)
-    duration = models.IntegerField(blank=True, null=True)
     holiday = models.BooleanField(blank=True, null=True)
     session = models.IntegerField(blank=True, null=True)
     price = models.IntegerField(blank=True, null=True)
