@@ -576,8 +576,8 @@
 
     </ul>
 
-    <label for="checkbox" style="margin-left: 10px ; padding-bottom: 5px; float: left ; position: absolute">
-        <input id="checkbox" type="checkbox" style="cursor: pointer;">
+    <label for="holidayBox" style="margin-left: 10px ; padding-bottom: 5px; float: left ; position: absolute">
+        <input id="holidayBox" type="checkbox" style="cursor: pointer;">
         <a >روز های تعطیل محاسبه نشود</a>
     </label>
 
@@ -693,8 +693,10 @@
     let gym = {{ gym.id }};
     let date
     let time
-    let dur = 90
+    let session = 1
     let checkedValue = document.getElementById("checkbox")
+    let holidayBox = document.getElementById("holidayBox")
+    let holiday
 
     const cookieValue = document.cookie
         .split("; ")
@@ -707,8 +709,8 @@
     registerButton.addEventListener('click', function () {
         if (cookieValue !== undefined) {
             if (date !==undefined && time!== undefined && checkedValue.checked) {
-                window.location.assign(`/reservation/transaction/${gym}/${date}/${time}/${dur}/`)
-
+                holiday = !!holidayBox.checked;
+                window.location.assign(`/reservation/transaction/${gym}/${date}/${time}/${session}/${holiday}`)
             }else {
                 alert("فیلدها الزامی میباشد")
             }
@@ -886,7 +888,7 @@
     let res
     let times = document.getElementById("times")
     let startTime = document.getElementById("startTime")
-    let session = document.getElementById("timeSession")
+    let sessionTitle = document.getElementById("timeSession")
     let inputSession = document.getElementById("inputSession")
 
 
@@ -928,7 +930,8 @@
     }
 
     inputSession.addEventListener("input",function () {
-        session.innerHTML = inputSession.value + " جلسه"
+        sessionTitle.innerHTML = inputSession.value + " جلسه"
+        session = inputSession.value
     })
 
 </script>

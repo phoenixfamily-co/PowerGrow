@@ -164,8 +164,8 @@
 		<hr>
 
              <ul class="card-title">
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">مدت رزرو :</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px ; direction: rtl">{{ duration }} دقیقه </li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">تعداد جلسات رزرو :</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px ; direction: rtl">{{ session }} جلسه </li>
 		</ul>
 
 
@@ -191,7 +191,7 @@
 		</ul>
 
 
-		<button class="card-button" onclick="window.location.assign(`/reservation/successful/{{ gym.id }}/{{ day }}/{{ time}}/{{ duration }}/`)">
+		<button class="card-button" onclick="window.location.assign(`/reservation/successful/{{ gym.id }}/{{ day }}/{{ time}}/{{ session }}/`)">
 		پرداخت
 		</button>
         </div>

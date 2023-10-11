@@ -25,7 +25,7 @@ def reservation_view(request):
     return HttpResponse(template.render(context, request))
 
 
-def transaction_view(request, pk, day, time, duration):
+def transaction_view(request, pk, day, time, session, holiday):
     about = AboutUs.objects.values().first()
     gym = Gym.objects.filter(id=pk).values().first()
     sport = Sport.objects.all().values()
@@ -36,12 +36,13 @@ def transaction_view(request, pk, day, time, duration):
         "sport": sport,
         "day": day,
         "time": time,
-        "duration": duration,
+        "holiday" : holiday,
+        "Session": session,
     }
     return HttpResponse(template.render(context, request))
 
 
-def successful_view(request, pk, day, time, duration):
+def successful_view(request, pk, day, time, session, holiday):
     about = AboutUs.objects.values().first()
     gym = Gym.objects.filter(id=pk).values().first()
     sport = Sport.objects.all().values()
@@ -51,8 +52,9 @@ def successful_view(request, pk, day, time, duration):
         "gym": gym,
         "sport": sport,
         "day": day,
+        "holiday" : holiday,
         "time": time,
-        "duration": duration,
+        "Session": session,
 
     }
 
@@ -85,7 +87,6 @@ class ReservationView(viewsets.ModelViewSet):
         gym = Gym.objects.get(id=data["course"])
         reservations = Reservations.objects.update_or_create(title=data["title"],
                                                              startDateTime=data["start"],
-                                                             duration=data["duration"],
                                                              holiday=data["holiday"],
                                                              session=data["session"],
                                                              price=data["price"],
