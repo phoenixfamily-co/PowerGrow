@@ -127,7 +127,7 @@ span {
         </label>
 
     <label for="password"><b>رمز عبور</b>
-    <input type="password" placeholder="پسورد" name="password" required>
+    <input id="password" type="password" placeholder="پسورد" name="password" required>
         </label>
 
     <button type="submit" style="margin-top: 30px">ورود</button>
@@ -158,20 +158,22 @@ span {
 <script>
 
     const loginForm = document.getElementById('loginForm');
-    const num = document.getElementById('phone');
+    const username = document.getElementById('phone');
+    const pass = document.getElementById('password');
 
+    const param = {
+            "phone": `+98${username}`,
+            "password": pass,
+        }
 
     loginForm.addEventListener("submit", async function (event) {
     event.preventDefault();
-            num.value = '+98'+num.value
-    const formData = new FormData(loginForm)
-          console.log(JSON.stringify(Object.fromEntries(formData.entries())));
     const response = await fetch('login/api/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(Object.fromEntries(formData.entries()))
+        body: JSON.stringify(param)
     });
     const result = await response.json()
         JSON.stringify(result)
