@@ -202,8 +202,7 @@ span {
          "gender": gender,
         }
 
-    const formData = new FormData(registerForm)
-          console.log(JSON.stringify(Object.fromEntries(formData.entries())));
+          console.log(param);
     const response = await fetch('api/', {
         method: 'POST',
         headers: {
