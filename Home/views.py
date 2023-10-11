@@ -24,5 +24,6 @@ def home_view(request):
 
 class SliderView(viewsets.ModelViewSet):
     queryset = Slider.objects.all()
+    lookup_field = "id"
     serializer_class = SliderSerializer
 
