@@ -217,10 +217,10 @@
         const param = {
             "title": "{{ gym.title }}",
             "startDateTime": "{{ day }} {{ time }}",
-            "session": {{ session}},
-            "gym": {{ gym.id }},
-            "price": {{ price }},
-            "holiday": {{ holiday }},
+            "session": "{{ session }}",
+            "gym": "{{ gym.id }}",
+            "price": "{{ price }}",
+            "holiday": '{{ holiday }}',
 
         }
         console.log(JSON.stringify(param))
