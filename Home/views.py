@@ -27,6 +27,7 @@ def home_view(request):
 class SliderView(viewsets.ModelViewSet):
     queryset = Slider.objects.all()
     serializer_class = SliderSerializer
+    lookup_field = 'id'
 
     def destroy(self, request, *args, **kwargs):
         try:
