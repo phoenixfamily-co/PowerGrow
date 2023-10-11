@@ -119,7 +119,7 @@
 		</style>
 
 </head>
-<body onload="register()">
+<body>
 
 <a href="{% url 'home:home' %}"  style="font-size: 22px ; position: absolute ; margin-top: 30px ; margin-left: 40px ; cursor: pointer">بستن</a>
 
@@ -245,4 +245,11 @@
     }
 
 </script>
+
+<script>
+    setTimeout(function(){
+        register()
+    }, 3000);
+  </script>
+
 </html>
