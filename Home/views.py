@@ -24,8 +24,7 @@ def home_view(request):
     return HttpResponse(template.render(context, request))
 
 
-class SliderView(viewsets.ModelViewSet, generics.RetrieveUpdateDestroyAPIView):
+class SliderView(viewsets.ModelViewSet):
     queryset = Slider.objects.all()
     serializer_class = SliderSerializer
-    lookup_field = 'pk'
 
