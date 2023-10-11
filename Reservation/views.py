@@ -37,7 +37,7 @@ def transaction_view(request, pk, day, time, session, holiday):
         "day": day,
         "time": time,
         "holiday" : holiday,
-        "Session": session,
+        "session": session,
     }
     return HttpResponse(template.render(context, request))
 
