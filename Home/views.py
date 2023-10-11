@@ -1,4 +1,4 @@
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, generics
 from rest_framework.response import Response
 
 from Product.models import Course, Sport
@@ -24,16 +24,8 @@ def home_view(request):
     return HttpResponse(template.render(context, request))
 
 
-class SliderView(viewsets.ModelViewSet):
+class SliderView(viewsets.ModelViewSet, generics.RetrieveUpdateDestroyAPIView):
     queryset = Slider.objects.all()
     serializer_class = SliderSerializer
-    lookup_field = 'id'
-
-    def destroy(self, request, *args, **kwargs):
-        try:
-            instance = self.get_object()
-            self.perform_destroy(instance)
-        except Http404:
-            pass
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    lookup_field = 'pk'
 
