@@ -210,7 +210,8 @@
      async function register() {
 
         let gym = {{ gym.id }};
-        let price = {{ gym.tuition }}
+        let price = {{ gym.tuition }};
+        let session = {{ session }}
 
         const cookieValue = document.cookie
         .split("; ")
@@ -220,7 +221,7 @@
         const param = {
             "title": "{{ gym.title }}",
             "startDateTime": "{{ day }} {{ time }}",
-            "session": 1,
+            "session": parseInt(session),
             "gym": parseInt(gym),
             "price": parseInt(price) ,
             "holiday": '{{ holiday }}',

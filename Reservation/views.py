@@ -54,7 +54,7 @@ def successful_view(request, pk, day, time, session, holiday):
         "day": day,
         "holiday" : holiday,
         "time": time,
-        "Session": session,
+        "session": session,
 
     }
 
