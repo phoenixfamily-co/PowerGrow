@@ -157,9 +157,8 @@ span {
         </label>
     <button type="submit">ثبت نام</button>
 
-      <h5 id="error" style="margin-top: 50px ; position: absolute ; color: red"></h5>
-
   </div>
+
 </form>
 
 </div>
@@ -213,12 +212,12 @@ span {
     if (response.status===201){
         window.location.assign(('../verification/'+num.value+'/').toString())
     }else {
-            document.getElementById('error').innerHTML = response.statusText
+        alert(response.statusText)
     }
     }
     else
         {
-            document.getElementById('error').innerHTML = "پسورد ها یکسان نیستند"
+            alert("پسورد ها یکسان نیستند")
         }
 });
 
