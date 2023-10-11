@@ -123,7 +123,7 @@ span {
 
   <div class="container">
     <label for="number"><b>نام کاربری</b>
-    <input id="phone" type="text" placeholder="شماره موبایل" name="number" required maxlength="10">
+    <input id="number" type="text" placeholder="شماره موبایل" name="number" required maxlength="10">
         </label>
 
     <label for="password"><b>رمز عبور</b>
@@ -158,17 +158,17 @@ span {
 <script>
 
     const loginForm = document.getElementById('loginForm');
-    const username = document.getElementById('phone');
+    const username = document.getElementById('number');
     const pass = document.getElementById('password');
 
-    const param = {
+    loginForm.addEventListener("submit", async function (event) {
+           event.preventDefault();
+
+        const param = {
             "number": `+98${username.value}`,
             "password": pass.value,
         }
 
-    loginForm.addEventListener("submit", async function (event) {
-                console.log(param)
-    event.preventDefault();
     const response = await fetch('login/api/', {
         method: 'POST',
         headers: {
