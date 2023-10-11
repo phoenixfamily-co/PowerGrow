@@ -868,7 +868,7 @@
                     button.classList.add("activeButton")
                     await getTimes(button.getAttribute("itemid"))
                     startDay.innerHTML = `${result[0].number}/${result[0].months[monthPosition].number}/${button.textContent}`
-                    date = `${result[0].number}_${result[0].months[monthPosition].number}_${button.textContent}`
+                    date = `${result[0].number}-${result[0].months[monthPosition].number}-${button.textContent}`
                     console.log(date)
 
                 })
