@@ -209,6 +209,8 @@
 
      async function register() {
 
+        let gym = {{ gym.id }}
+
         const cookieValue = document.cookie
         .split("; ")
         .find((row) => row.startsWith("access="))
@@ -218,8 +220,8 @@
             "title": "{{ gym.title }}",
             "startDateTime": "{{ day }} {{ time }}",
             "session": "{{ session }}",
-            "gym": "{{ gym.id }}",
-            "price": "{{ price }}",
+            "gym": parseInt(gym),
+            "price": "{{ gym.tuition }}",
             "holiday": '{{ holiday }}',
 
         }
