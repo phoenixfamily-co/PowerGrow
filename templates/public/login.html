@@ -165,9 +165,9 @@ span {
             "number": `+98${username.value}`,
             "password": pass.value,
         }
-        console.log(param)
 
     loginForm.addEventListener("submit", async function (event) {
+                console.log(param)
     event.preventDefault();
     const response = await fetch('login/api/', {
         method: 'POST',
