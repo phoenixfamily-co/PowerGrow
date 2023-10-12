@@ -136,7 +136,7 @@
 
 
 		<ul class="card-title">
-			<li style="font-size: 16px;font-weight: bold ;display: inline">نام دوره:</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline">نام دوره :</li>
 			<li style="font-size: 16px;font-weight: bold ;display: inline ;float: left">{{ product.title}}</li>
 
 		</ul>
@@ -144,8 +144,8 @@
 		<hr style="margin-top: 50px ;width:90%  ; position: absolute">
 
 		<ul class="card-title">
-			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">تاریخ شروع:</li>
-			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin: -4px">{{ product.start|date:"m/d/Y"  }}</li>
+			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">جنسیت دوره :</li>
+			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin: -4px">{{ product.gender}}</li>
 
 		</ul>
 
@@ -153,7 +153,7 @@
 
 		<ul class="card-title">
 
-			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">روز های برگزاری:
+			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">روز های برگزاری :
 			</li>
 			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin-bottom:  -4px">
                 {{ days.title }}
@@ -164,19 +164,19 @@
 		<hr style="margin-top: 150px ;width:90% ; position: absolute">
 
              <ul class="card-title">
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">نام مربی:</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">نام مربی :</li>
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">{{ product.name }}</li>
 		</ul>
 
 			<ul class="card-title">
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">ساعت برگزاری:</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">ساعت برگزاری :</li>
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">{{ product.time }}</li>
 		</ul>
 
 		<hr style="margin-top: 200px ;width:90% ; position: absolute">
 
 			<ul class="card-title">
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">تعداد جلسات</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">تعداد جلسات :</li>
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px ; direction: rtl">{{ session.number }} جلسه</li>
 		</ul>
 
@@ -185,22 +185,22 @@
 		<hr style="margin-top: 300px ;width:90% ; position: absolute">
 
 			<ul class="card-title">
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right; margin-top: -4px">شهریه ثابت:</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right; margin-top: -4px">شهریه ثابت :</li>
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left; margin-top: -4px ; direction: rtl">{{ product.tuition }} تومان </li>
 		</ul>
 
 		<hr style="margin-top: 350px ;width:90% ; position: absolute">
 
 			<ul class="card-title">
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; ; margin-top: -4px">تخفیف:</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; ; margin-top: -4px">تخفیف :</li>
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; ; margin-top: -4px">{{ product.off }}%</li>
 		</ul>
 
 		<hr style="margin-top: 400px ;width:90% ; position: absolute">
 
 		<ul class="card-title">
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -10px">قیمت نهایی:</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -10px ; direction: rtl">{{ product.price }} تومان </li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -10px">قیمت نهایی :</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -10px ; direction: rtl">{{ product.tuition }} تومان </li>
 		</ul>
 
 
