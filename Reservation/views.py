@@ -27,13 +27,14 @@ def reservation_view(request):
 def transaction_view(request, gym, time, session, holiday):
     about = AboutUs.objects.values().first()
     gym = Gym.objects.filter(id=gym).values().first()
+    times = Time.objects.get(id=time)
     sport = Sport.objects.all().values()
     template = loader.get_template('public/transaction.html')
     context = {
         "about": about,
         "gym": gym,
         "sport": sport,
-        "time": time,
+        "time": times,
         "holiday": holiday,
         "session": session,
     }
@@ -43,6 +44,7 @@ def transaction_view(request, gym, time, session, holiday):
 def successful_view(request, gym, time, session, holiday):
     about = AboutUs.objects.values().first()
     gym = Gym.objects.filter(id=gym).values().first()
+    times = Time.objects.get(id=time)
     sport = Sport.objects.all().values()
     template = loader.get_template('public/successful.html')
     context = {
@@ -50,7 +52,7 @@ def successful_view(request, gym, time, session, holiday):
         "gym": gym,
         "sport": sport,
         "holiday": holiday,
-        "time": time,
+        "time": times,
         "session": session,
 
     }
