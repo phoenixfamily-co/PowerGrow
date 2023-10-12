@@ -3,7 +3,6 @@ from django.template import loader
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from Calendar.models import *
 from About.models import AboutUs
 from Product.models import Sport
 from Reservation.models import *
@@ -25,34 +24,32 @@ def reservation_view(request):
     return HttpResponse(template.render(context, request))
 
 
-def transaction_view(request, pk, day, time, session, holiday):
+def transaction_view(request, gym, time, session, holiday):
     about = AboutUs.objects.values().first()
-    gym = Gym.objects.filter(id=pk).values().first()
+    gym = Gym.objects.filter(id=gym).values().first()
     sport = Sport.objects.all().values()
     template = loader.get_template('public/transaction.html')
     context = {
         "about": about,
         "gym": gym,
         "sport": sport,
-        "day": day,
         "time": time,
-        "holiday" : holiday,
+        "holiday": holiday,
         "session": session,
     }
     return HttpResponse(template.render(context, request))
 
 
-def successful_view(request, pk, day, time, session, holiday):
+def successful_view(request, gym, time, session, holiday):
     about = AboutUs.objects.values().first()
-    gym = Gym.objects.filter(id=pk).values().first()
+    gym = Gym.objects.filter(id=gym).values().first()
     sport = Sport.objects.all().values()
     template = loader.get_template('public/successful.html')
     context = {
         "about": about,
         "gym": gym,
         "sport": sport,
-        "day": day,
-        "holiday" : holiday,
+        "holiday": holiday,
         "time": time,
         "session": session,
 
@@ -85,8 +82,12 @@ class ReservationView(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         data = self.request.data
         gym = Gym.objects.get(id=data["gym"])
+        time = Time.objects.get(id=data["time"])
+        time.reserved = True
+        time.save()
         reservations = Reservations.objects.update_or_create(title=data["title"],
-                                                             startDateTime=data["startDateTime"],
+                                                             description=data["description"],
+                                                             time=time,
                                                              holiday=data["holiday"],
                                                              session=data["session"],
                                                              price=data["price"],

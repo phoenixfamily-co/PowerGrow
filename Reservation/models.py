@@ -1,6 +1,6 @@
-from django.db import models
 from django.utils import timezone
 from User.models import User
+from Calendar.models import *
 
 
 class Gym(models.Model):
@@ -14,7 +14,8 @@ class Gym(models.Model):
 
 class Reservations(models.Model):
     title = models.TextField(blank=True, null=True)
-    startDateTime = models.DateTimeField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    time = models.ForeignKey(Time, on_delete=models.CASCADE, related_name='reservations', blank=True, null=True)
     holiday = models.BooleanField(blank=True, null=True)
     session = models.IntegerField(blank=True, null=True)
     price = models.IntegerField(blank=True, null=True)
