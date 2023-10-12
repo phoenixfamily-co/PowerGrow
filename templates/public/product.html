@@ -503,7 +503,7 @@
 
 <script>
 
-    let participants = {{participants|json_script}};
+    let participants = {{participants}};
     let capacity = {{product.capacity}};
     const registerButton = document.createElement("button")
     const card = document.getElementById("card")
@@ -513,7 +513,7 @@
         .find((row) => row.startsWith("access="))
         ?.split("=")[1];
 
-    if (parseInt(participants.length) < parseInt(capacity)){
+    if (parseInt(participants) < parseInt(capacity)){
 
         registerButton.classList.add("card-button")
         registerButton.innerHTML = "ثبت نام کنید"
