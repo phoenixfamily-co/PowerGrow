@@ -145,7 +145,7 @@
 
 		<ul class="card-title">
 			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">تاریخ رزرو :</li>
-			<li id="startDay" style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin: -4px ; direction: ltr">{{ day }}</li>
+			<li id="startDay" style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin: -4px ; direction: ltr">{{ time.day.month.year.number }}/{{ time.day.month.number }}/{{ time.day.number }}</li>
 
 		</ul>
 
@@ -156,7 +156,7 @@
 			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">ساعت رزور :
 			</li>
 			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin-bottom:  -4px">
-                {{ time }}
+                {{ time.time|date:"G:i:s" }}
 			</li>
 		</ul>
 
@@ -211,7 +211,8 @@
 
         let gym = {{ gym.id }};
         let price = {{ gym.tuition }};
-        let session = {{ session }}
+        let session = {{ session }};
+        let time = {{ time }};
 
         const cookieValue = document.cookie
         .split("; ")
@@ -220,7 +221,8 @@
 
         const param = {
             "title": "{{ gym.title }}",
-            "startDateTime": "{{ day }} {{ time }}",
+            "description": "{{ gym.description }}",
+            "time": parseInt(time),
             "session": parseInt(session),
             "gym": parseInt(gym),
             "price": parseInt(price) ,
