@@ -11,7 +11,7 @@ from Product.serializer import *
 def product_view(request, pk, session, day):
     about = AboutUs.objects.values().first()
     sport = Sport.objects.all().values()
-    product = Course.objects.filter(id=pk).values().first()
+    product = Course.objects.get(id=pk)
     sessions = Sessions.objects.filter(id=session).values().first()
     days = Days.objects.filter(id=day).values().first()
     template = loader.get_template('public/product.html')
