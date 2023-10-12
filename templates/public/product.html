@@ -503,7 +503,7 @@
 
 <script>
 
-    let participants = {{participants}};
+    let participants = JSON.parse({{participants}});
     let capacity = {{product.capacity}};
     const registerButton = document.createElement("button")
     const card = document.getElementById("card")
