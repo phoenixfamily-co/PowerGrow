@@ -324,7 +324,7 @@
 
 
     <ul class="card-title">
-        <li style="font-size: 16px;font-weight: bold ;display: inline">نام دوره:</li>
+        <li style="font-size: 16px;font-weight: bold ;display: inline">نام دوره :</li>
         <li style="font-size: 16px;font-weight: bold ;display: inline ;float: left">{{ product.title }}({{ product.gender }})</li>
 
     </ul>
@@ -332,7 +332,7 @@
     <hr style="margin-top: 50px ; position: absolute">
 
     <ul class="card-title">
-        <li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">تاریخ شروع:
+        <li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">ظرفیت دوره :
         </li>
         <li style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin: -4px">{{ product.start|date:"m/d/Y" }}</li>
 
@@ -343,7 +343,7 @@
     <ul class="card-title">
 
         <li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">روز های
-            برگزاری:
+            برگزاری :
         </li>
         <li style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin-bottom:  -4px">{{ days.title }}
         </li>
@@ -353,7 +353,7 @@
     <hr style="margin-top: 150px ; position: absolute">
 
     <ul class="card-title">
-        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">ساعت برگزاری:
+        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">ساعت برگزاری :
         </li>
         <li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">{{ product.time }}</li>
     </ul>
@@ -361,7 +361,7 @@
     <hr style="margin-top: 200px ; position: absolute">
 
     <ul class="card-title">
-        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">تعداد جلسات
+        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">تعداد جلسات :
         </li>
         <li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">{{ session.number }}
             جلسه
@@ -371,8 +371,7 @@
     <hr style="margin-top: 250px ; position: absolute">
 
     <ul class="card-title">
-        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right; margin-top: -4px">شهریه ثابت
-            ماهیانه:
+        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right; margin-top: -4px">شهریه ثابت :
         </li>
         <li style="font-size: 16px;font-weight: bold ;display: inline ; float: left; margin-top: -4px">{{ product.tuition }}
             تومان
@@ -383,14 +382,14 @@
 
 
     <ul class="card-title">
-        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; ; margin-top: -4px">تخفیف:</li>
+        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; ; margin-top: -4px">تخفیف :</li>
         <li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; ; margin-top: -4px">{{ product.off }}%</li>
     </ul>
 
     <hr style="margin-top: 350px ; position: absolute">
 
     <ul class="card-title">
-        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -10px">قیمت نهایی:
+        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -10px">قیمت نهایی :
         </li>
         <li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -10px">{{ product.tuition }}
             تومان
