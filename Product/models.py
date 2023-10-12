@@ -23,7 +23,6 @@ class Course(models.Model):
     title = models.TextField(blank=True, null=True)
     name = models.CharField(max_length=100, blank=True, null=True)
     type = models.CharField(max_length=100, choices=TYPE_CHOICE, default='public')
-    start = models.DateField(null=True, blank=True)
     time = models.TextField(blank=True, null=True)
     tuition = models.IntegerField()
     off = models.IntegerField(blank=True, null=True)
