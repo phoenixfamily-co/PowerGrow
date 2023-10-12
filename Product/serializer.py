@@ -25,7 +25,7 @@ class ParticipantsSerializer(serializers.ModelSerializer):
 
 class CourseSerializer(serializers.ModelSerializer):
     sessions = SessionSerializer(read_only=True, many=True)
-    courses = ParticipantsSerializer(read_only=True, many=True)
+    participants = ParticipantsSerializer(read_only=True, many=True)
 
     class Meta:
         model = Course
