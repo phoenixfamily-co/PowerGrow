@@ -17,7 +17,8 @@ def product_view(request, pk, session, day):
     template = loader.get_template('public/product.html')
     context = {
         "about": about,
-        "product": product.participants,
+        "product": product,
+        "participants": product.participants,
         "session": sessions,
         "sport": sport,
         "days": days,
