@@ -19,7 +19,7 @@ def product_view(request, pk, session, day):
     context = {
         "about": about,
         "product": product,
-        "participants": participants,
+        "participants": list(participants),
         "session": sessions,
         "sport": sport,
         "days": days,
