@@ -12,13 +12,14 @@ def product_view(request, pk, session, day):
     about = AboutUs.objects.values().first()
     sport = Sport.objects.all().values()
     product = Course.objects.get(id=pk)
+    participants = Course.objects.filter(id=pk).prefetch_related("participants")
     sessions = Sessions.objects.filter(id=session).values().first()
     days = Days.objects.filter(id=day).values().first()
     template = loader.get_template('public/product.html')
     context = {
         "about": about,
         "product": product,
-        "participants": product.participants,
+        "participants": participants,
         "session": sessions,
         "sport": sport,
         "days": days,
