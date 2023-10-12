@@ -714,7 +714,7 @@
                 }else {
                     holiday = "True"
                 }
-                window.location.assign(`/reservation/transaction/${gym}/${date}/${time}/${session}/${holiday}`)
+                window.location.assign(`/reservation/transaction/${gym}/${time}/${session}/${holiday}`)
             }else {
                 alert("فیلدها الزامی میباشد")
             }
@@ -913,6 +913,7 @@
               for (let i = 0 ; i< res.length ; i++){
             const timeItem = document.createElement("li")
                   timeItem.innerHTML = res[i].time
+                  timeItem.setAttribute("itemid",res[i].id)
                   if (res[i].reserved ===true){
                       timeItem.classList.add("reservedTime")
                   }
@@ -928,7 +929,7 @@
                     })
                    btn.classList.add("selectedTime")
                     startTime.innerHTML = btn.textContent
-                    time = btn.textContent
+                    time = btn.getAttribute("itemid")
                 })
             })
     }
