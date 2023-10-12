@@ -196,6 +196,22 @@
             cursor: pointer;
         }
 
+        .disabled-button {
+            position: absolute;
+            bottom: 0;
+            height: 60px;
+            width: 370px;
+            margin-right: 10px;
+            margin-left: 10px;
+            margin-bottom: 20px;
+            background: #5cdb5c;
+            border-color: transparent;
+            color: white;
+            cursor: none;
+            pointer-events: none;
+            opacity:0.6;
+        }
+
         .contentWrapper {
             height: 250px;
         / / Replace with the height your footer should be width: 100 %;
@@ -381,10 +397,6 @@
         </li>
     </ul>
 
-    <button id="registerButton" class="card-button">
-        ثبت نام کنید
-    </button>
-
 
 </div>
 
@@ -470,6 +482,7 @@
     let lat = {{ about.latitude }};
     let long =     {{ about.longitude }};
 
+
     const map = new nmp_mapboxgl.Map({
         mapType: nmp_mapboxgl.Map.neshanVector,
         container: "map",
@@ -490,14 +503,27 @@
 
 <script>
 
+    let participants = {{ product.participants }};
+    let capacity = {{ product.capacity }}
+    const registerButton = document.createElement("button")
+    const card = document.getElementById("card")
+
     const cookieValue = document.cookie
         .split("; ")
         .find((row) => row.startsWith("access="))
         ?.split("=")[1];
 
-    const registerButton = document.getElementById("registerButton")
+    if (parseInt(participants) < parseInt(capacity)){
 
+        registerButton.classList.add("card-button")
+        registerButton.innerHTML = "ثبت نام کنید"
 
+    }else {
+        registerButton.classList.add("disabled-button")
+        registerButton.innerHTML = "ضرفیت تکمیل است"
+    }
+
+    card.appendChild(registerButton)
     registerButton.addEventListener('click', function () {
 
         if (cookieValue !== undefined) {
