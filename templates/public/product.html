@@ -503,11 +503,8 @@
 
 <script>
 
-    let participants = JSON.parse({{participants}});
+    let participants = {{participants|json_script}};
     let capacity = {{product.capacity}};
-
-    console.log(participants)
-
     const registerButton = document.createElement("button")
     const card = document.getElementById("card")
 
