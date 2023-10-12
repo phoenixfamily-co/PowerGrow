@@ -503,7 +503,7 @@
 
 <script>
 
-    let participants = {{participants}};
+    let participants = {{participants|json_script:xArray}};
     let capacity = {{product.capacity}};
     const registerButton = document.createElement("button")
     const card = document.getElementById("card")
