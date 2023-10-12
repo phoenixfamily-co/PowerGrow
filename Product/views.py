@@ -12,7 +12,7 @@ def product_view(request, pk, session, day):
     about = AboutUs.objects.values().first()
     sport = Sport.objects.all().values()
     product = Course.objects.get(id=pk)
-    participants = Participants.objects.filter(course__pk=pk)
+    participants = Participants.objects.filter(course__pk=pk).values()
     sessions = Sessions.objects.filter(id=session).values().first()
     days = Days.objects.filter(id=day).values().first()
     template = loader.get_template('public/product.html')
