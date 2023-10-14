@@ -17,17 +17,17 @@ class RegisterSerializer(serializers.ModelSerializer):
         }
 
     def create(self, validated_data):
-        user = None
+        created = None
         request = self.context.get("request")
         if request and hasattr(request, "user"):
-            user = request.user
+            created = request.user
             user = User.objects.create(
                 number=validated_data['number'],
                 name=validated_data['name'],
                 gender=validated_data['gender'],
                 password=make_password(validated_data['password']),
                 birthdate=validated_data['birthdate'],
-                created=user
+                created=created
 
             )
         else:
