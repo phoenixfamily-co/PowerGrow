@@ -7,9 +7,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
 from About.models import AboutUs
-from User.models import User
-from User.serializer import RegisterSerializer, ChangePasswordSerializer, UpdateProfileSerializer, \
-    DeleteAccountSerializer, GetAccountSerializer, ManagePermissionSerializer
+from User.serializer import *
 
 
 def login_view(request):
@@ -96,7 +94,7 @@ class UpdateProfile(generics.UpdateAPIView, ):
 class AdminRegisterUser(viewsets.ModelViewSet):
     queryset = User.objects.all()
     permission_classes = [IsAuthenticated]
-    serializer_class = RegisterSerializer
+    serializer_class = AdminRegisterSerializer
 
 
 class ChangePasswordView(generics.UpdateAPIView, ):

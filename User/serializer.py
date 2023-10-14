@@ -7,7 +7,7 @@ from Reservation.serializer import ReservationSerializer
 from .models import User
 
 
-class RegisterSerializer(serializers.ModelSerializer):
+class AdminRegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
@@ -21,23 +21,43 @@ class RegisterSerializer(serializers.ModelSerializer):
         request = self.context.get("request")
         if request and hasattr(request, "user"):
             created = request.user
-        if created is not None:
-            user = User.objects.create(
-                number=validated_data['number'],
-                name=validated_data['name'],
-                gender=validated_data['gender'],
-                password=make_password(validated_data['password']),
-                birthdate=validated_data['birthdate'],
-                created=created
-            )
-        else:
-            user = User.objects.create(
-                number=validated_data['number'],
-                name=validated_data['name'],
-                gender=validated_data['gender'],
-                password=make_password(validated_data['password']),
-                birthdate=validated_data['birthdate'],
-            )
+
+        user = User.objects.create(
+
+            number=validated_data['number'],
+            name=validated_data['name'],
+            gender=validated_data['gender'],
+            password=make_password(validated_data['password']),
+            birthdate=validated_data['birthdate'],
+            created=created
+
+        )
+
+        user.set_password(validated_data['password'])
+        user.save()
+
+        return user
+
+
+class RegisterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('number', 'password', 'gender', 'name', 'birthdate')
+        extra_kwargs = {
+            'password': {'write_only': True}
+        }
+
+    def create(self, validated_data):
+
+        user = User.objects.create(
+
+            number=validated_data['number'],
+            name=validated_data['name'],
+            gender=validated_data['gender'],
+            password=make_password(validated_data['password']),
+            birthdate=validated_data['birthdate'],
+
+        )
 
         user.set_password(validated_data['password'])
         user.save()
