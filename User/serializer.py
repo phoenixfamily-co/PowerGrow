@@ -1,4 +1,3 @@
-import requests
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
@@ -21,22 +20,19 @@ class AdminRegisterSerializer(serializers.ModelSerializer):
         request = self.context.get("request")
         if request and hasattr(request, "user"):
             created = request.user
+            user = User.objects.create(
+                number=validated_data['number'],
+                name=validated_data['name'],
+                gender=validated_data['gender'],
+                password=make_password(validated_data['password']),
+                birthdate=validated_data['birthdate'],
+                created=created
+            )
 
-        user = User.objects.create(
+            user.set_password(validated_data['password'])
+            user.save()
 
-            number=validated_data['number'],
-            name=validated_data['name'],
-            gender=validated_data['gender'],
-            password=make_password(validated_data['password']),
-            birthdate=validated_data['birthdate'],
-            created=created
-
-        )
-
-        user.set_password(validated_data['password'])
-        user.save()
-
-        return user
+            return user
 
 
 class RegisterSerializer(serializers.ModelSerializer):
