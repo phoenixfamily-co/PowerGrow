@@ -146,11 +146,15 @@ span {
     const code = document.getElementById('otp');
     const number = {{ number }};
     const param = {'is_active' : 'True'};
+    const otp = {{ response }};
 
     verificationForm.addEventListener("submit", async function (event) {
     event.preventDefault();
-    console.log(param)
-    const response = await fetch('../api/'+number+'/'+code.value , {
+
+
+    if (parseInt(otp.code) === parseInt(code.value)){
+
+    const response = await fetch('../api/'+number+'/' , {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -172,6 +176,10 @@ span {
         else {
             document.getElementById('error').innerHTML = response.statusText
         }
+    }
+    }
+    else {
+        alert("کد وارد شده تادرست است")
     }
 });
 

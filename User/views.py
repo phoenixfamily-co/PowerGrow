@@ -1,3 +1,4 @@
+import requests
 from django.http import HttpResponse
 from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
@@ -31,11 +32,13 @@ def register_view(request):
 
 def verification_view(request, number):
     about = AboutUs.objects.values().first()
+    data = {'to': number}
+    response = requests.post('https://console.melipayamak.com/api/send/otp/d15bf0639e874ecebb5040b599cb8af6', json=data)
     template = loader.get_template('public/verification.html')
     context = {
         "number": number,
         "about": about,
-
+        "response": response.json()
     }
     return HttpResponse(template.render(context, request))
 
@@ -129,7 +132,7 @@ def get_user(request, number):
 
 
 @api_view(['GET'])
-def get_verification(request, number, code):
+def get_verification(request, number):
     user = User.objects.filter(number=number).values().first()
     if user["is_active"]:
         return Response(status=status.HTTP_200_OK)
