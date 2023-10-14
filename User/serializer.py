@@ -1,3 +1,4 @@
+import requests
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
@@ -8,7 +9,6 @@ from .models import User
 
 
 class AdminRegisterSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = User
         fields = ('number', 'password', 'gender', 'name', 'birthdate')
@@ -36,6 +36,14 @@ class AdminRegisterSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
 
+        data = {'from': '5000xxx', 'to': validated_data['number'], 'text':
+            'سلام به باشگاه ورزشی حجاب خوش امدید'
+            f'نام کاربری : "{validated_data["password"]}$" '
+            f'رمز عبور : "{validated_data["number"]}$"'
+            f'لطفا بعد از ورود به پنل کاربری رمز عبور خود را تغییر دهید'}
+        requests.post('https://console.melipayamak.com/api/send/simple/d15bf0639e874ecebb5040b599cb8af6',
+                      json=data)
+
         return user
 
 
@@ -48,7 +56,6 @@ class RegisterSerializer(serializers.ModelSerializer):
         }
 
     def create(self, validated_data):
-
         user = User.objects.create(
 
             number=validated_data['number'],
@@ -73,7 +80,6 @@ class ChangePasswordSerializer(serializers.ModelSerializer):
         fields = ['password']
 
     def update(self, instance, validated_data):
-
         instance.set_password(validated_data['password'])
         instance.save()
 
@@ -95,10 +101,10 @@ class UpdateProfileSerializer(serializers.ModelSerializer):
         exclude = ['number']
 
     def update(self, instance, validated_data):
-        instance.name = validated_data.get("name",  instance.name)
-        instance.gender = validated_data.get("gender",  instance.gender)
-        instance.national = validated_data.get("national",  instance.national)
-        instance.birthdate = validated_data.get("birthdate",  instance.birthdate)
+        instance.name = validated_data.get("name", instance.name)
+        instance.gender = validated_data.get("gender", instance.gender)
+        instance.national = validated_data.get("national", instance.national)
+        instance.birthdate = validated_data.get("birthdate", instance.birthdate)
         instance.set_password(validated_data['password'])
         instance.save()
 
