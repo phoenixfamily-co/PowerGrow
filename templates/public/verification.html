@@ -146,7 +146,7 @@ span {
     const code = document.getElementById('otp');
     const number = {{ number }};
     const param = {'is_active' : 'True'};
-    const otp = {{ response }};
+    const otp = {{ response|json_script }};
     console.log(otp)
 
     verificationForm.addEventListener("submit", async function (event) {
