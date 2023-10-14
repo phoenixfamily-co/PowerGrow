@@ -21,6 +21,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         request = self.context.get("request")
         if request and hasattr(request, "user"):
             created = request.user
+        if created:
             user = User.objects.create(
                 number=validated_data['number'],
                 name=validated_data['name'],
