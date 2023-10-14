@@ -1,9 +1,9 @@
 from django.http import HttpResponse
 from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
-from rest_framework import generics, status
+from rest_framework import generics, status, viewsets
 from rest_framework.decorators import api_view
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
 from About.models import AboutUs
@@ -91,6 +91,12 @@ class UpdateProfile(generics.UpdateAPIView, ):
     lookup_field = "number"
     permission_classes = (AllowAny,)
     serializer_class = UpdateProfileSerializer
+
+
+class AdminRegisterUser(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    permission_classes = [IsAuthenticated]
+    serializer_class = RegisterSerializer
 
 
 class ChangePasswordView(generics.UpdateAPIView, ):

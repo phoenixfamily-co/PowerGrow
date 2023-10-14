@@ -39,6 +39,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     gender = models.CharField(max_length=10)
     salary = models.CharField(max_length=20, choices=SALARY_CHOICE)
     fee = models.IntegerField(null=True, blank=True)
+    created = models.ForeignKey("self", on_delete=models.CASCADE, null=True, blank=True)
     USERNAME_FIELD = 'number'
     REQUIRED_FIELDS = ['name', 'password', 'gender', 'birthdate']
 
