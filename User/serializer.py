@@ -20,19 +20,21 @@ class AdminRegisterSerializer(serializers.ModelSerializer):
         request = self.context.get("request")
         if request and hasattr(request, "user"):
             created = request.user
-            user = User.objects.create(
-                number=validated_data['number'],
-                name=validated_data['name'],
-                gender=validated_data['gender'],
-                password=make_password(validated_data['password']),
-                birthdate=validated_data['birthdate'],
-                created=created
-            )
 
-            user.set_password(validated_data['password'])
-            user.save()
+        user = User.objects.create(
 
-            return user
+            number=validated_data['number'],
+            name=validated_data['name'],
+            gender=validated_data['gender'],
+            password=make_password(validated_data['password']),
+            birthdate=validated_data['birthdate'],
+            created=created
+
+        )
+
+        user.set_password(validated_data['password'])
+        user.save()
+        return user
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -109,7 +111,7 @@ class DeleteAccountSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         instance.is_staff = validated_data.get("is_staff", False)
         instance.is_active = validated_data.get("is_active", instance.is_active)
-        instance.is_admin = validated_data.get("is_teacher", False)
+        instance.is_admin = validated_data.get("is_admin", False)
         instance.is_superuser = validated_data.get("is_superuser", False)
         instance.save()
 
@@ -129,17 +131,17 @@ class GetAccountSerializer(serializers.ModelSerializer):
 class ManagePermissionSerializer(serializers.ModelSerializer):
     is_staff = serializers.BooleanField(required=True)
     is_active = serializers.BooleanField(required=True)
-    is_teacher = serializers.BooleanField(required=True)
+    is_admin = serializers.BooleanField(required=True)
     is_superuser = serializers.BooleanField(required=True)
 
     class Meta:
         model = User
-        fields = ['is_staff', 'is_active', 'is_teacher', 'is_superuser']
+        fields = ['is_staff', 'is_active', 'is_admin', 'is_superuser']
 
     def update(self, instance, validated_data):
         instance.is_staff = validated_data.get("is_staff", instance.is_staff)
         instance.is_active = validated_data.get("is_active", instance.is_active)
-        instance.is_teacher = validated_data.get("is_teacher", instance.is_teacher)
+        instance.is_admin = validated_data.get("is_admin", instance.is_admin)
         instance.is_superuser = validated_data.get("is_superuser", instance.is_superuser)
         instance.save()
 
