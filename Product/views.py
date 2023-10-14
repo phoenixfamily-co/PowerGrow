@@ -1,10 +1,12 @@
 from django.http import HttpResponse
 from django.template import loader
 from rest_framework import viewsets, filters
+from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from About.models import AboutUs
+from User.models import *
 from Product.serializer import *
 
 
@@ -114,11 +116,32 @@ class ParticipationView(viewsets.ModelViewSet):
         data = self.request.data
         course = Course.objects.get(id=data["course"])
         participants = Participants.objects.update_or_create(title=data["title"],
-                                              session=data["session"],
-                                              day=data["day"],
-                                              price=data["price"],
-                                              user=self.request.user,
-                                              course=course)
+                                                             session=data["session"],
+                                                             day=data["day"],
+                                                             price=data["price"],
+                                                             user=self.request.user,
+                                                             course=course,
+                                                             created=self.request.user)
+        serializer = ParticipantsSerializer(participants)
+        return Response(serializer.data)
+
+
+class ManagerParticipationView(viewsets.ModelViewSet):
+    queryset = Participants.objects.all()
+    serializer_class = ParticipantsSerializer
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        data = self.request.data
+        course = Course.objects.get(id=data["course"])
+        user = User.objects.get(number=data["number"])
+        participants = Participants.objects.update_or_create(title=data["title"],
+                                                             session=data["session"],
+                                                             day=data["day"],
+                                                             price=data["price"],
+                                                             user=user,
+                                                             course=course,
+                                                             created=self.request.user)
         serializer = ParticipantsSerializer(participants)
         return Response(serializer.data)
 

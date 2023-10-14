@@ -1,4 +1,6 @@
 from django.utils import timezone
+
+from PowerGrow import settings
 from User.models import User
 from Calendar.models import *
 
@@ -20,5 +22,8 @@ class Reservations(models.Model):
     session = models.IntegerField(blank=True, null=True)
     price = models.IntegerField(blank=True, null=True)
     datetime = models.DateTimeField(default=timezone.now)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reservations', blank=True, null=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='reservations',
+                             blank=True, null=True)
     gym = models.ForeignKey(Gym, on_delete=models.CASCADE, related_name='reservations', null=True, blank=True)
+    created = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='reservation',
+                                blank=True, null=True)

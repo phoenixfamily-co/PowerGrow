@@ -94,6 +94,32 @@ class ReservationView(viewsets.ModelViewSet):
                                                              session=data["session"],
                                                              price=data["price"],
                                                              user=self.request.user,
-                                                             gym=gym)
+                                                             gym=gym,
+                                                             created=self.request.user)
+        serializer = ReservationSerializer(reservations)
+        return Response(serializer.data)
+
+
+class ManagerAddReservationView(viewsets.ModelViewSet):
+    queryset = Reservations.objects.all()
+    serializer_class = ReservationSerializer
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        data = self.request.data
+        gym = Gym.objects.get(id=data["gym"])
+        time = Time.objects.get(id=data["time"])
+        time.reserved = True
+        time.save()
+        user = User.objects.get(number=data["number"])
+        reservations = Reservations.objects.update_or_create(title=data["title"],
+                                                             description=data["description"],
+                                                             time=time,
+                                                             holiday=data["holiday"],
+                                                             session=data["session"],
+                                                             price=data["price"],
+                                                             user=user,
+                                                             gym=gym,
+                                                             created=self.request.user)
         serializer = ReservationSerializer(reservations)
         return Response(serializer.data)
