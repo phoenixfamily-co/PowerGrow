@@ -210,7 +210,7 @@ span {
         body: JSON.stringify(param)
     });
     if (response.status===201){
-        window.location.assign(('../verification/'+'98'+username.value+'/').toString())
+        window.location.assign(('../verification/'+'+98'+username.value+'/').toString())
     }else {
         alert(response.statusText)
     }
