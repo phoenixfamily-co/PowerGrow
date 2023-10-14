@@ -121,7 +121,7 @@ class DeleteAccountSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         instance.is_staff = validated_data.get("is_staff", False)
         instance.is_active = validated_data.get("is_active", instance.is_active)
-        instance.is_admin = validated_data.get("is_admin", False)
+        instance.is_admin = validated_data.get("is_teacher", False)
         instance.is_superuser = validated_data.get("is_superuser", False)
         instance.save()
 
@@ -146,12 +146,12 @@ class ManagePermissionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['is_staff', 'is_active', 'is_admin', 'is_superuser']
+        fields = ['is_staff', 'is_active', 'is_teacher', 'is_superuser']
 
     def update(self, instance, validated_data):
         instance.is_staff = validated_data.get("is_staff", instance.is_staff)
         instance.is_active = validated_data.get("is_active", instance.is_active)
-        instance.is_admin = validated_data.get("is_admin", instance.is_admin)
+        instance.is_admin = validated_data.get("is_teacher", instance.is_admin)
         instance.is_superuser = validated_data.get("is_superuser", instance.is_superuser)
         instance.save()
 
