@@ -141,7 +141,7 @@ class GetAccountSerializer(serializers.ModelSerializer):
 class ManagePermissionSerializer(serializers.ModelSerializer):
     is_staff = serializers.BooleanField(required=True)
     is_active = serializers.BooleanField(required=True)
-    is_admin = serializers.BooleanField(required=True)
+    is_teacher = serializers.BooleanField(required=True)
     is_superuser = serializers.BooleanField(required=True)
 
     class Meta:
