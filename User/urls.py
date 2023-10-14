@@ -17,6 +17,7 @@ urlpatterns = [
     path('login/api/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('register/', register_view, name='register'),
     path('register/api/', RegisterView.as_view(), name="api_register"),
+    path('register/api/admin/', AdminRegisterUser.as_view({'post': 'create', 'get': 'list'}), name="api_register"),
     path('verification/<str:number>/', verification_view, name='verification'),
     path('verification/api/<str:number>/<int:code>/', get_verification, name="api_verification"),
     path('verification/api/<str:number>/activate/', ActivateAccount.as_view(), name='activate_account'),
