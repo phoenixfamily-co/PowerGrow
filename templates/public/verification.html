@@ -27,12 +27,22 @@
             vertical-align: middle;
         }
 
-h4 {
+.disActiveResend {
 	text-align: center;
 	color: #1a5bbc;
 	padding: 20px;
+    display: none;
     cursor: pointer;
 }
+
+.activeResend {
+	text-align: center;
+	color: #1a5bbc;
+	padding: 20px;
+    display: none;
+    cursor: pointer;
+}
+
 label {
 	color: black;
 	font-size: 17px;
@@ -129,7 +139,7 @@ span {
 
     <button type="submit" style="margin-top: 30px">تایید</button>
 
-      <h4 style="display: none">ارسال مجدد رمز یکبار مصرف</h4>
+      <h4 id="resend" class="disActiveResend">ارسال مجدد رمز یکبار مصرف</h4>
 
 
   </div>
@@ -187,5 +197,12 @@ span {
 });
 
 </script>
+
+<script>
+    let resend = document.getElementById("resend")
+    setTimeout(function(){
+        resend.classList.add("activeResend")
+    }, 30000);
+  </script>
 
 </html>
