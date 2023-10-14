@@ -36,9 +36,9 @@ class AdminRegisterSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
 
-        data = {'from': '50004001047208', 'to': '09022981378', 'text': 'سلام به باشگاه ورزشی حجاب خوش امدید'
-                                                                f'نام کاربری: {validated_data["number"]}$'
-                                                                f'رمز عبور:{validated_data["password"]}$'}
+        data = {'from': '50004001047208', 'to': validated_data['number'], 'text': 'سلام به باشگاه ورزشی حجاب خوش امدید'
+                                                                                  f'نام کاربری: {validated_data["number"]}$'
+                                                                                  f'رمز عبور:{validated_data["password"]}$'}
         response = requests.post('https://console.melipayamak.com/api/send/simple/d15bf0639e874ecebb5040b599cb8af6',
                                  json=data)
 
