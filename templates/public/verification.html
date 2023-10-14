@@ -147,7 +147,7 @@ span {
     const number = {{ number }};
     const param = {'is_active' : 'True'};
     const otp = {{ response|safe }};
-    console.log(otp)
+    console.log(otp.code)
 
     verificationForm.addEventListener("submit", async function (event) {
     event.preventDefault();
