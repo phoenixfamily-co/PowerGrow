@@ -21,7 +21,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         request = self.context.get("request")
         if request and hasattr(request, "user"):
             created = request.user
-        if created:
+        if created is not None:
             user = User.objects.create(
                 number=validated_data['number'],
                 name=validated_data['name'],
@@ -29,7 +29,6 @@ class RegisterSerializer(serializers.ModelSerializer):
                 password=make_password(validated_data['password']),
                 birthdate=validated_data['birthdate'],
                 created=created
-
             )
         else:
             user = User.objects.create(
