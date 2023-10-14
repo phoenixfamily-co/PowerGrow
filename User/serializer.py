@@ -21,16 +21,24 @@ class RegisterSerializer(serializers.ModelSerializer):
         request = self.context.get("request")
         if request and hasattr(request, "user"):
             user = request.user
+            user = User.objects.create(
+                number=validated_data['number'],
+                name=validated_data['name'],
+                gender=validated_data['gender'],
+                password=make_password(validated_data['password']),
+                birthdate=validated_data['birthdate'],
+                created=user
 
-        user = User.objects.create(
-            number=validated_data['number'],
-            name=validated_data['name'],
-            gender=validated_data['gender'],
-            password=make_password(validated_data['password']),
-            birthdate=validated_data['birthdate'],
-            created=user
+            )
+        else:
+            user = User.objects.create(
+                number=validated_data['number'],
+                name=validated_data['name'],
+                gender=validated_data['gender'],
+                password=make_password(validated_data['password']),
+                birthdate=validated_data['birthdate'],
+            )
 
-        )
         user.set_password(validated_data['password'])
         user.save()
 
