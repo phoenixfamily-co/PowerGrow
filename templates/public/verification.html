@@ -164,7 +164,7 @@ span {
     if (response.status===200){
         window.location.assign("../password/"+number)
     }else if (response.status===401) {
-        const result = await fetch('../api/'+number+'/activate/', {
+        const result = await fetch('../api/'+'+'+number+'/activate/', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
