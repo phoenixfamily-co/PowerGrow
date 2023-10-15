@@ -1,11 +1,9 @@
-import json
-
 from django.http import HttpResponse
 from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import generics, status, viewsets
 from rest_framework.authtoken.views import ObtainAuthToken
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
@@ -98,16 +96,16 @@ class RegisterView(generics.CreateAPIView):
     serializer_class = RegisterSerializer
 
 
+@permission_classes([IsAuthenticated])
 class UpdateProfile(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "number"
-    permission_classes = (AllowAny,)
     serializer_class = UpdateProfileSerializer
 
 
+@permission_classes([IsAuthenticated])
 class AdminRegisterUser(viewsets.ModelViewSet):
     queryset = User.objects.all()
-    permission_classes = [IsAuthenticated]
     serializer_class = AdminRegisterSerializer
 
 
@@ -125,10 +123,10 @@ class DeleteAccount(generics.UpdateAPIView, ):
     serializer_class = DeleteAccountSerializer
 
 
+@permission_classes([AllowAny])
 class ActivateAccount(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "number"
-    permission_classes = (AllowAny,)
     serializer_class = DeleteAccountSerializer
 
 
@@ -151,10 +149,10 @@ def get_verification(request, number):
         return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 
+@permission_classes([AllowAny])
 class GetAccount(generics.ListAPIView, ):
     queryset = User.objects.all()
     lookup_field = "number"
-    permission_classes = (AllowAny,)
     serializer_class = GetAccountSerializer
 
     def get_queryset(self):
@@ -168,8 +166,8 @@ class GetAllAccount(generics.ListCreateAPIView, ):
     serializer_class = GetAccountSerializer
 
 
+@permission_classes([AllowAny])
 class ManagePermission(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "number"
-    permission_classes = (AllowAny,)
     serializer_class = ManagePermissionSerializer
