@@ -52,7 +52,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     "phonenumber_field",
-    "rest_framework_simplejwt",
     'Home',
     'About',
     'Product',
