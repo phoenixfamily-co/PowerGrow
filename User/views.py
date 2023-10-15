@@ -1,11 +1,14 @@
-import requests
+import json
+
 from django.http import HttpResponse
 from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import generics, status, viewsets
+from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.decorators import api_view
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.authtoken.models import Token
 
 from About.models import AboutUs
 from User.serializer import *
@@ -79,6 +82,14 @@ def profile_view(request):
         "about": about,
     }
     return HttpResponse(template.render(context, request))
+
+
+class CustomObtainAuthToken(ObtainAuthToken):
+    def post(self, request, *args, **kwargs):
+        response = super(CustomObtainAuthToken, self).post(request, *args, **kwargs)
+        token = Token.objects.get(key=response.data['token'])
+        user = User.objects.get(id=token.user_id)
+        return Response({'token': token.key, 'user': json.dumps(user)})
 
 
 class RegisterView(generics.CreateAPIView):
