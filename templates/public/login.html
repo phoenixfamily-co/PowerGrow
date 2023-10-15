@@ -181,10 +181,20 @@ span {
     if (response.status===200){
         JSON.stringify(result)
         document.cookie = `token=${result.token}; max-age=3600*24 ; path=/`
+        if (result.user.is_staff===true){
 
-        console.log(result.token)
+            window.location.assign("{% url "user:profile" %}")
 
-        window.location.assign("{% url "user:profile" %}")
+        }else if (result.user.is_superuser===true){
+
+            window.location.assign("{% url "user:profile" %}")
+
+        }else if (result.user.is_teacher===true){
+            window.location.assign("{% url "user:profile" %}")
+
+        }else {
+            window.location.assign("{% url "user:profile" %}")
+        }
     }else {
             document.getElementById('error').innerHTML = response.statusText
     }

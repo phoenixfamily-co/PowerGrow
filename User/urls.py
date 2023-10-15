@@ -1,11 +1,6 @@
 from django.urls import path
 from User.views import *
 
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-)
-
 
 app_name = 'user'
 
@@ -14,7 +9,6 @@ urlpatterns = [
 
     path('', login_view, name='login'),
     path('login/api/', CustomObtainAuthToken.as_view(), name='token_obtain_pair'),
-    path('login/api/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('register/', register_view, name='register'),
     path('register/api/', RegisterView.as_view(), name="api_register"),
     path('register/api/admin/', AdminRegisterUser.as_view({'post': 'create', 'get': 'list'}), name="api_register"),
@@ -30,7 +24,10 @@ urlpatterns = [
     path('get/<str:number>/', GetAccount.as_view(), name='get_profile'),
     path('all/', GetAllAccount.as_view(), name='get_all_profiles'),
     path('access/<str:number>/', ManagePermission.as_view(), name='manage_permission'),
-    path('home/', home_view, name='home'),
+    path('home/user/', home_view, name='user-home'),
+    path('home/teacher/', home_view, name='teacher-home'),
+    path('home/admin/', home_view, name='admin-home'),
+    path('home/manager/', home_view, name='manager-home'),
     path('profile/', profile_view, name='profile'),
 
 ]
