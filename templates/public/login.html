@@ -182,7 +182,7 @@ span {
         JSON.stringify(result)
         document.cookie = `access=${result.token}; max-age=3600*24 ; path=/`
 
-        console.log(result)
+        console.log(result.token)
 
         window.location.assign("{% url "user:profile" %}")
     }else {
