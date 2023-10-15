@@ -183,17 +183,17 @@ span {
         document.cookie = `token=${result.token}; max-age=3600*24 ; path=/`
         if (result.user.is_staff===true){
 
-            window.location.assign("{% url "user:profile" %}")
+            window.location.assign("{% url "user:manager-home" %}")
 
         }else if (result.user.is_superuser===true){
 
-            window.location.assign("{% url "user:profile" %}")
+            window.location.assign("{% url "user:admin-home" %}")
 
         }else if (result.user.is_teacher===true){
-            window.location.assign("{% url "user:profile" %}")
+            window.location.assign("{% url "user:teacher-home" %}")
 
         }else {
-            window.location.assign("{% url "user:profile" %}")
+            window.location.assign("{% url "user:user-home" %}")
         }
     }else {
             document.getElementById('error').innerHTML = response.statusText
