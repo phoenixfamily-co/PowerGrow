@@ -509,7 +509,7 @@
 
     const cookieValue = document.cookie
         .split("; ")
-        .find((row) => row.startsWith("access="))
+        .find((row) => row.startsWith("token="))
         ?.split("=")[1];
 
     if (parseInt(participants) < parseInt(capacity)){
