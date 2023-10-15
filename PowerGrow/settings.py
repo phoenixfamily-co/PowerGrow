@@ -69,6 +69,7 @@ INSTALLED_APPS = [
     'two_factor.plugins.email',  # <- if you want email capability.
     'two_factor.plugins.yubikey',
     'otp_yubikey',
+    'rest_framework.authtoken',
     'django_filters',
     'django_jalali'
 
