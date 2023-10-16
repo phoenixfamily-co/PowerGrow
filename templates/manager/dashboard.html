@@ -2,10 +2,66 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <style>
+
+     body, html {
+            height: auto;
+            position: relative;
+            font-family: BYekan, serif !important;
+        }
+     .site{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  grid-template-areas:"header header"
+                      "title sidebar"
+                      "main sidebar"
+                      "footer footer";
+  grid-gap:10px; margin:20px ; padding:10px;
+}
+.site > *{padding:30px; color:#fff; font-size:20px;}
+.mastheader{background:#b46ae3; grid-area:header; cursor: pointer}
+.page-title{background:#51a7fa; grid-area:title;}
+.main-content{
+    grid-area:main;
+    min-height:500px;
+    display: inline-flex;
+    padding: 0;
+}
+.sidebar{grid-area:sidebar;padding: 0 ; margin-right: 5%}
+.footer{background:#0265c0; grid-area:footer;cursor: pointer}
+
+    </style>
     <title>PowerGrow</title>
 </head>
 <body>
 
-<h2>مدیریت</h2>
+<div class="site">
+  <header class="mastheader" onclick="window.open('https://powergrow.net/home/api/slider/','_blank')"> بنر ها</header>
+  <h1 class="page-title">اطلاعیه ها</h1>
+  <main class="main-content">
+
+        <div style="background: #d7d727 ; padding-top: 20px ; padding-left: 20px  ; height: 92% ; width: 47% ">
+            کاربر ها
+        </div>
+
+      <div style="background: #ffbe98 ;padding-top: 20px ; padding-left: 20px ; height: 92%; width: 47% ; margin-left: 3%">
+          پروفایل من
+      </div>
+
+  </main>
+  <aside class="sidebar">
+      <div style="background: #f49018 ; padding-top: 20px ; padding-left: 20px  ; height: 45% ; width: 100% ; margin-top: 3%">
+          دوره ها
+      </div>
+
+      <div style="background: #ff0c0c ;padding-top: 20px ; padding-left: 20px ; height: 40%; margin-top: 5% ; width: 100%">
+          رزرو ها
+      </div>
+
+  </aside>
+  <footer class="footer" onclick="window.open('https://powergrow.net/about/api/','_blank')">درباره ما</footer>
+</div>
+
+
 </body>
 </html>
