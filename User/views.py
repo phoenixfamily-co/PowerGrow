@@ -10,6 +10,7 @@ from rest_framework.authtoken.models import Token
 
 from About.models import AboutUs
 from User.serializer import *
+from User.models import *
 
 
 def login_view(request):
@@ -118,12 +119,13 @@ def user_profile_view(request):
     return HttpResponse(template.render(context, request))
 
 
-@permission_classes([IsAuthenticated])
 def manager_profile_view(request):
     about = AboutUs.objects.values().first()
     template = loader.get_template('manager/profile.html')
+    user = User.objects.all().values().first()
     context = {
         "about": about,
+        "user" : user
     }
     return HttpResponse(template.render(context, request))
 
