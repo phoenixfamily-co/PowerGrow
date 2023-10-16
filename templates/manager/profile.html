@@ -200,7 +200,7 @@
     let lastAddress = {{ user.address }};
     let lastEmail = {{ user.email }};
     let username = {{ user.number }};
-    username = parseInt(username.replace('+98',''))
+    number.value = parseInt(username.replace('+98',''))
 
 
     if (lastAddress !== "" || lastAddress !==null || true){
@@ -225,8 +225,6 @@
     let birthdate = document.getElementById("birthdate")
     let zip = document.getElementById("zip")
     let register = document.getElementById("register")
-
-    number.value = username
 
          register.addEventListener("click", async function (event) {
     event.preventDefault();
