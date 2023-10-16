@@ -30,6 +30,12 @@ class CustomAccountManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(max_length=50)
     number = PhoneNumberField(unique=True)
+    address = models.TimeField(blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
+    telephone = models.IntegerField(blank=True, null=True)
+    accountNumber = models.TextField(blank=True, null=True)
+    accountId = models.TextField(blank=True, null=True)
+    zipCode = models.IntegerField(blank=True, null=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)

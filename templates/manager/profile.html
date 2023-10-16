@@ -159,22 +159,22 @@
 
     <hr class="solid">
 
-    <input type="text" placeholder="آدرس" class="address"/>
-    <input type="text" placeholder="کد پستی" class="postCode"/>
-    <input type="text" placeholder="تلفن ثابت" class="fixPhoneNumber"/>
+    <input type="text" placeholder="آدرس" class="address" value="{{ user.address }}"/>
+    <input type="text" placeholder="کد پستی" class="postCode" value="{{ user.zipCode }}"/>
+    <input type="text" placeholder="تلفن ثابت" class="fixPhoneNumber" value="{{ user.telephone}}"/>
 
     <h3 style="margin-top: 70px; margin-right: 20px" >اطلاعات حساب بانکی</h3>
 
     <hr class="solid">
 
-    <input type="text" placeholder="شماره حساب" class="postCode"/>
-    <input type="text" placeholder="شماره شبا" class="fixPhoneNumber"/>
+    <input type="text" placeholder="شماره حساب" class="postCode" value="{{ user.accountNumber }}"/>
+    <input type="text" placeholder="شماره شبا" class="fixPhoneNumber" value="{{ user.accountId }}"/>
 
         <h3 style="margin-top: 80px; margin-right: 20px" >اطلاعات امنیتی</h3>
 
     <hr class="solid">
 
-    <input type="text" placeholder="رمز عبور جدید" class="postCode" value="{{ user.password }}"/>
+    <input type="text" placeholder="رمز عبور جدید" class="postCode"/>
     <input type="text" placeholder="تکرار رمز عبور جدید" class="fixPhoneNumber"/>
 
 </body>
