@@ -153,7 +153,6 @@ class RegisterView(generics.CreateAPIView):
     serializer_class = RegisterSerializer
 
 
-@permission_classes([IsAuthenticated])
 class UpdateProfile(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "number"
