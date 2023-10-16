@@ -118,6 +118,7 @@ def user_profile_view(request):
     return HttpResponse(template.render(context, request))
 
 
+@permission_classes([IsAuthenticated])
 def manager_profile_view(request):
     about = AboutUs.objects.values().first()
     template = loader.get_template('manager/profile.html')

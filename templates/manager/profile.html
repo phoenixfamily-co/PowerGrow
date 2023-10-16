@@ -14,92 +14,22 @@
             font-family: BYekan;
             font-style: normal;
             font-weight: normal;
-            src: url("../../static/fonts/BYekan.eot");/* IE9 Compat Modes */
-            src: url("../../static/fonts/BYekan.woff") format('woff'),
-            url("../../static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */ url("../../static/fonts/BYekan.ttf") format('truetype') /* Safari, Android, iOS */
+            src: url("/static/fonts/BYekan.eot");/* IE9 Compat Modes */
+            src: url("/static/fonts/BYekan.woff") format('woff'),
+            url("/static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */ url("../../static/fonts/BYekan.ttf") format('truetype') /* Safari, Android, iOS */
         }
 
         body {
-            background-color: grey;
-        }
-
-        .logoHolder{
-			width: 100%;
-            display: inline;
-    		z-index: 10!important;
-		}
-
-		.logo{
-			width: 50px;
-			height: 50px;
-			border-radius: 25px;
-            float: left;
-            margin-left: 30%;
-			direction: ltr
-
-		}
-
-		.typography{
-			color: black;
-            margin-right: 25%;
-            padding-top: 10px;
-            margin-top: 5%;
-			font-size: 20px
-
-		}
-
-
-        .formContainer {
-            width: 68%;
-            left: 0;
-            margin: 1%;
-            border-radius: 25px;
-            height: 110vh;
-            background-color: white;
-            position: absolute;
-        }
-
-        .menuContainer {
-            width: 30%;
-            height: 115vh;
-            direction: rtl;
-            right: 0;
-            border-top-left-radius: 25px;
-            border-bottom-left-radius: 25px;
-            background-color: white;
-            position: absolute;
-        }
-
-        img.avatar {
-            width: 60px;
-            margin-bottom: 100px;
-            border-radius: 50%;
-        }
-
-        .textMenu {
-            margin-bottom: 20px;
-            font-size: 25px;
-            cursor: pointer;
-        }
-
-        .exitText {
-            margin-top: 200px;
-            font-size: 25px;
-            cursor: pointer;
+            background-color: #ffffff;
+            position: relative;
         }
 
 
         .personalData {
-            margin: 16px 16px 0 0;
+            margin: 150px 16px 0 0;
             font-size: x-large;
         }
 
-        .home {
-            margin: 16px 16px 16px 32px;
-            font-size: x-large;
-            width: 100%;
-            position: relative;
-        }
 
         .solid {
             border-top: 2px solid black;
@@ -151,9 +81,9 @@
         }
 
         .fixPhoneNumber {
-            width: 45%;
+            width: 46%;
             padding: 12px 20px;
-            margin: 0 0 16px 30px;
+            margin-left: 2%;
             float: left;
             display: inline-block;
             border: transparent;
@@ -174,20 +104,15 @@
 
 
         .address {
-            width: 95%;
+            width: 97%;
             padding: 12px 20px;
-            margin: 8px 16px 8px 16px;
+            margin: 8px 16px 8px 20px;
             display: inline-block;
             border: transparent;
             background: lightgray;
             box-sizing: border-box;
         }
 
-       .list {
-            list-style-type: none;
-           margin-top: 10%;
-            color: black;
-        }
 
        .card-button{
 			position: absolute ;
@@ -195,8 +120,8 @@
            left: 0;
             height: 40px ;
             width: 100px;
-           margin-top: 15px;
-           margin-left: 20px;
+           margin-top: 5px;
+           margin-left: 15px;
             background: #598ddd;
             border-color: transparent ;
             color: white
@@ -208,23 +133,28 @@
 </head>
 <body>
 
-<div class="formContainer">
-
-
     <button class="card-button">
         ثبت
     </button>
 
-    <h3 class="personalData" >اطلاعات شناسنامه</h3>
+    <h3 style="margin-right: 20px">اطلاعات شناسنامه</h3>
 
     <hr class="solid">
 
-    <\input type="text" placeholder="تاریخ تولد" class="birthday"/>
-    <input type="text" placeholder="نام و نام خانوادگی" class="name"/>
-    <input type="text" placeholder="ایمیل" class="email"/>
-    <input type="text" placeholder="شماره موبایل" class="phoneNumber"/>
+    <label>
+        <input type="text" placeholder="تاریخ تولد" class="birthday"/>
+    </label>
+    <label>
+        <input type="text" placeholder="نام و نام خانوادگی" class="name"/>
+    </label>
+    <label>
+        <input type="text" placeholder="ایمیل" class="email"/>
+    </label>
+    <label>
+        <input type="text" placeholder="شماره موبایل" class="phoneNumber"/>
+    </label>
 
-        <h3 class="personalData" >اطلاعات محل سکونت</h3>
+    <h3 style="margin-top: 150px; margin-right: 20px">اطلاعات محل سکونت</h3>
 
 
     <hr class="solid">
@@ -233,41 +163,19 @@
     <input type="text" placeholder="کد پستی" class="postCode"/>
     <input type="text" placeholder="تلفن ثابت" class="fixPhoneNumber"/>
 
-    <h3 class="personalData" >اطلاعات حساب بانکی</h3>
+    <h3 style="margin-top: 70px; margin-right: 20px" >اطلاعات حساب بانکی</h3>
 
     <hr class="solid">
 
     <input type="text" placeholder="شماره حساب" class="postCode"/>
     <input type="text" placeholder="شماره شبا" class="fixPhoneNumber"/>
 
-        <h3 class="personalData" >اطلاعات امنیتی</h3>
+        <h3 style="margin-top: 80px; margin-right: 20px" >اطلاعات امنیتی</h3>
 
     <hr class="solid">
 
     <input type="text" placeholder="رمز عبور جدید" class="postCode"/>
     <input type="text" placeholder="تکرار رمز عبور جدید" class="fixPhoneNumber"/>
 
-</div>
-
-
-<div class="menuContainer">
-
-    <div class="logoHolder">
-
-			 <img alt="" src="/media/{{ about.logo}}" class="logo">
-	  		<div class="typography">PowerGrow</div>
-
-		</div>
-
-    <ol class="list">
-        <li class="textMenu"><strong>داشبورد</strong></li>
-        <li class="textMenu"><strong>دوره های من</strong></li>
-        <li class="textMenu"><strong>دوره های من</strong></li>
-        <li class="textMenu"><strong>پروفایل من</strong></li>
-        <li class="exitText" onclick="window.location.replace({% url 'user:login'  %})" style="margin-top: 50vh"><strong>خروج</strong></li>
-
-    </ol>
-
-</div>
 </body>
 </html>
