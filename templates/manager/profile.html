@@ -243,6 +243,8 @@
          "birthdate" : birthdate.value,
         }
 
+        console.log(param.toString())
+
     const response = await fetch(`/user/update/+${username}/`, {
         method: 'PUT',
         headers: {
