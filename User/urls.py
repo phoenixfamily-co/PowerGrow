@@ -24,10 +24,12 @@ urlpatterns = [
     path('get/<str:number>/', GetAccount.as_view(), name='get_profile'),
     path('all/', GetAllAccount.as_view(), name='get_all_profiles'),
     path('access/<str:number>/', ManagePermission.as_view(), name='manage_permission'),
-    path('home/user/', home_view, name='user-home'),
-    path('home/teacher/', home_view, name='teacher-home'),
-    path('home/admin/', home_view, name='admin-home'),
-    path('home/manager/', home_view, name='manager-home'),
-    path('profile/', profile_view, name='profile'),
-
+    path('home/user/', user_home_view, name='user-home'),
+    path('home/teacher/', teacher_home_view, name='teacher_home'),
+    path('home/admin/', secretary_home_view, name='admin_home'),
+    path('home/manager/', manager_home_view, name='manager_home'),
+    path('profile/manager/', manager_profile_view, name='manager_profile'),
+    path('profile/admin/', secretary_profile_view, name='admin_profile'),
+    path('profile/teacher/', teacher_profile_view, name='teacher_profile'),
+    path('profile/user/', user_profile_view, name='user_profile'),
 ]

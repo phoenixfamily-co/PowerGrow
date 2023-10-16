@@ -15,10 +15,10 @@
 			font-family: BYekan;
   			font-style: normal;
   			font-weight: normal;
-  			src: url("../../static/fonts/BYekan.eot");/* IE9 Compat Modes */
-			src: url("../../static/fonts/BYekan.woff") format('woff'),
-        		 url("../../static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */
-        		 url("../../static/fonts/BYekan.ttf")  format('truetype') /* Safari, Android, iOS */
+  			src: url("/static/fonts/BYekan.eot");/* IE9 Compat Modes */
+			src: url("/static/fonts/BYekan.woff") format('woff'),
+        		 url("/static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */
+        		 url("/static/fonts/BYekan.ttf")  format('truetype') /* Safari, Android, iOS */
 		}
         * {
             box-sizing: border-box
@@ -183,17 +183,17 @@ span {
         document.cookie = `token=${result.token}; max-age=3600*24 ; path=/`
         if (result.user.is_staff===true){
 
-            window.location.assign("{% url "user:manager-home" %}")
+            window.location.assign("{% url "user:manager_home" %}")
 
         }else if (result.user.is_superuser===true){
 
-            window.location.assign("{% url "user:admin-home" %}")
+            window.location.assign("{% url "user:admin_home" %}")
 
         }else if (result.user.is_teacher===true){
-            window.location.assign("{% url "user:teacher-home" %}")
+            window.location.assign("{% url "user:teacher_home" %}")
 
         }else {
-            window.location.assign("{% url "user:user-home" %}")
+            window.location.assign("{% url "user:user_home" %}")
         }
     }else {
             document.getElementById('error').innerHTML = response.statusText

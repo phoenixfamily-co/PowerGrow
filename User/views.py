@@ -64,7 +64,7 @@ def pass_view(request, number):
     return HttpResponse(template.render(context, request))
 
 
-def home_view(request):
+def user_home_view(request):
     about = AboutUs.objects.values().first()
     template = loader.get_template('user/dashboard.html')
     context = {
@@ -73,9 +73,63 @@ def home_view(request):
     return HttpResponse(template.render(context, request))
 
 
-def profile_view(request):
+def teacher_home_view(request):
+    about = AboutUs.objects.values().first()
+    template = loader.get_template('teacher/dashboard.html')
+    context = {
+        "about": about,
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def secretary_home_view(request):
+    about = AboutUs.objects.values().first()
+    template = loader.get_template('secretary/dashboard.html')
+    context = {
+        "about": about,
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def manager_home_view(request):
+    about = AboutUs.objects.values().first()
+    template = loader.get_template('manager/dashboard.html')
+    context = {
+        "about": about,
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def secretary_profile_view(request):
+    about = AboutUs.objects.values().first()
+    template = loader.get_template('secretary/profile.html')
+    context = {
+        "about": about,
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def user_profile_view(request):
     about = AboutUs.objects.values().first()
     template = loader.get_template('user/profile.html')
+    context = {
+        "about": about,
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def manager_profile_view(request):
+    about = AboutUs.objects.values().first()
+    template = loader.get_template('manager/profile.html')
+    context = {
+        "about": about,
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def teacher_profile_view(request):
+    about = AboutUs.objects.values().first()
+    template = loader.get_template('teacher/profile.html')
     context = {
         "about": about,
     }
