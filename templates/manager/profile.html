@@ -243,7 +243,7 @@
          "birthdate" : birthdate.value,
         }
 
-    const response = await fetch(`/user/update/${username}/`, {
+    const response = await fetch(`/user/update/+${username}/`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
