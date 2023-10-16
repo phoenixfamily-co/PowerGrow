@@ -28,6 +28,7 @@ urlpatterns = [
     path('about/', include('About.urls', namespace='about')),
     path('user/', include('User.urls', namespace='user')),
     path('calendar/', include('Calendar.urls', namespace='calendar')),
+    path('seo/', include('Seo.urls', namespace='seo')),
 
 ]
 
