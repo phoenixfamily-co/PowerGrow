@@ -133,7 +133,7 @@
 </head>
 <body>
 
-    <button class="card-button">
+    <button id="register" class="card-button">
         ثبت
     </button>
 
@@ -142,16 +142,16 @@
     <hr class="solid">
 
     <label>
-        <input type="text" placeholder="تاریخ تولد" class="birthday" value="{{ user.birthdate }}"/>
+        <input id="birthday" type="text" placeholder="تاریخ تولد" class="birthday" value="{{ user.birthdate }}"/>
     </label>
     <label>
-        <input type="text" placeholder="نام و نام خانوادگی" class="name" value="{{ user.name }}"/>
+        <input id="name" type="text" placeholder="نام و نام خانوادگی" class="name" value="{{ user.name }}"/>
     </label>
     <label>
-        <input type="text" placeholder="ایمیل" class="email"/>
+        <input id="email" type="text" placeholder="ایمیل" class="email"/>
     </label>
     <label>
-        <input type="text" placeholder="شماره موبایل" class="phoneNumber" value="{{ user.number }}"/>
+        <input id="number" type="number" placeholder="شماره موبایل" class="phoneNumber" value="{{ user.number }}"/>
     </label>
 
     <h3 style="margin-top: 150px; margin-right: 20px">اطلاعات محل سکونت</h3>
@@ -159,23 +159,115 @@
 
     <hr class="solid">
 
-    <input type="text" placeholder="آدرس" class="address" />
-    <input type="text" placeholder="کد پستی" class="postCode" />
-    <input type="text" placeholder="تلفن ثابت" class="fixPhoneNumber"/>
+    <label>
+        <input id="address" type="text" placeholder="آدرس" class="address" />
+    </label>
+    <label for="zip">
+        <input id="zip" type="text" placeholder="کد پستی" class="postCode" />
+    </label>
+    <label for="tel">
+        <input id="tel" type="tel" placeholder="تلفن ثابت" class="fixPhoneNumber"/>
+    </label>
 
     <h3 style="margin-top: 70px; margin-right: 20px" >اطلاعات حساب بانکی</h3>
 
     <hr class="solid">
 
-    <input type="text" placeholder="شماره حساب" class="postCode"/>
-    <input type="text" placeholder="شماره شبا" class="fixPhoneNumber"/>
+    <label>
+        <input id="accountNumber" type="text" placeholder="شماره حساب" class="postCode"/>
+    </label>
+    <label>
+        <input id="accountId" type="text" placeholder="شماره شبا" class="fixPhoneNumber"/>
+    </label>
 
-        <h3 style="margin-top: 80px; margin-right: 20px" >اطلاعات امنیتی</h3>
+    <h3 style="margin-top: 80px; margin-right: 20px" >اطلاعات امنیتی</h3>
 
     <hr class="solid">
 
-    <input type="text" placeholder="رمز عبور جدید" class="postCode"/>
-    <input type="text" placeholder="تکرار رمز عبور جدید" class="fixPhoneNumber"/>
+    <label>
+        <input id="password1" type="text" placeholder="رمز عبور جدید" class="postCode"/>
+    </label>
+
+    <label>
+        <input id="password2" type="text" placeholder="تکرار رمز عبور جدید" class="fixPhoneNumber"/>
+    </label>
 
 </body>
+
+
+<script>
+
+    let lastAddress = {{ user.address }};
+    let lastEmail = {{ user.email }};
+
+    if (lastAddress !== "" || lastAddress !==null || true){
+        address.value = lastAddress
+    }
+
+
+</script>
+
+<script>
+
+
+    let number = document.getElementById("number")
+    let password1 = document.getElementById("password1")
+    let password2 = document.getElementById("password2")
+    let name = document.getElementsByName("name")
+    let address = document.getElementById("address")
+    let email = document.getElementById("email")
+    let tel = document.getElementById("tel")
+    let accountNumber = document.getElementById("accountNumber")
+    let accountId = document.getElementById("accountId")
+    let birthdate = document.getElementById("birthdate")
+    let zip = document.getElementById("zip")
+    let register = document.getElementById("register")
+
+    let username = {{ user.number }};
+
+         register.addEventListener("click", async function (event) {
+    event.preventDefault();
+    if (password1.value===password2.value){
+
+
+      const param = {
+         "number": username.value,
+         "password": password1.value,
+         "name" :name.value,
+         "address" : address.value,
+         "email" : email.value,
+         "telephone" : tel.value ,
+         "accountNumber" : accountNumber.value,
+         "accountId" : accountId.value,
+         "zipCode" : zip.value,
+         "birthdate" : birthdate.value,
+        }
+
+    const response = await fetch(`/user/update/${username}/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(param)
+    });
+    if (response.status===201){
+        window.location.assign('/user/home/manager')
+    }else {
+        alert(response.statusText)
+    }
+    }
+    else
+        {
+            alert("پسورد ها یکسان نیستند")
+        }
+});
+
+
+</script>
+
+
+
+
+
+
 </html>
