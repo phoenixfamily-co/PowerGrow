@@ -185,11 +185,11 @@
     <hr class="solid">
 
     <label>
-        <input id="password1" type="text" placeholder="رمز عبور جدید" class="postCode"/>
+        <input id="password1" type="password" placeholder="رمز عبور جدید" class="postCode"/>
     </label>
 
     <label>
-        <input id="password2" type="text" placeholder="تکرار رمز عبور جدید" class="fixPhoneNumber"/>
+        <input id="password2" type="password" placeholder="تکرار رمز عبور جدید" class="fixPhoneNumber"/>
     </label>
 
 </body>
@@ -235,6 +235,7 @@
           "accountId" : accountId.value,
           "zipCode" : zip.value,
           "birthdate" : birthdate.value,
+          "gender" : {{ user.gender }},
         }
 
         console.log(JSON.stringify(param))
