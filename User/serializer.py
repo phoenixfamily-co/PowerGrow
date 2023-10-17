@@ -89,11 +89,11 @@ class UpdateProfileSerializer(serializers.ModelSerializer):
     reservations = ReservationSerializer(read_only=True, many=True)
     courses = ParticipantsSerializer(read_only=True, many=True)
 
-
     class Meta:
         model = User
         extra_kwargs = {
             'number': {'required': False},
+            'password': {'required': False},
             'name': {'required': True},
             'gender': {'required': True},
             'birthdate': {'required': True},
