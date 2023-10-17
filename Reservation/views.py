@@ -65,7 +65,7 @@ class GymView(viewsets.ModelViewSet):
     serializer_class = GymSerializer
 
     def get_queryset(self):
-        return self.queryset.values().first()
+        return Gym.objects.values().first()
 
     def create(self, request, *args, **kwargs):
         Gym.objects.all().delete()
