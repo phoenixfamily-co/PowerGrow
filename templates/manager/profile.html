@@ -205,7 +205,6 @@
     let lastTelephone = "{{ user.telephone }}";
     let lastAccountNumber = "{{ user.accountNumber }}";
     let lastAccountId = "{{ user.accountId }}";
-    let password = "{{ user.password }}"
 
     if (lastEmail !=="" || lastEmail !==undefined){
         email.value = lastEmail.toString()
@@ -251,6 +250,7 @@
     let birthdate = document.getElementById("birthdate")
     let zip = document.getElementById("zip")
     let register = document.getElementById("register")
+    let param
 
          register.addEventListener("click", async function (event) {
     event.preventDefault();
@@ -258,10 +258,8 @@
     if (password1.value===password2.value){
 
         if (password1.value !=='' || password1.value !==null){
-            password = password1.value
-        }
 
-         const param = {
+              param = {
                 "name": name.value,
                 "password": password,
                 "address": address.value,
@@ -273,6 +271,21 @@
                 "birthdate": birthdate.value,
                 "gender": gender.toString(),
             }
+        }else {
+              param = {
+                "name": name.value,
+                "address": address.value,
+                "email": email.value,
+                "telephone": parseInt(tel.value),
+                "accountNumber": accountNumber.value,
+                "accountId": accountId.value,
+                "zipCode": parseInt(zip.value),
+                "birthdate": birthdate.value,
+                "gender": gender.toString(),
+            }
+        }
+
+
 
     const response = await fetch(`/user/update/+${username}/`, {
         method: 'PUT',
