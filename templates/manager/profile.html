@@ -199,6 +199,11 @@
 
     let username = {{ user.number }};
     let gender = "{{ user.gender }}";
+    let lastEmail = "{{ user.email }}"
+
+    if (lastEmail !=="" || lastEmail !==undefined){
+        email.value = lastEmail.toString()
+    }
 
     number.value = username.toString().replace('98','')
 
