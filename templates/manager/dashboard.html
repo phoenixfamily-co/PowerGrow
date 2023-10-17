@@ -45,11 +45,11 @@
 
   .popup-content {
             background-color: white;
-            height: 250px;
+            height: 25vh;
             margin: 10% auto;
             padding: 20px;
             border: 1px solid #888888;
-            width: 85vh;
+            width: 55vh;
             font-weight: bolder;
         }
 
@@ -65,6 +65,28 @@
             animation: fadeIn 1s;
         }
 
+        .phoneNumber {
+            width: 85%;
+            padding: 12px 20px;
+            margin: 8px 16px 16px 0;
+            float: right;
+            display: inline-block;
+            border: transparent;
+            background: lightgray;
+            box-sizing: border-box;
+        }
+
+        .card-button{
+            cursor: pointer;
+           left: 0;
+            height: 40px ;
+            width: 100px;
+           margin-top: 5px;
+           margin-left: 15px;
+            background: #598ddd;
+            border-color: transparent ;
+            color: white
+		}
 
 
     </style>
@@ -77,7 +99,7 @@
   <h1 class="page-title" onclick="window.open('https://powergrow.net/seo/api/news/','_blank')">اطلاعیه ها</h1>
   <main class="main-content">
 
-        <div style="background: #d7d727 ; padding-top: 20px ; padding-left: 20px  ; height: 92% ; width: 47% ">
+        <div id="user" style="background: #d7d727 ; padding-top: 20px ; padding-left: 20px  ; height: 92% ; width: 47% ">
             کاربر ها
         </div>
 
@@ -99,20 +121,30 @@
   <footer class="footer" onclick="window.open('https://powergrow.net/about/api/','_blank')">درباره ما</footer>
 </div>
 
-<div id="myPopup" class="popup">
+<div id="userPopup" class="popup">
     <div class="popup-content" style="direction: rtl">
 
-        <div style="height: 150px ; width: 150px ; background: red ; position: absolute">
-
+        <div style="height: 150px ; width: 150px ; background: #d7d727  ; position: absolute ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px" onclick="">
+            ایجاد کاربر جدید
         </div>
 
-        <div style="height: 150px ; width: 150px ; background: red ; position: absolute ; margin-right: 10% ">
-
+        <div id="access" style="height: 150px ; width: 150px ; background: #d7d727  ; position: absolute ; margin-right: 14.2%  ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px ">
+           دسترسی ها
         </div>
 
-        <div style="height: 150px ; width: 150px ; background: red ; position:absolute; margin-right: 25%">
+    </div>
+</div>
 
-        </div>
+
+<div id="accessPopup" class="popup">
+    <div class="popup-content" style="direction: rtl">
+
+        <label>
+            <input id="number" class="phoneNumber" type="number" placeholder="شماره موبایل" maxlength="10">
+        </label>
+
+
+        <button id="register" class="card-button">ادامه</button>
 
 
     </div>
@@ -124,22 +156,46 @@
 
 <script>
 
-    let course = document.getElementById("course")
+    let user = document.getElementById("user")
+    let access = document.getElementById("access")
+    let userPopup = document.getElementById("userPopup");
+    let accessPopup = document.getElementById("accessPopup");
 
-    course.addEventListener("click",function () {
-        show()
+
+     access.addEventListener("click",function () {
+            userPopup.classList.remove("show");
+              accessPopup.classList.toggle("show");
+
     })
 
-    function show() {
-  let popup = document.getElementById("myPopup");
-  popup.classList.toggle("show");
-}
+    user.addEventListener("click",function () {
+        userPopup.classList.toggle("show");
+    })
+
       window.addEventListener("click", function (event) {
-        if (event.target === myPopup) {
-            myPopup.classList.remove("show");
+        if (event.target === userPopup) {
+            userPopup.classList.remove("show");
         }
     });
 
 </script>
 
+<script>
+    let register = document.getElementById("register")
+    let number = document.getElementById("number")
+    let url = '+98'+number.value
+
+    register.addEventListener("click",function () {
+
+        if (number.value !==null || number.value !=="") {
+            window.location.assign("/user/access/"+url)
+        }else {
+            alert("شماره موبایل الزامی هست")
+        }
+    })
+
+
+
+
+</script>
 </html>
