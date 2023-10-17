@@ -61,7 +61,7 @@ def successful_view(request, gym, time, session, holiday):
 
 
 class GymView(viewsets.ModelViewSet):
-    queryset = Gym.objects.values().first()
+    queryset = Gym.objects.all()
     serializer_class = GymSerializer
 
     def create(self, request, *args, **kwargs):
