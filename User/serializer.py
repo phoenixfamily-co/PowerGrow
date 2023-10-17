@@ -114,8 +114,12 @@ class UpdateProfileSerializer(serializers.ModelSerializer):
 
         if validated_data.get("password", None) is not None:
             instance.set_password(validated_data['password'])
-        instance.save()
-        return instance
+            instance.save()
+            return instance
+        else:
+            instance.save()
+            return instance
+
 
 
 class DeleteAccountSerializer(serializers.ModelSerializer):
