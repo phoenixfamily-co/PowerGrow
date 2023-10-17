@@ -158,15 +158,15 @@
 <div id="coursePopup" class="popup">
     <div class="course-popup-content" style="direction: rtl">
 
-        <div id="newUser" style=" cursor:pointer; height: 150px ; width: 150px ; background: #d7d727  ; position: absolute ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px" onclick="window.location.assign('/product/api/course/')">
+        <div id="newUser" style=" cursor:pointer; height: 150px ; width: 150px ; background: #f49018  ; position: absolute ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px" onclick="window.location.assign('/product/api/course/')">
             ایجاد دوره
         </div>
 
-        <div id="access" style=" cursor:pointer; height: 150px ; width: 150px ; background: #d7d727  ; position: absolute ; margin-right: 14.2%  ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px ">
+        <div id="access" style=" cursor:pointer; height: 150px ; width: 150px ; background: #f49018 ; position: absolute ; margin-right: 14.2%  ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px " onclick="window.location.assign('/api/sessions/2')">
            مشخص کردن روزها
         </div>
 
-        <div id="access" style=" cursor:pointer; height: 150px ; width: 150px ; background: #d7d727  ; position: absolute ; margin-right: 28%  ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px ">
+        <div id="access" style=" cursor:pointer; height: 150px ; width: 150px ; background: #f49018 ; position: absolute ; margin-right: 28%  ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px " onclick="window.location.assign('/product/api/admin/participate/')">
            ثبت نام
         </div>
 
@@ -221,6 +221,10 @@
         }
          if (event.target === accessPopup) {
             accessPopup.classList.remove("show");
+        }
+
+          if (event.target === coursePopup) {
+            coursePopup.classList.remove("show");
         }
     });
 
