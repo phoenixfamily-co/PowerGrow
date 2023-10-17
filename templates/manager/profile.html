@@ -250,28 +250,41 @@
     let birthdate = document.getElementById("birthdate")
     let zip = document.getElementById("zip")
     let register = document.getElementById("register")
+    let param
 
          register.addEventListener("click", async function (event) {
     event.preventDefault();
+
     if (password1.value===password2.value){
 
-
-      const param = {
-          "name" : name.value,
-          "number": "+98"+number.value,
-          "password": password1.value,
-          "address" : address.value,
-          "email" : email.value,
-          "telephone" : parseInt(tel.value) ,
-          "accountNumber" : accountNumber.value,
-          "accountId" : accountId.value,
-          "zipCode" : parseInt(zip.value),
-          "birthdate" : birthdate.value,
-          "gender" : gender.toString(),
+        if (password1.value !== ''  || password1.value != null) {
+            param = {
+                "name": name.value,
+                "password": password1.value,
+                "address": address.value,
+                "email": email.value,
+                "telephone": parseInt(tel.value),
+                "accountNumber": accountNumber.value,
+                "accountId": accountId.value,
+                "zipCode": parseInt(zip.value),
+                "birthdate": birthdate.value,
+                "gender": gender.toString(),
+            }
         }
+        else {
+            param = {
+                "name": name.value,
+                "address": address.value,
+                "email": email.value,
+                "telephone": parseInt(tel.value),
+                "accountNumber": accountNumber.value,
+                "accountId": accountId.value,
+                "zipCode": parseInt(zip.value),
+                "birthdate": birthdate.value,
+                "gender": gender.toString(),
+            }
 
-        console.log(JSON.stringify(param))
-
+        }
     const response = await fetch(`/user/update/+${username}/`, {
         method: 'PUT',
         headers: {
