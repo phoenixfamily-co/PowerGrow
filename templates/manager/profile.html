@@ -151,7 +151,7 @@
         <input id="email" type="text" placeholder="ایمیل" class="email"/>
     </label>
     <label>
-        <input id="number" type="number" placeholder="شماره موبایل" class="phoneNumber"/>
+        <input id="number" type="number" placeholder="شماره موبایل" class="phoneNumber" maxlength="10"/>
     </label>
 
     <h3 style="margin-top: 150px; margin-right: 20px">اطلاعات محل سکونت</h3>
@@ -166,7 +166,7 @@
         <input id="zip" type="text" placeholder="کد پستی" class="postCode" />
     </label>
     <label for="tel">
-        <input id="tel" type="tel" placeholder="تلفن ثابت" class="fixPhoneNumber"/>
+        <input id="tel" type="tel" placeholder="تلفن ثابت" class="fixPhoneNumber" maxlength="11"/>
     </label>
 
     <h3 style="margin-top: 70px; margin-right: 20px" >اطلاعات حساب بانکی</h3>
@@ -198,9 +198,8 @@
 <script>
 
     let username = {{ user.number }};
-    console.log(username)
 
-
+    number.value = username.replace('98','')
 
 </script>
 
