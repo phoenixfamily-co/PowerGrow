@@ -97,9 +97,8 @@ class UpdateProfileSerializer(serializers.ModelSerializer):
             'name': {'required': True},
             'gender': {'required': True},
             'birthdate': {'required': True},
-            'password': {'write_only': True}
         }
-        exclude = ['number']
+        exclude = ['number', 'passwrod']
 
     def update(self, instance, validated_data):
         instance.name = validated_data.get("name", instance.name)
