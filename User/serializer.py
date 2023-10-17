@@ -87,6 +87,8 @@ class ChangePasswordSerializer(serializers.ModelSerializer):
 
 class UpdateProfileSerializer(serializers.ModelSerializer):
     reservations = ReservationSerializer(read_only=True, many=True)
+    courses = ParticipantsSerializer(read_only=True, many=True)
+
 
     class Meta:
         model = User
