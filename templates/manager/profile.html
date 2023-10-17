@@ -206,20 +206,20 @@
     let lastAccountNumber = "{{ user.accountNumber }}";
     let lastAccountId = "{{ user.accountId }}";
 
-    if (lastEmail !=="" || lastEmail !=="None"){
-        email.value = lastEmail.toString()
+    if (lastEmail !=="" || lastEmail !==null){
+        email.value = lastEmail
     }
 
-    if (lastAddress !=="" || lastAddress !=="None"){
-        address.value = lastAddress.toString()
+    if (lastAddress !=="" || lastAddress !==null){
+        address.value = lastAddress
     }
 
-    if (lastZipcode !=="" || lastZipcode !=="None"){
-        zip.value = lastZipcode.toString()
+    if (lastZipcode !=="" || lastZipcode !==null){
+        zip.value = lastZipcode
     }
 
-    if (lastTelephone !=="" || lastTelephone !=="None"){
-        tel.value = lastTelephone.toString()
+    if (lastTelephone !=="" || lastTelephone !==null){
+        tel.value = lastTelephone
     }
 
     if (lastAccountNumber !=="" || lastAccountNumber !==undefined){
