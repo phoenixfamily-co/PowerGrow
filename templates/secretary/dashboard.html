@@ -2,10 +2,251 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <style>
+
+     body, html {
+            height: auto;
+            position: relative;
+            font-family: BYekan, serif !important;
+        }
+     .site{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  grid-template-areas:"header header"
+                      "title sidebar"
+                      "main sidebar"
+                      "footer footer";
+  grid-gap:10px; margin:20px ; padding:10px;
+}
+.site > *{padding:30px; color:#fff; font-size:20px;}
+.mastheader{background:#b46ae3; grid-area:header; cursor: pointer}
+.page-title{background:#51a7fa; grid-area:title; cursor: pointer}
+.main-content{
+    grid-area:main;
+    min-height:500px;
+    display: inline-flex;
+    padding: 0;
+}
+.sidebar{grid-area:sidebar;padding: 0 ; margin-right: 5%}
+.footer{background:#0265c0; grid-area:footer;cursor: pointer}
+
+
+ .popup {
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            display: none;
+        }
+
+  .popup-content {
+            background-color: white;
+            height: 25vh;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888888;
+            width: 55vh;
+            font-weight: bolder;
+        }
+
+  .course-popup-content{
+
+       background-color: white;
+            height: 25vh;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888888;
+            width: 85vh;
+            font-weight: bolder;
+
+  }
+
+
+        .popup-content button {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .show {
+            display: block;
+            visibility: visible;
+            -webkit-animation: fadeIn 1s;
+            animation: fadeIn 1s;
+        }
+
+        .phoneNumber {
+            width: 85%;
+            padding: 12px 20px;
+            margin: 8px 16px 16px 0;
+            float: right;
+            display: inline-block;
+            border: transparent;
+            background: lightgray;
+            box-sizing: border-box;
+        }
+
+        .card-button{
+            cursor: pointer;
+            left: 0;
+            height: 40px ;
+            width: 100px;
+            margin-top: 90px;
+            margin-left: 15px;
+            background: #598ddd;
+            border-color: transparent ;
+            color: white
+		}
+
+        .formContainer {
+            width: 100%;
+            direction: rtl;
+            position: relative;
+        }
+
+
+    </style>
     <title>PowerGrow</title>
 </head>
 <body>
 
-<h2>منشی</h2>
+<div class="site">
+  <header class="mastheader" onclick="window.open('https://powergrow.net/home/api/slider/','_blank')"> بنر ها</header>
+  <h1 class="page-title" onclick="window.open('https://powergrow.net/seo/api/news/','_blank')">اطلاعیه ها</h1>
+  <main class="main-content">
+
+        <div id="user" style="background: #d7d727 ; padding-top: 20px ; padding-left: 20px  ; height: 92% ; width: 47% ">
+            کاربر ها
+        </div>
+
+      <div style="background: #ffbe98 ;padding-top: 20px ; padding-left: 20px ; height: 92%; width: 47% ; margin-left: 3% ; cursor: pointer" onclick="location.assign('/user/profile/manager')">
+          پروفایل من
+      </div>
+
+  </main>
+  <aside class="sidebar">
+      <div id="course" style="background: #f49018 ; padding-top: 20px ; padding-left: 20px  ; height: 45% ; width: 100% ; margin-top: 3% ; cursor: pointer">
+          دوره ها
+      </div>
+
+      <div style="background: #ff0c0c ;padding-top: 20px ; padding-left: 20px ; height: 40%; margin-top: 5% ; width: 100%">
+          رزرو ها
+      </div>
+
+  </aside>
+  <footer class="footer" onclick="window.open('https://powergrow.net/about/api/','_blank')">درباره ما</footer>
+</div>
+
+<div id="userPopup" class="popup">
+    <div class="popup-content" style="direction: rtl">
+
+        <div id="newUser" style="height: 150px ; width: 150px ; background: #d7d727  ; position: absolute ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px" onclick="window.location.assign('/user/register/manager')">
+            ایجاد کاربر جدید
+        </div>
+
+        <div id="access" style="height: 150px ; width: 150px ; background: #d7d727  ; position: absolute ; margin-right: 14.2%  ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px ">
+           دسترسی ها
+        </div>
+
+    </div>
+</div>
+
+
+<div id="coursePopup" class="popup">
+    <div class="course-popup-content" style="direction: rtl">
+
+        <div id="newCourse" style=" cursor:pointer; height: 150px ; width: 150px ; background: #f49018  ; position: absolute ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px" onclick="window.location.assign('/product/api/course/')">
+            ایجاد دوره
+        </div>
+
+        <div id="newDay" style=" cursor:pointer; height: 150px ; width: 150px ; background: #f49018 ; position: absolute ; margin-right: 14.2%  ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px " onclick="window.location.assign('/product/api/days/')">
+           مشخص کردن روزها
+        </div>
+
+        <div id="participate" style=" cursor:pointer; height: 150px ; width: 150px ; background: #f49018 ; position: absolute ; margin-right: 28%  ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px " onclick="window.location.assign('/product/api/admin/participate/')">
+           ثبت نام
+        </div>
+
+    </div>
+</div>
+
+
+<div id="accessPopup" class="popup">
+    <div class="popup-content" style="direction: rtl">
+
+        <label>
+            <input id="number" class="phoneNumber" type="number" placeholder="شماره موبایل" maxlength="10">
+        </label>
+
+        <button id="register" class="card-button">ادامه</button>
+
+
+    </div>
+</div>
+
 </body>
+
+
+<script>
+
+    let user = document.getElementById("user")
+    let access = document.getElementById("access")
+    let userPopup = document.getElementById("userPopup");
+    let accessPopup = document.getElementById("accessPopup");
+    let coursePopup = document.getElementById("coursePopup");
+    let course = document.getElementById("course")
+
+
+    course.addEventListener("click",function () {
+        coursePopup.classList.toggle("show");
+
+    })
+
+     access.addEventListener("click",function () {
+            userPopup.classList.remove("show");
+              accessPopup.classList.toggle("show");
+
+    })
+
+    user.addEventListener("click",function () {
+        userPopup.classList.toggle("show");
+    })
+
+      window.addEventListener("click", function (event) {
+        if (event.target === userPopup) {
+            userPopup.classList.remove("show");
+        }
+         if (event.target === accessPopup) {
+            accessPopup.classList.remove("show");
+        }
+
+          if (event.target === coursePopup) {
+            coursePopup.classList.remove("show");
+        }
+    });
+
+
+</script>
+
+<script>
+
+    let register = document.getElementById("register")
+    let number = document.getElementById("number")
+
+    register.addEventListener("click",function () {
+
+        let url = '+98'+number.value
+
+        if (number.value !==null || number.value !=="") {
+            window.location.assign("/user/access/"+url)
+        }else {
+            alert("شماره موبایل الزامی هست")
+        }
+    })
+
+</script>
+
 </html>

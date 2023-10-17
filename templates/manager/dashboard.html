@@ -118,7 +118,7 @@
   <h1 class="page-title" onclick="window.open('https://powergrow.net/seo/api/news/','_blank')">اطلاعیه ها</h1>
   <main class="main-content">
 
-        <div id="user" style="background: #d7d727 ; padding-top: 20px ; padding-left: 20px  ; height: 92% ; width: 47% ">
+        <div id="user" style="cursor:pointer; background: #d7d727 ; padding-top: 20px ; padding-left: 20px  ; height: 92% ; width: 47% ">
             کاربر ها
         </div>
 
@@ -132,7 +132,7 @@
           دوره ها
       </div>
 
-      <div style="background: #ff0c0c ;padding-top: 20px ; padding-left: 20px ; height: 40%; margin-top: 5% ; width: 100%">
+      <div id="reserve" style="cursor:pointer; background: #ff0c0c ;padding-top: 20px ; padding-left: 20px ; height: 40%; margin-top: 5% ; width: 100%">
           رزرو ها
       </div>
 
@@ -143,11 +143,11 @@
 <div id="userPopup" class="popup">
     <div class="popup-content" style="direction: rtl">
 
-        <div id="newUser" style="height: 150px ; width: 150px ; background: #d7d727  ; position: absolute ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px" onclick="window.location.assign('/user/register/manager')">
+        <div id="newUser" style="cursor:pointer; height: 150px ; width: 150px ; background: #d7d727  ; position: absolute ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px" onclick="window.location.assign('/user/register/manager')">
             ایجاد کاربر جدید
         </div>
 
-        <div id="access" style="height: 150px ; width: 150px ; background: #d7d727  ; position: absolute ; margin-right: 14.2%  ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px ">
+        <div id="access" style="cursor:pointer; height: 150px ; width: 150px ; background: #d7d727  ; position: absolute ; margin-right: 14.2%  ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px ">
            دسترسی ها
         </div>
 
@@ -187,6 +187,21 @@
     </div>
 </div>
 
+
+<div id="reservePopup" class="popup">
+    <div class="popup-content" style="direction: rtl">
+
+        <div id="newUser" style="cursor:pointer; height: 150px ; width: 150px ; background: #ff0c0c  ; position: absolute ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px" onclick="window.location.assign('/reservation/api/gym/')">
+            ایجاد سالن
+        </div>
+
+        <div id="access" style="cursor:pointer; height: 150px ; width: 150px ; background: #ff0c0c   ; position: absolute ; margin-right: 14.2%  ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px" onclick="window.location.assign('/reservation/api/admin/reserve/')">
+           رزرواسیون
+        </div>
+
+    </div>
+</div>
+
 </body>
 
 
@@ -198,8 +213,16 @@
     let accessPopup = document.getElementById("accessPopup");
     let coursePopup = document.getElementById("coursePopup");
     let course = document.getElementById("course")
+    let reserve = document.getElementById("reserve")
+    let reservePopup = document.getElementById("reservePopup")
 
 
+    reserve.addEventListener("click",function () {
+
+        reservePopup.classList.toggle("show");
+
+
+    })
     course.addEventListener("click",function () {
         coursePopup.classList.toggle("show");
 
@@ -225,6 +248,9 @@
 
           if (event.target === coursePopup) {
             coursePopup.classList.remove("show");
+        }
+           if (event.target === reservePopup) {
+            reservePopup.classList.remove("show");
         }
     });
 
