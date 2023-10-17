@@ -53,6 +53,19 @@
             font-weight: bolder;
         }
 
+  .register-popup-content{
+
+       background-color: white;
+            height: 50vh;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888888;
+            width: 55vh;
+            font-weight: bolder;
+
+  }
+
+
         .popup-content button {
             display: block;
             margin: 0 auto;
@@ -78,15 +91,21 @@
 
         .card-button{
             cursor: pointer;
-           left: 0;
+            left: 0;
             height: 40px ;
             width: 100px;
-           margin-top: 5px;
-           margin-left: 15px;
+            margin-top: 90px;
+            margin-left: 15px;
             background: #598ddd;
             border-color: transparent ;
             color: white
 		}
+
+        .formContainer {
+            width: 100%;
+            direction: rtl;
+            position: relative;
+        }
 
 
     </style>
@@ -124,7 +143,7 @@
 <div id="userPopup" class="popup">
     <div class="popup-content" style="direction: rtl">
 
-        <div style="height: 150px ; width: 150px ; background: #d7d727  ; position: absolute ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px" onclick="">
+        <div id="newUser" style="height: 150px ; width: 150px ; background: #d7d727  ; position: absolute ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px" onclick="window.location.assign('/user/register/manager')">
             ایجاد کاربر جدید
         </div>
 
@@ -143,13 +162,11 @@
             <input id="number" class="phoneNumber" type="number" placeholder="شماره موبایل" maxlength="10">
         </label>
 
-
         <button id="register" class="card-button">ادامه</button>
 
 
     </div>
 </div>
-
 
 </body>
 
@@ -176,11 +193,15 @@
         if (event.target === userPopup) {
             userPopup.classList.remove("show");
         }
+         if (event.target === accessPopup) {
+            accessPopup.classList.remove("show");
+        }
     });
 
 </script>
 
 <script>
+
     let register = document.getElementById("register")
     let number = document.getElementById("number")
 
@@ -195,8 +216,6 @@
         }
     })
 
-
-
-
 </script>
+
 </html>

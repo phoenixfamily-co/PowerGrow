@@ -10,6 +10,7 @@ urlpatterns = [
     path('', login_view, name='login'),
     path('login/api/', CustomObtainAuthToken.as_view(), name='token_obtain_pair'),
     path('register/', register_view, name='register'),
+    path('register/manager', register_manager_view, name='register_manager'),
     path('register/api/', RegisterView.as_view(), name="api_register"),
     path('register/api/admin/', AdminRegisterUser.as_view({'post': 'create', 'get': 'list'}), name="api_register"),
     path('verification/<str:number>/', verification_view, name='verification'),
