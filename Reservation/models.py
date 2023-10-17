@@ -12,6 +12,7 @@ class Gym(models.Model):
     off = models.IntegerField(default=0, blank=True, null=True)
     tuition = models.IntegerField()
     contract = models.FileField(upload_to="files/", blank=True, null=True)
+    datetime = models.DateTimeField(default=timezone.now)
 
 
 class Reservations(models.Model):
