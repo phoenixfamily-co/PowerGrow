@@ -43,7 +43,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     birthdate = models.CharField(max_length=10, default=timezone.now)
     national = models.IntegerField(blank=True, null=True, unique=True)
     gender = models.CharField(max_length=10)
-    salary = models.CharField(max_length=20, choices=SALARY_CHOICE)
+    salary = models.CharField(max_length=20, choices=SALARY_CHOICE, blank=True, null=True)
     fee = models.IntegerField(null=True, blank=True)
     created = models.ForeignKey("self", on_delete=models.CASCADE, null=True, blank=True)
     datetime = models.DateTimeField(default=timezone.now)
