@@ -248,7 +248,7 @@
         },
         body: JSON.stringify(param)
     });
-    if (response.status===201){
+    if (response.status===200){
         window.location.assign('/user/home/manager')
     }else {
         alert(response.statusText)
