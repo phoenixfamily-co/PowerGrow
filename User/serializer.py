@@ -111,10 +111,14 @@ class UpdateProfileSerializer(serializers.ModelSerializer):
         instance.accountNumber = validated_data.get("accountNumber", instance.accountNumber)
         instance.telephone = validated_data.get("telephone", instance.telephone)
         instance.email = validated_data.get("email", instance.email)
-        instance.set_password(validated_data['password'])
-        instance.save()
+        if not validated_data['password']:
+            instance.save()
+            return instance
+        else:
+            instance.set_password(validated_data['password'])
+            instance.save()
+            return instance
 
-        return instance
 
 
 class DeleteAccountSerializer(serializers.ModelSerializer):
