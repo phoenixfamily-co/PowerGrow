@@ -121,6 +121,11 @@
   let popup = document.getElementById("myPopup");
   popup.classList.toggle("show");
 }
+      window.addEventListener("click", function (event) {
+        if (event.target === myPopup) {
+            myPopup.classList.remove("show");
+        }
+    });
 
 </script>
 
