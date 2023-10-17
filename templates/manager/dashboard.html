@@ -53,14 +53,14 @@
             font-weight: bolder;
         }
 
-  .register-popup-content{
+  .course-popup-content{
 
        background-color: white;
-            height: 50vh;
+            height: 25vh;
             margin: 10% auto;
             padding: 20px;
             border: 1px solid #888888;
-            width: 55vh;
+            width: 85vh;
             font-weight: bolder;
 
   }
@@ -155,6 +155,25 @@
 </div>
 
 
+<div id="coursePopup" class="popup">
+    <div class="course-popup-content" style="direction: rtl">
+
+        <div id="newUser" style=" cursor:pointer; height: 150px ; width: 150px ; background: #d7d727  ; position: absolute ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px" onclick="window.location.assign('/product/api/course/')">
+            ایجاد دوره
+        </div>
+
+        <div id="access" style=" cursor:pointer; height: 150px ; width: 150px ; background: #d7d727  ; position: absolute ; margin-right: 14.2%  ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px ">
+           مشخص کردن روزها
+        </div>
+
+        <div id="access" style=" cursor:pointer; height: 150px ; width: 150px ; background: #d7d727  ; position: absolute ; margin-right: 28%  ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px ">
+           ثبت نام
+        </div>
+
+    </div>
+</div>
+
+
 <div id="accessPopup" class="popup">
     <div class="popup-content" style="direction: rtl">
 
@@ -177,7 +196,14 @@
     let access = document.getElementById("access")
     let userPopup = document.getElementById("userPopup");
     let accessPopup = document.getElementById("accessPopup");
+    let coursePopup = document.getElementById("coursePopup");
+    let course = document.getElementById("course")
 
+
+    course.addEventListener("click",function () {
+        coursePopup.classList.toggle("show");
+
+    })
 
      access.addEventListener("click",function () {
             userPopup.classList.remove("show");
@@ -197,6 +223,7 @@
             accessPopup.classList.remove("show");
         }
     });
+
 
 </script>
 
