@@ -198,6 +198,7 @@
 <script>
 
     let username = {{ user.number }};
+    let gender = {{ user.gender }};
 
     number.value = username.toString().replace('98','')
 
@@ -235,7 +236,7 @@
           "accountId" : accountId.value,
           "zipCode" : zip.value,
           "birthdate" : birthdate.value,
-          "gender" : {{ user.gender }},
+          "gender" : gender.toString(),
         }
 
         console.log(JSON.stringify(param))
