@@ -28,3 +28,9 @@ class Reservations(models.Model):
     gym = models.ForeignKey(Gym, on_delete=models.CASCADE, related_name='reservations', null=True, blank=True)
     created = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='reservation',
                                 blank=True, null=True)
+
+    def __str__(self):
+        return self.title
+
+
+
