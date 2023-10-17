@@ -163,10 +163,10 @@
         <input id="address" type="text" placeholder="آدرس" class="address" />
     </label>
     <label for="zip">
-        <input id="zip" type="text" placeholder="کد پستی" class="postCode" />
+        <input id="zip" type="number" placeholder="کد پستی" class="postCode" />
     </label>
     <label for="tel">
-        <input id="tel" type="tel" placeholder="تلفن ثابت" class="fixPhoneNumber" maxlength="11"/>
+        <input id="tel" type="number" placeholder="تلفن ثابت" class="fixPhoneNumber" maxlength="11"/>
     </label>
 
     <h3 style="margin-top: 70px; margin-right: 20px" >اطلاعات حساب بانکی</h3>
@@ -174,10 +174,10 @@
     <hr class="solid">
 
     <label>
-        <input id="accountNumber" type="text" placeholder="شماره حساب" class="postCode"/>
+        <input id="accountNumber" type="number" placeholder="شماره حساب" class="postCode"/>
     </label>
     <label>
-        <input id="accountId" type="text" placeholder="شماره شبا" class="fixPhoneNumber"/>
+        <input id="accountId" type="number" placeholder="شماره شبا" class="fixPhoneNumber"/>
     </label>
 
     <h3 style="margin-top: 80px; margin-right: 20px" >اطلاعات امنیتی</h3>
@@ -206,7 +206,7 @@
     let lastAccountNumber = "{{ user.accountNumber }}";
     let lastAccountId = "{{ user.accountId }}";
 
-    if (lastEmail !=="" || lastEmail !==null){
+    if (lastEmail !=="" || !isNaN(lastEmail)){
         email.value = lastEmail
     }
 
