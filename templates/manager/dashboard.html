@@ -30,6 +30,30 @@
 .sidebar{grid-area:sidebar;padding: 0 ; margin-right: 5%}
 .footer{background:#0265c0; grid-area:footer;cursor: pointer}
 
+
+  .popup-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888888;
+            width: 85vh;
+            font-weight: bolder;
+        }
+
+        .popup-content button {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .show {
+            display: block;
+            visibility: visible;
+            -webkit-animation: fadeIn 1s;
+            animation: fadeIn 1s;
+        }
+
+
+
     </style>
     <title>PowerGrow</title>
 </head>
@@ -50,7 +74,7 @@
 
   </main>
   <aside class="sidebar">
-      <div style="background: #f49018 ; padding-top: 20px ; padding-left: 20px  ; height: 45% ; width: 100% ; margin-top: 3%">
+      <div id="course" style="background: #f49018 ; padding-top: 20px ; padding-left: 20px  ; height: 45% ; width: 100% ; margin-top: 3%">
           دوره ها
       </div>
 
@@ -62,6 +86,30 @@
   <footer class="footer" onclick="window.open('https://powergrow.net/about/api/','_blank')">درباره ما</footer>
 </div>
 
+<div id="myPopup" class="popup">
+    <div class="popup-content" style="direction: rtl">
+
+
+    </div>
+</div>
+
 
 </body>
+
+
+<script>
+
+    let course = document.getElementById("course")
+
+    course.addEventListener("click",function () {
+        show()
+    })
+
+    function show() {
+  let popup = document.getElementById("myPopup");
+  popup.classList.toggle("show");
+}
+
+</script>
+
 </html>
