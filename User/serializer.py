@@ -104,6 +104,12 @@ class UpdateProfileSerializer(serializers.ModelSerializer):
         instance.gender = validated_data.get("gender", instance.gender)
         instance.national = validated_data.get("national", instance.national)
         instance.birthdate = validated_data.get("birthdate", instance.birthdate)
+        instance.zipCode = validated_data.get("zipCode", instance.zipCode)
+        instance.address = validated_data.get("address", instance.address)
+        instance.accountId = validated_data.get("accountId", instance.accountId)
+        instance.accountNumber = validated_data.get("accountNumber", instance.accountNumber)
+        instance.telephone = validated_data.get("telephone", instance.telephone)
+        instance.email = validated_data.get("email", instance.email)
         instance.set_password(validated_data['password'])
         instance.save()
 
