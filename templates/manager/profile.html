@@ -209,7 +209,7 @@
     let number = document.getElementById("number")
     let password1 = document.getElementById("password1")
     let password2 = document.getElementById("password2")
-    let name = document.getElementsByName("name")
+    let name = document.getElementById("name")
     let address = document.getElementById("address")
     let email = document.getElementById("email")
     let tel = document.getElementById("tel")
@@ -225,16 +225,16 @@
 
 
       const param = {
-         "number": number.value,
-         "password": password1.value,
-         "name" : name.value,
-         "address" : address.value,
-         "email" : email.value,
-         "telephone" : tel.value ,
-         "accountNumber" : accountNumber.value,
-         "accountId" : accountId.value,
-         "zipCode" : zip.value,
-         "birthdate" : birthdate.value,
+          "name" : name.value,
+          "number": number.value,
+          "password": password1.value,
+          "address" : address.value,
+          "email" : email.value,
+          "telephone" : tel.value ,
+          "accountNumber" : accountNumber.value,
+          "accountId" : accountId.value,
+          "zipCode" : zip.value,
+          "birthdate" : birthdate.value,
         }
 
         console.log(JSON.stringify(param))
