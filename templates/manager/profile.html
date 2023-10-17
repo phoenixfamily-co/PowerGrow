@@ -198,7 +198,7 @@
 <script>
 
     let username = {{ user.number }};
-    let gender = {{ user.gender }};
+    let gender = {{ user.gender|safe }};
 
     number.value = username.toString().replace('98','')
 
