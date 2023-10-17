@@ -183,9 +183,10 @@
 <script>
     let register = document.getElementById("register")
     let number = document.getElementById("number")
-    let url = '+98'+number.value
 
     register.addEventListener("click",function () {
+
+        let url = '+98'+number.value
 
         if (number.value !==null || number.value !=="") {
             window.location.assign("/user/access/"+url)
