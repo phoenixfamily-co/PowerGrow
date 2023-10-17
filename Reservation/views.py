@@ -61,11 +61,8 @@ def successful_view(request, gym, time, session, holiday):
 
 
 class GymView(viewsets.ModelViewSet):
-    queryset = Gym.objects.all()
+    queryset = Gym.objects.values().first()
     serializer_class = GymSerializer
-
-    def get_queryset(self):
-        return Gym.objects.values().first()
 
     def create(self, request, *args, **kwargs):
         Gym.objects.all().delete()
