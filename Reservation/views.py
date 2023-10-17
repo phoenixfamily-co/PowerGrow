@@ -67,9 +67,9 @@ class GymView(viewsets.ModelViewSet):
     def get_queryset(self):
         return Gym.objects.values().first()
 
-    def create(self, request, *args, **kwargs):
-        Gym.objects.all().delete()
-        return super().create(request)
+    # def create(self, request, *args, **kwargs):
+    #     Gym.objects.all().delete()
+    #     return super().create(request)
 
 
 class ReservationView(viewsets.ModelViewSet):

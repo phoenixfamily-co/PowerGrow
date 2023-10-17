@@ -11,7 +11,7 @@ class ReservationSerializer(serializers.ModelSerializer):
 
 
 class GymSerializer(serializers.ModelSerializer):
-    # reservations = ReservationSerializer(read_only=True, many=True)
+    reservations = ReservationSerializer(read_only=True, many=True)
 
     class Meta:
         model = Gym
