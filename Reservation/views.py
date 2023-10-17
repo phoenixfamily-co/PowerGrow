@@ -64,12 +64,12 @@ class GymView(viewsets.ModelViewSet):
     queryset = Gym.objects.all()
     serializer_class = GymSerializer
 
-    # def get_queryset(self):
-    #     return Gym.objects.values().first()
-    #
-    # def create(self, request, *args, **kwargs):
-    #     Gym.objects.all().delete()
-    #     return super().create(request)
+    def get_queryset(self):
+        return Gym.objects.values().first()
+
+    def create(self, request, *args, **kwargs):
+        Gym.objects.all().delete()
+        return super().create(request)
 
 
 class ReservationView(viewsets.ModelViewSet):
