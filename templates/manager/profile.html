@@ -199,11 +199,37 @@
 
     let username = {{ user.number }};
     let gender = "{{ user.gender }}";
-    let lastEmail = "{{ user.email }}"
+    let lastEmail = "{{ user.email }}";
+    let lastAddress = "{{ user.address }}";
+    let lastZipcode = "{{ user.zipCode }}";
+    let lastTelephone = "{{ user.telephone }}";
+    let lastAccountNumber = "{{ user.accountNumber }}";
+    let lastAccountId = "{{ user.accountId }}";
 
     if (lastEmail !=="" || lastEmail !==undefined){
         email.value = lastEmail.toString()
     }
+
+    if (lastAddress !=="" || lastAddress !==undefined){
+        address.value = lastAddress.toString()
+    }
+
+    if (lastZipcode !=="" || lastZipcode !==undefined){
+        zip.value = lastZipcode.toString()
+    }
+
+    if (lastTelephone !=="" || lastTelephone !==undefined){
+        tel.value = lastTelephone.toString()
+    }
+
+    if (lastAccountNumber !=="" || lastAccountNumber !==undefined){
+        accountNumber.value = lastAccountNumber.toString()
+    }
+
+     if (lastAccountId !=="" || lastAccountId !==undefined){
+        accountId.value = lastAccountId.toString()
+    }
+
 
     number.value = username.toString().replace('98','')
 
