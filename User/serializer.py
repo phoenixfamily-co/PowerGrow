@@ -121,7 +121,6 @@ class UpdateProfileSerializer(serializers.ModelSerializer):
             return instance
 
 
-
 class DeleteAccountSerializer(serializers.ModelSerializer):
     is_active = serializers.BooleanField(required=True)
 
