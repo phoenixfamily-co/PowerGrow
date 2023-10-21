@@ -912,6 +912,7 @@
               for (let i = 0 ; i< res.length ; i++){
             const timeItem = document.createElement("li")
                   timeItem.innerHTML = res[i].time
+                  timeItem.setAttribute("id",`${i}`)
                   timeItem.setAttribute("itemid",res[i].id)
                   if (res[i].reserved ===true){
                       timeItem.classList.add("reservedTime")
@@ -928,10 +929,11 @@
                     })
                    btn.classList.add("selectedTime")
                     time = btn.getAttribute("itemid")
+                    let position = btn.getAttribute("id")
                     startTime.innerHTML = btn.textContent
-                    price.innerHTML = res[time].price+ " " + "تومان"
-                    off.innerHTML = res[time].off+"%"
-                    price.innerHTML = (parseInt(res[time].off) % 100 * parseInt(res[time].price)).toString() + " " + "تومان"
+                    price.innerHTML = res[parseInt(position)].price+ " " + "تومان"
+                    off.innerHTML = res[parseInt(position)].off+"%"
+                    price.innerHTML = (parseInt(res[parseInt(position)].off) % 100 * parseInt(res[parseInt(position)].price)).toString() + " " + "تومان"
 
                 })
             })
