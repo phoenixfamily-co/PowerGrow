@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <style>
+
+           @font-face {
+            font-family: BYekan;
+            font-style: normal;
+            font-weight: normal;
+            src: url("/static/fonts/BYekan.eot");/* IE9 Compat Modes */
+            src: url("/static/fonts/BYekan.woff") format('woff'),
+            url("/static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */ url("../../static/fonts/BYekan.ttf") format('truetype') /* Safari, Android, iOS */
+        }
 
      body, html {
             height: auto;
             position: relative;
+         {#background: rgb(193, 193, 193);#}
             font-family: BYekan, serif !important;
         }
      .site{
@@ -19,16 +30,16 @@
   grid-gap:10px; margin:20px ; padding:10px;
 }
 .site > *{padding:30px; color:#fff; font-size:20px;}
-.mastheader{background:#b46ae3; grid-area:header; cursor: pointer}
-.page-title{background:#51a7fa; grid-area:title; cursor: pointer}
+.mastheader{grid-area:header; cursor: pointer ; padding: 0  ; height: 300px}
+.page-title{grid-area:title; cursor: pointer ; height: 200px ; padding: 0}
 .main-content{
     grid-area:main;
     min-height:500px;
     display: inline-flex;
     padding: 0;
 }
-.sidebar{grid-area:sidebar;padding: 0 ; margin-right: 5%}
-.footer{background:#0265c0; grid-area:footer;cursor: pointer}
+.sidebar{grid-area:sidebar;padding: 0  }
+.footer{grid-area:footer;cursor: pointer ; padding: 0 ; height: 250px}
 
 
  .popup {
@@ -114,30 +125,43 @@
 <body>
 
 <div class="site">
-  <header class="mastheader" onclick="window.open('https://powergrow.net/home/api/slider/','_blank')"> بنر ها</header>
-  <h1 class="page-title" onclick="window.open('https://powergrow.net/seo/api/news/','_blank')">اطلاعیه ها</h1>
+  <header class="mastheader" onclick="window.open('https://powergrow.net/home/api/slider/','_blank')">
+      <div style="position:absolute ; margin-top: 18vh ; margin-left: 10vh ; font-size: 48px">بنر ها</div>
+  <img src="/assets/images/banners.jpg" style="height: 100% ; width: 100% ; border-radius: 20px" alt="">
+  </header>
+  <h1 class="page-title" onclick="window.open('https://powergrow.net/seo/api/news/','_blank')">
+      <div style="position:absolute ; margin-top: 10vh ; margin-left: 10vh ; font-size: 40px">اطلاعیه ها</div>
+  <img src="/assets/images/news.jpg" style="height: 100% ; width: 100% ; border-radius: 20px" alt="">
+  </h1>
   <main class="main-content">
 
-        <div id="user" style="cursor:pointer; background: #d7d727 ; padding-top: 20px ; padding-left: 20px  ; height: 92% ; width: 47% ">
-            کاربر ها
+        <div id="user" style="cursor:pointer ; height: 92% ; width: 48% ">
+ <div style="position:absolute ; margin-top: 2vh ; margin-left: 2vh ; font-size: 36px">کاربر ها</div>
+  <img src="/assets/images/users.jpg" style="height: 100% ; width: 100% ; border-radius: 20px" alt="">
         </div>
 
-      <div style="background: #ffbe98 ;padding-top: 20px ; padding-left: 20px ; height: 92%; width: 47% ; margin-left: 3% ; cursor: pointer" onclick="location.assign('/user/profile/manager')">
-          پروفایل من
+      <div style="height: 92%; width: 48% ; margin-left: 3% ; cursor: pointer" onclick="location.assign('/user/profile/manager')">
+  <div style="position:absolute ; margin-top: 2vh ; margin-left: 2vh ; font-size: 36px">پروفایل من</div>
+  <img src="/assets/images/profile.jpg" style="height: 100% ; width: 100% ; border-radius: 20px" alt="">
       </div>
 
   </main>
   <aside class="sidebar">
-      <div id="course" style="background: #f49018 ; padding-top: 20px ; padding-left: 20px  ; height: 45% ; width: 100% ; margin-top: 3% ; cursor: pointer">
-          دوره ها
+      <div id="course" style="height: 45% ; width: 100% ; margin-top: 3% ; cursor: pointer">
+            <div style="position:absolute ; margin-top: 1vh ; margin-left: 2vh ; font-size: 36px">دوره ها</div>
+  <img src="/assets/images/courses.jpg" style="height: 100% ; width: 100% ; border-radius: 20px" alt="">
       </div>
 
-      <div id="reserve" style="cursor:pointer; background: #ff0c0c ;padding-top: 20px ; padding-left: 20px ; height: 40%; margin-top: 5% ; width: 100%">
-          رزرو ها
+      <div id="reserve" style="cursor:pointer;height: 45%; margin-top: 5% ; width: 100%">
+          <div style="position:absolute ; margin-top: 2vh ; margin-left: 2vh ; font-size: 36px">رزروها</div>
+  <img src="/assets/images/reserve.jpg" style="height: 100% ; width: 100% ; border-radius: 20px" alt="">
       </div>
 
   </aside>
-  <footer class="footer" onclick="window.open('https://powergrow.net/about/api/','_blank')">درباره ما</footer>
+  <footer class="footer" onclick="window.open('https://powergrow.net/about/api/','_blank')">
+       <div style="position:absolute ; margin-top: 12vh ; margin-left: 15vh ; font-size: 48px">درباره ما</div>
+  <img src="/assets/images/about.jpg" style="height: 100% ; width: 100% ; border-radius: 20px" alt="">
+  </footer>
 </div>
 
 <div id="userPopup" class="popup">
