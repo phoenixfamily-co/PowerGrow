@@ -32,7 +32,6 @@ def register_view(request):
     return HttpResponse(template.render(context, request))
 
 
-@csrf_exempt
 def register_manager_view(request):
     about = AboutUs.objects.values().first()
     template = loader.get_template('manager/register.html')
@@ -41,6 +40,14 @@ def register_manager_view(request):
     }
     return HttpResponse(template.render(context, request))
 
+
+def register_secretary_view(request):
+    about = AboutUs.objects.values().first()
+    template = loader.get_template('secretary/register.html')
+    context = {
+        "about": about,
+    }
+    return HttpResponse(template.render(context, request))
 
 
 def verification_view(request, number):
