@@ -9,8 +9,6 @@ class Gym(models.Model):
     title = models.TextField(blank=True, null=True)
     image = models.ImageField(upload_to="images/", blank=True, null=True)
     description = models.TextField(blank=True, null=True)
-    off = models.IntegerField(default=0, blank=True, null=True)
-    tuition = models.IntegerField()
     contract = models.FileField(upload_to="files/", blank=True, null=True)
     datetime = models.DateTimeField(default=timezone.now)
 
