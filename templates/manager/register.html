@@ -208,11 +208,13 @@ span {
          "is_active" : true,
         }
 
+        console.log(param)
+
     const response = await fetch('/user/register/manager/api/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization' : 'token' + cookieValue
+            'Authorization' : 'token'+ '' + cookieValue
         },
         body: JSON.stringify(param)
     });
