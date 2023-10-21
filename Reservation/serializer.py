@@ -7,7 +7,7 @@ class ReservationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Reservations
-        exclude = ['datetime']
+        exclude = ['datetime', 'created']
 
 
 class GymSerializer(serializers.ModelSerializer):

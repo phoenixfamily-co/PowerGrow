@@ -1,7 +1,6 @@
 from django.http import HttpResponse
 from django.template import loader
 from rest_framework import viewsets, filters
-from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
@@ -119,7 +118,7 @@ class ParticipationView(viewsets.ModelViewSet):
                                                              session=data["session"],
                                                              day=data["day"],
                                                              price=data["price"],
-                                                             user=data["user"],
+                                                             user=self.request.user,
                                                              course=course,
                                                              created=self.request.user)
         serializer = ParticipantsSerializer(participants)
