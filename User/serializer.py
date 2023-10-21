@@ -11,7 +11,7 @@ from .models import User
 class AdminRegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('number', 'password', 'gender', 'name', 'birthdate')
+        fields = ('number', 'password', 'gender', 'name', 'birthdate','is_active')
         extra_kwargs = {
             'password': {'write_only': True}
         }
