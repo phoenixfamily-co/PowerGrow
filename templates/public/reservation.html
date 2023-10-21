@@ -933,7 +933,11 @@
                     startTime.innerHTML = btn.textContent
                     price.innerHTML = res[parseInt(position)].price+ " " + "تومان"
                     off.innerHTML = res[parseInt(position)].off+"%"
-                    price.innerHTML = (parseInt(res[parseInt(position)].off) % 100 * parseInt(res[parseInt(position)].price)).toString() + " " + "تومان"
+                    if (parseInt(res[parseInt(position)].off) !==0){
+                        final.innerHTML = (parseInt(res[parseInt(position)].off) % 100 * parseInt(res[parseInt(position)].price)).toString() + " " + "تومان"
+                    }else {
+                        final.innerHTML = res[parseInt(position)].price+ " " + "تومان"
+                    }
 
                 })
             })
