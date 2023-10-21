@@ -215,7 +215,7 @@ span {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization' : 'token'+ '' + cookieValue
+            'Authorization' : `token ${cookieValue}`
         },
         body: JSON.stringify(param)
     });
