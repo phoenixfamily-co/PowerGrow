@@ -182,7 +182,6 @@ span {
         JSON.stringify(result)
         document.cookie = `token=${result.token}; max-age=3600*24 ; path=/`
 
-        console.log(result.token)
         if (result.user.is_staff===true){
 
             window.location.assign("{% url "user:manager_home" %}")
