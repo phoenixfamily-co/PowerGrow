@@ -127,6 +127,19 @@
             color: white
 		}
 
+        .exit-button{
+			position: absolute ;
+            cursor: pointer;
+           left: 0;
+            height: 40px ;
+            width: 100px;
+           margin-top: 5px;
+           margin-left: 120px;
+            background: #ff0c0c;
+            border-color: transparent ;
+            color: white
+		}
+
     </style>
     <title>PowerGrow</title>
 </head>
@@ -134,6 +147,10 @@
 
     <button id="register" class="card-button">
         ثبت
+    </button>
+
+    <button id="exit" class="exit-button">
+        خروج
     </button>
 
     <h3 style="margin-right: 20px">اطلاعات شناسنامه</h3>
@@ -249,6 +266,7 @@
     let birthdate = document.getElementById("birthdate")
     let zip = document.getElementById("zip")
     let register = document.getElementById("register")
+    let exit = document.getElementById("exit")
     let param
 
          register.addEventListener("click", async function (event) {
@@ -304,6 +322,11 @@
             alert("پسورد ها یکسان نیستند")
         }
 });
+
+
+    exit.addEventListener("click", function () {
+        window.location.assign('/user/home/manager')
+    })
 
 
 </script>
