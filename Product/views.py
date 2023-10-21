@@ -119,7 +119,7 @@ class ParticipationView(viewsets.ModelViewSet):
                                                              session=data["session"],
                                                              day=data["day"],
                                                              price=data["price"],
-                                                             user=self.request.user,
+                                                             user=data["user"],
                                                              course=course,
                                                              created=self.request.user)
         serializer = ParticipantsSerializer(participants)
