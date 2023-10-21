@@ -20,7 +20,8 @@ class ParticipantsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Participants
-        exclude = ['datetime', 'created']
+        read_only_fields = 'created'
+        exclude = ['datetime']
 
 
 class CourseSerializer(serializers.ModelSerializer):
