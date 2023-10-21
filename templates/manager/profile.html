@@ -312,7 +312,7 @@
         body: JSON.stringify(param)
     });
     if (response.status===200){
-        window.location.assign('/user/home/manager')
+        history.back()
     }else {
         alert(response.statusText)
     }
