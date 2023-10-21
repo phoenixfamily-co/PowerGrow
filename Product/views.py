@@ -142,7 +142,6 @@ class ManagerParticipationView(viewsets.ModelViewSet):
                                                              course=course,
                                                              created=self.request.user)
         serializer = ParticipantsSerializer(participants)
-        serializer.save()
         return Response(serializer.data)
 
 
