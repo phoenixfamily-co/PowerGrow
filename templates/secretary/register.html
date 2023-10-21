@@ -155,6 +155,14 @@ span {
           <input id="woman" type="radio" checked="checked" name="gender" value='خانم'>
           خانم
         </label>
+
+      <label for="gender" style="margin-right: 20px; margin-top:100px ; position: absolute ; right: 0 "><b>نقش</b>
+          <input id="teacher" type="radio" checked="checked" name="gender" value='مربی'>
+          آقا
+
+          <input id="student" type="radio" checked="checked" name="gender" value='دانش آموز'>
+          خانم
+        </label>
     <button type="submit">ثبت نام</button>
 
   </div>
@@ -181,7 +189,9 @@ span {
     const pass1 = document.getElementById('pass1');
     const pass2 = document.getElementById('pass2');
     let man = document.getElementById("man");
-    let gender
+    let teacher = document.getElementById("teacher");
+    let gender;
+    let is_teacher
 
 
         const cookieValue = document.cookie
@@ -199,6 +209,8 @@ span {
             gender = "خانم"
         }
 
+          is_teacher = !!teacher.checked;
+
      const param = {
          "number": `+98${username.value}`,
          "password": pass1.value,
@@ -206,7 +218,7 @@ span {
          "birthdate": birthdate.value,
          "gender": gender,
          "is_active" : true,
-         "is_teacher" : false,
+         "is_teacher" : is_teacher
         }
 
     const response = await fetch('/user/register/manager/api/', {
