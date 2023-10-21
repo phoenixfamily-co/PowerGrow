@@ -183,6 +183,12 @@ span {
     let man = document.getElementById("man");
     let gender
 
+
+        const cookieValue = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("token="))
+        ?.split("=")[1];
+
     registerForm.addEventListener("submit", async function (event) {
     event.preventDefault();
     if (pass1.value===pass2.value){
@@ -205,6 +211,7 @@ span {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization' : 'token' + cookieValue
         },
         body: JSON.stringify(param)
     });
