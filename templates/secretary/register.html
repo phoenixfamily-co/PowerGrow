@@ -209,11 +209,7 @@ span {
             gender = "خانم"
         }
 
- if (teacher.checked){
-            is_teacher = true
-        }else {
-            is_teacher = false
-        }
+ is_teacher = !!teacher.checked;
 
      const param = {
          "number": `+98${username.value}`,
