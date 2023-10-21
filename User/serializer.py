@@ -11,7 +11,7 @@ from .models import User
 class AdminRegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('number', 'password', 'gender', 'name', 'birthdate','is_active')
+        fields = ('number', 'password', 'gender', 'name', 'birthdate', 'is_active')
         extra_kwargs = {
             'password': {'write_only': True}
         }
@@ -29,6 +29,7 @@ class AdminRegisterSerializer(serializers.ModelSerializer):
             gender=validated_data['gender'],
             password=make_password(validated_data['password']),
             birthdate=validated_data['birthdate'],
+            is_active=validated_data['is_active'],
             created=created
 
         )
