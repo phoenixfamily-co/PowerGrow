@@ -80,8 +80,8 @@ class ReservationView(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         data = self.request.data
-        gym = Gym.objects.get(id=data["gym"])
-        time = Time.objects.get(id=data["time"])
+        gym = Gym.objects.filter(id=data["gym"]).first()
+        time = Time.objects.filter(id=data["time"]).first()
         time.reserved = True
         time.save()
         reservations = Reservations.objects.update_or_create(title=data["title"],
@@ -104,8 +104,8 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         data = self.request.data
-        gym = Gym.objects.get(id=data["gym"])
-        time = Time.objects.get(id=data["time"])
+        gym = Gym.objects.filter(id=data["gym"]).first()
+        time = Time.objects.filter(id=data["time"]).first()
         time.reserved = True
         time.save()
         user = User.objects.filter(id=data["user"]).first()
