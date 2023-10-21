@@ -927,12 +927,11 @@
                         btn.classList.remove("selectedTime")
                     })
                    btn.classList.add("selectedTime")
+                    time = btn.getAttribute("itemid")
                     startTime.innerHTML = btn.textContent
                     price.innerHTML = res[time].price+ " " + "تومان"
                     off.innerHTML = res[time].off+"%"
                     price.innerHTML = (parseInt(res[time].off) % 100 * parseInt(res[time].price)).toString() + " " + "تومان"
-
-                    time = btn.getAttribute("itemid")
 
                 })
             })
