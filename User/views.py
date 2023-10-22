@@ -110,11 +110,12 @@ def secretary_home_view(request):
     return HttpResponse(template.render(context, request))
 
 
-def manager_home_view(request):
+def manager_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('manager/dashboard.html')
     context = {
         "about": about,
+        "ic" : pk
     }
     return HttpResponse(template.render(context, request))
 
@@ -137,10 +138,10 @@ def user_profile_view(request):
     return HttpResponse(template.render(context, request))
 
 
-def manager_profile_view(request):
+def manager_profile_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('manager/profile.html')
-    user = User.objects.all().values().first()
+    user = User.objects.filter(id=pk).values().first()
     context = {
         "about": about,
         "user" : user

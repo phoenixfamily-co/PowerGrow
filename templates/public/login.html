@@ -184,7 +184,7 @@ span {
 
         if (result.user.is_staff===true){
 
-            window.location.assign("{% url "user:manager_home" %}")
+            window.location.assign("{% url "user:manager_home" result.user.id %}")
 
         }else if (result.user.is_superuser===true){
 
