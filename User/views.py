@@ -120,7 +120,7 @@ def manager_home_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
-def secretary_profile_view(request ,pk):
+def secretary_profile_view(request , pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('secretary/profile.html')
     context = {
