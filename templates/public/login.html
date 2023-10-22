@@ -184,17 +184,17 @@ span {
 
         if (result.user.is_staff===true){
 
-            window.location.assign(`/home/manager/${result.user.id}/`)
+            window.location.assign(`/user/home/manager/${result.user.id}/`)
 
         }else if (result.user.is_superuser===true){
 
-            window.location.assign(`/home/admin/${result.user.id}/`)
+            window.location.assign(`/user//home/admin/${result.user.id}/`)
 
         }else if (result.user.is_teacher===true){
-            window.location.assign(`/home/teacher/${result.user.id}/`)
+            window.location.assign(`/user/home/teacher/${result.user.id}/`)
 
         }else {
-            window.location.assign(`/home/user/${result.user.id}/`)
+            window.location.assign(`/user/home/user/${result.user.id}/`)
         }
     }else {
             document.getElementById('error').innerHTML = response.statusText
