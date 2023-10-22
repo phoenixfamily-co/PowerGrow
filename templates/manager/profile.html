@@ -221,7 +221,7 @@
     let lastAccountNumber = "{{ user.accountNumber }}";
     let lastAccountId = "{{ user.accountId }}";
 
-    if (lastEmail !=="" || !isNaN(lastEmail)){
+    if (lastEmail !=="" || lastEmail !==null){
         email.value = lastEmail
     }
 
