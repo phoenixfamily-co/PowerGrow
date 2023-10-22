@@ -34,17 +34,21 @@ class AdminRegisterSerializer(serializers.ModelSerializer):
             created=created
 
         )
+        phone = validated_data["number"]
+        phone.replace("+98", " ")
 
         user.set_password(validated_data['password'])
         user.save()
 
-        data = {'from': '50004001047208', 'to': validated_data['number'], 'text': 'سلام به باشگاه ورزشی حجاب خوش امدید'
-                                                                                  f'نام کاربری: {validated_data["number"]}'
-                                                                                  f'رمز عبور:{validated_data["password"]}'
-                                                                                  f'https://powergrow.net/'
+        data = {'from': '50004001047208', 'to': validated_data['number'],
+                'text': "سلام به باشگاه ورزشی حجاب خوش امدید "
+                        "\n"
+                        f" نام کاربری : {phone} "
+                        "\n"
+                        f" پسورد : {validated_data['password']} "
                 }
-        response = requests.post('https://console.melipayamak.com/api/send/simple/d15bf0639e874ecebb5040b599cb8af6',
-                                 json=data)
+        requests.post('https://console.melipayamak.com/api/send/simple/d15bf0639e874ecebb5040b599cb8af6',
+                      json=data)
 
         return user
 
@@ -101,7 +105,7 @@ class UpdateProfileSerializer(serializers.ModelSerializer):
             'gender': {'required': True},
             'birthdate': {'required': True},
         }
-        exclude = ['number', 'password']
+        exclude = ['number']
 
     def update(self, instance, validated_data):
         instance.name = validated_data.get("name", instance.name)
