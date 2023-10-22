@@ -150,7 +150,7 @@
   <img src="/static/images/users.jpg" style="height: 100% ; width: 100% ; border-radius: 20px" alt="">
         </div>
 
-      <div style="height: 92%; width: 48% ; margin-left: 3% ; cursor: pointer" onclick="location.assign('/user/profile/manager')">
+      <div id="profile" style="height: 92%; width: 48% ; margin-left: 3% ; cursor: pointer">
   <div style="position:absolute ; margin-top: 2vh ; margin-left: 2vh ; font-size: 36px">پروفایل من</div>
   <img src="/static/images/profile.jpg" style="height: 100% ; width: 100% ; border-radius: 20px" alt="">
       </div>
@@ -267,6 +267,14 @@
     let course = document.getElementById("course")
     let reserve = document.getElementById("reserve")
     let reservePopup = document.getElementById("reservePopup")
+    let profile = document.getElementById("profile")
+
+
+
+    profile.addEventListener("click", function () {
+        location.assign(`/user/profile/manager/{{ id }}/`)
+    })
+
 
 
     reserve.addEventListener("click",function () {

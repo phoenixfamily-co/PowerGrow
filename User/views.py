@@ -88,6 +88,8 @@ def user_home_view(request, pk):
     template = loader.get_template('user/dashboard.html')
     context = {
         "about": about,
+        "id": pk
+
     }
     return HttpResponse(template.render(context, request))
 
@@ -97,6 +99,7 @@ def teacher_home_view(request, pk):
     template = loader.get_template('teacher/dashboard.html')
     context = {
         "about": about,
+        "id": pk
     }
     return HttpResponse(template.render(context, request))
 
@@ -106,6 +109,8 @@ def secretary_home_view(request, pk):
     template = loader.get_template('secretary/dashboard.html')
     context = {
         "about": about,
+        "id": pk
+
     }
     return HttpResponse(template.render(context, request))
 
@@ -120,40 +125,13 @@ def manager_home_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
-def secretary_profile_view(request , pk):
+def profile_view(request, pk):
     about = AboutUs.objects.values().first()
-    template = loader.get_template('secretary/profile.html')
-    context = {
-        "about": about,
-    }
-    return HttpResponse(template.render(context, request))
-
-
-def user_profile_view(request, pk):
-    about = AboutUs.objects.values().first()
-    template = loader.get_template('user/profile.html')
-    context = {
-        "about": about,
-    }
-    return HttpResponse(template.render(context, request))
-
-
-def manager_profile_view(request, pk):
-    about = AboutUs.objects.values().first()
-    template = loader.get_template('manager/profile.html')
+    template = loader.get_template('public/profile.html')
     user = User.objects.filter(id=pk).values().first()
     context = {
         "about": about,
         "user" : user
-    }
-    return HttpResponse(template.render(context, request))
-
-
-def teacher_profile_view(request):
-    about = AboutUs.objects.values().first()
-    template = loader.get_template('teacher/profile.html')
-    context = {
-        "about": about,
     }
     return HttpResponse(template.render(context, request))
 

@@ -245,11 +245,6 @@
     let reservePopup = document.getElementById("reservePopup")
     let profile = document.getElementById("profile")
 
-     const cookieValue = document.cookie
-        .split("; ")
-        .find((row) => row.startsWith("token="))
-        ?.split("=")[1];
-
 
     profile.addEventListener("click", function () {
         location.assign(`/user/profile/manager/{{ id }}/`)

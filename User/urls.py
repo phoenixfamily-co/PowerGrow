@@ -30,8 +30,7 @@ urlpatterns = [
     path('home/teacher/<int:pk>/', teacher_home_view, name='teacher_home'),
     path('home/admin/<int:pk>/', secretary_home_view, name='admin_home'),
     path('home/manager/<int:pk>/', manager_home_view, name='manager_home'),
-    path('profile/manager/<int:pk>/', manager_profile_view, name='manager_profile'),
-    path('profile/admin/<int:pk>/', secretary_profile_view, name='admin_profile'),
-    path('profile/teacher/<int:pk>/', teacher_profile_view, name='teacher_profile'),
-    path('profile/user/<int:pk>/', user_profile_view, name='user_profile'),
-]
+    path('profile/<int:pk>/', profile_view, name='profile')
+
+    ]
+
