@@ -83,7 +83,7 @@ def pass_view(request, number):
     return HttpResponse(template.render(context, request))
 
 
-def user_home_view(request):
+def user_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('user/dashboard.html')
     context = {
@@ -92,7 +92,7 @@ def user_home_view(request):
     return HttpResponse(template.render(context, request))
 
 
-def teacher_home_view(request):
+def teacher_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('teacher/dashboard.html')
     context = {
@@ -101,7 +101,7 @@ def teacher_home_view(request):
     return HttpResponse(template.render(context, request))
 
 
-def secretary_home_view(request):
+def secretary_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('secretary/dashboard.html')
     context = {
@@ -120,7 +120,7 @@ def manager_home_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
-def secretary_profile_view(request):
+def secretary_profile_view(request ,pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('secretary/profile.html')
     context = {
@@ -129,7 +129,7 @@ def secretary_profile_view(request):
     return HttpResponse(template.render(context, request))
 
 
-def user_profile_view(request):
+def user_profile_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('user/profile.html')
     context = {
