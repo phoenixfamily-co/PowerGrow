@@ -115,7 +115,7 @@ def manager_home_view(request, pk):
     template = loader.get_template('manager/dashboard.html')
     context = {
         "about": about,
-        "ic" : pk
+        "id" : pk
     }
     return HttpResponse(template.render(context, request))
 
