@@ -105,7 +105,7 @@ class UpdateProfileSerializer(serializers.ModelSerializer):
             'gender': {'required': True},
             'birthdate': {'required': True},
         }
-        exclude = ['number']
+        exclude = ['number', 'password']
 
     def update(self, instance, validated_data):
         instance.name = validated_data.get("name", instance.name)
@@ -119,13 +119,8 @@ class UpdateProfileSerializer(serializers.ModelSerializer):
         instance.telephone = validated_data.get("telephone", instance.telephone)
         instance.email = validated_data.get("email", instance.email)
 
-        if validated_data.get("password", None) is not None:
-            instance.set_password(validated_data['password'])
-            instance.save()
-            return instance
-        else:
-            instance.save()
-            return instance
+        instance.save()
+        return instance
 
 
 class DeleteAccountSerializer(serializers.ModelSerializer):

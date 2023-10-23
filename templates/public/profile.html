@@ -14,9 +14,10 @@
             font-family: BYekan;
             font-style: normal;
             font-weight: normal;
-            src: url("/fonts/BYekan.eot");/* IE9 Compat Modes */
-            src: url("/fonts/BYekan.woff") format('woff'),
-            url("/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */ url("BYekan.ttf") format('truetype') /* Safari, Android, iOS */
+            src: url("/static/fonts/BYekan.eot");/* IE9 Compat Modes */
+            src: url("/static/fonts/BYekan.woff") format('woff'),
+            url("/static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */
+            url("/static/fonts/BYekan.ttf") format('truetype') /* Safari, Android, iOS */
         }
 
         body {
@@ -24,11 +25,6 @@
             position: relative;
         }
 
-
-        .personalData {
-            margin: 150px 16px 0 0;
-            font-size: x-large;
-        }
 
 
         .solid {
@@ -207,12 +203,13 @@
     <label>
         <input id="password2" type="password" placeholder="تکرار رمز عبور جدید" class="fixPhoneNumber"/>
     </label>
+
 </body>
 
 
 <script>
 
-    let username = {{ user.number }};
+    let username = "{{ user.number }}";
     let gender = "{{ user.gender }}";
     let lastEmail = "{{ user.email }}";
     let lastAddress = "{{ user.address }}";
@@ -246,7 +243,6 @@
         accountId.value = lastAccountId.toString()
     }
 
-
     number.value = username.toString().replace('98','')
 
 </script>
@@ -267,16 +263,15 @@
     let zip = document.getElementById("zip")
     let register = document.getElementById("register")
     let exit = document.getElementById("exit")
-    let param
+    let param1
+    let param2
 
          register.addEventListener("click", async function (event) {
     event.preventDefault();
 
     if (password1.value===password2.value){
 
-        if (password1.value !=='' || password1.value !==null){
-
-              param = {
+              param1 = {
                 "name": name.value,
                 "password": password1.value,
                 "address": address.value,
@@ -288,20 +283,6 @@
                 "birthdate": birthdate.value,
                 "gender": gender.toString(),
             }
-        }else {
-              param = {
-                "name": name.value,
-                "address": address.value,
-                "email": email.value,
-                "telephone": parseInt(tel.value),
-                "accountNumber": accountNumber.value,
-                "accountId": accountId.value,
-                "zipCode": parseInt(zip.value),
-                "birthdate": birthdate.value,
-                "gender": gender.toString(),
-            }
-        }
-
 
 
     const response = await fetch(`/user/update/+${username}/`, {
@@ -309,12 +290,34 @@
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(param)
+        body: JSON.stringify(param1)
     });
     if (response.status===200){
-        history.back()
+
+        if(password1.value !=null || password1.value !=="") {
+
+            param2 = {
+                "password": password1.value,
+            }
+
+            const result = await fetch(`/user/update/+${username}/`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(param)
+            });
+            if (result.status === 200) {
+                history.back()
+            } else {
+                alert("پسورد ضعیف است")
+            }
+        }
+        else {
+            history.back()
+        }
     }else {
-        alert(response.statusText)
+        alert("ایمیل نامعتبر است")
     }
     }
     else
@@ -327,7 +330,6 @@
     exit.addEventListener("click", function () {
         history.back()
     })
-
 
 </script>
 
