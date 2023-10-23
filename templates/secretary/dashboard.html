@@ -238,20 +238,35 @@
 
 
 <div id="reservePopup" class="popup">
-    <div class="popup-content" style="direction: rtl">
+    <div class="course-popup-content" style="direction: rtl">
 
-        <div id="newUser" style="  cursor: none;
+        <div id="newUser" style="cursor: none;
              pointer-events: none;
       color: rgba(222, 222, 222, 0.89);
-             opacity:0.6; height: 150px ; width: 150px ; background: #ff0c0c  ; position: absolute ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px" onclick="window.location.assign('/reservation/api/gym/')">
+             opacity:0.6 ; height: 150px ; width: 130px ; background: #ff0c0c  ; position: absolute ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px" onclick="window.location.assign('/reservation/api/gym/')">
             ایجاد سالن
         </div>
 
-        <div id="access" style="cursor:pointer; height: 150px ; width: 150px ; background: #ff0c0c   ; position: absolute ; margin-right: 14.2%  ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px" onclick="window.location.assign('/reservation/api/admin/reserve/')">
-           رزرواسیون
+        <div id="access" style="cursor: none;
+             pointer-events: none;
+      color: rgba(222, 222, 222, 0.89);
+             opacity:0.6 ; height: 150px ; width: 130px ; background: #ff0c0c   ; position: absolute ; margin-right: 10.5%  ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px" onclick="window.location.assign('/reservation/api/admin/reserve/')">
+           رزرو
+        </div>
+
+         <div id="newUser" style="cursor: none;
+             pointer-events: none;
+      color: rgba(222, 222, 222, 0.89);
+             opacity:0.6 ; height: 150px ; width: 130px ; background: #ff0c0c  ; position: absolute; margin-right: 21% ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px" onclick="window.location.assign('/reservation/api/gym/')">
+            قیمت گذاری
+        </div>
+
+        <div id="access" style="cursor:none; height: 150px ; width: 130px ; background: #ff0c0c   ; position: absolute ; margin-right: 31.5%  ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px" onclick="window.location.assign('/reservation/api/admin/reserve/')">
+           تقویم
         </div>
 
     </div>
+
 </div>
 
 </body>
