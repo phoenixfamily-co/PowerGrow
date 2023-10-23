@@ -46,6 +46,8 @@ class AdminRegisterSerializer(serializers.ModelSerializer):
                         f" نام کاربری : {phone} "
                         "\n"
                         f" پسورد : {validated_data['password']} "
+                        f"\n"
+                        f"https://powergrow.net/"
                 }
         requests.post('https://console.melipayamak.com/api/send/simple/d15bf0639e874ecebb5040b599cb8af6',
                       json=data)
