@@ -296,13 +296,13 @@
 
         console.log(password1.value)
 
-        if(password1.value != null || password1.value !== undefined) {
+        if(password1.value !== '') {
 
             param2 = {
                 "password": password1.value,
             }
 
-            const result = await fetch(`/user/verification/password/api/+${username}/`, {
+            const result = await fetch(`/user/verification/password/api/${username}/`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
