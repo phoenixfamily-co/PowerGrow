@@ -300,12 +300,12 @@
                 "password": password1.value,
             }
 
-            const result = await fetch(`/user/update/+${username}/`, {
+            const result = await fetch(`/user/verification/password/api/+${username}/`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(param)
+                body: JSON.stringify(param2)
             });
             if (result.status === 200) {
                 history.back()
