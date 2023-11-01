@@ -4,7 +4,6 @@ from django.utils import timezone
 from phonenumber_field.modelfields import PhoneNumberField
 
 SALARY_CHOICE = (
-    ('آزاد', 'free'),
     ('درصدی', 'percentage'),
     ('ثابت', 'static'),
 )

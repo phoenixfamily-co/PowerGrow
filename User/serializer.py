@@ -100,9 +100,6 @@ class ChangePasswordSerializer(serializers.ModelSerializer):
 
 
 class ChangeSalarySerializer(serializers.ModelSerializer):
-    salary = serializers.CharField(required=True)
-    fee = serializers.IntegerField(required=True)
-
     class Meta:
         model = User
         fields = ['salary', 'fee']
