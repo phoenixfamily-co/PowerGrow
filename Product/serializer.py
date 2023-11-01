@@ -8,6 +8,7 @@ class ParticipantsSerializer(serializers.ModelSerializer):
         model = Participants
         read_only_fields = ['created']
         exclude = ['datetime']
+        depth = 4
 
 
 class DaysSerializer(serializers.ModelSerializer):
