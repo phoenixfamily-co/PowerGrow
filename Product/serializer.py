@@ -2,7 +2,17 @@ from rest_framework import serializers
 from .models import Course, Days, Sport, Sessions, Participants
 
 
+class ParticipantsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Participants
+        read_only_fields = ['created']
+        exclude = ['datetime']
+
+
 class DaysSerializer(serializers.ModelSerializer):
+    participants = ParticipantsSerializer(read_only=True, many=True)
+
     class Meta:
         model = Days
         fields = "__all__"
@@ -10,18 +20,11 @@ class DaysSerializer(serializers.ModelSerializer):
 
 class SessionSerializer(serializers.ModelSerializer):
     days = DaysSerializer(read_only=True, many=True)
+    participants = ParticipantsSerializer(read_only=True, many=True)
 
     class Meta:
         model = Sessions
         fields = "__all__"
-
-
-class ParticipantsSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Participants
-        read_only_fields = ['created']
-        exclude = ['datetime']
 
 
 class CourseSerializer(serializers.ModelSerializer):
