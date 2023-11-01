@@ -156,6 +156,7 @@ class UpdateProfile(generics.UpdateAPIView, ):
     serializer_class = UpdateProfileSerializer
 
 
+@permission_classes([IsAuthenticated])
 class AdminRegisterUser(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = AdminRegisterSerializer
