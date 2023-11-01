@@ -30,6 +30,8 @@ class AdminRegisterSerializer(serializers.ModelSerializer):
             password=make_password(validated_data['password']),
             birthdate=validated_data['birthdate'],
             is_active=validated_data['is_active'],
+            is_superuser=validated_data['is_superuser'],
+            is_staff=validated_data['is_staff'],
             is_teacher=validated_data['is_teacher'],
             created=created
 
