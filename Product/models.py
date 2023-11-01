@@ -50,8 +50,8 @@ class Days(models.Model):
 class Participants(models.Model):
     title = models.TextField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
-    session = models.ForeignKey(Sessions, on_delete=models.CASCADE, related_name='participants')
-    day = models.ForeignKey(Days, on_delete=models.CASCADE, related_name='participants')
+    session = models.ForeignKey(Sessions, on_delete=models.CASCADE, related_name='participants',  null=True, blank=True)
+    day = models.ForeignKey(Days, on_delete=models.CASCADE, related_name='participants', null=True, blank=True)
     price = models.IntegerField(blank=True, null=True)
     datetime = models.DateTimeField(default=timezone.now)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='participants',
