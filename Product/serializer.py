@@ -22,6 +22,7 @@ class ParticipantsSerializer(serializers.ModelSerializer):
         model = Participants
         read_only_fields = ['created']
         exclude = ['datetime']
+        depth = 1
 
 
 class CourseSerializer(serializers.ModelSerializer):

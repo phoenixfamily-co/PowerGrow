@@ -36,19 +36,6 @@ class Course(models.Model):
     sport = models.ForeignKey(Sport, on_delete=models.CASCADE, related_name='courses', null=True, blank=True)
 
 
-class Participants(models.Model):
-    title = models.TextField(blank=True, null=True)
-    session = models.IntegerField(blank=True, null=True)
-    day = models.TextField(blank=True, null=True)
-    price = models.IntegerField(blank=True, null=True)
-    datetime = models.DateTimeField(default=timezone.now)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='participants',
-                             blank=True, null=True)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='participants', null=True, blank=True)
-    created = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='participant',
-                                blank=True, null=True)
-
-
 class Sessions(models.Model):
     number = models.IntegerField(blank=True, null=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='sessions', null=True, blank=True)
@@ -58,3 +45,18 @@ class Days(models.Model):
     reserved = models.BooleanField(blank=True, null=True)
     title = models.TextField(blank=True, null=True)
     session = models.ForeignKey(Sessions, on_delete=models.CASCADE, related_name='days', null=True, blank=True)
+
+
+class Participants(models.Model):
+    title = models.TextField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    session = models.ForeignKey(Sessions, on_delete=models.CASCADE, related_name='participants')
+    day = models.ForeignKey(Days, on_delete=models.CASCADE, related_name='participants')
+    price = models.IntegerField(blank=True, null=True)
+    datetime = models.DateTimeField(default=timezone.now)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='participants',
+                             blank=True, null=True)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='participants', null=True, blank=True)
+    created = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='participant',
+                                blank=True, null=True)
+
