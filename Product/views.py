@@ -144,8 +144,8 @@ class ManagerParticipationView(viewsets.ModelViewSet):
                                                              user=user,
                                                              course=course,
                                                              created=self.request.user)
-        ParticipantsSerializer(participants)
-        return Response(participants)
+        serializer = ParticipantsSerializer(participants)
+        return Response(serializer.data)
 
 
 class SportView(viewsets.ModelViewSet):
