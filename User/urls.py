@@ -21,6 +21,7 @@ urlpatterns = [
     path('forget/api/<str:number>/', get_user, name="api_forget"),
     path('verification/password/<str:number>/', pass_view, name='password'),
     path('verification/password/api/<str:number>/', ChangePasswordView.as_view(), name='auth_change_password'),
+    path('teacher/salary/api/<str:number>/', ChangeSalaryView.as_view(), name='change_salary'),
     path('update/<str:number>/', UpdateProfile.as_view(), name='update_profile'),
     path('delete/<str:number>/', DeleteAccount.as_view(), name='delete_profile'),
     path('get/<str:number>/', GetAccount.as_view(), name='get_profile'),

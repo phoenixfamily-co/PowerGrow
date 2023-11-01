@@ -168,6 +168,13 @@ class ChangePasswordView(generics.UpdateAPIView, ):
     serializer_class = ChangePasswordSerializer
 
 
+class ChangeSalaryView(generics.UpdateAPIView, ):
+    queryset = User.objects.all()
+    lookup_field = "number"
+    permission_classes = (AllowAny,)
+    serializer_class = ChangeSalarySerializer
+
+
 class DeleteAccount(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "number"

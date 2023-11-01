@@ -94,6 +94,22 @@ class ChangePasswordSerializer(serializers.ModelSerializer):
         return instance
 
 
+class ChangeSalarySerializer(serializers.ModelSerializer):
+    salary = serializers.CharField(required=True)
+    fee = serializers.IntegerField(required=True)
+
+    class Meta:
+        model = User
+        fields = ['salary', 'fee']
+
+    def update(self, instance, validated_data):
+        instance.salary = validated_data.get("salary", instance.salary)
+        instance.fee = validated_data.get("fee", instance.fee)
+        instance.save()
+
+        return instance
+
+
 class UpdateProfileSerializer(serializers.ModelSerializer):
     reservations = ReservationSerializer(read_only=True, many=True)
     courses = ParticipantsSerializer(read_only=True, many=True)
