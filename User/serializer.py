@@ -15,6 +15,7 @@ class AdminRegisterSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'password': {'write_only': True}
         }
+        depth = 2
 
     def create(self, validated_data):
         created = None
