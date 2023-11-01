@@ -12,7 +12,7 @@ class AdminRegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('number', 'password', 'gender', 'name', 'birthdate', 'is_active', 'is_teacher', 'is_superuser',
-                  'is_staff')
+                  'is_staff', 'created')
         extra_kwargs = {
             'password': {'write_only': True},
             'created' : {'read_only': True}
