@@ -113,7 +113,7 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
         time = Time.objects.filter(id=self.kwargs['time']).first()
         time.reserved = True
         time.save()
-        user = User.objects.filter(id=data["user"]).first()
+        user = User.objects.filter(number=data["user"].number).first()
         reservations = Reservations.objects.update_or_create(title=data["title"],
                                                              description=data["description"],
                                                              time=time,
