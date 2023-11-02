@@ -137,8 +137,3 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
         except Http404:
             pass
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-
-
-
