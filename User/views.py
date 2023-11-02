@@ -208,8 +208,8 @@ class GetAllAccount(generics.ListCreateAPIView, ):
     serializer_class = GetAccountSerializer
 
 
-@permission_classes([AllowAny])
-class ManagePermission(generics.UpdateAPIView, ):
+class ManagePermission(generics.GenericAPIView, ):
     queryset = User.objects.all()
     lookup_field = "number"
     serializer_class = ManagePermissionSerializer
+
