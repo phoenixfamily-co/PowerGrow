@@ -213,3 +213,6 @@ class ManagePermission(generics.GenericAPIView, ):
     lookup_field = "number"
     serializer_class = ManagePermissionSerializer
 
+    def get_queryset(self):
+        return self.queryset
+
