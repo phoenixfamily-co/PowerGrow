@@ -83,9 +83,12 @@
       border: 1px solid #888888;
       width: 50%;
       font-weight: bolder;
+      left:0;
+      right:0;
+      margin:100px auto;
+
 
   }
-
 
         .popup-content button {
             display: block;
@@ -134,7 +137,6 @@
             float: right;
             background: #e4633a;
             text-align: center;
-            border-top-left-radius: 20px
         }
 
         .month ul {
@@ -399,9 +401,9 @@
 </div>
 
 <div id="calendarPopup" class="popup">
-    <div class="calendar-popup-content" style="direction: rtl">
+    <div class="calendar-popup-content">
 
-        <div style="width: 35%; height: 300px; background: #FFFFFF ; float: right;border-top-left-radius: 20px; border-bottom-left-radius: 20px; margin-top: 15px">
+        <div style="width:300px; height: 100% ; float: right">
     <div class="month">
   <ul>
     <li id="prev" class="prev">&#10094;</li>
@@ -425,15 +427,14 @@
 
     </ul>
 
-        <div style="width: 34%; height: 300px; background: #FFFFFF ; float: right;border-radius: 20px ; margin-right: 36% ; margin-top: -300px">
+        </div>
+        <div style="width: 300px; height: 100%  ; float: left">
 
      <ul id="times" class="times">
 
     </ul>
         </div>
 
-
-</div>
     </div>
 </div>
 
