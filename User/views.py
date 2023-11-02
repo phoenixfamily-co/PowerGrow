@@ -208,11 +208,7 @@ class GetAllAccount(generics.ListCreateAPIView, ):
     serializer_class = GetAccountSerializer
 
 
-class ManagePermission(generics.GenericAPIView, ):
+class ManagePermission(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "number"
     serializer_class = ManagePermissionSerializer
-
-    def get_queryset(self):
-        return self.queryset
-
