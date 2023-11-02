@@ -1,6 +1,6 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.template import loader
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from About.models import AboutUs
@@ -126,5 +126,19 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
                                                              created=self.request.user)
         serializer = ReservationSerializer(reservations)
         return Response(serializer.data)
+
+    def destroy(self, request, *args, **kwargs):
+        time = Time.objects.filter(id=self.kwargs['time']).first()
+        time.reserved = True
+        time.save()
+        try:
+            instance = self.get_object()
+            self.perform_destroy(instance)
+        except Http404:
+            pass
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+
 
 
