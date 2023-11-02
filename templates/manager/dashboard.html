@@ -760,9 +760,9 @@
                    btn.classList.add("selectedTime")
                     time = btn.getAttribute("itemid")
                     if (type===3){
-                        window.location.assign(`/reservation/api/calendar/${time}/`)
+                        window.location.assign(`/calendar/api/cost/${time}/`)
                     }else if (type===4) {
-                        window.location.assign(`/calendat/api/cost/${time}/`)
+                        window.location.assign(`/reservation/api/calendar/${time}/`)
                     }
                 })
             })
