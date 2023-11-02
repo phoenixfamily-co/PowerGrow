@@ -129,7 +129,7 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
 
     def destroy(self, request, *args, **kwargs):
         time = Time.objects.filter(id=self.kwargs['time']).first()
-        time.reserved = True
+        time.reserved = False
         time.save()
         try:
             instance = self.get_object()
