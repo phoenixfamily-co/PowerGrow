@@ -89,7 +89,7 @@ class ReservationView(viewsets.ModelViewSet):
                                                              holiday=data["holiday"],
                                                              session=data["session"],
                                                              price=data["price"],
-                                                             user=self.request.user,
+                                                             user=self.request.user.id,
                                                              gym=gym,
                                                              created=self.request.user)
         serializer = ReservationSerializer(reservations)
