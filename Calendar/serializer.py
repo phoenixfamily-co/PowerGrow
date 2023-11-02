@@ -36,4 +36,15 @@ class YearSerializer(serializers.ModelSerializer):
         depth = 1
 
 
+class ChangeCostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Time
+        fields = ['price']
+
+    def update(self, instance, validated_data):
+        instance.price = validated_data.get("price", instance.price)
+        instance.save()
+
+        return instance
+
 

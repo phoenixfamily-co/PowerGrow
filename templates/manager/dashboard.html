@@ -475,12 +475,14 @@
      cost.addEventListener("click",function () {
          reservePopup.classList.remove("show");
         calendarPopup.classList.toggle("show");
+        type=3
 
     })
 
       cal.addEventListener("click",function () {
           reserve.classList.remove("show");
         calendarPopup.classList.toggle("show");
+        type=4
 
 
     })
@@ -546,7 +548,7 @@
         if (number.value !==null || number.value !=="") {
             if (type===1) {
                 window.location.assign("/user/access/" + url)
-            }else {
+            }else if (type===2){
                 window.location.assign("/user/teacher/salary/api/" + url)
             }
         }else {
@@ -757,7 +759,11 @@
                     })
                    btn.classList.add("selectedTime")
                     time = btn.getAttribute("itemid")
-                    window.location.assign(`/reservation/api/calendar/${time}/`)
+                    if (type===3){
+                        window.location.assign(`/reservation/api/calendar/${time}/`)
+                    }else if (type===4) {
+                        window.location.assign(`/calendat/api/cost/${time}/`)
+                    }
                 })
             })
     }

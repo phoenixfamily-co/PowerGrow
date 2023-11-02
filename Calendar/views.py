@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, generics
 from rest_framework.response import Response
 
 from Calendar.serializer import *
@@ -51,3 +51,9 @@ class TimeView(viewsets.ModelViewSet):
     def get_queryset(self):
         query_set = Time.objects.filter(day=self.kwargs.get('pk')).order_by("time")
         return query_set
+
+
+class CostView(generics.UpdateAPIView):
+    queryset = Time.objects.all()
+    serializer_class = ChangeCostSerializer
+    lookup_field = "id"
