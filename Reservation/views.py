@@ -81,6 +81,7 @@ class ReservationView(viewsets.ModelViewSet):
         data = self.request.data
         gym = Gym.objects.filter(id=data["gym"]).first()
         time = Time.objects.filter(id=data["time"]).first()
+        user = User.objects.filter(id=self.request.user.id)
         time.reserved = True
         time.save()
         reservations = Reservations.objects.update_or_create(title=data["title"],
@@ -89,7 +90,7 @@ class ReservationView(viewsets.ModelViewSet):
                                                              holiday=data["holiday"],
                                                              session=data["session"],
                                                              price=data["price"],
-                                                             user=self.request.user.id,
+                                                             user=user,
                                                              gym=gym,
                                                              created=self.request.user)
         serializer = ReservationSerializer(reservations)
