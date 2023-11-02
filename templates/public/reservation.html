@@ -934,7 +934,7 @@
                     price.innerHTML = res[parseInt(position)].price+ " " + "تومان"
                     off.innerHTML = res[parseInt(position)].off+"%"
                     if (parseInt(res[parseInt(position)].off) !==0){
-                        final.innerHTML = (parseInt(res[parseInt(position)].off) % 100 * parseInt(res[parseInt(position)].price)).toString() + " " + "تومان"
+                        final.innerHTML = (parseInt(res[parseInt(position)].price) - (parseInt(res[parseInt(position)].off) / 100 * parseInt(res[parseInt(position)].price))).toString() + " " + "تومان"
                     }else {
                         final.innerHTML = res[parseInt(position)].price+ " " + "تومان"
                     }
