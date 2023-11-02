@@ -76,6 +76,16 @@
 
   }
 
+  .calendar-popup-content{
+
+      background-color: white;
+      height: 300px;
+      border: 1px solid #888888;
+      width: 50%;
+      font-weight: bolder;
+
+  }
+
 
         .popup-content button {
             display: block;
@@ -117,6 +127,151 @@
             direction: rtl;
             position: relative;
         }
+
+        .month {
+            width: 100%;
+            height: 25%;
+            float: right;
+            background: #e4633a;
+            text-align: center;
+            border-top-left-radius: 20px
+        }
+
+        .month ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        .month ul li {
+            color: white;
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+.month .prev {
+  float: left;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.month .next {
+  float: right;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.weekdays {
+  margin: 0;
+  padding: 5px 0;
+  background-color: #ddd;
+    direction: rtl;
+    border-top-left-radius: 20px
+
+}
+
+.weekdays li {
+  display: inline-block;
+  width: 12.6%;
+  color: #666;
+  text-align: center;
+}
+
+.days {
+  padding: 5px 0;
+  margin: 0;
+    direction: rtl;
+    border-bottom-left-radius: 20px;
+}
+
+.days li {
+    list-style-type: none;
+    display: inline-block;
+    width: 13.3%;
+    text-align: center;
+    margin-bottom: 1px;
+    font-size:16px;
+    color: #000000;
+    cursor: pointer;
+}
+        .activeButton {
+            border-radius: 50px;
+            background: #1a5bbc;
+            color: white !important
+        }
+
+         .holidayButton {
+            border-radius: 50px;
+            color: #ff0c0c !important;
+             cursor: pointer;
+        }
+
+         .disActiveButton{
+
+             cursor: none;
+             pointer-events: none;
+             opacity:0.6;
+         }
+
+
+         .times {
+             padding: 10px 0;
+             margin-right: 10%;
+             direction: rtl;
+             line-height: 50px;
+}
+
+.times li {
+    list-style-type: none;
+    display: inline-block;
+    width: 20%;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size:16px;
+    color: #000000;
+    background: #afb6b6;
+    cursor: pointer;
+}
+
+        .selectedTime{
+            list-style-type: none;
+            display: inline-block;
+            width: 20%;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size:16px;
+            color: #FFFFFF !important;
+            background: #1a5bbc !important;
+            cursor: pointer;
+        }
+
+
+.reservedTime{
+    list-style-type: none;
+    display: inline-block;
+    width: 20%;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size:16px;
+    color: white !important;
+    background: #ff0c0c !important;
+    cursor: none;
+    pointer-events: none;
+}
+
+/* Add media queries for smaller screens */
+@media screen and (max-width:720px) {
+  .weekdays li, .days li {width: 13.1%;}
+}
+
+@media screen and (max-width: 420px) {
+  .weekdays li, .days li {width: 12.5%;}
+  .days li .active {padding: 2px;}
+}
+
+@media screen and (max-width: 290px) {
+  .weekdays li, .days li {width: 12.2%;}
+}
 
 
     </style>
@@ -231,16 +386,55 @@
            رزرو
         </div>
 
-         <div id="newUser" style="cursor:none; height: 150px ; width: 130px ; background: #ff0c0c  ; position: absolute; margin-right: 21% ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px" onclick="window.location.assign('/reservation/api/gym/')">
+         <div id="cost" style="cursor:none; height: 150px ; width: 130px ; background: #ff0c0c  ; position: absolute; margin-right: 21% ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px" onclick="window.location.assign('/reservation/api/gym/')">
             قیمت گذاری
         </div>
 
-        <div id="access" style="cursor:none; height: 150px ; width: 130px ; background: #ff0c0c   ; position: absolute ; margin-right: 31.5%  ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px" onclick="window.location.assign('/reservation/api/admin/reserve/')">
+        <div id="res" style="cursor:none; height: 150px ; width: 130px ; background: #ff0c0c   ; position: absolute ; margin-right: 31.5%  ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px" onclick="window.location.assign('/reservation/api/admin/reserve/')">
            تقویم
         </div>
 
     </div>
 
+</div>
+
+<div id="calendarPopup" class="popup">
+    <div class="calendar-popup-content" style="direction: rtl">
+
+        <div style="width: 35%; height: 300px; background: #FFFFFF ; float: right;border-top-left-radius: 20px; border-bottom-left-radius: 20px; margin-top: 15px">
+    <div class="month">
+  <ul>
+    <li id="prev" class="prev">&#10094;</li>
+    <li id="next" class="next">&#10095;</li>
+      <li id="monthTitle"></li>
+    <li>
+      <span id="yearTitle" style="font-size:18px"></span>
+    </li>
+  </ul>
+</div>
+<ul class="weekdays">
+  <li>ش</li>
+  <li>ی</li>
+  <li>د</li>
+  <li>س</li>
+  <li>چ</li>
+  <li>پ</li>
+  <li>ج</li>
+</ul>
+    <ul id="days" class="days">
+
+    </ul>
+
+        <div style="width: 34%; height: 300px; background: #FFFFFF ; float: right;border-radius: 20px ; margin-right: 36% ; margin-top: -300px">
+
+     <ul id="times" class="times">
+
+    </ul>
+        </div>
+
+
+</div>
+    </div>
 </div>
 
 </body>
@@ -254,10 +448,13 @@
     let userPopup = document.getElementById("userPopup");
     let accessPopup = document.getElementById("accessPopup");
     let coursePopup = document.getElementById("coursePopup");
+    let calendarPopup = document.getElementById("calendarPopup");
     let course = document.getElementById("course")
     let reserve = document.getElementById("reserve")
     let reservePopup = document.getElementById("reservePopup")
     let profile = document.getElementById("profile")
+    let cost = document.getElementById("cost")
+    let res = document.getElementById("res")
     let type = 0
 
 
@@ -270,8 +467,22 @@
 
         reservePopup.classList.toggle("show");
 
+    })
+
+     cost.addEventListener("click",function () {
+         reserve.classList.remove("show");
+        calendarPopup.classList.toggle("show");
+
 
     })
+
+      res.addEventListener("click",function () {
+          reserve.classList.remove("show");
+        calendarPopup.classList.toggle("show");
+
+
+    })
+
     course.addEventListener("click",function () {
         coursePopup.classList.toggle("show");
 
@@ -309,6 +520,9 @@
            if (event.target === reservePopup) {
             reservePopup.classList.remove("show");
         }
+            if (event.target === calendarPopup) {
+            reservePopup.classList.remove("show");
+        }
     });
 
 
@@ -333,6 +547,228 @@
             alert("شماره موبایل الزامی هست")
         }
     })
+
+</script>
+
+<script>
+    let calendar = document.getElementById("calendar")
+    let monthTitle = document.getElementById("monthTitle")
+    let yearTitle = document.getElementById("yearTitle")
+    let prev = document.getElementById("prev")
+    let next = document.getElementById("next")
+    let days = document.getElementById("days")
+    let monthPosition = 1
+    let result
+    let monthSize
+    let startDay = document.getElementById("startDay")
+    let currentDayId
+    let today = new Date().toLocaleDateString('fa-IR');
+    today = today.split('/')
+    let currentDay = today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
+    let currentMonth = today[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
+
+
+    async function getYear() {
+
+        const response = await fetch('/calendar/api/year/', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        result = await response.json()
+        result = JSON.parse(JSON.stringify(result))
+        monthSize = result[0].months.length
+
+        yearTitle.innerHTML = result[0].number
+        getDays(monthPosition)
+
+    }
+
+        next.addEventListener("click", function () {
+            if (monthPosition > 0) {
+                monthPosition = monthPosition - 1
+                getDays(monthPosition)
+            }
+        })
+
+    prev.addEventListener("click",function () {
+         if (monthPosition<monthSize-1){
+            monthPosition = monthPosition+1
+             getDays(monthPosition)
+        }
+    })
+
+    function getDays(monthPosition) {
+        monthTitle.innerHTML = result[0].months[monthPosition].name
+        days.innerHTML=""
+        times.innerHTML = ""
+        startTime.innerHTML = ""
+        const emptyDay = document.createElement("li")
+                emptyDay.innerHTML = ' '
+
+        switch (result[0].months[monthPosition].startDay) {
+
+            case "یکشنبه" :
+                const empty0 = document.createElement("li")
+                days.appendChild(empty0)
+                break
+            case "دوشنبه" :
+                const empty1 = document.createElement("li")
+                days.appendChild(empty1)
+                const empty2 = document.createElement("li")
+                days.appendChild(empty2)
+                break
+
+            case "سه شنبه" :
+               const empty3 = document.createElement("li")
+                days.appendChild(empty3)
+                const empty4 = document.createElement("li")
+                days.appendChild(empty4)
+                const empty5 = document.createElement("li")
+                days.appendChild(empty5)
+                break
+             case "چهارشنبه" :
+                 const empty6 = document.createElement("li")
+                days.appendChild(empty6)
+                const empty7 = document.createElement("li")
+                days.appendChild(empty7)
+                const empty9 = document.createElement("li")
+                days.appendChild(empty9)
+                 const empty10 = document.createElement("li")
+                days.appendChild(empty10)
+
+                break
+             case "پنجشنبه" :
+                const empty11 = document.createElement("li")
+                days.appendChild(empty11)
+                const empty12 = document.createElement("li")
+                days.appendChild(empty12)
+                const empty13 = document.createElement("li")
+                days.appendChild(empty13)
+                 const empty14 = document.createElement("li")
+                days.appendChild(empty14)
+                 const empty15 = document.createElement("li")
+                days.appendChild(empty15)
+                break
+             case "جمعه" :
+                  const empty16 = document.createElement("li")
+                days.appendChild(empty16)
+                const empty17 = document.createElement("li")
+                days.appendChild(empty17)
+                const empty18 = document.createElement("li")
+                days.appendChild(empty18)
+                 const empty19 = document.createElement("li")
+                days.appendChild(empty19)
+                 const empty20 = document.createElement("li")
+                days.appendChild(empty20)
+                 const empty21 = document.createElement("li")
+                days.appendChild(empty21)
+                break
+        }
+        for (let i = 0 ; i< result[0].months[monthPosition].days.length ; i++){
+            const dayItem = document.createElement("li")
+            if (result[0].months[monthPosition].days[i].holiday === true && result[0].months[monthPosition].days[i].number > parseInt(currentDay)) {
+                dayItem.classList.add("holidayButton")
+            }else if ( result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number === parseInt(currentDay))
+            {
+                dayItem.classList.add("activeButton")
+                currentDayId = result[0].months[monthPosition].days[i].id
+                startDay.innerHTML = `${result[0].number}/${result[0].months[monthPosition].number}/${result[0].months[monthPosition].days[i].number}`
+                date = `${result[0].number}-${result[0].months[monthPosition].number}-${result[0].months[monthPosition].days[i].number}`
+
+            }else if (result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number < parseInt(currentDay)){
+                dayItem.classList.add("disActiveButton")
+            }
+            dayItem.innerHTML = result[0].months[monthPosition].days[i].number
+            dayItem.setAttribute("itemid",result[0].months[monthPosition].days[i].id)
+            days.appendChild(dayItem)
+        }
+         const buttons = document.querySelectorAll('.days li');
+            Array.from(buttons).forEach(function (button) {
+                button.addEventListener('click', async function () {
+                    const selected = document.querySelectorAll('.activeButton')
+                    Array.from(selected).forEach(function (btn) {
+                        btn.classList.remove("activeButton")
+                    })
+                    button.classList.add("activeButton")
+                    await getTimes(button.getAttribute("itemid"))
+                    startDay.innerHTML = `${result[0].number}/${result[0].months[monthPosition].number}/${button.textContent}`
+                    date = `${result[0].number}-${result[0].months[monthPosition].number}-${button.textContent}`
+                    console.log(date)
+
+                })
+            })
+
+         if(monthPosition===0) {
+            getTimes(currentDayId)
+        }
+    }
+
+</script>
+
+
+<script>
+
+    let timeSize
+    let res
+    let times = document.getElementById("times")
+    let startTime = document.getElementById("startTime")
+    let sessionTitle = document.getElementById("timeSession")
+    let inputSession = document.getElementById("inputSession")
+    let price = document.getElementById("price")
+    let off = document.getElementById("off")
+    let final = document.getElementById("final")
+
+
+
+
+        async function getTimes(day) {
+
+        times.innerHTML = ""
+
+        const result = await fetch(`/calendar/api/time/${day}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        res = await result.json()
+        res = JSON.parse(JSON.stringify(res))
+
+              for (let i = 0 ; i< res.length ; i++){
+            const timeItem = document.createElement("li")
+                  timeItem.innerHTML = res[i].time
+                  timeItem.setAttribute("id",`${i}`)
+                  timeItem.setAttribute("itemid",res[i].id)
+                  if (res[i].reserved ===true){
+                      timeItem.classList.add("reservedTime")
+                  }
+                  times.appendChild(timeItem)
+        }
+
+               const timeButton = document.querySelectorAll('.times li');
+            Array.from(timeButton).forEach(function (btn) {
+                btn.addEventListener('click', async function () {
+                     const selected = document.querySelectorAll('.selectedTime')
+                    Array.from(selected).forEach(function (btn) {
+                        btn.classList.remove("selectedTime")
+                    })
+                   btn.classList.add("selectedTime")
+                    time = btn.getAttribute("itemid")
+                    let position = btn.getAttribute("id")
+                    startTime.innerHTML = btn.textContent
+                    price.innerHTML = res[parseInt(position)].price+ " " + "تومان"
+                    off.innerHTML = res[parseInt(position)].off+"%"
+                    if (parseInt(res[parseInt(position)].off) !==0){
+                        final.innerHTML = (parseInt(res[parseInt(position)].off) % 100 * parseInt(res[parseInt(position)].price)).toString() + " " + "تومان"
+                    }else {
+                        final.innerHTML = res[parseInt(position)].price+ " " + "تومان"
+                    }
+
+                })
+            })
+    }
 
 </script>
 
