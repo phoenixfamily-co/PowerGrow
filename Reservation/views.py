@@ -120,3 +120,14 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
                                                              created=self.request.user)
         serializer = ReservationSerializer(reservations)
         return Response(serializer.data)
+
+
+class ReservationByTimeView(viewsets.ModelViewSet):
+    queryset = Reservations.objects.all()
+    serializer_class = ReservationSerializer
+    lookup_field = 'time'
+
+    def get_queryset(self):
+        data = self.kwargs
+        queryset = self.queryset.filter(time=data['time'])
+        return queryset

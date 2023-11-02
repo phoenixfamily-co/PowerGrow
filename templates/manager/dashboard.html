@@ -757,6 +757,7 @@
                     })
                    btn.classList.add("selectedTime")
                     time = btn.getAttribute("itemid")
+                    window.location.assign(`/reservation/api/calendar/${time}/`)
                 })
             })
     }
