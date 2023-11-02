@@ -10,7 +10,6 @@ urlpatterns = [
     path('', login_view, name='login'),
     path('login/api/', CustomObtainAuthToken.as_view(), name='token_obtain_pair'),
     path('register/', register_view, name='register'),
-    path('register/secretary/', register_secretary_view, name='register_secretary'),
     path('register/api/', RegisterView.as_view(), name="api_register"),
     path('register/manager/api/', AdminRegisterUser.as_view({'post': 'create', 'get': 'list'}), name="api_register"),
     path('verification/<str:number>/', verification_view, name='verification'),
@@ -31,6 +30,4 @@ urlpatterns = [
     path('home/admin/<int:pk>/', secretary_home_view, name='admin_home'),
     path('home/manager/<int:pk>/', manager_home_view, name='manager_home'),
     path('profile/<int:pk>/', profile_view, name='profile')
-
     ]
-

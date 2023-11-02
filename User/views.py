@@ -32,15 +32,6 @@ def register_view(request):
     return HttpResponse(template.render(context, request))
 
 
-def register_secretary_view(request):
-    about = AboutUs.objects.values().first()
-    template = loader.get_template('secretary/register.html')
-    context = {
-        "about": about,
-    }
-    return HttpResponse(template.render(context, request))
-
-
 def verification_view(request, number):
     about = AboutUs.objects.values().first()
     data = {'to': number}
