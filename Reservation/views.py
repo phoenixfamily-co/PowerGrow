@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from About.models import AboutUs
 from Product.models import Sport
 from Reservation.models import *
-from Reservation.serializer import GymSerializer, ReservationSerializer
+from Reservation.serializer import GymSerializer, ReservationSerializer, AdminReservationSerializer
 
 
 def reservation_view(request):
@@ -99,7 +99,7 @@ class ReservationView(viewsets.ModelViewSet):
 
 class ManagerAddReservationView(viewsets.ModelViewSet):
     queryset = Reservations.objects.all()
-    serializer_class = ReservationSerializer
+    serializer_class = AdminReservationSerializer
     permission_classes = [IsAuthenticated]
     lookup_field = 'time'
 

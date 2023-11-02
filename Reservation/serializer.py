@@ -11,6 +11,15 @@ class ReservationSerializer(serializers.ModelSerializer):
         exclude = ['datetime']
 
 
+class AdminReservationSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Reservations
+        read_only_fields = ['created', 'contract', 'time']
+        exclude = ['datetime']
+
+
+
 class GymSerializer(serializers.ModelSerializer):
     reservations = ReservationSerializer(read_only=True, many=True)
 
