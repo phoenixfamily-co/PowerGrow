@@ -7,7 +7,7 @@ class ReservationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Reservations
-        read_only_fields = ['created']
+        read_only_fields = ['created', 'contract']
         exclude = ['datetime']
 
 
