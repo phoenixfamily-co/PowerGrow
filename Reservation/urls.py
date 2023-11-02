@@ -8,8 +8,7 @@ urlpatterns = [
 
     path('', reservation_view, name='reservation'),
     path('api/reserve/', ReservationView.as_view({'post': 'create', 'get': 'list'}), name='reserve'),
-    path('api/calendar/<int:time>/', ReservationByTimeView.as_view({'get': 'list'}), name='reserve_calendar'),
-    path('api/admin/reserve/', ManagerAddReservationView.as_view({'post': 'create', 'get': 'list'}),
+    path('api/admin/reserve/<int:time>/', ManagerAddReservationView.as_view({'post': 'create', 'get': 'list'}),
          name='admin-reserve'),
     path('api/admin/reserve/<int:pk>/', ManagerAddReservationView.as_view({'delete': 'destroy'}),
          name='delete-admin-reserve'),

@@ -310,7 +310,7 @@
   <img src="/static/images/courses.jpg" style="height: 100% ; width: 100% ; border-radius: 20px" alt="">
       </div>
 
-      <div id="reserve" style="cursor:pointer;height: 45%; margin-top: 5% ; width: 100%">
+      <div id="reserves" style="cursor:pointer;height: 45%; margin-top: 5% ; width: 100%">
           <div style="position:absolute ; margin-top: 2vh ; margin-left: 2vh ; font-size: 36px">رزروها</div>
   <img src="/static/images/reserve.jpg" style="height: 100% ; width: 100% ; border-radius: 20px" alt="">
       </div>
@@ -379,22 +379,18 @@
 
 
 <div id="reservePopup" class="popup">
-    <div class="course-popup-content" style="direction: rtl">
+    <div class="popup-content" style="direction: rtl">
 
         <div id="newUser" style="cursor:pointer; height: 150px ; width: 130px ; background: #ff0c0c  ; position: absolute ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px" onclick="window.location.assign('/reservation/api/gym/')">
             ایجاد سالن
         </div>
 
-        <div id="access" style="cursor:pointer; height: 150px ; width: 130px ; background: #ff0c0c   ; position: absolute ; margin-right: 10.5%  ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px" onclick="window.location.assign('/reservation/api/admin/reserve/')">
+        <div id="reserve" style="cursor:pointer; height: 150px ; width: 130px ; background: #ff0c0c   ; position: absolute ; margin-right: 12%  ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px">
            رزرو
         </div>
 
-         <div id="cost" style="cursor: pointer ; height: 150px ; width: 130px ; background: #ff0c0c  ; position: absolute; margin-right: 21% ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px">
+         <div id="cost" style="cursor: pointer ; height: 150px ; width: 130px ; background: #ff0c0c  ; position: absolute; margin-right: 24% ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px">
             قیمت گذاری
-        </div>
-
-        <div id="cal" style="cursor:pointer; height: 150px ; width: 130px ; background: #ff0c0c   ; position: absolute ; margin-right: 31.5%  ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px">
-           تقویم
         </div>
 
     </div>
@@ -453,6 +449,7 @@
     let calendarPopup = document.getElementById("calendarPopup");
     let course = document.getElementById("course")
     let reserve = document.getElementById("reserve")
+    let reserves = document.getElementById("reserves")
     let reservePopup = document.getElementById("reservePopup")
     let profile = document.getElementById("profile")
     let cost = document.getElementById("cost")
@@ -465,7 +462,7 @@
     })
 
 
-    reserve.addEventListener("click",function () {
+    reserves.addEventListener("click",function () {
 
         reservePopup.classList.toggle("show");
 
@@ -478,8 +475,8 @@
 
     })
 
-      cal.addEventListener("click",function () {
-          reserve.classList.remove("show");
+      reserve.addEventListener("click",function () {
+         reservePopup.classList.remove("show");
         calendarPopup.classList.toggle("show");
         type=4
 
@@ -761,7 +758,7 @@
                     if (type===3){
                         window.location.assign(`/calendar/api/cost/${time}/`)
                     }else if (type===4) {
-                        window.location.assign(`/reservation/api/calendar/${time}/`)
+                        window.location.assign(`/reservation/api/admin/reserve/${time}/`)
                     }
                 })
             })

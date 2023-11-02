@@ -101,11 +101,17 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
     queryset = Reservations.objects.all()
     serializer_class = ReservationSerializer
     permission_classes = [IsAuthenticated]
+    lookup_field = 'time'
+
+    def get_queryset(self):
+        data = self.kwargs
+        queryset = self.queryset.filter(time=data['time'])
+        return queryset
 
     def perform_create(self, serializer):
         data = self.request.data
         gym = Gym.objects.filter(id=data["gym"]).first()
-        time = Time.objects.filter(id=data["time"]).first()
+        time = Time.objects.filter(id=self.kwargs['time']).first()
         time.reserved = True
         time.save()
         user = User.objects.filter(id=data["user"]).first()
@@ -122,12 +128,3 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 
-class ReservationByTimeView(viewsets.ModelViewSet):
-    queryset = Reservations.objects.all()
-    serializer_class = ReservationSerializer
-    lookup_field = 'time'
-
-    def get_queryset(self):
-        data = self.kwargs
-        queryset = self.queryset.filter(time=data['time'])
-        return queryset
