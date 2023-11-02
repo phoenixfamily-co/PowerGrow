@@ -43,6 +43,7 @@ class ChangeCostSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         instance.price = validated_data.get("price", instance.price)
+        instance.off = validated_data.get("off", instance.off)
         instance.save()
 
         return instance
