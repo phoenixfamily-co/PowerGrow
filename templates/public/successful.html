@@ -173,21 +173,21 @@
 
 			<ul class="card-title">
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right; margin-top: -4px">شهریه ثابت:</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left; margin-top: -4px ; direction: rtl">{{ gym.tuition }} تومان </li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left; margin-top: -4px ; direction: rtl">{{ time.price }} تومان </li>
 		</ul>
 
 		<hr>
 
 			<ul class="card-title">
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; ; margin-top: -4px">تخفیف:</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; ; margin-top: -4px">{{ gym.off }}%</li>
+			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; ; margin-top: -4px">{{ time.off }}%</li>
 		</ul>
 
 		<hr>
 
 		<ul class="card-title">
 			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -10px">قیمت نهایی:</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -10px ; direction: rtl">{{ gym.tuition }} تومان </li>
+			<li id="final" style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -10px ; direction: rtl"></li>
 		</ul>
 
 
@@ -255,4 +255,17 @@
         register()
     }, 3000);
   </script>
+
+
+<script>
+
+    let off = "{{ time.off }}";
+    let price = "{{ time.price }}";
+    let final = document.getElementById("final")
+
+    final.innerHTML = (parseInt(price) - (parseInt(off) / 100 * parseInt(price))).toString() + " " + "تومان"
+
+
+</script>
+
 </html>
