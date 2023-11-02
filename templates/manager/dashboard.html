@@ -564,7 +564,6 @@
     let monthPosition = 1
     let result
     let monthSize
-    let startDay = document.getElementById("startDay")
     let currentDayId
     let today = new Date().toLocaleDateString('fa-IR');
     today = today.split('/')
@@ -677,7 +676,6 @@
             {
                 dayItem.classList.add("activeButton")
                 currentDayId = result[0].months[monthPosition].days[i].id
-                startDay.innerHTML = `${result[0].number}/${result[0].months[monthPosition].number}/${result[0].months[monthPosition].days[i].number}`
                 date = `${result[0].number}-${result[0].months[monthPosition].number}-${result[0].months[monthPosition].days[i].number}`
 
             }else if (result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number < parseInt(currentDay)){
@@ -696,7 +694,6 @@
                     })
                     button.classList.add("activeButton")
                     await getTimes(button.getAttribute("itemid"))
-                    startDay.innerHTML = `${result[0].number}/${result[0].months[monthPosition].number}/${button.textContent}`
                     date = `${result[0].number}-${result[0].months[monthPosition].number}-${button.textContent}`
                     console.log(date)
 
@@ -716,7 +713,6 @@
     let timeSize
     let res
     let times = document.getElementById("times")
-    let startTime = document.getElementById("startTime")
     let sessionTitle = document.getElementById("timeSession")
     let inputSession = document.getElementById("inputSession")
     let price = document.getElementById("price")
@@ -759,16 +755,6 @@
                     })
                    btn.classList.add("selectedTime")
                     time = btn.getAttribute("itemid")
-                    let position = btn.getAttribute("id")
-                    startTime.innerHTML = btn.textContent
-                    price.innerHTML = res[parseInt(position)].price+ " " + "تومان"
-                    off.innerHTML = res[parseInt(position)].off+"%"
-                    if (parseInt(res[parseInt(position)].off) !==0){
-                        final.innerHTML = (parseInt(res[parseInt(position)].off) % 100 * parseInt(res[parseInt(position)].price)).toString() + " " + "تومان"
-                    }else {
-                        final.innerHTML = res[parseInt(position)].price+ " " + "تومان"
-                    }
-
                 })
             })
     }
