@@ -72,7 +72,6 @@ class GymView(viewsets.ModelViewSet):
 class ReservationView(viewsets.ModelViewSet):
     queryset = Reservations.objects.all()
     serializer_class = ReservationSerializer
-    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         queryset = Reservations.objects.filter(user=self.request.user.id)
