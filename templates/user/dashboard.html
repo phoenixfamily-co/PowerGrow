@@ -1,138 +1,597 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet"
-          href="http://babakhani.github.io/PersianWebToolkit/beta/lib/persian-datepicker/dist/css/persian-datepicker.css"/>
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-    <script src="http://babakhani.github.io/PersianWebToolkit/beta/lib/persian-date/dist/persian-date.js"></script>
-    <script src="http://babakhani.github.io/PersianWebToolkit/beta/lib/persian-datepicker/dist/js/persian-datepicker.js"></script>
 
-
+    <meta charset="UTF-8">
     <style>
-        .calendar {
+
+           @font-face {
+            font-family: BYekan;
+            font-style: normal;
+            font-weight: normal;
+            src: url("/static/fonts/BYekan.eot");/* IE9 Compat Modes */
+            src: url("/static/fonts/BYekan.woff") format('woff'),
+            url("/static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */ url("../../static/fonts/BYekan.ttf") format('truetype') /* Safari, Android, iOS */
+        }
+
+     body, html {
+            height: auto;
+            position: relative;
+         background: rgb(193, 193, 193);
+            font-family: BYekan, serif !important;
+        }
+     .site{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  grid-template-areas:"header header"
+                      "title sidebar"
+                      "main sidebar"
+                      "footer footer";
+  grid-gap:10px; margin:20px ; padding:10px;
+}
+.site > *{padding:30px; color:#fff; font-size:20px;}
+.mastheader{grid-area:header; cursor: pointer ; padding: 0  ; height: 350px ; background: white ; border-radius: 25px}
+.page-title{grid-area:title; cursor: pointer ; height: 200px ; padding: 0}
+.main-content{
+    grid-area:main;
+    min-height:500px;
+    display: inline-flex;
+    padding: 0;
+}
+.sidebar{grid-area:sidebar;padding: 0  }
+.footer{grid-area:footer;cursor: pointer ; padding: 0 ; height: 250px}
+
+ .popup {
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            display: none;
+        }
+
+  .popup-content {
+            background-color: white;
+            height: 25vh;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888888;
+            width: 75vh;
+            font-weight: bolder;
+        }
+
+  .course-popup-content{
+
+       background-color: white;
+            height: 25vh;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888888;
+            width: 90vh;
+            font-weight: bolder;
+
+  }
+
+  .calendar-popup-content{
+
+      background-color: white;
+      height: 300px;
+      border: 1px solid #888888;
+      width: 60%;
+      font-weight: bolder;
+      left:0;
+      right:0;
+      margin:100px auto;
+
+
+  }
+
+        .popup-content button {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .show {
+            display: block;
+            visibility: visible;
+            -webkit-animation: fadeIn 1s;
+            animation: fadeIn 1s;
+        }
+
+        .phoneNumber {
+            width: 85%;
+            padding: 12px 20px;
+            margin: 8px 16px 16px 0;
             float: right;
-            margin: 20px;
-            padding: 10px;
+            display: inline-block;
+            border: transparent;
+            background: lightgray;
+            box-sizing: border-box;
         }
 
-
-        .split {
-            width: 70%;
-            position: absolute;
-            top: 0;
-            right: 0;
+        .card-button{
+            cursor: pointer;
             left: 0;
-            bottom: 0;
+            height: 40px ;
+            width: 100px;
+            margin-top: 90px;
+            margin-left: 15px;
+            background: #598ddd;
+            border-color: transparent ;
+            color: white
+		}
+
+        .formContainer {
+            width: 100%;
+            direction: rtl;
+            position: relative;
         }
 
-        .top {
-            position: absolute;
-            top: 0;
-            right: 0;
-            left: 0;
-            bottom: 50%;
-            background-color: grey;
+        .month {
+            width: 100%;
+            height: 25%;
+            float: right;
+            background: #e4633a;
             text-align: center;
         }
 
-        .bottom {
-            position: absolute;
-            top: 50%;
-            right: 0;
-            left: 0;
-            bottom: 0;
-            background-color: white;
-            text-align: right;
-            margin-right: 20px;
-            margin-top: 20px;
-            color: black;
+        .month ul {
+            margin: 0;
+            padding: 0;
         }
 
-        .menuContainer {
-            width: 30%;
-            height: 100%;
-            direction: rtl;
-            right: 0;
-            background-color: white;
-            position: absolute;
+        .month ul li {
+            color: white;
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
         }
 
-        .list {
-            list-style-type: none;
-            color: black;
-            margin-bottom: 20px;
+.month .prev {
+  float: left;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.month .next {
+  float: right;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.weekdays {
+  margin: 0;
+  padding: 5px 0;
+  background-color: #ddd;
+    direction: rtl;
+    border-top-left-radius: 20px
+
+}
+
+.weekdays li {
+  display: inline-block;
+  width: 12.6%;
+  color: #666;
+  text-align: center;
+}
+
+.days {
+  padding: 5px 0;
+  margin: 0;
+    direction: rtl;
+    border-bottom-left-radius: 20px;
+}
+
+.days li {
+    list-style-type: none;
+    display: inline-block;
+    width: 13.3%;
+    text-align: center;
+    margin-bottom: 1px;
+    font-size:16px;
+    color: #000000;
+    cursor: pointer;
+}
+        .activeButton {
+            border-radius: 50px;
+            background: #1a5bbc;
+            color: white !important
         }
 
-        .textMenu {
-            margin-bottom: 20px;
-            font-size: 25px;
+         .holidayButton {
+            border-radius: 50px;
+            color: #ff0c0c !important;
+             cursor: pointer;
         }
 
-        .exitText {
-            margin-top: 190px;
-            font-size: 25px;
-        }
+         .disActiveButton{
 
-        .avatar {
-            width: 60px;
-            padding-bottom: 100px;
-            border-radius: 50%;
-        }
+             cursor: none;
+             pointer-events: none;
+             opacity:0.6;
+         }
+
+         .times {
+             margin-left: 10%;
+             direction: rtl;
+             line-height: 50px;
+}
+
+.times li {
+    list-style-type: none;
+    display: list-item;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    font-size:16px;
+    color: #000000;
+    background: #afb6b6;
+    cursor: pointer;
+}
+
+/* Add media queries for smaller screens */
+@media screen and (max-width:720px) {
+  .weekdays li, .days li {width: 13.1%;}
+}
+
+@media screen and (max-width: 420px) {
+  .weekdays li, .days li {width: 12.5%;}
+  .days li .active {padding: 2px;}
+}
+
+@media screen and (max-width: 290px) {
+  .weekdays li, .days li {width: 12.2%;}
+}
+           ul {list-style-type: none;}
 
     </style>
     <title>PowerGrow</title>
 </head>
 <body>
-<div class="split">
-    <div class="top">
-        <input type="text" class="calendar"/>
+
+<div class="site">
+  <header class="mastheader" onclick="window.open('https://powergrow.net/home/api/slider/','_blank')">
+      <div>
+            <div style="width:45% ; height: 100% ; float: right">
+    <div class="month">
+  <ul>
+    <li id="prev" class="prev">&#10094;</li>
+    <li id="next" class="next">&#10095;</li>
+      <li id="monthTitle"></li>
+    <li>
+      <span id="yearTitle" style="font-size:18px"></span>
+    </li>
+  </ul>
+</div>
+<ul class="weekdays">
+  <li>ش</li>
+  <li>ی</li>
+  <li>د</li>
+  <li>س</li>
+  <li>چ</li>
+  <li>پ</li>
+  <li>ج</li>
+</ul>
+    <ul id="days" class="days">
+
+    </ul>
+
+        </div>
+          <div style="width: 50%; height: 100%  ; float: left">
+
+     <ul id="times" class="times">
+
+    </ul>
+        </div>
+
     </div>
 
-    <div class="bottom">
-        <b style="font-size: xx-large">اطلاعیه ها </b>
+  </header>
+  <h1 class="page-title" onclick="window.open('https://powergrow.net/seo/api/news/','_blank')">
+      <div style="position:absolute ; margin-top: 10vh ; margin-left: 10vh ; font-size: 40px">اطلاعیه ها</div>
+  <img src="/static/images/news.jpg" style="height: 100% ; width: 100% ; border-radius: 20px" alt="">
+  </h1>
+  <main class="main-content">
 
-        <br><br>
-        <i style="font-size: large"> به اطلاع تمامی شاگردان میرساند به علت تعمیرات سالن های ورزشی تمامی دوره ها به مدت
-            یک هفته تعطیل میباشد</i>
+        <div id="user" style="cursor:pointer ; height: 92% ; width: 48% ">
+ <div style="position:absolute ; margin-top: 2vh ; margin-left: 2vh ; font-size: 36px">کاربر ها</div>
+  <img src="/static/images/users.jpg" style="height: 100% ; width: 100% ; border-radius: 20px" alt="">
+        </div>
 
-        <br><br>
-        <i style="font-size: large"> به اطلاع تمامی شاگردان میرساند به علت تعمیرات سالن های ورزشی تمامی دوره ها به مدت
-            یک هفته تعطیل میباشد</i>
+      <div id="profile" style="height: 92%; width: 48% ; margin-left: 3% ; cursor: pointer">
+  <div style="position:absolute ; margin-top: 2vh ; margin-left: 2vh ; font-size: 36px">پروفایل من</div>
+  <img src="/static/images/profile.jpg" style="height: 100% ; width: 100% ; border-radius: 20px" alt="">
+      </div>
 
-        <br><br>
-        <i style="font-size: large"> به اطلاع تمامی شاگردان میرساند به علت تعمیرات سالن های ورزشی تمامی دوره ها به مدت
-            یک هفته تعطیل میباشد</i>
+  </main>
+  <aside class="sidebar">
+      <div id="course" style="height: 45% ; width: 100% ; margin-top: 3% ; cursor: pointer">
+            <div style="position:absolute ; margin-top: 1vh ; margin-left: 2vh ; font-size: 36px">دوره ها</div>
+  <img src="/static/images/courses.jpg" style="height: 100% ; width: 100% ; border-radius: 20px" alt="">
+      </div>
+
+      <div id="reserves" style="cursor:pointer;height: 45%; margin-top: 5% ; width: 100%">
+          <div style="position:absolute ; margin-top: 2vh ; margin-left: 2vh ; font-size: 36px">رزروها</div>
+  <img src="/static/images/reserve.jpg" style="height: 100% ; width: 100% ; border-radius: 20px" alt="">
+      </div>
+
+  </aside>
+  <footer class="footer" onclick="window.open('https://powergrow.net/about/api/','_blank')">
+       <div style="position:absolute ; margin-top: 12vh ; margin-left: 15vh ; font-size: 48px">درباره ما</div>
+  <img src="/static/images/about.jpg" style="height: 100% ; width: 100% ; border-radius: 20px" alt="">
+  </footer>
+</div>
+
+<div id="userPopup" class="popup">
+    <div class="popup-content" style="direction: rtl">
+
+        <div id="newUser" style="cursor:pointer; height: 150px ; width: 150px ; background: #d7d727  ; position: absolute ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px" onclick="window.location.assign('/user/register/manager/api/')">
+            ایجاد کاربر جدید
+        </div>
+
+        <div id="access" style="cursor:pointer; height: 150px ; width: 150px ; background: #d7d727  ; position: absolute ; margin-right: 12.0%  ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px ">
+           دسترسی ها
+        </div>
+
+         <div id="salary" style="cursor:pointer; height: 150px ; width: 150px ; background: #d7d727  ; position: absolute ; margin-right: 24.0%  ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px ">
+           حقوق
+        </div>
+
+    </div>
+</div>
+
+
+<div id="coursePopup" class="popup">
+    <div class="course-popup-content" style="direction: rtl">
+
+        <div id="newCourse" style=" cursor:pointer; height: 150px ; width: 130px ; background: #f49018  ; position: absolute ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px" onclick="window.location.assign('/product/api/course/')">
+            ایجاد دوره
+        </div>
+
+        <div id="newDay" style=" cursor:pointer; height: 150px ; width: 130px ; background: #f49018 ; position: absolute ; margin-right: 10.5%  ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px " onclick="window.location.assign('/product/api/sessions/')">
+           مشخص کردن جلسات
+        </div>
+
+        <div id="newDay" style=" cursor:pointer; height: 150px ; width: 130px ; background: #f49018 ; position: absolute ; margin-right: 21%  ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px " onclick="window.location.assign('/product/api/days/')">
+           مشخص کردن روزها
+        </div>
+
+        <div id="participate" style=" cursor:pointer; height: 150px ; width: 130px ; background: #f49018 ; position: absolute ; margin-right: 31.5%  ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px " onclick="window.location.assign('/product/api/admin/participate/')">
+           ثبت نام
+        </div>
+
+    </div>
+</div>
+
+
+<div id="accessPopup" class="popup">
+    <div class="popup-content" style="direction: rtl">
+
+        <label>
+            <input id="number" class="phoneNumber" type="number" placeholder="شماره موبایل" maxlength="10">
+        </label>
+
+        <button id="register" class="card-button">ادامه</button>
 
 
     </div>
+</div>
 
+
+<div id="reservePopup" class="popup">
+    <div class="popup-content" style="direction: rtl">
+
+        <div id="newUser" style="cursor:pointer; height: 150px ; width: 150px ; background: #ff0c0c  ; position: absolute ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px" onclick="window.location.assign('/reservation/api/gym/')">
+            ایجاد سالن
+        </div>
+
+        <div id="reserve" style="cursor:pointer; height: 150px ; width: 150px ; background: #ff0c0c   ; position: absolute ; margin-right: 12%  ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px">
+           رزرو
+        </div>
+
+         <div id="cost" style="cursor: pointer ; height: 150px ; width: 150px ; background: #ff0c0c  ; position: absolute; margin-right: 24% ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px">
+            قیمت گذاری
+        </div>
+
+    </div>
 
 </div>
 
-<div class="menuContainer">
-    <div class="imgcontainer" style="direction: ltr" align="center">
-        <img src="../resources/images/logo.jpg" alt="" class="avatar">
-    </div>
+<div id="calendarPopup" class="popup">
+    <div class="calendar-popup-content">
 
-    <ol class="list">
-        <li class="textMenu"><strong>داشبورد</strong></li>
-        <li class="textMenu"><strong>دوره های من</strong></li>
-        <li class="textMenu"><strong>دوره های من</strong></li>
-        <li class="textMenu"><strong>پروفایل من</strong></li>
-        <li class="exitText"><strong>خروج</strong></li>
-
-    </ol>
-
-
+        <div style="width:45% ; height: 100% ; float: right">
+    <div class="month">
+  <ul>
+    <li id="prev" class="prev">&#10094;</li>
+    <li id="next" class="next">&#10095;</li>
+      <li id="monthTitle"></li>
+    <li>
+      <span id="yearTitle" style="font-size:18px"></span>
+    </li>
+  </ul>
 </div>
+<ul class="weekdays">
+  <li>ش</li>
+  <li>ی</li>
+  <li>د</li>
+  <li>س</li>
+  <li>چ</li>
+  <li>پ</li>
+  <li>ج</li>
+</ul>
+    <ul id="days" class="days">
 
+    </ul>
+
+        </div>
+        <div style="width: 50%; height: 100%  ; float: left">
+
+     <ul id="times" class="times">
+
+    </ul>
+        </div>
+
+    </div>
+</div>
 
 </body>
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $(".calendar").pDatepicker();
-    });
+
+<script>
+    let calendar = document.getElementById("calendar")
+    let monthTitle = document.getElementById("monthTitle")
+    let yearTitle = document.getElementById("yearTitle")
+    let prev = document.getElementById("prev")
+    let next = document.getElementById("next")
+    let days = document.getElementById("days")
+    let times = document.getElementById("times")
+    let monthPosition = 1
+    let result
+    let monthSize
+    let currentDayId
+    let today = new Date().toLocaleDateString('fa-IR');
+    today = today.split('/')
+    let currentDay = today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
+    let currentMonth = today[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
+
+
+    async function getYear() {
+
+        const response = await fetch('/calendar/api/year/', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        result = await response.json()
+        result = JSON.parse(JSON.stringify(result))
+        monthSize = result[0].months.length
+        yearTitle.innerHTML = result[0].number
+        getDays(monthPosition)
+
+    }
+
+        next.addEventListener("click", function () {
+            if (monthPosition > 0) {
+                monthPosition = monthPosition - 1
+                getDays(monthPosition)
+            }
+        })
+
+    prev.addEventListener("click",function () {
+         if (monthPosition<monthSize-1){
+            monthPosition = monthPosition+1
+             getDays(monthPosition)
+        }
+    })
+
+    function getDays(monthPosition) {
+        monthTitle.innerHTML = result[0].months[monthPosition].name
+        days.innerHTML=""
+        times.innerHTML = ""
+        const emptyDay = document.createElement("li")
+                emptyDay.innerHTML = ' '
+
+        switch (result[0].months[monthPosition].startDay) {
+
+            case "یکشنبه" :
+                const empty0 = document.createElement("li")
+                days.appendChild(empty0)
+                break
+            case "دوشنبه" :
+                const empty1 = document.createElement("li")
+                days.appendChild(empty1)
+                const empty2 = document.createElement("li")
+                days.appendChild(empty2)
+                break
+
+            case "سه شنبه" :
+               const empty3 = document.createElement("li")
+                days.appendChild(empty3)
+                const empty4 = document.createElement("li")
+                days.appendChild(empty4)
+                const empty5 = document.createElement("li")
+                days.appendChild(empty5)
+                break
+             case "چهارشنبه" :
+                 const empty6 = document.createElement("li")
+                days.appendChild(empty6)
+                const empty7 = document.createElement("li")
+                days.appendChild(empty7)
+                const empty9 = document.createElement("li")
+                days.appendChild(empty9)
+                 const empty10 = document.createElement("li")
+                days.appendChild(empty10)
+
+                break
+             case "پنجشنبه" :
+                const empty11 = document.createElement("li")
+                days.appendChild(empty11)
+                const empty12 = document.createElement("li")
+                days.appendChild(empty12)
+                const empty13 = document.createElement("li")
+                days.appendChild(empty13)
+                 const empty14 = document.createElement("li")
+                days.appendChild(empty14)
+                 const empty15 = document.createElement("li")
+                days.appendChild(empty15)
+                break
+             case "جمعه" :
+                  const empty16 = document.createElement("li")
+                days.appendChild(empty16)
+                const empty17 = document.createElement("li")
+                days.appendChild(empty17)
+                const empty18 = document.createElement("li")
+                days.appendChild(empty18)
+                 const empty19 = document.createElement("li")
+                days.appendChild(empty19)
+                 const empty20 = document.createElement("li")
+                days.appendChild(empty20)
+                 const empty21 = document.createElement("li")
+                days.appendChild(empty21)
+                break
+        }
+        for (let i = 0 ; i< result[0].months[monthPosition].days.length ; i++){
+            const dayItem = document.createElement("li")
+            if (result[0].months[monthPosition].days[i].holiday === true && result[0].months[monthPosition].days[i].number > parseInt(currentDay)) {
+                dayItem.classList.add("holidayButton")
+            }else if ( result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number === parseInt(currentDay))
+            {
+                dayItem.classList.add("activeButton")
+                currentDayId = result[0].months[monthPosition].days[i].id
+                date = `${result[0].number}-${result[0].months[monthPosition].number}-${result[0].months[monthPosition].days[i].number}`
+
+            }else if (result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number < parseInt(currentDay)){
+                dayItem.classList.add("disActiveButton")
+            }
+            dayItem.innerHTML = result[0].months[monthPosition].days[i].number
+            dayItem.setAttribute("itemid",result[0].months[monthPosition].days[i].id)
+            days.appendChild(dayItem)
+            const news = document.createElement("li")
+            news.innerHTML = result[0].months[monthPosition].days[i].description
+            time.appendChild(news)
+        }
+         const buttons = document.querySelectorAll('.days li');
+            Array.from(buttons).forEach(function (button) {
+                button.addEventListener('click', async function () {
+                    const selected = document.querySelectorAll('.activeButton')
+                    Array.from(selected).forEach(function (btn) {
+                        btn.classList.remove("activeButton")
+                    })
+                    button.classList.add("activeButton")
+                    await getTimes(button.getAttribute("itemid"))
+                    date = `${result[0].number}-${result[0].months[monthPosition].number}-${button.textContent}`
+                    console.log(date)
+
+                })
+            })
+    }
+
 </script>
+
+
 </html>
