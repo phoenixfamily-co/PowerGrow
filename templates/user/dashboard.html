@@ -31,7 +31,7 @@
 }
 .site > *{padding:30px; color:#fff; font-size:20px;}
 .mastheader{grid-area:header ; padding: 0  ; height: 350px ; background: white ; border-radius: 25px}
-.page-title{grid-area:title; cursor: pointer ; height: 200px ; padding: 0}
+.page-title{grid-area:title ; height: 200px ; padding: 0}
 .main-content{
     grid-area:main;
     min-height:500px;
@@ -287,9 +287,12 @@
         </div>
 
   </header>
-  <h1 class="page-title" onclick="window.open('https://powergrow.net/seo/api/news/','_blank')">
-      <div style="position:absolute ; margin-top: 10vh ; margin-left: 10vh ; font-size: 40px">اطلاعیه ها</div>
-  <img src="/static/images/news.jpg" style="height: 100% ; width: 100% ; border-radius: 20px" alt="">
+  <h1 class="page-title">
+
+      <ul id="news" class="times">
+
+    </ul>
+
   </h1>
   <main class="main-content">
 
@@ -554,6 +557,30 @@
                 })
             })
     }
+
+</script>
+
+
+<script>
+    let news = document.getElementById("news")
+    let newsSize
+
+    async function getNews(){
+
+           const response = await fetch('/seo/api/news/', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        result = await response.json()
+        result = JSON.parse(JSON.stringify(result))
+        newsSize = result.length
+
+    }
+
+
 
 </script>
 
