@@ -337,91 +337,9 @@
           <div style="position:absolute ; margin-top: 2vh ; margin-left: 2vh ; font-size: 36px">رزروها من</div>
   <img src="/static/images/reserve.jpg" style="height: 100% ; width: 100% ; border-radius: 20px" alt="">
       </div>
-
   </aside>
-  <footer class="footer" onclick="window.open('https://powergrow.net/about/api/','_blank')">
-       <div style="position:absolute ; margin-top: 12vh ; margin-left: 15vh ; font-size: 48px">درباره ما</div>
-  <img src="/static/images/about.jpg" style="height: 100% ; width: 100% ; border-radius: 20px" alt="">
-  </footer>
 </div>
-
-<div id="userPopup" class="popup">
-    <div class="popup-content" style="direction: rtl">
-
-        <div id="newUser" style="cursor:pointer; height: 150px ; width: 150px ; background: #d7d727  ; position: absolute ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px" onclick="window.location.assign('/user/register/manager/api/')">
-            ایجاد کاربر جدید
-        </div>
-
-        <div id="access" style="cursor:pointer; height: 150px ; width: 150px ; background: #d7d727  ; position: absolute ; margin-right: 12.0%  ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px ">
-           دسترسی ها
-        </div>
-
-         <div id="salary" style="cursor:pointer; height: 150px ; width: 150px ; background: #d7d727  ; position: absolute ; margin-right: 24.0%  ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px ">
-           حقوق
-        </div>
-
-    </div>
-</div>
-
-
-<div id="coursePopup" class="popup">
-    <div class="course-popup-content" style="direction: rtl">
-
-        <div id="newCourse" style=" cursor:pointer; height: 150px ; width: 130px ; background: #f49018  ; position: absolute ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px" onclick="window.location.assign('/product/api/course/')">
-            ایجاد دوره
-        </div>
-
-        <div id="newDay" style=" cursor:pointer; height: 150px ; width: 130px ; background: #f49018 ; position: absolute ; margin-right: 10.5%  ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px " onclick="window.location.assign('/product/api/sessions/')">
-           مشخص کردن جلسات
-        </div>
-
-        <div id="newDay" style=" cursor:pointer; height: 150px ; width: 130px ; background: #f49018 ; position: absolute ; margin-right: 21%  ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px " onclick="window.location.assign('/product/api/days/')">
-           مشخص کردن روزها
-        </div>
-
-        <div id="participate" style=" cursor:pointer; height: 150px ; width: 130px ; background: #f49018 ; position: absolute ; margin-right: 31.5%  ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px " onclick="window.location.assign('/product/api/admin/participate/')">
-           ثبت نام
-        </div>
-
-    </div>
-</div>
-
-
-<div id="accessPopup" class="popup">
-    <div class="popup-content" style="direction: rtl">
-
-        <label>
-            <input id="number" class="phoneNumber" type="number" placeholder="شماره موبایل" maxlength="10">
-        </label>
-
-        <button id="register" class="card-button">ادامه</button>
-
-
-    </div>
-</div>
-
-
-<div id="reservePopup" class="popup">
-    <div class="popup-content" style="direction: rtl">
-
-        <div id="newUser" style="cursor:pointer; height: 150px ; width: 150px ; background: #ff0c0c  ; position: absolute ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px" onclick="window.location.assign('/reservation/api/gym/')">
-            ایجاد سالن
-        </div>
-
-        <div id="reserve" style="cursor:pointer; height: 150px ; width: 150px ; background: #ff0c0c   ; position: absolute ; margin-right: 12%  ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px">
-           رزرو
-        </div>
-
-         <div id="cost" style="cursor: pointer ; height: 150px ; width: 150px ; background: #ff0c0c  ; position: absolute; margin-right: 24% ; color: white ; text-align: center ; vertical-align: center ; display: table-cell  ; line-height: 150px">
-            قیمت گذاری
-        </div>
-
-    </div>
-
-</div>
-
 </body>
-
 
 <script>
     let calendar = document.getElementById("calendar")
