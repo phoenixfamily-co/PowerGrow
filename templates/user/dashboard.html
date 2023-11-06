@@ -533,9 +533,11 @@
             dayItem.innerHTML = result[0].months[monthPosition].days[i].number
             dayItem.setAttribute("itemid",result[0].months[monthPosition].days[i].id)
             days.appendChild(dayItem)
-            const news = document.createElement("li")
-            news.innerHTML = result[0].months[monthPosition].days[i].description
-            times.appendChild(news)
+            if (result[0].months[monthPosition].days[i].description !==null || result[0].months[monthPosition].days[i].description !== '' ) {
+                const news = document.createElement("li")
+                news.innerHTML = result[0].months[monthPosition].days[i].description + `(${result[0].months[monthPosition].days[i].number})`
+                times.appendChild(news)
+            }
         }
          const buttons = document.querySelectorAll('.days li');
             Array.from(buttons).forEach(function (button) {
