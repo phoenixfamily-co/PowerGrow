@@ -82,7 +82,7 @@ def user_home_view(request, pk):
 def user_gym_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('user/gym.html')
-    reservation = Reservations.objects.get(id=pk)
+    reservation = Reservations.objects.filter(id=pk)
     context = {
         "about": about,
         "reservation" : reservation
