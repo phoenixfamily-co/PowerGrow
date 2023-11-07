@@ -283,7 +283,7 @@
 <div class="slideshow-container">
 
     <div class="mySlides fade">
-        <img alt="" src="/media/{{ participants.product.image }}"
+        <img alt="" src="/media/{{ participants.course.image }}"
              style="width:100%;height:100% ; border-bottom-left-radius:  20px ; border-top-left-radius: 20px">
     </div>
 
@@ -295,7 +295,7 @@
 
     <ul class="card-title">
         <li style="font-size: 16px;font-weight: bold ;display: inline">نام دوره :</li>
-        <li style="font-size: 16px;font-weight: bold ;display: inline ;float: left">{{ participants.product.title }}({{ participants.product.gender }})</li>
+        <li style="font-size: 16px;font-weight: bold ;display: inline ;float: left">{{ participants.course.title }}({{ participants.course.gender }})</li>
 
     </ul>
 
@@ -304,7 +304,7 @@
     <ul class="card-title">
         <li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">ظرفیت باقی مانده :
         </li>
-        <li style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin: -4px">{{ size }}/{{  participants.product.capacity }}</li>
+        <li style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin: -4px">{{ size }}/{{  participants.course.capacity }}</li>
 
     </ul>
 
@@ -315,7 +315,7 @@
         <li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">روز های
             برگزاری :
         </li>
-        <li style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin-bottom:  -4px">{{ participants.days.title }}
+        <li style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin-bottom:  -4px">{{ participants.day.title }}
         </li>
     </ul>
 
@@ -325,7 +325,7 @@
     <ul class="card-title">
         <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">ساعت برگزاری :
         </li>
-        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">{{ participants.product.time }}</li>
+        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">{{ participants.course.time }}</li>
     </ul>
 
     <hr style="margin-top: 200px ; position: absolute">
@@ -343,7 +343,7 @@
     <ul class="card-title">
         <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right; margin-top: -4px">شهریه ثابت :
         </li>
-        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: left; margin-top: -4px">{{ participants.product.tuition }}
+        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: left; margin-top: -4px">{{ participants.course.tuition }}
             تومان
         </li>
     </ul>
@@ -353,7 +353,7 @@
 
     <ul class="card-title">
         <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; ; margin-top: -4px">تخفیف :</li>
-        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; ; margin-top: -4px">{{ participants.product.off }}%</li>
+        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; ; margin-top: -4px">{{ participants.course.off }}%</li>
     </ul>
 
     <hr style="margin-top: 350px ; position: absolute">
@@ -361,7 +361,7 @@
     <ul class="card-title">
         <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -10px">قیمت نهایی :
         </li>
-        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -10px">{{ participants.product.tuition }}
+        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -10px">{{ participants.course.tuition }}
             تومان
         </li>
     </ul>
@@ -371,10 +371,10 @@
 
 <div class="card" style="margin-top: 515px ; height: 120px">
 
-    <img src="/media/{{ participants.product.profile }}" alt=""
+    <img src="/media/{{ participants.course.profile }}" alt=""
          style="float: right ; margin-top: 30px ; margin-right: 20px ; font-size: 40px ;direction: rtl ; height: 60px ; width: 60px">
 
-    <h5 style="right: 0 ; margin-right: 90px ; margin-top: 45px ; position: absolute ; font-weight: bold">{{ participants.product.name }}</h5>
+    <h5 style="right: 0 ; margin-right: 90px ; margin-top: 45px ; position: absolute ; font-weight: bold">{{ participants.course.name }}</h5>
 
 
 </div>
@@ -383,7 +383,7 @@
 <div style="width: 70%; height: 500px; background: #FFFFFF ; float: right;border-top-left-radius: 20px; border-bottom-left-radius: 20px; margin-top: 15px">
 
     <p style="direction: rtl ; font-size: 20px ; width: auto ; height: 100% ; margin-right: 10px ; margin-left: 5px ; padding-bottom: 5px">
-        {{ participants.product.description }}
+        {{ participants.course.description }}
     </p>
 </div>
 
@@ -473,7 +473,7 @@
 <script>
 
     let participants = {{ size }};
-    let capacity = {{participants.product.capacity}};
+    let capacity = {{participants.course.capacity}};
     const registerButton = document.createElement("button")
     const card = document.getElementById("card")
 
