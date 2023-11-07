@@ -44,6 +44,46 @@
 .sidebar{grid-area:sidebar;padding: 0  }
 .footer{grid-area:footer;cursor: pointer ; padding: 0 ; height: 250px}
 
+     .card {
+            flex: 0 0 auto;
+            margin-right: 1%;
+            display: inline-block;
+            width: 550px;
+            height: 300px;
+            background: #C1C1C1;
+        }
+
+        .card-title {
+            color: black;
+            font-family: BYekan, serif !important;
+            list-style-type: none;
+            direction: rtl;
+            margin-right: 200px;
+            margin-top: -280px;
+        }
+
+        .card-value {
+            color: black;
+            font-family: BYekan, serif !important;
+            list-style-type: none;
+            direction: rtl;
+            margin-right: 300px;
+            margin-top: -215px;
+
+        }
+
+
+    .scrolling-wrapper {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
  .popup {
             position: fixed;
             z-index: 1;
@@ -58,11 +98,11 @@
 
   .popup-content {
             background-color: white;
-            height: 25vh;
+            height: 50vh;
             margin: 10% auto;
             padding: 20px;
             border: 1px solid #888888;
-            width: 75vh;
+            width: 100%;
             font-weight: bolder;
         }
 
@@ -117,11 +157,26 @@
 
         .card-button{
             cursor: pointer;
+            float: left;
             left: 0;
+            position: relative;
             height: 40px ;
             width: 100px;
-            margin-top: 90px;
-            margin-left: 15px;
+            margin-left: 25px;
+            background: #598ddd;
+            border-color: transparent ;
+            color: white
+		}
+
+
+         .view-button{
+            cursor: pointer;
+            float: left;
+            left: 0;
+            position: relative;
+            height: 40px ;
+            width: 100px;
+            margin-left: 25px;
             background: #598ddd;
             border-color: transparent ;
             color: white
@@ -307,13 +362,10 @@
 
   </header>
   <h1 class="page-title">
+      <div style="color: black ; font-size: 24px ; margin-left: 10px ; margin-top: 5px">اطلاعیه ها</div>
 
       <ul id="news" class="news">
-          <li>کلاس فوتبال هفته اینده تشکیل نمیشود</li>
-          <li>کلاس فوتبال هفته اینده تشکیل نمیشود</li>
-          <li>کلاس فوتبال هفته اینده تشکیل نمیشود</li>
-          <li>کلاس فوتبال هفته اینده تشکیل نمیشود</li>
-          <li>کلاس فوتبال هفته اینده تشکیل نمیشود</li>
+
     </ul>
 
   </h1>
@@ -333,7 +385,124 @@
       </div>
   </aside>
 </div>
+
+<div id="reservePopup" class="popup">
+    <div class="popup-content" style="direction: rtl">
+        <ul>
+            <li>نوع حقوق:</li>
+            <li>مقدار حقوق:</li>
+        </ul>
+
+         <ul>
+            <li>{{ user.salary }}</li>
+            <li>{{ user.fee }}</li>
+        </ul>
+
+    </div>
+
+</div>
+
+
+<div id="coursePopup" class="popup">
+    <div class="popup-content" style="direction: rtl">
+
+        <div class="scrolling-wrapper">
+
+    {% for x in user.participants.all %}
+
+        <div class="card">
+
+            <img id="id_image0" class="" src="/media/{{ x.course.image }}" alt="" style="width: 40%;height: 100%">
+
+            <ol class="card-title">
+                <li style="font-size: 16px;font-weight: bold">نام دوره:</li>
+                <li style="margin-top: 20px; font-size: 16px; font-weight: bold">نام مربی:</li>
+                <li style="margin-top: 20px; font-size: 16px;font-weight: bold">روز ها دوره:</li>
+                <li style="margin-top: 20px; font-size: 16px;font-weight: bold">تعداد جلسات:</li>
+                <li style="margin-top: 20px; font-size: 16px;font-weight: bold">هزینه پرداخت:</li>
+            </ol>
+
+            <ol class="card-value">
+                <li style="font-size: 16px; font-weight: bold">{{ x.course.title }}</li>
+                <li style="margin-top: 20px; font-size: 16px;font-weight: bold ; direction: rtl">{{ x.course.name }}</li>
+                <li style="margin-top: 24px; font-size: 16px;font-weight: bold">{{ x.day.title }}</li>
+                <li style="margin-top: 22px; font-size: 16px;font-weight: bold ">{{ x.session.number }}</li>
+                <li style="margin-top: 20px; font-size: 16px;font-weight: bold">{{ x.price }}</li>
+            </ol>
+
+            <button id="viewButton" itemid="{{ x.id }}" class="view-button">مشاهده کنید</button>
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+    </div>
+
+</div>
+
+
+
 </body>
+
+<script>
+
+    let reservePopup = document.getElementById("reservePopup")
+    let reserves = document.getElementById("reserves")
+    let courses = document.getElementById("course")
+    let registerButton = document.getElementById("registerButton")
+    let viewButton = document.getElementById("viewButton")
+    let coursePopup = document.getElementById("coursePopup")
+    let gymId
+    let courseId
+
+    const buttons = document.querySelectorAll('.card-button');
+    Array.from(buttons).forEach(function (button) {
+        button.addEventListener('click', async function () {
+            gymId = this.getAttribute("itemid")
+            window.location.assign(`/user/reservation/${parseInt(gymId)}`)
+        })
+    })
+
+
+    const btns = document.querySelectorAll('.view-button');
+    Array.from(btns).forEach(function (button) {
+        button.addEventListener('click', async function () {
+            courseId = this.getAttribute("itemid")
+            window.location.assign(`/user/participants/${parseInt(courseId)}`)
+        })
+    })
+
+
+
+    reserves.addEventListener("click",function () {
+
+        reservePopup.classList.toggle("show");
+
+    })
+
+    courses.addEventListener("click", function () {
+
+        coursePopup.classList.toggle("show");
+
+    })
+
+     window.addEventListener("click", function (event) {
+
+          if (event.target === coursePopup) {
+              coursePopup.classList.remove("show");
+          }
+
+           if (event.target === reservePopup) {
+            reservePopup.classList.remove("show");
+        }
+
+    });
+
+
+</script>
+
 
 <script>
         let profile = document.getElementById("profile")
@@ -365,7 +534,8 @@
 
 
         document.addEventListener("DOMContentLoaded", function() {
-        getYear()
+            getYear()
+            getNews()
 });
 
 
@@ -509,6 +679,7 @@
     let newsSize
 
     async function getNews(){
+        news.innerHTML = ""
 
            const response = await fetch('/seo/api/news/', {
             method: 'GET',
@@ -521,9 +692,13 @@
         result = JSON.parse(JSON.stringify(result))
         newsSize = result.length
 
+        for (let j = 0 ; j<newsSize ; j++){
+            const newsItem = document.createElement("li")
+            newsItem.innerHTML = result[j].description
+            news.appendChild(newsItem)
+        }
+
     }
-
-
 
 </script>
 
