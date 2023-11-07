@@ -13,7 +13,8 @@ class ParticipantsSerializer(serializers.ModelSerializer):
 class ParticipantsUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = Participants
-        fields = ['user.name']
+        fields = ['user']
+        depth = 1
 
 
 class DaysSerializer(serializers.ModelSerializer):
