@@ -227,7 +227,8 @@
     "price": {{ product.tuition }},
     "course": {{ product.id }}
 }
-        console.log(JSON.stringify(param))
+
+        console.log(cookieValue)
         const response = await fetch('/product/api/participate/', {
         method: 'POST',
         headers: {
