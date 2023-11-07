@@ -112,13 +112,16 @@ class ParticipationView(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         data = self.request.data
+        session = Sessions.objects.filter(id=data["session"]).first()
+        day = Days.objects.filter(id=data["day"]).first()
         course = Course.objects.filter(id=data["course"]).first()
         participants = Participants.objects.update_or_create(title=data["title"],
-                                                             session=data["session"],
-                                                             day=data["day"],
+                                                             session=session,
+                                                             day=day,
                                                              price=data["price"],
                                                              user=self.request.user,
-                                                             course=course)
+                                                             course=course,
+                                                             created=self.request.user)
         serializer = ParticipantsSerializer(participants)
         return Response(serializer.data)
 
