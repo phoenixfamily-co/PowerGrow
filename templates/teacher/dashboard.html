@@ -316,7 +316,7 @@
     </ul>
 
   </h1>
-  <main class="main-content">
+  <main class="main-content" id="profile">
   <div style="position:absolute ; margin-top: 2vh ; margin-left: 2vh ; font-size: 36px">پروفایل من</div>
   <img src="/static/images/profile.jpg" style="height: 100% ; width: 100% ; border-radius: 20px" alt="">
   </main>
@@ -333,6 +333,17 @@
   </aside>
 </div>
 </body>
+
+<script>
+        let profile = document.getElementById("profile")
+
+
+      profile.addEventListener("click", function () {
+        location.assign(`/user/profile/{{ id }}/`)
+    })
+
+
+</script>
 
 <script>
     let calendar = document.getElementById("calendar")
