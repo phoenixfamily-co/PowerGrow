@@ -70,12 +70,10 @@ def user_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('user/dashboard.html')
     user = User.objects.all().get(id=pk)
-    gym = Gym.objects.all().values().first()
     context = {
         "about": about,
         "id": pk,
         "user": user,
-        "gym" : gym
     }
     return HttpResponse(template.render(context, request))
 
