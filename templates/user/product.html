@@ -1,591 +1,498 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<script src="https://kit.fontawesome.com/1228ed801f.js" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.css" />
-<script src="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://kit.fontawesome.com/1228ed801f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.css"/>
+    <script src="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.js"></script>
+    <title>PowerGrow</title>
 
 
-<title>PowerGrow</title>
+    <style>
 
-
-	<style>
-
-		@font-face {
-			font-family: BYekan;
-  			font-style: normal;
-  			font-weight: normal;
-  			src: url("../../static/fonts/BYekan.eot");/* IE9 Compat Modes */
-			src: url("../../static/fonts/BYekan.woff") format('woff'),
-        		 url("../../static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */
-        		 url("../../static/fonts/BYekan.ttf")  format('truetype') /* Safari, Android, iOS */
-		}
-
-		* {box-sizing: border-box}
-		img {vertical-align: middle;}
-
-
-		.tab{
-			direction:rtl ;
-			unicode-bidi: bidi-override ;
-			right:0;
-            width: auto;
-			margin-top: 4%;
-			margin-right: 5%;
-    		z-index: 10!important;
-
-
-		}
-
-		.tab-button{
-			background-color: transparent;
-			border-color: transparent;
-			color: black;
-            font-family: BYekan, serif !important;
-			font-size: 16px;
-            cursor: pointer;
-		}
-
-		.logoHolder{
-			width: 50px;
-			margin-left: 40%;
-            margin-top: -70px;
-            position: absolute;
-    		z-index: 10!important;
-
-		}
-
-		.logo{
-			width: 50px;
-			height: 50px;
-			border-radius: 25px;
-			direction: ltr;
-            position: absolute;
-
-		}
-
-		.typography{
-			margin-left: 60px;
-			color: black;
-			font-size: 20px;
-            position: absolute;
-
-		}
-
-		.login{
-			width: 150px;
-            position: absolute;
-            margin-top: -30px;
-    		z-index: 10!important;
-			direction:rtl ;
-			unicode-bidi: bidi-override ;
-		}
-
-		.loginTypography{
-			color: black;
-			background-color: transparent;
-			border-color: transparent;
-            font-family: BYekan, serif !important;
-			direction: rtl;
-			font-size: 16px;
-			margin-right: 10%;
-            cursor: pointer;
-
-
-		}
-
-		.dropdown {
- 			position: relative;
-  			display: inline-block;
-		}
-
-		.dropdown-content {
-  			display: none;
-  			position: absolute;
-			width: 100px;
-		    background-color: #f9f9f9;
-  			box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-		    padding: 12px 16px;
-			z-index: 1;
-		}
-
-		.dropdown:hover .dropdown-content {
- 			 display: block;
-
-		}
-
-		.dropdown-content a {
-  			color: black;
-		    padding: 5px 16px;
-			font-size: 16px;
-			text-decoration: none;
-		  	display: block;
-		}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #f1f1f1}
-
-
-		.title {
-            font-family: BYekan, serif !important;
-            font-size: 30px;
+        @font-face {
+            font-family: BYekan;
             font-style: normal;
-            position: absolute;
-            color: black;
-            width: 100%;
-            direction: rtl;
-            padding-right: 103vh;
-            margin-top: 3vh;
+            font-weight: normal;
+            src: url("/static/fonts/BYekan.eot");/* IE9 Compat Modes */
+            src: url("/static/fonts/BYekan.woff") format('woff'),
+            url("/static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */ url("/static/fonts/BYekan.ttf") format('truetype') /* Safari, Android, iOS */
         }
-			.card {
-                flex: 0 0 auto;
-                display: inline-grid;
-                height: 300px;
-                background: #C1C1C1;
-                grid-template-columns: 1fr;
-                width: calc(100% - 20px);
-                justify-content: center;
-                align-items: center;
-                color: #FFFFFA;
 
-			}
+        * {
+            box-sizing: border-box
+        }
 
-		.card-title {
-			color: black;
-            font-family: BYekan, serif !important;
-			list-style-type: none;
-			direction: rtl;
-            position: absolute;;
-			margin-right: 180px;
-            margin-top: -10vh;
+        img {
+            vertical-align: middle;
+        }
 
-		}
-
-		.card-value {
-			color: black;
-            font-family: BYekan, serif !important;
-			list-style-type: none;
-			margin-top: -10vh;
-            position: absolute;
-            margin-right: 45vh;
-		}
-
-        .card-image {
+        .mySlides {
+            display: block;
+            width: 70%;
+            right: 0;
+            height: 500px;
             float: right;
-            height: 100%;
-            width: 50%;
-		}
+        }
 
-		.container {
+        .tab {
+            direction: rtl;
+            unicode-bidi: bidi-override;
+            right: 0;
+            position: absolute;
+            margin-top: 4%;
+            margin-right: 5%;
+            z-index: 10 !important;
+
+
+        }
+
+        .tab-button {
+            background-color: transparent;
+            border-color: transparent;
+            color: white;
+            font-family: BYekan, serif !important;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .logoHolder {
+            width: 50px;
+            margin-left: 50%;
+            position: absolute;
+            margin-top: 1%;
+            z-index: 10 !important;
+
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            position: absolute;
+            direction: ltr
+
+        }
+
+        .typography {
+            position: absolute;
+            margin-left: 60px;
+            margin-top: 20%;
+            color: white;
+            font-size: 20px
+
+        }
+
+        .login {
+            width: 150px;
+            position: absolute;
+            margin-top: 4%;
+            margin-left: 28%;
+            z-index: 10 !important;
+            direction: rtl;
+            unicode-bidi: bidi-override;
+        }
+
+        .loginTypography {
+            color: white;
+            position: absolute;
+            background-color: transparent;
+            border-color: transparent;
+            font-family: BYekan, serif !important;
+            direction: rtl;
+            font-size: 16px;
+            margin-right: 10%;
+            cursor: pointer;
+
+        }
+
+        .slideshow-container {
+            max-width: 100%;
+            position: relative;
+            margin: auto;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            width: 100px;
+            background-color: #f9f9f9;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            padding: 12px 16px;
+            z-index: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 5px 16px;
+            font-size: 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {
+            background-color: #f1f1f1
+        }
+
+
+        @keyframes fade {
+            from {
+                opacity: .4
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        /* On smaller screens, decrease text size */
+        @media only screen and (max-width: 300px) {
+        }
+
+        .card {
+            width: 390px;
+            background: #FFFFFF;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            position: fixed;
+            flex: 0 0 auto;
+            margin-right: 1%;
+        }
+
+        .card-title {
+            color: black;
+            width: 95%;
+            font-family: BYekan, serif !important;
+            list-style-type: none;
+            float: right;
+            display: inline-block;
+            direction: rtl;
+
+        }
+
+        .card-button {
+            position: absolute;
+            bottom: 0;
+            height: 60px;
+            width: 370px;
+            margin-right: 10px;
+            margin-left: 10px;
+            margin-bottom: 20px;
+            background: #5cdb5c;
+            border-color: transparent;
+            color: white;
+            cursor: pointer;
+        }
+
+        .disabled-button {
+            position: absolute;
+            bottom: 0;
+            height: 60px;
+            width: 370px;
+            margin-right: 10px;
+            margin-left: 10px;
+            margin-bottom: 20px;
+            background: #5cdb5c;
+            border-color: transparent;
+            color: white;
+            cursor: none;
+            pointer-events: none;
+            opacity:0.6;
+        }
+
+        .contentWrapper {
+            height: 250px;
+        / / Replace with the height your footer should be width: 100 %;
+        / / Don 't change background-position: 0 % 0 %;
+            padding: 2rem;
+            background: #303030;
+            color: white;
+            font-weight: 500;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-right: 8vh;
-            margin-left: 5vh;
-            margin-top: 15vh;
-            min-height: 50vh;
-            flex-direction: column;
-            direction: rtl;
-        }
-            .wrapper {
-                display: grid;
-                grid-template-columns: 1fr 1fr 1fr;
-                width: 100%;
-            }
-
-		.card-button{
-			width: 100px;
-			height: 30px;
-			background-color: #E16539;
-			border-color: transparent;
-			border-radius: 7px;
-			margin-right: 290px;
+            gap: 0.2rem;
             position: absolute;
-			margin-top: 37vh;
-            font-family: BYekan, serif !important;
-			color: white;
-            cursor: pointer;
-
-		}
-
-		.contentWrapper {
-			height:250px;
-			width: 100%;
-			padding: 2rem;
-			background: #303030;
-			color: white;
-            margin-top: 5vh;
-			font-weight: 500;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			gap: 0.2rem;
-			position: relative;
-		}
-
-		.content {
-			height:250px
-		}
-
-		.footer{
-			  height: 50px;
-			  font-weight: 500;
-			  display: flex;
-			  justify-content: flex-start;
-			  align-items: center;
-			  font-size: 12px;
-			  gap: 0.2rem;
-			  padding-top: 10px;
-			  padding-left: 20px;
-			  bottom: 0;
-			  right: 0;
-			  left: 0;
-			  position: absolute;
-			  color: #B1B2B2;
-			  background: #151111;
-
-		}
-
-		body,html{
-			height: auto;
-			position: relative;
-            font-family: BYekan, serif !important;
-
-		}
-
-         .popup {
-            position: fixed;
-            z-index: 1;
+            margin-top: 1030px;
+            right: 0;
             left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.4);
-            display: none;
-        }
-        .popup-content {
-            background-color: white;
-            margin: 10% auto;
-            padding: 20px;
-            border: 1px solid #888888;
-            width: 40%;
-            font-weight: bolder;
-        }
-        .popup-content button {
-            display: block;
-            margin: 0 auto;
-        }
-        .show {
-            display: block;
-            visibility: visible;
-            -webkit-animation: fadeIn 1s;
-            animation: fadeIn 1s;
-        }
-        h1 {
-            color: green;
+
         }
 
-        .searchbar {
-            overflow: hidden;
-            background-color: #e9e9e9;
-            margin-right: 5%;
-            margin-left: 3%;
-            height: 6vh;
-            margin-top: 5vh;
-            border-color: transparent;
-            border-radius: 5px;
+        .content {
+            height: 250px;
+        / / Replace with the height your footer should be width: 1000 px;
+        / / Visible width of footer margin: auto;
+        }
+
+        .footer {
+            height: 50px;
+            font-weight: 500;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            font-size: 12px;
+            gap: 0.2rem;
+            padding-top: 10px;
+            padding-left: 20px;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            position: absolute;
+            color: #B1B2B2;
+            background: #151111;
+
+        }
+
+        body, html {
+            height: auto;
+            position: relative;
+            font-family: BYekan, serif !important;
+            background: #ACACAC;
+
+        }
+
+        hr {
+            height: 1px;
+            background-color: black;
+            width: 325px;
+            margin-right: 20px;
+            margin-left: 20px;
+            right: 0;
+            left: 0;
         }
 
 
-        /* Style the search box inside the navigation bar */
-        .searchbar input[type=text] {
-            border-color: transparent;
-            font-size: 17px;
-            width: 100%;
-            height: 100%;
-            background: transparent;
-            direction: rtl;
-        }
-
-/* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
-@media screen and (max-width: 600px) {
-    .searchbar input[type=text] {
-        float: none;
-        display: block;
-        text-align: left;
-        width: 100%;
-        margin: 0;
-        padding: 14px;
-      }
-}
-
-        @-webkit-keyframes fadeIn {
-            from {opacity: 0;}
-            to {opacity: 1;}
-        }
-
-        @keyframes fadeIn {
-            from {opacity: 0;}
-            to {opacity:1 ;}
-        }
-
-		</style>
+    </style>
 
 </head>
 <body>
 
-    <div class="tab">
-		<button class="tab-button" onclick="window.location.assign('{% url 'home:home' %}')">صفحه اصلی</button>
-		<div class="dropdown">
-  		<button class="tab-button" style="font-weight: bold;text-decoration: underline; text-underline-position: under" onclick="">ورزش ها</button>
-			<i class="fa-solid fa-caret-down" style="color: #000"></i>
-			 <div class="dropdown-content">
-   			  {% for x in category %}
+<div class="slideshow-container">
 
-   				 <a href="{% url 'product:category' x.id %}">{{ x.title }}</a>
-
-                 {% endfor %}
-			</div>
-		</div>
-  		<button class="tab-button" onclick="window.location.assign({% url 'reservation:reservation' %})">اجاره سالن</button>
-		<button class="tab-button" onclick="window.location.assign({% url 'about:aboutUs' %})">درباره ما</button>
-
-	</div>
-
-	<div class="logoHolder">
-
-			 <img alt="" src="/media/{{ about.logo }}" class="logo">
-	  		<div class="typography">PowerGrow</div>
-
-		</div>
-
-	<div class="login">
-		<i class="fa-solid fa-user" style="color: #000; position:absolute ; margin-top:5px ; font-size: 16px"></i>
-		<button class="loginTypography" onclick="window.location.assign({% url 'user:login' %})">ورود/عضویت</button>
-	</div>
-
-    <div class="searchbar">
-        <label>
-            <input id="search" type="text" placeholder="نام دوره یا نام مربی را وارد کنید . . .">
-        </label>
+    <div class="mySlides fade">
+        <img alt="" src="/media/{{ participants.product.image }}"
+             style="width:100%;height:100% ; border-bottom-left-radius:  20px ; border-top-left-radius: 20px">
     </div>
 
-
-<div class="title">{{ title }}</div>
-
-
-<div id="container" class="container">
-      <div class="wrapper" id="wrapper"></div>
 </div>
 
-    <div id="myPopup" class="popup">
-        <div class="popup-content" style="direction: rtl">
-             <label for="session">تعداد جلسات در ماه را انتخاب کنید:</label>
-             <select name="numbers" id="session" style="margin-right: 50px">
 
-            </select>
-            <br>
-            <br>
-            <label for="week">روزهای برگزاری در هفته را مشخص کنید:</label>
-              <select name="days" id="week" style="margin-right: 50px">
+<div class="card" id="card" style="height: 500px">
 
-                  {% for x in days %}
 
-              <option value={{ x.id }}>{{ x.day }}</option>
+    <ul class="card-title">
+        <li style="font-size: 16px;font-weight: bold ;display: inline">نام دوره :</li>
+        <li style="font-size: 16px;font-weight: bold ;display: inline ;float: left">{{ participants.product.title }}({{ participants.product.gender }})</li>
 
-                  {% endfor %}
-            </select>
-            <br>
-            <br>
-            <button id="closeButton">
-                  ادامه
-            </button>
-        </div>
-    </div>
+    </ul>
+
+    <hr style="margin-top: 50px ; position: absolute">
+
+    <ul class="card-title">
+        <li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">ظرفیت باقی مانده :
+        </li>
+        <li style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin: -4px">{{ size }}/{{  participants.product.capacity }}</li>
+
+    </ul>
+
+    <hr style="margin-top: 100px ; position: absolute">
+
+    <ul class="card-title">
+
+        <li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">روز های
+            برگزاری :
+        </li>
+        <li style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin-bottom:  -4px">{{ participants.days.title }}
+        </li>
+    </ul>
+
+
+    <hr style="margin-top: 150px ; position: absolute">
+
+    <ul class="card-title">
+        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">ساعت برگزاری :
+        </li>
+        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">{{ participants.product.time }}</li>
+    </ul>
+
+    <hr style="margin-top: 200px ; position: absolute">
+
+    <ul class="card-title">
+        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">تعداد جلسات :
+        </li>
+        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">{{ participants.session.number }}
+            جلسه
+        </li>
+    </ul>
+
+    <hr style="margin-top: 250px ; position: absolute">
+
+    <ul class="card-title">
+        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right; margin-top: -4px">شهریه ثابت :
+        </li>
+        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: left; margin-top: -4px">{{ participants.product.tuition }}
+            تومان
+        </li>
+    </ul>
+
+    <hr style="margin-top: 300px ; position: absolute">
+
+
+    <ul class="card-title">
+        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; ; margin-top: -4px">تخفیف :</li>
+        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; ; margin-top: -4px">{{ participants.product.off }}%</li>
+    </ul>
+
+    <hr style="margin-top: 350px ; position: absolute">
+
+    <ul class="card-title">
+        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -10px">قیمت نهایی :
+        </li>
+        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -10px">{{ participants.product.tuition }}
+            تومان
+        </li>
+    </ul>
+
+
+</div>
+
+<div class="card" style="margin-top: 515px ; height: 120px">
+
+    <img src="/media/{{ participants.product.profile }}" alt=""
+         style="float: right ; margin-top: 30px ; margin-right: 20px ; font-size: 40px ;direction: rtl ; height: 60px ; width: 60px">
+
+    <h5 style="right: 0 ; margin-right: 90px ; margin-top: 45px ; position: absolute ; font-weight: bold">{{ participants.product.name }}</h5>
+
+
+</div>
+
+
+<div style="width: 70%; height: 500px; background: #FFFFFF ; float: right;border-top-left-radius: 20px; border-bottom-left-radius: 20px; margin-top: 15px">
+
+    <p style="direction: rtl ; font-size: 20px ; width: auto ; height: 100% ; margin-right: 10px ; margin-left: 5px ; padding-bottom: 5px">
+        {{ participants.product.description }}
+    </p>
+</div>
 
 <div class="contentWrapper">
-		<div class="content">
-			<div style="width:160px;left: 0;bottom: 0; top: 0; position: absolute;margin-left: 20px">
+    <div class="content">
+        <div style="width:160px;left: 0;bottom: 0; top: 0; position: absolute;margin-left: 20px">
 
-				<h2>PowerGrow</h2>
-		 <img class="" src="/media/{{ about.transparent_logo }}" style="position: absolute;width:160px;margin-top: -22px"  alt="" >
+            <h2>PowerGrow</h2>
+            <img class="" src="/media/{{ about.transparent_logo }}"
+                 style="position: absolute;width:160px;margin-top: -22px"
+                 alt="">
 
-				</div>
+        </div>
 
-      <div id="map" style="width: 300px; background: #eee; border: 2px solid #aaa;top: 0 ; bottom:0;
-						   position: absolute;margin-left: -170px;">
+        <div id="map" style="width: 20vw; background: #eee; border: 2px solid #aaa;top: 0 ; bottom:0;
+						   position: absolute;margin-left: -10%">
 
 
-			</div>
+        </div>
 
-			<i class="fa-solid fa-location-dot" style="color: #ffffff; right: 0 ; position: absolute; margin-top: 20px ; margin-right: 20px; font-size: 30px"></i>
-			<h5 style="right: 0 ; margin-right: 50px;position: absolute;direction: rtl ; margin-top: 20px;">
+        <i class="fa-solid fa-location-dot"
+           style="color: #ffffff; right: 0 ; position: absolute; margin-top: 20px ; margin-right: 20px; font-size: 30px"></i>
+        <h5 style=" width: 33%;right: 0 ; margin-right: 50px;position: absolute;direction: rtl ; margin-top: 20px;">
 
-                   {% autoescape off %}
+            {% autoescape off %}
 
-                {{ address|linebreaksbr  }}
+                {{ about.address|linebreaksbr }}
 
-                {% endautoescape %}
+            {% endautoescape %}
 
-			</h5>
 
-			<i class="fa-solid fa-phone-flip" style="color: #ffffff; right: 0 ; position: absolute; margin-top: 95px ; margin-right: 20px; font-size: 30px"></i>
-			<h5 style="right: 0 ; margin-right: 60px;position: absolute;direction: rtl ; margin-top: 95px;">
-                {{ about.phone }}<br> {{ about.telephone }}
-			</h5>
+        </h5>
 
-			<a href="//www.instagram.com/{{ about.instagram }}"  style="right: 0 ; position: absolute ; margin-right:20px ; margin-top: 165px;display: inline">
-		<i class="fa-brands fa-instagram" style="color: #ffffff ; font-size: 30px ;"></i>
-		</a>
-			<h5 style="right: 0 ; margin-right: 60px;position: absolute;direction: ltr ; margin-top: 167px;">
-                {{ about.instagram }}
-			</h5>
-		</div>
-		<div class="footer">&copy;<span id="year" style="font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif'">2023 </span><span> PhoenixFamily. All rights reserved.</span>
-		<a href="//www.instagram.com/phoenixfamily.co?igshid=OGQ5ZDc2ODk2ZA==" style="right: 0 ; position: absolute ; margin-right:15px">
-		<i class="fa-brands fa-instagram" style="color: #ffffff ; font-size: 30px"></i>
-		</a>
-		<a href="//www.linkedin.com/company/phoenixfamily" style="right: 0 ; position: absolute ; margin-right:55px">
-		<i class="fa-brands fa-linkedin" style="color: #ffffff ; font-size: 30px"></i>
-		</a>
-		<span style="right: 0;margin-right: 90px; position: absolute">Follow us:</span>
-		</div>
+        <i class="fa-solid fa-phone-flip"
+           style="color: #ffffff; right: 0 ; position: absolute; margin-top: 95px ; margin-right: 20px; font-size: 30px"></i>
+        <h5 style="right: 0 ; margin-right: 60px;position: absolute;direction: rtl ; margin-top: 95px;">
+            {{ about.phone }}<br> {{ about.telephone }}
+        </h5>
+
+        <a href="https://www.instagram.com/{{ instagram }}"
+           style="right: 0 ; position: absolute ; margin-right:20px ; margin-top: 165px;display: inline">
+            <i class="fa-brands fa-instagram" style="color: #ffffff ; font-size: 30px ;"></i>
+        </a>
+
+        <h5 style="right: 0 ; margin-right: 60px;position: absolute;direction: ltr ; margin-top: 167px;">
+            {{ about.instagram }}
+        </h5>
+    </div>
+    <div class="footer">&copy;<span id="year"
+                                    style="font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif'">2023 </span><span> PhoenixFamily. All rights reserved.</span>
+        <a href="//www.instagram.com/phoenixfamily.co?igshid=OGQ5ZDc2ODk2ZA=="
+           style="right: 0 ; position: absolute ; margin-right:15px">
+            <i class="fa-brands fa-instagram" style="color: #ffffff ; font-size: 30px"></i>
+        </a>
+        <a href="//www.linkedin.com/company/phoenixfamily" style="right: 0 ; position: absolute ; margin-right:55px">
+            <i class="fa-brands fa-linkedin" style="color: #ffffff ; font-size: 30px"></i>
+        </a>
+        <span style="right: 0;margin-right: 90px; position: absolute">Follow us:</span>
+    </div>
 </div>
 
 </body>
 
 <script>
-
     let lat = {{ about.latitude }};
     let long =     {{ about.longitude }};
 
+
     const map = new nmp_mapboxgl.Map({
-            mapType: nmp_mapboxgl.Map.neshanVector,
-            container: "map",
-            zoom: 15,
-            pitch: 0,
-            center: [long,lat],
-            minZoom: 2,
-            maxZoom: 21,
-            trackResize: false,
-            mapKey: "web.eb9c250015c247e08c5122f824c1541c",
-            poi: true,
-            traffic: true,
-            mapTypeControllerStatus: {
-                show: false,
-            }
-        });
+        mapType: nmp_mapboxgl.Map.neshanVector,
+        container: "map",
+        zoom: 15,
+        pitch: 0,
+        center: [long, lat],
+        minZoom: 2,
+        maxZoom: 21,
+        trackResize: false,
+        mapKey: "web.eb9c250015c247e08c5122f824c1541c",
+        poi: true,
+        traffic: true,
+        mapTypeControllerStatus: {
+            show: false,
+        }
+    });
 </script>
 
 <script>
 
-    const searchInput = document.getElementById("search")
-    const container = document.getElementById("container")
-    const wrapper = document.getElementById("wrapper")
-    const closeButton = document.getElementById("closeButton");
-    const myPopup = document.getElementById("myPopup");
-    const session = document.getElementById("number");
-    const week = document.getElementById("week");
-    const sessionList = document.getElementById("session")
-    let course
+    let participants = {{ size }};
+    let capacity = {{participants.product.capacity}};
+    const registerButton = document.createElement("button")
+    const card = document.getElementById("card")
 
-    window.onload = function (){
-        search('')
+    const cookieValue = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("token="))
+        ?.split("=")[1];
+
+    if (parseInt(participants) < parseInt(capacity)){
+
+        registerButton.classList.add("disabled-button")
+        registerButton.innerHTML = "قبلا ثبت نام کردید"
+
+    }else {
+        registerButton.classList.add("disabled-button")
+        registerButton.innerHTML = "ضرفیت تکمیل است"
     }
 
-    searchInput.addEventListener("input", function (event) {
-
-        search(event.target.value)
-
-    })
-
-    async function search(query) {
-
-        const response = await fetch(`/product/api/search/{{ id }}?search=${query}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-        const result = await response.json()
-        if (response.status === 200 && result.length !== 0) {
-            const res = JSON.stringify(result)
-            const sum = JSON.parse(res)
-            const size = JSON.parse(res).length
-            wrapper.innerHTML = ''
-            for (let i = 0; i < size; i++) {
-                const course = document.createElement("div")
-                const imageElement = document.createElement("img")
-                const cardButton = document.createElement("button")
-                const listTitle = document.createElement("ol")
-                const firstTitle = document.createElement("li")
-                const secondTitle = document.createElement("li")
-                const thirdTitle = document.createElement("li")
-                const forthTitle = document.createElement("li")
-                const fifthTitle = document.createElement("li")
-                const listValue = document.createElement("ol")
-                const firstValue = document.createElement("li")
-                const secondValue = document.createElement("li")
-                const thirdValue = document.createElement("li")
-                const forthValue = document.createElement("li")
-                const fifthValue= document.createElement("li")
-                firstTitle.style.cssText = 'font-size: 16px;font-weight: bold'
-                firstTitle.innerHTML = "نام دوره:"
-                secondTitle.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'
-                secondTitle.innerHTML = "نام مربی:"
-                thirdTitle.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'
-                thirdTitle.innerHTML = "تعداد جلسات:"
-                forthTitle.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'
-                forthTitle.innerHTML = "روز های برگزاری:"
-                fifthTitle.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'
-                fifthTitle.innerHTML = "ساعت برگزاری:"
-                firstValue.style.cssText = 'font-size: 16px;font-weight: bold'
-                firstValue.innerHTML = sum[i].title
-                secondValue.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'
-                secondValue.innerHTML = sum[i].name
-                thirdValue.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'
-                thirdValue.innerHTML = sum[i].gender
-                forthValue.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'
-                forthValue.innerHTML = sum[i].type
-                fifthValue.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'
-                fifthValue.innerHTML = sum[i].course.time
-                listTitle.appendChild(firstTitle)
-                listTitle.appendChild(secondTitle)
-                listTitle.appendChild(thirdTitle)
-                listTitle.appendChild(forthTitle)
-                listTitle.appendChild(fifthTitle)
-                listValue.appendChild(firstValue)
-                listValue.appendChild(secondValue)
-                listValue.appendChild(thirdValue)
-                listValue.appendChild(forthValue)
-                listValue.appendChild(fifthValue)
-                listTitle.classList.add("card-title")
-                listValue.classList.add("card-value")
-                imageElement.setAttribute('src', sum[i].image)
-                imageElement.classList.add("card-image")
-                cardButton.classList.add("card-button")
-                cardButton.innerHTML = "ثبت نام کنید"
-                cardButton.setAttribute("itemid", sum[i].id)
-                course.appendChild(imageElement)
-                course.appendChild(cardButton)
-                course.appendChild(listTitle)
-                course.appendChild(listValue)
-                course.classList.add("card")
-                wrapper.appendChild(course)
-            }
-            const buttons = document.querySelectorAll('.card-button');
-            Array.from(buttons).forEach(function (button){
-                button.addEventListener('click',async function () {
-                    course = this.getAttribute("itemid")
-
-                    })
-                })
-
-            }
-    }
+    card.appendChild(registerButton)
 
 </script>
 

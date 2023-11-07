@@ -9,6 +9,7 @@ from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 
 from About.models import AboutUs
+from Product.models import Participants
 from Reservation.models import Reservations
 from User.serializer import *
 from User.models import *
@@ -85,6 +86,20 @@ def user_gym_view(request, pk):
     context = {
         "about": about,
         "reservation" : reservation
+
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def user_course_view(request, pk):
+    about = AboutUs.objects.values().first()
+    template = loader.get_template('user/product.html')
+    participants = Participants.objects.get(id=pk)
+    size = Participants.objects.filter(course__pk=participants.course.id).values()
+    context = {
+        "about": about,
+        "participants" : participants,
+        "size" : size
 
     }
     return HttpResponse(template.render(context, request))
