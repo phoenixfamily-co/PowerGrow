@@ -520,7 +520,11 @@
         result = JSON.parse(JSON.stringify(result))
         newsSize = result.length
 
-        console.log(result)
+        for (let j = 0 ; j<newsSize ; j++){
+            const newsItem = document.createElement("li")
+            news.appendChild(newsItem)
+        }
+
     }
 
 
