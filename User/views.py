@@ -9,6 +9,7 @@ from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 
 from About.models import AboutUs
+from Reservation.models import Reservations
 from User.serializer import *
 from User.models import *
 
@@ -73,6 +74,18 @@ def user_home_view(request, pk):
         "about": about,
         "id": pk,
         "user": user,
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def user_gym_view(request, pk):
+    about = AboutUs.objects.values().first()
+    template = loader.get_template('user/gym.html')
+    reservation = Reservations.objects.get(id=pk)
+    context = {
+        "about": about,
+        "reservation" : reservation
+
     }
     return HttpResponse(template.render(context, request))
 

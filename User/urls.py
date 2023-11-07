@@ -29,5 +29,6 @@ urlpatterns = [
     path('home/teacher/<int:pk>/', teacher_home_view, name='teacher_home'),
     path('home/admin/<int:pk>/', secretary_home_view, name='admin_home'),
     path('home/manager/<int:pk>/', manager_home_view, name='manager_home'),
-    path('profile/<int:pk>/', profile_view, name='profile')
+    path('profile/<int:pk>/', profile_view, name='profile'),
+    path('reservation/<int:pk>/', user_gym_view, name='user_gym')
     ]

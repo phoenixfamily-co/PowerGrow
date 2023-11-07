@@ -425,6 +425,16 @@
     let reservePopup = document.getElementById("reservePopup")
     let reserves = document.getElementById("reserves")
     let registerButton = document.getElementById("registerButton")
+    let gymId
+
+    const buttons = document.querySelectorAll('.card-button');
+    Array.from(buttons).forEach(function (button) {
+        button.addEventListener('click', async function () {
+            gymId = this.getAttribute("itemid")
+            window.location.assign(`/user/reservation/${parseInt(gymId)}`)
+        })
+    })
+
 
 
     reserves.addEventListener("click",function () {
