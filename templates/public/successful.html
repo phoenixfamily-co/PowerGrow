@@ -233,7 +233,7 @@
         const response = await fetch('/reservation/api/reserve/', {
         method: 'POST',
         headers: {
-            'Authorization': `Token ${cookieValue}`,
+            'Authorization': `token  ${cookieValue}`,
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(param)

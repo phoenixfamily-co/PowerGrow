@@ -232,7 +232,7 @@
         const response = await fetch('/product/api/participate/', {
         method: 'POST',
         headers: {
-            'Authorization': `Bearer ${cookieValue}`,
+            'Authorization': `token  ${cookieValue}`,
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(param)
