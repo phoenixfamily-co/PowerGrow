@@ -74,12 +74,11 @@
 
 
     .scrolling-wrapper {
-            margin-bottom: 20px;
-            width: 100%;
-            direction: rtl;
-            -webkit-overflow-scrolling: touch;
-            overflow: auto;
-            scrollbar-width: none; /* Firefox */
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            overflow-y: hidden;
+            margin-top: 7%;
         }
 
         ::-webkit-scrollbar {
