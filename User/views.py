@@ -120,9 +120,11 @@ def teacher_home_view(request, pk):
 def secretary_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('secretary/dashboard.html')
+    user = User.objects.filter(id=pk).values().first()
     context = {
         "about": about,
-        "id": pk
+        "id": pk,
+        "user": user
 
     }
     return HttpResponse(template.render(context, request))
