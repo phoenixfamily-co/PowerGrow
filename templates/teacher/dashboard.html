@@ -44,6 +44,21 @@
 .sidebar{grid-area:sidebar;padding: 0  }
 .footer{grid-area:footer;cursor: pointer ; padding: 0 ; height: 250px}
 
+
+.left {
+    float: left;
+}
+.left li{
+    display:inline-block
+}
+
+.right {
+    float: right;
+}
+.right li{
+    display:inline-block
+}
+
      .card {
             flex: 0 0 auto;
             margin-right: 1%;
@@ -388,12 +403,12 @@
 
 <div id="reservePopup" class="popup">
     <div class="course-popup-content" style="direction: rtl">
-        <ul style="display: inline ; vertical-align: center">
+        <ul class = "right">
             <li>نوع حقوق:</li>
             <li>مقدار حقوق:</li>
         </ul>
 
-         <ul style="display: inline ; vertical-align: center">
+         <ul class="left">
             <li>{{ user.salary }}</li>
             <li>{{ user.fee }}</li>
         </ul>
