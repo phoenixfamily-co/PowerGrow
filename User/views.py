@@ -99,7 +99,7 @@ def user_course_view(request, pk):
     context = {
         "about": about,
         "participants" : participants,
-        "size" : size
+        "size" : len(list(size))
 
     }
     return HttpResponse(template.render(context, request))
