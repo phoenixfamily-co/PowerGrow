@@ -1,10 +1,434 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://kit.fontawesome.com/1228ed801f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.css"/>
+    <script src="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.js"></script>
+
+
+    <title>PowerGrow</title>
+
+
+    <style>
+
+        @font-face {
+            font-family: BYekan;
+            font-style: normal;
+            font-weight: normal;
+            src: url("/static/fonts/BYekan.eot");/* IE9 Compat Modes */
+            src: url("/static/fonts/BYekan.woff") format('woff'),
+            url("/static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */ url("/static/fonts/BYekan.ttf") format('truetype') /* Safari, Android, iOS */
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        img {
+            vertical-align: middle;
+        }
+
+
+        .tab {
+            direction: rtl;
+            unicode-bidi: bidi-override;
+            right: 0;
+            width: auto;
+            margin-top: 4%;
+            margin-right: 5%;
+            z-index: 10 !important;
+
+
+        }
+
+        .tab-button {
+            background-color: transparent;
+            border-color: transparent;
+            color: black;
+            font-family: BYekan, serif !important;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .logoHolder {
+            width: 50px;
+            margin-left: 40%;
+            margin-top: -70px;
+            position: absolute;
+            z-index: 10 !important;
+
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            direction: ltr;
+            position: absolute;
+
+        }
+
+        .typography {
+            margin-left: 60px;
+            color: black;
+            font-size: 20px;
+            position: absolute;
+
+        }
+
+        .login {
+            width: 150px;
+            position: absolute;
+            margin-top: -30px;
+            z-index: 10 !important;
+            direction: rtl;
+            unicode-bidi: bidi-override;
+        }
+
+        .loginTypography {
+            color: black;
+            background-color: transparent;
+            border-color: transparent;
+            font-family: BYekan, serif !important;
+            direction: rtl;
+            font-size: 16px;
+            margin-right: 10%;
+            cursor: pointer;
+
+
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            width: 100px;
+            background-color: #f9f9f9;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            padding: 12px 16px;
+            z-index: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 5px 16px;
+            font-size: 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {
+            background-color: #f1f1f1
+        }
+
+
+        .title {
+            font-family: BYekan, serif !important;
+            font-size: 30px;
+            font-style: normal;
+            position: absolute;
+            color: black;
+            width: 100%;
+            direction: rtl;
+            padding-right: 103vh;
+            margin-top: 3vh;
+        }
+
+        .card {
+            flex: 0 0 auto;
+            display: inline-grid;
+            height: 300px;
+            background: #C1C1C1;
+            grid-template-columns: 1fr;
+            width: calc(100% - 10px);
+            justify-content: center;
+            align-items: center;
+            color: #FFFFFA;
+
+        }
+
+        .card-title {
+            color: black;
+            font-family: BYekan, serif !important;
+            list-style-type: none;
+            direction: rtl;
+            position: absolute;;
+            margin-right: 180px;
+            margin-top: -10vh;
+
+        }
+
+        .card-value {
+            color: black;
+            font-family: BYekan, serif !important;
+            list-style-type: none;
+            margin-top: -10vh;
+            position: absolute;
+            margin-right: 45vh;
+        }
+
+        .card-image {
+            float: right;
+            height: 100%;
+            width: 50%;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 5vh;
+            margin-left: 5vh;
+            margin-top: 15vh;
+            min-height: 50vh;
+            flex-direction: column;
+            direction: rtl;
+        }
+
+        .wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            width: 100%;
+        }
+
+        .card-button {
+            width: 100px;
+            height: 30px;
+            background-color: #E16539;
+            border-color: transparent;
+            border-radius: 7px;
+            margin-right: 300px;
+            position: absolute;
+            margin-top: 37vh;
+            font-family: BYekan, serif !important;
+            color: white;
+            cursor: pointer;
+
+        }
+
+        .contentWrapper {
+            height: 250px;
+            width: 100%;
+            padding: 2rem;
+            background: #303030;
+            color: white;
+            margin-top: 5vh;
+            font-weight: 500;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.2rem;
+            position: relative;
+        }
+
+        .content {
+            height: 250px
+        }
+
+        .footer {
+            height: 50px;
+            font-weight: 500;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            font-size: 12px;
+            gap: 0.2rem;
+            padding-top: 10px;
+            padding-left: 20px;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            position: absolute;
+            color: #B1B2B2;
+            background: #151111;
+
+        }
+
+        body, html {
+            height: auto;
+            position: relative;
+            font-family: BYekan, serif !important;
+
+        }
+
+        .popup {
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            display: none;
+        }
+
+        .popup-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888888;
+            width: 85vh;
+            font-weight: bolder;
+        }
+
+        .popup-content button {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .show {
+            display: block;
+            visibility: visible;
+            -webkit-animation: fadeIn 1s;
+            animation: fadeIn 1s;
+        }
+
+        h1 {
+            color: green;
+        }
+
+        .searchbar {
+            overflow: hidden;
+            background-color: #e9e9e9;
+            margin-right: 5%;
+            margin-left: 3%;
+            height: 6vh;
+            margin-top: 5vh;
+            border-color: transparent;
+            border-radius: 5px;
+        }
+
+
+        /* Style the search box inside the navigation bar */
+        .searchbar input[type=text] {
+            border-color: transparent;
+            font-size: 17px;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            direction: rtl;
+        }
+
+        /* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
+        @media screen and (max-width: 600px) {
+            .searchbar input[type=text] {
+                float: none;
+                display: block;
+                text-align: left;
+                width: 100%;
+                margin: 0;
+                padding: 14px;
+            }
+        }
+
+        @-webkit-keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+    </style>
+
 </head>
 <body>
 
+<div class="tab">
+    <button class="tab-button" onclick="window.location.assign('{% url 'home:home' %}')">صفحه اصلی</button>
+    <div class="dropdown">
+        <button class="tab-button" style="font-weight: bold;text-decoration: underline; text-underline-position: under"
+                onclick="">ورزش ها
+        </button>
+        <i class="fa-solid fa-caret-down" style="color: #000"></i>
+        <div class="dropdown-content">
+            {% for x in sport %}
+
+                <a href="{% url 'product:category' x.id %}">{{ x.title }}</a>
+
+            {% endfor %}
+        </div>
+    </div>
+    <button class="tab-button" onclick="window.location.assign({% url 'reservation:reservation' %})">اجاره سالن</button>
+    <button class="tab-button" onclick="window.location.assign({% url 'about:aboutUs' %})">درباره ما</button>
+
+</div>
+
+<div class="logoHolder">
+
+    <img alt="" src="/media/{{ about.logo }}" class="logo">
+    <div class="typography">PowerGrow</div>
+
+</div>
+
+<div class="login">
+    <i class="fa-solid fa-user" style="color: #000; position:absolute ; margin-top:5px ; font-size: 16px"></i>
+    <button class="loginTypography" onclick="window.location.assign({% url 'user:login' %})">ورود/عضویت</button>
+</div>
+
+<div class="searchbar">
+    <label>
+        <input id="search" type="text" placeholder="نام دوره یا نام مربی را وارد کنید . . .">
+    </label>
+</div>
+
+
+<div class="title">{{ title.title }}</div>
+
+
+<div id="container" class="container">
+    <div class="wrapper" id="wrapper"></div>
+</div>
+
+<div id="myPopup" class="popup">
+    <div class="popup-content" style="direction: rtl">
+        <label for="session">تعداد جلسات در ماه را انتخاب کنید:</label>
+        <select name="numbers" id="session" style="margin-right: 50px">
+
+        </select>
+        <br>
+        <br>
+        <label for="week">روزهای برگزاری در هفته را مشخص کنید:</label>
+        <select name="days" id="week" style="margin-right: 50px">
+
+            {% for x in days %}
+
+                <option value={{ x.id }}>{{ x.day }}</option>
+
+            {% endfor %}
+        </select>
+        <br>
+        <br>
+        <button id="closeButton">
+            ادامه
+        </button>
+    </div>
+</div>
+
 </body>
+
+
 </html>

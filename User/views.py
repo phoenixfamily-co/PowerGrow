@@ -9,6 +9,7 @@ from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 
 from About.models import AboutUs
+from Reservation.models import Gym
 from User.serializer import *
 from User.models import *
 
@@ -68,10 +69,13 @@ def pass_view(request, number):
 def user_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('user/dashboard.html')
+    user = User.objects.all().get(id=pk)
+    gym = Gym.objects.all().values().first()
     context = {
         "about": about,
-        "id": pk
-
+        "id": pk,
+        "user": user,
+        "gym" : gym
     }
     return HttpResponse(template.render(context, request))
 

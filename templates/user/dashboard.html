@@ -44,6 +44,19 @@
 .sidebar{grid-area:sidebar;padding: 0  }
 .footer{grid-area:footer;cursor: pointer ; padding: 0 ; height: 250px}
 
+    .scrolling-wrapper {
+            margin-bottom: 20px;
+            width: 100%;
+            direction: rtl;
+            -webkit-overflow-scrolling: touch;
+            overflow: auto;
+            scrollbar-width: none; /* Firefox */
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
  .popup {
             position: fixed;
             z-index: 1;
@@ -330,7 +343,81 @@
       </div>
   </aside>
 </div>
+
+<div id="reservePopup" class="popup">
+    <div class="popup-content" style="direction: rtl">
+
+        <div class="scrolling-wrapper">
+
+    {% for x in user.reservations %}
+
+        <div class="card">
+
+            <img id="id_image0" class="" src="/media/{{ gym.image }}" alt="" style="width: 40%;height: 100%">
+
+            <ol class="card-title">
+                <li style="font-size: 16px;font-weight: bold">نام سالن:</li>
+                <li style="margin-top: 20px; font-size: 16px; font-weight: bold">تاریخ رزرو:</li>
+                <li style="margin-top: 20px; font-size: 16px;font-weight: bold">زمان رزرو:</li>
+                <li style="margin-top: 20px; font-size: 16px;font-weight: bold">تعداد جلسات:</li>
+                <li style="margin-top: 20px; font-size: 16px;font-weight: bold">هزینه پرداخت:</li>
+            </ol>
+
+            <ol class="card-value">
+                <li style="font-size: 16px; font-weight: bold">{{ gym.title }}</li>
+                <li style="margin-top: 20px; font-size: 16px;font-weight: bold">{{ x.time }}</li>
+                <li style="margin-top: 24px; font-size: 16px;font-weight: bold">{{ x.time }}</li>
+                <li style="margin-top: 22px; font-size: 16px;font-weight: bold ">{{ x.session }}</li>
+                <li style="margin-top: 20px; font-size: 16px;font-weight: bold">{{ x.price }}</li>
+            </ol>
+
+
+            <button id="registerButton" itemid="{{ x.id }}" class="card-button">ثبت نام کنید</button>
+
+        </div>
+
+    {% endfor %}
+
+
+</div>
+
+    </div>
+
+</div>
+
+
+
+
+
 </body>
+
+<script>
+
+    let reservePopup = document.getElementById("reservePopup")
+    let reserves = document.getElementById("reserves")
+
+
+    reserves.addEventListener("click",function () {
+
+        reservePopup.classList.toggle("show");
+
+    })
+
+     window.addEventListener("click", function (event) {
+
+          if (event.target === coursePopup) {
+            coursePopup.classList.remove("show");
+        }
+           if (event.target === reservePopup) {
+            reservePopup.classList.remove("show");
+        }
+
+    });
+
+
+
+
+</script>
 
 
 <script>
