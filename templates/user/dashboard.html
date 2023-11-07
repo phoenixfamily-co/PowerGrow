@@ -414,7 +414,7 @@
 </div>
 
 
-<div id="coursPopup" class="popup">
+<div id="coursePopup" class="popup">
     <div class="popup-content" style="direction: rtl">
 
         <div class="scrolling-wrapper">
@@ -441,7 +441,7 @@
                 <li style="margin-top: 20px; font-size: 16px;font-weight: bold">{{ x.price }}</li>
             </ol>
 
-            <button id="registerButton" itemid="{{ x.id }}" class="card-button">مشاهده کنید</button>
+            <button id="viewButton" itemid="{{ x.id }}" class="card-button">مشاهده کنید</button>
 
         </div>
 
@@ -461,7 +461,9 @@
 
     let reservePopup = document.getElementById("reservePopup")
     let reserves = document.getElementById("reserves")
+    let courses = document.getElementById("course")
     let registerButton = document.getElementById("registerButton")
+    let coursePopup = document.getElementById("coursePopup")
     let gymId
 
     const buttons = document.querySelectorAll('.card-button');
@@ -480,10 +482,17 @@
 
     })
 
+    courses.addEventListener("click", function () {
+
+        coursePopup.classList.toggle("show");
+
+    })
+
      window.addEventListener("click", function (event) {
 
-        {#  if (event.target === coursePopup) {#}
-        {#    coursePopup.classList.remove("show");#}
+          if (event.target === coursePopup) {
+              coursePopup.classList.remove("show");
+          }
 
            if (event.target === reservePopup) {
             reservePopup.classList.remove("show");
