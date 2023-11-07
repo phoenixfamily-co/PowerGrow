@@ -508,6 +508,7 @@
     let newsSize
 
     async function getNews(){
+        news.innerHTML = ""
 
            const response = await fetch('/seo/api/news/', {
             method: 'GET',
