@@ -158,3 +158,4 @@ class SportView(viewsets.ModelViewSet):
 class CourseUserView(generics.ListAPIView):
     queryset = Participants.objects.all()
     serializer_class = ParticipantsUserSerializer
+    lookup_field = "id"
