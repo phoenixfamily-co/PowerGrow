@@ -448,7 +448,7 @@
         <li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">تاریخ رزرو :
         </li>
         <li id="startDay"
-            style="direction:rtl ; font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin: -4px">
+            style="direction:ltr ; font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin: -4px">
             {{ reservation.time.day.month.year.number }}/ {{ reservation.time.day.month.number }}/ {{ reservation.time.day.number }}
         </li>
 
@@ -461,7 +461,7 @@
         </li>
         <li id="startTime"
             style="direction:ltr ;font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">
-            {{ reservation.time.time }}
+            {{ reservation.time.time | date:"G:i"}}
         </li>
     </ul>
 
