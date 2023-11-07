@@ -107,7 +107,6 @@ class ParticipationView(viewsets.ModelViewSet):
     serializer_class = ParticipantsSerializer
     permission_classes = [IsAuthenticated]
 
-
     def get_queryset(self):
         queryset = Participants.objects.filter(user=self.request.user.id)
         return queryset
