@@ -382,7 +382,7 @@
 
         <div class="card">
 
-            <img id="id_image0" class="" src="/media/{{ gym.image }}" alt="" style="width: 40%;height: 100%">
+            <img id="id_image0" class="" src="/media/{{ x.gym.image }}" alt="" style="width: 40%;height: 100%">
 
             <ol class="card-title">
                 <li style="font-size: 16px;font-weight: bold">نام سالن:</li>
@@ -393,7 +393,7 @@
             </ol>
 
             <ol class="card-value">
-                <li style="font-size: 16px; font-weight: bold">{{ gym.title }}</li>
+                <li style="font-size: 16px; font-weight: bold">{{ x.gym.title }}</li>
                 <li style="margin-top: 20px; font-size: 16px;font-weight: bold ; direction: rtl">{{ x.time.day.month.year.number }}/{{ x.time.day.month.number }}/{{ x.time.day.number }}</li>
                 <li style="margin-top: 24px; font-size: 16px;font-weight: bold">{{ x.time.time | date:"G:i" }}</li>
                 <li style="margin-top: 22px; font-size: 16px;font-weight: bold ">{{ x.session }}</li>
