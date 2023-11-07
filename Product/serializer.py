@@ -10,6 +10,12 @@ class ParticipantsSerializer(serializers.ModelSerializer):
         exclude = ['datetime']
 
 
+class ParticipantsUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Participants
+        fields = "user"
+
+
 class DaysSerializer(serializers.ModelSerializer):
     participants = ParticipantsSerializer(read_only=True, many=True)
 

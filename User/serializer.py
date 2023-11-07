@@ -188,3 +188,4 @@ class ManagePermissionSerializer(serializers.ModelSerializer):
         instance.save()
 
         return instance
+

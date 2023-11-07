@@ -185,7 +185,7 @@
             height: 40px ;
             width: 100px;
             margin-left: 25px;
-            background: #598ddd;
+            background: #ff0c0c;
             border-color: transparent ;
             color: white
 		}
@@ -438,7 +438,9 @@
                 <li style="margin-top: 20px; font-size: 16px;font-weight: bold">{{ x.price }}</li>
             </ol>
 
-            <button id="viewButton" itemid="{{ x.id }}" class="view-button">مشاهده کنید</button>
+            <button id="registerButton" itemid="{{ x.id }}" class="card-button">مشاهده کنید</button>
+            <button id="viewButton" itemid="{{ x.id }}" class="view-button" style="margin-left: 20px">لیست روزانه</button>
+
 
         </div>
 
@@ -465,7 +467,7 @@
     let gymId
     let courseId
 
-    const buttons = document.querySelectorAll('.card-button');
+    const buttons = document.querySelectorAll('.view-button');
     Array.from(buttons).forEach(function (button) {
         button.addEventListener('click', async function () {
             gymId = this.getAttribute("itemid")
@@ -474,7 +476,7 @@
     })
 
 
-    const btns = document.querySelectorAll('.view-button');
+    const btns = document.querySelectorAll('.card-button');
     Array.from(btns).forEach(function (button) {
         button.addEventListener('click', async function () {
             courseId = this.getAttribute("itemid")
