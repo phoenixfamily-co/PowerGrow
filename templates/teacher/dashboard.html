@@ -480,7 +480,7 @@
     Array.from(btns).forEach(function (button) {
         button.addEventListener('click', async function () {
             courseId = this.getAttribute("itemid")
-            window.location.assign(`/user/participants/${parseInt(courseId)}`)
+            window.location.assign(`/product/api/participants/${parseInt(courseId)}/`)
         })
     })
 
