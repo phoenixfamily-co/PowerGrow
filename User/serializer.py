@@ -161,8 +161,8 @@ class DeleteAccountSerializer(serializers.ModelSerializer):
 
 
 class GetAccountSerializer(serializers.ModelSerializer):
+    reservations = ReservationSerializer(read_only=True, many=True)
     courses = ParticipantsSerializer(read_only=True, many=True)
-    reservations = ParticipantsSerializer(read_only=True, many=True)
 
     class Meta:
         model = User
