@@ -9,7 +9,6 @@ from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 
 from About.models import AboutUs
-from Reservation.models import Gym
 from User.serializer import *
 from User.models import *
 
