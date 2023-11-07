@@ -401,8 +401,7 @@
                 <li style="margin-top: 20px; font-size: 16px;font-weight: bold">{{ x.price }}</li>
             </ol>
 
-
-            <button id="registerButton" itemid="{{ x.id }}" class="card-button">ثبت نام کنید</button>
+            <button id="registerButton" itemid="{{ x.id }}" class="card-button">مشاهده کنید</button>
 
         </div>
 
@@ -425,6 +424,7 @@
 
     let reservePopup = document.getElementById("reservePopup")
     let reserves = document.getElementById("reserves")
+    let registerButton = document.getElementById("registerButton")
 
 
     reserves.addEventListener("click",function () {
@@ -435,16 +435,14 @@
 
      window.addEventListener("click", function (event) {
 
-          if (event.target === coursePopup) {
-            coursePopup.classList.remove("show");
-        }
+        {#  if (event.target === coursePopup) {#}
+        {#    coursePopup.classList.remove("show");#}
+
            if (event.target === reservePopup) {
             reservePopup.classList.remove("show");
         }
 
     });
-
-
 
 
 </script>
