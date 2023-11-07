@@ -21,5 +21,6 @@ urlpatterns = [
     path('api/sport/', SportView.as_view({'post': 'create', 'get': 'list'}), name='sports'),
     path('payment/<int:pk>/<int:session>/<int:day>/', payment_view, name='payment'),
     path('check/<int:pk>/<int:session>/<int:day>/', check_view, name='check'),
+    path('api/participants/<int:pk>/', CourseUserView.as_view(), name='course_user'),
 
 ]

@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.template import loader
-from rest_framework import viewsets, filters
+from rest_framework import viewsets, filters, generics
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
@@ -153,3 +153,8 @@ class ManagerParticipationView(viewsets.ModelViewSet):
 class SportView(viewsets.ModelViewSet):
     queryset = Sport.objects.all()
     serializer_class = SportSerializer
+
+
+class CourseUserView(generics.ListAPIView):
+    queryset = Participants.objects.all()
+    serializer_class = ParticipantsUserSerializer
