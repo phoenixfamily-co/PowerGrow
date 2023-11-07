@@ -523,6 +523,7 @@
 
         for (let j = 0 ; j<newsSize ; j++){
             const newsItem = document.createElement("li")
+            newsItem.innerHTML = result[i].description
             news.appendChild(newsItem)
         }
 
