@@ -114,7 +114,6 @@
             padding: 20px;
             border: 1px solid #888888;
             width: 90vh;
-      display: inline-block;
             font-weight: bolder;
 
   }
@@ -389,12 +388,12 @@
 
 <div id="reservePopup" class="popup">
     <div class="course-popup-content" style="direction: rtl">
-        <ul>
+        <ul style="display: inline ; vertical-align: center">
             <li>نوع حقوق:</li>
             <li>مقدار حقوق:</li>
         </ul>
 
-         <ul>
+         <ul style="display: inline ; vertical-align: center">
             <li>{{ user.salary }}</li>
             <li>{{ user.fee }}</li>
         </ul>
