@@ -407,7 +407,6 @@
 
     {% endfor %}
 
-
 </div>
 
     </div>
@@ -415,6 +414,44 @@
 </div>
 
 
+<div id="coursPopup" class="popup">
+    <div class="popup-content" style="direction: rtl">
+
+        <div class="scrolling-wrapper">
+
+    {% for x in user.participants.all %}
+
+        <div class="card">
+
+            <img id="id_image0" class="" src="/media/{{ x.course.image }}" alt="" style="width: 40%;height: 100%">
+
+            <ol class="card-title">
+                <li style="font-size: 16px;font-weight: bold">نام دوره:</li>
+                <li style="margin-top: 20px; font-size: 16px; font-weight: bold">نام مربی:</li>
+                <li style="margin-top: 20px; font-size: 16px;font-weight: bold">روز ها دوره:</li>
+                <li style="margin-top: 20px; font-size: 16px;font-weight: bold">تعداد جلسات:</li>
+                <li style="margin-top: 20px; font-size: 16px;font-weight: bold">هزینه پرداخت:</li>
+            </ol>
+
+            <ol class="card-value">
+                <li style="font-size: 16px; font-weight: bold">{{ x.course.title }}</li>
+                <li style="margin-top: 20px; font-size: 16px;font-weight: bold ; direction: rtl">{{ x.course.name }}</li>
+                <li style="margin-top: 24px; font-size: 16px;font-weight: bold">{{ x.day }}</li>
+                <li style="margin-top: 22px; font-size: 16px;font-weight: bold ">{{ x.session }}</li>
+                <li style="margin-top: 20px; font-size: 16px;font-weight: bold">{{ x.price }}</li>
+            </ol>
+
+            <button id="registerButton" itemid="{{ x.id }}" class="card-button">مشاهده کنید</button>
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+    </div>
+
+</div>
 
 
 

@@ -114,7 +114,7 @@ class ChangeSalarySerializer(serializers.ModelSerializer):
 
 class UpdateProfileSerializer(serializers.ModelSerializer):
     reservations = ReservationSerializer(read_only=True, many=True)
-    courses = ParticipantsSerializer(read_only=True, many=True)
+    participants = ParticipantsSerializer(read_only=True, many=True)
 
     class Meta:
         model = User
@@ -162,7 +162,7 @@ class DeleteAccountSerializer(serializers.ModelSerializer):
 
 class GetAccountSerializer(serializers.ModelSerializer):
     reservations = ReservationSerializer(read_only=True, many=True)
-    courses = ParticipantsSerializer(read_only=True, many=True)
+    participants = ParticipantsSerializer(read_only=True, many=True)
 
     class Meta:
         model = User
