@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script src="https://kit.fontawesome.com/1228ed801f.js" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.css" />
+    <link rel="stylesheet" href="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.css" />
 <script src="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.js"></script>
 
         <title>PowerGrow</title>
@@ -105,6 +105,19 @@ span {
      float: none;
   }
 }
+
+            .password-container{
+  width: 400px;
+  position: relative;
+}
+
+.fa-eye{
+  position: absolute;
+  top: 28%;
+  right: 4%;
+  cursor: pointer;
+  color: lightgray;
+}
 </style>
 
 </head>
@@ -126,9 +139,12 @@ span {
     <input id="number" type="text" placeholder="شماره موبایل" name="number" required maxlength="10">
         </label>
 
-    <label for="password"><b>رمز عبور</b>
-    <input id="password" type="password" placeholder="پسورد" name="password" required>
+    <div>
+        <label for="password">
+            <input type="password" placeholder="پسورد" id="password">
         </label>
+  <i class="fa-solid fa-eye" id="eye"></i>
+</div>
 
     <button type="submit" style="margin-top: 30px">ورود</button>
     <label>
@@ -143,16 +159,27 @@ span {
        <label>
       <a href="{% url 'user:register' %}" style="font-size: 16px ; font-weight: bold ; cursor: pointer"> هنوز ثبت نام نکردید؟</a>
     </label>
-          <h5 id="error" style="margin-top: 30px ; position: absolute ; color: red ; margin-right: 150px"></h5>
-
   </div>
 </form>
 
 </div>
 
-<img src="../../static/images/login.jpg" style="width: 50% ; right: 0; position: absolute ; height: 100%" alt="">
+<img src="/static/images/login.jpg" style="width: 50% ; right: 0; position: absolute ; height: 100%" alt="">
 
 </body>
+
+<script>
+    const passwordInput = document.getElementById("password")
+    const eye = document.getElementById("eye")
+
+    eye.addEventListener("click", function(){
+  this.classList.toggle("fa-eye-slash")
+  const type = passwordInput.getAttribute("type") === "password" ? "text" : "password"
+  passwordInput.setAttribute("type", type)
+})
+
+
+</script>
 
 
 <script>
