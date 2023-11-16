@@ -112,11 +112,12 @@ span {
 }
 
 .fa-eye{
-  position: absolute;
-  top: 28%;
-  right: 4%;
-  cursor: pointer;
-  color: lightgray;
+    position: relative;
+    cursor: pointer;
+    color: rgb(51, 49, 49);
+    float: left;
+    left: 2vh;
+    top: -6vh;
 }
 </style>
 
@@ -139,12 +140,10 @@ span {
     <input id="number" type="text" placeholder="شماره موبایل" name="number" required maxlength="10">
         </label>
 
-    <div>
         <label for="password">
             <input type="password" placeholder="پسورد" id="password">
+              <i class="fa-solid fa-eye" id="eye"></i>
         </label>
-  <i class="fa-solid fa-eye" id="eye"></i>
-</div>
 
     <button type="submit" style="margin-top: 30px">ورود</button>
     <label>
