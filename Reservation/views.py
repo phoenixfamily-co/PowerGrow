@@ -111,15 +111,11 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
         time = Time.objects.filter(id=self.kwargs['time']).first()
         time.reserved = True
         time.save()
-        if data["holiday"] is None:
-            holiday = False
-        else:
-            holiday = bool(data["holiday"])
         user = User.objects.filter(id=data["user"]).first()
         reservations = Reservations.objects.update_or_create(title=data["title"],
                                                              description=data["description"],
                                                              time=time,
-                                                             holiday=holiday,
+                                                             holiday=self.request.POST.get("holiday", False),
                                                              session=data["session"],
                                                              price=data["price"],
                                                              user=user,
