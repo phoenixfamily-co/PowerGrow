@@ -70,7 +70,8 @@ INSTALLED_APPS = [
     'otp_yubikey',
     'rest_framework.authtoken',
     'django_filters',
-    'django_jalali'
+    'django_jalali',
+    'bootstrap5',
 
 ]
 

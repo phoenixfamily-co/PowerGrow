@@ -19,7 +19,6 @@ class AdminReservationSerializer(serializers.ModelSerializer):
         exclude = ['datetime']
 
 
-
 class GymSerializer(serializers.ModelSerializer):
     reservations = ReservationSerializer(read_only=True, many=True)
 
