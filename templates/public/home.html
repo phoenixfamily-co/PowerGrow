@@ -68,7 +68,6 @@
 
         .logoHolder {
             width: 50px;
-            margin-left: 40%;
             position: absolute;
             margin-top: 1%;
             z-index: 10 !important;
@@ -518,7 +517,7 @@
 
 </head>
 <body>
-<nav class="navbar navbar-rtl">
+<nav class="navbar">
   <div class="container-fluid">
 <ul class="nav nav-pills">
   <li class="nav-item">
@@ -540,7 +539,7 @@
   </li>
 </ul>
   <ul class="nav navbar-nav navbar-left">
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span>ورود و عضویت</a></li>
+      <li><a href='{% url 'user:login' %}'><span class="glyphicon glyphicon-user"></span>ورود و عضویت</a></li>
     </ul>
   </div>
 </nav>
@@ -551,10 +550,6 @@
 
 </div>
 
-<div class="login">
-    <i class="fa-solid fa-user" style="color: #ffff; position:absolute ; margin-top:5px ; font-size: 16px"></i>
-    <button class="loginTypography" onclick="location.assign({% url 'user:login' %})">ورود/عضویت</button>
-</div>
 
 <div class="slideshow-container">
 
