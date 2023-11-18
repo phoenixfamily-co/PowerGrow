@@ -524,7 +524,7 @@
   </li>
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">ورزش ها</a>
-    <ul class="dropdown-menu">
+    <ul class="dropdown-menu" style="direction: rtl">
          {% for x in sport %}
              <li><a class="dropdown-item" href="{% url 'product:category' x.id %}">{{ x.title }}</a></li>
 
@@ -538,31 +538,6 @@
     <a class="nav-link" href="#">درباره ما</a>
   </li>
 </ul>
-
-{#<div class="tab">#}
-{##}
-{#{% buttons %}#}
-{#    <button class="tab-button" style="font-weight: bold;text-decoration: underline; text-underline-position: under"#}
-{#            onclick="location.assign({% url 'home:home' %})">صفحه اصلی#}
-{#    </button>#}
-{#{% endbuttons %}#}
-{##}
-{#    <div class="dropdown">#}
-{#        <button class="tab-button" onclick="">ورزش ها</button>#}
-{#        <i class="fa-solid fa-caret-down" style="color: #ffffff"></i>#}
-{#        <div class="dropdown-content">#}
-{##}
-{#            {% for x in sport %}#}
-{##}
-{#                <a href="{% url 'product:category' x.id %}">{{ x.title }}</a>#}
-{##}
-{#            {% endfor %}#}
-{##}
-{#        </div>#}
-{#    </div>#}
-{#    <button class="tab-button" onclick="location.assign({% url 'reservation:reservation' %})">اجاره سالن</button>#}
-{#    <button class="tab-button" onclick="location.assign({% url 'about:aboutUs' %})">درباره ما</button>#}
-{#</div>#}
 
 <div class="logoHolder">
 
