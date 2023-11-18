@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,11 +9,15 @@
     <link rel="stylesheet" href="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.css"/>
     <script src="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.js"></script>
 
+
+
     <title>PowerGrow</title>
 
     {% load bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
+
+
 
 
     <style>
@@ -512,27 +517,46 @@
 
 </head>
 <body>
-<div class="tab">
-    <button class="tab-button" style="font-weight: bold;text-decoration: underline; text-underline-position: under"
-            onclick="location.assign({% url 'home:home' %})">صفحه اصلی
-    </button>
 
-    <div class="dropdown">
-        <button class="tab-button" onclick="">ورزش ها</button>
-        <i class="fa-solid fa-caret-down" style="color: #ffffff"></i>
-        <div class="dropdown-content">
+<ul class="nav nav-pills">
+  <li class="nav-item">
+    <a class="nav-link" aria-current="page" href='{{% url 'home:home' %}'>صفحه اصلی</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">ورزش ها</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">اجاره سالن</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">درباره ما</a>
+  </li>
+</ul>
 
-            {% for x in sport %}
-
-                <a href="{% url 'product:category' x.id %}">{{ x.title }}</a>
-
-            {% endfor %}
-
-        </div>
-    </div>
-    <button class="tab-button" onclick="location.assign({% url 'reservation:reservation' %})">اجاره سالن</button>
-    <button class="tab-button" onclick="location.assign({% url 'about:aboutUs' %})">درباره ما</button>
-</div>
+{#<div class="tab">#}
+{##}
+{#{% buttons %}#}
+{#    <button class="tab-button" style="font-weight: bold;text-decoration: underline; text-underline-position: under"#}
+{#            onclick="location.assign({% url 'home:home' %})">صفحه اصلی#}
+{#    </button>#}
+{#{% endbuttons %}#}
+{##}
+{#    <div class="dropdown">#}
+{#        <button class="tab-button" onclick="">ورزش ها</button>#}
+{#        <i class="fa-solid fa-caret-down" style="color: #ffffff"></i>#}
+{#        <div class="dropdown-content">#}
+{##}
+{#            {% for x in sport %}#}
+{##}
+{#                <a href="{% url 'product:category' x.id %}">{{ x.title }}</a>#}
+{##}
+{#            {% endfor %}#}
+{##}
+{#        </div>#}
+{#    </div>#}
+{#    <button class="tab-button" onclick="location.assign({% url 'reservation:reservation' %})">اجاره سالن</button>#}
+{#    <button class="tab-button" onclick="location.assign({% url 'about:aboutUs' %})">درباره ما</button>#}
+{#</div>#}
 
 <div class="logoHolder">
 
