@@ -524,7 +524,7 @@
   </li>
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">ورزش ها</a>
-    <ul class="dropdown-menu" style="direction: rtl">
+    <ul class="dropdown-menu dropdown-menu-right" style="direction: rtl">
          {% for x in sport %}
              <li><a class="dropdown-item" href="{% url 'product:category' x.id %}">{{ x.title }}</a></li>
          {% endfor %}
