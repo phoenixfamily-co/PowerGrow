@@ -583,16 +583,21 @@
 </div>
 
 
-<div id="carouselExampleIndicators" class="carousel slide " data-ride="carousel">
+<div id="carouselExampleIndicators" class="carousel slide " data-ride="carousel" style="height: 300px">
   <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0"></li>
+      {% for x in images %}
+          <li data-target="#carouselExampleIndicators" data-slide-to="{{ x.id }}"></li>
+    {% endfor %}
 
   </ol>
   <div class="carousel-inner">
+       {% for x in images %}
 
             <div class="carousel-item active">
-      <img class="d-block w-100" src="https://powergrow.net/media/images/different-sports-collage-background-4cst9o5vvexe8hu4_Fn7w0aT.webp" alt="slide">
+      <img class="d-block w-100" src="{{ x.image }}" alt="slide {{ x.id }}">
     </div>
+
+    {% endfor %}
 
   </div>
 
