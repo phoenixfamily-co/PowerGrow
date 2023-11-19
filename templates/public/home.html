@@ -595,9 +595,11 @@
       {% for x in images %}
           {% if x.id == first.id %}
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ x.id }}" class="active" aria-current="true" aria-label="Slide {{ x.id }}"></button>
-          {% endif %}
 
+              {% else %}
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ x.id }}" aria-label="Slide {{ x.id }}"></button>
+
+          {% endif %}
 
       {% endfor %}
 
@@ -611,10 +613,11 @@
              <div class="carousel-caption d-none d-md-block">
                  <h5>{{ x.title }}</h5>
                  <p>{{ x.description }}</p>
+
       </div>
     </div>
-           {% endif %}
 
+           {% else %}
                      <div class="carousel-item">
                 <img style="width: 100% ; height: 100%" class="img-responsive" src="/media/{{ x.image }}" alt="slide {{ x.id }}">
              <div class="carousel-caption d-none d-md-block">
@@ -622,6 +625,8 @@
                  <p>{{ x.description }}</p>
       </div>
     </div>
+           {% endif %}
+
 
     {% endfor %}
 
