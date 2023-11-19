@@ -16,6 +16,7 @@ def home_view(request):
     template = loader.get_template('public/home.html')
     context = {
         "images": images,
+        "first" : images.first(),
         "selected": selected,
         "about": about,
         "sport": sport,
