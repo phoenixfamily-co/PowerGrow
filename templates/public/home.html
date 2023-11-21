@@ -480,8 +480,8 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+        <button type="button" class="btn btn-primary">ادامه</button>
       </div>
     </div>
   </div>
@@ -657,7 +657,7 @@
     Array.from(buttons).forEach(function (button) {
         button.addEventListener('click', async function () {
             course = this.getAttribute("itemid")
-              myModal.show()
+              myModal.toggle()
             const response = await fetch(`/product/api/sessions/${course}/`, {
                 method: 'GET',
                 headers: {
