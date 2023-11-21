@@ -819,9 +819,12 @@
 
 <script type="text/javascript"  src="{% static 'jquery-3.7.1.js' %}">
 
-  $('.carousel').carousel({
-  interval: 2000
-})
+     $(document).ready(function () {
+         $('.carousel').carousel({
+             interval: 2000
+         })
+     });
+
 </script>
 
 
