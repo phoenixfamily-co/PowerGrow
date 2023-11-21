@@ -551,6 +551,10 @@
             text-align: center;
         }
 
+        nav.navbar-nav.navbar-left {
+            text-decoration: none;
+        }
+
     </style>
 
 
@@ -578,7 +582,7 @@
   </li>
 </ul>
   <ul class="nav navbar-nav navbar-left">
-      <li style="margin-left: 20px"><a style="text-decoration: none" href='{% url 'user:login' %}'><span class="glyphicon glyphicon-user"></span>ورود و عضویت</a></li>
+      <li><a href='{% url 'user:login' %}'><span class="glyphicon glyphicon-user"></span>ورود و عضویت</a></li>
     </ul>
   </div>
 </nav>
