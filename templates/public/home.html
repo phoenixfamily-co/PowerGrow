@@ -638,6 +638,7 @@
     const buttons = document.querySelectorAll('.btn');
     Array.from(buttons).forEach(function (button) {
         button.addEventListener('click', async function () {
+            course = this.getAttribute("itemid")
             myPopup.classList.toggle("show");
             const response = await fetch(`/product/api/sessions/${course}/`, {
                 method: 'GET',
