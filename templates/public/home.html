@@ -463,7 +463,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">تعداد و روز جلسات را انتخاب کنید</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button id="closeButton" type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -481,7 +481,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
-        <button id="" type="button" class="btn btn-primary">ادامه</button>
+        <button id="continueButton" type="button" class="btn btn-primary">ادامه</button>
       </div>
     </div>
   </div>
@@ -647,6 +647,7 @@
 <script>
     const registerButton = document.getElementById("registerButton");
     const closeButton = document.getElementById("closeButton");
+    const continueButton = document.getElementById("continueButton");
     const myModal = new bootstrap.Modal(document.getElementById('myModal'));
     const session = document.getElementById("number");
     const week = document.getElementById("week");
@@ -686,6 +687,10 @@
 
     })
 
+    closeButton.addEventListener("click", function () {
+        myModal.toggle()
+    })
+
     async function getDays(query) {
 
         const response = await fetch(`/product/api/days/${query}/`, {
@@ -708,7 +713,6 @@
                 week.appendChild(item)
             }
         }
-
     }
 
 </script>
