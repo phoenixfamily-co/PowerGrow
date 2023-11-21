@@ -145,18 +145,11 @@
         }
 
 
-        .card-button {
-            width: 100px;
-            height: 30px;
+        .btn {
             background-color: #E16539;
             border-color: transparent;
-            border-radius: 7px;
-            margin-right: 290px;
-            margin-top: 15px;
-            font-family: BYekan, serif !important;
             color: white;
             cursor: pointer;
-
         }
 
         .contentWrapper {
@@ -444,7 +437,7 @@
           <hr class="my-0" />
           <div class="card-body">
             <div class="d-flex align-items-center pb-2 mb-1">
-              <button type="button" class="card-button">ثبت نام</button>
+              <button type="button" class="btn">ثبت نام</button>
             </div>
           </div>
         </div>
@@ -642,7 +635,7 @@
     const sessionList = document.getElementById("session")
     let course
 
-    const buttons = document.querySelectorAll('.card-button');
+    const buttons = document.querySelectorAll('.btn');
     Array.from(buttons).forEach(function (button) {
         button.addEventListener('click', async function () {
             course = this.getAttribute("itemid")
