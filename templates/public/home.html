@@ -657,7 +657,7 @@
     Array.from(buttons).forEach(function (button) {
         button.addEventListener('click', async function () {
             course = this.getAttribute("itemid")
-            myModal.focus()
+            myModal.addEventListener('shown.bs.modal', function (){})
             const response = await fetch(`/product/api/sessions/${course}/`, {
                 method: 'GET',
                 headers: {
