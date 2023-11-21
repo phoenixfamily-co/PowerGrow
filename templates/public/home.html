@@ -591,19 +591,7 @@
 
 
 <div id="carouselExampleIndicators" class="carousel slide " data-ride="carousel" style="height: 32rem">
-  <div class="carousel-indicators">
-      {% for x in images %}
-          {% if x.id == first.id %}
-    <button type="button" data-bs-target="#carouselExampleIndicators" class="active" aria-current="true" aria-label="Slide {{ x.id }}"></button>
 
-              {% else %}
-          <button type="button" data-bs-target="#carouselExampleIndicators" aria-label="Slide {{ x.id }}"></button>
-
-          {% endif %}
-
-      {% endfor %}
-
-  </div>
   <div class="carousel-inner">
        {% for x in images %}
            {% if x.id == first.id %}
