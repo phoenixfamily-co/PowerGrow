@@ -817,12 +817,13 @@
 </div>
 </body>
 
-<script type="text/javascript"  src="{% static 'jquery-3.7.1.js' %}">
 
-     $(document).ready(function () {
-
-         $('.carousel').carousel({ interval: 2000 })
-     });
+<script>
+    const myCarouselElement = document.querySelector('#myCarousel')
+const carousel = new bootstrap.Carousel(myCarouselElement, {
+  interval: 2000,
+  wrap: false
+})
 
 </script>
 
