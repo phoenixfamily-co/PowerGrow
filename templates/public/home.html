@@ -318,12 +318,7 @@
             margin-left: 20px;
         }
 
-        .dropdown-menu.dropdown-menu-right li a{
-            color: black;
-            width: 100%;
-            align-items: end;
 
-        }
 
     </style>
 
@@ -341,7 +336,7 @@
     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">ورزش ها</a>
     <ul class="dropdown-menu dropdown-menu-right">
          {% for x in sport %}
-             <li><a style="color: black" class="dropdown-item" href="{% url 'product:category' x.id %}">{{ x.title }}</a></li>
+             <li><a style="color: black ; width: 100% ; text-align: end" class="dropdown-item" href="{% url 'product:category' x.id %}">{{ x.title }}</a></li>
          {% endfor %}
     </ul>
   </li>
