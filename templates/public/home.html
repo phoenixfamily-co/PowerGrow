@@ -458,7 +458,7 @@
 
 </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -647,7 +647,8 @@
 <script>
     const registerButton = document.getElementById("registerButton");
     const closeButton = document.getElementById("closeButton");
-    const myModal  = document.getElementById("exampleModal");
+    let myModal = document.getElementById('myModal');
+    let myInput = document.getElementById('myInput');
     const session = document.getElementById("number");
     const week = document.getElementById("week");
     const sessionList = document.getElementById("session")
@@ -657,7 +658,9 @@
     Array.from(buttons).forEach(function (button) {
         button.addEventListener('click', async function () {
             course = this.getAttribute("itemid")
-            myModal.addEventListener('shown.bs.modal', function (){})
+              myModal.addEventListener('shown.bs.modal', function () {
+                  myInput.focus()
+              })
             const response = await fetch(`/product/api/sessions/${course}/`, {
                 method: 'GET',
                 headers: {
