@@ -444,7 +444,7 @@
           <hr class="my-0" />
           <div class="card-body">
             <div class="d-flex align-items-center pb-2 mb-1">
-              <button style="background-color: #E16539 ; color: white" type="button" class="btn">ثبت نام</button>
+              <button type="button" class="card-button">ثبت نام</button>
             </div>
           </div>
         </div>
@@ -642,7 +642,7 @@
     const sessionList = document.getElementById("session")
     let course
 
-    const buttons = document.querySelectorAll('btn');
+    const buttons = document.querySelectorAll('.card-button');
     Array.from(buttons).forEach(function (button) {
         button.addEventListener('click', async function () {
             course = this.getAttribute("itemid")
