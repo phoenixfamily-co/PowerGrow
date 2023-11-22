@@ -210,6 +210,9 @@
                }
         }
 
+        ::-webkit-scrollbar{
+            overflow: hidden;
+        }
 
     </style>
 
@@ -297,7 +300,7 @@
 
 <div class="container-fluid py-2">
 
-    <div class="d-flex flex-row flex-nowrap overflow-auto overflow-x: hidden">
+    <div class="d-flex flex-row flex-nowrap overflow-auto">
 
 
     {% for x in selected %}
