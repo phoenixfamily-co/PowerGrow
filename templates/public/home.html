@@ -517,28 +517,51 @@
 </div>
 
 <footer>
-  <!-- Grid container -->
   <div class="container p-4">
-    <!--Grid row-->
-    <div class="row">
-      <!--Grid column-->
-      <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+       <div class="content">
+        <div style="width:160px;left: 0;bottom: 0; top: 0; position: absolute;margin-left: 20px">
+
+            <h2>PowerGrow</h2>
+            <img class="" src="/media/{{ about.transparent_logo }}"
+                 style="position: absolute;width:160px;margin-top: -22px"
+                 alt="">
+
+        </div>
+
+        <div id="map" style="width: 20vw; background: #eee; border: 2px solid #aaa;top: 0 ; bottom:0;
+						   position: absolute;margin-left: -10%">
 
 
-      </div>
-      <!--Grid column-->
+        </div>
 
-      <!--Grid column-->
-      <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+        <i class="fa-solid fa-location-dot"
+           style="color: #ffffff; right: 0 ; position: absolute; margin-top: 20px ; margin-right: 20px; font-size: 30px"></i>
+        <h5 style=" width: 33%;right: 0 ; margin-right: 50px;position: absolute;direction: rtl ; margin-top: 20px;">
+
+            {% autoescape off %}
+
+                {{ about.address|linebreaksbr }}
+
+            {% endautoescape %}
 
 
-      </div>
-      <!--Grid column-->
+        </h5>
+
+        <i class="fa-solid fa-phone-flip"
+           style="color: #ffffff; right: 0 ; position: absolute; margin-top: 95px ; margin-right: 20px; font-size: 30px"></i>
+        <h5 style="right: 0 ; margin-right: 60px;position: absolute;direction: rtl ; margin-top: 95px;">
+            {{ about.phone }}<br> {{ about.telephone }}
+        </h5>
+
+        <a href="https://www.instagram.com/{{ instagram }}"
+           style="right: 0 ; position: absolute ; margin-right:20px ; margin-top: 165px;display: inline">
+            <i class="fa-brands fa-instagram" style="color: #ffffff ; font-size: 30px ;"></i>
+        </a>
+
+        <h5 style="right: 0 ; margin-right: 60px;position: absolute;direction: ltr ; margin-top: 167px;">
+            {{ about.instagram }}
+        </h5>
     </div>
-    <!--Grid row-->
-  </div>
-  <!-- Grid container -->
-
   <!-- Copyright -->
   <div class="p-3 copy" style="background: #151111 ; color: #B1B2B2; direction: ltr">&copy;<span id="year"
                                     style="font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif'">2023 </span><span> PhoenixFamily. All rights reserved.</span>
