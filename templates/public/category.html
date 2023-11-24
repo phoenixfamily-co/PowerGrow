@@ -362,12 +362,10 @@
 
     <div class="d-flex flex-row flex-nowrap">
 
-
-    {% for x in selected %}
-
   <div class="container py-5">
     <div class="row justify-content-center">
-      <div class="col-md-8 col-lg-6 col-xl-4">
+        {% for x in selected %}
+      <div class=".col-*-*">
         <div class="card" style="border-radius: 15px;">
           <div class="bg-image hover-overlay ripple ripple-surface ripple-surface-light"
             data-mdb-ripple-color="light">
@@ -406,11 +404,10 @@
           </div>
         </div>
       </div>
+            {% endfor %}
+
     </div>
   </div>
-
-    {% endfor %}
-
     </div>
 
 </div>
