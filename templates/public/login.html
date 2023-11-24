@@ -314,10 +314,10 @@ button:hover {
                 <label class="form-label" for="number">موبایل</label>
               </div>
 
-              <div class="form-outline form-white mb-4">
-                  <i style="margin-top: 50%" id="eye" class="fa fa-eye"></i>
-                <input type="password" id="password" class="form-control form-control-lg"/>
-                <label class="form-label" for="password">پسورد</label>
+              <div class="form-outline form-white mb-4 row">
+                  <input class="form-control bg-light pe-4 col-11" type="password" id="password" placeholder="Password*"/>
+                  <i class="far fa-eye col-1 my-auto " id="togglePassword"></i>
+                  <label class="form-label" for="password">پسورد</label>
               </div>
 
               <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="{% url 'user:forget' %}">فراموشی رمز عبور ؟</a></p>
