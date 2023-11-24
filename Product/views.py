@@ -63,6 +63,7 @@ def sport_view(request, pk):
     context = {
         "about": about,
         "sport": sport,
+        "selected" : sport.filter(id=pk).values(),
         "title": sport.filter(id=pk).values().first(),
         "id": pk
     }

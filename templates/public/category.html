@@ -358,6 +358,63 @@
 
 </div>
 
+<div class="container-fluid py-2">
+
+    <div class="d-flex flex-row flex-nowrap overflow-auto">
+
+
+    {% for x in selected %}
+
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6 col-xl-4">
+        <div class="card" style="border-radius: 15px;">
+          <div class="bg-image hover-overlay ripple ripple-surface ripple-surface-light"
+            data-mdb-ripple-color="light">
+            <img src="/media/{{ x.image }}"
+              style="border-top-left-radius: 15px; border-top-right-radius: 15px;" class="img-fluid"
+              alt="product" />
+            <a href="#!">
+              <div class="mask"></div>
+            </a>
+          </div>
+          <div class="card-body pb-0">
+            <div class="d-flex justify-content-between">
+              <div>
+                <p><a style="text-decoration: none" class="text-dark">نام دوره</a></p>
+                <p class="small text-muted">نام مربی</p>
+              </div>
+              <div>
+                <p class="small text-muted">{{ x.title }}</p>
+                <p class="small text-muted">{{ x.name }}</p>
+              </div>
+            </div>
+          </div>
+          <hr class="my-0" />
+          <div class="card-body pb-0">
+            <div class="d-flex justify-content-between">
+              <p><a style="text-decoration: none" class="text-dark">شهریه دوره</a></p>
+              <p class="text-dark">{{ x.tuition }} تومان </p>
+            </div>
+            <p class="small text-muted align-items-center">مناسب برای {{ x.gender }}</p>
+          </div>
+          <hr class="my-0" />
+          <div class="card-body">
+            <div style="float: left" class="d-flex align-items-center pb-2 mb-1">
+              <button type="button" class="btn" itemid="{{ x.id }}">ثبت نام</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    {% endfor %}
+
+    </div>
+
+</div>
+
 
 {#<div class="searchbar">#}
 {#    <label>#}
