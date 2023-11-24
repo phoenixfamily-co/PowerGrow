@@ -294,28 +294,28 @@
             overflow-y: hidden;
         }
 
-
-  .searchbar {
-            overflow: hidden;
-            background-color: #e9e9e9;
-            margin-right: 5%;
-            margin-left: 3%;
-            height: 6vh;
-            margin-top: 5vh;
-            border-color: transparent;
-            border-radius: 5px;
-        }
-
-
-        /* Style the search box inside the navigation bar */
-        .searchbar input[type=text] {
-            border-color: transparent;
-            font-size: 17px;
-            width: 100%;
-            height: 100%;
-            background: transparent;
-            direction: rtl;
-        }
+  {##}
+  {#.searchbar {#}
+  {#          overflow: hidden;#}
+  {#          background-color: #e9e9e9;#}
+  {#          margin-right: 5%;#}
+  {#          margin-left: 3%;#}
+  {#          height: 6vh;#}
+  {#          margin-top: 5vh;#}
+  {#          border-color: transparent;#}
+  {#          border-radius: 5px;#}
+  {#      }#}
+  {##}
+  {##}
+  {#      /* Style the search box inside the navigation bar */#}
+  {#      .searchbar input[type=text] {#}
+  {#          border-color: transparent;#}
+  {#          font-size: 17px;#}
+  {#          width: 100%;#}
+  {#          height: 100%;#}
+  {#          background: transparent;#}
+  {#          direction: rtl;#}
+  {#      }#}
 
 
     </style>
@@ -331,7 +331,7 @@
     <a class="nav-link" aria-current="page" href='{% url 'home:home' %}'>صفحه اصلی</a>
   </li>
   <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">ورزش ها</a>
+    <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">{{ title.title }}</a>
     <ul class="dropdown-menu dropdown-menu-right">
          {% for x in sport %}
              <li><a style="color: black ; width: 100% ; text-align: center" class="dropdown-item" href="{% url 'product:category' x.id %}">{{ x.title }}</a></li>
@@ -359,43 +359,14 @@
 </div>
 
 
-<div class="searchbar">
-    <label>
-        <input id="search" type="text" placeholder="نام دوره یا نام مربی را وارد کنید . . .">
-    </label>
-</div>
+{#<div class="searchbar">#}
+{#    <label>#}
+{#        <input id="search" type="text" placeholder="نام دوره یا نام مربی را وارد کنید . . .">#}
+{#    </label>#}
+{#</div>#}
+{##}
 
-<div class="title">{{ title.title }}</div>
 
-
-<div id="container" class="container">
-    <div class="wrapper" id="wrapper"></div>
-</div>
-
-<div id="myPopup" class="popup">
-    <div class="popup-content" style="direction: rtl">
-        <label for="session">تعداد جلسات در ماه را انتخاب کنید:</label>
-        <select name="numbers" id="session" style="margin-right: 50px">
-
-        </select>
-        <br>
-        <br>
-        <label for="week">روزهای برگزاری در هفته را مشخص کنید:</label>
-        <select name="days" id="week" style="margin-right: 50px">
-
-            {% for x in days %}
-
-                <option value={{ x.id }}>{{ x.day }}</option>
-
-            {% endfor %}
-        </select>
-        <br>
-        <br>
-        <button id="closeButton">
-            ادامه
-        </button>
-    </div>
-</div>
 
 <footer>
        <div class="footer-container">
@@ -503,174 +474,175 @@
     });
 </script>
 
-<script>
-
-    const searchInput = document.getElementById("search")
-    const container = document.getElementById("container")
-    const wrapper = document.getElementById("wrapper")
-    const closeButton = document.getElementById("closeButton");
-    const myPopup = document.getElementById("myPopup");
-    const session = document.getElementById("number");
-    const week = document.getElementById("week");
-    const sessionList = document.getElementById("session")
-    let course
-
-    window.onload = function () {
-        search('')
-    }
-
-    searchInput.addEventListener("input", function (event) {
-
-        search(event.target.value)
-
-    })
-
-    async function search(query) {
-
-        console.log({{ sport.id }})
-
-        const response = await fetch(`/product/api/search/{{ id }}?search=${query}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-        const result = await response.json()
-        if (response.status === 200 && result.length !== 0) {
-            const res = JSON.stringify(result)
-            const sum = JSON.parse(res)
-            const size = JSON.parse(res).length
-            wrapper.innerHTML = ''
-            for (let i = 0; i < size; i++) {
-                const course = document.createElement("div")
-                const imageElement = document.createElement("img")
-                const cardButton = document.createElement("button")
-                const listTitle = document.createElement("ol")
-                const firstTitle = document.createElement("li")
-                const secondTitle = document.createElement("li")
-                const thirdTitle = document.createElement("li")
-                const forthTitle = document.createElement("li")
-                const fifthTitle = document.createElement("li")
-                const listValue = document.createElement("ol")
-                const firstValue = document.createElement("li")
-                const secondValue = document.createElement("li")
-                const thirdValue = document.createElement("li")
-                const forthValue = document.createElement("li")
-                const fifthValue = document.createElement("li")
-                firstTitle.style.cssText = 'font-size: 16px;font-weight: bold'
-                firstTitle.innerHTML = "نام دوره:"
-                secondTitle.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'
-                secondTitle.innerHTML = "نام مربی:"
-                thirdTitle.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'
-                thirdTitle.innerHTML = "مناسب برای:"
-                forthTitle.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'
-                forthTitle.innerHTML = "نوع دوره:"
-                fifthTitle.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'
-                fifthTitle.innerHTML = "شهریه ثابت:"
-                firstValue.style.cssText = 'font-size: 16px;font-weight: bold'
-                firstValue.innerHTML = sum[i].title
-                secondValue.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'
-                secondValue.innerHTML = sum[i].name
-                thirdValue.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'
-                thirdValue.innerHTML = sum[i].gender
-                forthValue.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'
-                forthValue.innerHTML = sum[i].type
-                fifthValue.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'
-                fifthValue.innerHTML = sum[i].tuition
-                listTitle.appendChild(firstTitle)
-                listTitle.appendChild(secondTitle)
-                listTitle.appendChild(thirdTitle)
-                listTitle.appendChild(forthTitle)
-                listTitle.appendChild(fifthTitle)
-                listValue.appendChild(firstValue)
-                listValue.appendChild(secondValue)
-                listValue.appendChild(thirdValue)
-                listValue.appendChild(forthValue)
-                listValue.appendChild(fifthValue)
-                listTitle.classList.add("card-title")
-                listValue.classList.add("card-value")
-                imageElement.setAttribute('src', sum[i].image)
-                imageElement.classList.add("card-image")
-                cardButton.classList.add("card-button")
-                cardButton.innerHTML = "ثبت نام کنید"
-                cardButton.setAttribute("itemid", sum[i].id)
-                course.appendChild(imageElement)
-                course.appendChild(cardButton)
-                course.appendChild(listTitle)
-                course.appendChild(listValue)
-                course.classList.add("card")
-                wrapper.appendChild(course)
-            }
-            const buttons = document.querySelectorAll('.card-button');
-            Array.from(buttons).forEach(function (button) {
-                button.addEventListener('click', async function () {
-                    course = this.getAttribute("itemid")
-                    myPopup.classList.toggle("show");
-                    const response = await fetch(`/product/api/sessions/${course}/`, {
-                        method: 'GET',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                    });
-
-                    const result = await response.json()
-                    if (response.status === 200) {
-                        const res = JSON.stringify(result)
-                        const sum = JSON.parse(res)
-                        const size = JSON.parse(res).length
-                        sessionList.innerHTML = ''
-                        for (let i = 0; i < size; i++) {
-                            const item = document.createElement("option")
-                            item.innerHTML = sum[i].number + 'جلسه'
-                            item.setAttribute("value", sum[i].id)
-                            sessionList.appendChild(item)
-                        }
-                        await getDays(sum[0].id)
-                    }
-                })
-                sessionList.addEventListener('change', function () {
-                    getDays(this.value)
-                })
-
-            })
-        }
-    }
-
-    async function getDays(query) {
-
-        const response = await fetch(`/product/api/days/${query}/`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-
-        const result = await response.json()
-        if (response.status === 200) {
-            const res = JSON.stringify(result)
-            const sum = JSON.parse(res)
-            const size = JSON.parse(res).length
-            week.innerHTML = ''
-            for (let i = 0; i < size; i++) {
-                const item = document.createElement("option")
-                item.innerHTML = sum[i].title
-                item.setAttribute("value", sum[i].id)
-                week.appendChild(item)
-            }
-        }
-
-    }
-
-    closeButton.addEventListener("click", function () {
-        window.location.assign(`/product/${course}/${sessionList.value}/${week.value}/`)
-    });
-    window.addEventListener("click", function (event) {
-        if (event.target === myPopup) {
-            myPopup.classList.remove("show");
-        }
-
-    })
-
-</script>
+{##}
+{#<script>#}
+{##}
+{#    const searchInput = document.getElementById("search")#}
+{#    const container = document.getElementById("container")#}
+{#    const wrapper = document.getElementById("wrapper")#}
+{#    const closeButton = document.getElementById("closeButton");#}
+{#    const myPopup = document.getElementById("myPopup");#}
+{#    const session = document.getElementById("number");#}
+{#    const week = document.getElementById("week");#}
+{#    const sessionList = document.getElementById("session")#}
+{#    let course#}
+{##}
+{#    window.onload = function () {#}
+{#        search('')#}
+{#    }#}
+{##}
+{#    searchInput.addEventListener("input", function (event) {#}
+{##}
+{#        search(event.target.value)#}
+{##}
+{#    })#}
+{##}
+{#    async function search(query) {#}
+{##}
+{#        console.log({{ sport.id }})#}
+{##}
+{#        const response = await fetch(`/product/api/search/{{ id }}?search=${query}`, {#}
+{#            method: 'GET',#}
+{#            headers: {#}
+{#                'Content-Type': 'application/json',#}
+{#            },#}
+{#        });#}
+{#        const result = await response.json()#}
+{#        if (response.status === 200 && result.length !== 0) {#}
+{#            const res = JSON.stringify(result)#}
+{#            const sum = JSON.parse(res)#}
+{#            const size = JSON.parse(res).length#}
+{#            wrapper.innerHTML = ''#}
+{#            for (let i = 0; i < size; i++) {#}
+{#                const course = document.createElement("div")#}
+{#                const imageElement = document.createElement("img")#}
+{#                const cardButton = document.createElement("button")#}
+{#                const listTitle = document.createElement("ol")#}
+{#                const firstTitle = document.createElement("li")#}
+{#                const secondTitle = document.createElement("li")#}
+{#                const thirdTitle = document.createElement("li")#}
+{#                const forthTitle = document.createElement("li")#}
+{#                const fifthTitle = document.createElement("li")#}
+{#                const listValue = document.createElement("ol")#}
+{#                const firstValue = document.createElement("li")#}
+{#                const secondValue = document.createElement("li")#}
+{#                const thirdValue = document.createElement("li")#}
+{#                const forthValue = document.createElement("li")#}
+{#                const fifthValue = document.createElement("li")#}
+{#                firstTitle.style.cssText = 'font-size: 16px;font-weight: bold'#}
+{#                firstTitle.innerHTML = "نام دوره:"#}
+{#                secondTitle.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'#}
+{#                secondTitle.innerHTML = "نام مربی:"#}
+{#                thirdTitle.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'#}
+{#                thirdTitle.innerHTML = "مناسب برای:"#}
+{#                forthTitle.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'#}
+{#                forthTitle.innerHTML = "نوع دوره:"#}
+{#                fifthTitle.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'#}
+{#                fifthTitle.innerHTML = "شهریه ثابت:"#}
+{#                firstValue.style.cssText = 'font-size: 16px;font-weight: bold'#}
+{#                firstValue.innerHTML = sum[i].title#}
+{#                secondValue.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'#}
+{#                secondValue.innerHTML = sum[i].name#}
+{#                thirdValue.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'#}
+{#                thirdValue.innerHTML = sum[i].gender#}
+{#                forthValue.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'#}
+{#                forthValue.innerHTML = sum[i].type#}
+{#                fifthValue.style.cssText = 'margin-top: 20px; font-size: 16px; font-weight: bold'#}
+{#                fifthValue.innerHTML = sum[i].tuition#}
+{#                listTitle.appendChild(firstTitle)#}
+{#                listTitle.appendChild(secondTitle)#}
+{#                listTitle.appendChild(thirdTitle)#}
+{#                listTitle.appendChild(forthTitle)#}
+{#                listTitle.appendChild(fifthTitle)#}
+{#                listValue.appendChild(firstValue)#}
+{#                listValue.appendChild(secondValue)#}
+{#                listValue.appendChild(thirdValue)#}
+{#                listValue.appendChild(forthValue)#}
+{#                listValue.appendChild(fifthValue)#}
+{#                listTitle.classList.add("card-title")#}
+{#                listValue.classList.add("card-value")#}
+{#                imageElement.setAttribute('src', sum[i].image)#}
+{#                imageElement.classList.add("card-image")#}
+{#                cardButton.classList.add("card-button")#}
+{#                cardButton.innerHTML = "ثبت نام کنید"#}
+{#                cardButton.setAttribute("itemid", sum[i].id)#}
+{#                course.appendChild(imageElement)#}
+{#                course.appendChild(cardButton)#}
+{#                course.appendChild(listTitle)#}
+{#                course.appendChild(listValue)#}
+{#                course.classList.add("card")#}
+{#                wrapper.appendChild(course)#}
+{#            }#}
+{#            const buttons = document.querySelectorAll('.card-button');#}
+{#            Array.from(buttons).forEach(function (button) {#}
+{#                button.addEventListener('click', async function () {#}
+{#                    course = this.getAttribute("itemid")#}
+{#                    myPopup.classList.toggle("show");#}
+{#                    const response = await fetch(`/product/api/sessions/${course}/`, {#}
+{#                        method: 'GET',#}
+{#                        headers: {#}
+{#                            'Content-Type': 'application/json',#}
+{#                        },#}
+{#                    });#}
+{##}
+{#                    const result = await response.json()#}
+{#                    if (response.status === 200) {#}
+{#                        const res = JSON.stringify(result)#}
+{#                        const sum = JSON.parse(res)#}
+{#                        const size = JSON.parse(res).length#}
+{#                        sessionList.innerHTML = ''#}
+{#                        for (let i = 0; i < size; i++) {#}
+{#                            const item = document.createElement("option")#}
+{#                            item.innerHTML = sum[i].number + 'جلسه'#}
+{#                            item.setAttribute("value", sum[i].id)#}
+{#                            sessionList.appendChild(item)#}
+{#                        }#}
+{#                        await getDays(sum[0].id)#}
+{#                    }#}
+{#                })#}
+{#                sessionList.addEventListener('change', function () {#}
+{#                    getDays(this.value)#}
+{#                })#}
+{##}
+{#            })#}
+{#        }#}
+{#    }#}
+{##}
+{#    async function getDays(query) {#}
+{##}
+{#        const response = await fetch(`/product/api/days/${query}/`, {#}
+{#            method: 'GET',#}
+{#            headers: {#}
+{#                'Content-Type': 'application/json',#}
+{#            },#}
+{#        });#}
+{##}
+{#        const result = await response.json()#}
+{#        if (response.status === 200) {#}
+{#            const res = JSON.stringify(result)#}
+{#            const sum = JSON.parse(res)#}
+{#            const size = JSON.parse(res).length#}
+{#            week.innerHTML = ''#}
+{#            for (let i = 0; i < size; i++) {#}
+{#                const item = document.createElement("option")#}
+{#                item.innerHTML = sum[i].title#}
+{#                item.setAttribute("value", sum[i].id)#}
+{#                week.appendChild(item)#}
+{#            }#}
+{#        }#}
+{##}
+{#    }#}
+{##}
+{#    closeButton.addEventListener("click", function () {#}
+{#        window.location.assign(`/product/${course}/${sessionList.value}/${week.value}/`)#}
+{#    });#}
+{#    window.addEventListener("click", function (event) {#}
+{#        if (event.target === myPopup) {#}
+{#            myPopup.classList.remove("show");#}
+{#        }#}
+{##}
+{#    })#}
+{##}
+{#</script>#}
 
 </html>
