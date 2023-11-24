@@ -416,6 +416,87 @@ span {
 
 <img src="/static/images/login.jpg" style="width: 50% ; right: 0; position: absolute ; height: 100%" alt="">
 
+
+<footer>
+       <div class="footer-container">
+
+        <div class="footer-logo">
+
+            <h3 style="color: white ; direction: ltr ; text-align: center ; margin-top: 20px">PowerGrow</h3>
+            <img class="img-responsive" style="width: 200px ; height: 200px"  src="/media/{{ about.transparent_logo }}"
+                 alt="">
+        </div>
+
+       <ul style="float: right">
+
+       <li>
+            <div style="display: inline-flex ; width: 350px ">
+
+        <i class="fa-solid fa-location-dot"
+           style="color: #ffffff; font-size: 30px"></i>
+        <h5 style="color:white ; margin-right: 5px">
+
+            {% autoescape off %}
+
+                {{ about.address|linebreaksbr }}
+
+            {% endautoescape %}
+
+        </h5>
+
+       </div>
+
+       </li>
+
+
+      <li>
+       <div  style="display: inline-flex ; width: 350px" >
+           <i class="fa-solid fa-phone-flip"
+                   style="color: #ffffff; font-size: 30px"></i>
+        <h5 style="color:white ; margin-right: 5px">
+            {{ about.phone }}<br> {{ about.telephone }}
+        </h5>
+
+       </div>
+
+       </li>
+
+       <li>
+
+            <div style="display: inline-flex ; width: 350px">
+
+        <i class="fa-brands fa-instagram"
+           style="color: #ffffff; font-size: 30px"></i>
+        <h5 style="color:white ; margin-right: 5px">
+            {{ about.instagram }}
+        </h5>
+
+       </div>
+
+       </li>
+
+       </ul>
+
+        <div id="map" class="img-responsive map">
+        </div>
+
+    </div>
+
+  <!-- Copyright -->
+  <div class="p-3 copy" style="background: #151111 ; color: #B1B2B2; direction: ltr">&copy;<span id="year"
+                                    style="font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif'">2023 </span><span> PhoenixFamily. All rights reserved.</span>
+        <a href="//www.instagram.com/phoenixfamily.co?igshid=OGQ5ZDc2ODk2ZA=="
+           style="right: 0 ; position: absolute ; margin-right:15px">
+            <i class="fa-brands fa-instagram" style="color: #ffffff ; font-size: 30px"></i>
+        </a>
+        <a href="//www.linkedin.com/company/phoenixfamily" style="right: 0 ; position: absolute ; margin-right:55px">
+            <i class="fa-brands fa-linkedin" style="color: #ffffff ; font-size: 30px"></i>
+        </a>
+        <span style="right: 0;margin-right: 90px; position: absolute">Follow us:</span>
+    </div>
+  <!-- Copyright -->
+</footer>
+
 </body>
 
 <script>
@@ -429,6 +510,30 @@ span {
 })
 
 
+</script>
+
+
+<script>
+
+    let lat = {{ about.latitude }};
+    let long =     {{ about.longitude }};
+
+    const map = new nmp_mapboxgl.Map({
+        mapType: nmp_mapboxgl.Map.neshanVector,
+        container: "map",
+        zoom: 15,
+        pitch: 0,
+        center: [long, lat],
+        minZoom: 2,
+        maxZoom: 21,
+        trackResize: false,
+        mapKey: "web.3c30ab5c27a242d19aab4bca4e973288",
+        poi: true,
+        traffic: true,
+        mapTypeControllerStatus: {
+            show: false,
+        }
+    });
 </script>
 
 
