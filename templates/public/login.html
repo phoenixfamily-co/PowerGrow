@@ -315,18 +315,18 @@ button:hover {
               <p class="text-white-50 mb-5">لطفا اطلاعات خود را وارد کنید</p>
 
               <div class="form-outline form-white mb-4">
-                <input type="tel" id="typeEmailX" class="form-control form-control-lg" />
-                <label class="form-label" for="typeEmailX">موبایل</label>
+                <input type="tel" id="number" class="form-control form-control-lg" />
+                <label class="form-label" for="number">موبایل</label>
               </div>
 
               <div class="form-outline form-white mb-4">
-                <input type="password" id="typePasswordX" class="form-control form-control-lg" />
-                <label class="form-label" for="typePasswordX">پسورد</label>
+                <input type="password" id="password" class="form-control form-control-lg" />
+                <label class="form-label" for="password">پسورد</label>
               </div>
 
               <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">فراموشی رمز عبور ؟</a></p>
 
-              <button class="btn btn-outline-light btn-lg px-5" type="submit">ورود</button>
+              <button id="submit" class="btn btn-outline-light btn-lg px-5" type="submit">ورود</button>
 
             </div>
 
@@ -465,12 +465,11 @@ button:hover {
 
 <script>
 
-    const loginForm = document.getElementById('loginForm');
     const username = document.getElementById('number');
     const pass = document.getElementById('password');
+    const submit = document.getElementById('submit')
 
-    loginForm.addEventListener("submit", async function (event) {
-           event.preventDefault();
+    submit.addEventListener('click',async function () {
 
         const param = {
             "username": `+98${username.value}`,
@@ -507,7 +506,8 @@ button:hover {
     }else {
             alert("نام کاربری یا پسورد اشتباه است")
     }
-});
+
+    })
 
 </script>
 </html>
