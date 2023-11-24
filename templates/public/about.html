@@ -504,7 +504,6 @@
     let lat = {{ about.latitude }};
     let long =     {{ about.longitude }};
 
-
     const map = new nmp_mapboxgl.Map({
         mapType: nmp_mapboxgl.Map.neshanVector,
         container: "map",
@@ -513,8 +512,8 @@
         center: [long, lat],
         minZoom: 2,
         maxZoom: 21,
-        trackResize: true,
-        mapKey: "web.eb9c250015c247e08c5122f824c1541c",
+        trackResize: false,
+        mapKey: "web.3c30ab5c27a242d19aab4bca4e973288",
         poi: true,
         traffic: true,
         mapTypeControllerStatus: {
