@@ -254,6 +254,7 @@ button:hover {
 }
 
         .fa-eye{
+            position: absolute;
             cursor: pointer;
             color: rgb(51, 49, 49);
             float: left;
@@ -314,9 +315,9 @@ button:hover {
                 <label class="form-label" for="number">موبایل</label>
               </div>
 
-              <div class="form-outline form-white mb-4 row">
-                  <input class="form-control bg-light pe-4 col-11" type="password" id="password" placeholder="Password*"/>
-                  <i class="far fa-eye col-1 my-auto " id="togglePassword"></i>
+              <div class="form-outline form-white mb-4">
+                  <input type="password" id="password" class="form-control form-control-lg"/>
+                  <i id="eye" class="fa fa-eye"></i>
                   <label class="form-label" for="password">پسورد</label>
               </div>
 
