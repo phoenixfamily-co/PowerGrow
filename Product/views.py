@@ -60,10 +60,11 @@ def sport_view(request, pk):
     template = loader.get_template('public/category.html')
     about = AboutUs.objects.values().first()
     sport = Sport.objects.all()
+    course = Course.objects.all()
     context = {
         "about": about,
         "sport": sport,
-        "selected" : sport.filter(id=pk).values(),
+        "selected" : course.filter(sport=pk).values(),
         "title": sport.filter(id=pk).values().first(),
         "id": pk
     }
