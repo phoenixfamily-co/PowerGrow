@@ -314,35 +314,44 @@ button:hover {
 
 </div>
 
-<div class="formContainer">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-dark text-white" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
 
-    <form id="loginForm">
+            <div class="mb-md-5 mt-md-4 pb-5">
 
-  <div class="container">
-    <label for="number"><b>نام کاربری</b>
-    <input id="number" type="text" placeholder="شماره موبایل" name="number" required maxlength="10">
-        </label>
+              <h2 class="fw-bold mb-2 text-uppercase">ورود</h2>
+              <p class="text-white-50 mb-5">لطفا پسورد خود را وارد کنید</p>
 
-        <label for="password">
-            <input type="password" placeholder="پسورد" id="password">
-              <i class="fa-solid fa-eye" id="eye"></i>
-        </label>
+              <div class="form-outline form-white mb-4">
+                <input type="number" id="typeEmailX" class="form-control form-control-lg" />
+                <label class="form-label" for="typeEmailX">موبایل</label>
+              </div>
 
-    <button type="submit" style="margin-top: 30px">ورود</button>
-    <label>
-      <input type="checkbox" name="remember"> من را به خاطر داشته باش.
-    </label>
+              <div class="form-outline form-white mb-4">
+                <input type="password" id="typePasswordX" class="form-control form-control-lg" />
+                <label class="form-label" for="typePasswordX">پسورد</label>
+              </div>
 
-      <a href="{% url 'user:forget' %}" style="font-size: 14px ; margin-right: 25% ; cursor: pointer">فراموشی رمز عبور؟</a>
+              <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">فراموشی رمز عبور ؟</a></p>
 
-      <br>
-      <br>
+              <button class="btn btn-outline-light btn-lg px-5" type="submit">ورود</button>
 
-       <label>
-      <a href="{% url 'user:register' %}" style="font-size: 16px ; font-weight: bold ; cursor: pointer"> هنوز ثبت نام نکردید؟</a>
-    </label>
+            </div>
+
+            <div>
+              <p class="mb-0">اکانت ندارید؟ <a href="#!" class="text-white-50 fw-bold">ثبت نام کنید</a>
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</form>
+
 
 </div>
 
