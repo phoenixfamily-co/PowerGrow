@@ -18,7 +18,7 @@
             font-weight: normal;
             src: url("/static/fonts/BYekan.eot");/* IE9 Compat Modes */
             src: url("/static/fonts/BYekan.woff") format('woff'),
-            url("/static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */ url("/static/fonts/BYekan.ttf") format('truetype') /* Safari, Android, iOS */
+            url("/static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */ url("../../static/fonts/BYekan.ttf") format('truetype') /* Safari, Android, iOS */
         }
 
         * {
@@ -29,34 +29,15 @@
             vertical-align: middle;
         }
 
-        .tab {
-            direction: rtl;
-            unicode-bidi: bidi-override;
-            right: 0;
-            position: absolute;
-            margin-top: 4%;
-            margin-right: 5%;
-            z-index: 10 !important;
-
-        }
-
-        .tab-button {
-            background-color: transparent;
-            border-color: transparent;
-            color: black;
-            font-family: BYekan, serif !important;
-            font-size: 16px;
-            cursor: pointer;
-
-        }
-
-
         .logoHolder {
             width: 50px;
-            margin-left: 40%;
             position: absolute;
+            left: 0;
+            right: 0;
+            margin-right: 55%;
             margin-top: 1%;
             z-index: 10 !important;
+            direction: ltr;
 
         }
 
@@ -70,52 +51,23 @@
         }
 
         .typography {
-            color: black;
             position: absolute;
             margin-left: 60px;
             margin-top: 20%;
+            color: white;
             font-size: 20px
 
         }
 
-        .login {
-            width: 150px;
-            position: absolute;
-            margin-top: 4%;
-            z-index: 10 !important;
-            direction: rtl;
-            unicode-bidi: bidi-override;
-        }
-
-        .loginTypography {
-            color: black;
-            position: absolute;
-            background-color: transparent;
-            border-color: transparent;
-            font-family: BYekan, serif !important;
-            direction: rtl;
-            font-size: 16px;
-            margin-right: 10%;
-            cursor: pointer;
-
-        }
 
         .dropdown {
             position: relative;
             display: inline-block;
         }
 
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            width: 100px;
-            background-color: #f9f9f9;
-            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-            padding: 12px 16px;
-            z-index: 1;
-        }
 
-        .dropdown:hover .dropdown-content {
+
+        .dropdown:hover {
             display: block;
 
         }
@@ -133,87 +85,191 @@
             background-color: #f1f1f1
         }
 
-        @keyframes fade {
-            from {
-                opacity: .4
-            }
-            to {
-                opacity: 1
-            }
+
+        .card {
+            width: 20rem;
+            background: #C1C1C1;
         }
 
-        /* On smaller screens, decrease text size */
-        @media only screen and (max-width: 300px) {
-
-        }
-
-
-        .contentWrapper {
-            height: 250px;
-            width: 100%;
-            padding: 2rem;
-            background: #303030;
+        .btn {
+            background-color: #E16539;
+            border-color: transparent;
             color: white;
-            font-weight: 500;
-            display: flex;
+            cursor: pointer;
+        }
+
+        html{
+            min-height: 100%;
+            position: relative;
+            font-family: BYekan, serif !important;
+        }
+
+        body {
+            direction: rtl;
+            margin-bottom: 1100px;
+
+        }
+
+
+        .col {
+            width: 30%;
+            height: 35px;
+            margin-left: 5px;
+            background-color: #E16539;
+            border-color: transparent;
+            border-radius: 5px;
+            color: white;
+            font-family: BYekan, serif !important;
+            font-size: 10px;
+
+        }
+
+
+        .navbar.navbar-dark.bg-dark li a{
+            color: #fff;
+        }
+
+          .navbar.navbar-dark.bg-dark a:hover{
+              color: grey;
+        }
+
+       .nav.navbar-nav li a {
+           color: #fff;
+           text-decoration: none;
+       }
+
+        .nav.navbar-nav a:hover {
+            color: grey;
+        }
+
+        .nav-pills > li > a.active {
+            background-color: #E16539 !important;
+        }
+
+        .nav.navbar-nav.navbar-left {
+            margin-left: 20px;
+        }
+
+        footer{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background: #303030;
+
+        }
+
+        .img-seo{
+            width: 45%;
+        }
+
+        .container{
+            width: 45% ;
+        }
+
+        .row{
+            margin-top: 5px ;
+            text-align: center ;
             justify-content: center;
             align-items: center;
-            gap: 0.2rem;
-            position: relative;
-
+            vertical-align: middle;
         }
 
-        .content {
-            height: 250px
-        }
-
-        .footer {
-            height: 50px;
-            font-weight: 500;
-            display: flex;
-            justify-content: flex-start;
+        .col{
+            text-align: center ;
+            justify-content: center;
             align-items: center;
-            font-size: 12px;
-            gap: 0.2rem;
+            vertical-align: middle;
             padding-top: 10px;
-            padding-left: 20px;
-            bottom: 0;
-            right: 0;
-            left: 0;
-            position: absolute;
-            color: #B1B2B2;
-            background: #151111;
+        }
+
+         .right-seo{
+             float: right;
+             width: 45%;
 
         }
 
-        body, html {
-            height: auto;
-            position: relative;
-            font-family: BYekan, serif !important;
-
-        }
-
-        .property {
+        .left-seo{
+            float: left;
             width: 45%;
-            direction: rtl;
-            unicode-bidi: bidi-override;
-            position: absolute;
-            margin-right: 30px;
-            z-index: 10 !important;
+            margin-top: 70px;
         }
 
+        .map{
+            height: 100% ;
+            width: 20% ;
+            margin-right: 40%
+        }
 
-       .property-item{
-			width: 30%;
-            height: 35px;
-			background-color: #E16539;
-			border-color: transparent;
-			border-radius: 5px;
-			color: white;
-            font-family: BYekan, serif !important;
-			font-size: 10px;
+        .footer-container{
+            height: 250px;
+        }
 
-		}
+        .footer-logo{
+            height: 100%;
+            float: left;
+        }
+
+         ul {
+            list-style-type: none;
+        }
+
+        ul li {
+            margin-top: 30px;
+        }
+
+           @media screen and (max-width: 600px) {
+            .copy{
+                font-size: 12px;
+        }
+               .nav.navbar-nav.navbar-left{
+                   position: absolute;
+                   left: 0;
+                   margin-top: 5%;
+               }
+
+               .img-seo{
+                   width: 100%;
+
+        }
+
+               .container{
+                   width: 100% ;
+        }
+                .right-seo{
+                    float: none;
+                    width: 100%;
+        }
+               .left-seo{
+                   float: none;
+                   width: 100%;
+        }
+               .map{
+                   height: 200px;
+                   width: 200px;
+                   margin-top: 50px;
+                   margin-right: 30%;
+''
+               }
+               .footer-container{
+                   height: 600px;
+               }
+
+               .footer-logo{
+                   float: none;
+                   height: 200px;
+                   margin-right: 30%;
+               }
+
+               ul li {
+                   margin-top: 10px;
+               }
+
+        }
+
+        ::-webkit-scrollbar{
+            overflow-y: hidden;
+        }
 
 
     </style>
@@ -224,25 +280,32 @@
 </head>
 <body>
 
-<div class="tab">
-    <button class="tab-button" onclick="window.location.assign('{% url 'home:home' %}')">صفحه اصلی</button>
-    <div class="dropdown">
-        <button class="tab-button" onclick="">ورزش ها</button>
-        <i class="fa-solid fa-caret-down" style="color: #000"></i>
-        <div class="dropdown-content">
-            {% for x in sport %}
-
-                <a href="{% url 'product:category' x.id %}">{{ x.title }}</a>
-
-            {% endfor %}
-        </div>
-    </div>
-    <button class="tab-button" onclick="window.location.assign({% url 'reservation:reservation' %})">اجاره سالن</button>
-    <button class="tab-button" style="font-weight: bold;text-decoration: underline; text-underline-position: under"
-            onclick="window.location.assign({% url 'about:aboutUs' %})">درباره ما
-    </button>
-
-</div>
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+<ul class="nav nav-pills">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href='{% url 'home:home' %}'>صفحه اصلی</a>
+  </li>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">ورزش ها</a>
+    <ul class="dropdown-menu dropdown-menu-right">
+         {% for x in sport %}
+             <li><a style="color: black ; width: 100% ; text-align: center" class="dropdown-item" href="{% url 'product:category' x.id %}">{{ x.title }}</a></li>
+         {% endfor %}
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">اجاره سالن</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href='{% url 'about:aboutUs'%}'>درباره ما</a>
+  </li>
+</ul>
+  <ul class="nav navbar-nav navbar-left">
+      <li><a href='{% url 'user:login' %}'><span class="glyphicon glyphicon-user"></span>ورود و عضویت</a></li>
+    </ul>
+  </div>
+</nav>
 
 <div class="logoHolder">
 
@@ -251,10 +314,6 @@
 
 </div>
 
-<div class="login">
-    <i class="fa-solid fa-user" style="color: #000; position:absolute ; margin-top:5px ; font-size: 16px"></i>
-    <button class="loginTypography" onclick="window.location.assign({% url 'user:login' %})">ورود/عضویت</button>
-</div>
 
 <div style="width: 100%;height: 500px">
 
