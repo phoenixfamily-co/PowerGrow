@@ -366,11 +366,11 @@ span {
     <a class="nav-link" href="#">اجاره سالن</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link active" href='{% url 'about:aboutUs'%}'>درباره ما</a>
+    <a class="nav-link" href='{% url 'about:aboutUs'%}'>درباره ما</a>
   </li>
 </ul>
   <ul class="nav navbar-nav navbar-left">
-      <li><a href='{% url 'user:login' %}'><span class="glyphicon glyphicon-user"></span>ورود و عضویت</a></li>
+      <li><a class="nav-link active" href='{% url 'user:login' %}'><span class="glyphicon glyphicon-user"></span>ورود و عضویت</a></li>
     </ul>
   </div>
 </nav>
