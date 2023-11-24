@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 
 from About.models import AboutUs
-from Product.models import Participants
+from Product.models import Participants, Sport
 from Reservation.models import Reservations
 from User.serializer import *
 from User.models import *
@@ -18,8 +18,12 @@ from User.models import *
 def login_view(request):
     about = AboutUs.objects.values().first()
     template = loader.get_template('public/login.html')
+    sport = Sport.objects.all().values()
+
     context = {
         "about": about,
+        "sport": sport,
+
     }
     return HttpResponse(template.render(context, request))
 
