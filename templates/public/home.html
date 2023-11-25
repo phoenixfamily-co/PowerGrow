@@ -421,7 +421,7 @@
           <hr class="my-0" />
           <div class="card-body">
             <div style="float: left" class="d-flex align-items-center pb-2 mb-1">
-              <button type="button" class="btn" value="{{ x.id }}">ثبت نام</button>
+              <button type="button" class="btn" id="{{ x.id }}">ثبت نام</button>
             </div>
           </div>
         </div>
@@ -676,7 +676,7 @@
     const buttons = document.querySelectorAll('.btn');
     Array.from(buttons).forEach(function (button) {
         button.addEventListener('click', async function () {
-            course = this.value
+            course = this.id
               myModal.toggle()
             const response = await fetch(`/product/api/sessions/${course}/`, {
                 method: 'GET',
