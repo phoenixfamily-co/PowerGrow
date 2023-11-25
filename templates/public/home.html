@@ -667,8 +667,11 @@
     const myModal = new bootstrap.Modal(document.getElementById('myModal'));
     const session = document.getElementById("number");
     const week = document.getElementById("week");
-    const sessionList = document.getElementById("session")
-    let course
+    const sessionList = document.getElementById("session");
+    let course;
+    let sessionId;
+    let dayId;
+
 
     const buttons = document.querySelectorAll('.btn');
     Array.from(buttons).forEach(function (button) {
@@ -708,10 +711,12 @@
     })
 
      continueButton.addEventListener("click", function () {
-        document.location.assign(`/product/${0}/${item}/`)
+        document.location.assign(`/product//${sessionId}/${dayId}`)
     })
 
     async function getDays(query) {
+
+        sessionId = query
 
         const response = await fetch(`/product/api/days/${query}/`, {
             method: 'GET',
@@ -731,9 +736,14 @@
                 item.innerHTML = sum[i].title
                 item.setAttribute("value", sum[i].id)
                 week.appendChild(item)
+                dayId = sum[0].id
             }
         }
     }
+
+    week.addEventListener('change', function () {
+        dayId = this.value
+    })
 
 </script>
 
