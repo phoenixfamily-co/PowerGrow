@@ -670,6 +670,7 @@
 <script>
     const registerButton = document.getElementById("registerButton");
     const closeButton = document.getElementById("closeButton");
+    const exitButton = document.getElementById("exit");
     const continueButton = document.getElementById("continueButton");
     const myModal = new bootstrap.Modal(document.getElementById('myModal'));
     const session = document.getElementById("number");
@@ -715,6 +716,10 @@
     })
 
     closeButton.addEventListener("click", function () {
+        myModal.toggle()
+    })
+
+     exitButton.addEventListener("click", function () {
         myModal.toggle()
     })
 

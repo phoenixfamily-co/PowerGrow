@@ -106,6 +106,13 @@
             cursor: pointer;
         }
 
+         .register-button{
+            background-color: #E16539;
+            border-color: transparent;
+            color: white;
+            cursor: pointer;
+        }
+
         html{
             min-height: 100%;
             position: relative;
@@ -327,7 +334,7 @@
           <hr class="my-0" />
           <div class="card-body">
             <div style="float: left" class="d-flex align-items-center pb-2 mb-1">
-              <button type="button" class="btn" itemid="{{ x.id }}">ثبت نام</button>
+              <button type="button" class="btn register-button" id="{{ x.id }}">ثبت نام</button>
             </div>
           </div>
         </div>
@@ -342,7 +349,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">تعداد و روز جلسات را انتخاب کنید</h5>
-        <button id="closeButton" type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button id="exit" type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -359,7 +366,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+        <button id="closeButton" type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
         <button id="continueButton" type="button" class="btn btn-primary">ادامه</button>
       </div>
     </div>
@@ -488,17 +495,21 @@
 <script>
     const registerButton = document.getElementById("registerButton");
     const closeButton = document.getElementById("closeButton");
+    const exitButton = document.getElementById("exit");
     const continueButton = document.getElementById("continueButton");
     const myModal = new bootstrap.Modal(document.getElementById('myModal'));
     const session = document.getElementById("number");
     const week = document.getElementById("week");
-    const sessionList = document.getElementById("session")
-    let course
+    const sessionList = document.getElementById("session");
+    let course;
+    let sessionId;
+    let dayId;
 
-    const buttons = document.querySelectorAll('.btn');
+
+    const buttons = document.querySelectorAll('.register-button');
     Array.from(buttons).forEach(function (button) {
         button.addEventListener('click', async function () {
-            course = this.getAttribute("itemid")
+            course = this.id
               myModal.toggle()
             const response = await fetch(`/product/api/sessions/${course}/`, {
                 method: 'GET',
@@ -513,6 +524,7 @@
                 const sum = JSON.parse(res)
                 const size = JSON.parse(res).length
                 sessionList.innerHTML = ''
+                week.innerHTML = ''
                 for (let i = 0; i < size; i++) {
                     const item = document.createElement("option")
                     item.innerHTML = sum[i].number + 'جلسه'
@@ -532,11 +544,17 @@
         myModal.toggle()
     })
 
+     exitButton.addEventListener("click", function () {
+        myModal.toggle()
+    })
+
      continueButton.addEventListener("click", function () {
-        document.location.assign(`/product/${0}/${item}/`)
+        document.location.assign(`/product/${course}/${sessionId}/${dayId}/`)
     })
 
     async function getDays(query) {
+
+        sessionId = query
 
         const response = await fetch(`/product/api/days/${query}/`, {
             method: 'GET',
@@ -556,11 +574,17 @@
                 item.innerHTML = sum[i].title
                 item.setAttribute("value", sum[i].id)
                 week.appendChild(item)
+                dayId = sum[0].id
             }
         }
     }
 
+    week.addEventListener('change', function () {
+        dayId = this.value
+    })
+
 </script>
+
 
 
 {##}
