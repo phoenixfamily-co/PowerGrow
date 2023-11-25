@@ -490,7 +490,7 @@ button:hover {
     const pass2 = document.getElementById('password2');
 
     submit.addEventListener("click", async function (event) {
-        if (birthdate.value !==undefined && name.value !==undefined) {
+        if (birthdate.value !=="" && name.value !=="") {
             if (pass1.value === pass2.value) {
 
                 const param = {
