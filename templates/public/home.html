@@ -380,10 +380,13 @@
 
 <div class="container-fluid py-2">
 
+    <div class="d-flex flex-row flex-nowrap overflow-auto">
+
+
     {% for x in selected %}
 
-  <div class="container py-5" style="padding-right: 10%">
-    <div class="row d-flex justify-content-start">
+  <div class="container py-5">
+    <div class="row justify-content-center">
       <div class="col-md-8 col-lg-6 col-xl-4">
         <div class="card" style="border-radius: 15px;">
           <div class="bg-image hover-overlay ripple ripple-surface ripple-surface-light"
@@ -427,6 +430,8 @@
   </div>
 
     {% endfor %}
+
+    </div>
 
 </div>
 
@@ -733,5 +738,3 @@
 </script>
 
 </html>
-
-
