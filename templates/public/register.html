@@ -319,15 +319,15 @@ button:hover {
               </div>
 
               <div class="form-outline form-white mb-4">
-                  <input type="password" id="password1" class="form-control form-control-lg" placeholder="پسورد"/>
+                  <input type="password" id="password1" autocomplete="new-password" class="form-control form-control-lg" placeholder="تکرار رمز عبور"/>
                   <i id="eye" class="fa fa-eye"></i>
-                  <label class="form-label" for="password1">پسورد</label>
+                  <label class="form-label" for="password1">رمز عبور</label>
               </div>
 
                 <div class="form-outline form-white mb-4">
-                  <input type="password" id="password2" class="form-control form-control-lg" placeholder="تکرار پسورد"/>
+                  <input type="password" id="password2" autocomplete="new-password" class="form-control form-control-lg" placeholder="تکرار رمز عبور"/>
                   <i id="eye" class="fa fa-eye"></i>
-                  <label class="form-label" for="password2">تکرار پسورد</label>
+                  <label class="form-label" for="password2">تکرار رمز عبور</label>
               </div>
 
               <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="{% url 'user:forget' %}">فراموشی رمز عبور ؟</a></p>
