@@ -107,6 +107,13 @@
             cursor: pointer;
         }
 
+        .register-button{
+            background-color: #E16539;
+            border-color: transparent;
+            color: white;
+            cursor: pointer;
+        }
+
         html{
             min-height: 100%;
             position: relative;
@@ -421,7 +428,7 @@
           <hr class="my-0" />
           <div class="card-body">
             <div style="float: left" class="d-flex align-items-center pb-2 mb-1">
-              <button type="button" class="btn" id="{{ x.id }}">ثبت نام</button>
+              <button type="button" class="btn register-button" id="{{ x.id }}">ثبت نام</button>
             </div>
           </div>
         </div>
@@ -673,7 +680,7 @@
     let dayId;
 
 
-    const buttons = document.querySelectorAll('.btn');
+    const buttons = document.querySelectorAll('.register-button');
     Array.from(buttons).forEach(function (button) {
         button.addEventListener('click', async function () {
             course = this.id
