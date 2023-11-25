@@ -132,13 +132,9 @@
         <input type="text" maxlength="1" />
     </label>
 </div>
-            <p class="resend text-muted mb-0 disabled">
+            <p class="resend text-muted mb-0">
               کد را دریافت نکردید؟ <a href="">ارسال مجدد</a>
             </p>
-
-<div data-mdb-countdown-init data-mdb-countdown="5 November 2022 12:35" data-mdb-countdown-interval="30">
-  <div class="countdown-unit countdown-seconds"></div>
-</div>
 
 </body>
 
@@ -189,11 +185,6 @@
 </script>
 
 <script>
-    let resend = document.getElementById("resend")
-    setTimeout(function(){
-        resend.classList.remove("disabled")
-    }, 20000);
-
     resend.addEventListener("click",function () {
         location.reload()
 
