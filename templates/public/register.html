@@ -490,32 +490,35 @@ button:hover {
     const pass2 = document.getElementById('password2');
 
     submit.addEventListener("click", async function (event) {
-    if (pass1.value===pass2.value){
+        if (birthdate.value !=null && name.value !=null) {
+            if (pass1.value === pass2.value) {
 
-     const param = {
-         "number": `+98${username.value}`,
-         "password": pass1.value,
-         "name": name.value,
-         "birthdate": birthdate.value,
-         "gender": "تعریف نشده",
+                const param = {
+                    "number": `+98${username.value}`,
+                    "password": pass1.value,
+                    "name": name.value,
+                    "birthdate": birthdate.value,
+                    "gender": "تعریف نشده",
+                }
+
+                const response = await fetch('api/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(param)
+                });
+                if (response.status === 201) {
+                    window.location.assign(('../verification/' + '+98' + username.value + '/').toString())
+                } else {
+                    alert("نام کاربری قبلا ثبت نام شده است")
+                }
+            } else {
+                alert("پسورد ها یکسان نیستند")
+            }
         }
-
-    const response = await fetch('api/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(param)
-    });
-    if (response.status===201){
-        window.location.assign(('../verification/'+'+98'+username.value+'/').toString())
-    }else {
-        alert("نام کاربری قبلا ثبت نام شده است")
-    }
-    }
-    else
-        {
-            alert("پسورد ها یکسان نیستند")
+        else {
+            alert("تمامی فیلد ها الزامی میباشد")
         }
 });
 
