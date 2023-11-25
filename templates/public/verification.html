@@ -67,6 +67,8 @@
 
             .disabled {
                 opacity: 0.5;
+                cursor: none;
+                pointer-events: none;
             }
 
              .logoHolder {
@@ -130,7 +132,7 @@
         <input type="text" maxlength="1" />
     </label>
 </div>
-            <p class="resend text-muted mb-0">
+            <p class="resend text-muted mb-0 disabled">
               کد را دریافت نکردید؟ <a href="">ارسال مجدد</a>
             </p>
 
@@ -185,7 +187,7 @@
 <script>
     let resend = document.getElementById("resend")
     setTimeout(function(){
-        resend.classList.add("activeResend")
+        resend.classList.remove("disabled")
     }, 20000);
 
     resend.addEventListener("click",function () {
