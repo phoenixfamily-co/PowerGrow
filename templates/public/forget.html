@@ -173,11 +173,7 @@
 
 <script>
 
-    const verificationForm = document.getElementById('verificationForm');
-    const code = document.getElementById('otp');
-    const number = {{ number }};
-    const param = {'is_active' : 'True'};
-    const otp = {{ response|safe }};
+    const btn = document.getElementById("submit")
 
     const inputs = document.querySelectorAll(".otp-field label input");
 
@@ -188,7 +184,6 @@
       if (i !==0) inputs[i - 1].focus(); }
     else {
       if (i===inputs.length-1 && inputs[i].value !=='' ) {
-          submit()
           return true
       }
       else if (event.keyCode> 47 && event.keyCode < 58) {
@@ -199,29 +194,34 @@
           if (i !==inputs.length - 1) inputs[i + 1].focus(); event.preventDefault(); } } })
     }
 
-async function submit() {
+    btn.addEventListener("click",async function () {
+        await submit()
+    })
 
-    let code = "";
-    inputs.forEach((input) => {
-        code += input.value;
-    });
-     const response = await fetch('api/'+'+98'+username.value, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    });
-    if (response.status===200){
-        window.location.assign("../verification/"+'+98'+username.value)
-    } else {
-        alert("شماره وارد شده نامعتبر است")
-        code  = ''
-         inputs.forEach((input) => {
-             input.value = ''
-         });
-        inputs[0].select()
+
+    async function submit() {
+
+        let code = "";
+        inputs.forEach((input) => {
+            code += input.value;
+        });
+        const response = await fetch('api/' + '+98' + username.value, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        if (response.status === 200) {
+            window.location.assign("../verification/" + '+98' + username.value)
+        } else {
+            alert("شماره وارد شده نامعتبر است")
+            code = ''
+            inputs.forEach((input) => {
+                input.value = ''
+            });
+            inputs[0].select()
+        }
     }
-}
 
 </script>
 
