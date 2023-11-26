@@ -307,13 +307,13 @@ button:hover {
 
               <div class="form-outline form-white mb-4">
                   <input type="password" id="password1" autocomplete="new-password" class="form-control form-control-lg" placeholder="رمز عبور" style="-webkit-text-security: disc" minlength="6" required/>
-                  <i id="eye" class="fa fa-eye"></i>
+                  <i id="eye1" class="fa fa-eye"></i>
                   <label class="form-label" for="password1">رمز عبور</label>
               </div>
 
                 <div class="form-outline form-white mb-4">
                   <input type="password" id="password2" autocomplete="new-password" class="form-control form-control-lg" placeholder="تکرار رمز عبور" style="-webkit-text-security: disc" minlength="6" required/>
-                  <i id="eye" class="fa fa-eye"></i>
+                  <i id="eye2" class="fa fa-eye"></i>
                   <label class="form-label" for="password2">تکرار رمز عبور</label>
               </div>
 
@@ -418,14 +418,22 @@ button:hover {
 </body>
 
 <script>
-    const passwordInput = document.getElementById("password")
-    const eye = document.getElementById("eye")
+    const passwordInput1 = document.getElementById("password1")
+    const passwordInput2 = document.getElementById("password2")
+    const eye1 = document.getElementById("eye1")
+    const eye2 = document.getElementById("eye2")
 
-    eye.addEventListener("click", function(){
-  this.classList.toggle("fa-eye-slash")
-  const type = passwordInput.getAttribute("type") === "password" ? "text" : "password"
-  passwordInput.setAttribute("type", type)
-})
+    eye1.addEventListener("click", function() {
+        this.classList.toggle("fa-eye-slash")
+        const type = passwordInput1.getAttribute("type") === "password" ? "text" : "password"
+        passwordInput1.setAttribute("type", type)
+    })
+
+        eye2.addEventListener("click", function() {
+            this.classList.toggle("fa-eye-slash")
+            const type = passwordInput2.getAttribute("type") === "password" ? "text" : "password"
+            passwordInput2.setAttribute("type", type)
+        })
 
 
 </script>
