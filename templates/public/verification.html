@@ -180,11 +180,10 @@
 
 
 async function submit() {
+
     let code = "";
     inputs.forEach((input) => {
         code += input.value;
-        input.disabled = true;
-        input.classList.add("disabled");
     });
 
     if (parseInt(otp.code) === parseInt(code)){
