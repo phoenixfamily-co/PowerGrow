@@ -167,8 +167,8 @@
       if (i !==0) inputs[i - 1].focus(); }
     else {
       if (i===inputs.length - 1 && inputs[i].value !=='' ) {
-          submit()
-          return true;
+          console.log("done")
+          break;
       }
       else if (event.keyCode> 47 && event.keyCode < 58) {
           inputs[i].value=event.key;
