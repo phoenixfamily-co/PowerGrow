@@ -193,7 +193,7 @@
 
 <script>
 
-    const inputs = document.querySelectorAll(".otp-field input");
+    const inputs = document.querySelectorAll(".otp-field label input");
 
     inputs.forEach((input, index) => {
         input.dataset.index = index;
@@ -201,12 +201,8 @@
         input.addEventListener("paste", handleOnPasteOtp);
 
     });
+
 function handleOtp(e) {
-    /**
-     * <input type="text" 👉 maxlength="1" />
-     * 👉 NOTE: On mobile devices `maxlength` property isn't supported,
-     * So we to write our own logic to make it work. 🙂
-     */
     const input = e.target;
     let value = input.value;
     let isValidInput = value.match(/[0-9a-z]/gi);
