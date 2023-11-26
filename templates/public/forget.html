@@ -205,14 +205,14 @@
         inputs.forEach((input) => {
             code += input.value;
         });
-        const response = await fetch('api/' + '+98' + username.value, {
+        const response = await fetch('api/' + '+98' + code, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
             },
         });
         if (response.status === 200) {
-            window.location.assign("../verification/" + '+98' + username.value)
+            window.location.assign("../verification/" + '+98' + code)
         } else {
             alert("شماره وارد شده نامعتبر است")
             code = ''
