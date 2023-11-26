@@ -140,51 +140,6 @@
 
 
 <script>
-
-    const verificationForm = document.getElementById('verificationForm');
-    const code = document.getElementById('otp');
-    const number = {{ number }};
-    const param = {'is_active' : 'True'};
-    const otp = {{ response|safe }};
-
-    verificationForm.addEventListener("submit", async function (event) {
-    event.preventDefault();
-
-
-    if (parseInt(otp.code) === parseInt(code.value)){
-
-    const response = await fetch('../api/'+'+'+number+'/' , {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    });
-    if (response.status===200){
-        window.location.assign("../password/"+'+'+number)
-    }else if (response.status===401) {
-        const result = await fetch('../api/'+'+'+number+'/activate/', {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-            body:JSON.stringify(param)
-    });
-        if (result.status===200){
-                    window.location.assign("{% url 'user:login' %}")
-        }
-        else {
-            alert(response.statusText)
-        }
-    }
-    }
-    else {
-        alert("کد وارد شده تادرست است")
-    }
-});
-
-</script>
-
-<script>
     resend.addEventListener("click",function () {
         location.reload()
 
@@ -192,6 +147,12 @@
   </script>
 
 <script>
+
+    const verificationForm = document.getElementById('verificationForm');
+    const code = document.getElementById('otp');
+    const number = {{ number }};
+    const param = {'is_active' : 'True'};
+    const otp = {{ response|safe }};
 
     const inputs = document.querySelectorAll(".otp-field label input");
 
@@ -227,7 +188,7 @@ function handleOnPasteOtp(e) {
         submit();
     }
 }
-function submit() {
+async function submit() {
     console.log("Submitting...");
     // 👇 Entered OTP
     let otp = "";
@@ -237,7 +198,37 @@ function submit() {
         input.classList.add("disabled");
     });
     console.log(otp);
-    // 👉 Call API below
+
+
+    if (parseInt(otp.code) === parseInt(code.value)){
+
+    const response = await fetch('../api/'+'+'+number+'/' , {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+    if (response.status===200){
+        window.location.assign("../password/"+'+'+number)
+    }else if (response.status===401) {
+        const result = await fetch('../api/'+'+'+number+'/activate/', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+            body:JSON.stringify(param)
+    });
+        if (result.status===200){
+                    window.location.assign("{% url 'user:login' %}")
+        }
+        else {
+            alert(response.statusText)
+        }
+    }
+    }
+    else {
+        alert("کد وارد شده تادرست است")
+    }
 }
 
 </script>
