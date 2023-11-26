@@ -224,16 +224,3 @@ async function submit() {
 </script>
 
 </html>
-
-
- const response = await fetch('api/'+'+98'+username.value, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    });
-    if (response.status===200){
-        window.location.assign("../verification/"+'+98'+username.value)
-    }else {
-            document.getElementById('error').innerHTML = response.statusText
-    }
