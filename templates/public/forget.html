@@ -23,133 +23,189 @@
         * {
             box-sizing: border-box
         }
-        img {
-            vertical-align: middle;
+
+            body {
+                margin: 0;
+                font-family: "Poppins", sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                background: #282a36;
+                height: 100vh;
+                color: #fff;
+            }
+
+
+            .otp-field {
+                flex-direction: row;
+                column-gap: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .otp-field input {
+                width: 45px;
+                font-size: 32px;
+                padding: 10px;
+                text-align: center;
+                border-radius: 5px;
+                margin: 2px;
+                border: 2px solid #55525c;
+                background: #21232d;
+                font-weight: bold;
+                color: #fff;
+                outline: none;
+                transition: all 0.1s;
+            }
+
+            .otp-field input:focus {
+                border: 2px solid #E16539;
+                box-shadow: 0 0 2px 2px #E165396a;
+            }
+
+            .disabled {
+                opacity: 0.5;
+                cursor: none;
+                pointer-events: none;
+            }
+
+             .logoHolder {
+                 position: absolute;
+                 top: 0;
+                 justify-items: center;
+                 justify-content: center;
+                 margin-top: 1%;
+                 display: inline-flex;
+                 direction: ltr;
+             }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            direction: ltr
+
         }
 
-h2 {
-	text-align: center;
-	color: #277582;
-	padding: 20px;
-}
-label {
-	color: black;
-	font-size: 17px;
-}
+        .typography {
+            margin-top: 10px;
+            color: white;
+            margin-left: 10px;
+            font-size: 20px
 
-span {
-	font-size: 8px;
-}
-a {
-	margin-right: 150px;
-	text-align: center;
-	font-size: 8px;
-}
-.formContainer {
-    width: 30%;
-    direction: rtl;
-	left: 0;
-    margin-top: 12vh;
-    margin-left: 20vh;
-	position: absolute;
-}
-input[type=text], input[type=password] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: transparent;
-  background: lightgray;
-  box-sizing: border-box;
-}
+        }
 
-button {
-  background-color: #000000;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-}
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
 
-button:hover {
-  opacity: 0.8;
-}
+        /* Firefox */
+        input[type=number] {
+          -moz-appearance: textfield;
+        }
 
+           .btn {
+               background-color: #E16539;
+               border-color: transparent;
+               color: white;
+               cursor: pointer;
+               margin-top: 20px;
+           }
 
-.imgcontainer {
-  text-align: center;
-  margin: 24px 0 12px 0;
-    font-weight: bold;
-}
-
-img.avatar {
-    width: 60px;
-  border-radius: 50%;
-}
-
-.container {
-  padding: 16px;
-}
-
-span {
-  float: right;
-  padding-top: 16px;
-}
-
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-  span {
-     display: block;
-     float: none;
-  }
-}
 </style>
 
 </head>
 
 <body>
 
-<a href="{% url 'user:login' %}" style="font-size: 22px ; position: absolute ; margin-top: 30px ; margin-left: 40px ; cursor: pointer">بازگشت</a>
+<div class="logoHolder">
 
-<div class="formContainer">
-
-    <form id="forgetForm">
-  <div class="imgcontainer" style="direction: ltr">
-    <img src="/media/{{ about.logo }}" alt="PowerGrow" class="avatar">
-      PowerGrow
-  </div>
-
-  <div class="container">
-    <label for="number"><b>شماره تلفن</b>
-    <input id="number" type="text" placeholder="9123456789" name="number" required>
-        </label>
-
-    <button type="submit" style="margin-top: 30px">ارسال</button>
-
-            <h5 id="error" style="margin-top: 30px ; position: absolute ; color: red ; margin-right: 150px"></h5>
-
-  </div>
-</form>
+    <img alt="" src="/media/{{ about.logo }}" class="logo">
+    <div class="typography">PowerGrow</div>
 
 </div>
 
-<img src="../../static/images/otp.jpg" style="width: 50% ; right: 0; position: absolute ; height: 100%" alt="">
+
+<h2>شماره موبایل خود را بدون 0 وارد کنید</h2>
+
+<div class="otp-field">
+    <label>
+        <input type="number" maxlength="1" />
+    </label>
+    <label>
+        <input type="number" maxlength="1" />
+    </label>
+     <label>
+        <input type="number" maxlength="1" />
+    </label>
+    <label>
+        <input type="number" maxlength="1" />
+    </label>
+    <label>
+        <input class="space" type="number" maxlength="1" />
+    </label>
+    <label>
+        <input type="number" maxlength="1" />
+    </label>
+    <label>
+        <input type="number" maxlength="1" />
+    </label>
+    <label>
+        <input type="number" maxlength="1" />
+    </label>
+     <label>
+        <input type="number" maxlength="1" />
+    </label>
+    <label>
+        <input type="number" maxlength="1" />
+    </label>
+</div>
+
+<button id="submit" class="btn btn-outline-light btn-lg px-5" type="submit">ثبت نام</button>
+
 
 </body>
 
 
 <script>
 
-    const forgetForm = document.getElementById('forgetForm');
-    const username = document.getElementById('number');
+    const verificationForm = document.getElementById('verificationForm');
+    const code = document.getElementById('otp');
+    const number = {{ number }};
+    const param = {'is_active' : 'True'};
+    const otp = {{ response|safe }};
 
+    const inputs = document.querySelectorAll(".otp-field label input");
 
-    forgetForm.addEventListener("submit", async function (event) {
-    event.preventDefault();
+    for (let i = 0; i < inputs.length; i++) {
+        inputs[i].addEventListener('keydown', function(event) {
+    if (event.key==="Backspace" ) {
+      inputs[i].value='' ;
+      if (i !==0) inputs[i - 1].focus(); }
+    else {
+      if (i===inputs.length-1 && inputs[i].value !=='' ) {
+          submit()
+          return true
+      }
+      else if (event.keyCode> 47 && event.keyCode < 58) {
+          inputs[i].value=event.key;
+          if (i !==inputs.length - 1) inputs[i + 1].focus(); event.preventDefault(); }
+      else if (event.keyCode> 64 && event.keyCode < 91) {
+          inputs[i].value=String.fromCharCode(event.keyCode);
+          if (i !==inputs.length - 1) inputs[i + 1].focus(); event.preventDefault(); } } })
+    }
 
-    const response = await fetch('api/'+'+98'+username.value, {
+async function submit() {
+
+    let code = "";
+    inputs.forEach((input) => {
+        code += input.value;
+    });
+     const response = await fetch('api/'+'+98'+username.value, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -157,10 +213,15 @@ span {
     });
     if (response.status===200){
         window.location.assign("../verification/"+'+98'+username.value)
-    }else {
-            document.getElementById('error').innerHTML = response.statusText
+    } else {
+        alert("شماره وارد شده نامعتبر است")
+        code  = ''
+         inputs.forEach((input) => {
+             input.value = ''
+         });
+        inputs[0].select()
     }
-});
+}
 
 </script>
 
