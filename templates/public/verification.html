@@ -178,7 +178,6 @@
           if (i !==inputs.length - 1) inputs[i + 1].focus(); event.preventDefault(); } } })
     }
 
-
 async function submit() {
 
     let code = "";
@@ -213,7 +212,7 @@ async function submit() {
     }
     }
     else {
-        alert("کد وارد شده تادرست است")
+        alert("کد وارد شده نادرست است")
         code  = ''
          inputs.forEach((input) => {
              input.value = ''
