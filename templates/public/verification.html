@@ -214,6 +214,10 @@ async function submit() {
     }
     else {
         alert("کد وارد شده تادرست است")
+        code  = ''
+         inputs.forEach((input) => {
+             input.innerHTML = ''
+         });
     }
 }
 
