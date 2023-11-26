@@ -165,9 +165,6 @@
     </label>
 </div>
 
-<button id="submit" class="btn btn-outline-light btn-lg px-5" type="submit">ثبت نام</button>
-
-
 </body>
 
 
@@ -184,6 +181,7 @@
       if (i !==0) inputs[i - 1].focus(); }
     else {
       if (i===inputs.length-1 && inputs[i].value !=='' ) {
+          submit()
           return true
       }
       else if (event.keyCode> 47 && event.keyCode < 58) {
@@ -193,11 +191,6 @@
           inputs[i].value=String.fromCharCode(event.keyCode);
           if (i !==inputs.length - 1) inputs[i + 1].focus(); event.preventDefault(); } } })
     }
-
-    btn.addEventListener("click",async function () {
-        await submit()
-    })
-
 
     async function submit() {
 
