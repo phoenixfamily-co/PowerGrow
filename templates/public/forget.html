@@ -107,14 +107,15 @@
         input[type=number] {
           -moz-appearance: textfield;
         }
+        .br-on-mobile {
+            display: none;
+        }
 
-           .btn {
-               background-color: #E16539;
-               border-color: transparent;
-               color: white;
-               cursor: pointer;
-               margin-top: 20px;
-           }
+        @media screen and (max-width: 600px) {
+            .br-on-mobile {
+                display: inherit;
+            }
+        }
 
 </style>
 
@@ -148,7 +149,7 @@
     <label>
         <input class="space" type="number" maxlength="1" />
     </label>
-    <br class="d-md-none">
+    <br class="br-on-mobile">
     <label>
         <input type="number" maxlength="1" />
     </label>
