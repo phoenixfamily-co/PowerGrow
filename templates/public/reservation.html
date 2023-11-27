@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,12 +13,15 @@
             src="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.js"></script>
 
 
-    <title>PowerGrow</title>
+     <title>اجاره سالن</title>
+
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
 
 
     <style>
-
-        @font-face {
+         @font-face {
             font-family: BYekan;
             font-style: normal;
             font-weight: normal;
@@ -34,40 +38,15 @@
             vertical-align: middle;
         }
 
-        .mySlides {
-            display: block;
-            width: 70%;
-            right: 0;
-            height: 500px;
-            float: right;
-        }
-
-        .tab {
-            direction: rtl;
-            unicode-bidi: bidi-override;
-            right: 0;
-            position: absolute;
-            margin-top: 4%;
-            margin-right: 5%;
-            z-index: 10 !important;
-
-        }
-
-        .tab-button {
-            background-color: transparent;
-            border-color: transparent;
-            color: white;
-            font-family: BYekan, serif !important;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
         .logoHolder {
             width: 50px;
-            margin-left: 50%;
             position: absolute;
+            left: 0;
+            right: 0;
+            margin-right: 55%;
             margin-top: 1%;
             z-index: 10 !important;
+            direction: ltr;
 
         }
 
@@ -89,50 +68,15 @@
 
         }
 
-        .login {
-            width: 150px;
-            position: absolute;
-            margin-top: 4%;
-            margin-left: 28%;
-            z-index: 10 !important;
-            direction: rtl;
-            unicode-bidi: bidi-override;
-        }
-
-        .loginTypography {
-            color: white;
-            position: absolute;
-            background-color: transparent;
-            border-color: transparent;
-            font-family: BYekan, serif !important;
-            direction: rtl;
-            font-size: 16px;
-            margin-right: 10%;
-            cursor: pointer;
-        }
-
-        .slideshow-container {
-            max-width: 100%;
-            position: relative;
-            margin: auto;
-        }
 
         .dropdown {
             position: relative;
             display: inline-block;
         }
 
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            width: 100px;
-            background-color: #f9f9f9;
-            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-            padding: 12px 16px;
-            z-index: 1;
-        }
 
-        .dropdown:hover .dropdown-content {
+
+        .dropdown:hover {
             display: block;
 
         }
@@ -150,18 +94,73 @@
             background-color: #f1f1f1
         }
 
-
-        @keyframes fade {
-            from {
-                opacity: .4
-            }
-            to {
-                opacity: 1
-            }
+        html{
+            min-height: 100%;
+            position: relative;
+            font-family: BYekan, serif !important;
         }
 
-        /* On smaller screens, decrease text size */
-        @media only screen and (max-width: 300px) {
+        body {
+            direction: rtl;
+            margin-bottom: 1100px;
+
+        }
+
+        .navbar.navbar-dark.bg-dark li a{
+            color: #fff;
+        }
+
+          .navbar.navbar-dark.bg-dark a:hover{
+              color: grey;
+        }
+
+       .nav.navbar-nav li a {
+           color: #fff;
+           text-decoration: none;
+       }
+
+        .nav.navbar-nav a:hover {
+            color: grey;
+        }
+
+        .nav-pills > li > a.active {
+            background-color: #E16539 !important;
+        }
+
+        .nav.navbar-nav.navbar-left {
+            margin-left: 20px;
+        }
+
+        footer{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background: #303030;
+
+        }
+
+        .map{
+            height: 100% ;
+            width: 20% ;
+            margin-right: 40%
+        }
+
+        .footer-container{
+            height: 250px;
+        }
+
+        .footer-logo{
+            height: 100%;
+            float: left;
+        }
+
+         ul {
+            list-style-type: none;
+        }
+
+        footer ul li {
+            margin-top: 30px;
         }
 
         .card {
@@ -199,51 +198,6 @@
             border-color: transparent;
             color: white;
             cursor: pointer;
-        }
-
-
-        .contentWrapper {
-            height: 250px;
-            width: 100%;
-            padding: 2rem;
-            background: #303030;
-            color: white;
-            font-weight: 500;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 0.2rem;
-            position: relative;
-
-        }
-
-        .content {
-            height: 250px;
-        }
-
-        .footer {
-            height: 50px;
-            width: 100%;
-            font-weight: 500;
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            font-size: 12px;
-            gap: 0.2rem;
-            padding-top: 10px;
-            padding-left: 20px;
-            position: absolute;
-            bottom: 0;
-            color: #B1B2B2;
-            background: #151111;
-
-        }
-
-        body, html {
-            height: auto;
-            font-family: BYekan, serif !important;
-            background: #ACACAC;
-
         }
 
         hr {
@@ -290,51 +244,50 @@
             letter-spacing: 3px;
         }
 
-.month .prev {
-  float: left;
-    margin-top: 20px;
-    cursor: pointer;
-}
+        .month .prev {
+            float: left;
+            margin-top: 20px;
+            cursor: pointer;
+        }
 
-.month .next {
-  float: right;
-    margin-top: 20px;
-    cursor: pointer;
-}
+        .month .next {
+            float: right;
+            margin-top: 20px;
+            cursor: pointer;
+        }
 
-.weekdays {
-  margin: 0;
-  padding: 5px 0;
-  background-color: #ddd;
-    direction: rtl;
-    border-top-left-radius: 20px
+        .weekdays {
+            margin: 0;
+            padding: 5px 0;
+            background-color: #ddd;
+            direction: rtl;
+            border-top-left-radius: 20px
+        }
 
-}
+        .weekdays li {
+          display: inline-block;
+          width: 12.6%;
+          color: #666;
+          text-align: center;
+        }
 
-.weekdays li {
-  display: inline-block;
-  width: 12.6%;
-  color: #666;
-  text-align: center;
-}
+        .days {
+            padding: 5px 0;
+            margin: 0;
+            direction: rtl;
+            border-bottom-left-radius: 20px;
+        }
 
-.days {
-  padding: 5px 0;
-  margin: 0;
-    direction: rtl;
-    border-bottom-left-radius: 20px;
-}
-
-.days li {
-    list-style-type: none;
-    display: inline-block;
-    width: 13.3%;
-    text-align: center;
-    margin-bottom: 1px;
-    font-size:16px;
-    color: #000000;
-    cursor: pointer;
-}
+        .days li {
+            list-style-type: none;
+            display: inline-block;
+            width: 13.3%;
+            text-align: center;
+            margin-bottom: 1px;
+            font-size:16px;
+            color: #000000;
+            cursor: pointer;
+        }
         .activeButton {
             border-radius: 50px;
             background: #1a5bbc;
@@ -360,19 +313,19 @@
              margin-right: 10%;
              direction: rtl;
              line-height: 50px;
-}
+         }
 
-.times li {
-    list-style-type: none;
-    display: inline-block;
-    width: 20%;
-    text-align: center;
-    margin-bottom: 10px;
-    font-size:16px;
-    color: #000000;
-    background: #afb6b6;
-    cursor: pointer;
-}
+        .times li {
+            list-style-type: none;
+            display: inline-block;
+            width: 20%;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size:16px;
+            color: #000000;
+            background: #afb6b6;
+            cursor: pointer;
+        }
 
         .selectedTime{
             list-style-type: none;
@@ -387,82 +340,102 @@
         }
 
 
-.reservedTime{
-    list-style-type: none;
-    display: inline-block;
-    width: 20%;
-    text-align: center;
-    margin-bottom: 10px;
-    font-size:16px;
-    color: white !important;
-    background: #ff0c0c !important;
-    cursor: none;
-    pointer-events: none;
-}
+        .reservedTime{
+            list-style-type: none;
+            display: inline-block;
+            width: 20%;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size:16px;
+            color: white !important;
+            background: #ff0c0c !important;
+            cursor: none;
+            pointer-events: none;
+        }
 
-/* Add media queries for smaller screens */
-@media screen and (max-width:720px) {
-  .weekdays li, .days li {width: 13.1%;}
-}
+           @media screen and (max-width: 600px) {
+            .copy{
+                font-size: 12px;
+        }
+               .nav.navbar-nav.navbar-left{
+                   position: absolute;
+                   left: 0;
+                   margin-top: 5%;
+               }
 
-@media screen and (max-width: 420px) {
-  .weekdays li, .days li {width: 12.5%;}
-  .days li .active {padding: 2px;}
-}
+               .map{
+                   height: 200px;
+                   width: 200px;
+                   margin-top: 50px;
+                   margin-right: 30%;
+''
+               }
+               .footer-container{
+                   height: 600px;
+               }
 
-@media screen and (max-width: 290px) {
-  .weekdays li, .days li {width: 12.2%;}
-}
+               .footer-logo{
+                   float: none;
+                   height: 200px;
+                   margin-right: 30%;
+               }
 
+               footer ul li {
+                   margin-top: 10px;
+               }
 
+        }
 
     </style>
 
 </head>
 
-<body onload="getYear()">
+<body>
 
-<div class="tab">
-    <button class="tab-button" onclick="window.location.assign({% url 'home:home' %})">صفحه اصلی</button>
-    <div class="dropdown">
-        <button class="tab-button" onclick="">ورزش ها</button>
-        <i class="fa-solid fa-caret-down" style="color: #ffffff"></i>
-        <div class="dropdown-content">
-            {% for x in sport %}
-
-                <a href="{% url 'product:category' x.id %}">{{ x.title }}</a>
-
-            {% endfor %}
-        </div>
-    </div>
-    <button class="tab-button" style="font-weight: bold;text-decoration: underline; text-underline-position: under"
-            onclick="location.assign({% url 'reservation:reservation' %})">اجاره سالن
-    </button>
-    <button class="tab-button" onclick="window.location.assign({% url 'about:aboutUs' %})">درباره ما</button>
-
-</div>
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid" style="vertical-align: center">
+<ul class="nav nav-pills">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href='{% url 'home:home' %}'>صفحه اصلی</a>
+  </li>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">ورزش ها</a>
+    <ul class="dropdown-menu dropdown-menu-right">
+         {% for x in sport %}
+             <li><a style="color: black ; width: 100% ; text-align: center" class="dropdown-item" href="{% url 'product:category' x.id %}">{{ x.title }}</a></li>
+         {% endfor %}
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'reservation:reservation' %}">اجاره سالن</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href='{% url 'about:aboutUs'%}'>درباره ما</a>
+  </li>
+</ul>
+  <ul class="nav navbar-nav navbar-left">
+      <li><a href='{% url 'user:login' %}'><span class="glyphicon glyphicon-user"></span>ورود و عضویت</a></li>
+    </ul>
+  </div>
+</nav>
 
 <div class="logoHolder">
 
     <img alt="" src="/media/{{ about.logo }}" class="logo">
-    <div class="typography">PowerGrow</div>
+    <div class="typography">550771</div>
 
 </div>
 
-<div class="login">
-    <i class="fa-solid fa-user" style="color: #ffff; position:absolute ; margin-top:5px ; font-size: 16px"></i>
-    <button class="loginTypography" onclick="window.location.assign({% url 'user:login' %})">ورود/عضویت</button>
-</div>
 
-<div class="slideshow-container">
+<div id="carouselExampleIndicators" class="carousel slide " data-ride="carousel" style="height: 32rem">
 
-    <div class="mySlides fade">
-        <img alt="" src="/media/{{ gym.image }}"
-             style="width:100%;height:100% ; border-bottom-left-radius:  20px ; border-top-left-radius: 20px">
-    </div>
+  <div class="carousel-inner">
+
+      <img style="width: 100% ; height: 100%" class="img-responsive" src="/media/{{ x.image }}" alt="slide {{ x.id }}">
+
+  </div>
 
 </div>
-
 
 <div class="card" id="card">
 
@@ -601,25 +574,24 @@
 
 </div>
 
-<div class="contentWrapper">
-    <div class="content">
-        <div style="width:160px;left: 0;bottom: 0; top: 0; position: absolute;margin-left: 20px">
+<footer>
+       <div class="footer-container">
 
-            <h2>PowerGrow</h2>
-            <img class="" src="/media/{{ about.transparent_logo }}"
-                 style="position: absolute;width:160px;margin-top: -22px"
+        <div class="footer-logo">
+
+            <h3 style="color: white ; direction: ltr ; text-align: center ; margin-top: 20px">PowerGrow</h3>
+            <img class="img-responsive" style="width: 200px ; height: 200px"  src="/media/{{ about.transparent_logo }}"
                  alt="">
         </div>
 
-        <div id="map" style="width: 20vw; background: #eee; border: 2px solid #aaa;top: 0 ; bottom:0;
-						   position: absolute;margin-left: -10%">
+       <ul style="float: right">
 
-
-        </div>
+       <li>
+            <div style="display: inline-flex ; width: 350px ">
 
         <i class="fa-solid fa-location-dot"
-           style="color: #ffffff; right: 0 ; position: absolute; margin-top: 20px ; margin-right: 20px; font-size: 30px"></i>
-        <h5 style=" width: 33%;right: 0 ; margin-right: 50px;position: absolute;direction: rtl ; margin-top: 20px;">
+           style="color: #ffffff; font-size: 30px"></i>
+        <h5 style="color:white ; margin-right: 5px">
 
             {% autoescape off %}
 
@@ -627,25 +599,48 @@
 
             {% endautoescape %}
 
-
         </h5>
 
-        <i class="fa-solid fa-phone-flip"
-           style="color: #ffffff; right: 0 ; position: absolute; margin-top: 95px ; margin-right: 20px; font-size: 30px"></i>
-        <h5 style="right: 0 ; margin-right: 60px;position: absolute;direction: rtl ; margin-top: 95px;">
+       </div>
+
+       </li>
+
+
+      <li>
+       <div  style="display: inline-flex ; width: 350px" >
+           <i class="fa-solid fa-phone-flip"
+                   style="color: #ffffff; font-size: 30px"></i>
+        <h5 style="color:white ; margin-right: 5px">
             {{ about.phone }}<br> {{ about.telephone }}
         </h5>
 
-        <a href="https://www.instagram.com/{{ instagram }}"
-           style="right: 0 ; position: absolute ; margin-right:20px ; margin-top: 165px;display: inline">
-            <i class="fa-brands fa-instagram" style="color: #ffffff ; font-size: 30px ;"></i>
-        </a>
+       </div>
 
-        <h5 style="right: 0 ; margin-right: 60px;position: absolute;direction: ltr ; margin-top: 167px;">
+       </li>
+
+       <li>
+
+            <div style="display: inline-flex ; width: 350px">
+
+        <i class="fa-brands fa-instagram"
+           style="color: #ffffff; font-size: 30px"></i>
+        <h5 style="color:white ; margin-right: 5px">
             {{ about.instagram }}
         </h5>
+
+       </div>
+
+       </li>
+
+       </ul>
+
+        <div id="map" class="img-responsive map">
+        </div>
+
     </div>
-    <div class="footer">&copy;<span id="year"
+
+  <!-- Copyright -->
+  <div class="p-3 copy" style="background: #151111 ; color: #B1B2B2; direction: ltr">&copy;<span id="year"
                                     style="font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif'">2023 </span><span> PhoenixFamily. All rights reserved.</span>
         <a href="//www.instagram.com/phoenixfamily.co?igshid=OGQ5ZDc2ODk2ZA=="
            style="right: 0 ; position: absolute ; margin-right:15px">
@@ -656,11 +651,14 @@
         </a>
         <span style="right: 0;margin-right: 90px; position: absolute">Follow us:</span>
     </div>
-</div>
+  <!-- Copyright -->
+</footer>
+
 </body>
 
 
 <script>
+
 
     let lat = {{ about.latitude }};
     let long =     {{ about.longitude }};
@@ -673,14 +671,15 @@
         center: [long, lat],
         minZoom: 2,
         maxZoom: 21,
-        trackResize: true,
-        mapKey: "web.eb9c250015c247e08c5122f824c1541c",
+        trackResize: false,
+        mapKey: "web.3c30ab5c27a242d19aab4bca4e973288",
         poi: true,
         traffic: true,
         mapTypeControllerStatus: {
             show: false,
         }
     });
+
 </script>
 
 <script>
