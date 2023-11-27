@@ -353,6 +353,11 @@
             pointer-events: none;
         }
 
+        .container{
+            width: 70%;
+            height: 30rem;
+        }
+
            @media screen and (max-width: 600px) {
             .copy{
                 font-size: 12px;
@@ -383,6 +388,10 @@
                footer ul li {
                    margin-top: 10px;
                }
+                .container {
+                    width: 100%;
+                    height: 30rem;
+                }
 
         }
 
@@ -426,16 +435,14 @@
 
 </div>
 
+<div class="container">
 
-<div id="carouselExampleIndicators" class="carousel slide " data-ride="carousel" style="height: 32rem">
+          <img style="width: 100% ; height: 100%" class="img-responsive" src="/media/{{ gym.image }}" alt="slide {{ x.id }}">
 
-  <div class="carousel-inner">
-
-      <img style="width: 100% ; height: 100%" class="img-responsive" src="/media/{{ gym.image }}" alt="slide {{ x.id }}">
-
-  </div>
 
 </div>
+
+
 
 <div class="card" id="card">
 
