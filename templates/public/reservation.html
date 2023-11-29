@@ -446,82 +446,93 @@
 
 <div class="card" id="card">
 
+    <ul class="list-group pmd-list pmd-card-list">
+        <li class="list-group-item d-flex align-items-center">
 
-    <ul class="card-title" style="margin-top: 15px">
-        <li style="font-size: 16px;font-weight: bold ">نام سالن :</li>
-        <li style="font-size: 16px;font-weight: bold ;float: left ; margin-right: 10%">{{ gym.title }}</li>
-
-    </ul>
-
-    <hr>
-
-    <ul class="card-title">
-        <li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">تاریخ رزرو :
-        </li>
-        <li id="startDay"
-            style="direction:ltr ; font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin: -4px"></li>
-
-    </ul>
-
-    <hr>
-
-    <ul class="card-title">
-        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">ساعت رزرو :
-        </li>
-        <li id="startTime"
-            style="direction:ltr ;font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px"></li>
-    </ul>
-
-    <hr>
-
-    <ul class="card-title">
-        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">
-            تعداد جلسات رزرو :
-        </li>
-        <li id="timeSession"
-            style="direction:rtl ; font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">
-            1 جلسه
-        </li>
-    </ul>
-
-    <hr>
-
-    <ul class="card-title">
-        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right; margin-top: -4px">اجاره ثابت :</li>
-        <li id="price" style="font-size: 16px;font-weight: bold ;display: inline ; float: left; margin-top: -4px"></li>
-    </ul>
-
-    <hr>
-
-    <ul class="card-title">
-        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; ; margin-top: -4px">تخفیف :</li>
-        <li id="off" style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; ; margin-top: -4px"></li>
-    </ul>
-
-    <hr>
-
-    <ul class="card-title">
-        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -10px">قیمت نهایی :
-        </li>
-        <li id="final" style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -10px"></li>
-    </ul>
-
-    <ul class="card-title" style="margin-top: 20px">
-        <li style="font-size: 12px;font-weight: bold ;display: inline ; float: right ; margin-top: -25px ; direction: rtl">
-            <label>
-                <input id="checkbox" type="checkbox" style="margin-top: 3px ; position: absolute; cursor: pointer;">
-            </label>
-            <a style="margin-right: 15px">شرابط این قرارداد را میپذیرم</a>
-        </li>
-        <li style="font-size: 12px;font-weight: bold ;display: inline ; float: left ; margin-top: -22px ; color: blue ; cursor: pointer;">
-            <a href="/media/{{ gym.contract }}">مشاهده قرارداد</a>
+            <p class="pmd-list-title">
+                نام سالن
+            </p>
+            <p class="pmd-list-subtitle">
+                {{ gym.title }}
+            </p>
         </li>
     </ul>
 
 
-    <button id="registerButton" class="card-button">
-        ثبت نام کنید
-    </button>
+
+{##}
+{#        <li style="font-size: 16px;font-weight: bold ">نام سالن :</li>#}
+{#        <li style="font-size: 16px;font-weight: bold ;float: left ; margin-right: 10%"></li>#}
+{##}
+{##}
+{##}
+{#    <ul class="card-title">#}
+{#        <li style="font-size: 16px; font-weight: bold ;float: right">تاریخ رزرو :#}
+{#        </li>#}
+{#        <li id="startDay"#}
+{#            style="direction:ltr ; font-size: 16px; font-weight: bold ;float: left"></li>#}
+{##}
+{#    </ul>#}
+{##}
+{#    <hr>#}
+{##}
+{#    <ul class="card-title">#}
+{#        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">ساعت رزرو :#}
+{#        </li>#}
+{#        <li id="startTime"#}
+{#            style="direction:ltr ;font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px"></li>#}
+{#    </ul>#}
+{##}
+{#    <hr>#}
+{##}
+{#    <ul class="card-title">#}
+{#        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">#}
+{#            تعداد جلسات رزرو :#}
+{#        </li>#}
+{#        <li id="timeSession"#}
+{#            style="direction:rtl ; font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">#}
+{#            1 جلسه#}
+{#        </li>#}
+{#    </ul>#}
+{##}
+{#    <hr>#}
+{##}
+{#    <ul class="card-title">#}
+{#        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right; margin-top: -4px">اجاره ثابت :</li>#}
+{#        <li id="price" style="font-size: 16px;font-weight: bold ;display: inline ; float: left; margin-top: -4px"></li>#}
+{#    </ul>#}
+{##}
+{#    <hr>#}
+{##}
+{#    <ul class="card-title">#}
+{#        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; ; margin-top: -4px">تخفیف :</li>#}
+{#        <li id="off" style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; ; margin-top: -4px"></li>#}
+{#    </ul>#}
+{##}
+{#    <hr>#}
+{##}
+{#    <ul class="card-title">#}
+{#        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -10px">قیمت نهایی :#}
+{#        </li>#}
+{#        <li id="final" style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -10px"></li>#}
+{#    </ul>#}
+{##}
+{#    <ul class="card-title" style="margin-top: 20px">#}
+{#        <li style="font-size: 12px;font-weight: bold ;display: inline ; float: right ; margin-top: -25px ; direction: rtl">#}
+{#            <label>#}
+{#                <input id="checkbox" type="checkbox" style="margin-top: 3px ; position: absolute; cursor: pointer;">#}
+{#            </label>#}
+{#            <a style="margin-right: 15px">شرابط این قرارداد را میپذیرم</a>#}
+{#        </li>#}
+{#        <li style="font-size: 12px;font-weight: bold ;display: inline ; float: left ; margin-top: -22px ; color: blue ; cursor: pointer;">#}
+{#            <a href="/media/{{ gym.contract }}">مشاهده قرارداد</a>#}
+{#        </li>#}
+{#    </ul>#}
+{##}
+{##}
+{#    <button id="registerButton" class="card-button">#}
+{#        ثبت نام کنید#}
+{#    </button>#}
 
 
 </div>
