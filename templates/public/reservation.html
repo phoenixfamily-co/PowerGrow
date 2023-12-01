@@ -771,21 +771,22 @@
     let lat = {{ about.latitude }};
     let long =     {{ about.longitude }};
 
-    {#const map = new nmp_mapboxgl.Map({#}
-    {#    mapType: nmp_mapboxgl.Map.neshanVector,#}
-    {#    container: "map",#}
-    {#    zoom: 15,#}
-    {#    pitch: 0,#}
-    {#    center: [long, lat],#}
-    {#    minZoom: 2,#}
-    {#    maxZoom: 21,#}
-    {#    trackResize: false,#}
-    {#    mapKey: "web.3c30ab5c27a242d19aab4bca4e973288",#}
-    {#    poi: true,#}
-    {#    traffic: true,#}
-    {#    mapTypeControllerStatus: {#}
-    {#        show: false,#}
-    {#    }#}
+    const map = new nmp_mapboxgl.Map({
+        mapType: nmp_mapboxgl.Map.neshanVector,
+        container: "map",
+        zoom: 15,
+        pitch: 0,
+        center: [long, lat],
+        minZoom: 2,
+        maxZoom: 21,
+        trackResize: false,
+        mapKey: "web.3c30ab5c27a242d19aab4bca4e973288",
+        poi: true,
+        traffic: true,
+        mapTypeControllerStatus: {
+            show: false,
+        }
+    });
 
 </script>
 
@@ -1028,7 +1029,7 @@
                   times.appendChild(timeItem)
         }
 
-               const timeButton = document.querySelectorAll('col');
+               const timeButton = document.querySelectorAll('.col');
             Array.from(timeButton).forEach(function (btn) {
                 btn.addEventListener('click', async function () {
                      const selected = document.querySelectorAll('.selectedTime')
