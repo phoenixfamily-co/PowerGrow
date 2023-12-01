@@ -1011,15 +1011,19 @@
         res = JSON.parse(JSON.stringify(res))
 
               for (let i = 0 ; i< res.length ; i++){
-            const timeItem = document.createElement("div")
+                  const timeCover = document.createElement("div")
+                  const timeItem = document.createElement("div")
                   timeItem.innerHTML = res[i].time
                   timeItem.setAttribute("id",`${i}`)
                   timeItem.setAttribute("itemid",res[i].id)
-                  timeItem.classList.add("col")
+                  timeCover.classList.add("col")
+                  timeItem.classList.add("d-flex align-items-center justify-content-between")
+                  timeCover.appendChild(timeItem)
+
                   if (res[i].reserved ===true){
                       timeItem.classList.add("reservedTime")
                   }
-                  times.appendChild(timeItem)
+                  times.appendChild(timeCover)
         }
 
                const timeButton = document.querySelectorAll('.col');
