@@ -564,7 +564,8 @@
     let capacity = {{product.capacity}};
     const registerButton = document.createElement("button")
     const card = document.getElementById("card")
-    const btnCover = document.getElementById("btn-list-li")
+    const btnUl = document.getElementById("btn-list")
+    const btnLi = document.getElementById("btn-list-li")
 
     const cookieValue = document.cookie
         .split("; ")
@@ -573,14 +574,10 @@
 
     if (parseInt(participants) < parseInt(capacity)){
 
-        registerButton.classList.add("card-button")
-        registerButton.innerHTML = "ثبت نام کنید"
 
     }else {
-        registerButton.classList.remove("card-button")
-        registerButton.classList.add("disabled-button")
-        registerButton.innerHTML = "ضرفیت تکمیل است"
-        btnCover.appendChild(registerButton)
+        btnUl.children.item(1).classList.add("disabled-button")
+        btnUl.children.item(1).innerHTML = "ضرفیت تکمیل است"
     }
 
     card.appendChild(registerButton)
