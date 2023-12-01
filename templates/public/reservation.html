@@ -447,6 +447,7 @@
                      border-radius: 1rem;
                      margin-top: 15px;
                  }
+
                  .description {
                      width: 100%;
                      height: auto;
@@ -553,6 +554,7 @@
                 تعداد جلسات رزرو:
             </h6>
             <h6 id="timeSession" class="list-group-left">
+                1
             </h6>
         </li>
     </ul>
@@ -591,8 +593,8 @@
         <li class="list-group-item-fixed">
 
             <div class="list-group-right">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-                <label class="form-check-label" for="flexCheckChecked">
+                <input class="form-check-input" type="checkbox" value="" id="accept">
+                <label class="form-check-label" for="accept">
                     شرابط این قرارداد را میپذیرم
                 </label>
             </div>
@@ -787,7 +789,7 @@
     let date
     let time
     let session = 1
-    let checkedValue = document.getElementById("checkbox")
+    let checkedValue = document.getElementById("accept")
     let holidayBox = document.getElementById("holidayBox")
     let holiday
 
