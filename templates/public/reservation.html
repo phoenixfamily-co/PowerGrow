@@ -276,7 +276,7 @@
              line-height: 50px;
          }
 
-        .col-md-4 {
+        .col {
             height: 60px;
             text-align: center;
             font-size:16px;
@@ -1015,7 +1015,7 @@
                   timeItem.innerHTML = res[i].time
                   timeItem.setAttribute("id",`${i}`)
                   timeItem.setAttribute("itemid",res[i].id)
-                  timeItem.classList.add("col-md-4")
+                  timeItem.classList.add("col")
                   if (res[i].reserved ===true){
                       timeItem.classList.add("reservedTime")
                   }
