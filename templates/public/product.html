@@ -433,12 +433,14 @@
         </li>
     </ul>
 
-    <ul id="btn-list" class="list-group list-group-flush">
-        <li id="btn-list-li">
+    <ul class="list-group list-group-flush">
+
+        <li class="list-group-item">
              <button id="registerButton" class="card-button">
         ثبت نام کنید
              </button>
         </li>
+
     </ul>
 
 </div>
@@ -562,11 +564,9 @@
 
     let participants = {{participants}};
     let capacity = {{product.capacity}};
-    const registerButton = document.createElement("button")
     const card = document.getElementById("card")
-    const btnUl = document.getElementById("btn-list")
-    const btnLi = btnUl.getElementById("btn-list-li")
-    const btn = btnLi.getElementById("registerButton")
+    const registerButton = document.createElement("registerButton")
+
 
     const cookieValue = document.cookie
         .split("; ")
