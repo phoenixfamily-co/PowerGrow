@@ -276,7 +276,7 @@
              line-height: 50px;
          }
 
-        .col {
+        .col-md-4 {
             width: 80px;
             height: 60px;
             text-align: center;
@@ -653,7 +653,7 @@
 
     <div class="container" style="margin-top: 5% ; margin-right: 5%">
 
-    <div id="times" class="row row-cols-3 justify-content-start gy-3">
+    <div id="times" class="row justify-content-start gy-3">
 
     </div>
 
@@ -1016,7 +1016,7 @@
                   timeItem.innerHTML = res[i].time
                   timeItem.setAttribute("id",`${i}`)
                   timeItem.setAttribute("itemid",res[i].id)
-                  timeItem.classList.add("col")
+                  timeItem.classList.add("col-md-4")
                   if (res[i].reserved ===true){
                       timeItem.classList.add("reservedTime")
                   }
