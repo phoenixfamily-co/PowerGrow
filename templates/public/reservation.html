@@ -838,6 +838,10 @@
     let currentDay = today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
     let currentMonth = today[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
 
+    document.addEventListener("DOMContentLoaded", function() {
+        getYear()
+    });
+
 
     async function getYear() {
 
