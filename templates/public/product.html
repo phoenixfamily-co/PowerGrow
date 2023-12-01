@@ -565,7 +565,7 @@
     let participants = {{participants}};
     let capacity = {{product.capacity}};
     const card = document.getElementById("card")
-    const registerButton = document.querySelectorAll(".list-group.list-group-item.card-button")
+    const registerButton = document.querySelectorAll(".list-group.list-group-item")
 
 
     const cookieValue = document.cookie
@@ -577,8 +577,8 @@
 
 
     }else {
-        registerButton.classList.add("disabled-button")
-        registerButton.innerHTML = "ضرفیت تکمیل است"
+        registerButton.item(0).classList.add("disabled-button")
+        registerButton.item(0).innerHTML = "ضرفیت تکمیل است"
     }
 
     card.appendChild(registerButton)
