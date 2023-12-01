@@ -276,7 +276,7 @@
              line-height: 50px;
          }
 
-        .col {
+        .simpleTime {
             height: 60px;
             text-align: center;
             font-size:16px;
@@ -1017,7 +1017,7 @@
                   timeItem.setAttribute("id",`${i}`)
                   timeItem.setAttribute("itemid",res[i].id)
                   timeCover.classList.add("col")
-                  timeItem.classList.add("d-flex align-items-center justify-content-between")
+                  timeItem.classList.add("simpleTime d-flex align-items-center justify-content-between")
                   timeCover.appendChild(timeItem)
 
                   if (res[i].reserved ===true){
@@ -1026,7 +1026,7 @@
                   times.appendChild(timeCover)
         }
 
-               const timeButton = document.querySelectorAll('.col');
+               const timeButton = document.querySelectorAll('.simpleTime');
             Array.from(timeButton).forEach(function (btn) {
                 btn.addEventListener('click', async function () {
                      const selected = document.querySelectorAll('.selectedTime')
