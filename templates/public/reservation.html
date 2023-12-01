@@ -319,8 +319,8 @@
             width: 70%;
             height: 30rem;
             float: right;
-            border-top-left-radius: 1rem;
-            border-bottom-left-radius: 1rem;
+            border-radius: 1rem 1rem 1rem 0;
+
         }
          .list-group-item-fixed {
              width: auto;
@@ -421,6 +421,8 @@
 
                 .product-img{
                     width: 100%;
+                    border-radius: 0 0 1rem 1rem;
+                    margin-bottom: 15px;
                 }
 
                  .date-picker {
@@ -489,11 +491,8 @@
 
 </div>
 
-<div class="product-img">
+<img class="img-responsive product-img" src="/media/{{ gym.image }}" alt="{{ x.id }}">
 
-    <img style="width: 100% ; height: 100%" class="img-responsive" src="/media/{{ gym.image }}" alt="slide {{ x.id }}">
-
-</div>
 
 
 <div class="card" id="card">
