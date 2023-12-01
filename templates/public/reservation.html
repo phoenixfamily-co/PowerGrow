@@ -535,7 +535,7 @@
             <h6 class="list-group-right">
                 تاریخ رزرو:
             </h6>
-            <h6 class="list-group-left">
+            <h6 id="startDay" class="list-group-left">
             </h6>
         </li>
     </ul>
@@ -545,7 +545,7 @@
             <h6 class="list-group-right">
                 ساعت رزرو:
             </h6>
-            <h6 class="list-group-left">
+            <h6 id="startTime" class="list-group-left">
             </h6>
         </li>
     </ul>
@@ -555,7 +555,7 @@
             <h6 class="list-group-right">
                 تعداد جلسات رزرو:
             </h6>
-            <h6 class="list-group-left">
+            <h6 id="timeSession" class="list-group-left">
             </h6>
         </li>
     </ul>
@@ -565,7 +565,7 @@
             <h6 class="list-group-right">
                 اجاره ثابت:
             </h6>
-            <h6 class="list-group-left">
+            <h6 id="price" class="list-group-left">
             </h6>
         </li>
     </ul>
@@ -575,7 +575,7 @@
             <h6 class="list-group-right">
                تخفیف:
             </h6>
-            <h6 class="list-group-left">
+            <h6 id="off" class="list-group-left">
             </h6>
         </li>
     </ul>
@@ -585,7 +585,7 @@
             <h6 class="list-group-right">
                قیمت نهایی:
             </h6>
-            <h6 class="list-group-left">
+            <h6 id="final" class="list-group-left">
             </h6>
         </li>
     </ul>
@@ -990,9 +990,6 @@
     let price = document.getElementById("price")
     let off = document.getElementById("off")
     let final = document.getElementById("final")
-
-
-
 
         async function getTimes(day) {
 
