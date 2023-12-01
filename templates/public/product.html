@@ -184,6 +184,19 @@
             cursor: pointer;
         }
 
+        .disabled-button{
+            height: 50px;
+            margin-top: 4%;
+            width: 90%;
+            opacity: 0.5;
+            background: #e4633a;
+            border-color: transparent;
+            color: white;
+            cursor: none;
+
+        }
+
+
         .product-img{
             width: 70%;
             height: 30rem;
@@ -563,6 +576,7 @@
         registerButton.innerHTML = "ثبت نام کنید"
 
     }else {
+        registerButton.classList.remove("card-button")
         registerButton.classList.add("disabled-button")
         registerButton.innerHTML = "ضرفیت تکمیل است"
     }
