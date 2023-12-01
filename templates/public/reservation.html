@@ -972,12 +972,11 @@
                     await getTimes(button.getAttribute("itemid"))
                     startDay.innerHTML = `${result[0].number}/${result[0].months[monthPosition].number}/${button.textContent}`
                     date = `${result[0].number}-${result[0].months[monthPosition].number}-${button.textContent}`
-                    console.log(date)
 
                 })
             })
 
-         if(monthPosition===0) {
+         if(monthPosition===2) {
             getTimes(currentDayId)
         }
     }
