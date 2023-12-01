@@ -433,8 +433,8 @@
         </li>
     </ul>
 
-    <ul class="list-group list-group-flush">
-        <li>
+    <ul id="btn-list" class="list-group list-group-flush">
+        <li id="btn-list-li">
              <button id="registerButton" class="card-button">
         ثبت نام کنید
              </button>
@@ -564,6 +564,7 @@
     let capacity = {{product.capacity}};
     const registerButton = document.createElement("button")
     const card = document.getElementById("card")
+    const btnCover = document.getElementById("btn-list-li")
 
     const cookieValue = document.cookie
         .split("; ")
@@ -579,6 +580,7 @@
         registerButton.classList.remove("card-button")
         registerButton.classList.add("disabled-button")
         registerButton.innerHTML = "ضرفیت تکمیل است"
+        btnCover.appendChild(registerButton)
     }
 
     card.appendChild(registerButton)
