@@ -30,11 +30,13 @@ def product_view(request, pk, session, day):
 
 
 def payment_view(request, pk, session, day):
+    about = AboutUs.objects.values().first()
     product = Course.objects.filter(id=pk).values().first()
     sessions = Sessions.objects.filter(id=session).values().first()
     days = Days.objects.filter(id=day).values().first()
     template = loader.get_template('public/payment.html')
     context = {
+        "about": about,
         "product": product,
         "session": sessions,
         "day": days,
