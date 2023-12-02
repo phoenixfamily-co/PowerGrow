@@ -37,7 +37,7 @@ def payment_view(request, pk, session, day):
     context = {
         "product": product,
         "session": sessions,
-        "days": days,
+        "day": days,
     }
     return HttpResponse(template.render(context, request))
 
