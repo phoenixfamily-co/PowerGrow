@@ -24,15 +24,18 @@
             box-sizing: border-box
         }
 
+             html{
+                 position: relative;
+                 font-family: BYekan, serif !important;
+        }
+
             body {
-                margin: 0;
-                font-family: "Poppins", sans-serif;
                 display: flex;
+                direction: rtl;
                 justify-content: center;
                 align-items: center;
                 flex-direction: column;
                 background: #282a36;
-                height: 100vh;
                 color: #fff;
             }
 
@@ -60,6 +63,10 @@
             margin-left: 10px;
             font-size: 20px
 
+        }
+
+            ul {
+            list-style-type: none;
         }
 
            .card {
@@ -203,7 +210,7 @@
     <ul class="list-group list-group-flush">
         <li>
              <button id="registerButton" class="card-button">
-        رزرو کنید
+        پرداخت
              </button>
         </li>
     </ul>
