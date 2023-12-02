@@ -188,7 +188,7 @@
                 روزها برگزاری:
             </h6>
             <h6 id="startTime" class="list-group-left">
-                {{ time.time | date:"G:i:s" }}
+                {{ days.title}}
             </h6>
         </li>
     </ul>
@@ -232,6 +232,7 @@
                شهریه ثابت:
             </h6>
             <h6 class="list-group-left">
+                {{ product.price }}
             </h6>
         </li>
     </ul>
@@ -242,6 +243,7 @@
                تخفیف:
             </h6>
             <h6 class="list-group-left">
+                {{ product.off }}
             </h6>
         </li>
     </ul>
@@ -275,8 +277,8 @@
 
 <script>
 
-    let off = "{{ course.off }}";
-    let price = "{{ course.price }}";
+    let off = "{{ product.off }}";
+    let price = "{{ product.price }}";
     let final = document.getElementById("final")
 
     final.innerHTML = (parseInt(price) - (parseInt(off) / 100 * parseInt(price))).toString() + " " + "تومان"
