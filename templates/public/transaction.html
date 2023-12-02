@@ -123,9 +123,16 @@
         }
 
         #zarinpal{
-            margin:auto
-        } #zarinpal img {
-                      width: 80px;
+            margin:auto;
+            pointer-events: none;
+            cursor: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+            #zarinpal img {
+                width: 80px;
             }
 
         @media screen and (max-width: 600px) {
@@ -223,14 +230,6 @@
         </li>
     </ul>
 
-       <ul class="list-group list-group-flush">
-        <li class="list-group-item-fixed">
-              <div id="zarinpal">
-                  <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script>
-              </div>
-        </li>
-    </ul>
-
 
     <ul class="list-group list-group-flush">
         <li>
@@ -239,6 +238,10 @@
              </button>
         </li>
     </ul>
+
+    <div id="zarinpal">
+        <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script>
+    </div>
 
 
 </div>
