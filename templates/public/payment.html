@@ -232,7 +232,7 @@
                شهریه ثابت:
             </h6>
             <h6 class="list-group-left">
-                {{ product.price }}
+                {{ product.tuition }}
             </h6>
         </li>
     </ul>
@@ -278,7 +278,7 @@
 <script>
 
     let off = "{{ product.off }}";
-    let price = "{{ product.price }}";
+    let price = "{{ product.tuition }}";
     let final = document.getElementById("final")
 
     final.innerHTML = (parseInt(price) - (parseInt(off) / 100 * parseInt(price))).toString() + " " + "تومان"
