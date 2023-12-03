@@ -23,7 +23,7 @@ ZP_API_STARTPAY = f"https://{sandbox}.zarinpal.com/pg/StartPay/"
 description = "رزرو سالن چند منظور حجاب"  # Required
 phone = 'YOUR_PHONE_NUMBER'  # Optional
 # Important: need to edit for realy server.
-CallbackURL = 'http://127.0.0.1:8080/reservation/verify/'
+CallbackURL = 'http://pwergrow.net/reservation/verify/'
 
 
 def reservation_view(request):
@@ -188,6 +188,7 @@ def verify(authority):
         "Amount": 10000,
         "Authority": authority,
     }
+
     data = json.dumps(data)
     # set content length by data
     headers = {'content-type': 'application/json', 'content-length': str(len(data))}
@@ -196,7 +197,7 @@ def verify(authority):
     if response.status_code == 200:
         response = response.json()
         if response['Status'] == 100:
-            return {'status': True, 'RefID': response['RefID']}
+            return JsonResponse({'status': True, 'RefID': response['RefID']})
         else:
-            return {'status': False, 'code': str(response['Status'])}
+            return JsonResponse({'status': False, 'code': str(response['Status'])})
     return response
