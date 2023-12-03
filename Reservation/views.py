@@ -23,7 +23,7 @@ ZP_API_STARTPAY = f"https://{sandbox}.zarinpal.com/pg/StartPay/"
 description = "رزرو سالن چند منظور حجاب"  # Required
 phone = 'YOUR_PHONE_NUMBER'  # Optional
 # Important: need to edit for realy server.
-CallbackURL = 'http://pwergrow.net/reservation/verify/'
+CallbackURL = 'http://powergrow.net/reservation/verify/'
 
 
 def reservation_view(request):
