@@ -1,5 +1,6 @@
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, JsonResponse
 from django.template import loader
+from flask import redirect
 from rest_framework import viewsets, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -20,7 +21,7 @@ ZP_API_REQUEST = f"https://{sandbox}.zarinpal.com/pg/rest/WebGate/PaymentRequest
 ZP_API_VERIFY = f"https://{sandbox}.zarinpal.com/pg/rest/WebGate/PaymentVerification.json"
 ZP_API_STARTPAY = f"https://{sandbox}.zarinpal.com/pg/StartPay/"
 
-amount = 1000  # Rial / Required
+amount = 10000  # Rial / Required
 description = "توضیحات مربوط به تراکنش را در این قسمت وارد کنید"  # Required
 phone = 'YOUR_PHONE_NUMBER'  # Optional
 # Important: need to edit for realy server.
@@ -159,7 +160,7 @@ def send_request(request):
         "MerchantID": settings.MERCHANT,
         "Amount": amount,
         "Description": description,
-        "Phone": phone,
+        # "Phone": phone,
         "CallbackURL": CallbackURL,
     }
     data = json.dumps(data)
@@ -171,16 +172,16 @@ def send_request(request):
         if response.status_code == 200:
             response = response.json()
             if response['Status'] == 100:
-                return {'status': True, 'url': ZP_API_STARTPAY + str(response['Authority']),
-                        'authority': response['Authority']}
+                return redirect(ZP_API_STARTPAY + str(response['Authority']))
+
             else:
-                return {'status': False, 'code': str(response['Status'])}
-        return response
+                return JsonResponse({'status': False, 'code': str(response['Status'])})
+        return JsonResponse(response)
 
     except requests.exceptions.Timeout:
-        return {'status': False, 'code': 'timeout'}
+        return JsonResponse({'status': False, 'code': 'timeout'})
     except requests.exceptions.ConnectionError:
-        return {'status': False, 'code': 'connection error'}
+        return JsonResponse({'status': False, 'code': 'connection error'})
 
 
 def verify(authority):
