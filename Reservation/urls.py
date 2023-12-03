@@ -16,7 +16,7 @@ urlpatterns = [
     path('transaction/<int:gym>/<int:time>/<int:session>/<str:holiday>/', transaction_view, name='transaction'),
     path('successful/<int:gym>/<int:time>/<int:session>/<str:holiday>/', successful_view, name='successful'),
     path('request/<int:amount>/', send_request, name='request'),
-    path('verify/', successful_view , name='verify'),
+    path('verify/', verify , name='verify'),
 
 
 ]
