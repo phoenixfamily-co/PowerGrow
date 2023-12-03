@@ -153,12 +153,12 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-def send_request(request, amount, description, phone):
+def send_request(request, amount):
     data = {
         "MerchantID": merchant,
         "Amount": amount,
-        "Description": description,
-        "Phone": phone,
+        "Description": "",
+        "Phone": "",
         "CallbackURL": CallbackURL,
     }
     data = json.dumps(data)
