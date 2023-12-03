@@ -20,8 +20,6 @@ else:
 ZP_API_REQUEST = f"https://{sandbox}.zarinpal.com/pg/rest/WebGate/PaymentRequest.json"
 ZP_API_VERIFY = f"https://{sandbox}.zarinpal.com/pg/rest/WebGate/PaymentVerification.json"
 ZP_API_STARTPAY = f"https://{sandbox}.zarinpal.com/pg/StartPay/"
-
-amount = 10000  # Rial / Required
 description = "توضیحات مربوط به تراکنش را در این قسمت وارد کنید"  # Required
 phone = 'YOUR_PHONE_NUMBER'  # Optional
 # Important: need to edit for realy server.
@@ -155,7 +153,7 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-def send_request(request):
+def send_request(request, amount):
     data = {
         "MerchantID": settings.MERCHANT,
         "Amount": amount,
@@ -187,7 +185,7 @@ def send_request(request):
 def verify(authority):
     data = {
         "MerchantID": settings.MERCHANT,
-        "Amount": amount,
+        "Amount": 10000,
         "Authority": authority,
     }
     data = json.dumps(data)
