@@ -259,15 +259,13 @@
     let price = "{{ time.price }}";
     let final = document.getElementById("final")
     const registerButton = document.querySelector(".list-group li button")
-    let description = "hey"
-    let  phone = "09022981378"
 
 
     final.innerHTML = (parseInt(price) - (parseInt(off) / 100 * parseInt(price))).toString() + " " + "تومان"
 
 
     registerButton.addEventListener("click",function () {
-        window.location.assign('/reservation/request/${description}/${phone}/')
+        window.location.assign(`/reservation/request/${(parseInt(price) - (parseInt(off) / 100 * parseInt(price)))}`)
 
     })
 
