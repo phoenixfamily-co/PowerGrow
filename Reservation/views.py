@@ -1,6 +1,6 @@
 from django.http import HttpResponse, Http404, JsonResponse
+from django.shortcuts import redirect
 from django.template import loader
-from flask import redirect
 from rest_framework import viewsets, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
