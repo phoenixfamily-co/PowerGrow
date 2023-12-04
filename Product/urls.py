@@ -6,6 +6,7 @@ app_name = 'product'
 urlpatterns = [
     path('<int:pk>/<int:session>/<int:day>/', product_view, name='product'),
     path('api/course/', CourseView.as_view({'post': 'create', 'get': 'list'}), name='courses'),
+    path('course/', courses_view, name='courses_view'),
     path('api/course/<int:pk>/', CourseView.as_view({'delete': 'destroy'}), name='delete-courses'),
     path('api/participate/', ParticipationView.as_view({'post': 'create', 'get': 'list'}), name='participate'),
     path('api/admin/participate/<int:pk>/', ManagerParticipationView.as_view({'delete': 'destroy'}),
@@ -17,7 +18,7 @@ urlpatterns = [
     path('api/days/<int:pk>/', DaysView.as_view({'get': 'list'}), name='days'),
     path('api/sessions/', SessionView.as_view({'post': 'create'}), name='creat_sessions'),
     path('api/sessions/<int:pk>/', SessionView.as_view({'get': 'list'}), name='sessions'),
-    path('sport/<int:pk>/', course_view, name='category'),
+    path('sport/<int:pk>/', category_view, name='category'),
     path('sports/', sports_view, name='sports_view'),
     path('api/sport/create/', SportView.as_view({'post': 'create'}), name='create_sports'),
     path('api/sport/', SportView.as_view({'post': 'create', 'get': 'list'}), name='sports'),

@@ -58,7 +58,7 @@ def check_view(request, pk, session, day):
     return HttpResponse(template.render(context, request))
 
 
-def course_view(request, pk):
+def category_view(request, pk):
     template = loader.get_template('public/category.html')
     about = AboutUs.objects.values().first()
     sport = Sport.objects.all()
@@ -80,6 +80,17 @@ def sports_view(request):
     context = {
         "about": about,
         "sport": sport,
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def courses_view(request):
+    template = loader.get_template('manager/courses.html')
+    course = Course.objects.all()
+    about = AboutUs.objects.values().first()
+    context = {
+        "about": about,
+        "course": course,
     }
     return HttpResponse(template.render(context, request))
 
