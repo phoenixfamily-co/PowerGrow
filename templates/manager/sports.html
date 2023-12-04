@@ -100,17 +100,13 @@
   <div class="container-fluid" style="vertical-align: center">
 <ul class="nav nav-pills">
   <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href='{% url 'home:home' %}'>ورود به سایت</a>
+    <a class="nav-link active" aria-current="page" href='{% url 'product:create_sports' %}'>جدید</a>
   </li>
 </ul>
 
   <ul class="nav nav-pills navbar-left">
-      <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">سلام {{ user.name }} عزیز</a>
-    <ul class="dropdown-menu dropdown-menu-right">
-        <li><a style="color: black ; width: 100% ; text-align: center" class="dropdown-item" href="">پروفایل</a></li>
-        <li><a style="color: black ; width: 100% ; text-align: center" class="dropdown-item" href="">خروج</a></li>
-    </ul>
+      <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href='{% url 'home:home' %}'>برگشت</a>
   </li>
     </ul>
   </div>
