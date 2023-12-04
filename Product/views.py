@@ -76,7 +76,9 @@ def course_view(request, pk):
 def sports_view(request):
     template = loader.get_template('manager/sports.html')
     sport = Sport.objects.all()
+    about = AboutUs.objects.values().first()
     context = {
+        "about": about,
         "sport": sport,
     }
     return HttpResponse(template.render(context, request))
