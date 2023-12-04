@@ -20,13 +20,82 @@
             url("/static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */ url("../../static/fonts/BYekan.ttf") format('truetype') /* Safari, Android, iOS */
         }
 
-     body, html {
-         height: auto;
-         position: relative;
-         font-family: BYekan, serif !important;
-         direction: rtl;
+             * {
+            box-sizing: border-box
+        }
+
+            .logoHolder {
+            width: 50px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin-right: 55%;
+            margin-top: 1%;
+            z-index: 10 !important;
+            direction: ltr;
 
         }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            position: absolute;
+            direction: ltr
+
+        }
+
+        .typography {
+            position: absolute;
+            margin-left: 60px;
+            margin-top: 20%;
+            color: white;
+            font-size: 20px
+
+        }
+           html {
+               min-height: 100%;
+               position: relative;
+               font-family: BYekan, serif !important;
+           }
+
+           body {
+               direction: rtl;
+           }
+
+           .navbar.navbar-dark.bg-dark li a{
+            color: #fff;
+        }
+
+          .navbar.navbar-dark.bg-dark a:hover{
+              color: grey;
+        }
+
+       .nav.navbar-nav li a {
+           color: #fff;
+           text-decoration: none;
+       }
+
+        .nav.navbar-nav a:hover {
+            color: grey;
+        }
+
+        .nav-pills > li > a.active {
+            background-color: #E16539 !important;
+        }
+
+        .display-5{
+            position: relative;
+            width: 100%;
+            height: auto;
+            margin-top: -20px;
+            text-align: center;
+        }
+
+        .nav.navbar-nav.navbar-left {
+            margin-left: 20px;
+        }
+
      .site{
   display:grid;
   grid-template-columns:2fr 1fr;
@@ -279,6 +348,34 @@
     <title>PowerGrow</title>
 </head>
 <body>
+
+
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid" style="vertical-align: center">
+<ul class="nav nav-pills">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href='{% url 'home:home' %}'>ورود به سایت</a>
+  </li>
+</ul>
+
+  <ul class="nav navbar-nav navbar-left">
+      <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">سلام {{ user.name }} عزیز</a>
+    <ul class="dropdown-menu dropdown-menu-right">
+        <li><a style="color: black ; width: 100% ; text-align: center" class="dropdown-item" href="{% url 'product:category' x.id %}">پروفایل</a></li>
+    </ul>
+  </li>
+      <li><a href='{% url 'user:login' %}'><span class="glyphicon glyphicon-user nav-link active"></span>ورود و عضویت</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="logoHolder">
+
+    <img alt="" src="/media/{{ about.logo }}" class="logo">
+    <div class="typography">PowerGrow</div>
+
+</div>
 
 <div class="site">
   <header class="mastheader" onclick="window.open('https://powergrow.net/home/api/slider/','_blank')">
