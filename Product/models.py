@@ -24,8 +24,6 @@ class Course(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
     type = models.CharField(max_length=100, choices=TYPE_CHOICE, default='public')
     time = models.TextField(blank=True, null=True)
-    tuition = models.IntegerField()
-    off = models.IntegerField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     image = models.ImageField(upload_to="images/", blank=True, null=True)
     profile = models.ImageField(upload_to="images/", blank=True, null=True)
@@ -44,6 +42,8 @@ class Sessions(models.Model):
 class Days(models.Model):
     reserved = models.BooleanField(blank=True, null=True)
     title = models.TextField(blank=True, null=True)
+    tuition = models.IntegerField()
+    off = models.IntegerField(blank=True, null=True)
     session = models.ForeignKey(Sessions, on_delete=models.CASCADE, related_name='days', null=True, blank=True)
 
 
