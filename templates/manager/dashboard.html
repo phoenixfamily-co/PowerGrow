@@ -70,17 +70,6 @@
             font-weight: bolder;
         }
 
-           .course-popup-content{
-
-               background-color: white;
-               border-radius: 1rem;
-               height: 150px;
-               width: 50%;
-               margin: 10% auto;
-               border: 1px solid #888888;
-               font-weight: bolder;
-  }
-
   .calendar-popup-content{
 
       background-color: white;
@@ -265,20 +254,6 @@
 
 }
 
-/* Add media queries for smaller screens */
-@media screen and (max-width:720px) {
-  .weekdays li, .days li {width: 13.1%;}
-}
-
-@media screen and (max-width: 420px) {
-  .weekdays li, .days li {width: 12.5%;}
-  .days li .active {padding: 2px;}
-}
-
-@media screen and (max-width: 290px) {
-  .weekdays li, .days li {width: 12.2%;}
-}  ul {list-style-type: none;}
-
 
    [class*="col-"] {
        background-color: #E16539;
@@ -289,6 +264,26 @@
        vertical-align: center;
        border-radius: 1rem;
 }
+
+   .course-popup-content{
+
+       background-color: white;
+       border-radius: 1rem;
+       height: 150px;
+       width: 50%;
+       font-size: 16px ;
+       margin: 10% auto;
+       border: 1px solid #888888;
+       font-weight: bolder;
+
+   }
+
+           @media screen and (max-width: 600px) {
+               .course-popup-content{
+                   font-size: 11px ;
+               }
+
+           }
 
 
 
