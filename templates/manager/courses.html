@@ -142,7 +142,7 @@
         <td>{{ x.gender }}</td>
         <td>{{ x.type }}</td>
         <td>{{ x.time }}</td>
-        <td>{{ x.capacity }}</td>
+        <td>{{ x.participants|length }}/{{ x.capacity }}</td>
     </tr>
    {% endfor %}
   </tbody>
