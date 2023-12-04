@@ -350,10 +350,18 @@
     </div>
 </div>
 
+<div class="modal fade" id="coursePopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">تعداد و روز جلسات را انتخاب کنید</h5>
+        <button id="exit" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
 
-<div id="coursePopup" class="popup">
-    <div class="course-popup-content" style="direction: rtl">
-        <div class="container-fluid p-4">
+              <div class="container-fluid p-4">
 
             <div class="row">
                 <div onclick="window.location.assign('/product/api/admin/participate/')" class="col-sm-6 col-lg-8">ثبت نام</div>
@@ -366,8 +374,12 @@
                 <div onclick="window.location.assign('/product/api/days/')" class="col-6 col-sm-4 px-5">روز جدید</div>
             </div>
         </div>
+
+      </div>
     </div>
+  </div>
 </div>
+
 
 
 <div id="accessPopup" class="popup">
