@@ -100,7 +100,7 @@
   <div class="container-fluid" style="vertical-align: center">
 <ul class="nav nav-pills">
   <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href='{% url 'product:create_sports' %}'>اضافه کردن</a>
+    <a class="nav-link active" aria-current="page" href='javascript:window.open("{% url 'product:create_sports' %}")'>اضافه کردن</a>
   </li>
 </ul>
 
@@ -124,6 +124,7 @@
   <thead>
     <tr>
       <th scope="col">#</th>
+        <th scope="col"> </th>
       <th scope="col">نام ورزش</th>
     </tr>
   </thead>
@@ -131,6 +132,7 @@
   {% for x in sport %}
     <tr>
       <th scope="row">{{ x.id }}</th>
+        <th><i class="fa fa-times" aria-hidden="true" style="color: red ; cursor: pointer"></i></th>
       <td>{{ x.title }}</td>
     </tr>
    {% endfor %}
