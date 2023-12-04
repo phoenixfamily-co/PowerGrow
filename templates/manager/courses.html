@@ -130,6 +130,7 @@
         <th scope="col">نوع</th>
         <th scope="col">زمان</th>
         <th scope="col">ظرفیت</th>
+        <th scope="col">ورزش</th>
 
     </tr>
   </thead>
@@ -143,6 +144,7 @@
         <td>{{ x.type }}</td>
         <td>{{ x.time }}</td>
         <td>{{ x.participants|length }}/{{ x.capacity }}</td>
+        <td>{{ x.sport.title }}</td>
     </tr>
    {% endfor %}
   </tbody>
