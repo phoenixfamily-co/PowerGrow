@@ -45,7 +45,6 @@ class CourseSerializer(serializers.ModelSerializer):
 
 class SportSerializer(serializers.ModelSerializer):
     courses = CourseSerializer(read_only=True, many=True)
-    depth = 0
 
     class Meta:
         model = Sport
