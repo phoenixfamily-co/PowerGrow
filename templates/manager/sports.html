@@ -132,7 +132,7 @@
   {% for x in sport %}
     <tr>
       <th scope="row">{{ x.id }}</th>
-        <th><i class="fa fa-times" aria-hidden="true" style="color: red ; cursor: pointer"></i></th>
+        <th><i id="{{ x.id }}" class="fa fa-times" aria-hidden="true" style="color: red ; cursor: pointer"></i></th>
       <td>{{ x.title }}</td>
     </tr>
    {% endfor %}
@@ -140,6 +140,17 @@
 </table>
 
 </body>
+
+<script>
+    let remove = document.querySelectorAll(".fa .fa-times")
+     Array.from(remove).forEach(function (button) {
+         button.addEventListener('click', async function () {
+             console.log(button.id)
+         })
+     })
+
+
+</script>
 
 
 </html>
