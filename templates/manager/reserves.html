@@ -106,7 +106,7 @@
   <div class="container-fluid" style="vertical-align: center">
 <ul class="nav nav-pills">
   <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href='javascript:window.open("{% url 'reservation:create_gym' %}")'>اضافه کردن</a>
+    <a class="nav-link active" aria-current="page" href='javascript:window.open("{% url 'product:create_days' %}")'>اضافه کردن</a>
   </li>
 </ul>
 
@@ -131,20 +131,38 @@
     <tr>
       <th scope="col">#</th>
         <th scope="col"> </th>
-      <th scope="col">نام سالن</th>
+      <th scope="col">نام</th>
+        <th scope="col">توضیحات</th>
+        <th scope="col">زمان</th>
+        <th scope="col">تعطیلات</th>
+        <th scope="col">تعداد جلسه</th>
         <th scope="col">قرارداد</th>
+        <th scope="col">قیمت</th>
+        <th scope="col">نام رزرو کننده</th>
+        <th scope="col">سالن</th>
+        <th scope="col">تاریخ ثبت</th>
+        <th scope="col">ساخته شده توسط</th>
     </tr>
   </thead>
   <tbody>
-  {% for x in gym %}
+  {% for x in reserve %}
     <tr>
       <th scope="row">{{ x.id }}</th>
         <th onclick="window.open('{% url 'product:delete_sessions' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
       <td>{{ x.title }}</td>
-        <td> <a href="javascript:window.open('/media/{{ x.contract }}')">
+        <td>{{ x.description }}</td>
+        <td>{{ x.time.day.month.year.number }}/{{ x.time.day.month.number }}/{{ x.time.day.number }} | {{ x.time.time }} </td>
+        <td>{{ x.holiday }}</td>
+        <td>{{ x.session }}</td>
+          <td> <a href="javascript:window.open('/media/{{ x.contract }}')">
                 مشاهده قرارداد
             </a>
         </td>
+        <td>{{ x.price }}</td>
+        <td>{{ x.user.name }}</td>
+        <td>{{ x.gym.title }}</td>
+        <td>{{ x.datetime }}</td>
+        <td>{{ x.created.name }}</td>
     </tr>
    {% endfor %}
   </tbody>

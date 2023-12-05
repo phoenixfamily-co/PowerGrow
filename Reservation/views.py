@@ -88,6 +88,17 @@ def gym_view(request):
     return HttpResponse(template.render(context, request))
 
 
+def reserve_view(request):
+    about = AboutUs.objects.values().first()
+    reserve = Reservations.objects.all()
+    template = loader.get_template('manager/reserves.html')
+    context = {
+        "about": about,
+        "reserve": reserve,
+    }
+    return HttpResponse(template.render(context, request))
+
+
 class GymView(viewsets.ModelViewSet):
     queryset = Gym.objects.all()
     serializer_class = GymSerializer

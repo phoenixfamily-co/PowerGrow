@@ -7,6 +7,7 @@ app_name = 'reservation'
 urlpatterns = [
 
     path('', reservation_view, name='reservation'),
+    path('reserve/', reserve_view , name='reserve_view'),
     path('api/reserve/', ReservationView.as_view({'post': 'create', 'get': 'list'}), name='reserve'),
     path('api/admin/reserve/<int:time>/', ManagerAddReservationView.as_view({'post': 'create', 'get': 'list'}),
          name='admin-reserve'),
