@@ -146,7 +146,7 @@ class DaysView(viewsets.ModelViewSet):
         return queryset
 
     def destroy(self, request, *args, **kwargs):
-        queryset = Days.objects.filter(course=self.kwargs.get('pk'))
+        queryset = Days.objects.filter(id=self.kwargs.get('pk'))
         queryset.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
