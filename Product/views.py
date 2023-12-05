@@ -112,7 +112,7 @@ def day_view(request):
     about = AboutUs.objects.values().first()
     context = {
         "about": about,
-        "session": day,
+        "day": day,
     }
     return HttpResponse(template.render(context, request))
 
