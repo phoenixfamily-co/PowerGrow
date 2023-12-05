@@ -140,13 +140,13 @@ class SearchView(viewsets.generics.ListAPIView):
 class DaysView(viewsets.ModelViewSet):
     queryset = Days.objects.all()
     serializer_class = DaysSerializer
-    lookup_field = 'id'
+    lookup_field = 'course'
 
 
 class SessionView(viewsets.ModelViewSet):
     queryset = Sessions.objects.all()
     serializer_class = SessionSerializer
-    lookup_field = 'id'
+    lookup_field = 'course'
 
 
 class ParticipationView(viewsets.ModelViewSet):
