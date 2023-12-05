@@ -181,6 +181,27 @@
             color: white
 		}
 
+           .navbar.navbar-dark.bg-dark li a{
+            color: #fff;
+        }
+
+          .navbar.navbar-dark.bg-dark a:hover{
+              color: grey;
+        }
+
+       .nav.navbar-nav li a {
+           color: #fff;
+           text-decoration: none;
+       }
+
+        .nav.navbar-nav a:hover {
+            color: grey;
+        }
+
+        .nav-pills > li > a.active {
+            background-color: #E16539 !important;
+        }
+
 .account-settings .user-profile {
     margin: 0 0 1rem 0;
     padding-bottom: 1rem;
@@ -295,8 +316,24 @@
 {#        <input id="password2" type="password" placeholder="تکرار رمز عبور جدید" class="fixPhoneNumber"/>#}
 {#    </label>#}
 
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid" style="vertical-align: center">
+<ul class="nav nav-pills">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href='javascript: window.open("{% url 'product:create_courses' %}")'>اضافه کردن</a>
+  </li>
+</ul>
 
-<div class="container">
+  <ul class="nav nav-pills navbar-left">
+      <li class="nav-item">
+    <a class="nav-link" aria-current="page" href='javascript: history.go(-1)'>برگشت</a>
+  </li>
+    </ul>
+  </div>
+</nav>
+
+
+<div class="container" style="margin-top: 100px">
 <div class="row gutters">
 	<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
 		<div class="card h-100">
