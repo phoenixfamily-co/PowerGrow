@@ -158,8 +158,11 @@
         <td>{{ x.number }}</td>
         <td>{{ x.birthdate }}</td>
         <td>{{ x.datetime }}</td>
+        {% if user.is_staff == True %}
 
-        <td>{{ x.time }}</td>
+        <td>مدیر</td>
+
+        {% endif %}
 
         <td>{{ x.salary}}</td>
         <td>{{ x.fee}}</td>
