@@ -146,7 +146,7 @@
   {% for x in day %}
     <tr>
       <th scope="row">{{ x.id }}</th>
-        <th onclick="window.open('{% url 'product:delete_sessions' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
+        <th onclick="window.open('{% url 'product:delete-days' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
       <td>{{ x.title }}</td>
         <td>{{ x.tuition }}</td>
         <td>{{ x.off }}</td>
