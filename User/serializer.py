@@ -11,13 +11,12 @@ from .models import User
 class AdminRegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('number', 'password', 'gender', 'name', 'birthdate', 'is_active', 'is_teacher', 'is_superuser',
+        fields = ('number', 'password', 'name', 'birthdate', 'is_active', 'is_teacher', 'is_superuser',
                   'is_staff', 'created')
         extra_kwargs = {
             'password': {'write_only': True},
             'created' : {'read_only': True}
         }
-        depth = 1
 
     def create(self, validated_data):
         created = None
@@ -29,7 +28,6 @@ class AdminRegisterSerializer(serializers.ModelSerializer):
 
             number=validated_data['number'],
             name=validated_data['name'],
-            gender=validated_data['gender'],
             password=make_password(validated_data['password']),
             birthdate=validated_data['birthdate'],
             is_active=validated_data['is_active'],
@@ -63,7 +61,7 @@ class AdminRegisterSerializer(serializers.ModelSerializer):
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('number', 'password', 'gender', 'name', 'birthdate')
+        fields = ('number', 'password', 'name', 'birthdate')
         extra_kwargs = {
             'password': {'write_only': True}
         }
@@ -73,7 +71,6 @@ class RegisterSerializer(serializers.ModelSerializer):
 
             number=validated_data['number'],
             name=validated_data['name'],
-            gender=validated_data['gender'],
             password=make_password(validated_data['password']),
             birthdate=validated_data['birthdate'],
 
@@ -122,21 +119,12 @@ class UpdateProfileSerializer(serializers.ModelSerializer):
             'number': {'required': False},
             'password': {'required': False},
             'name': {'required': True},
-            'gender': {'required': True},
             'birthdate': {'required': True},
         }
         exclude = ['number', 'password']
 
     def update(self, instance, validated_data):
         instance.name = validated_data.get("name", instance.name)
-        instance.gender = validated_data.get("gender", instance.gender)
-        instance.national = validated_data.get("national", instance.national)
-        instance.birthdate = validated_data.get("birthdate", instance.birthdate)
-        instance.zipCode = validated_data.get("zipCode", instance.zipCode)
-        instance.address = validated_data.get("address", instance.address)
-        instance.accountId = validated_data.get("accountId", instance.accountId)
-        instance.accountNumber = validated_data.get("accountNumber", instance.accountNumber)
-        instance.telephone = validated_data.get("telephone", instance.telephone)
         instance.email = validated_data.get("email", instance.email)
 
         instance.save()
