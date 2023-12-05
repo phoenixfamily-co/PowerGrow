@@ -406,7 +406,7 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
       <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">سلام {{ user.name }} عزیز</a>
     <ul class="dropdown-menu dropdown-menu-right">
-        <li><a style="color: black ; width: 100% ; text-align: center" class="dropdown-item" href="">پروفایل</a></li>
+        <li><a style="color: black ; width: 100% ; text-align: center" class="dropdown-item" href='{% url 'user:profile' user.id %}'>پروفایل</a></li>
         <li><a style="color: black ; width: 100% ; text-align: center" class="dropdown-item" href="">خروج</a></li>
     </ul>
   </li>
@@ -638,7 +638,7 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
 	</div>
         <div class="col-md-3 col-sm-4">
       <div class="wrimagecard wrimagecard-topimage">
-           <a href="{% url 'reservation:gym_view'  %}">
+           <a href="{% url 'reservation:gym_view'%}">
           <div class="wrimagecard-topimage_header" style="background-color:rgba(51, 105, 232, 0.1) ; text-align: center; ">
               <i class="fa fa-fort-awesome" aria-hidden="true" style="display: inline-block ; color: rgba(51, 105, 232, 0.9)"></i>
           </div>
