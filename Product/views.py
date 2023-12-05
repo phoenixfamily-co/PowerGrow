@@ -145,6 +145,11 @@ class DaysView(viewsets.ModelViewSet):
         queryset = Days.objects.filter(session=self.kwargs.get('pk'))
         return queryset
 
+    def destroy(self, request, *args, **kwargs):
+        queryset = Days.objects.filter(course=self.kwargs.get('pk'))
+        queryset.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 class SessionView(viewsets.ModelViewSet):
     queryset = Sessions.objects.all()
@@ -157,6 +162,7 @@ class SessionView(viewsets.ModelViewSet):
     def destroy(self, request, *args, **kwargs):
         queryset = Sessions.objects.filter(course=self.kwargs.get('pk'))
         queryset.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class ParticipationView(viewsets.ModelViewSet):
