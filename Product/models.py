@@ -40,7 +40,6 @@ class Sessions(models.Model):
 
 
 class Days(models.Model):
-    reserved = models.BooleanField(blank=True, null=True)
     title = models.TextField(blank=True, null=True)
     tuition = models.IntegerField()
     off = models.IntegerField(blank=True, null=True)

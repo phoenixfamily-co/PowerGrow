@@ -95,6 +95,28 @@ def courses_view(request):
     return HttpResponse(template.render(context, request))
 
 
+def session_view(request):
+    template = loader.get_template('manager/sessions.html')
+    session = Sessions.objects.all()
+    about = AboutUs.objects.values().first()
+    context = {
+        "about": about,
+        "session": session,
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def day_view(request):
+    template = loader.get_template('manager/days.html')
+    day = Days.objects.all()
+    about = AboutUs.objects.values().first()
+    context = {
+        "about": about,
+        "session": day,
+    }
+    return HttpResponse(template.render(context, request))
+
+
 class CourseView(viewsets.ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
