@@ -141,7 +141,9 @@
       <th scope="row">{{ x.id }}</th>
         <th onclick="window.open('{% url 'product:delete_sessions' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
       <td>{{ x.title }}</td>
-        <td><a href="https://powergrow.net/media/{{ x.contract }}"></a></td>
+        <td> <a href="/media/{{ gym.contract }}" style="cursor: pointer">
+                مشاهده قرارداد
+            </a></td>
     </tr>
    {% endfor %}
   </tbody>
