@@ -410,33 +410,6 @@
     let holidayBox = document.getElementById("holidayBox")
     let holiday
 
-    const cookieValue = document.cookie
-        .split("; ")
-        .find((row) => row.startsWith("token="))
-        ?.split("=")[1];
-
-    const registerButton = document.getElementById("registerButton")
-
-
-    registerButton.addEventListener('click', function () {
-        if (cookieValue !== undefined) {
-            if (date !==undefined && time!== undefined && checkedValue.checked) {
-                if (holidayBox.checked){
-                    holiday = "False"
-                }else {
-                    holiday = "True"
-                }
-                window.location.assign(`/reservation/transaction/${gym}/${time}/${session}/${holiday}`)
-            }else {
-                alert("فیلدها الزامی میباشد")
-            }
-
-        } else {
-            window.location.assign(`{% url 'user:login'  %}`)
-        }
-
-    })
-
 </script>
 
 <script>
