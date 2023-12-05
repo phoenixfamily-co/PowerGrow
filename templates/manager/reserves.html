@@ -151,7 +151,7 @@
         <th onclick="window.open('{% url 'product:delete_sessions' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
       <td>{{ x.title }}</td>
         <td>{{ x.description }}</td>
-        <td>{{ x.time.day.month.year.number }}/{{ x.time.day.month.number }}/{{ x.time.day.number }} | {{ x.time.time }} </td>
+        <td style="direction: ltr">{{ x.time.day.month.year.number }}/{{ x.time.day.month.number }}/{{ x.time.day.number }} | {{ x.time.time | date:"G:i:s"}} </td>
         <td>{{ x.holiday }}</td>
         <td>{{ x.session }}</td>
           <td> <a href="javascript:window.open('/media/{{ x.contract }}')">
