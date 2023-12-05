@@ -15,6 +15,9 @@
     {% bootstrap_css %}
     {% bootstrap_javascript %}
 
+        <title>پروفایل من</title>
+
+
     <style>
 
         @font-face {
@@ -73,115 +76,6 @@
                color: #bcd0f7;
 
            }
-
-        .solid {
-            border-top: 2px solid black;
-            margin: 24px 16px 16px;
-        }
-
-        .birthday {
-            width: 45%;
-            padding: 12px 20px;
-            margin: 8px 0 0 16px;
-            float: left;
-            display: inline-block;
-            border: transparent;
-            background: lightgray;
-            box-sizing: border-box;
-        }
-
-        .name {
-            width: 45%;
-            padding: 12px 20px;
-            margin: 8px 16px 0 16px;
-            float: right;
-            display: inline-block;
-            border: transparent;
-            background: lightgray;
-            box-sizing: border-box;
-        }
-
-        .phoneNumber {
-            width: 45%;
-            padding: 12px 20px;
-            margin: 8px 16px 16px 0;
-            float: right;
-            display: inline-block;
-            border: transparent;
-            background: lightgray;
-            box-sizing: border-box;
-        }
-
-        .email {
-            width: 45%;
-            padding: 12px 20px;
-            margin: 8px 16px 16px 16px;
-            float: left;
-            display: inline-block;
-            border: transparent;
-            background: lightgray;
-            box-sizing: border-box;
-        }
-
-        .fixPhoneNumber {
-            width: 46%;
-            padding: 12px 20px;
-            margin-left: 2%;
-            float: left;
-            display: inline-block;
-            border: transparent;
-            background: lightgray;
-            box-sizing: border-box;
-        }
-
-        .postCode {
-            width: 45%;
-            padding: 12px 20px;
-            margin: 0 16px 16px 0;
-            float: right;
-            display: inline-block;
-            border: transparent;
-            background: lightgray;
-            box-sizing: border-box;
-        }
-
-
-        .address {
-            width: 97%;
-            padding: 12px 20px;
-            margin: 8px 16px 8px 20px;
-            display: inline-block;
-            border: transparent;
-            background: lightgray;
-            box-sizing: border-box;
-        }
-
-
-       .card-button{
-			position: absolute ;
-            cursor: pointer;
-           left: 0;
-            height: 40px ;
-            width: 100px;
-           margin-top: 5px;
-           margin-left: 15px;
-            background: #598ddd;
-            border-color: transparent ;
-            color: white
-		}
-
-        .exit-button{
-			position: absolute ;
-            cursor: pointer;
-           left: 0;
-            height: 40px ;
-            width: 100px;
-           margin-top: 5px;
-           margin-left: 120px;
-            background: #ff0c0c;
-            border-color: transparent ;
-            color: white
-		}
 
            .navbar.navbar-dark.bg-dark li a{
             color: #fff;
@@ -251,72 +145,10 @@
 }
 
     </style>
-    <title>PowerGrow</title>
+
 </head>
 <body>
 
-{#    <button id="register" class="card-button">#}
-{#        ثبت#}
-{#    </button>#}
-{##}
-{#    <button id="exit" class="exit-button">#}
-{#        خروج#}
-{#    </button>#}
-{##}
-{#    <h3 style="margin-right: 20px">اطلاعات شناسنامه</h3>#}
-{##}
-{#    <hr class="solid">#}
-{##}
-{#    <label>#}
-{#        <input id="birthdate" type="text" placeholder="تاریخ تولد" class="birthday" value="{{ user.birthdate }}"/>#}
-{#    </label>#}
-{#    <label>#}
-{#        <input id="name" type="text" placeholder="نام و نام خانوادگی" class="name" value="{{ user.name }}"/>#}
-{#    </label>#}
-{#    <label>#}
-{#        <input id="email" type="email" placeholder="ایمیل" class="email"/>#}
-{#    </label>#}
-{#    <label>#}
-{#        <input id="number" type="number" placeholder="شماره موبایل" class="phoneNumber" maxlength="10" disabled/>#}
-{#    </label>#}
-{##}
-{#    <h3 style="margin-top: 150px; margin-right: 20px">اطلاعات محل سکونت</h3>#}
-{##}
-{##}
-{#    <hr class="solid">#}
-{##}
-{#    <label>#}
-{#        <input id="address" type="text" placeholder="آدرس" class="address" />#}
-{#    </label>#}
-{#    <label for="zip">#}
-{#        <input id="zip" type="number" placeholder="کد پستی" class="postCode" />#}
-{#    </label>#}
-{#    <label for="tel">#}
-{#        <input id="tel" type="number" placeholder="تلفن ثابت" class="fixPhoneNumber" maxlength="11"/>#}
-{#    </label>#}
-{##}
-{#    <h3 style="margin-top: 70px; margin-right: 20px" >اطلاعات حساب بانکی</h3>#}
-{##}
-{#    <hr class="solid">#}
-{##}
-{#    <label>#}
-{#        <input id="accountNumber" type="number" placeholder="شماره حساب" class="postCode"/>#}
-{#    </label>#}
-{#    <label>#}
-{#        <input id="accountId" type="number" placeholder="شماره شبا" class="fixPhoneNumber"/>#}
-{#    </label>#}
-{##}
-{#    <h3 style="margin-top: 80px; margin-right: 20px" >اطلاعات امنیتی</h3>#}
-{##}
-{#    <hr class="solid">#}
-{##}
-{#    <label>#}
-{#        <input id="password1" type="password" placeholder="رمز عبور جدید" class="postCode"/>#}
-{#    </label>#}
-{##}
-{#    <label>#}
-{#        <input id="password2" type="password" placeholder="تکرار رمز عبور جدید" class="fixPhoneNumber"/>#}
-{#    </label>#}
 
 <nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid" style="vertical-align: center">
@@ -333,6 +165,14 @@
     </ul>
   </div>
 </nav>
+
+<div class="logoHolder">
+
+    <img alt="" src="/media/{{ about.logo }}" class="logo">
+    <div class="typography">PowerGrow</div>
+
+</div>
+
 
 
 <div class="container" style="margin-top: 100px">
@@ -428,68 +268,6 @@
     {#const d = new Date(login);#}
     {#d.toLocaleDateString('fa-IR')#}
     {#console.log(d)#}
-
-</script>
-
-<script>
-    let param1
-    let param2
-    let register = document.getElementById("register")
-
-         register.addEventListener("click", async function (event) {
-    event.preventDefault();
-
-              param1 = {
-                "name": name.value,
-                "password": password1.value,
-                "address": address.value,
-                "email": email.value,
-                "telephone": parseInt(tel.value),
-                "accountNumber": accountNumber.value,
-                "accountId": accountId.value,
-                "zipCode": parseInt(zip.value),
-                "birthdate": birthdate.value,
-                "gender": gender.toString(),
-            }
-
-
-    const response = await fetch(`/user/update/+${username}/`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(param1)
-    });
-    if (response.status===200){
-
-        console.log(password1.value)
-
-        if(password1.value !== '') {
-
-            param2 = {
-                "password": password1.value,
-            }
-
-            const result = await fetch(`/user/verification/password/api/${username}/`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(param2)
-            });
-            if (result.status === 200) {
-                history.back()
-            } else {
-                alert("پسورد ضعیف است")
-            }
-        }
-        else {
-            history.back()
-        }
-    }else {
-        alert("ایمیل نامعتبر است")
-    }
-});
 
 </script>
 
