@@ -449,6 +449,7 @@
     let lastTelephone = "{{ user.telephone }}";
     let lastAccountNumber = "{{ user.accountNumber }}";
     let lastAccountId = "{{ user.accountId }}";
+    let login = "{{ user.last_login }}"
 
     if (lastEmail !=="" || lastEmail !==null){
         email.value = lastEmail
@@ -456,6 +457,10 @@
 
     number.value = username.toString().replace('+98','')
     user.innerHTML = username.toString().replace('+98','')
+
+    const d = new Date(login);
+    d.toLocaleDateString('fa-IR')
+    console.log(d)
 
 </script>
 
