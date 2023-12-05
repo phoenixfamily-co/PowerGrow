@@ -158,15 +158,13 @@
         <td>{{ x.number }}</td>
         <td>{{ x.birthdate }}</td>
         <td>{{ x.datetime }}</td>
+    <td>
         {% if x.is_staff == true %}
-
-        <td>مدیر</td>
-
+            مدیر
             {% else %}
-
-            <td>دانش اموز</td>
-
+            مربی
         {% endif %}
+    </td>
 
         <td>{{ x.salary}}</td>
         <td>{{ x.fee}}</td>
