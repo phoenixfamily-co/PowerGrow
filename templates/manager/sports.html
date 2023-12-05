@@ -137,7 +137,7 @@
   {% for x in sport %}
     <tr>
       <th scope="row">{{ x.id }}</th>
-        <th href='javascript:window.open("{% url 'product:delete-courses' x.id %}")'><i class="fa fa-times remove" aria-hidden="true"></i></th>
+        <th onclick="window.open({% url 'product:delete-courses' x.id %})"><i class="fa fa-times remove" aria-hidden="true"></i></th>
       <td>{{ x.title }}</td>
     </tr>
    {% endfor %}
