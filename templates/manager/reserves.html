@@ -95,6 +95,161 @@
              cursor: pointer
            }
 
+          ul {
+            list-style-type: none;
+        }
+
+         .month {
+            width: 100%;
+            height: 25%;
+            float: right;
+            background: #e4633a;
+            text-align: center;
+            border-top-left-radius: 1rem
+        }
+
+        .month ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        .month ul li {
+            color: white;
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .month .prev {
+            float: right;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .month .next {
+            float: left;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .weekdays {
+            margin: 0;
+            padding: 5px 0;
+            background-color: #ddd;
+            direction: rtl;
+            border-top-left-radius: 1rem
+        }
+
+        .weekdays li {
+          display: inline-block;
+          width: 12.6%;
+          color: #666;
+          text-align: center;
+        }
+
+        .days {
+            padding: 5px 0;
+            margin: 0;
+            direction: rtl;
+            border-bottom-left-radius: 20px;
+        }
+
+        .days li {
+            list-style-type: none;
+            display: inline-block;
+            width: 13.3%;
+            text-align: center;
+            margin-bottom: 1px;
+            font-size:16px;
+            color: #000000;
+            cursor: pointer;
+        }
+        .activeButton {
+            border-radius: 50px;
+            background: #1a5bbc;
+            color: white !important
+        }
+
+         .holidayButton {
+            border-radius: 50px;
+            color: #ff0c0c !important;
+             cursor: pointer;
+        }
+
+         .disActiveButton{
+
+             cursor: none;
+             pointer-events: none;
+             opacity:0.6;
+         }
+
+
+         .times {
+             padding: 10px 0;
+             margin-right: 15px;
+             line-height: 50px;
+         }
+
+        .simpleTime {
+            height: 60px;
+            text-align: center;
+            font-size:16px;
+            color: #000000;
+            line-height: 60px;
+            vertical-align: center;
+            background: #afb6b6;
+            cursor: pointer;
+        }
+
+        .selectedTime{
+            height: 60px;
+            text-align: center;
+            font-size:16px;
+            vertical-align: center;
+            line-height: 60px;
+            color: white !important;
+            background: #1a5bbc !important;
+            cursor: none;
+            pointer-events: none;
+        }
+
+
+        .reservedTime{
+            height: 60px;
+            text-align: center;
+            font-size:16px;
+            color: white !important;
+            vertical-align: center;
+            line-height: 60px;
+            background: #ff0c0c !important;
+            cursor: none;
+            pointer-events: none;
+        }
+
+         .date-time{
+            width: 70%;
+            float: right;
+            margin-top: 15px;
+            display: inline;
+        }
+
+        .date-picker{
+            width: 50%;
+            height: 300px;
+            background: #FFFFFF ;
+            float: right;
+            border-top-left-radius: 1rem;
+            border-bottom-left-radius: 1rem;
+        }
+
+        .time-picker{
+            width: 49%;
+            height: 300px;
+            background: #FFFFFF ;
+            float: left;
+            border-radius: 1rem ;
+        }
+
 
     </style>
     <title>PowerGrow</title>
@@ -106,7 +261,7 @@
   <div class="container-fluid" style="vertical-align: center">
 <ul class="nav nav-pills">
   <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href='javascript:window.open("{% url 'product:create_days' %}")'>اضافه کردن</a>
+    <a class="nav-link active" aria-current="page" href='javascript:submit()'>اضافه کردن</a>
   </li>
 </ul>
 
@@ -167,6 +322,325 @@
    {% endfor %}
   </tbody>
 </table>
+
+<div class="modal fade" id="calendarPopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">زمان رزرو را انتخاب کنید</h5>
+        <button id="exit" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+          <div class="date-time">
+<div class="date-picker">
+    <div class="month">
+  <ul>
+    <li id="next" class="prev">&#10094;</li>
+    <li id="prev" class="next">&#10095;</li>
+      <li id="monthTitle"></li>
+    <li>
+      <span id="yearTitle" style="font-size:18px"></span>
+    </li>
+  </ul>
+</div>
+<ul class="weekdays">
+  <li>ش</li>
+  <li>ی</li>
+  <li>د</li>
+  <li>س</li>
+  <li>چ</li>
+  <li>پ</li>
+  <li>ج</li>
+</ul>
+    <ul id="days" class="days">
+
+    </ul>
+
+    <label for="holidayBox" style="margin-left: 10px ; padding-bottom: 5px; float: left ; position: absolute">
+        <input id="holidayBox" type="checkbox" style="cursor: pointer;">
+        <a >روز های تعطیل محاسبه نشود</a>
+    </label>
+
+</div>
+
+<div class="time-picker">
+
+    <div class="container-fluid p-4">
+
+    <div id="times" class="row justify-content-start  g-3">
+
+    </div>
+
+    </div>
+
+    <label for="number" style="margin-left: 5% ; margin-top: 1% ; margin-bottom: 1% ; float: left">
+        <input id="inputSession" type="number" style="cursor: pointer ; width: 50px ; text-align: center" value="1">
+        <a > تعداد جلسات رزرو </a>
+    </label>
+
+</div>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
+
+<script>
+
+    function submit() {
+        reservePopup.classList.toggle("show");
+    }
+
+</script>
+
+<script>
+
+    let gym = {{ gym.id }};
+    let date
+    let time
+    let session = 1
+    let checkedValue = document.getElementById("accept")
+    let holidayBox = document.getElementById("holidayBox")
+    let holiday
+
+    const cookieValue = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("token="))
+        ?.split("=")[1];
+
+    const registerButton = document.getElementById("registerButton")
+
+
+    registerButton.addEventListener('click', function () {
+        if (cookieValue !== undefined) {
+            if (date !==undefined && time!== undefined && checkedValue.checked) {
+                if (holidayBox.checked){
+                    holiday = "False"
+                }else {
+                    holiday = "True"
+                }
+                window.location.assign(`/reservation/transaction/${gym}/${time}/${session}/${holiday}`)
+            }else {
+                alert("فیلدها الزامی میباشد")
+            }
+
+        } else {
+            window.location.assign(`{% url 'user:login'  %}`)
+        }
+
+    })
+
+</script>
+
+<script>
+
+    let calendar = document.getElementById("calendar")
+    let monthTitle = document.getElementById("monthTitle")
+    let yearTitle = document.getElementById("yearTitle")
+    let prev = document.getElementById("prev")
+    let next = document.getElementById("next")
+    let days = document.getElementById("days")
+    let monthPosition = 2
+    let result
+    let monthSize
+    let startDay = document.getElementById("startDay")
+    let currentDayId
+    let today = new Date().toLocaleDateString('fa-IR');
+    today = today.split('/')
+    let currentDay = today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
+    let currentMonth = today[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
+
+    document.addEventListener("DOMContentLoaded", function() {
+        getYear()
+    });
+
+
+    async function getYear() {
+
+        const response = await fetch('/calendar/api/year/', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        result = await response.json()
+        result = JSON.parse(JSON.stringify(result))
+        monthSize = result[0].months.length
+
+        yearTitle.innerHTML = result[0].number
+        getDays(monthPosition)
+
+    }
+
+        next.addEventListener("click", function () {
+            if (monthPosition > 0) {
+                monthPosition = monthPosition - 1
+                getDays(monthPosition)
+            }
+        })
+
+    prev.addEventListener("click",function () {
+         if (monthPosition<monthSize-1){
+            monthPosition = monthPosition+1
+             getDays(monthPosition)
+        }
+    })
+
+    function getDays(monthPosition) {
+        monthTitle.innerHTML = result[0].months[monthPosition].name
+        const emptyDay = document.createElement("li")
+                emptyDay.innerHTML = ' '
+
+        switch (result[0].months[monthPosition].startDay) {
+
+            case "یکشنبه" :
+                const empty0 = document.createElement("li")
+                days.appendChild(empty0)
+                break
+            case "دوشنبه" :
+                const empty1 = document.createElement("li")
+                days.appendChild(empty1)
+                const empty2 = document.createElement("li")
+                days.appendChild(empty2)
+                break
+
+            case "سه شنبه" :
+               const empty3 = document.createElement("li")
+                days.appendChild(empty3)
+                const empty4 = document.createElement("li")
+                days.appendChild(empty4)
+                const empty5 = document.createElement("li")
+                days.appendChild(empty5)
+                break
+             case "چهارشنبه" :
+                 const empty6 = document.createElement("li")
+                days.appendChild(empty6)
+                const empty7 = document.createElement("li")
+                days.appendChild(empty7)
+                const empty9 = document.createElement("li")
+                days.appendChild(empty9)
+                 const empty10 = document.createElement("li")
+                days.appendChild(empty10)
+
+                break
+             case "پنجشنبه" :
+                const empty11 = document.createElement("li")
+                days.appendChild(empty11)
+                const empty12 = document.createElement("li")
+                days.appendChild(empty12)
+                const empty13 = document.createElement("li")
+                days.appendChild(empty13)
+                 const empty14 = document.createElement("li")
+                days.appendChild(empty14)
+                 const empty15 = document.createElement("li")
+                days.appendChild(empty15)
+                break
+             case "جمعه" :
+                  const empty16 = document.createElement("li")
+                days.appendChild(empty16)
+                const empty17 = document.createElement("li")
+                days.appendChild(empty17)
+                const empty18 = document.createElement("li")
+                days.appendChild(empty18)
+                 const empty19 = document.createElement("li")
+                days.appendChild(empty19)
+                 const empty20 = document.createElement("li")
+                days.appendChild(empty20)
+                 const empty21 = document.createElement("li")
+                days.appendChild(empty21)
+                break
+        }
+        for (let i = 0 ; i< result[0].months[monthPosition].days.length ; i++){
+            const dayItem = document.createElement("li")
+            if (result[0].months[monthPosition].days[i].holiday === true && result[0].months[monthPosition].days[i].number > parseInt(currentDay)) {
+                dayItem.classList.add("holidayButton")
+            }else if ( result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number === parseInt(currentDay))
+            {
+                dayItem.classList.add("activeButton")
+                currentDayId = result[0].months[monthPosition].days[i].id
+                date = `${result[0].number}-${result[0].months[monthPosition].number}-${result[0].months[monthPosition].days[i].number}`
+
+            }else if (result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number < parseInt(currentDay)){
+                dayItem.classList.add("disActiveButton")
+            }
+            dayItem.setAttribute("itemid",result[0].months[monthPosition].days[i].id)
+            days.appendChild(dayItem)
+        }
+         const buttons = document.querySelectorAll('.days li');
+            Array.from(buttons).forEach(function (button) {
+                button.addEventListener('click', async function () {
+                    const selected = document.querySelectorAll('.activeButton')
+                    Array.from(selected).forEach(function (btn) {
+                        btn.classList.remove("activeButton")
+                    })
+                    button.classList.add("activeButton")
+                    await getTimes(button.getAttribute("itemid"))
+                    date = `${result[0].number}-${result[0].months[monthPosition].number}-${button.textContent}`
+
+                })
+            })
+
+         if(monthPosition===2) {
+            getTimes(currentDayId)
+        }
+    }
+
+</script>
+
+
+<script>
+
+    let timeSize
+    let res
+    let times = document.getElementById("times")
+
+        async function getTimes(day) {
+
+        times.innerHTML = ""
+
+        const result = await fetch(`/calendar/api/time/${day}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        res = await result.json()
+        res = JSON.parse(JSON.stringify(res))
+
+              for (let i = 0 ; i< res.length ; i++){
+                  const timeCover = document.createElement("div")
+                  const timeItem = document.createElement("div")
+                  timeItem.innerHTML = res[i].time
+                  timeItem.setAttribute("id",`${i}`)
+                  timeItem.setAttribute("itemid",res[i].id)
+                  timeCover.classList.add("col")
+                  timeItem.classList.add("simpleTime")
+                  timeCover.appendChild(timeItem)
+
+                  if (res[i].reserved ===true){
+                      timeItem.classList.add("reservedTime")
+                  }
+                  times.appendChild(timeCover)
+        }
+
+               const timeButton = document.querySelectorAll('.simpleTime');
+            Array.from(timeButton).forEach(function (btn) {
+                btn.addEventListener('click', async function () {
+                     const selected = document.querySelectorAll('.selectedTime')
+                    Array.from(selected).forEach(function (btn) {
+                        btn.classList.remove("selectedTime")
+                    })
+                   btn.classList.add("selectedTime")
+                    time = btn.getAttribute("itemid")
+                })
+            })
+    }
+</script>
 
 </html>
