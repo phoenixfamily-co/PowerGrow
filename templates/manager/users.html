@@ -141,10 +141,11 @@
         <th scope="col">دسترسی</th>
         <th scope="col">نوع حقوق</th>
         <th scope="col">مقدار حقوق</th>
-        <th scope="col">وضعیت</th>
-        <th scope="col">بدهی</th>
+        <th scope="col">نوع حساب</th>
+        <th scope="col">مقدار حساب</th>
         <th scope="col">توضیحات</th>
         <th scope="col">ساخته شده توسط</th>
+        <th scope="col">وضعیت</th>
 
 
     </tr>
@@ -177,6 +178,7 @@
         <td>{{ x.debt}}</td>
         <td>{{ x.description}}</td>
         <td>{{ x.created.name}}</td>
+        <td>{{ x.is_staff}}</td>
 
     </tr>
    {% endfor %}
