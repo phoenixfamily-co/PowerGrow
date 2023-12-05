@@ -77,6 +77,17 @@ def successful_view(request, gym, time, session, holiday):
     return HttpResponse(template.render(context, request))
 
 
+def gym_view(request):
+    about = AboutUs.objects.values().first()
+    gym = Gym.objects.all()
+    template = loader.get_template('manager/gym.html')
+    context = {
+        "about": about,
+        "gym": gym,
+    }
+    return HttpResponse(template.render(context, request))
+
+
 class GymView(viewsets.ModelViewSet):
     queryset = Gym.objects.all()
     serializer_class = GymSerializer
