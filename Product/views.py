@@ -160,7 +160,7 @@ class SessionView(viewsets.ModelViewSet):
         return queryset
 
     def destroy(self, request, *args, **kwargs):
-        queryset = Sessions.objects.filter(course=self.kwargs.get('pk'))
+        queryset = Sessions.objects.get(id=kwargs.get('pk'))
         queryset.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
