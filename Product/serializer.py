@@ -6,7 +6,7 @@ class ParticipantsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Participants
-        read_only_fields = ['created']
+        read_only_fields = ['created', 'course']
         exclude = ['datetime']
 
 
