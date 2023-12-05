@@ -150,7 +150,7 @@
     let remove = document.querySelectorAll(".remove")
      Array.from(remove).forEach(function (button) {
          button.addEventListener('click', async function () {
-             window.open("{{% url 'product:delete-courses' button.id  %}}")
+             window.open("{% url 'product:delete-courses' button.id  %}")
          })
      })
 
