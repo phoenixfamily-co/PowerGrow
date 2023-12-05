@@ -134,6 +134,7 @@
     <tr>
         <th scope="col">#</th>
         <th scope="col"> </th>
+        <th scope="col"> </th>
         <th scope="col">نام دوره</th>
         <th scope="col">نام مربی</th>
         <th scope="col">جنسیت</th>
@@ -149,6 +150,7 @@
     <tr>
         <th scope="row">{{ x.id }}</th>
         <th onclick="window.open('{% url 'product:delete-sports' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
+        <th onclick="window.open('{% url 'product:create-admin-participate' x.id %}')">ثبت نام</th>
         <td>{{ x.title }}</td>
         <td>{{ x.name }}</td>
         <td>{{ x.gender }}</td>
