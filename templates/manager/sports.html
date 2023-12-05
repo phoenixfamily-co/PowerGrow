@@ -89,6 +89,11 @@
             background-color: #E16539 !important;
         }
 
+        .remove{
+            color: red ;
+            cursor: pointer
+        }
+
 
     </style>
     <title>PowerGrow</title>
@@ -132,7 +137,7 @@
   {% for x in sport %}
     <tr>
       <th scope="row">{{ x.id }}</th>
-        <th><i id="{{ x.id }}" class="fa fa-times" aria-hidden="true" style="color: red ; cursor: pointer"></i></th>
+        <th><i id="{{ x.id }}" class="fa fa-times remove" aria-hidden="true"></i></th>
       <td>{{ x.title }}</td>
     </tr>
    {% endfor %}
@@ -142,7 +147,7 @@
 </body>
 
 <script>
-    let remove = document.querySelectorAll(".fa .fa-times")
+    let remove = document.querySelectorAll(".remove")
      Array.from(remove).forEach(function (button) {
          button.addEventListener('click', async function () {
              console.log(button.id)
