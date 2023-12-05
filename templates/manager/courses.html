@@ -150,7 +150,7 @@
     <tr>
         <th scope="row">{{ x.id }}</th>
         <th onclick="window.open('{% url 'product:delete-sports' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
-        <th onclick="window.open('{% url 'product:create-admin-participate' x.id %}')">ثبت نام</th>
+        <th onclick="window.open('{% url 'product:create-admin-participate' x.id %}')" style="text-decoration: underline ; cursor: pointer">ثبت نام</th>
         <td>{{ x.title }}</td>
         <td>{{ x.name }}</td>
         <td>{{ x.gender }}</td>
