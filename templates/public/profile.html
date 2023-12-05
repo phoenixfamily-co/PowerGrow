@@ -348,10 +348,6 @@
 						<h5 class="user-name">نام کاربری</h5>
 						<h6 id="user" class="user-email">{{ user.number }}</h6>
 					</div>
-					<div class="about">
-						<h5 class="mb-2 text-primary">اخرین ورود</h5>
-						<h6 class="user-email">{{ user.last_login }}</h6>
-ر					</div>
 				</div>
 			</div>
 		</div>
@@ -385,35 +381,6 @@
 						<div class="form-group">
 							<label for="birthdate">تاریخ تولد</label>
 							<input type="text" class="form-control" id="birthdate" placeholder="تاریخ تولد" value="{{ user.birthdate }}"  data-jdp required>
-						</div>
-					</div>
-				</div>
-				<div class="row gutters" style="margin-top: 15px">
-					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-						<h6 class="mb-3 text-primary">Address</h6>
-					</div>
-					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-						<div class="form-group">
-							<label for="Street">Street</label>
-							<input type="text" class="form-control" id="Street" placeholder="Enter Street">
-						</div>
-					</div>
-					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-						<div class="form-group">
-							<label for="ciTy">City</label>
-							<input type="text" class="form-control" id="ciTy" placeholder="Enter City">
-						</div>
-					</div>
-					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-						<div class="form-group">
-							<label for="sTate">State</label>
-							<input type="text" class="form-control" id="sTate" placeholder="Enter State">
-						</div>
-					</div>
-					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-						<div class="form-group">
-							<label for="zIp">Zip Code</label>
-							<input type="text" class="form-control" id="zIp" placeholder="Zip Code">
 						</div>
 					</div>
 				</div>
@@ -458,9 +425,9 @@
     number.value = username.toString().replace('+98','')
     user.innerHTML = username.toString().replace('+98','')
 
-    const d = new Date(login);
-    d.toLocaleDateString('fa-IR')
-    console.log(d)
+    {#const d = new Date(login);#}
+    {#d.toLocaleDateString('fa-IR')#}
+    {#console.log(d)#}
 
 </script>
 
