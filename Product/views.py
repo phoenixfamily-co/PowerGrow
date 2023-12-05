@@ -147,6 +147,7 @@ class DaysView(viewsets.ModelViewSet):
 
 
 class SessionView(viewsets.ModelViewSet):
+    queryset = Days.objects.all()
     serializer_class = SessionSerializer
 
     def get_queryset(self):
