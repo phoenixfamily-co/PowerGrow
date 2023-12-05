@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.template import loader
-from rest_framework import viewsets, filters, generics
+from rest_framework import viewsets, filters, generics, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
@@ -120,7 +120,11 @@ def day_view(request):
 class CourseView(viewsets.ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
-    # filter_backends = [filters.SearchFilter]
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class SearchView(viewsets.generics.ListAPIView):
