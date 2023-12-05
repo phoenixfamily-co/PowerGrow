@@ -8,6 +8,8 @@
     <script src="https://kit.fontawesome.com/1228ed801f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.css"/>
     <script src="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.js"></script>
+     <link rel="stylesheet" href="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.css">
+    <script type="text/javascript" src="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.js"></script>
 
      {% load bootstrap5 %}
     {% bootstrap_css %}
@@ -359,30 +361,30 @@
 			<div class="card-body">
 				<div class="row gutters">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-						<h6 class="mb-3 text-primary">Personal Details</h6>
+						<h6 class="mb-3 text-primary">اطلاعات شخصی</h6>
 					</div>
 					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 						<div class="form-group">
-							<label for="fullName">Full Name</label>
-							<input type="text" class="form-control" id="fullName" placeholder="Enter full name">
+							<label for="name">نام و نام خانوادگی</label>
+							<input type="text" class="form-control" id="name" placeholder="نام و نام خانوادگی">
 						</div>
 					</div>
 					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 						<div class="form-group">
-							<label for="eMail">Email</label>
-							<input type="email" class="form-control" id="eMail" placeholder="Enter email ID">
+							<label for="email">ایمیل</label>
+							<input type="email" class="form-control" id="email" placeholder="ایمیل">
 						</div>
 					</div>
 					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 						<div class="form-group">
 							<label for="phone">Phone</label>
-							<input type="text" class="form-control" id="phone" placeholder="Enter phone number">
+							<input type="text" class="form-control" id="phone" placeholder="شماره تلفن">
 						</div>
 					</div>
 					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 						<div class="form-group">
-							<label for="website">Website URL</label>
-							<input type="url" class="form-control" id="website" placeholder="Website url">
+							<label for="birthdate">تاریخ تولد</label>
+							<input type="text" class="form-control" id="birthdate" placeholder="تاریخ تولد"  data-jdp required>
 						</div>
 					</div>
 				</div>
