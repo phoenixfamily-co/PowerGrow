@@ -98,7 +98,7 @@ def courses_view(request):
 class CourseView(viewsets.ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
-    filter_backends = [filters.SearchFilter]
+    # filter_backends = [filters.SearchFilter]
 
 
 class SearchView(viewsets.generics.ListAPIView):
