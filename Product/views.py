@@ -137,13 +137,13 @@ class SearchView(viewsets.generics.ListAPIView):
         return Course.objects.filter(sport=self.kwargs['pk'])
 
 
-class DaysView(viewsets.ModelViewSet):
+class DaysView(generics.GenericAPIView):
     queryset = Days.objects.all()
     serializer_class = DaysSerializer
     lookup_field = 'course'
 
 
-class SessionView(viewsets.ModelViewSet):
+class SessionView(generics.GenericAPIView):
     queryset = Sessions.objects.all()
     serializer_class = SessionSerializer
     lookup_field = 'course'
