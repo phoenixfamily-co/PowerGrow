@@ -141,7 +141,7 @@
       <th scope="row">{{ x.id }}</th>
         <th onclick="window.open('{% url 'product:delete_sessions' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
       <td>{{ x.title }}</td>
-        <td>{{ x.contract }}</td>
+        <td>/media/{{ x.contract }}</td>
     </tr>
    {% endfor %}
   </tbody>
