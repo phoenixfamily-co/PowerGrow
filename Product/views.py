@@ -141,18 +141,10 @@ class DaysView(viewsets.ModelViewSet):
     queryset = Days.objects.all()
     serializer_class = DaysSerializer
 
-    # def get_queryset(self):
-    #     queryset = Days.objects.filter(session=self.kwargs.get('pk'))
-    #     return queryset
-
 
 class SessionView(viewsets.ModelViewSet):
     queryset = Days.objects.all()
     serializer_class = SessionSerializer
-
-    def get_queryset(self):
-        queryset = Sessions.objects.filter(course=self.kwargs.get('pk'))
-        return queryset
 
 
 class ParticipationView(viewsets.ModelViewSet):
