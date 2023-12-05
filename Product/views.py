@@ -140,13 +140,23 @@ class SearchView(viewsets.generics.ListAPIView):
 class DaysView(viewsets.ModelViewSet):
     queryset = Days.objects.all()
     serializer_class = DaysSerializer
-    lookup_field = 'course'
+
+    def get_queryset(self):
+        queryset = Days.objects.filter(session=self.kwargs.get('pk'))
+        return queryset
 
 
 class SessionView(viewsets.ModelViewSet):
     queryset = Sessions.objects.all()
     serializer_class = SessionSerializer
-    lookup_field = 'course'
+
+    def get_queryset(self):
+        queryset = Sessions.objects.filter(course=self.kwargs.get('pk'))
+        return queryset
+
+    def destroy(self, request, *args, **kwargs):
+        queryset = Sessions.objects.filter(course=self.kwargs.get('pk'))
+        queryset.delete()
 
 
 class ParticipationView(viewsets.ModelViewSet):
