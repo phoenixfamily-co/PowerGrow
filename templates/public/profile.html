@@ -322,7 +322,7 @@
   <div class="container-fluid" style="vertical-align: center">
 <ul class="nav nav-pills">
   <li class="nav-item">
-    <a class="nav-link active" aria-current="page">ثبت تغیرات</a>
+    <a id="register" class="nav-link active" aria-current="page">ثبت تغیرات</a>
   </li>
 </ul>
 
@@ -346,7 +346,7 @@
 							<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Maxwell Admin">
 						</div>
 						<h5 class="user-name">نام کاربری</h5>
-						<h6 class="user-email">{{ user.number }}</h6>
+						<h6 id="user" class="user-email">{{ user.number }}</h6>
 					</div>
 					<div class="about">
 						<h5 class="mb-2 text-primary">اخرین ورود</h5>
@@ -366,7 +366,7 @@
 					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 						<div class="form-group">
 							<label for="name">نام و نام خانوادگی</label>
-							<input type="text" class="form-control" id="name" placeholder="نام و نام خانوادگی">
+							<input type="text" class="form-control" id="name" placeholder="نام و نام خانوادگی" value="{{ user.name }}">
 						</div>
 					</div>
 					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -384,7 +384,7 @@
 					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 						<div class="form-group">
 							<label for="birthdate">تاریخ تولد</label>
-							<input type="text" class="form-control" id="birthdate" placeholder="تاریخ تولد"  data-jdp required>
+							<input type="text" class="form-control" id="birthdate" placeholder="تاریخ تولد" value="{{ user.birthdate }}"  data-jdp required>
 						</div>
 					</div>
 				</div>
@@ -436,6 +436,11 @@
 
 <script>
 
+    let number = document.getElementById("number")
+    let name = document.getElementById("name")
+    let email = document.getElementById("email")
+    let birthdate = document.getElementById("birthdate")
+    let user = document.getElementById("user")
     let username = "{{ user.number }}";
     let gender = "{{ user.gender }}";
     let lastEmail = "{{ user.email }}";
@@ -449,33 +454,18 @@
         email.value = lastEmail
     }
 
-    number.value = username.toString().replace('98','')
+    number.value = username.toString().replace('+98','')
+    user.value = username.toString().replace('+98','')
 
 </script>
 
 <script>
-
-
-    let number = document.getElementById("number")
-    let password1 = document.getElementById("password1")
-    let password2 = document.getElementById("password2")
-    let name = document.getElementById("name")
-    let address = document.getElementById("address")
-    let email = document.getElementById("email")
-    let tel = document.getElementById("tel")
-    let accountNumber = document.getElementById("accountNumber")
-    let accountId = document.getElementById("accountId")
-    let birthdate = document.getElementById("birthdate")
-    let zip = document.getElementById("zip")
-    let register = document.getElementById("register")
-    let exit = document.getElementById("exit")
     let param1
     let param2
+    let register = document.getElementById("register")
 
          register.addEventListener("click", async function (event) {
     event.preventDefault();
-
-    if (password1.value===password2.value){
 
               param1 = {
                 "name": name.value,
@@ -527,23 +517,9 @@
     }else {
         alert("ایمیل نامعتبر است")
     }
-    }
-    else
-        {
-            alert("پسورد ها یکسان نیستند")
-        }
 });
 
-
-    exit.addEventListener("click", function () {
-        window.location.replace('/user/')
-    })
-
 </script>
-
-
-
-
 
 
 </html>
