@@ -207,7 +207,7 @@ class ChangeSalaryView(generics.UpdateAPIView, ):
 
 class DeleteAccount(generics.UpdateAPIView, ):
     queryset = User.objects.all()
-    lookup_field = "number"
+    lookup_field = "id"
     permission_classes = (AllowAny,)
     serializer_class = DeleteAccountSerializer
 
