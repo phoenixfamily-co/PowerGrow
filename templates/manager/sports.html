@@ -89,10 +89,11 @@
             background-color: #E16539 !important;
         }
 
-        .remove{
-            color: red ;
-            cursor: pointer
-        }
+
+         .fa.fa-times{
+              color: #d11a2a;
+             cursor: pointer
+           }
 
 
     </style>
@@ -137,7 +138,7 @@
   {% for x in sport %}
     <tr>
       <th scope="row">{{ x.id }}</th>
-        <th onclick="window.open('{% url 'product:delete-courses' x.id %}')"><i class="fa fa-times remove" aria-hidden="true"></i></th>
+        <th onclick="window.open('{% url 'product:delete-sports' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
       <td>{{ x.title }}</td>
     </tr>
    {% endfor %}
@@ -145,7 +146,5 @@
 </table>
 
 </body>
-
-
 
 </html>
