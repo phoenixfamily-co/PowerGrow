@@ -36,7 +36,7 @@ class Course(models.Model):
 
 class Sessions(models.Model):
     number = models.IntegerField(blank=True, null=True)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='sessions', null=True, blank=True)
+    course = models.ForeignKey(Course, on_delete=models.SET_NULL, related_name='sessions', null=True, blank=True)
 
 
 class Days(models.Model):
