@@ -158,7 +158,7 @@
         <td>{{ x.number }}</td>
         <td>{{ x.birthdate }}</td>
         <td>{{ x.datetime }}</td>
-    <td href='{% url 'user:manage_access' x.number %}' style="cursor: pointer ; text-decoration: underline">
+    <td onclick="window.open('{% url 'user:manage_access' x.number %}')" style="cursor: pointer ; text-decoration: underline">
         {% if x.is_staff == True %}
             مدیر
         {% elif x.is_superuser == True %}
