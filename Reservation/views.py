@@ -23,7 +23,7 @@ ZP_API_STARTPAY = f"https://{sandbox}.zarinpal.com/pg/StartPay/"
 description = "رزرو سالن چند منظور حجاب"  # Required
 phone = 'YOUR_PHONE_NUMBER'  # Optional
 # Important: need to edit for realy server.
-CallbackURL = 'http://powergrow.net/reservation/verify/'
+CallbackURL = 'https://powergrow.net/reservation/verify/'
 
 
 def reservation_view(request):
@@ -105,10 +105,6 @@ def reserve_view(request):
 class GymView(viewsets.ModelViewSet):
     queryset = Gym.objects.all()
     serializer_class = GymSerializer
-
-    def create(self, request, *args, **kwargs):
-        Gym.objects.all().delete()
-        return super().create(request)
 
 
 class ReservationView(viewsets.ModelViewSet):

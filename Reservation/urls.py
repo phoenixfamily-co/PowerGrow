@@ -21,6 +21,4 @@ urlpatterns = [
     path('successful/<int:gym>/<int:time>/<int:session>/<str:holiday>/', successful_view, name='successful'),
     path('request/<int:amount>/', send_request, name='request'),
     path('verify/', verify , name='verify'),
-
-
 ]
