@@ -139,7 +139,7 @@
   {% for x in gym %}
     <tr>
       <th scope="row">{{ x.id }}</th>
-        <th onclick="window.open('{% url 'reservation:delete_gym:' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
+        <th onclick="window.open('{% url 'reservation:delete_gym' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
       <td>{{ x.title }}</td>
         <td> <a href="javascript:window.open('/media/{{ x.contract }}')">
                 مشاهده قرارداد
