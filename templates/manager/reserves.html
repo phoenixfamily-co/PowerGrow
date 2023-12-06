@@ -226,13 +226,6 @@
             pointer-events: none;
         }
 
-         .date-time{
-            width: 70%;
-            float: right;
-            margin-top: 15px;
-            display: inline;
-        }
-
         .date-picker{
             width: 50%;
             height: 300px;
@@ -458,6 +451,8 @@
 
     function getDays(monthPosition) {
         monthTitle.innerHTML = result[0].months[monthPosition].name
+        days.innerHTML=""
+        times.innerHTML = ""
         const emptyDay = document.createElement("li")
                 emptyDay.innerHTML = ' '
 

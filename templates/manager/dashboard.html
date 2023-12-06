@@ -407,29 +407,9 @@
 
 </script>
 
-<script>
-
-    let register = document.getElementById("register")
-    let number = document.getElementById("number")
-
-    register.addEventListener("click",function () {
-
-        let url = '+98'+number.value
-
-        if (number.value !==null || number.value !=="") {
-            if (type===1) {
-                window.location.assign("/user/access/" + url)
-            }else if (type===2){
-                window.location.assign("/user/teacher/salary/api/" + url)
-            }
-        }else {
-            alert("شماره موبایل الزامی هست")
-        }
-    })
-
-</script>
 
 <script>
+
     let calendar = document.getElementById("calendar")
     let monthTitle = document.getElementById("monthTitle")
     let yearTitle = document.getElementById("yearTitle")
