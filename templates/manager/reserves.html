@@ -598,6 +598,11 @@
                     })
                    btn.classList.add("selectedTime")
                     time = btn.getAttribute("itemid")
+                    if (type===3){
+                        window.open(`/calendar/api/cost/${time}/`)
+                    }else if (type===4) {
+                        window.open(`/reservation/api/admin/reserve/${time}/`)
+                    }
                 })
             })
     }
