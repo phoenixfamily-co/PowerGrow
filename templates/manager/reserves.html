@@ -376,10 +376,25 @@
 
 <script>
     let calendarPopup = document.getElementById("calendarPopup")
+    let exit = document.getElementById("exit")
+
+
+
 
     function submit() {
         calendarPopup.classList.toggle("show");
     }
+
+      window.addEventListener("click", function (event) {
+        if (event.target === calendarPopup) {
+            calendarPopup.classList.remove("show");
+        }
+    });
+
+    exit.addEventListener("click",function () {
+        calendarPopup.classList.remove("show");
+    })
+
 
 </script>
 
