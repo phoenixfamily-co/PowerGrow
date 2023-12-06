@@ -153,7 +153,7 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
         reservations = Reservations.objects.update_or_create(title=data["title"],
                                                              description=data["description"],
                                                              time=time,
-                                                             holiday=self.request.POST.get("holiday", False),
+                                                             holiday=bool(data["holiday"]),
                                                              session=data["session"],
                                                              price=data["price"],
                                                              user=user,
