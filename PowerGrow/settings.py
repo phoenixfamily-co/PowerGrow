@@ -13,6 +13,7 @@ import os
 from datetime import timedelta
 from pathlib import Path
 
+from django.conf.global_settings import SESSION_EXPIRE_AT_BROWSER_CLOSE
 from django.template.context_processors import media
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -108,7 +109,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'PowerGrow.urls'
-
 
 TEMPLATES = [
     {
