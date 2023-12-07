@@ -131,6 +131,7 @@
     <tr>
       <th scope="col">#</th>
         <th scope="col"> </th>
+        <th scope="col"> </th>
       <th scope="col">تعداد جلسات</th>
         <th scope="col">شناسه دوره</th>
         <th scope="col">نام دوره</th>
@@ -143,6 +144,7 @@
     <tr>
       <th scope="row">{{ x.id }}</th>
         <th onclick="window.open('{% url 'product:delete_sessions' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
+        <th onclick="window.open('{% url 'product:update_sessions' x.id %}')"><i class="fa fa fa-pencil" aria-hidden="true"></i></th>
       <td>{{ x.number }}</td>
         <td>{{ x.course.id }}</td>
         <td>{{ x.course.title }}</td>
