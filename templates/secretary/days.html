@@ -126,7 +126,6 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-        <th scope="col"> </th>
       <th scope="col">روزها</th>
         <th scope="col">شهریه</th>
         <th scope="col">تخفیف</th>
@@ -142,7 +141,6 @@
   {% for x in day %}
     <tr>
       <th scope="row">{{ x.id }}</th>
-        <th onclick="window.open('{% url 'product:delete-days' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
       <td>{{ x.title }}</td>
         <td>{{ x.tuition }}</td>
         <td>{{ x.off }}</td>
