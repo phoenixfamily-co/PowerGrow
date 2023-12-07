@@ -8,7 +8,9 @@ app_name = 'home'
 
 urlpatterns = [
     path('', home_view, name='home'),
-    path('api/slider/', SliderView.as_view({'post': 'create', 'get': 'list'}), name='slider'),
+    path('slider/', slider_view, name='slider_view'),
+    path('api/slider/', SliderView.as_view({'post': 'create'}), name='create_slider'),
+    path('api/slider/', SliderView.as_view({'get': 'list'}), name='slider'),
     path('api/slider/<int:pk>/', SliderView.as_view({'delete': 'destroy'}), name='delete-slider')
 
 ]
