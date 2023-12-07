@@ -84,8 +84,31 @@ def sports_view(request):
     return HttpResponse(template.render(context, request))
 
 
+
+def admin_sports_view(request):
+    template = loader.get_template('secretary/sports.html')
+    sport = Sport.objects.all()
+    about = AboutUs.objects.values().first()
+    context = {
+        "about": about,
+        "sport": sport,
+    }
+    return HttpResponse(template.render(context, request))
+
+
 def courses_view(request):
     template = loader.get_template('manager/courses.html')
+    course = Course.objects.all()
+    about = AboutUs.objects.values().first()
+    context = {
+        "about": about,
+        "course": course,
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def admin_courses_view(request):
+    template = loader.get_template('secretary/courses.html')
     course = Course.objects.all()
     about = AboutUs.objects.values().first()
     context = {
@@ -106,8 +129,29 @@ def session_view(request):
     return HttpResponse(template.render(context, request))
 
 
+def admin_session_view(request):
+    template = loader.get_template('secretary/sessions.html')
+    session = Sessions.objects.all()
+    about = AboutUs.objects.values().first()
+    context = {
+        "about": about,
+        "session": session,
+    }
+    return HttpResponse(template.render(context, request))
+
 def day_view(request):
     template = loader.get_template('manager/days.html')
+    day = Days.objects.all()
+    about = AboutUs.objects.values().first()
+    context = {
+        "about": about,
+        "day": day,
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def admin_day_view(request):
+    template = loader.get_template('secretary/days.html')
     day = Days.objects.all()
     about = AboutUs.objects.values().first()
     context = {

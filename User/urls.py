@@ -32,6 +32,7 @@ urlpatterns = [
     path('profile/<int:pk>/', profile_view, name='profile'),
     path('reservation/<int:pk>/', user_gym_view, name='user_gym'),
     path('participants/<int:pk>/', user_course_view, name='user_course'),
-    path('users/', user_view, name='users_view')
+    path('users/', user_view, name='users_view'),
+    path('users/admin/', admin_user_view, name='users_view_admin')
 
 ]

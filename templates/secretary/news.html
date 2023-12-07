@@ -1,0 +1,148 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://kit.fontawesome.com/1228ed801f.js" crossorigin="anonymous"></script>
+
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+    <style>
+
+           @font-face {
+            font-family: BYekan;
+            font-style: normal;
+            font-weight: normal;
+            src: url("/static/fonts/BYekan.eot");/* IE9 Compat Modes */
+            src: url("/static/fonts/BYekan.woff") format('woff'),
+            url("/static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */ url("../../static/fonts/BYekan.ttf") format('truetype') /* Safari, Android, iOS */
+        }
+
+             * {
+            box-sizing: border-box
+        }
+
+           .logoHolder {
+               width: 50px;
+               position: absolute;
+               left: 0;
+               right: 0;
+               margin-right: 55%;
+               margin-top: 1%;
+               z-index: 10 !important;
+               direction: ltr;
+
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            position: absolute;
+            direction: ltr
+
+        }
+
+        .typography {
+            position: absolute;
+            margin-left: 60px;
+            margin-top: 20%;
+            color: white;
+            font-size: 20px
+
+        }
+           html {
+               min-height: 100%;
+               position: relative;
+               font-family: BYekan, serif !important;
+           }
+
+           body {
+               direction: rtl;
+               background: #282a36;
+
+           }
+
+           .navbar.navbar-dark.bg-dark li a{
+            color: #fff;
+        }
+
+          .navbar.navbar-dark.bg-dark a:hover{
+              color: grey;
+        }
+
+       .nav.navbar-nav li a {
+           color: #fff;
+           text-decoration: none;
+       }
+
+        .nav.navbar-nav a:hover {
+            color: grey;
+        }
+
+        .nav-pills > li > a.active {
+            background-color: #E16539 !important;
+        }
+
+
+         .fa.fa-times{
+              color:  red;
+             cursor: pointer
+           }
+
+
+    </style>
+    <title>PowerGrow</title>
+</head>
+<body>
+
+
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid" style="vertical-align: center">
+
+
+  <ul class="nav nav-pills navbar-left">
+      <li class="nav-item">
+    <a class="nav-link" aria-current="page" href='javascript: history.go(-1)'>برگشت</a>
+  </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="logoHolder">
+
+    <img alt="" src="/media/{{ about.logo }}" class="logo">
+    <div class="typography">PowerGrow</div>
+
+</div>
+
+
+<table class="table" style="color: white ; margin-top: 100px">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+        <th scope="col"> </th>
+      <th scope="col">نام</th>
+        <th scope="col">توضیحات</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for x in news %}
+    <tr>
+      <th scope="row">{{ x.id }}</th>
+        <th onclick="window.open('{% url 'seo:destroy-news' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
+      <td>{{ x.title }}</td>
+        <td>{{ x.description }}</td>
+    </tr>
+   {% endfor %}
+  </tbody>
+</table>
+
+</body>
+
+</html>

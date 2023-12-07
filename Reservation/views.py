@@ -88,11 +88,36 @@ def gym_view(request):
     return HttpResponse(template.render(context, request))
 
 
+def admin_gym_view(request):
+    about = AboutUs.objects.values().first()
+    gym = Gym.objects.all()
+    template = loader.get_template('secretary/gyms.html')
+    context = {
+        "about": about,
+        "gym": gym,
+    }
+    return HttpResponse(template.render(context, request))
+
+
 def reserve_view(request):
     about = AboutUs.objects.values().first()
     reserve = Reservations.objects.all()
     gym = Gym.objects.all().first()
     template = loader.get_template('manager/reserves.html')
+    context = {
+        "about": about,
+        "reserve": reserve,
+        "gym": gym,
+
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def admin_reserve_view(request):
+    about = AboutUs.objects.values().first()
+    reserve = Reservations.objects.all()
+    gym = Gym.objects.all().first()
+    template = loader.get_template('secretary/reserves.html')
     context = {
         "about": about,
         "reserve": reserve,

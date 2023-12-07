@@ -166,6 +166,19 @@ def user_view(request):
     return HttpResponse(template.render(context, request))
 
 
+def admin_user_view(request):
+    about = AboutUs.objects.values().first()
+    template = loader.get_template('secretary/users.html')
+    user = User.objects.all()
+    context = {
+        "about": about,
+        "user" : user
+    }
+    return HttpResponse(template.render(context, request))
+
+
+
+
 class CustomObtainAuthToken(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
         response = super(CustomObtainAuthToken, self).post(request, *args, **kwargs)

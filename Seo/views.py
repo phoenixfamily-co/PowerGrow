@@ -18,6 +18,17 @@ def news_view(request):
     return HttpResponse(template.render(context, request))
 
 
+def admin_news_view(request):
+    about = AboutUs.objects.values().first()
+    news = News.objects.all().values()
+    template = loader.get_template('secretary/news.html')
+    context = {
+        "news": news,
+        "about": about,
+    }
+    return HttpResponse(template.render(context, request))
+
+
 class NewsApi(viewsets.ModelViewSet):
     queryset = News.objects.all()
     serializer_class = NewsSerializer
