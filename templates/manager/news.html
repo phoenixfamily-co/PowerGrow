@@ -106,7 +106,7 @@
   <div class="container-fluid" style="vertical-align: center">
 <ul class="nav nav-pills">
   <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href='javascript:window.open("{% url 'product:create_sports' %}")'>اضافه کردن</a>
+    <a class="nav-link active" aria-current="page" href='javascript:window.open("{% url 'seo:create_news' %}")'>اضافه کردن</a>
   </li>
 </ul>
 
@@ -131,15 +131,17 @@
     <tr>
       <th scope="col">#</th>
         <th scope="col"> </th>
-      <th scope="col">نام ورزش</th>
+      <th scope="col">نام</th>
+        <th scope="col">توضیحات</th>
     </tr>
   </thead>
   <tbody>
-  {% for x in sport %}
+  {% for x in news %}
     <tr>
       <th scope="row">{{ x.id }}</th>
-        <th onclick="window.open('{% url 'product:delete-sports' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
+        <th onclick="window.open('{% url 'seo:destroy-news' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
       <td>{{ x.title }}</td>
+        <td>{{ x.description }}</td>
     </tr>
    {% endfor %}
   </tbody>
