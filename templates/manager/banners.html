@@ -143,8 +143,10 @@
         <th onclick="window.open('{% url 'home:delete-slider' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
       <td>{{ x.title }}</td>
         <td>{{ x.description }}</td>
-      <td>{{ x.image }}</td>
-
+     <td> <a href="javascript:window.open('/media/{{ x.هئشلث }}')">
+                مشاهده عکس
+            </a>
+        </td>
     </tr>
    {% endfor %}
   </tbody>
