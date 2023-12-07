@@ -205,6 +205,12 @@ class AdminRegisterUser(viewsets.ModelViewSet):
     serializer_class = AdminRegisterSerializer
 
 
+@permission_classes([IsAuthenticated])
+class SecretaryRegisterUser(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = SecretaryRegisterSerializer
+
+
 class ChangePasswordView(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "number"
@@ -273,3 +279,10 @@ class ManagePermission(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "number"
     serializer_class = ManagePermissionSerializer
+
+
+class ManageAccess(generics.UpdateAPIView, ):
+    queryset = User.objects.all()
+    lookup_field = "number"
+    serializer_class = ManageAccessSerializer
+

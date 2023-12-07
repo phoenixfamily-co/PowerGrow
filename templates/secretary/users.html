@@ -109,7 +109,7 @@
   <div class="container-fluid" style="vertical-align: center">
 <ul class="nav nav-pills">
   <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href='javascript: window.open("{% url 'user:admin_register' %}")'>اضافه کردن</a>
+    <a class="nav-link active" aria-current="page" href='javascript: window.open("{% url 'user:secretary_register' %}")'>اضافه کردن</a>
   </li>
 </ul>
 
@@ -157,7 +157,7 @@
         <td>{{ x.number }}</td>
         <td>{{ x.birthdate }}</td>
         <td>{{ x.datetime }}</td>
-    <td onclick="window.open('{% url 'user:manage_access' x.number %}')" style="cursor: pointer ; text-decoration: underline">
+    <td onclick="window.open('{% url 'user:manage_access_secretary' x.number %}')" style="cursor: pointer ; text-decoration: underline">
         {% if x.is_staff == True %}
             مدیر
         {% elif x.is_superuser == True %}

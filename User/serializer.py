@@ -58,6 +58,53 @@ class AdminRegisterSerializer(serializers.ModelSerializer):
         return user
 
 
+class SecretaryRegisterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('number', 'password', 'name', 'birthdate', 'is_active', 'is_teacher', 'created')
+        extra_kwargs = {
+            'password': {'write_only': True},
+            'created' : {'read_only': True}
+        }
+
+    def create(self, validated_data):
+        created = None
+        request = self.context.get("request")
+        if request and hasattr(request, "user"):
+            created = request.user
+
+        user = User.objects.create(
+
+            number=validated_data['number'],
+            name=validated_data['name'],
+            password=make_password(validated_data['password']),
+            birthdate=validated_data['birthdate'],
+            is_active=validated_data['is_active'],
+            is_superuser=validated_data['is_superuser'],
+            created=created
+
+        )
+        phone = validated_data["number"]
+        phone.replace("+98", " ")
+
+        user.set_password(validated_data['password'])
+        user.save()
+
+        data = {'from': '50004001047208', 'to': validated_data['number'],
+                'text': "سلام به باشگاه ورزشی حجاب خوش امدید "
+                        "\n"
+                        f" نام کاربری : {phone} "
+                        "\n"
+                        f" پسورد : {validated_data['password']} "
+                        f"\n"
+                        f"https://powergrow.net/"
+                }
+        requests.post('https://console.melipayamak.com/api/send/simple/d15bf0639e874ecebb5040b599cb8af6',
+                      json=data)
+
+        return user
+
+
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -177,3 +224,18 @@ class ManagePermissionSerializer(serializers.ModelSerializer):
 
         return instance
 
+
+class ManageAccessSerializer(serializers.ModelSerializer):
+    is_active = serializers.BooleanField(required=True)
+    is_teacher = serializers.BooleanField(required=True)
+
+    class Meta:
+        model = User
+        fields = ['is_active', 'is_teacher']
+
+    def update(self, instance, validated_data):
+        instance.is_active = validated_data.get("is_active", instance.is_active)
+        instance.is_teacher = validated_data.get("is_teacher", instance.is_teacher)
+        instance.save()
+
+        return instance
