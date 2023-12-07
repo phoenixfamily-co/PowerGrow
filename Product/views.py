@@ -84,7 +84,6 @@ def sports_view(request):
     return HttpResponse(template.render(context, request))
 
 
-
 def admin_sports_view(request):
     template = loader.get_template('secretary/sports.html')
     sport = Sport.objects.all()
