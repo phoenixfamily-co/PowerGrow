@@ -170,8 +170,8 @@
         {% endif %}
     </td>
 
-        <td onclick="window.open('{% url 'user:change_salary' x.number %}')" style="cursor: pointer ; text-decoration: underline">{{ x.salary}}</td>
-        <td onclick="window.open('{% url 'user:change_salary' x.number %}')" style="cursor: pointer ; text-decoration: underline">{{ x.fee}}</td>
+        <td>{{ x.salary}}</td>
+        <td>{{ x.fee}}</td>
         <td>{{ x.situation}}</td>
         <td>{{ x.debt}}</td>
         <td>{{ x.description}}</td>
