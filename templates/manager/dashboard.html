@@ -148,7 +148,7 @@
     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">سلام {{ user.name }} عزیز</a>
     <ul class="dropdown-menu dropdown-menu-right">
         <li><a style="color: black ; width: 100% ; text-align: center" class="dropdown-item" href='{% url 'user:profile' user.id %}'>پروفایل</a></li>
-        <li><a style="color: black ; width: 100% ; text-align: center" class="dropdown-item" href="">خروج</a></li>
+        <li><a style="color: black ; width: 100% ; text-align: center" class="dropdown-item" href="javascript:logout()">خروج</a></li>
     </ul>
   </li>
     </ul>
@@ -310,7 +310,15 @@
 	</div>
 </div>
 </div>
-
 </body>
+
+<script>
+
+    function logout() {
+        document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC;"
+        window.location.replace('{% url 'user:login' %}');
+    }
+
+</script>
 
 </html>
