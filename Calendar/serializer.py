@@ -15,7 +15,6 @@ class DaySerializer(serializers.ModelSerializer):
     class Meta:
         model = Day
         fields = "__all__"
-        depth = 2
 
 
 class MonthSerializer(serializers.ModelSerializer):
@@ -24,7 +23,6 @@ class MonthSerializer(serializers.ModelSerializer):
     class Meta:
         model = Month
         fields = "__all__"
-        depth = 1
 
 
 class YearSerializer(serializers.ModelSerializer):
@@ -33,7 +31,6 @@ class YearSerializer(serializers.ModelSerializer):
     class Meta:
         model = Year
         fields = "__all__"
-        depth = 1
 
 
 class ChangeCostSerializer(serializers.ModelSerializer):
