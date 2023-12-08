@@ -68,7 +68,7 @@ class TimeView(viewsets.ModelViewSet):
         time = Time.objects.update_or_create(
             time=data["time"],
             duration=data["duration"],
-            reserved=bool(data["reserved"]),
+            reserved=bool(self.request.POST.get('reserved', False)),
             price=data["price"],
             off=data["off"],
             day=day
