@@ -9,7 +9,7 @@ app_name = 'calendar'
 
 urlpatterns = [
     path('price/', price_view, name='price'),
-    path('calendar/', price_view, name='calendar'),
+    path('calendar/', calendar_view, name='calendar'),
     path('api/year/', YearView.as_view({'post': 'create', 'get': 'list'}), name='year'),
     path('api/month/', MonthView.as_view({'post': 'create', 'get': 'list'}), name='month'),
     path('api/day/', DayView.as_view({'post': 'create', 'get': 'list'}), name='day'),
