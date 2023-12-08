@@ -12,8 +12,10 @@ urlpatterns = [
     path('api/year/', YearView.as_view({'post': 'create', 'get': 'list'}), name='year'),
     path('api/month/', MonthView.as_view({'post': 'create', 'get': 'list'}), name='month'),
     path('api/day/', DayView.as_view({'post': 'create', 'get': 'list'}), name='day'),
-    path('api/time/', TimeView.as_view({'post': 'create'}), name='time'),
-    path('api/time/<int:pk>/', TimeView.as_view({'get': 'list'}), name='time'),
+    path('api/time/', TimeView.as_view({'post': 'create'}), name='create_time'),
+    path('api/time/<int:pk>/', TimeView.as_view({'get': 'list'}), name='get_time'),
+    path('api/time/<int:pk>/delete/', TimeView.as_view({'delete': 'destroy'}), name='time_delete'),
+    path('api/time/<int:pk>/update/', TimeView.as_view({'put': 'update'}), name='time_update'),
     path('api/cost/<int:id>/', CostView.as_view(), name='cost'),
 
 ]
