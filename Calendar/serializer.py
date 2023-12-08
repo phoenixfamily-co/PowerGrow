@@ -50,7 +50,7 @@ class ChangeCostSerializer(serializers.ModelSerializer):
 class ChangeDescriptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Day
-        fields = ['description']
+        fields = ['description', 'holiday']
 
     def update(self, instance, validated_data):
         instance.holiday = validated_data.get("holiday", instance.holiday)
