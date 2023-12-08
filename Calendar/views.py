@@ -1,7 +1,21 @@
+from django.http import HttpResponse
+from django.template import loader
 from rest_framework import viewsets, generics
 from rest_framework.response import Response
 
+from About.models import AboutUs
 from Calendar.serializer import *
+
+
+def calendar_view(request):
+    about = AboutUs.objects.values().first()
+    time = Time.objects.all().values()
+    template = loader.get_template('manager/price.html')
+    context = {
+        "time": time,
+        "about": about,
+    }
+    return HttpResponse(template.render(context, request))
 
 
 class YearView(viewsets.ModelViewSet):
