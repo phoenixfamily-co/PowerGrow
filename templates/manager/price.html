@@ -142,7 +142,7 @@
     </tr>
   </thead>
   <tbody>
-  {% for x in TIME %}
+  {% for x in time %}
     <tr>
       <th scope="row">{{ x.id }}</th>
         <th onclick="window.open('{% url 'product:delete-sports' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
