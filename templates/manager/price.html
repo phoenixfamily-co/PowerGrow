@@ -151,7 +151,7 @@
         <td>{{ x.day.name }}</td>
         <td>{{ x.time | date:"G:i:s" }}</td>
         <td onclick="window.open('{% url 'calendar:cost' x.id %}')" style="cursor: pointer ; text-decoration: underline">{{ x.price}}</td>
-        <td onclick="window.open('{% url 'calendar:cost' x.id %}')" style="cursor: pointer ; text-decoration: underline">{{ x.off}}</td>
+        <td onclick="window.open('{% url 'calendar:cost' x.id %}')" style="cursor: pointer ; text-decoration: underline">{{ x.off}}%</td>
 
     </tr>
    {% endfor %}
