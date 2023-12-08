@@ -9,7 +9,7 @@ from Calendar.serializer import *
 
 def calendar_view(request):
     about = AboutUs.objects.values().first()
-    time = Time.objects.all().values()
+    time = Time.objects.all()
     template = loader.get_template('manager/price.html')
     context = {
         "time": time,
