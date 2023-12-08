@@ -53,6 +53,7 @@ class ChangeDescriptionSerializer(serializers.ModelSerializer):
         fields = ['description']
 
     def update(self, instance, validated_data):
+        instance.holiday = validated_data.get("holiday", instance.holiday)
         instance.description = validated_data.get("description", instance.description)
         instance.save()
 
