@@ -62,6 +62,21 @@ class TimeView(viewsets.ModelViewSet):
     queryset = Time.objects.all()
     serializer_class = TimeSerializer
 
+    def perform_create(self, serializer):
+        data = self.request.data
+        day = Day.objects.get(id=self.kwargs["pk"])
+        time = Time.objects.update_or_create(
+            time=data["time"],
+            duration=data["duration"],
+            reserved=bool(data["reserved"]),
+            price=data["price"],
+            off=data["off"],
+            day=day
+
+        )
+        serializer = TimeSerializer(time)
+        return Response(serializer.data)
+
     def get_queryset(self):
         query_set = Time.objects.filter(day=self.kwargs.get('pk')).order_by("time")
         return query_set

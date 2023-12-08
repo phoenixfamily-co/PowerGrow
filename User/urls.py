@@ -36,6 +36,7 @@ urlpatterns = [
     path('reservation/<int:pk>/', user_gym_view, name='user_gym'),
     path('participants/<int:pk>/', user_course_view, name='user_course'),
     path('users/', user_view, name='users_view'),
-    path('users/admin/', admin_user_view, name='users_view_admin')
+    path('users/admin/', admin_user_view, name='users_view_admin'),
+    path("admin/logout/", allauth.account.views.logout),
 
 ]
