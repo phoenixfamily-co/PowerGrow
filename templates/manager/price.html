@@ -528,7 +528,7 @@
                         btn.classList.remove("activeButton")
                     })
                     button.classList.add("activeButton")
-                    window.open(`/calendar/api/cost/${button.getAttribute("itemid")}`)
+                    window.open(`/calendar/api/time/${button.getAttribute("itemid")}/create`)
                     date = `${result[0].number}-${result[0].months[monthPosition].number}-${button.textContent}`
 
                 })
