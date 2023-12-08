@@ -7,12 +7,23 @@ from About.models import AboutUs
 from Calendar.serializer import *
 
 
-def calendar_view(request):
+def price_view(request):
     about = AboutUs.objects.values().first()
     time = Time.objects.all()
     template = loader.get_template('manager/price.html')
     context = {
         "time": time,
+        "about": about,
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def calendar_view(request):
+    about = AboutUs.objects.values().first()
+    day = Day.objects.all()
+    template = loader.get_template('manager/calendar.html')
+    context = {
+        "day": day,
         "about": about,
     }
     return HttpResponse(template.render(context, request))
