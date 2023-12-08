@@ -288,12 +288,12 @@
   {% for x in day %}
     <tr>
       <th scope="row">{{ x.id }}</th>
-        <th onclick="window.open('{% url 'calendar:time_delete' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
+        <th onclick="window.open('{% url 'calendar:day_delete' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
         <td>{{ x.month.name }}</td>
         <td>{{ x.number }}</td>
         <td>{{ x.name }}</td>
         <td>{{ x.holiday }}</td>
-        <td onclick="window.open('{% url 'calendar:cost' x.id %}')" style="cursor: pointer ; text-decoration: underline">{{ x.description}}</td>
+        <td onclick="window.open('{% url 'calendar:description' x.id %}')" style="cursor: pointer ; text-decoration: underline">{{ x.description}}</td>
     </tr>
    {% endfor %}
   </tbody>

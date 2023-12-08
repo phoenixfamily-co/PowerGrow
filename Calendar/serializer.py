@@ -45,3 +45,16 @@ class ChangeCostSerializer(serializers.ModelSerializer):
         instance.save()
 
         return instance
+
+
+class ChangeDescriptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Day
+        fields = ['description']
+
+    def update(self, instance, validated_data):
+        instance.description = validated_data.get("description", instance.description)
+        instance.save()
+
+        return instance
+

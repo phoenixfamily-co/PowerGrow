@@ -13,11 +13,13 @@ urlpatterns = [
     path('api/year/', YearView.as_view({'post': 'create', 'get': 'list'}), name='year'),
     path('api/month/', MonthView.as_view({'post': 'create', 'get': 'list'}), name='month'),
     path('api/day/', DayView.as_view({'post': 'create', 'get': 'list'}), name='day'),
+    path('api/day/<int:pk>/delete/', DayView.as_view({'delete': 'destroy'}), name='day_delete'),
     path('api/time/<int:pk>/create/', TimeView.as_view({'post': 'create'}), name='create_time'),
     path('api/time/<int:pk>/', TimeView.as_view({'get': 'list'}), name='get_time'),
     path('api/time/<int:pk>/delete/', TimeView.as_view({'delete': 'destroy'}), name='time_delete'),
     path('api/time/<int:pk>/update/', TimeView.as_view({'put': 'update'}), name='time_update'),
     path('api/cost/<int:id>/', CostView.as_view(), name='cost'),
+    path('api/description/<int:id>/', ChangeDescriptionView.as_view(), name='description'),
 
 ]
 

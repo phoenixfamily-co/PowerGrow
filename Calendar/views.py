@@ -102,3 +102,9 @@ class CostView(generics.UpdateAPIView):
     queryset = Time.objects.all()
     serializer_class = ChangeCostSerializer
     lookup_field = "id"
+
+
+class ChangeDescriptionView(generics.UpdateAPIView, ):
+    queryset = Day.objects.all()
+    lookup_field = "id"
+    serializer_class = ChangeDescriptionSerializer
