@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.template import loader
-from rest_framework import viewsets, generics
+from rest_framework import viewsets, generics, status
 from rest_framework.response import Response
 
 from About.models import AboutUs
@@ -65,6 +65,11 @@ class TimeView(viewsets.ModelViewSet):
     def get_queryset(self):
         query_set = Time.objects.filter(day=self.kwargs.get('pk')).order_by("time")
         return query_set
+
+    def destroy(self, request, *args, **kwargs):
+        queryset = Time.objects.get(id=kwargs.get('pk'))
+        queryset.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class CostView(generics.UpdateAPIView):
