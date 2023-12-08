@@ -293,7 +293,7 @@
         <td>{{ x.number }}</td>
         <td>{{ x.name }}</td>
         <td>{{ x.holiday }}</td>
-        <td onclick="window.open('{% url 'calendar:cost' x.id %}')" style="cursor: pointer ; text-decoration: underline">{{ x.decription}}</td>
+        <td onclick="window.open('{% url 'calendar:cost' x.id %}')" style="cursor: pointer ; text-decoration: underline">{{ x.description}}</td>
     </tr>
    {% endfor %}
   </tbody>
