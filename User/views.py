@@ -225,6 +225,13 @@ class ChangeSalaryView(generics.UpdateAPIView, ):
     serializer_class = ChangeSalarySerializer
 
 
+class ChangeDebtView(generics.UpdateAPIView, ):
+    queryset = User.objects.all()
+    lookup_field = "number"
+    permission_classes = (AllowAny,)
+    serializer_class = ChangeDebtSerializer
+
+
 class DeleteAccount(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "id"

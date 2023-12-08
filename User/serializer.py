@@ -156,6 +156,21 @@ class ChangeSalarySerializer(serializers.ModelSerializer):
         return instance
 
 
+class ChangeDebtSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['situation', 'debt', 'description']
+
+    def update(self, instance, validated_data):
+        instance.situation = validated_data.get("situation", instance.situation)
+        instance.debt = validated_data.get("debt", instance.debt)
+        instance.description = validated_data.get("description", instance.description)
+        instance.save()
+
+        return instance
+
+
+
 class UpdateProfileSerializer(serializers.ModelSerializer):
     reservations = ReservationSerializer(read_only=True, many=True)
     participants = ParticipantsSerializer(read_only=True, many=True)
