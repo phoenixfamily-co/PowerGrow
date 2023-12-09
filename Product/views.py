@@ -122,7 +122,7 @@ def user_courses_view(request, pk):
     template = loader.get_template('user/course.html')
     about = AboutUs.objects.values().first()
     try:
-        participants = Participants.objects.get(user=pk)
+        participants = Participants.objects.get(user=pk).objects.all()
     except Participants.DoesNotExist:
         participants = None
     context = {
