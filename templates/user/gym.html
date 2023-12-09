@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,12 +13,16 @@
             src="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.js"></script>
 
 
-    <title>PowerGrow</title>
+
+     <title>اجاره سالن</title>
+
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
 
 
     <style>
-
-        @font-face {
+         @font-face {
             font-family: BYekan;
             font-style: normal;
             font-weight: normal;
@@ -34,40 +39,15 @@
             vertical-align: middle;
         }
 
-        .mySlides {
-            display: block;
-            width: 70%;
-            right: 0;
-            height: 500px;
-            float: right;
-        }
-
-        .tab {
-            direction: rtl;
-            unicode-bidi: bidi-override;
-            right: 0;
-            position: absolute;
-            margin-top: 4%;
-            margin-right: 5%;
-            z-index: 10 !important;
-
-        }
-
-        .tab-button {
-            background-color: transparent;
-            border-color: transparent;
-            color: white;
-            font-family: BYekan, serif !important;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
         .logoHolder {
             width: 50px;
-            margin-left: 50%;
             position: absolute;
+            left: 0;
+            right: 0;
+            margin-right: 55%;
             margin-top: 1%;
             z-index: 10 !important;
+            direction: ltr;
 
         }
 
@@ -89,50 +69,15 @@
 
         }
 
-        .login {
-            width: 150px;
-            position: absolute;
-            margin-top: 4%;
-            margin-left: 28%;
-            z-index: 10 !important;
-            direction: rtl;
-            unicode-bidi: bidi-override;
-        }
-
-        .loginTypography {
-            color: white;
-            position: absolute;
-            background-color: transparent;
-            border-color: transparent;
-            font-family: BYekan, serif !important;
-            direction: rtl;
-            font-size: 16px;
-            margin-right: 10%;
-            cursor: pointer;
-        }
-
-        .slideshow-container {
-            max-width: 100%;
-            position: relative;
-            margin: auto;
-        }
 
         .dropdown {
             position: relative;
             display: inline-block;
         }
 
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            width: 100px;
-            background-color: #f9f9f9;
-            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-            padding: 12px 16px;
-            z-index: 1;
-        }
 
-        .dropdown:hover .dropdown-content {
+
+        .dropdown:hover {
             display: block;
 
         }
@@ -150,125 +95,95 @@
             background-color: #f1f1f1
         }
 
-
-        @keyframes fade {
-            from {
-                opacity: .4
-            }
-            to {
-                opacity: 1
-            }
-        }
-
-        /* On smaller screens, decrease text size */
-        @media only screen and (max-width: 300px) {
-        }
-
-        .card {
-            width: 390px;
-            height: 500px;
-            background: #FFFFFF;
-            border-top-right-radius: 20px;
-            border-bottom-right-radius: 20px;
-            position: fixed;
-            flex: 0 0 auto;
-            margin-right: 1%;
-        }
-
-        .card-title {
-            color: black;
-            width: 95%;
-            font-family: BYekan, serif !important;
-            list-style-type: none;
-            float: right;
-            display: inline-block;
-            direction: rtl;
-            margin-top: 1px;
-
-        }
-
-        .card-button {
-            position: absolute;
-            bottom: 0;
-            height: 55px;
-            width: 370px;
-            margin-right: 10px;
-            margin-left: 10px;
-            margin-bottom: 20px;
-            background: #5cdb5c;
-            border-color: transparent;
-            color: white;
-            pointer-events: none;
-            opacity: 0.5
-        }
-
-
-        .contentWrapper {
-            height: 250px;
-            width: 100%;
-            padding: 2rem;
-            background: #303030;
-            color: white;
-            font-weight: 500;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 0.2rem;
+        html{
+            min-height: 100%;
             position: relative;
-
-        }
-
-        .content {
-            height: 250px;
-        }
-
-        .footer {
-            height: 50px;
-            width: 100%;
-            font-weight: 500;
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            font-size: 12px;
-            gap: 0.2rem;
-            padding-top: 10px;
-            padding-left: 20px;
-            position: absolute;
-            bottom: 0;
-            color: #B1B2B2;
-            background: #151111;
-
-        }
-
-        body, html {
-            height: auto;
             font-family: BYekan, serif !important;
+        }
+
+        body {
+            direction: rtl;
+            margin-bottom: 1600px;
             background: #ACACAC;
 
         }
 
-        hr {
-            height: 1px;
-            background-color: black;
-            width: 330px;
-            margin-top: 55px;
-            margin-right: 20px;
+        .navbar.navbar-dark.bg-dark li a{
+            color: #fff;
+        }
+
+          .navbar.navbar-dark.bg-dark a:hover{
+              color: grey;
+        }
+
+       .nav.navbar-nav li a {
+           color: #fff;
+           text-decoration: none;
+       }
+
+        .nav.navbar-nav a:hover {
+            color: grey;
+        }
+
+        .nav-pills > li > a.active {
+            background-color: #E16539 !important;
+        }
+
+        .nav.navbar-nav.navbar-left {
             margin-left: 20px;
-            right: 0;
+        }
+
+        footer{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background: #303030;
+
+        }
+
+        .map{
+            height: 100% ;
+            width: 20% ;
+            margin-right: 40%
+        }
+
+        .footer-container{
+            height: 250px;
+        }
+
+        .footer-logo{
+            height: 100%;
+            float: left;
+        }
+
+         ul {
+            list-style-type: none;
+        }
+
+        footer ul li {
+            margin-top: 30px;
+        }
+
+        .card {
+            width: 29%;
+            height: 500px;
+            border-top-right-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+            position: fixed;
             left: 0;
         }
 
-        ol{
-             counter-reset: item ;
-            list-style-type: none
+        .card-button {
+            height: 50px;
+            margin-top: 4%;
+            width: 90%;
+            background: #e4633a;
+            border-color: transparent;
+            color: white;
+            cursor: pointer;
         }
 
-        li{
-            text-align: center;
-            margin: 2px;
-            padding: 2px;
-        }
-        ul {list-style-type: none;}
 
         .month {
             width: 100%;
@@ -276,7 +191,7 @@
             float: right;
             background: #e4633a;
             text-align: center;
-            border-top-left-radius: 20px
+            border-top-left-radius: 1rem
         }
 
         .month ul {
@@ -291,51 +206,50 @@
             letter-spacing: 3px;
         }
 
-.month .prev {
-  float: left;
-    margin-top: 20px;
-    cursor: pointer;
-}
+        .month .prev {
+            float: right;
+            margin-top: 20px;
+            cursor: pointer;
+        }
 
-.month .next {
-  float: right;
-    margin-top: 20px;
-    cursor: pointer;
-}
+        .month .next {
+            float: left;
+            margin-top: 20px;
+            cursor: pointer;
+        }
 
-.weekdays {
-  margin: 0;
-  padding: 5px 0;
-  background-color: #ddd;
-    direction: rtl;
-    border-top-left-radius: 20px
+        .weekdays {
+            margin: 0;
+            padding: 5px 0;
+            background-color: #ddd;
+            direction: rtl;
+            border-top-left-radius: 1rem
+        }
 
-}
+        .weekdays li {
+          display: inline-block;
+          width: 12.6%;
+          color: #666;
+          text-align: center;
+        }
 
-.weekdays li {
-  display: inline-block;
-  width: 12.6%;
-  color: #666;
-  text-align: center;
-}
+        .days {
+            padding: 5px 0;
+            margin: 0;
+            direction: rtl;
+            border-bottom-left-radius: 20px;
+        }
 
-.days {
-  padding: 5px 0;
-  margin: 0;
-    direction: rtl;
-    border-bottom-left-radius: 20px;
-}
-
-.days li {
-    list-style-type: none;
-    display: inline-block;
-    width: 13.3%;
-    text-align: center;
-    margin-bottom: 1px;
-    font-size:16px;
-    color: #000000;
-    cursor: pointer;
-}
+        .days li {
+            list-style-type: none;
+            display: inline-block;
+            width: 13.3%;
+            text-align: center;
+            margin-bottom: 1px;
+            font-size:16px;
+            color: #000000;
+            cursor: pointer;
+        }
         .activeButton {
             border-radius: 50px;
             background: #1a5bbc;
@@ -358,64 +272,204 @@
 
          .times {
              padding: 10px 0;
-             margin-right: 10%;
-             direction: rtl;
+             margin-right: 15px;
              line-height: 50px;
-}
+         }
 
-.times li {
-    list-style-type: none;
-    display: inline-block;
-    width: 20%;
-    text-align: center;
-    margin-bottom: 10px;
-    font-size:16px;
-    color: #000000;
-    background: #afb6b6;
-    cursor: pointer;
-}
-
-        .selectedTime{
-            list-style-type: none;
-            display: inline-block;
-            width: 20%;
+        .simpleTime {
+            height: 60px;
             text-align: center;
-            margin-bottom: 10px;
             font-size:16px;
-            color: #FFFFFF !important;
-            background: #1a5bbc !important;
+            color: #000000;
+            line-height: 60px;
+            vertical-align: center;
+            background: #afb6b6;
             cursor: pointer;
         }
 
-
-.reservedTime{
-    list-style-type: none;
-    display: inline-block;
-    width: 20%;
-    text-align: center;
-    margin-bottom: 10px;
-    font-size:16px;
-    color: white !important;
-    background: #ff0c0c !important;
-    cursor: none;
-    pointer-events: none;
-}
-
-/* Add media queries for smaller screens */
-@media screen and (max-width:720px) {
-  .weekdays li, .days li {width: 13.1%;}
-}
-
-@media screen and (max-width: 420px) {
-  .weekdays li, .days li {width: 12.5%;}
-  .days li .active {padding: 2px;}
-}
-
-@media screen and (max-width: 290px) {
-  .weekdays li, .days li {width: 12.2%;}
-}
+        .selectedTime{
+            height: 60px;
+            text-align: center;
+            font-size:16px;
+            vertical-align: center;
+            line-height: 60px;
+            color: white !important;
+            background: #1a5bbc !important;
+            cursor: none;
+            pointer-events: none;
+        }
 
 
+        .reservedTime{
+            height: 60px;
+            text-align: center;
+            font-size:16px;
+            color: white !important;
+            vertical-align: center;
+            line-height: 60px;
+            background: #ff0c0c !important;
+            cursor: none;
+            pointer-events: none;
+        }
+
+        .product-img{
+            width: 70%;
+            height: 30rem;
+            float: right;
+            border-radius: 1rem 0 0 1rem;
+
+        }
+         .list-group-item-fixed {
+             width: auto;
+             margin-top: 3.5%;
+             padding-bottom: 3.5%;
+        }
+        .list-group-left {
+            text-align: center;
+            float: left;
+            display: inline;
+            width: 40%;
+        }
+        .list-group-right {
+            text-align: right;
+            float: right;
+            display: inline;
+            width: 35%;
+        }
+
+        div.list-group-right {
+            width: 55%;
+            display: inline-flex;
+        }
+
+        .date-time{
+            width: 70%;
+            float: right;
+            margin-top: 15px;
+            display: inline;
+        }
+
+        .date-picker{
+            width: 50%;
+            height: 300px;
+            background: #FFFFFF ;
+            float: right;
+            border-top-left-radius: 1rem;
+            border-bottom-left-radius: 1rem;
+        }
+
+        .time-picker{
+            width: 49%;
+            height: 300px;
+            background: #FFFFFF ;
+            float: left;
+            border-radius: 1rem ;
+        }
+
+        .description{
+            width: 70%;
+            height: auto;
+            background: #FFFFFF ;
+            float: right;
+            border-top-left-radius: 1rem;
+            border-bottom-left-radius: 1rem;
+            margin-top: 15px
+        }
+
+
+
+           @media screen and (max-width: 600px) {
+            .copy{
+                font-size: 12px;
+        }
+               .nav.navbar-nav.navbar-left{
+                   position: absolute;
+                   left: 0;
+                   margin-top: 5%;
+               }
+
+               .map{
+                   height: 200px;
+                   width: 200px;
+                   margin-top: 50px;
+                   margin-right: 30%;
+''
+               }
+
+               .footer-container{
+                   height: 600px;
+               }
+
+               .footer-logo{
+                   float: none;
+                   height: 200px;
+                   margin-right: 30%;
+               }
+
+               footer ul li {
+                   margin-top: 10px;
+               }
+
+
+                .card{
+                    position: static;
+                    width: 98%;
+                    border-radius: 1rem;
+                    margin-left: 1%;
+                    margin-right: 1%;
+                    margin-top: 15px;
+                }
+
+                .product-img{
+                    width: 100%;
+                    border-radius: 0 0 1rem 1rem;
+                    margin-bottom: 15px;
+                }
+
+
+                .date-time {
+                    width: 100%;
+                    margin-top: 15px;
+                    margin-left: 1%;
+                    margin-right: 1%;
+                    display: inline-block;
+                }
+                 .date-picker {
+                     width: 100%;
+                     height: 300px;
+                     background: #FFFFFF;
+                     border-radius: 1rem;
+                 }
+                 .time-picker {
+                     width: 100%;
+                     height: 400px;
+                     background: #FFFFFF;
+                     border-radius: 1rem;
+                     margin-top: 15px;
+                 }
+
+                 .description {
+                     width: 100%;
+                     height: auto;
+                     margin-left: 1%;
+                     margin-right: 1%;
+                     background: #FFFFFF;
+                     border-radius: 1rem;
+                     margin-top: 15px
+                 }
+                 body{
+                     margin-bottom: 2500px;
+                 }
+
+                  .month {
+                      border-top-right-radius: 1rem
+                  }
+
+                    .weekdays {
+                        border-top-right-radius: 1rem
+                    }
+
+        }
 
     </style>
 
@@ -423,138 +477,227 @@
 
 <body>
 
-<div class="slideshow-container">
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid" style="vertical-align: center">
+<ul class="nav nav-pills">
+  <li class="nav-item">
+    <a class="nav-link" aria-current="page" href='{% url 'home:home' %}'>صفحه اصلی</a>
+  </li>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">ورزش ها</a>
+    <ul class="dropdown-menu dropdown-menu-right">
+         {% for x in sport %}
+             <li><a style="color: black ; width: 100% ; text-align: center" class="dropdown-item" href="{% url 'product:category' x.id %}">{{ x.title }}</a></li>
+         {% endfor %}
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="{% url 'reservation:reservation' %}">اجاره سالن</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href='{% url 'about:aboutUs'%}'>درباره ما</a>
+  </li>
+</ul>
+  <ul class="nav navbar-nav navbar-left">
+      <li><a href='{% url 'user:login' %}'><span class="glyphicon glyphicon-user"></span>ورود و عضویت</a></li>
+    </ul>
+  </div>
+</nav>
 
-    <div class="mySlides fade">
-        <img alt="" src="/media/{{ reservation.gym.image }}"
-             style="width:100%;height:100% ; border-bottom-left-radius:  20px ; border-top-left-radius: 20px">
-    </div>
+<div class="logoHolder">
+
+    <img alt="" src="/media/{{ about.logo }}" class="logo">
+    <div class="typography">PowerGrow</div>
 
 </div>
+
+<img class="img-responsive product-img" src="/media/{{ gym.image }}" alt="gym">
+
 
 
 <div class="card" id="card">
 
-
-    <ul class="card-title" style="margin-top: 15px">
-        <li style="font-size: 16px;font-weight: bold ;display: inline">نام سالن :</li>
-        <li style="font-size: 16px;font-weight: bold ;display: inline ;float: left">{{ reservation.gym.title }}</li>
-
-    </ul>
-
-    <hr>
-
-    <ul class="card-title">
-        <li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">تاریخ رزرو :
-        </li>
-        <li id="startDay"
-            style="direction:ltr ; font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin: -4px">
-            {{ reservation.time.day.month.year.number }}/ {{ reservation.time.day.month.number }}/ {{ reservation.time.day.number }}
-        </li>
-
-    </ul>
-
-    <hr>
-
-    <ul class="card-title">
-        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">ساعت رزرو :
-        </li>
-        <li id="startTime"
-            style="direction:ltr ;font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">
-            {{ reservation.time.time | date:"G:i"}}
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item-fixed">
+            <h6 class="list-group-right">
+                نام سالن:
+            </h6>
+            <h6 class="list-group-left">
+                {{ reservation.gym.title }}
+            </h6>
         </li>
     </ul>
 
-    <hr>
-
-    <ul class="card-title">
-        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">
-            تعداد جلسات رزرو :
-        </li>
-        <li id="timeSession"
-            style="direction:rtl ; font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">
-            {{ reservation.session }}
-        </li>
-    </ul>
-
-    <hr>
-
-    <ul class="card-title">
-        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right; margin-top: -4px">اجاره ثابت :</li>
-        <li id="price" style="font-size: 16px;font-weight: bold ;display: inline ; float: left; margin-top: -4px">
-        0
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item-fixed">
+            <h6 class="list-group-right">
+                تاریخ رزرو:
+            </h6>
+            <h6 id="startDay" class="list-group-left">
+                {{ x.time.day.month.year.number }}/{{ x.time.day.month.number }}/{{ x.time.day.number }}
+            </h6>
         </li>
     </ul>
 
-    <hr>
-
-    <ul class="card-title">
-        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; ; margin-top: -4px">تخفیف :</li>
-        <li id="off" style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; ; margin-top: -4px">
-            0
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item-fixed">
+            <h6 class="list-group-right">
+                ساعت رزرو:
+            </h6>
+            <h6 id="startTime" class="list-group-left">
+                {{ reservation.time.time }}
+            </h6>
         </li>
     </ul>
 
-    <hr>
-
-    <ul class="card-title">
-        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -10px">قیمت نهایی :
-        </li>
-        <li id="final" style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -10px">
-            {{ reservation.price }} تومان
-        </li>
-    </ul>
-
-    <ul class="card-title" style="margin-top: 20px">
-        <li style="font-size: 12px;font-weight: bold ;display: inline ; float: right ; margin-top: -25px ; direction: rtl">
-            <label>
-                <input id="checkbox" type="checkbox" style="margin-top: 3px ; position: absolute; cursor: pointer;">
-            </label>
-            <a style="margin-right: 15px">شرابط این قرارداد را میپذیرم</a>
-        </li>
-        <li style="font-size: 12px;font-weight: bold ;display: inline ; float: left ; margin-top: -22px ; color: blue ; cursor: pointer;">
-            <a href="/media/{{ reservation.gym.contract }}">مشاهده قرارداد</a>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item-fixed">
+            <h6 class="list-group-right">
+                تعداد جلسات رزرو:
+            </h6>
+            <h6 id="timeSession" class="list-group-left">
+                {{ reservation.session }}
+            </h6>
         </li>
     </ul>
 
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item-fixed">
+            <h6 class="list-group-right">
+                اجاره ثابت:
+            </h6>
+            <h6 id="price" class="list-group-left">
+                {{ reservation.time.price }}
+            </h6>
+        </li>
+    </ul>
 
-    <button id="registerButton" class="card-button">
-        قبلا رزرو گرده اید
-    </button>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item-fixed">
+            <h6 class="list-group-right">
+               تخفیف:
+            </h6>
+            <h6 id="off" class="list-group-left">
+                {{ reservation.gym.off }}
+            </h6>
+        </li>
+    </ul>
+
+     <ul class="list-group list-group-flush">
+        <li class="list-group-item-fixed">
+            <h6 class="list-group-right">
+               قیمت نهایی:
+            </h6>
+            <h6 id="final" class="list-group-left">
+                {{ reservation.price }}
+            </h6>
+        </li>
+    </ul>
+
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item-fixed">
+
+            <div class="list-group-right">
+                <input class="form-check-input" type="checkbox" value="" id="accept">
+                <label class="form-check-label" for="accept">
+                    شرابط این قرارداد را میپذیرم
+                </label>
+            </div>
+            <a href="/media/{{ gym.contract }}" class="list-group-left" style="color: #1A01CC ; text-align: center">
+                مشاهده قرارداد
+            </a>
+        </li>
+    </ul>
+
+    <ul class="list-group list-group-flush">
+        <li>
+             <button id="registerButton" class="card-button">
+        رزرو کنید
+             </button>
+        </li>
+    </ul>
 
 
 </div>
 
 
+<div class="date-time">
+<div class="date-picker">
+    <div class="month">
+  <ul>
+    <li id="next" class="prev">&#10094;</li>
+    <li id="prev" class="next">&#10095;</li>
+      <li id="monthTitle"></li>
+    <li>
+      <span id="yearTitle" style="font-size:18px"></span>
+    </li>
+  </ul>
+</div>
+<ul class="weekdays">
+  <li>ش</li>
+  <li>ی</li>
+  <li>د</li>
+  <li>س</li>
+  <li>چ</li>
+  <li>پ</li>
+  <li>ج</li>
+</ul>
+    <ul id="days" class="days">
 
-<div style="margin-bottom:2vh ; width: 70%; height: 500px; background: #FFFFFF ; float: right;border-top-left-radius: 20px; border-bottom-left-radius: 20px; margin-top: 15px">
+    </ul>
+
+    <label for="holidayBox" style="margin-left: 10px ; padding-bottom: 5px; float: left ; position: absolute">
+        <input id="holidayBox" type="checkbox" style="cursor: pointer;">
+        <a >روز های تعطیل محاسبه نشود</a>
+    </label>
+
+</div>
+
+<div class="time-picker">
+
+    <div class="container-fluid p-4">
+
+    <div id="times" class="row justify-content-start  g-3">
+
+    </div>
+
+    </div>
+
+    <label for="number" style="margin-left: 5% ; margin-top: 1% ; margin-bottom: 1% ; float: left">
+        <input id="inputSession" type="number" style="cursor: pointer ; width: 50px ; text-align: center" value="1">
+        <a > تعداد جلسات رزرو </a>
+    </label>
+
+</div>
+</div>
+
+<div class="description">
 
 
-    <p style="direction: rtl ; font-size: 20px ; width: auto ; height: 100% ; margin-right: 10px ; margin-left: 5px ; padding-bottom: 5px">
+    <p style="direction: rtl ; font-size: 20px ; height: 100% ; margin-right: 10px ; margin-left: 5px ; padding-bottom: 5px">
         {{ reservation.gym.description }}
     </p>
 
 </div>
 
-<div class="contentWrapper">
-    <div class="content">
-        <div style="width:160px;left: 0;bottom: 0; top: 0; position: absolute;margin-left: 20px">
+<footer>
+       <div class="footer-container">
 
-            <h2>PowerGrow</h2>
-            <img class="" src="/media/{{ about.transparent_logo }}"
-                 style="position: absolute;width:160px;margin-top: -22px"
+        <div class="footer-logo">
+
+            <h3 style="color: white ; direction: ltr ; text-align: center ; margin-top: 20px">PowerGrow</h3>
+            <img class="img-responsive" style="width: 200px ; height: 200px"  src="/media/{{ about.transparent_logo }}"
                  alt="">
         </div>
 
-        <div id="map" style="width: 20vw; background: #eee; border: 2px solid #aaa;top: 0 ; bottom:0;
-						   position: absolute;margin-left: -10%">
+       <ul style="float: right">
 
-
-        </div>
+       <li>
+            <div style="display: inline-flex ; width: 350px ">
 
         <i class="fa-solid fa-location-dot"
-           style="color: #ffffff; right: 0 ; position: absolute; margin-top: 20px ; margin-right: 20px; font-size: 30px"></i>
-        <h5 style=" width: 33%;right: 0 ; margin-right: 50px;position: absolute;direction: rtl ; margin-top: 20px;">
+           style="color: #ffffff; font-size: 30px"></i>
+        <h5 style="color:white ; margin-right: 5px">
 
             {% autoescape off %}
 
@@ -562,25 +705,48 @@
 
             {% endautoescape %}
 
-
         </h5>
 
-        <i class="fa-solid fa-phone-flip"
-           style="color: #ffffff; right: 0 ; position: absolute; margin-top: 95px ; margin-right: 20px; font-size: 30px"></i>
-        <h5 style="right: 0 ; margin-right: 60px;position: absolute;direction: rtl ; margin-top: 95px;">
+       </div>
+
+       </li>
+
+
+      <li>
+       <div  style="display: inline-flex ; width: 350px" >
+           <i class="fa-solid fa-phone-flip"
+                   style="color: #ffffff; font-size: 30px"></i>
+        <h5 style="color:white ; margin-right: 5px">
             {{ about.phone }}<br> {{ about.telephone }}
         </h5>
 
-        <a href="https://www.instagram.com/{{ instagram }}"
-           style="right: 0 ; position: absolute ; margin-right:20px ; margin-top: 165px;display: inline">
-            <i class="fa-brands fa-instagram" style="color: #ffffff ; font-size: 30px ;"></i>
-        </a>
+       </div>
 
-        <h5 style="right: 0 ; margin-right: 60px;position: absolute;direction: ltr ; margin-top: 167px;">
+       </li>
+
+       <li>
+
+            <div style="display: inline-flex ; width: 350px">
+
+        <i class="fa-brands fa-instagram"
+           style="color: #ffffff; font-size: 30px"></i>
+        <h5 style="color:white ; margin-right: 5px">
             {{ about.instagram }}
         </h5>
+
+       </div>
+
+       </li>
+
+       </ul>
+
+        <div id="map" class="img-responsive map">
+        </div>
+
     </div>
-    <div class="footer">&copy;<span id="year"
+
+  <!-- Copyright -->
+  <div class="p-3 copy" style="background: #151111 ; color: #B1B2B2; direction: ltr">&copy;<span id="year"
                                     style="font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif'">2023 </span><span> PhoenixFamily. All rights reserved.</span>
         <a href="//www.instagram.com/phoenixfamily.co?igshid=OGQ5ZDc2ODk2ZA=="
            style="right: 0 ; position: absolute ; margin-right:15px">
@@ -591,7 +757,9 @@
         </a>
         <span style="right: 0;margin-right: 90px; position: absolute">Follow us:</span>
     </div>
-</div>
+  <!-- Copyright -->
+</footer>
+
 </body>
 
 
@@ -608,15 +776,272 @@
         center: [long, lat],
         minZoom: 2,
         maxZoom: 21,
-        trackResize: true,
-        mapKey: "web.eb9c250015c247e08c5122f824c1541c",
+        trackResize: false,
+        mapKey: "web.3c30ab5c27a242d19aab4bca4e973288",
         poi: true,
         traffic: true,
         mapTypeControllerStatus: {
             show: false,
         }
     });
+
 </script>
 
+<script>
+
+    let gym = {{ gym.id }};
+    let date
+    let time
+    let session = 1
+    let checkedValue = document.getElementById("accept")
+    let holidayBox = document.getElementById("holidayBox")
+    let holiday
+
+    const cookieValue = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("token="))
+        ?.split("=")[1];
+
+    const registerButton = document.getElementById("registerButton")
+
+
+    registerButton.addEventListener('click', function () {
+        if (cookieValue !== undefined) {
+            if (date !==undefined && time!== undefined && checkedValue.checked) {
+                if (holidayBox.checked){
+                    holiday = "False"
+                }else {
+                    holiday = "True"
+                }
+                window.location.assign(`/reservation/transaction/${gym}/${time}/${session}/${holiday}`)
+            }else {
+                alert("فیلدها الزامی میباشد")
+            }
+
+        } else {
+            window.location.assign(`{% url 'user:login'  %}`)
+        }
+
+    })
+
+</script>
+
+<script>
+
+    let calendar = document.getElementById("calendar")
+    let monthTitle = document.getElementById("monthTitle")
+    let yearTitle = document.getElementById("yearTitle")
+    let prev = document.getElementById("prev")
+    let next = document.getElementById("next")
+    let days = document.getElementById("days")
+    let monthPosition = 2
+    let result
+    let monthSize
+    let startDay = document.getElementById("startDay")
+    let currentDayId
+    let today = new Date().toLocaleDateString('fa-IR');
+    today = today.split('/')
+    let currentDay = today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
+    let currentMonth = today[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
+
+    document.addEventListener("DOMContentLoaded", function() {
+        getYear()
+    });
+
+
+    async function getYear() {
+
+        const response = await fetch('/calendar/api/year/', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        result = await response.json()
+        result = JSON.parse(JSON.stringify(result))
+        monthSize = result[0].months.length
+
+        yearTitle.innerHTML = result[0].number
+        getDays(monthPosition)
+
+    }
+
+        next.addEventListener("click", function () {
+            if (monthPosition > 0) {
+                monthPosition = monthPosition - 1
+                getDays(monthPosition)
+            }
+        })
+
+    prev.addEventListener("click",function () {
+         if (monthPosition<monthSize-1){
+            monthPosition = monthPosition+1
+             getDays(monthPosition)
+        }
+    })
+
+    function getDays(monthPosition) {
+        monthTitle.innerHTML = result[0].months[monthPosition].name
+        days.innerHTML=""
+        times.innerHTML = ""
+        const emptyDay = document.createElement("li")
+                emptyDay.innerHTML = ' '
+
+        switch (result[0].months[monthPosition].startDay) {
+
+            case "یکشنبه" :
+                const empty0 = document.createElement("li")
+                days.appendChild(empty0)
+                break
+            case "دوشنبه" :
+                const empty1 = document.createElement("li")
+                days.appendChild(empty1)
+                const empty2 = document.createElement("li")
+                days.appendChild(empty2)
+                break
+
+            case "سه شنبه" :
+               const empty3 = document.createElement("li")
+                days.appendChild(empty3)
+                const empty4 = document.createElement("li")
+                days.appendChild(empty4)
+                const empty5 = document.createElement("li")
+                days.appendChild(empty5)
+                break
+             case "چهارشنبه" :
+                 const empty6 = document.createElement("li")
+                days.appendChild(empty6)
+                const empty7 = document.createElement("li")
+                days.appendChild(empty7)
+                const empty9 = document.createElement("li")
+                days.appendChild(empty9)
+                 const empty10 = document.createElement("li")
+                days.appendChild(empty10)
+
+                break
+             case "پنجشنبه" :
+                const empty11 = document.createElement("li")
+                days.appendChild(empty11)
+                const empty12 = document.createElement("li")
+                days.appendChild(empty12)
+                const empty13 = document.createElement("li")
+                days.appendChild(empty13)
+                 const empty14 = document.createElement("li")
+                days.appendChild(empty14)
+                 const empty15 = document.createElement("li")
+                days.appendChild(empty15)
+                break
+             case "جمعه" :
+                  const empty16 = document.createElement("li")
+                days.appendChild(empty16)
+                const empty17 = document.createElement("li")
+                days.appendChild(empty17)
+                const empty18 = document.createElement("li")
+                days.appendChild(empty18)
+                 const empty19 = document.createElement("li")
+                days.appendChild(empty19)
+                 const empty20 = document.createElement("li")
+                days.appendChild(empty20)
+                 const empty21 = document.createElement("li")
+                days.appendChild(empty21)
+                break
+        }
+        for (let i = 0 ; i< result[0].months[monthPosition].days.length ; i++){
+            const dayItem = document.createElement("li")
+            if (result[0].months[monthPosition].days[i].holiday === true && result[0].months[monthPosition].days[i].number > parseInt(currentDay)) {
+                dayItem.classList.add("holidayButton")
+            }else if ( result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number === parseInt(currentDay))
+            {
+                dayItem.classList.add("activeButton")
+                currentDayId = result[0].months[monthPosition].days[i].id
+                date = `${result[0].number}-${result[0].months[monthPosition].number}-${result[0].months[monthPosition].days[i].number}`
+
+            }else if (result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number < parseInt(currentDay)){
+                dayItem.classList.add("disActiveButton")
+            }
+            dayItem.setAttribute("itemid",result[0].months[monthPosition].days[i].id)
+            days.appendChild(dayItem)
+        }
+         const buttons = document.querySelectorAll('.days li');
+            Array.from(buttons).forEach(function (button) {
+                button.addEventListener('click', async function () {
+                    const selected = document.querySelectorAll('.activeButton')
+                    Array.from(selected).forEach(function (btn) {
+                        btn.classList.remove("activeButton")
+                    })
+                    button.classList.add("activeButton")
+                    await getTimes(button.getAttribute("itemid"))
+                    date = `${result[0].number}-${result[0].months[monthPosition].number}-${button.textContent}`
+
+                })
+            })
+
+         if(monthPosition===2) {
+            getTimes(currentDayId)
+        }
+    }
+
+</script>
+
+
+<script>
+
+    let timeSize
+    let res
+    let times = document.getElementById("times")
+    let startTime = document.getElementById("startTime")
+    let sessionTitle = document.getElementById("timeSession")
+    let inputSession = document.getElementById("inputSession")
+    let price = document.getElementById("price")
+    let off = document.getElementById("off")
+    let final = document.getElementById("final")
+
+        async function getTimes(day) {
+
+        times.innerHTML = ""
+
+        const result = await fetch(`/calendar/api/time/${day}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        res = await result.json()
+        res = JSON.parse(JSON.stringify(res))
+
+              for (let i = 0 ; i< res.length ; i++){
+                  const timeCover = document.createElement("div")
+                  const timeItem = document.createElement("div")
+                  timeItem.setAttribute("id",`${i}`)
+                  timeItem.setAttribute("itemid",res[i].id)
+                  timeCover.classList.add("col")
+                  timeItem.classList.add("simpleTime")
+                  timeCover.appendChild(timeItem)
+
+                  if (res[i].reserved ===true){
+                      timeItem.classList.add("reservedTime")
+                  }
+                  times.appendChild(timeCover)
+        }
+
+               const timeButton = document.querySelectorAll('.simpleTime');
+            Array.from(timeButton).forEach(function (btn) {
+                btn.addEventListener('click', async function () {
+                     const selected = document.querySelectorAll('.selectedTime')
+                    Array.from(selected).forEach(function (btn) {
+                        btn.classList.remove("selectedTime")
+                    })
+                   btn.classList.add("selectedTime")
+                    time = btn.getAttribute("itemid")
+                    let position = btn.getAttribute("id")
+                    if (parseInt(res[parseInt(position)].off) !==0){
+                    }else {
+                    }
+
+                })
+            })
+    }
+
+</script>
 
 </html>
