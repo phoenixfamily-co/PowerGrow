@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
 from django.template import loader
 from rest_framework import viewsets, filters, generics, status
 from rest_framework.permissions import IsAuthenticated
@@ -119,7 +120,7 @@ def admin_courses_view(request):
 
 def user_courses_view(request, pk):
     template = loader.get_template('user/course.html')
-    course = Participants.objects.get(user=pk)
+    course = get_object_or_404(Participants, user=pk)
     about = AboutUs.objects.values().first()
     context = {
         "about": about,
