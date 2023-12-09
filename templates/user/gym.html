@@ -184,6 +184,20 @@
             cursor: pointer;
         }
 
+         .disabled-button{
+            height: 50px;
+            margin-top: 4%;
+            margin-right: 5%;
+            margin-bottom: 4%;
+            width: 90%;
+            opacity: 0.5;
+            background: #e4633a;
+            border-color: transparent;
+            color: white;
+            cursor: none;
+            pointer-events: none;
+        }
+
 
         .month {
             width: 100%;
@@ -611,7 +625,7 @@
 
     <ul class="list-group list-group-flush">
         <li>
-             <button id="registerButton" class="card-button" disabled>
+             <button id="registerButton" class="disabled-button" disabled>
         قبلا رزرو کردید
              </button>
         </li>
@@ -805,24 +819,6 @@
     const registerButton = document.getElementById("registerButton")
 
 
-    registerButton.addEventListener('click', function () {
-        if (cookieValue !== undefined) {
-            if (date !==undefined && time!== undefined && checkedValue.checked) {
-                if (holidayBox.checked){
-                    holiday = "False"
-                }else {
-                    holiday = "True"
-                }
-                window.location.assign(`/reservation/transaction/${gym}/${time}/${session}/${holiday}`)
-            }else {
-                alert("فیلدها الزامی میباشد")
-            }
-
-        } else {
-            window.location.assign(`{% url 'user:login'  %}`)
-        }
-
-    })
 
 </script>
 
