@@ -1018,6 +1018,7 @@
               for (let i = 0 ; i< res.length ; i++){
                   const timeCover = document.createElement("div")
                   const timeItem = document.createElement("div")
+                  timeItem.innerHTML = res[i].time
                   timeItem.setAttribute("id",`${i}`)
                   timeItem.setAttribute("itemid",res[i].id)
                   timeCover.classList.add("col")
@@ -1039,11 +1040,6 @@
                     })
                    btn.classList.add("selectedTime")
                     time = btn.getAttribute("itemid")
-                    let position = btn.getAttribute("id")
-                    if (parseInt(res[parseInt(position)].off) !==0){
-                    }else {
-                    }
-
                 })
             })
     }
