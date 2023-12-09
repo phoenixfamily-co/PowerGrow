@@ -534,7 +534,7 @@
                 تاریخ رزرو:
             </h6>
             <h6 id="startDay" class="list-group-left">
-                {{ x.time.day.month.year.number }}/{{ x.time.day.month.number }}/{{ x.time.day.number }}
+                {{ reservation.time.day.month.year.number }}/{{ reservation.time.day.month.number }}/{{ reservation.time.day.number }}
             </h6>
         </li>
     </ul>
@@ -545,7 +545,7 @@
                 ساعت رزرو:
             </h6>
             <h6 id="startTime" class="list-group-left">
-                {{ reservation.time.time }}
+                {{ reservation.time.time | date:"G:i:s"}}
             </h6>
         </li>
     </ul>

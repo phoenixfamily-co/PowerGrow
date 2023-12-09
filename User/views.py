@@ -86,10 +86,11 @@ def user_gym_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('user/gym.html')
     reservation = Reservations.objects.get(id=pk)
+    sport = Sport.objects.all().values()
     context = {
         "about": about,
-        "reservation" : reservation
-
+        "reservation" : reservation,
+        "sport": sport,
     }
     return HttpResponse(template.render(context, request))
 
