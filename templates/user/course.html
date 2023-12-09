@@ -145,7 +145,7 @@
     </tr>
   </thead>
   <tbody>
-  {% for x in course %}
+  {% for x in participants %}
     <tr>
         <th scope="row">{{ x.id }}</th>
         <th onclick="window.open('{% url 'product:create-admin-participate' x.id %}')" style="text-decoration: underline ; cursor: pointer">مشاهده دوره</th>
