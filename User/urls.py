@@ -34,7 +34,7 @@ urlpatterns = [
     path('home/manager/<int:pk>/', manager_home_view, name='manager_home'),
     path('profile/<int:pk>/', profile_view, name='profile'),
     path('reservation/<int:pk>/', user_gym_view, name='user_gym'),
-    path('participants/<int:pk>/', user_course_view, name='user_course'),
+    path('product/<int:pk>/', user_product_view, name='user_product'),
     path('users/', user_view, name='users_view'),
     path('users/admin/', admin_user_view, name='users_view_admin'),
 

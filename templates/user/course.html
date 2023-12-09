@@ -107,12 +107,6 @@
 
 <nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid" style="vertical-align: center">
-<ul class="nav nav-pills">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href='javascript: window.open("{% url 'product:create_courses' %}")'>ثبت نام جدید</a>
-  </li>
-</ul>
-
   <ul class="nav nav-pills navbar-left">
       <li class="nav-item">
     <a class="nav-link" aria-current="page" href='javascript: history.go(-1)'>برگشت</a>
@@ -148,7 +142,7 @@
   {% for x in participants %}
     <tr>
         <th scope="row">{{ x.id }}</th>
-        <th onclick="window.open('{% url 'product:create-admin-participate' x.id %}')" style="text-decoration: underline ; cursor: pointer">مشاهده دوره</th>
+        <th onclick="window.open('{% url 'user:user_product' x.id %}')" style="text-decoration: underline ; cursor: pointer">مشاهده دوره</th>
         <td>{{ x.course.title }}</td>
         <td>{{ x.description }}</td>
         <td>{{ x.session.number }}</td>
