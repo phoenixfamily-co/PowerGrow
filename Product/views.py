@@ -120,10 +120,8 @@ def admin_courses_view(request):
 def user_courses_view(request, pk):
     template = loader.get_template('user/course.html')
     about = AboutUs.objects.values().first()
-    try:
-        participants = Participants.objects.filter(user=pk).all()
-    except Participants.DoesNotExist:
-        participants = None
+    participants = Participants.objects.filter(user=pk).all()
+
     context = {
         "about": about,
         "participants": participants,
