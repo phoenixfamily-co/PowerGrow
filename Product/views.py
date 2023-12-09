@@ -120,11 +120,14 @@ def admin_courses_view(request):
 
 def user_courses_view(request, pk):
     template = loader.get_template('user/course.html')
-    course = get_object_or_404(Participants, user=pk)
     about = AboutUs.objects.values().first()
+    try:
+        participants = Participants.objects.get(user=pk)
+    except Participants.DoesNotExist:
+        participants = None
     context = {
         "about": about,
-        "course": course,
+        "participants": participants,
     }
     return HttpResponse(template.render(context, request))
 
