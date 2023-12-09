@@ -77,7 +77,6 @@ def user_home_view(request, pk):
     user = User.objects.all().get(id=pk)
     context = {
         "about": about,
-        "id": pk,
         "user": user,
     }
     return HttpResponse(template.render(context, request))
@@ -175,7 +174,6 @@ def admin_user_view(request):
         "user" : user
     }
     return HttpResponse(template.render(context, request))
-
 
 
 

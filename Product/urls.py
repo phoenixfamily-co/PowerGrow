@@ -17,6 +17,7 @@ urlpatterns = [
     path('api/course/', CourseView.as_view({'get': 'list'}), name='courses'),
     path('course/', courses_view, name='courses_view'),
     path('course/admin/', admin_courses_view, name='courses_view_admin'),
+    path('course/user/<int:pk>/', user_courses_view, name='courses_view_user'),
     path('api/sessions/create/', SessionView.as_view({'post': 'create'}), name='creat_sessions'),
     path('api/sessions/delete/<int:pk>/', SessionView.as_view({'delete': 'destroy'}), name='delete_sessions'),
     path('api/sessions/update/<int:pk>/', SessionView.as_view({'put': 'update'}), name='update_sessions'),

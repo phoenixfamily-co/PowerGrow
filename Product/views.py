@@ -117,6 +117,17 @@ def admin_courses_view(request):
     return HttpResponse(template.render(context, request))
 
 
+def user_courses_view(request, pk):
+    template = loader.get_template('user/course.html')
+    course = Participants.objects.get(user=pk)
+    about = AboutUs.objects.values().first()
+    context = {
+        "about": about,
+        "course": course,
+    }
+    return HttpResponse(template.render(context, request))
+
+
 def session_view(request):
     template = loader.get_template('manager/sessions.html')
     session = Sessions.objects.all()
@@ -137,6 +148,7 @@ def admin_session_view(request):
         "session": session,
     }
     return HttpResponse(template.render(context, request))
+
 
 def day_view(request):
     template = loader.get_template('manager/days.html')
