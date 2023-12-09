@@ -127,6 +127,18 @@ def admin_reserve_view(request):
     return HttpResponse(template.render(context, request))
 
 
+def user_reserves_view(request, pk):
+    template = loader.get_template('user/reserves.html')
+    about = AboutUs.objects.values().first()
+    reserves = Reservations.objects.filter(user=pk).all()
+
+    context = {
+        "about": about,
+        "reserves": reserves,
+    }
+    return HttpResponse(template.render(context, request))
+
+
 class GymView(viewsets.ModelViewSet):
     queryset = Gym.objects.all()
     serializer_class = GymSerializer
