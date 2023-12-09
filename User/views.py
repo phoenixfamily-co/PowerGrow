@@ -98,11 +98,13 @@ def user_product_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('user/product.html')
     participants = Participants.objects.get(id=pk)
+    sport = Sport.objects.all().values()
     size = Participants.objects.filter(course__pk=participants.course.id).values()
     context = {
         "about": about,
         "participants" : participants,
-        "size" : len(list(size))
+        "size" : len(list(size)),
+        "sport": sport,
 
     }
     return HttpResponse(template.render(context, request))
