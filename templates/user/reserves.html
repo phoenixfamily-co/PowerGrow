@@ -143,7 +143,7 @@
   {% for x in reserves %}
     <tr>
         <th scope="row">{{ x.id }}</th>
-        <th onclick="window.open('{% url 'user:user_gym' x.id %}')" style="text-decoration: underline ; cursor: pointer">مشاهده سالن</th>
+        <th onclick="window.open('{% url 'user:user_gym' x.gym.id %}')" style="text-decoration: underline ; cursor: pointer">مشاهده سالن</th>
         <td>{{ x.gym.title }}</td>
         <td>{{ x.description }}</td>
         <td>{{ x.time.day.number }}/{{ x.time.day.month.number }}/{{ x.time.day.month.year.number }}</td>
