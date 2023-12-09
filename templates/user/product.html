@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,18 +8,27 @@
     <script src="https://kit.fontawesome.com/1228ed801f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.css"/>
     <script src="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.js"></script>
-    <title>PowerGrow</title>
+    <link rel="stylesheet" href="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.css">
+    <script type="text/javascript"
+            src="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.js"></script>
+
+
+
+     <title>اجاره سالن</title>
+
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
 
 
     <style>
-
-        @font-face {
+         @font-face {
             font-family: BYekan;
             font-style: normal;
             font-weight: normal;
             src: url("/static/fonts/BYekan.eot");/* IE9 Compat Modes */
             src: url("/static/fonts/BYekan.woff") format('woff'),
-            url("/static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */ url("/static/fonts/BYekan.ttf") format('truetype') /* Safari, Android, iOS */
+            url("/static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */ url("../../static/fonts/BYekan.ttf") format('truetype') /* Safari, Android, iOS */
         }
 
         * {
@@ -29,41 +39,15 @@
             vertical-align: middle;
         }
 
-        .mySlides {
-            display: block;
-            width: 70%;
-            right: 0;
-            height: 500px;
-            float: right;
-        }
-
-        .tab {
-            direction: rtl;
-            unicode-bidi: bidi-override;
-            right: 0;
-            position: absolute;
-            margin-top: 4%;
-            margin-right: 5%;
-            z-index: 10 !important;
-
-
-        }
-
-        .tab-button {
-            background-color: transparent;
-            border-color: transparent;
-            color: white;
-            font-family: BYekan, serif !important;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
         .logoHolder {
             width: 50px;
-            margin-left: 50%;
             position: absolute;
+            left: 0;
+            right: 0;
+            margin-right: 55%;
             margin-top: 1%;
             z-index: 10 !important;
+            direction: ltr;
 
         }
 
@@ -85,51 +69,15 @@
 
         }
 
-        .login {
-            width: 150px;
-            position: absolute;
-            margin-top: 4%;
-            margin-left: 28%;
-            z-index: 10 !important;
-            direction: rtl;
-            unicode-bidi: bidi-override;
-        }
-
-        .loginTypography {
-            color: white;
-            position: absolute;
-            background-color: transparent;
-            border-color: transparent;
-            font-family: BYekan, serif !important;
-            direction: rtl;
-            font-size: 16px;
-            margin-right: 10%;
-            cursor: pointer;
-
-        }
-
-        .slideshow-container {
-            max-width: 100%;
-            position: relative;
-            margin: auto;
-        }
 
         .dropdown {
             position: relative;
             display: inline-block;
         }
 
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            width: 100px;
-            background-color: #f9f9f9;
-            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-            padding: 12px 16px;
-            z-index: 1;
-        }
 
-        .dropdown:hover .dropdown-content {
+
+        .dropdown:hover {
             display: block;
 
         }
@@ -147,266 +95,386 @@
             background-color: #f1f1f1
         }
 
-
-        @keyframes fade {
-            from {
-                opacity: .4
-            }
-            to {
-                opacity: 1
-            }
+        html{
+            min-height: 100%;
+            position: relative;
+            font-family: BYekan, serif !important;
         }
 
-        /* On smaller screens, decrease text size */
-        @media only screen and (max-width: 300px) {
+        body {
+            direction: rtl;
+            margin-bottom: 1150px;
+            background: #ACACAC;
+
+        }
+
+        .navbar.navbar-dark.bg-dark li a{
+            color: #fff;
+        }
+
+          .navbar.navbar-dark.bg-dark a:hover{
+              color: grey;
+        }
+
+       .nav.navbar-nav li a {
+           color: #fff;
+           text-decoration: none;
+       }
+
+        .nav.navbar-nav a:hover {
+            color: grey;
+        }
+
+        .nav-pills > li > a.active {
+            background-color: #E16539 !important;
+        }
+
+        .nav.navbar-nav.navbar-left {
+            margin-left: 20px;
+        }
+
+        footer{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background: #303030;
+
+        }
+
+        .map{
+            height: 100% ;
+            width: 20% ;
+            margin-right: 40%
+        }
+
+        .footer-container{
+            height: 250px;
+        }
+
+        .footer-logo{
+            height: 100%;
+            float: left;
+        }
+
+         ul {
+            list-style-type: none;
+        }
+
+        footer ul li {
+            margin-top: 30px;
         }
 
         .card {
-            width: 390px;
-            background: #FFFFFF;
-            border-top-right-radius: 20px;
-            border-bottom-right-radius: 20px;
+            width: 29%;
+            height: auto;
+            border-top-right-radius: 1rem;
+            border-bottom-right-radius: 1rem;
             position: fixed;
-            flex: 0 0 auto;
-            margin-right: 1%;
-        }
-
-        .card-title {
-            color: black;
-            width: 95%;
-            font-family: BYekan, serif !important;
-            list-style-type: none;
-            float: right;
-            display: inline-block;
-            direction: rtl;
-
+            left: 0;
         }
 
         .card-button {
-            position: absolute;
-            bottom: 0;
-            height: 60px;
-            width: 370px;
-            margin-right: 10px;
-            margin-left: 10px;
-            margin-bottom: 20px;
-            background: #5cdb5c;
+            height: 50px;
+            margin-top: 4%;
+            margin-bottom: 4%;
+            margin-right: 5%;
+            width: 90%;
+            background: #e4633a;
             border-color: transparent;
             color: white;
             cursor: pointer;
         }
 
-        .disabled-button {
-            position: absolute;
-            bottom: 0;
-            height: 60px;
-            width: 370px;
-            margin-right: 10px;
-            margin-left: 10px;
-            margin-bottom: 20px;
-            background: #5cdb5c;
+        .disabled-button{
+            height: 50px;
+            margin-top: 4%;
+            margin-right: 5%;
+            width: 90%;
+            opacity: 0.5;
+            background: #e4633a;
             border-color: transparent;
             color: white;
             cursor: none;
             pointer-events: none;
-            opacity:0.6;
         }
 
-        .contentWrapper {
-            height: 250px;
-        / / Replace with the height your footer should be width: 100 %;
-        / / Don 't change background-position: 0 % 0 %;
-            padding: 2rem;
-            background: #303030;
-            color: white;
-            font-weight: 500;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 0.2rem;
-            position: absolute;
-            margin-top: 1030px;
-            right: 0;
-            left: 0;
+
+        .product-img{
+            width: 70%;
+            height: 30rem;
+            float: right;
+            border-radius: 1rem 0 0 1rem;
 
         }
-
-        .content {
-            height: 250px;
-        / / Replace with the height your footer should be width: 1000 px;
-        / / Visible width of footer margin: auto;
+         .list-group-item-fixed {
+             width: auto;
+             margin-top: 3.5%;
+             padding-bottom: 3.5%;
+        }
+        .list-group-left {
+            text-align: center;
+            float: left;
+            display: inline;
+            width: 40%;
+        }
+        .list-group-right {
+            text-align: right;
+            float: right;
+            display: inline;
+            width: 35%;
         }
 
-        .footer {
-            height: 50px;
-            font-weight: 500;
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            font-size: 12px;
-            gap: 0.2rem;
-            padding-top: 10px;
-            padding-left: 20px;
-            bottom: 0;
-            right: 0;
-            left: 0;
-            position: absolute;
-            color: #B1B2B2;
-            background: #151111;
-
+        div.list-group-right {
+            width: 55%;
+            display: inline-flex;
         }
 
-        body, html {
+        .description{
+            width: 70%;
             height: auto;
-            position: relative;
-            font-family: BYekan, serif !important;
-            background: #ACACAC;
-
-        }
-
-        hr {
-            height: 1px;
-            background-color: black;
-            width: 325px;
-            margin-right: 20px;
-            margin-left: 20px;
-            right: 0;
-            left: 0;
+            background: #FFFFFF ;
+            float: right;
+            border-top-left-radius: 1rem;
+            border-bottom-left-radius: 1rem;
+            margin-top: 15px
         }
 
 
+
+           @media screen and (max-width: 600px) {
+            .copy{
+                font-size: 12px;
+        }
+               .nav.navbar-nav.navbar-left{
+                   position: absolute;
+                   left: 0;
+                   margin-top: 5%;
+               }
+
+               .map{
+                   height: 200px;
+                   width: 200px;
+                   margin-top: 50px;
+                   margin-right: 30%;
+''
+               }
+
+               .footer-container{
+                   height: 600px;
+               }
+
+               .footer-logo{
+                   float: none;
+                   height: 200px;
+                   margin-right: 30%;
+               }
+
+               footer ul li {
+                   margin-top: 10px;
+               }
+
+
+                .card{
+                    position: static;
+                    width: 98%;
+                    border-radius: 1rem;
+                    margin-left: 1%;
+                    margin-right: 1%;
+                    margin-top: 15px;
+                }
+
+                .product-img{
+                    width: 100%;
+                    border-radius: 0 0 1rem 1rem;
+                    margin-bottom: 15px;
+                }
+
+                 .description {
+                     width: 100%;
+                     height: auto;
+                     margin-left: 1%;
+                     margin-right: 1%;
+                     background: #FFFFFF;
+                     border-radius: 1rem;
+                     margin-top: 15px
+                 }
+                 body{
+                     margin-bottom: 1450px;
+                 }
+           }
     </style>
 
 </head>
 <body>
 
-<div class="slideshow-container">
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid" style="vertical-align: center">
+<ul class="nav nav-pills">
+  <li class="nav-item">
+    <a class="nav-link" aria-current="page" href='{% url 'home:home' %}'>صفحه اصلی</a>
+  </li>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">ورزش ها</a>
+    <ul class="dropdown-menu dropdown-menu-right">
+         {% for x in sport %}
+             <li><a style="color: black ; width: 100% ; text-align: center" class="dropdown-item" href="{% url 'product:category' x.id %}">{{ x.title }}</a></li>
+         {% endfor %}
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'reservation:reservation' %}">اجاره سالن</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href='{% url 'about:aboutUs'%}'>درباره ما</a>
+  </li>
+</ul>
+  <ul class="nav navbar-nav navbar-left">
+      <li><a href='{% url 'user:login' %}'><span class="glyphicon glyphicon-user"></span>ورود و عضویت</a></li>
+    </ul>
+  </div>
+</nav>
 
-    <div class="mySlides fade">
-        <img alt="" src="/media/{{ participants.course.image }}"
-             style="width:100%;height:100% ; border-bottom-left-radius:  20px ; border-top-left-radius: 20px">
-    </div>
+<div class="logoHolder">
+
+    <img alt="" src="/media/{{ about.logo }}" class="logo">
+    <div class="typography">PowerGrow</div>
+
+</div>
+
+<img class="img-responsive product-img" src="/media/{{ participants.course.image }}" alt="product">
+
+
+
+<div class="card" id="card">
+
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item-fixed">
+            <h6 class="list-group-right">
+                نام دوره:
+            </h6>
+            <h6 class="list-group-left">
+                {{ participants.course.title }}({{ participants.course.gender }})
+            </h6>
+        </li>
+    </ul>
+
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item-fixed">
+            <h6 class="list-group-right">
+                ظرفیت باقی مانده:
+            </h6>
+            <h6 id="number" class="list-group-left">
+                {{ size }}/{{  participants.course.capacity }}
+            </h6>
+        </li>
+    </ul>
+
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item-fixed">
+            <h6 class="list-group-right">
+                روزهای برگزاری:
+            </h6>
+            <h6 id="startDay" class="list-group-left">
+                {{ participants.day.title }}
+            </h6>
+        </li>
+    </ul>
+
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item-fixed">
+            <h6 class="list-group-right">
+                ساعت برگزاری:
+            </h6>
+            <h6 id="timeSession" class="list-group-left">
+                {{ participants.course.time }}
+            </h6>
+        </li>
+    </ul>
+
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item-fixed">
+            <h6 class="list-group-right">
+                تعداد جلسات:
+            </h6>
+            <h6 id="session" class="list-group-left">
+                {{ participants.session.number }}
+            </h6>
+        </li>
+    </ul>
+
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item-fixed">
+            <h6 class="list-group-right">
+               شهریه ثابت:
+            </h6>
+            <h6 id="price" class="list-group-left">
+                {{ participants.course.tuition }}
+            </h6>
+        </li>
+    </ul>
+
+     <ul class="list-group list-group-flush">
+        <li class="list-group-item-fixed">
+            <h6 class="list-group-right">
+               تخفیف:
+            </h6>
+            <h6 id="off" class="list-group-left">
+                {{ participants.course.off }}%
+            </h6>
+        </li>
+    </ul>
+
+ <ul class="list-group list-group-flush">
+        <li class="list-group-item-fixed">
+            <h6 class="list-group-right">
+               قیمت نهایی:
+            </h6>
+            <h6 id="final" class="list-group-left">
+                {{ participants.price }} تومان
+            </h6>
+        </li>
+    </ul>
+
+    <ul class="list-group list-group-flush">
+
+        <li style="align-content: center ; align-items: center">
+             <button id="registerButton" class="card-button">
+        ثبت نام کنید
+             </button>
+        </li>
+
+    </ul>
 
 </div>
 
 
-<div class="card" id="card" style="height: 500px">
+<div class="description">
 
-
-    <ul class="card-title">
-        <li style="font-size: 16px;font-weight: bold ;display: inline">نام دوره :</li>
-        <li style="font-size: 16px;font-weight: bold ;display: inline ;float: left">{{ participants.course.title }}({{ participants.course.gender }})</li>
-
-    </ul>
-
-    <hr style="margin-top: 50px ; position: absolute">
-
-    <ul class="card-title">
-        <li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">ظرفیت باقی مانده :
-        </li>
-        <li style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin: -4px">{{ size }}/{{  participants.course.capacity }}</li>
-
-    </ul>
-
-    <hr style="margin-top: 100px ; position: absolute">
-
-    <ul class="card-title">
-
-        <li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">روز های
-            برگزاری :
-        </li>
-        <li style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin-bottom:  -4px">{{ participants.day.title }}
-        </li>
-    </ul>
-
-
-    <hr style="margin-top: 150px ; position: absolute">
-
-    <ul class="card-title">
-        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">ساعت برگزاری :
-        </li>
-        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">{{ participants.course.time }}</li>
-    </ul>
-
-    <hr style="margin-top: 200px ; position: absolute">
-
-    <ul class="card-title">
-        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">تعداد جلسات :
-        </li>
-        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">{{ participants.session.number }}
-            جلسه
-        </li>
-    </ul>
-
-    <hr style="margin-top: 250px ; position: absolute">
-
-    <ul class="card-title">
-        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right; margin-top: -4px">شهریه ثابت :
-        </li>
-        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: left; margin-top: -4px">{{ participants.course.tuition }}
-            تومان
-        </li>
-    </ul>
-
-    <hr style="margin-top: 300px ; position: absolute">
-
-
-    <ul class="card-title">
-        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; ; margin-top: -4px">تخفیف :</li>
-        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; ; margin-top: -4px">{{ participants.course.off }}%</li>
-    </ul>
-
-    <hr style="margin-top: 350px ; position: absolute">
-
-    <ul class="card-title">
-        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -10px">قیمت نهایی :
-        </li>
-        <li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -10px">{{ participants.course.tuition }}
-            تومان
-        </li>
-    </ul>
-
-
-</div>
-
-<div class="card" style="margin-top: 515px ; height: 120px">
-
-    <img src="/media/{{ participants.course.profile }}" alt=""
-         style="float: right ; margin-top: 30px ; margin-right: 20px ; font-size: 40px ;direction: rtl ; height: 60px ; width: 60px">
-
-    <h5 style="right: 0 ; margin-right: 90px ; margin-top: 45px ; position: absolute ; font-weight: bold">{{ participants.course.name }}</h5>
-
-
-</div>
-
-
-<div style="width: 70%; height: 500px; background: #FFFFFF ; float: right;border-top-left-radius: 20px; border-bottom-left-radius: 20px; margin-top: 15px">
-
-    <p style="direction: rtl ; font-size: 20px ; width: auto ; height: 100% ; margin-right: 10px ; margin-left: 5px ; padding-bottom: 5px">
+    <p style="direction: rtl ; font-size: 20px ; height: 100% ; margin-right: 10px ; margin-left: 5px ; padding-bottom: 5px">
         {{ participants.course.description }}
     </p>
+
 </div>
 
-<div class="contentWrapper">
-    <div class="content">
-        <div style="width:160px;left: 0;bottom: 0; top: 0; position: absolute;margin-left: 20px">
+<footer>
+       <div class="footer-container">
 
-            <h2>PowerGrow</h2>
-            <img class="" src="/media/{{ about.transparent_logo }}"
-                 style="position: absolute;width:160px;margin-top: -22px"
+        <div class="footer-logo">
+
+            <h3 style="color: white ; direction: ltr ; text-align: center ; margin-top: 20px">PowerGrow</h3>
+            <img class="img-responsive" style="width: 200px ; height: 200px"  src="/media/{{ about.transparent_logo }}"
                  alt="">
-
         </div>
 
-        <div id="map" style="width: 20vw; background: #eee; border: 2px solid #aaa;top: 0 ; bottom:0;
-						   position: absolute;margin-left: -10%">
+       <ul style="float: right">
 
-
-        </div>
+       <li>
+            <div style="display: inline-flex ; width: 350px ">
 
         <i class="fa-solid fa-location-dot"
-           style="color: #ffffff; right: 0 ; position: absolute; margin-top: 20px ; margin-right: 20px; font-size: 30px"></i>
-        <h5 style=" width: 33%;right: 0 ; margin-right: 50px;position: absolute;direction: rtl ; margin-top: 20px;">
+           style="color: #ffffff; font-size: 30px"></i>
+        <h5 style="color:white ; margin-right: 5px">
 
             {% autoescape off %}
 
@@ -414,25 +482,48 @@
 
             {% endautoescape %}
 
-
         </h5>
 
-        <i class="fa-solid fa-phone-flip"
-           style="color: #ffffff; right: 0 ; position: absolute; margin-top: 95px ; margin-right: 20px; font-size: 30px"></i>
-        <h5 style="right: 0 ; margin-right: 60px;position: absolute;direction: rtl ; margin-top: 95px;">
+       </div>
+
+       </li>
+
+
+      <li>
+       <div  style="display: inline-flex ; width: 350px" >
+           <i class="fa-solid fa-phone-flip"
+                   style="color: #ffffff; font-size: 30px"></i>
+        <h5 style="color:white ; margin-right: 5px">
             {{ about.phone }}<br> {{ about.telephone }}
         </h5>
 
-        <a href="https://www.instagram.com/{{ instagram }}"
-           style="right: 0 ; position: absolute ; margin-right:20px ; margin-top: 165px;display: inline">
-            <i class="fa-brands fa-instagram" style="color: #ffffff ; font-size: 30px ;"></i>
-        </a>
+       </div>
 
-        <h5 style="right: 0 ; margin-right: 60px;position: absolute;direction: ltr ; margin-top: 167px;">
+       </li>
+
+       <li>
+
+            <div style="display: inline-flex ; width: 350px">
+
+        <i class="fa-brands fa-instagram"
+           style="color: #ffffff; font-size: 30px"></i>
+        <h5 style="color:white ; margin-right: 5px">
             {{ about.instagram }}
         </h5>
+
+       </div>
+
+       </li>
+
+       </ul>
+
+        <div id="map" class="img-responsive map">
+        </div>
+
     </div>
-    <div class="footer">&copy;<span id="year"
+
+  <!-- Copyright -->
+  <div class="p-3 copy" style="background: #151111 ; color: #B1B2B2; direction: ltr">&copy;<span id="year"
                                     style="font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif'">2023 </span><span> PhoenixFamily. All rights reserved.</span>
         <a href="//www.instagram.com/phoenixfamily.co?igshid=OGQ5ZDc2ODk2ZA=="
            style="right: 0 ; position: absolute ; margin-right:15px">
@@ -443,14 +534,15 @@
         </a>
         <span style="right: 0;margin-right: 90px; position: absolute">Follow us:</span>
     </div>
-</div>
+  <!-- Copyright -->
+</footer>
 
 </body>
 
 <script>
+
     let lat = {{ about.latitude }};
     let long =     {{ about.longitude }};
-
 
     const map = new nmp_mapboxgl.Map({
         mapType: nmp_mapboxgl.Map.neshanVector,
@@ -461,21 +553,23 @@
         minZoom: 2,
         maxZoom: 21,
         trackResize: false,
-        mapKey: "web.eb9c250015c247e08c5122f824c1541c",
+        mapKey: "web.3c30ab5c27a242d19aab4bca4e973288",
         poi: true,
         traffic: true,
         mapTypeControllerStatus: {
             show: false,
         }
     });
+
 </script>
 
 <script>
 
-    let participants = {{ size }};
-    let capacity = {{participants.course.capacity}};
-    const registerButton = document.createElement("button")
+    let participants = {{participants}};
+    let capacity = {{product.capacity}};
     const card = document.getElementById("card")
+    const registerButton = document.querySelector(".list-group li button")
+
 
     const cookieValue = document.cookie
         .split("; ")
@@ -483,16 +577,26 @@
         ?.split("=")[1];
 
     if (parseInt(participants) < parseInt(capacity)){
-
+        registerButton.classList.remove("card-button")
         registerButton.classList.add("disabled-button")
         registerButton.innerHTML = "قبلا ثبت نام کردید"
 
     }else {
+        registerButton.classList.remove("card-button")
         registerButton.classList.add("disabled-button")
-        registerButton.innerHTML = "ضرفیت تکمیل است"
+        registerButton.innerHTML = "ظرفیت تکمیل است"
     }
 
     card.appendChild(registerButton)
+    registerButton.addEventListener('click', function () {
+
+        if (cookieValue !== undefined) {
+            window.location.assign(`/product/payment/{{ product.id }}/{{ session.id }}/{{ days.id }}/`)
+        } else {
+            window.location.assign(`{% url 'user:login'  %}`)
+        }
+
+    })
 
 </script>
 
