@@ -129,6 +129,18 @@ def user_courses_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
+def teacher_courses_view(request, pk):
+    template = loader.get_template('teacher/courses.html')
+    about = AboutUs.objects.values().first()
+    participants = Participants.objects.filter(user=pk).all()
+    context = {
+        "about": about,
+        "participants": participants,
+    }
+    return HttpResponse(template.render(context, request))
+
+
+
 def session_view(request):
     template = loader.get_template('manager/sessions.html')
     session = Sessions.objects.all()
