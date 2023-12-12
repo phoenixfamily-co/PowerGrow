@@ -182,7 +182,7 @@ def admin_user_view(request):
 def teacher_user_day(request, pk, day):
     about = AboutUs.objects.values().first()
     template = loader.get_template('teacher/users.html')
-    participants = Participants.objects.filter(course=pk) & Participants.objects.filter(day__title=day)
+    participants = Participants.objects.filter(id=pk) & Participants.objects.filter(day__title=day)
     context = {
         "about": about,
         "participants" : participants
@@ -193,7 +193,7 @@ def teacher_user_day(request, pk, day):
 def teacher_user_list(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('teacher/users.html')
-    participants = Participants.objects.filter(course=pk)
+    participants = Participants.objects.filter(id=pk)
     context = {
         "about": about,
         "participants" : participants
