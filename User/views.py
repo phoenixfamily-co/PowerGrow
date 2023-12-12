@@ -179,6 +179,28 @@ def admin_user_view(request):
     return HttpResponse(template.render(context, request))
 
 
+def teacher_user_day(request, pk, day):
+    about = AboutUs.objects.values().first()
+    template = loader.get_template('teacher/users.html')
+    participants = Participants.objects.get(course=pk) & Participants.objects.filter(day__title=day)
+    context = {
+        "about": about,
+        "participants" : participants
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def teacher_user_list(request, pk):
+    about = AboutUs.objects.values().first()
+    template = loader.get_template('teacher/users.html')
+    participants = Participants.objects.get(course=pk)
+    context = {
+        "about": about,
+        "participants" : participants
+    }
+    return HttpResponse(template.render(context, request))
+
+
 class CustomObtainAuthToken(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
         response = super(CustomObtainAuthToken, self).post(request, *args, **kwargs)

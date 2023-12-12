@@ -141,8 +141,8 @@
     <tr>
         <th scope="row">{{ x.id }}</th>
         <th onclick="window.open('{% url 'user:user_product' x.id %}')" style="text-decoration: underline ; cursor: pointer">مشاهده دوره</th>
-        <th onclick="window.open('{% url 'user:user_product' x.id %}')" style="text-decoration: underline ; cursor: pointer">مشاهده لیست</th>
-        <th onclick="window.open('{% url 'user:user_product' x.id %}')" style="text-decoration: underline ; cursor: pointer">مشاهده لیست</th>
+        <th onclick="window.open('{% url 'user:teacher_user_day' x.id x.id %}')" style="text-decoration: underline ; cursor: pointer">مشاهده لیست</th>
+        <th onclick="window.open('{% url 'user:teacher_user_list' x.id %}')" style="text-decoration: underline ; cursor: pointer">مشاهده لیست</th>
         <td>{{ x.course.title }}</td>
         <td>{{ x.course.time }}</td>
         <td>{{ x.course.name }}</td>
