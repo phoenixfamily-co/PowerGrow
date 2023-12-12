@@ -128,8 +128,7 @@
     <tr>
         <th scope="col">#</th>
         <th scope="col"> </th>
-        <th scope="col">لیست روزانه</th>
-        <th scope="col">لیست کلی</th>
+        <th scope="col">لیست</th>
         <th scope="col">نام دوره</th>
         <th scope="col">زمان</th>
         <th scope="col">نام مربی</th>
@@ -141,8 +140,7 @@
     <tr>
         <th scope="row">{{ x.id }}</th>
         <th onclick="window.open('{% url 'user:user_product' x.id %}')" style="text-decoration: underline ; cursor: pointer">مشاهده دوره</th>
-        <th onclick="window.open('{% url 'user:teacher_user_day' x.course.id x.id %}')" style="text-decoration: underline ; cursor: pointer">مشاهده لیست</th>
-        <th onclick="window.open('{% url 'user:teacher_user_list' x.course.id %}')" style="text-decoration: underline ; cursor: pointer">مشاهده لیست</th>
+        <th onclick="window.location.assign('{% url 'user:teacher_user_list' x.course.id %}')" style="text-decoration: underline ; cursor: pointer">مشاهده لیست</th>
         <td>{{ x.course.title }}</td>
         <td>{{ x.course.time }}</td>
         <td>{{ x.course.name }}</td>

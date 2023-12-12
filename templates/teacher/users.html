@@ -109,7 +109,7 @@
   <div class="container-fluid" style="vertical-align: center">
 <ul class="nav nav-pills">
   <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href='javascript: window.open("{% url 'user:admin_register' %}")'>اضافه کردن</a>
+    <a class="nav-link active" aria-current="page" href='javascript:window.open("{% url 'home:create_slider' %}")'>لیست امروز</a>
   </li>
 </ul>
 
@@ -127,7 +127,6 @@
     <div class="typography">PowerGrow</div>
 
 </div>
-
 
 <table class="table" style="color: white ; margin-top: 100px">
   <thead>
@@ -149,7 +148,16 @@
    {% endfor %}
   </tbody>
 </table>
-
 </body>
+
+<script>
+    let table = document.getElementsByName('table')
+    let body = table.item(1)
+
+    body.innerHTML = ' '
+
+
+</script>
+
 
 </html>
