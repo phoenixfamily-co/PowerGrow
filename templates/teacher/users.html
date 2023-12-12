@@ -155,12 +155,15 @@
     let table = document.getElementById('table');
     let body = table.getElementsByTagName('tbody')[0];
     let participants = "{{ course.participants.all }}"
-    console.log(participants)
+    console.log(participants.length)
 
     function filterList() {
         body.innerHTML = ' '
 
+        for(let i =0 ; i<participants.length ; i++){
 
+
+        }
 
     }
 
