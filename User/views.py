@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 
 from About.models import AboutUs
-from Product.models import Participants, Sport
+from Product.models import Participants, Sport, Course
 from Reservation.models import Reservations
 from User.serializer import *
 from User.models import *
@@ -193,10 +193,10 @@ def teacher_user_day(request, pk, day):
 def teacher_user_list(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('teacher/users.html')
-    participants = Participants.objects.filter(id=pk)
+    participants = Course.objects.filter(id=pk)
     context = {
         "about": about,
-        "participants" : participants
+        "participants" : participants.participants
     }
     return HttpResponse(template.render(context, request))
 
