@@ -161,9 +161,7 @@
     let currentDay = today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
     const d = new Date();
     let day = d.getDay();
-
-    let result = JSON.parse(JSON.stringify(participants))
-    console.log(result)
+    console.log(participants.length)
 
     function filterList() {
 
