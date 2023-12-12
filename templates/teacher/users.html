@@ -156,13 +156,19 @@
     let body = table.getElementsByTagName('tbody')[0];
     let participants = "{{ course.participants.all }}"
     let size = "{{ size }}"
+    let today = new Date().toLocaleDateString('fa-IR');
+    today = today.split('/')
+    let currentDay = today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
+    const d = new Date();
+    let day = d.getDay();
 
-    console.log(size)
+    console.log(day)
 
     function filterList() {
         body.innerHTML = ' '
 
-        for(let i =0 ; i<participants.length ; i++){
+        for(let i =0 ; i<size ; i++){
+
 
 
         }
