@@ -139,7 +139,7 @@
     </tr>
   </thead>
   <tbody>
-  {% for x in course.participants.all %}
+  {% for x in course.participants %}
     <tr>
         <th scope="row">{{ x.id }}</th>
         <td>{{ x.user.name }}</td>
