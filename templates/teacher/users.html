@@ -161,15 +161,13 @@
     let currentDay = today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
     const d = new Date();
     let day = d.getDay();
-    console.log(participants.length)
 
     function filterList() {
 
         body.innerHTML = ' '
 
-        for(let i =0 ; i<size ; i++){
-
-
+        for(let i in participants){
+            console.log( participants[i].day.title)
 
         }
 
