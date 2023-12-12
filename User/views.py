@@ -182,10 +182,10 @@ def admin_user_view(request):
 def teacher_user_day(request, pk, day):
     about = AboutUs.objects.values().first()
     template = loader.get_template('teacher/users.html')
-    participants = Course.objects.get(id=pk)
+    course = Course.objects.get(id=pk)
     context = {
         "about": about,
-        "participants" : participants
+        "course" : course
     }
     return HttpResponse(template.render(context, request))
 
