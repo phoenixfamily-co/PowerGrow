@@ -162,9 +162,11 @@
     const d = new Date();
     let day = d.getDay();
 
-    console.log(day)
+    let result = JSON.parse(JSON.stringify(participants))
+    console.log(result)
 
     function filterList() {
+
         body.innerHTML = ' '
 
         for(let i =0 ; i<size ; i++){
