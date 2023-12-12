@@ -193,7 +193,7 @@ def teacher_user_day(request, pk, day):
 def teacher_user_list(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('teacher/users.html')
-    participants = Course.objects.filter(id=pk)
+    participants = Course.objects.filter(id=pk).values()
     context = {
         "about": about,
         "participants" : participants.participants
