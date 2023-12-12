@@ -151,8 +151,8 @@
 </body>
 
 <script>
-    let table = document.getElementsByName('table')
-    let body = table.item(1)
+    let table = document.getElementsByClassName('table')
+    let body = table.getElementsByTagName('tbody')[0];
 
     body.innerHTML = ' '
 
