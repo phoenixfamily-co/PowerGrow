@@ -154,7 +154,7 @@
 
     let table = document.getElementById('table');
     let body = table.getElementsByTagName('tbody')[0];
-    let participants = "{{ course.participants.all }}"
+    let participants = "{{ course.participants.all|make_list }}"
     let size = "{{ size }}"
     let today = new Date().toLocaleDateString('fa-IR');
     today = today.split('/')
