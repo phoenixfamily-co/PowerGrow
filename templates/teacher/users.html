@@ -109,7 +109,7 @@
   <div class="container-fluid" style="vertical-align: center">
 <ul class="nav nav-pills">
   <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href='javascript:window.open("{% url 'home:create_slider' %}")'>لیست امروز</a>
+    <a class="nav-link active" aria-current="page" href='javascript:filterList()'>لیست امروز</a>
   </li>
 </ul>
 
@@ -151,10 +151,16 @@
 </body>
 
 <script>
+
     let table = document.getElementById('table');
     let body = table.getElementsByTagName('tbody')[0];
 
-    body.innerHTML = ' '
+    function filterList() {
+        body.innerHTML = ' '
+
+
+
+    }
 
 
 </script>
