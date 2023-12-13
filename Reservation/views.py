@@ -264,4 +264,4 @@ def verify(request):
     #     else:
     #         return JsonResponse({'status': False})
 
-    return JsonResponse({'status': False})
+    return JsonResponse({"Authority": request.GET.get('Authority', '')})
