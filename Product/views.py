@@ -307,9 +307,14 @@ def send_request(request, amount):
     data = {
         "MerchantID": settings.MERCHANT,
         "Amount": amount,
+        "phone": phone,
         "Description": description,
-        # "Phone": phone,
         "CallbackURL": CallbackURL,
+        "metadata": {
+            "course": 100,
+            "session": 100,
+            "day": 100,
+        }
     }
     data = json.dumps(data)
     # set content length by data
