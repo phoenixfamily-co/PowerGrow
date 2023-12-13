@@ -154,7 +154,7 @@ class ReservationView(viewsets.ModelViewSet):
         authority_data = {
             "MerchantID": settings.MERCHANT,
             "Amount": data["price"],
-            "phone": self.request.user.number,
+            "phone": str(self.request.user.number),
             "Description": data["description"],
             "CallbackURL": CallbackURL,
         }
