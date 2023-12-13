@@ -250,17 +250,18 @@ def verify(request):
     # Extract necessary information from the WSGIRequest object
     authority_data = {
         "MerchantID": settings.MERCHANT,
+        "Authority": request.GET.get('Authority', '')
     }
 
     data = json.dumps(authority_data)
     headers = {'content-type': 'application/json', 'content-length': str(len(data))}
     response = requests.post(ZP_API_VERIFY, data=data, headers=headers)
 
-    if response.status_code == 200:
+    if request.GET.get('OK') == 'OK':
         response_data = response.json()
         if response_data['Status'] == 100:
-            return JsonResponse({'status': True, 'RefID': response_data['RefID']})
+            return JsonResponse({'status': True})
         else:
-            return JsonResponse({'status': False, 'code': str(response_data['Status'])})
+            return JsonResponse({'status': False})
 
     return response
