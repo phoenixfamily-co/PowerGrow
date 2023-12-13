@@ -260,6 +260,8 @@
     let final = document.getElementById("final")
     const registerButton = document.querySelector(".list-group li button")
     let final_price = parseInt(price) - (parseInt(off) / 100 * parseInt(price))
+    let res
+
 
     final.innerHTML = final_price.toString() + " " + "تومان"
 
@@ -297,9 +299,11 @@
         },
         body: JSON.stringify(param)
     });
+        res = await result.json()
+        res = JSON.parse(JSON.stringify(res))
         if (response.status===201){
             {#window.location.replace(JSON.stringify(response))#}
-            console.log(response.redirect)
+            console.log(res.redirect)
     }else {
         alert(response.redirect)
     }
