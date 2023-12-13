@@ -11,6 +11,8 @@ urlpatterns = [
     path('reserve/admin/', admin_reserve_view, name='reserve_view_admin'),
     path('reserve/user/<int:pk>/', user_reserves_view, name='reserve_view_user'),
     path('api/reserve/', ReservationView.as_view({'post': 'create', 'get': 'list'}), name='reserve'),
+    path('api/reserve/create/', ReservationView.as_view({'post': 'create'}), name='create_reserve'),
+
     path('api/admin/reserve/<int:time>/', ManagerAddReservationView.as_view({'post': 'create', 'get': 'list'}),
          name='admin-reserve'),
     path('api/admin/reserve/<int:time>/<int:pk>/', ManagerAddReservationView.as_view({'delete': 'destroy'}),

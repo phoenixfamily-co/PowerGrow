@@ -291,7 +291,7 @@
             "description":"رزرو سالن ورزشی حجاب",
             "holiday": '{{ holiday }}',
         }
-        const response = await fetch('/reservation/api/reserve/', {
+        const response = await fetch({% url 'reservation:create_reserve' %}, {
         method: 'POST',
         headers: {
             'Authorization': `token  ${cookieValue}`,
@@ -303,11 +303,6 @@
     }).then(jsonResponse => {
         console.log(jsonResponse);
     })
-        if (response.status===201){
-            {#window.location.replace(JSON.stringify(response))#}
-    }else {
-        alert(response.redirect)
-    }
     }
 
 
