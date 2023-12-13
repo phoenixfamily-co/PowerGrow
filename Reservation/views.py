@@ -176,7 +176,7 @@ class ReservationView(viewsets.ModelViewSet):
                                                           price=data["price"],
                                                           gym=gym,
                                                           user=self.request.user,
-                                                          authority=authority_data,
+                                                          authority=str(response['Authority']),
                                                           success=False
                                                           )
                     return redirect(ZP_API_STARTPAY + str(response['Authority']))
