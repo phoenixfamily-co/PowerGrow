@@ -257,11 +257,11 @@ def verify(request):
     headers = {'content-type': 'application/json', 'content-length': str(len(data))}
     response = requests.post(ZP_API_VERIFY, data=data, headers=headers)
 
-    if request.GET.get('OK') == 'OK':
-        response_data = response.json()
-        if response_data['Status'] == 100:
-            return JsonResponse({'status': True})
-        else:
-            return JsonResponse({'status': False})
+    # if request.GET.get('OK') == 'OK':
+    #     response_data = response.json()
+    #     if response_data['Status'] == 100:
+    #         return JsonResponse({'status': True})
+    #     else:
+    #         return JsonResponse({'status': False})
 
-    return response
+    return JsonResponse({'status': False})
