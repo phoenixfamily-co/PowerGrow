@@ -280,8 +280,15 @@
     let off = "{{ product.off }}";
     let price = "{{ product.tuition }}";
     let final = document.getElementById("final")
+    const registerButton = document.querySelector(".list-group li button")
+
 
     final.innerHTML = (parseInt(price) - (parseInt(off) / 100 * parseInt(price))).toString() + " " + "تومان"
+
+    registerButton.addEventListener("click",function () {
+        window.location.assign(`/reservation/request/${(parseInt(price) - (parseInt(off) / 100 * parseInt(price)))}`)
+
+    })
 
 
 </script>

@@ -1,12 +1,29 @@
-from django.http import HttpResponse
+import requests
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import redirect
 from django.template import loader
 from rest_framework import viewsets, filters, generics, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.utils import json
 
 from About.models import AboutUs
+from PowerGrow import settings
 from User.models import *
 from Product.serializer import *
+
+if settings.SANDBOX:
+    sandbox = 'sandbox'
+else:
+    sandbox = 'www'
+
+ZP_API_REQUEST = f"https://{sandbox}.zarinpal.com/pg/rest/WebGate/PaymentRequest.json"
+ZP_API_VERIFY = f"https://{sandbox}.zarinpal.com/pg/rest/WebGate/PaymentVerification.json"
+ZP_API_STARTPAY = f"https://{sandbox}.zarinpal.com/pg/StartPay/"
+description = "رزرو سالن چند منظور حجاب"  # Required
+phone = 'YOUR_PHONE_NUMBER'  # Optional
+# Important: need to edit for realy server.
+CallbackURL = 'https://powergrow.net/reservation/verify/'
 
 
 def product_view(request, pk, session, day):
@@ -66,7 +83,7 @@ def category_view(request, pk):
     context = {
         "about": about,
         "sport": sport,
-        "selected" : course.filter(sport=pk).values(),
+        "selected": course.filter(sport=pk).values(),
         "title": sport.filter(id=pk).values().first(),
         "id": pk
     }
@@ -138,7 +155,6 @@ def teacher_courses_view(request, pk):
         "participants": participants,
     }
     return HttpResponse(template.render(context, request))
-
 
 
 def session_view(request):
@@ -285,3 +301,53 @@ class CourseUserView(generics.ListAPIView):
     queryset = Participants.objects.all()
     serializer_class = ParticipantsUserSerializer
     lookup_field = "id"
+
+
+def send_request(request, amount):
+    data = {
+        "MerchantID": settings.MERCHANT,
+        "Amount": amount,
+        "Description": description,
+        # "Phone": phone,
+        "CallbackURL": CallbackURL,
+    }
+    data = json.dumps(data)
+    # set content length by data
+    headers = {'content-type': 'application/json', 'content-length': str(len(data))}
+    try:
+        response = requests.post(ZP_API_REQUEST, data=data, headers=headers, timeout=10)
+
+        if response.status_code == 200:
+            response = response.json()
+            if response['Status'] == 100:
+                return redirect(ZP_API_STARTPAY + str(response['Authority']))
+
+            else:
+                return JsonResponse({'status': False, 'code': str(response['Status'])})
+        return JsonResponse(response)
+
+    except requests.exceptions.Timeout:
+        return JsonResponse({'status': False, 'code': 'timeout'})
+    except requests.exceptions.ConnectionError:
+        return JsonResponse({'status': False, 'code': 'connection error'})
+
+
+def verify(authority):
+    data = {
+        "MerchantID": settings.MERCHANT,
+        "Amount": 10000,
+        "Authority": authority,
+    }
+
+    data = json.dumps(data)
+    # set content length by data
+    headers = {'content-type': 'application/json', 'content-length': str(len(data))}
+    response = requests.post(ZP_API_VERIFY, data=data, headers=headers)
+
+    if response.status_code == 200:
+        response = response.json()
+        if response['Status'] == 100:
+            return JsonResponse({'status': True, 'RefID': response['RefID']})
+        else:
+            return JsonResponse({'status': False, 'code': str(response['Status'])})
+    return response
