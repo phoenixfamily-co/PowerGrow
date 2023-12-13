@@ -303,7 +303,7 @@
         res = JSON.parse(JSON.stringify(res))
         if (response.status===201){
             {#window.location.replace(JSON.stringify(response))#}
-            console.log(res.redirect)
+            console.log(res)
     }else {
         alert(response.redirect)
     }
