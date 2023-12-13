@@ -249,7 +249,7 @@ def send_request(request, amount, time, holiday, session, gym):
 def verify(authority):
     data = {
         "MerchantID": settings.MERCHANT,
-        "Authority": authority.GET.get('Authority', '')
+        "Authority": authority.json().get('Authority', '')
     }
 
     data = json.dumps(data)
