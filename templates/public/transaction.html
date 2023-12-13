@@ -296,8 +296,12 @@
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(param)
-
     });
+        if (response.status===201){
+            window.location.replace(JSON.stringify(response))
+    }else {
+        alert(response.statusText)
+    }
     }
 
 
