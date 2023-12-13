@@ -219,12 +219,7 @@ def send_request(request, amount, time, holiday, session, gym):
         "phone": phone,
         "Description": description,
         "CallbackURL": CallbackURL,
-        "metadata": {
-            "time": time,
-            "holiday": holiday,
-            "session": session,
-            "gym": gym,
-        }
+
     }
     data = json.dumps(data)
     # set content length by data
