@@ -154,8 +154,6 @@
 
     let table = document.getElementById('table');
     let body = table.getElementsByTagName('tbody')[0];
-    let participants = "{{ course.participants.all|safe }}"
-    let size = "{{ size }}"
     let today = new Date().toLocaleDateString('fa-IR');
     today = today.split('/')
     let currentDay = today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
@@ -167,11 +165,14 @@
 
         body.innerHTML = ' '
 
-        for(let i in participants){
-            console.log( participants[i].day)
+        {% for x in course.participants.all %}
 
-        }
+            console.log(x.day.title)
+        
+        {% endfor %}
 
+    
+    
     }
 
 
