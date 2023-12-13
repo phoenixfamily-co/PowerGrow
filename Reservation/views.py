@@ -176,7 +176,7 @@ class ReservationView(viewsets.ModelViewSet):
                                                       authority=str(response['Authority']),
                                                       success=False
                                                       )
-                return Response(str(response['Authority']))
+                return JsonResponse({'authority': str(response['authority'])})
             else:
                 return JsonResponse({'status': False, 'code': str(response['Status'])})
 
