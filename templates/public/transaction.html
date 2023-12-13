@@ -298,12 +298,13 @@
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(param)
-    });
-        res = await response.json()
-        res = JSON.parse(JSON.stringify(res))
+    }).then(response => {
+        return response.json();
+    }).then(jsonResponse => {
+        console.log(jsonResponse);
+    })
         if (response.status===201){
             {#window.location.replace(JSON.stringify(response))#}
-            console.log(res)
     }else {
         alert(response.redirect)
     }
