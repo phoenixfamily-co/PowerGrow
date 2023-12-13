@@ -234,7 +234,7 @@ def send_request(request, amount, time, holiday, session, gym):
         if response.status_code == 200:
             response = response.json()
             if response['Status'] == 100:
-                return redirect(ZP_API_STARTPAY + str(response['Authority']))
+                return redirect(ZP_API_STARTPAY + str(response['Authority']) + str(response['Amount']))
 
             else:
                 return JsonResponse({'status': False, 'code': str(response['Status'])})
@@ -265,4 +265,4 @@ def verify(request):
     #     else:
     #         return JsonResponse({'status': False})
 
-    return JsonResponse(response_data['Status'])
+    return JsonResponse(response_data)
