@@ -246,21 +246,22 @@ def send_request(request, amount, time, holiday, session, gym):
         return JsonResponse({'status': False, 'code': 'connection error'})
 
 
-def verify(authority):
-    data = {
+def verify(response):
+    # Extract necessary information from the response object
+    response_data = {
         "MerchantID": settings.MERCHANT,
-        "Authority": authority.GET.get('Authority')
+        "Authority": response.json().get('Authority')
     }
 
-    data = json.dumps(data)
-    # set content length by data
+    data = json.dumps(response_data)
     headers = {'content-type': 'application/json', 'content-length': str(len(data))}
-    response = requests.post(ZP_API_VERIFY, data=data, headers=headers)
+    verification_response = requests.post(ZP_API_VERIFY, data=data, headers=headers)
 
-    if response.status_code == 200:
-        response = response.json()
-        if response['Status'] == 100:
-            return JsonResponse({'status': True, 'RefID': response['RefID']})
+    if verification_response.status_code == 200:
+        response_json = verification_response.json()
+        if response_json['Status'] == 100:
+            return JsonResponse({'status': True, 'RefID': response_json['RefID']})
         else:
-            return JsonResponse({'status': False, 'code': str(response['Status'])})
-    return response
+            return JsonResponse({'status': False, 'code': str(response_json['Status'])})
+
+    return verification_response
