@@ -298,7 +298,8 @@
         body: JSON.stringify(param)
     });
         if (response.status===201){
-            window.location.replace(JSON.stringify(response))
+            {#window.location.replace(JSON.stringify(response))#}
+            console.log(response.body)
     }else {
         alert(response.statusText)
     }
