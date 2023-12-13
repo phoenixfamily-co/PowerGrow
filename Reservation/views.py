@@ -2,7 +2,7 @@ from django.http import HttpResponse, Http404, JsonResponse
 from django.shortcuts import redirect
 from django.template import loader
 from django.utils.termcolors import background
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, request
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from About.models import AboutUs
@@ -247,7 +247,6 @@ def send_request(request, amount, time, holiday, session, gym):
         return JsonResponse({'status': False, 'code': 'connection error'})
 
 
-@background(schedule=60)
 def verify(authority):
     data = {
         "MerchantID": settings.MERCHANT,
@@ -257,7 +256,7 @@ def verify(authority):
     data = json.dumps(data)
     # set content length by data
     headers = {'content-type': 'application/json', 'content-length': str(len(data))}
-    response = requests.post(ZP_API_VERIFY, data=data, headers=headers)
+    response = request.__dict__.post(ZP_API_VERIFY, data=data, headers=headers)
 
     if response.status_code == 200:
         response = response.json()
