@@ -156,21 +156,54 @@
     let body = table.getElementsByTagName('tbody')[0];
     let today = new Date().toLocaleDateString('fa-IR');
     today = today.split('/')
-    let currentDay = today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
+    let currentDay
     const d = new Date();
     let day = d.getDay();
+
+    switch (day) {
+        case 0:
+            currentDay="یکشنبه"
+            break
+        case 1:
+            currentDay="دوشنبه"
+            break
+        case 2:
+            currentDay="سه شنبه"
+            break
+        case 3:
+            currentDay="دوشنبه"
+            break
+        case 4:
+            currentDay="پنجشنبه"
+            break
+        case 5:
+            currentDay="جمعه"
+            break
+        case 6:
+            currentDay="شنبه"
+            break
+    }
 
     function filterList() {
 
         body.innerHTML = ' '
 
         {% for x in course.participants.all %}
-
-            console.log("{{x.day.title}}")
-        
+            if (currentDay==="{{x.day.title}}"){
+                let id = document.createElement("th")
+                id.innerHTML = "{{x.user.id}}"
+                let name = document.createElement("td")
+                name.innerHTML = "{{x.user.name}}"
+                let number = document.createElement("td")
+                number.innerHTML = "{{x.user.number}}"
+                 let birthdate = document.createElement("td")
+                birthdate.innerHTML = "{{x.user.birthdate}}"
+                body.appendChild(id)
+                body.appendChild(name)
+                body.appendChild(number)
+                body.appendChild(birthdate)
+            }
         {% endfor %}
-
-    
     
     }
 
