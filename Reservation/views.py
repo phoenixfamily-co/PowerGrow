@@ -20,9 +20,6 @@ else:
 ZP_API_REQUEST = f"https://{sandbox}.zarinpal.com/pg/rest/WebGate/PaymentRequest.json"
 ZP_API_VERIFY = f"https://{sandbox}.zarinpal.com/pg/rest/WebGate/PaymentVerification.json"
 ZP_API_STARTPAY = f"https://{sandbox}.zarinpal.com/pg/StartPay/"
-description = "رزرو سالن چند منظور حجاب"  # Required
-phone = 'YOUR_PHONE_NUMBER'  # Optional
-# Important: need to edit for realy server.
 CallbackURL = 'https://powergrow.net/reservation/verify/'
 
 
@@ -154,19 +151,43 @@ class ReservationView(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         data = self.request.data
-        gym = Gym.objects.filter(id=data["gym"]).first()
-        time = Time.objects.filter(id=data["time"]).first()
-        time.reserved = True
-        time.save()
-        reservations = Reservations.objects.update_or_create(title=data["title"],
-                                                             description=data["description"],
-                                                             time=time,
-                                                             holiday=bool(data["holiday"]),
-                                                             session=data["session"],
-                                                             price=data["price"],
-                                                             gym=gym)
-        serializer = ReservationSerializer(reservations)
-        return Response(serializer.data)
+        authority_data = {
+            "MerchantID": settings.MERCHANT,
+            "Amount": data["price"],
+            "phone": self.request.user.number,
+            "Description": data["description"],
+            "CallbackURL": CallbackURL,
+        }
+        authority_data = json.dumps(authority_data)
+        headers = {'content-type': 'application/json', 'content-length': str(len(authority_data))}
+        try:
+            response = requests.post(ZP_API_REQUEST, data=authority_data, headers=headers, timeout=10)
+
+            if response.status_code == 200:
+                response = response.json()
+                if response['Status'] == 100:
+                    gym = Gym.objects.filter(id=data["gym"]).first()
+                    time = Time.objects.filter(id=data["time"]).first()
+                    Reservations.objects.update_or_create(title=data["title"],
+                                                          description=data["description"],
+                                                          time=time,
+                                                          holiday=bool(data["holiday"]),
+                                                          session=data["session"],
+                                                          price=data["price"],
+                                                          gym=gym,
+                                                          user=self.request.user,
+                                                          authority=authority_data,
+                                                          success=False
+                                                          )
+                    return redirect(ZP_API_STARTPAY + str(response['Authority']))
+                else:
+                    return JsonResponse({'status': False, 'code': str(response['Status'])})
+            return JsonResponse(response)
+
+        except requests.exceptions.Timeout:
+            return JsonResponse({'status': False, 'code': 'timeout'})
+        except requests.exceptions.ConnectionError:
+            return JsonResponse({'status': False, 'code': 'connection error'})
 
 
 class ManagerAddReservationView(viewsets.ModelViewSet):
@@ -211,58 +232,26 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-def send_request(request, amount, time, holiday, session, gym):
-    data = {
-        "MerchantID": settings.MERCHANT,
-        "Amount": amount,
-        "mobile": phone,
-        "Description": description,
-        "CallbackURL": CallbackURL,
-        "metadata": {
-            "time": time,
-            "holiday": holiday,
-            "session": session,
-            "gym": gym,
-        }
-    }
-    data = json.dumps(data)
-    # set content length by data
-    headers = {'content-type': 'application/json', 'content-length': str(len(data))}
-    try:
-        response = requests.post(ZP_API_REQUEST, data=data, headers=headers, timeout=10)
-
-        if response.status_code == 200:
-            response = response.json()
-            if response['Status'] == 100:
-                return redirect(ZP_API_STARTPAY + str(response['Authority']))
-
-            else:
-                return JsonResponse({'status': False, 'code': str(response['Status'])})
-        return JsonResponse(response)
-
-    except requests.exceptions.Timeout:
-        return JsonResponse({'status': False, 'code': 'timeout'})
-    except requests.exceptions.ConnectionError:
-        return JsonResponse({'status': False, 'code': 'connection error'})
-
-
 def verify(request):
+    reservation = Reservations.objects.get(authority=request.GET.get('Authority', ''))
     authority_data = {
         "MerchantID": settings.MERCHANT,
-        "Authority": request.GET.get('Authority', ''),
-        "Amount": 695000
+        "Authority": reservation.authority,
+        "Amount": reservation.price
     }
 
     data = json.dumps(authority_data)
     headers = {'content-type': 'application/json', 'content-length': str(len(data))}
     response = requests.post(ZP_API_VERIFY, data=data, headers=headers)
-    response_data = response.json()
+    response = response.json()
+    if response['Status'] == 100:
+        reservation.success = True
+        reservation.time.reserved = True
+        reservation.time.save()
+        reservation.save()
+        return JsonResponse({'status': True, 'RefID': response['RefID']})
+    else:
+        reservation.delete()
+        return JsonResponse({'status': False, 'code': str(response['Status'])})
 
-    # if request.GET.get('OK') == 'OK':
-    #     response_data = response.json()
-    #     if response_data['Status'] == 100:
-    #         return JsonResponse({'status': True})
-    #     else:
-    #         return JsonResponse({'status': False})
 
-    return JsonResponse(response_data)

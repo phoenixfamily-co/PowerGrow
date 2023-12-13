@@ -259,15 +259,46 @@
     let price = "{{ time.price }}";
     let final = document.getElementById("final")
     const registerButton = document.querySelector(".list-group li button")
+    let final_price = parseInt(price) - (parseInt(off) / 100 * parseInt(price))
 
-
-    final.innerHTML = (parseInt(price) - (parseInt(off) / 100 * parseInt(price))).toString() + " " + "تومان"
+    final.innerHTML = final_price.toString() + " " + "تومان"
 
 
     registerButton.addEventListener("click",function () {
-        window.location.assign(`/reservation/request/${(parseInt(price) - (parseInt(off) / 100 * parseInt(price)))}/{{ time.id }}/{{ holiday }}/{{ session }}/{{ gym.id }}/`)
 
+        register()
     })
+
+    async function register() {
+
+        let gym = {{ gym.id }};
+        let session = {{ session }};
+        let time = {{ time.id }};
+
+        const cookieValue = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("token="))
+        ?.split("=")[1];
+
+        const param = {
+            "title": "{{ gym.title }}",
+            "time": parseInt(time),
+            "session": parseInt(session),
+            "gym": parseInt(gym),
+            "price": final_price ,
+            "description":"رزرو سالن ورزشی حجاب",
+            "holiday": '{{ holiday }}',
+        }
+        const response = await fetch('/reservation/api/reserve/', {
+        method: 'POST',
+        headers: {
+            'Authorization': `token  ${cookieValue}`,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(param)
+
+    });
+    }
 
 
 </script>

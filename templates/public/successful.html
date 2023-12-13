@@ -207,45 +207,7 @@
 
     })
 
-     async function register() {
 
-        let gym = {{ gym.id }};
-        let session = {{ session }};
-        let time = {{ time.id }};
-        let fln = (parseInt(price) - (parseInt(off) / 100 * parseInt(price)));
-
-        const cookieValue = document.cookie
-        .split("; ")
-        .find((row) => row.startsWith("token="))
-        ?.split("=")[1];
-
-        const param = {
-            "title": "{{ gym.title }}",
-            "time": parseInt(time),
-            "session": parseInt(session),
-            "gym": parseInt(gym),
-            "price": fln ,
-            "description":"",
-            "holiday": '{{ holiday }}',
-
-        }
-        console.log(JSON.stringify(param))
-        const response = await fetch('/reservation/api/reserve/', {
-        method: 'POST',
-        headers: {
-            'Authorization': `token  ${cookieValue}`,
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(param)
-
-    });
-    if (response.status===201){
-        window.location.replace("{% url "reservation:reservation" %}")
-    }else {
-        alert(response.statusText)
-    }
-
-    }
 
 
 </script>
