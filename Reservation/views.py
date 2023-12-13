@@ -176,7 +176,7 @@ class ReservationView(viewsets.ModelViewSet):
                                                       authority=str(response['Authority']),
                                                       success=False
                                                       )
-                return Response(ZP_API_STARTPAY + str(response['Authority']))
+                return Response(str(response['Authority']))
             else:
                 return JsonResponse({'status': False, 'code': str(response['Status'])})
 
