@@ -189,7 +189,8 @@
         body.innerHTML = ' '
 
         {% for x in course.participants.all %}
-            if (currentDay==="{{x.day.title}}"){
+
+            if (currentDay==="{{x.day.title}}" || "{{x.day.title}}".split("،").includes(currentDay)){
                 let id = document.createElement("th")
                 id.innerHTML = "{{x.user.id}}"
                 let name = document.createElement("td")
@@ -207,8 +208,6 @@
     
     }
 
-
 </script>
-
 
 </html>
