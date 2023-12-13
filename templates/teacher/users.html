@@ -140,7 +140,7 @@
   <tbody>
   {% for x in course.participants.all %}
     <tr>
-        <th scope="row">{{ x.id }}</th>
+        <th scope="row">{{ x.user.id }}</th>
         <td>{{ x.user.name }}</td>
         <td>{{ x.user.number }}</td>
         <td>{{ x.user.birthdate }}</td>
