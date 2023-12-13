@@ -1,6 +1,7 @@
 from django.http import HttpResponse, Http404, JsonResponse
 from django.shortcuts import redirect
 from django.template import loader
+from django.utils.termcolors import background
 from rest_framework import viewsets, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -246,6 +247,7 @@ def send_request(request, amount, time, holiday, session, gym):
         return JsonResponse({'status': False, 'code': 'connection error'})
 
 
+@background(schedule=60)
 def verify(authority):
     data = {
         "MerchantID": settings.MERCHANT,
