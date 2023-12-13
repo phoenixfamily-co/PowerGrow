@@ -247,16 +247,16 @@ def send_request(request, amount, time, holiday, session, gym):
 
 
 def verify(request):
-    # Extract necessary information from the WSGIRequest object
     authority_data = {
         "MerchantID": settings.MERCHANT,
         "Authority": request.GET.get('Authority', ''),
-        "Amount": 0
+        "Amount": 695000
     }
 
     data = json.dumps(authority_data)
     headers = {'content-type': 'application/json', 'content-length': str(len(data))}
     response = requests.post(ZP_API_VERIFY, data=data, headers=headers)
+    response_data = response.json()
 
     # if request.GET.get('OK') == 'OK':
     #     response_data = response.json()
@@ -265,4 +265,4 @@ def verify(request):
     #     else:
     #         return JsonResponse({'status': False})
 
-    return JsonResponse(response.json())
+    return JsonResponse(response_data['metadata'])
