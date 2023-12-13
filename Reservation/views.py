@@ -215,7 +215,7 @@ def send_request(request, amount, time, holiday, session, gym):
     data = {
         "MerchantID": settings.MERCHANT,
         "Amount": amount,
-        "phone": phone,
+        "mobile": phone,
         "Description": description,
         "CallbackURL": CallbackURL,
         "metadata": {
@@ -265,4 +265,4 @@ def verify(request):
     #     else:
     #         return JsonResponse({'status': False})
 
-    return JsonResponse(response_data['phone'])
+    return JsonResponse(response_data['mobile'])
