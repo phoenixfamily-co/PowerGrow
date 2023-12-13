@@ -145,9 +145,9 @@ class ReservationView(viewsets.ModelViewSet):
     queryset = Reservations.objects.all()
     serializer_class = ReservationSerializer
 
-    def get_queryset(self):
-        queryset = Reservations.objects.filter(user=self.request.user.id)
-        return queryset
+    # def get_queryset(self):
+    #     queryset = Reservations.objects.filter(user=self.request.user.id)
+    #     return queryset
 
     def perform_create(self, serializer):
         data = self.request.data
@@ -162,31 +162,24 @@ class ReservationView(viewsets.ModelViewSet):
         headers = {'content-type': 'application/json', 'content-length': str(len(authority_data))}
         try:
             response = requests.post(ZP_API_REQUEST, data=authority_data, headers=headers, timeout=10)
+            if response['Status'] == 100:
+                gym = Gym.objects.filter(id=data["gym"]).first()
+                time = Time.objects.filter(id=data["time"]).first()
+                Reservations.objects.update_or_create(title=data["title"],
+                                                      description=data["description"],
+                                                      time=time,
+                                                      holiday=bool(data["holiday"]),
+                                                      session=data["session"],
+                                                      price=data["price"],
+                                                      gym=gym,
+                                                      user=self.request.user,
+                                                      authority=str(response['Authority']),
+                                                      success=False
+                                                      )
+                return JsonResponse({'redirect': ZP_API_STARTPAY + str(response['Authority'])})
+            else:
+                return JsonResponse({'status': False, 'code': str(response['Status'])})
 
-            if response.status_code == 200:
-                response = response.json()
-                if response['Status'] == 100:
-                    gym = Gym.objects.filter(id=data["gym"]).first()
-                    time = Time.objects.filter(id=data["time"]).first()
-                    Reservations.objects.update_or_create(title=data["title"],
-                                                          description=data["description"],
-                                                          time=time,
-                                                          holiday=bool(data["holiday"]),
-                                                          session=data["session"],
-                                                          price=data["price"],
-                                                          gym=gym,
-                                                          user=self.request.user,
-                                                          authority=str(response['Authority']),
-                                                          success=False
-                                                          )
-
-                    return JsonResponse({'redirect' :  ZP_API_STARTPAY + str(response['Authority'])})
-                else:
-                    return JsonResponse({'status': False, 'code': str(response['Status'])})
-            return JsonResponse(response)
-
-        except requests.exceptions.Timeout:
-            return JsonResponse({'status': False, 'code': 'timeout'})
         except requests.exceptions.ConnectionError:
             return JsonResponse({'status': False, 'code': 'connection error'})
 
@@ -254,5 +247,3 @@ def verify(request):
     else:
         reservation.delete()
         return JsonResponse({'status': False, 'code': str(response['Status'])})
-
-
