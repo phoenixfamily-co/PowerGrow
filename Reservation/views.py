@@ -250,7 +250,7 @@ def verify(request):
     # Extract necessary information from the WSGIRequest object
     authority_data = {
         "MerchantID": settings.MERCHANT,
-        "Authority": request.GET.get('Authority', '')
+        "Authority": request.POST.get('Authority', '')
     }
 
     data = json.dumps(authority_data)
