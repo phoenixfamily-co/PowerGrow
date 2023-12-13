@@ -191,6 +191,7 @@
         {% for x in course.participants.all %}
 
             if (currentDay==="{{x.day.title}}" || "{{x.day.title}}".split("،").includes(currentDay)){
+                let tr = document.createElement("tr")
                 let id = document.createElement("th")
                 id.innerHTML = "{{x.user.id}}"
                 let name = document.createElement("td")
@@ -199,10 +200,11 @@
                 number.innerHTML = "{{x.user.number}}"
                  let birthdate = document.createElement("td")
                 birthdate.innerHTML = "{{x.user.birthdate}}"
-                body.appendChild(id)
-                body.appendChild(name)
-                body.appendChild(number)
-                body.appendChild(birthdate)
+                tr.appendChild(id)
+                tr.appendChild(name)
+                tr.appendChild(number)
+                tr.appendChild(birthdate)
+                body.appendChild(tr)
             }
         {% endfor %}
     
