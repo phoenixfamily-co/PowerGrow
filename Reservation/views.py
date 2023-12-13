@@ -265,4 +265,4 @@ def verify(request):
     #     else:
     #         return JsonResponse({'status': False})
 
-    return JsonResponse(response_data['metadata'])
+    return JsonResponse(response_data['phone'])
