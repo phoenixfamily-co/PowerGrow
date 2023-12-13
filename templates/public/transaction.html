@@ -291,7 +291,7 @@
             "description":"رزرو سالن ورزشی حجاب",
             "holiday": '{{ holiday }}',
         }
-        const response = await fetch({% url 'reservation:create_reserve' %}, {
+        const response = await fetch("{% url 'reservation:create_reserve' %}", {
         method: 'POST',
         headers: {
             'Authorization': `token  ${cookieValue}`,
