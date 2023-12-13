@@ -251,7 +251,7 @@ def verify(request):
     authority_data = {
         "MerchantID": settings.MERCHANT,
         "Authority": request.GET.get('Authority', ''),
-        "amount": 695000
+        "Amount": 695000
     }
 
     data = json.dumps(authority_data)
