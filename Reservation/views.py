@@ -176,9 +176,7 @@ class ReservationView(viewsets.ModelViewSet):
                                                   success=False
                                                   )
             serializer = ReservationSerializer(reservations)
-            return Response(serializer.data)
-        else:
-            return JsonResponse({'status': False, 'code': str(response['Status'])})
+        return Response(serializer.data)
 
 
 class ManagerAddReservationView(viewsets.ModelViewSet):
