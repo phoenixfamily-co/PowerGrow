@@ -179,7 +179,7 @@ class ReservationView(viewsets.ModelViewSet):
                     authority=str(response_data['Authority']),
                     success=False
                 )
-                return redirect(ZP_API_STARTPAY + str(response['Authority']))
+                return Response({'redirect': ZP_API_STARTPAY + str(response['Authority'])})
             else:
                 return Response({'error': 'Payment request failed'})
         except json.JSONDecodeError:
