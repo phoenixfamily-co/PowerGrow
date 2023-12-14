@@ -178,7 +178,7 @@ class ReservationView(viewsets.ViewSet):
                     authority=str(response_data['Authority']),
                     success=False
                 )
-                return Response(ZP_API_STARTPAY + str(response['Authority']))
+                return Response({'payment': ZP_API_STARTPAY , 'authority': str(response_data['Authority'])})
             else:
                 return Response({'error': 'Payment request failed'}, status=status.HTTP_400_BAD_REQUEST)
         except json.JSONDecodeError:
