@@ -271,7 +271,7 @@
         register()
     })
 
-    async function register() {
+    function register() {
 
         let gym = {{ gym.id }};
         let session = {{ session }};
@@ -291,7 +291,7 @@
             "description":"رزرو سالن ورزشی حجاب",
             "holiday": '{{ holiday }}',
         }
-        const response = await fetch("{% url 'reservation:create_reserve' %}", {
+        fetch("{% url 'reservation:create_reserve' %}", {
         method: 'POST',
         headers: {
             'Authorization': `token  ${cookieValue}`,
@@ -299,9 +299,9 @@
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(param)
-    })
-        const content = await response.json();
-        console.log(content)
+    }).then(response => console.log(response.status) || response) // output the status and return response
+    .then(response => response.text()) // send response body to next then chain
+  .then(body => console.log(body))
     }
 
 
