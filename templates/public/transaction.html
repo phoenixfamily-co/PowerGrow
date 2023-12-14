@@ -298,8 +298,11 @@
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(param)
-    }).then(response=>response)
-            .then(data=>{ console.log(data.authority); })
+    })
+        res = await response.json()
+        res = JSON.parse(JSON.stringify(res))
+
+        console.log(res.authority)
     }
 
 
