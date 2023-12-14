@@ -303,8 +303,11 @@
     })
         result = await response.json()
         result = JSON.parse(JSON.stringify(result))
-        console.log(result.payment+result.authority)
-
+        if (response.status===200){
+            window.location.replace(result.payment+result.authority)
+        }else {
+            alert(response.statusText)
+        }
 
     }
 
