@@ -179,13 +179,13 @@ class ReservationView(viewsets.ViewSet):
                     authority=str(response_data['Authority']),
                     success=False
                 )
-                return Response({'error': 'Payment request failed'})
+                return Response(response_data)
             else:
-                return Response({'error': 'Payment request failed'})
+                return Response({'error': 'Payment request failed'}, status=status.HTTP_400_BAD_REQUEST)
         except json.JSONDecodeError:
-            return Response({'error': 'Failed to decode response JSON'})
+            return Response({'error': 'Failed to decode response JSON'},  status=status.HTTP_400_BAD_REQUEST)
         except KeyError:
-            return Response({'error': 'Missing expected key in response JSON'})
+            return Response({'error': 'Missing expected key in response JSON'},  status=status.HTTP_400_BAD_REQUEST)
 
 
 class ManagerAddReservationView(viewsets.ModelViewSet):
