@@ -167,7 +167,7 @@ class ReservationView(viewsets.ModelViewSet):
             if response_data['Status'] == 100:
                 gym = Gym.objects.filter(id=data["gym"]).first()
                 time = Time.objects.filter(id=data["time"]).first()
-                reservations, created = Reservations.objects.update_or_create(
+                Reservations.objects.update_or_create(
                     title=data["title"],
                     description=data["description"],
                     time=time,
@@ -179,8 +179,7 @@ class ReservationView(viewsets.ModelViewSet):
                     authority=str(response_data['Authority']),
                     success=False
                 )
-                serializer = ReservationSerializer(reservations)
-                return Response(response_data)
+                return Response({'error': 'Payment request failed'})
             else:
                 return Response({'error': 'Payment request failed'})
         except json.JSONDecodeError:
