@@ -295,14 +295,13 @@
         method: 'POST',
         headers: {
             'Authorization': `token  ${cookieValue}`,
+            'Accept': 'application/json',
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(param)
     })
-        res = await response.json()
-        res = JSON.parse(JSON.stringify(res))
-
-        console.log(res)
+        const content = await response.json();
+        console.log(content)
     }
 
 
