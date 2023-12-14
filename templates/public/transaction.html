@@ -292,7 +292,7 @@
             "holiday": '{{ holiday }}',
         }
 
-        const response = await fetch("{% url 'reservation:create_reserve' %}", {
+        const response = await fetch("{% url 'reservation:reserve' %}", {
         method: 'POST',
         headers: {
             'Authorization': `token  ${cookieValue}`,
