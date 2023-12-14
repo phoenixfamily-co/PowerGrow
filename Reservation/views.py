@@ -97,7 +97,7 @@ def admin_gym_view(request):
 
 def reserve_view(request):
     about = AboutUs.objects.values().first()
-    reserve = Reservations.objects.filter(success=True).all().values()
+    reserve = Reservations.objects.get(success=True).objects.all()
     gym = Gym.objects.all().first()
     template = loader.get_template('manager/reserves.html')
     context = {
