@@ -164,7 +164,7 @@ class ReservationView(viewsets.ModelViewSet):
         if response['Status'] == 100:
             gym = Gym.objects.filter(id=data["gym"]).first()
             time = Time.objects.filter(id=data["time"]).first()
-            Reservations.objects.update_or_create(title=data["title"],
+            reservations = Reservations.objects.update_or_create(title=data["title"],
                                                   description=data["description"],
                                                   time=time,
                                                   holiday=bool(data["holiday"]),
@@ -175,7 +175,8 @@ class ReservationView(viewsets.ModelViewSet):
                                                   authority=str(response['Authority']),
                                                   success=False
                                                   )
-            return JsonResponse({'authority': str(response['Authority'])})
+            serializer = ReservationSerializer(reservations)
+            return Response(serializer.data)
         else:
             return JsonResponse({'status': False, 'code': str(response['Status'])})
 
