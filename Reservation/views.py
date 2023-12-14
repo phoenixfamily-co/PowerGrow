@@ -161,22 +161,32 @@ class ReservationView(viewsets.ModelViewSet):
         authority_data = json.dumps(authority_data)
         headers = {'content-type': 'application/json', 'content-length': str(len(authority_data))}
         response = requests.post(ZP_API_REQUEST, data=authority_data, headers=headers, timeout=10)
-        if response['Status'] == 100:
-            gym = Gym.objects.filter(id=data["gym"]).first()
-            time = Time.objects.filter(id=data["time"]).first()
-            reservations = Reservations.objects.update_or_create(title=data["title"],
-                                                  description=data["description"],
-                                                  time=time,
-                                                  holiday=bool(data["holiday"]),
-                                                  session=data["session"],
-                                                  price=data["price"],
-                                                  gym=gym,
-                                                  user=self.request.user,
-                                                  authority=str(response['Authority']),
-                                                  success=False
-                                                  )
-            serializer = ReservationSerializer(reservations)
-        return Response(serializer.data)
+
+        try:
+            response_data = response.json()  # Parse the response content as JSON
+            if response_data['Status'] == 100:
+                gym = Gym.objects.filter(id=data["gym"]).first()
+                time = Time.objects.filter(id=data["time"]).first()
+                reservations, created = Reservations.objects.update_or_create(
+                    title=data["title"],
+                    description=data["description"],
+                    time=time,
+                    holiday=bool(data["holiday"]),
+                    session=data["session"],
+                    price=data["price"],
+                    gym=gym,
+                    user=self.request.user,
+                    authority=str(response_data['Authority']),
+                    success=False
+                )
+                serializer = ReservationSerializer(reservations)
+                return Response(serializer.data)
+            else:
+                return Response({'error': 'Payment request failed'})
+        except json.JSONDecodeError:
+            return Response({'error': 'Failed to decode response JSON'})
+        except KeyError:
+            return Response({'error': 'Missing expected key in response JSON'})
 
 
 class ManagerAddReservationView(viewsets.ModelViewSet):
