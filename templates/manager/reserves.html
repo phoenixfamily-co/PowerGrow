@@ -296,7 +296,7 @@
     </tr>
   </thead>
   <tbody>
-  {% for x in reserve %}
+  {% for x in reserve.all %}
     <tr>
       <th scope="row">{{ x.id }}</th>
         <th onclick="window.open('{% url 'reservation:delete-admin-reserve' x.time.id x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
