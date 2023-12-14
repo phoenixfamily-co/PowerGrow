@@ -180,7 +180,7 @@ class ReservationView(viewsets.ModelViewSet):
                     success=False
                 )
                 serializer = ReservationSerializer(reservations)
-                return Response(serializer.data)
+                return Response(response_data)
             else:
                 return Response({'error': 'Payment request failed'})
         except json.JSONDecodeError:
