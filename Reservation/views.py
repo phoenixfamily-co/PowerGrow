@@ -141,7 +141,7 @@ class GymView(viewsets.ModelViewSet):
     serializer_class = GymSerializer
 
 
-class ReservationView(viewsets.viewsets):
+class ReservationView(viewsets.ViewSet):
     queryset = Reservations.objects.all()
     serializer_class = ReservationSerializer
 
