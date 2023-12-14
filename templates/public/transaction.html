@@ -260,7 +260,7 @@
     let final = document.getElementById("final")
     const registerButton = document.querySelector(".list-group li button")
     let final_price = parseInt(price) - (parseInt(off) / 100 * parseInt(price))
-    let res
+    let result
 
 
     final.innerHTML = final_price.toString() + " " + "تومان"
@@ -271,7 +271,7 @@
         register()
     })
 
-    function register() {
+    async function register() {
 
         let gym = {{ gym.id }};
         let session = {{ session }};
@@ -292,7 +292,7 @@
             "holiday": '{{ holiday }}',
         }
 
-        fetch("{% url 'reservation:create_reserve' %}", {
+        const response = await fetch("{% url 'reservation:create_reserve' %}", {
         method: 'POST',
         headers: {
             'Authorization': `token  ${cookieValue}`,
@@ -300,10 +300,13 @@
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(param)
-    }).then(response => console.log(response.status) || response) // output the status and return response
-    .then(response => response.text()) // send response body to next then chain
-  .then(body => console.log(body))
+    })
+        result = await response.json()
+        result = JSON.parse(JSON.stringify(result))
+
     }
+    console.log(result.payment)
+    console.log(result.authority)
 
 
 </script>
