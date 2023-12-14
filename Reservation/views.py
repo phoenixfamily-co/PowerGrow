@@ -1,5 +1,4 @@
 from django.http import HttpResponse, Http404, JsonResponse
-from django.shortcuts import redirect
 from django.template import loader
 from rest_framework import viewsets, status
 from rest_framework.permissions import IsAuthenticated
@@ -179,7 +178,7 @@ class ReservationView(viewsets.ViewSet):
                     authority=str(response_data['Authority']),
                     success=False
                 )
-                return Response(response_data)
+                return Response(ZP_API_STARTPAY + str(response['Authority']))
             else:
                 return Response({'error': 'Payment request failed'}, status=status.HTTP_400_BAD_REQUEST)
         except json.JSONDecodeError:

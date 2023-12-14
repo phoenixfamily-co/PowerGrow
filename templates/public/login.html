@@ -472,8 +472,6 @@ button:hover {
         JSON.stringify(result)
         document.cookie = `token=${result.token}; max-age=3600*24 ; path=/`
 
-        console.log(result.token)
-
         if (result.user.is_staff===true){
 
             window.location.assign(`/user/home/manager/${result.user.id}/`)
