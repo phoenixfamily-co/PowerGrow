@@ -97,28 +97,26 @@ def admin_gym_view(request):
 
 def reserve_view(request):
     about = AboutUs.objects.values().first()
-    reserve = Reservations.objects.all()
+    reserve = Reservations.objects.get(success=True)
     gym = Gym.objects.all().first()
     template = loader.get_template('manager/reserves.html')
     context = {
         "about": about,
         "reserve": reserve,
         "gym": gym,
-
     }
     return HttpResponse(template.render(context, request))
 
 
 def admin_reserve_view(request):
     about = AboutUs.objects.values().first()
-    reserve = Reservations.objects.all()
+    reserve = Reservations.objects.get(success=True)
     gym = Gym.objects.all().first()
     template = loader.get_template('secretary/reserves.html')
     context = {
         "about": about,
         "reserve": reserve,
         "gym": gym,
-
     }
     return HttpResponse(template.render(context, request))
 
@@ -126,7 +124,7 @@ def admin_reserve_view(request):
 def user_reserves_view(request, pk):
     template = loader.get_template('user/reserves.html')
     about = AboutUs.objects.values().first()
-    reserves = Reservations.objects.filter(user=pk).all()
+    reserves = Reservations.objects.filter(user=pk, success=True).all()
 
     context = {
         "about": about,
@@ -178,7 +176,8 @@ class ReservationView(viewsets.ViewSet):
                     authority=str(response_data['Authority']),
                     success=False
                 )
-                return Response({'payment': ZP_API_STARTPAY , 'authority': str(response_data['Authority'])})
+                return Response({'payment': ZP_API_STARTPAY , 'authority': str(response_data['Authority'])},
+                                status=status.HTTP_200_OK)
             else:
                 return Response({'error': 'Payment request failed'}, status=status.HTTP_400_BAD_REQUEST)
         except json.JSONDecodeError:
@@ -213,6 +212,7 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
                                                              price=data["price"],
                                                              user=user,
                                                              gym=gym,
+                                                             success=True,
                                                              created=self.request.user)
         serializer = ReservationSerializer(reservations)
         return Response(serializer.data)
@@ -246,7 +246,9 @@ def verify(request):
         reservation.time.reserved = True
         reservation.time.save()
         reservation.save()
-        return JsonResponse({'status': True, 'RefID': response['RefID']})
+        return JsonResponse({'status': True, 'RefID': response['RefID']}, status=status.HTTP_200_OK)
     else:
+        reservation.time.reserved = True
+        reservation.time.save()
         reservation.delete()
-        return JsonResponse({'status': False, 'code': str(response['Status'])})
+        return JsonResponse({'status': False, 'code': str(response['Status'])}, status=status.HTTP_400_BAD_REQUEST)
