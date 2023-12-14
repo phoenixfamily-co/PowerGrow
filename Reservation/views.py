@@ -149,7 +149,7 @@ class ReservationView(viewsets.ViewSet):
     #     queryset = Reservations.objects.filter(user=self.request.user.id)
     #     return queryset
 
-    def perform_create(self, serializer):
+    def create(self, serializer):
         data = self.request.data
         authority_data = {
             "MerchantID": settings.MERCHANT,
