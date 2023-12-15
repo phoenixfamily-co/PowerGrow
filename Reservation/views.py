@@ -240,7 +240,7 @@ def verify(request):
         return HttpResponse(template.render(context, request))
     else:
         template = loader.get_template('public/failed.html')
-        reservation.time.reserved = True
+        reservation.time.reserved = False
         reservation.time.save()
         reservation.delete()
         return HttpResponse(template.render(context, request))
