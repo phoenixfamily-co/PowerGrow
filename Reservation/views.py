@@ -239,7 +239,7 @@ def verify(request):
         template = loader.get_template('public/successful.html')
         reservation.success = True
         for x in time:
-            if x.day.number >= reservation.time.day.number & x.day.month.number >= reservation.time.day.month.number:
+            if x.day.number >= reservation.time.day.number:
                 selected.append(x)
 
         selected.sort(key=lambda z: z.day.month.number, reverse=True)
@@ -249,7 +249,7 @@ def verify(request):
         #     time.get(id=selected[y].id).reserved = True
         #     time.get(id=selected[y].id).save()
         # reservation.save()
-        return Response(time.values())
+        return Response(selected)
         # return HttpResponse(template.render(context, request))
     else:
         template = loader.get_template('public/failed.html')
