@@ -214,7 +214,7 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
 @api_view(('GET',))
 def verify(request):
     reservation = Reservations.objects.get(authority=request.GET.get('Authority', ''))
-    time = Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time).values()
+    time = Time.objects.get(day__name=reservation.time.day.name, time=reservation.time.time)
     about = AboutUs.objects.values().first()
     sport = Sport.objects.all().values()
     selected = []
@@ -238,7 +238,7 @@ def verify(request):
     if response['Status'] == 100:
         template = loader.get_template('public/successful.html')
         reservation.success = True
-        for x in time.all():
+        for x in time:
             if x.day.number >= reservation.time.day.number:
                 selected.append(x)
 
