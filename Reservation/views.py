@@ -1,6 +1,7 @@
 from django.http import HttpResponse, Http404
 from django.template import loader
 from rest_framework import viewsets, status
+from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from About.models import AboutUs
@@ -210,6 +211,7 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+@api_view(('GET',))
 def verify(request):
     reservation = Reservations.objects.get(authority=request.GET.get('Authority', ''))
     time = Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time)
