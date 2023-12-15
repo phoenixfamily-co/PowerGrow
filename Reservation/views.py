@@ -238,9 +238,8 @@ def verify(request):
         reservation.time.save()
         reservation.save()
         return HttpResponse(template.render(context, request))
-
     else:
-        template = loader.get_template('public/successful.html')
+        template = loader.get_template('public/failed.html')
         reservation.time.reserved = True
         reservation.time.save()
         reservation.delete()
