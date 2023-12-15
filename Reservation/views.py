@@ -78,7 +78,7 @@ def admin_gym_view(request):
 
 def reserve_view(request):
     about = AboutUs.objects.values().first()
-    reserve = Reservations.objects.filter(success=True)
+    reserve = Reservations.objects.filter(success=True).all()
     gym = Gym.objects.all().first()
     template = loader.get_template('manager/reserves.html')
     context = {
@@ -91,7 +91,7 @@ def reserve_view(request):
 
 def admin_reserve_view(request):
     about = AboutUs.objects.values().first()
-    reserve = Reservations.objects.get(success=True)
+    reserve = Reservations.objects.filter(success=True).all()
     gym = Gym.objects.all().first()
     template = loader.get_template('secretary/reserves.html')
     context = {
@@ -123,9 +123,9 @@ class ReservationView(viewsets.ViewSet):
     queryset = Reservations.objects.all()
     serializer_class = ReservationSerializer
 
-    # def get_queryset(self):
-    #     queryset = Reservations.objects.filter(user=self.request.user.id)
-    #     return queryset
+    def list(self, serializer):
+        queryset = Reservations.objects.filter(user=self.request.user.id)
+        return queryset
 
     def create(self, serializer):
         data = self.request.data
