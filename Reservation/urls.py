@@ -20,8 +20,7 @@ urlpatterns = [
     path('api/gym/delete/<int:pk>', GymView.as_view({'delete': 'destroy'}), name='delete_gym'),
     path('api/gym/', GymView.as_view({'get': 'list'}), name='gym'),
     path('gym/', gym_view, name='gym_view'),
-    path('gym/admin/', admin_gym_view, name='gym_view_admim'),
+    path('gym/admin/', admin_gym_view, name='gym_view_admin'),
     path('transaction/<int:gym>/<int:time>/<int:session>/<str:holiday>/', transaction_view, name='transaction'),
-    path('successful/<int:gym>/<int:time>/<int:session>/<str:holiday>/', successful_view, name='successful'),
     path('verify/', verify , name='verify'),
 ]

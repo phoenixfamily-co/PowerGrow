@@ -54,25 +54,6 @@ def transaction_view(request, gym, time, session, holiday):
     return HttpResponse(template.render(context, request))
 
 
-def successful_view(request, gym, time, session, holiday):
-    about = AboutUs.objects.values().first()
-    gym = Gym.objects.filter(id=gym).values().first()
-    times = Time.objects.get(id=time)
-    sport = Sport.objects.all().values()
-    template = loader.get_template('public/successful.html')
-    context = {
-        "about": about,
-        "gym": gym,
-        "sport": sport,
-        "holiday": holiday,
-        "time": times,
-        "session": session,
-
-    }
-
-    return HttpResponse(template.render(context, request))
-
-
 def gym_view(request):
     about = AboutUs.objects.values().first()
     gym = Gym.objects.all()
@@ -231,6 +212,15 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
 
 def verify(request):
     reservation = Reservations.objects.get(authority=request.GET.get('Authority', ''))
+    about = AboutUs.objects.values().first()
+    sport = Sport.objects.all().values()
+
+    context = {
+        "about": about,
+        "sport": sport,
+        "reservation": reservation
+    }
+
     authority_data = {
         "MerchantID": settings.MERCHANT,
         "Authority": reservation.authority,
@@ -242,13 +232,21 @@ def verify(request):
     response = requests.post(ZP_API_VERIFY, data=data, headers=headers)
     response = response.json()
     if response['Status'] == 100:
+        template = loader.get_template('public/successful.html')
         reservation.success = True
         reservation.time.reserved = True
         reservation.time.save()
         reservation.save()
-        return JsonResponse({'status': True, 'RefID': response['RefID']}, status=status.HTTP_200_OK)
+        return HttpResponse(template.render(context, request))
+
     else:
+        template = loader.get_template('public/successful.html')
         reservation.time.reserved = True
         reservation.time.save()
         reservation.delete()
-        return JsonResponse({'status': False, 'code': str(response['Status'])}, status=status.HTTP_400_BAD_REQUEST)
+        return HttpResponse(template.render(context, request))
+
+
+
+
+
