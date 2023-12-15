@@ -239,7 +239,7 @@ def verify(request):
         template = loader.get_template('public/successful.html')
         reservation.success = True
         for x in time:
-            if x['time.day'] >= reservation.time.day.number:
+            if x['day.number'] >= reservation.time.day.number:
                 selected.append(x)
 
         selected.sort(key=lambda z: z.day.month.number, reverse=True)
