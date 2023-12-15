@@ -153,7 +153,13 @@
                 مشاهده قرارداد
             </a>
         </td>
-        <td>{{ x.holiday }}</td>
+        <td>
+            {% if x.holiday == True %}
+                محاسبه نشود
+                {% else %}
+                محاسبه شود
+            {% endif %}
+        </td>
         <td>{{ x.price }}</td>
     </tr>
    {% endfor %}
