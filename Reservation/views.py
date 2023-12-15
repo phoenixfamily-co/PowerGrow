@@ -243,7 +243,7 @@ def verify(request):
         selected.sort(key=lambda z: z.day.month.number, reverse=True)
         selected.sort(key=lambda z: z.day.number, reverse=True)
 
-        for y in range(int(reservation.session)):
+        for y in range(3):
             time.get(id=selected[y].id).reserved = True
             time.get(id=selected[y].id).save()
         reservation.save()
