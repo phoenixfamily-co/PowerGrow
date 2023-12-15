@@ -1,4 +1,4 @@
-from django.http import HttpResponse, Http404, JsonResponse
+from django.http import HttpResponse, Http404
 from django.template import loader
 from rest_framework import viewsets, status
 from rest_framework.permissions import IsAuthenticated
@@ -244,8 +244,3 @@ def verify(request):
         reservation.time.save()
         reservation.delete()
         return HttpResponse(template.render(context, request))
-
-
-
-
-
