@@ -954,7 +954,7 @@
                 startDay.innerHTML = `${result[0].number}/${result[0].months[monthPosition].number}/${result[0].months[monthPosition].days[i].number}`
                 date = `${result[0].number}-${result[0].months[monthPosition].number}-${result[0].months[monthPosition].days[i].number}`
 
-            }else if (result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number < parseInt(currentDay)){
+            }else if (result[0].months[monthPosition].number <= parseInt(currentMonth) && result[0].months[monthPosition].days[i].number < parseInt(currentDay)){
                 dayItem.classList.add("disActiveButton")
             }
             dayItem.innerHTML = result[0].months[monthPosition].days[i].number
