@@ -118,6 +118,15 @@
             width: 35%;
         }
 
+         .list-group-center {
+             text-align: center;
+             display: inline-block;
+             align-items: center;
+             justify-content: center;
+             color: red;
+             width: 100%;
+        }
+
         div.list-group-right {
             width: 55%;
             display: inline-flex;
@@ -166,7 +175,7 @@
                 نام سالن:
             </h6>
             <h6 class="list-group-left">
-                {{ gym.title }}
+                {{ reservation.gym.title }}
             </h6>
         </li>
     </ul>
@@ -177,7 +186,7 @@
                 تاریخ رزرو:
             </h6>
             <h6 id="startDay" class="list-group-left">
-               {{ time.day.month.year.number }}/{{ time.day.month.number }}/{{ time.day.number }}
+               {{ reservation.time.day.month.year.number }}/{{ reservation.time.day.month.number }}/{{ reservation.time.day.number }}
             </h6>
         </li>
     </ul>
@@ -188,7 +197,7 @@
                 ساعت رزرو:
             </h6>
             <h6 id="startTime" class="list-group-left">
-                {{ time.time | date:"G:i:s" }}
+                {{ reservation.time.time | date:"G:i:s" }}
             </h6>
         </li>
     </ul>
@@ -199,7 +208,7 @@
                 تعداد جلسات رزرو:
             </h6>
             <h6 id="timeSession" class="list-group-left">
-                {{ session }} جلسه
+                {{ reservation.session }} جلسه
             </h6>
         </li>
     </ul>
@@ -210,7 +219,7 @@
                 اجاره ثابت:
             </h6>
             <h6 id="price" class="list-group-left">
-                {{ time.price }} تومان
+                {{ reservation.time.price }} تومان
             </h6>
         </li>
     </ul>
@@ -221,7 +230,7 @@
                تخفیف:
             </h6>
             <h6 id="off" class="list-group-left">
-                {{ time.off }}%
+                {{ reservation.time.off }}%
             </h6>
         </li>
     </ul>
@@ -232,18 +241,24 @@
                قیمت نهایی:
             </h6>
             <h6 id="final" class="list-group-left">
+                {{ reservation.price }} تومان
             </h6>
         </li>
     </ul>
 
-    <div id="zarinpal">
-        <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script>
-    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item-fixed list-group-center ">
+            <h4>
+               پرداخت با شکست مواجه شش
+            </h4>
+
+        </li>
+    </ul>
 
     <ul class="list-group list-group-flush">
         <li>
-             <button id="registerButton" class="card-button">
-        پرداخت
+             <button id="registerButton" class="card-button" onclick="window.location.replace('{% url 'reservation:reservation' %}')">
+        برگشت
              </button>
         </li>
     </ul>
