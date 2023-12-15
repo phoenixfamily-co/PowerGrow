@@ -238,7 +238,7 @@ def verify(request):
     if response['Status'] == 100:
         template = loader.get_template('public/successful.html')
         reservation.success = True
-        for x in time.all:
+        for x in time.all():
             if x.day.number >= reservation.time.day.number:
                 selected.append(x)
 
