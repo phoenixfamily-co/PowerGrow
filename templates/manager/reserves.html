@@ -282,16 +282,15 @@
     <tr>
       <th scope="col">#</th>
         <th scope="col"> </th>
-      <th scope="col">نام</th>
+      <th scope="col">نام سالن</th>
         <th scope="col">توضیحات</th>
         <th scope="col">زمان</th>
         <th scope="col">تعطیلات</th>
         <th scope="col">تعداد جلسه</th>
         <th scope="col">قرارداد</th>
         <th scope="col">قیمت</th>
-        <th scope="col">نام رزرو کننده</th>
-        <th scope="col">سالن</th>
-        <th scope="col">تاریخ ثبت</th>
+        <th scope="col">شماره موبایل</th>
+        <th scope="col">نام نام خانوداگی</th>
         <th scope="col">ساخته شده توسط</th>
     </tr>
   </thead>
@@ -300,19 +299,24 @@
     <tr>
       <th scope="row">{{ x.id }}</th>
         <th onclick="window.open('{% url 'reservation:delete-admin-reserve' x.time.id x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
-      <td>{{ x.title }}</td>
+      <td>{{ x.gym.title }}</td>
         <td>{{ x.description }}</td>
         <td style="direction: ltr">{{ x.time.day.month.year.number }}/{{ x.time.day.month.number }}/{{ x.time.day.number }} | {{ x.time.time | date:"G:i:s"}} </td>
-        <td>{{ x.holiday }}</td>
+        <td>
+            {% if x.holiday == True %}
+                محاسبه نشود
+                {% else %}
+                محاسبه شود
+            {% endif %}
+        </td>
         <td>{{ x.session }}</td>
           <td> <a href="javascript:window.open('/media/{{ x.contract }}')">
                 مشاهده قرارداد
             </a>
         </td>
         <td>{{ x.price }}</td>
+        <td>{{ x.user.number }}</td>
         <td>{{ x.user.name }}</td>
-        <td>{{ x.gym.title }}</td>
-        <td>{{ x.datetime }}</td>
         <td>{{ x.created.name }}</td>
     </tr>
    {% endfor %}
