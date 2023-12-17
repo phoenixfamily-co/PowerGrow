@@ -237,12 +237,10 @@ def verify(request):
     if response['Status'] == 100:
         template = loader.get_template('public/successful.html')
         reservation.success = True
-        time_list = list(Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time). \
-                         order_by('-day__number').order_by('-day__month__number').values_list('id', flat=True))
-        start = time_list.index(reservation.time.id)
-        sliced_queryset = Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time). \
-                              order_by('-day__number').order_by('-day__month__number')[start:reservation.session]
-        time = Time.objects.filter(id__in=sliced_queryset).update(reserved=True)
+        time = Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time,
+                                   day__month__number__gte=reservation.time.day.month.number)[:reservation.session]. \
+            order_by('-day__number').order_by('-day__month__number')
+        time = Time.objects.filter(id__in=time).update(reserved=True)
         reservation.save()
         return Response(time)
         # return HttpResponse(template.render(context, request))
