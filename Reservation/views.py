@@ -241,7 +241,7 @@ def verify(request):
                                               day__month__number__gte=reservation.time.day.month.number)\
             .exclude(day__month__number=reservation.time.day.month.number, day__number__lt=reservation.time.day.number)\
             .order_by('day__month__number')[:int(reservation.session)]
-        # time = Time.objects.filter(id__in=sliced_queryset).update(reserved=True)
+        time = Time.objects.filter(id__in=sliced_queryset).update(reserved=True)
         reservation.save()
         return Response(sliced_queryset.values())
         # return HttpResponse(template.render(context, request))
