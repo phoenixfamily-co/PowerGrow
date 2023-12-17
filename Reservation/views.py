@@ -237,8 +237,8 @@ def verify(request):
     if response['Status'] == 100:
         template = loader.get_template('public/successful.html')
         reservation.success = True
-        time_sorted = Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time,
-                                   day__month__number__gte=reservation.time.day.month.number).order_by('-day__number').order_by('-day__month__number')[:reservation.session]
+        month = Month.objects.filter(number__gte=reservation.time.day.month.number)
+        time_sorted = Time.objects.filter(day__month__in=month, day__name=reservation.time.day.name, time=reservation.time.time).order_by('-day__number').order_by('-day__month__number')[:reservation.session]
         time = Time.objects.filter(id__in=time_sorted).update(reserved=True)
         reservation.save()
         return Response(time)
