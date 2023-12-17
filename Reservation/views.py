@@ -218,7 +218,7 @@ def verify(request):
         order_by('-id').values_list('id', flat=True))
     time_sort = time_list.index(reservation.time.id)
     time = Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time).\
-        order_by('-day__number').order_by('-day__month__number').values()[time_sort:reservation.session]
+        order_by('-day__number').order_by('-day__month__number').values()
     about = AboutUs.objects.values().first()
     sport = Sport.objects.all().values()
 
