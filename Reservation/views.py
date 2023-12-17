@@ -214,11 +214,11 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
 @api_view(('GET',))
 def verify(request):
     reservation = Reservations.objects.get(authority=request.GET.get('Authority', ''))
-    time_list = list(Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time).\
+    time = list(Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time).\
         order_by('-id').values_list('id', flat=True))
-    time_sort = time_list.index(reservation.time.id)
-    time = Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time).\
-        order_by('-day__number').order_by('-day__month__number')
+    start = time.index(reservation.time.id)
+    time = list(Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time).\
+        order_by('-day__number').order_by('-day__month__number')[start:reservation.session])
     about = AboutUs.objects.values().first()
     sport = Sport.objects.all().values()
 
