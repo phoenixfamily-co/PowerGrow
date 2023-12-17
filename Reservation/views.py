@@ -249,7 +249,7 @@ def verify(request):
             time.get(id=selected[y].id).reserved = True
             time.get(id=selected[y].id).save()
         reservation.save()
-        return Response(time)
+        return Response(json.dumps(selected))
         # return HttpResponse(template.render(context, request))
     else:
         template = loader.get_template('public/failed.html')
