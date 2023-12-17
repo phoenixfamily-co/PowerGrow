@@ -11,6 +11,8 @@ from Reservation.serializer import GymSerializer, ReservationSerializer, AdminRe
 from django.conf import settings
 import requests
 import json
+from django.core import serializers
+
 
 if settings.SANDBOX:
     sandbox = 'sandbox'
@@ -214,11 +216,6 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
 @api_view(('GET',))
 def verify(request):
     reservation = Reservations.objects.get(authority=request.GET.get('Authority', ''))
-    time = list(Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time).\
-        order_by('-id').values_list('id', flat=True))
-    start = time.index(reservation.time.id)
-    time = list(Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time).\
-        order_by('-day__number').order_by('-day__month__number'))
     about = AboutUs.objects.values().first()
     sport = Sport.objects.all().values()
 
@@ -241,9 +238,11 @@ def verify(request):
     if response['Status'] == 100:
         template = loader.get_template('public/successful.html')
         reservation.success = True
-        for y in time:
-            y.reserved = True
-            y.save()
+        time = list(Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time). \
+                    order_by('-id').values_list('id', flat=True))
+        start = time.index(reservation.time.id)
+        time = Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time). \
+            order_by('-day__number').order_by('-day__month__number').update(reserved=True)
         reservation.save()
         return Response(time)
         # return HttpResponse(template.render(context, request))
