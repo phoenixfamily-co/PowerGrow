@@ -238,13 +238,13 @@ def verify(request):
         template = loader.get_template('public/successful.html')
         reservation.success = True
         ids = Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time,
-                                              day__month__number__gte=reservation.time.day.month.number)\
-            .exclude(day__month__number=reservation.time.day.month.number, day__number__lt=reservation.time.day.number)\
-            .order_by('day__month__number').values_list('pk', flat=True)[:int(reservation.session)]
+                                  day__month__number__gte=reservation.time.day.month.number) \
+                  .exclude(day__month__number=reservation.time.day.month.number,
+                           day__number__lt=reservation.time.day.number) \
+                  .order_by('day__month__number').values_list('pk', flat=True)[:int(reservation.session)]
         Time.objects.filter(pk__in=list(ids)).update(reserved=True)
         reservation.save()
-        return Response(status=status.HTTP_200_OK)
-        # return HttpResponse(template.render(context, request))
+        return HttpResponse(template.render(context, request))
     else:
         template = loader.get_template('public/failed.html')
         reservation.time.reserved = False
