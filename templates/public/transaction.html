@@ -257,9 +257,12 @@
 
     let off = "{{ time.off }}";
     let price = "{{ time.price }}";
+    let gym = "{{ gym.id }}";
+    let session = "{{ session }}";
+    let time = "{{ time.id }}";
     let final = document.getElementById("final")
     const registerButton = document.querySelector(".list-group li button")
-    let final_price = parseInt(price) - (parseInt(off) / 100 * parseInt(price))
+    let final_price = (parseInt(price) - (parseInt(off) / 100 * parseInt(price))) * session
     let result
 
 
@@ -272,10 +275,6 @@
     })
 
     async function register() {
-
-        let gym = {{ gym.id }};
-        let session = {{ session }};
-        let time = {{ time.id }};
 
         const cookieValue = document.cookie
         .split("; ")

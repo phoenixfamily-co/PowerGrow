@@ -1006,6 +1006,7 @@
     let price = document.getElementById("price")
     let off = document.getElementById("off")
     let final = document.getElementById("final")
+    let exchange = 0
 
         async function getTimes(day) {
 
@@ -1050,9 +1051,11 @@
                     price.innerHTML = res[parseInt(position)].price+ " " + "تومان"
                     off.innerHTML = res[parseInt(position)].off+"%"
                     if (parseInt(res[parseInt(position)].off) !==0){
-                        final.innerHTML = (parseInt(res[parseInt(position)].price) - (parseInt(res[parseInt(position)].off) / 100 * parseInt(res[parseInt(position)].price))).toString() + " " + "تومان"
+                        exchange = (parseInt(res[parseInt(position)].price) - (parseInt(res[parseInt(position)].off) / 100 * parseInt(res[parseInt(position)].price)))
+                        final.innerHTML = (exchange*session).toString() + " " + "تومان"
                     }else {
-                        final.innerHTML = res[parseInt(position)].price+ " " + "تومان"
+                        exchange = (res[parseInt(position)].price)
+                        final.innerHTML = (exchange*session).toString() + " " + "تومان"
                     }
 
                 })
@@ -1062,6 +1065,7 @@
     inputSession.addEventListener("input",function () {
         sessionTitle.innerHTML = inputSession.value + " جلسه"
         session = inputSession.value
+        final.innerHTML = (exchange*session).toString() + " " + "تومان"
     })
 
 </script>
