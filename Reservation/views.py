@@ -214,10 +214,13 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
 @api_view(('GET',))
 def verify(request):
     reservation = Reservations.objects.get(authority=request.GET.get('Authority', ''))
-    time = Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time)
+    time_list = list(Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time).\
+        order_by('-id').values_list('id', flat=True))
+    time_sort = time_list.index(reservation.time.id)
+    time = Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time).\
+        order_by('-day.number').order_by('-day.month.number')[time_sort:reservation.session]
     about = AboutUs.objects.values().first()
     sport = Sport.objects.all().values()
-    selected = []
 
     context = {
         "about": about,
@@ -238,18 +241,11 @@ def verify(request):
     if response['Status'] == 100:
         template = loader.get_template('public/successful.html')
         reservation.success = True
-        for x in time:
-            if x.day.number >= reservation.time.day.number:
-                selected.append(x)
-
-        selected.sort(key=lambda z: z.day.month.number, reverse=True)
-        selected.sort(key=lambda z: z.day.number, reverse=True)
-
-        for y in range(reservation.session):
-            time.get(id=selected[y].id).reserved = True
-            time.get(id=selected[y].id).save()
+        for y in time:
+            y.reserved = True
+            y.save()
         reservation.save()
-        return Response(json.dumps(selected))
+        return Response(json.dumps(time))
         # return HttpResponse(template.render(context, request))
     else:
         template = loader.get_template('public/failed.html')
