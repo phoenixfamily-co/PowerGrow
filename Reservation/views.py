@@ -239,7 +239,8 @@ def verify(request):
         reservation.success = True
         sliced_queryset = Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time,
                                               day__number__gte=reservation.time.day.number,
-                                              day__month__number__gte=reservation.time.day.month.number).order_by('day__month__number').order_by('-day__number')
+                                              day__month__number__gte=reservation.time.day.month.number).order_by(
+            'day__number', '-day__month__number')
         # time = Time.objects.filter(id__in=sliced_queryset).update(reserved=True)
         reservation.save()
         return Response(sliced_queryset.values())
