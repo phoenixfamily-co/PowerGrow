@@ -238,11 +238,11 @@ def verify(request):
     if response['Status'] == 100:
         template = loader.get_template('public/successful.html')
         reservation.success = True
-        time = list(Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time). \
+        time = list(Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time).\
                     order_by('-id').values_list('id', flat=True))
         start = time.index(reservation.time.id)
         time = Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time). \
-            order_by('-day__number').order_by('-day__month__number').update(reserved=True)[start:reservation.session]
+            order_by('-day__number').order_by('-day__month__number').update(reserved=True)[int(start):int(reservation.session)]
         reservation.save()
         return Response(time)
         # return HttpResponse(template.render(context, request))
