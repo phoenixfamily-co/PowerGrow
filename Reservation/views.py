@@ -246,7 +246,7 @@ def verify(request):
             'day__month__number')[:start_index:reservation.session]
         # time = Time.objects.filter(id__in=sliced_queryset).update(reserved=True)
         reservation.save()
-        return Response(sliced_queryset)
+        return Response(json.dumps(sliced_queryset))
         # return HttpResponse(template.render(context, request))
     else:
         template = loader.get_template('public/failed.html')
