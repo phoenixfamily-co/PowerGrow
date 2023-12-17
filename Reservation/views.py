@@ -240,7 +240,8 @@ def verify(request):
         sliced_queryset = Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time,
                                               day__month__number__gte=reservation.time.day.month.number)\
             .exclude(day__month__number=reservation.time.day.month.number, day__number__lt=reservation.time.day.number)\
-            .order_by('day__month__number')[:int(reservation.session)].update(reservation=True)
+            .order_by('day__month__number').values('id')[:int(reservation.session)]
+        time = Time.objects.filter(id__in=sliced_queryset).update(reserved=True)
         reservation.save()
         return Response(sliced_queryset.values())
         # return HttpResponse(template.render(context, request))
