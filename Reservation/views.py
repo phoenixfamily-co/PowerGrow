@@ -242,7 +242,7 @@ def verify(request):
         template = loader.get_template('public/successful.html')
         reservation.success = True
         for y in time:
-            y.reserved = True
+            y['reserved'] = True
             y.save()
         reservation.save()
         return Response(time)
