@@ -13,7 +13,6 @@ import requests
 import json
 from django.core import serializers
 
-
 if settings.SANDBOX:
     sandbox = 'sandbox'
 else:
@@ -160,14 +159,14 @@ class ReservationView(viewsets.ViewSet):
                     authority=str(response_data['Authority']),
                     success=False
                 )
-                return Response({'payment': ZP_API_STARTPAY , 'authority': str(response_data['Authority'])},
+                return Response({'payment': ZP_API_STARTPAY, 'authority': str(response_data['Authority'])},
                                 status=status.HTTP_200_OK)
             else:
                 return Response({'error': 'Payment request failed'}, status=status.HTTP_400_BAD_REQUEST)
         except json.JSONDecodeError:
-            return Response({'error': 'Failed to decode response JSON'},  status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'Failed to decode response JSON'}, status=status.HTTP_400_BAD_REQUEST)
         except KeyError:
-            return Response({'error': 'Missing expected key in response JSON'},  status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'Missing expected key in response JSON'}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class ManagerAddReservationView(viewsets.ModelViewSet):
@@ -238,11 +237,12 @@ def verify(request):
     if response['Status'] == 100:
         template = loader.get_template('public/successful.html')
         reservation.success = True
-        time = list(Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time).\
-                    order_by('-id').values_list('id', flat=True))
-        start = time.index(reservation.time.id)
-        time = Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time). \
-            order_by('-day__number').order_by('-day__month__number').update(reserved=True)[int(start):int(reservation.session)]
+        time_list = list(Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time). \
+                         order_by('-day__number').order_by('-day__month__number').values_list('id', flat=True))
+        start = time_list.index(reservation.time.id)
+        sliced_queryset = Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time). \
+                              order_by('-day__number').order_by('-day__month__number')[start:reservation.session]
+        time = Time.objects.filter(id__in=sliced_queryset).update(reserved=True)
         reservation.save()
         return Response(time)
         # return HttpResponse(template.render(context, request))
