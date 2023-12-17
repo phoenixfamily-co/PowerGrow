@@ -218,7 +218,7 @@ def verify(request):
         order_by('-id').values_list('id', flat=True))
     time_sort = time_list.index(reservation.time.id)
     time = Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time).\
-        order_by('-day__number').order_by('-day__month__number').values()
+        order_by('-day__number').order_by('-day__month__number')
     about = AboutUs.objects.values().first()
     sport = Sport.objects.all().values()
 
@@ -242,7 +242,7 @@ def verify(request):
         template = loader.get_template('public/successful.html')
         reservation.success = True
         for y in time:
-            y['reserved'] = True
+            y.reserved = True
             y.save()
         reservation.save()
         return Response(time)
