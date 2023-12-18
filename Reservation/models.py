@@ -29,10 +29,3 @@ class Reservations(models.Model):
                                 blank=True, null=True)
     authority = models.TextField(unique=True, blank=True, null=True)
     success = models.BooleanField(blank=True, null=True)
-
-
-    def __str__(self):
-        return self.title
-
-
-
