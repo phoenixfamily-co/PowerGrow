@@ -201,7 +201,7 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     def destroy(self, request, *args, **kwargs):
-        reservation = Reservations.objects.get(pk=self.kwargs['pk'])
+        reservation = Reservations.objects.filter(pk=self.kwargs['pk']).first()
         time = Time.objects.filter(pk=self.kwargs['time']).first()
         ids = Time.objects.filter(day__name=time.day.name, time=time.time,
                                   day__month__number__gte=time.day.month.number) \
