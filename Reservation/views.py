@@ -210,8 +210,7 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
                   .order_by('day__month__number').values_list('pk', flat=True)[:int(reservation.session)]
         Time.objects.filter(pk__in=list(ids)).update(reserved=True)
         try:
-            instance = self.get_object()
-            self.perform_destroy(instance)
+            reservation.delete
         except Http404:
             pass
         return Response(status=status.HTTP_204_NO_CONTENT)
