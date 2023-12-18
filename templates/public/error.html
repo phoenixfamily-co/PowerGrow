@@ -118,6 +118,15 @@
             width: 35%;
         }
 
+         .list-group-center {
+             text-align: center;
+             display: inline-block;
+             align-items: center;
+             justify-content: center;
+             color: red;
+             width: 100%;
+        }
+
         div.list-group-right {
             width: 55%;
             display: inline-flex;
@@ -160,13 +169,13 @@
 
 <div class="card" id="card">
 
-    <ul class="list-group list-group-flush">
+     <ul class="list-group list-group-flush">
         <li class="list-group-item-fixed">
             <h6 class="list-group-right">
                 نام دوره:
             </h6>
             <h6 class="list-group-left">
-                {{ product.title }}
+                {{ participants.course.title }}
             </h6>
         </li>
     </ul>
@@ -177,7 +186,7 @@
                 جنسیت دوره:
             </h6>
             <h6 id="startDay" class="list-group-left">
-               {{ product.gender }}
+               {{ participants.course.gender }}
             </h6>
         </li>
     </ul>
@@ -188,7 +197,7 @@
                 روزها برگزاری:
             </h6>
             <h6 id="startTime" class="list-group-left">
-                {{ day.title}}
+                {{ participants.day.title}}
             </h6>
         </li>
     </ul>
@@ -199,7 +208,7 @@
                 نام مربی:
             </h6>
             <h6 class="list-group-left">
-                {{ product.name }}
+                {{ participants.course.name }}
             </h6>
         </li>
     </ul>
@@ -210,7 +219,7 @@
                 ساعت برگزاری:
             </h6>
             <h6 id="price" class="list-group-left">
-                {{ product.time }}
+                {{ participants.course.time }}
             </h6>
         </li>
     </ul>
@@ -221,7 +230,7 @@
                تعداد جلسات:
             </h6>
             <h6 class="list-group-left">
-                {{ session.number }} جلسه
+                {{ participants.session.number }} جلسه
             </h6>
         </li>
     </ul>
@@ -232,7 +241,7 @@
                شهریه ثابت:
             </h6>
             <h6 class="list-group-left">
-                {{ day.price }}
+                {{ participants.day.price }}
             </h6>
         </li>
     </ul>
@@ -243,7 +252,7 @@
                تخفیف:
             </h6>
             <h6 class="list-group-left">
-                {{ day.off }}
+                {{ participants.day.off }}
             </h6>
         </li>
     </ul>
@@ -254,18 +263,24 @@
                قیمت نهایی:
             </h6>
             <h6 id="final" class="list-group-left">
+                {{ participants.price }}
             </h6>
         </li>
     </ul>
 
-    <div id="zarinpal">
-        <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script>
-    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item-fixed list-group-center ">
+            <h4>
+               پرداخت انجام نشد
+            </h4>
+
+        </li>
+    </ul>
 
     <ul class="list-group list-group-flush">
         <li>
-             <button id="registerButton" class="card-button">
-        پرداخت
+             <button id="registerButton" class="card-button" onclick="window.location.replace('{% url 'product:product' participants.course.id participants.session.id participants.day.id  %}')">
+        تایید
              </button>
         </li>
     </ul>
@@ -274,65 +289,5 @@
 </div>
 
 </body>
-
-<script>
-
-    let off = "{{ day.off }}";
-    let price = "{{ day.tuition }}";
-    let day = "{{ day.id }}";
-    let session = "{{ session.id }}";
-    let course = "{{ product.id }}";
-    let final = document.getElementById("final")
-    const registerButton = document.querySelector(".list-group li button")
-    let final_price = (parseInt(price) - (parseInt(off) / 100 * parseInt(price)))
-    let result
-
-
-
-     final.innerHTML = final_price.toString() + " " + "تومان"
-
-
-    registerButton.addEventListener("click",function () {
-
-        register()
-    })
-
-    async function register() {
-
-        const cookieValue = document.cookie
-        .split("; ")
-        .find((row) => row.startsWith("token="))
-        ?.split("=")[1];
-
-        const param = {
-            "title": "{{ gym.title }}",
-            "day": parseInt(day),
-            "session": parseInt(session),
-            "course": parseInt(course),
-            "price": final_price ,
-            "description":"شرکت در دوره های باشگاه ورزشی حجاب",
-        }
-
-        const response = await fetch("{% url 'product:participate' %}", {
-        method: 'POST',
-        headers: {
-            'Authorization': `token  ${cookieValue}`,
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(param)
-    })
-        result = await response.json()
-        result = JSON.parse(JSON.stringify(result))
-        if (response.status===200){
-            window.location.replace(result.payment+result.authority)
-        }else {
-            alert(response.statusText)
-        }
-
-    }
-
-
-</script>
 
 </html>

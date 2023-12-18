@@ -58,4 +58,6 @@ class Participants(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='participants', null=True, blank=True)
     created = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='participant',
                                 blank=True, null=True)
+    authority = models.TextField(unique=True, blank=True, null=True)
+    success = models.BooleanField(blank=True, null=True)
 

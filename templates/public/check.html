@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,12 +8,19 @@
 <script src="https://kit.fontawesome.com/1228ed801f.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.css" />
 <script src="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.js"></script>
-<title>PowerGrow</title>
+
+        <title>ورود به درگاه پرداخت</title>
 
 
-	<style>
 
-		@font-face {
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+
+    <style>
+
+        	@font-face {
 			font-family: BYekan;
   			font-style: normal;
   			font-weight: normal;
@@ -21,236 +29,265 @@
         		 url("/static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */
         		 url("/static/fonts/BYekan.ttf")  format('truetype') /* Safari, Android, iOS */
 		}
+        * {
+            box-sizing: border-box
+        }
 
-		* {box-sizing: border-box}
-		img {vertical-align: middle;}
+             html{
+                 position: relative;
+                 font-family: BYekan, serif !important;
+        }
 
-	.mySlides {
-        height: 100vh;
-        width: 50%;
-        float: right;
-        overflow-y: hidden;
-        overflow-x: hidden;
+            body {
+                display: flex;
+                direction: rtl;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                background: #282a36;
+                color: #fff;
+            }
 
-		}
+             .logoHolder {
+                 position: absolute;
+                 top: 0;
+                 justify-items: center;
+                 justify-content: center;
+                 margin-top: 1%;
+                 display: inline-flex;
+                 direction: ltr;
+             }
 
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            direction: ltr
 
-	.slideshow-container {
-		max-width: 100%;
-  		position: relative;
-  		margin: auto;
-		}
+        }
 
+        .typography {
+            margin-top: 10px;
+            color: white;
+            margin-left: 10px;
+            font-size: 20px
 
-		.dropdown-content a {
-  			color: black;
-		    padding: 5px 16px;
-			font-size: 16px;
-			text-decoration: none;
-		  	display: block;
-		}
+        }
 
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #f1f1f1}
+            ul {
+            list-style-type: none;
+        }
 
+           .card {
+               width: 35%;
+               height: auto;
+               border-radius: 1rem;
+               margin-top: 100px;
+               margin-bottom: 100px;
+               background: #f6efe7;
+               color: black;
+               left: 0;
+               right: 0;
+           }
 
-		@keyframes fade {
-		  from {opacity: .4}
-		  to {opacity: 1}
-		}
-
-		/* On smaller screens, decrease text size */
-		@media only screen and (max-width: 300px) {
-		}
-
-			.card {
-			 	width: 70vh;
-                height: 80vh;
-				background: rgba(193, 193, 193, 0.3);
-				position: fixed ;
-                border-radius: 15px;
-				flex: 0 0 auto;
-                margin-left: 18vh;
-                margin-top: 10vh;
-			}
-
-		.card-title {
-			color: black;
-			width: 95%;
-            font-family: BYekan, serif !important;
-			list-style-type: none;
-			float: right;
-			display: inline-block;
-			direction: rtl;
-
-		}
-
-		.card-button{
-			position: absolute ;
-            bottom: 0 ;
+        .card-button {
+            height: 50px;
+            margin-top: 5%;
+            margin-bottom: 5%;
+            width: 90%;
+            background: #e4633a;
+            border-color: transparent;
+            color: white;
             cursor: pointer;
-            height: 50px ;
-            width: 50vh;
-            margin-left: 10vh ;
-            margin-bottom: 12px ;
-            background: #fdc702;
-            border-color: transparent ;
-            color: white
-		}
+        }
+         .list-group-item-fixed {
+             width: auto;
+             margin-top: 4%;
+             padding-bottom: 4%;
+        }
+        .list-group-left {
+            text-align: center;
+            float: left;
+            display: inline;
+            width: 40%;
+        }
+        .list-group-right {
+            text-align: right;
+            float: right;
+            display: inline;
+            width: 35%;
+        }
 
-		body,html{
-			position: relative;
-            font-family: BYekan, serif !important;
-            background: #ffffff;
+         .list-group-center {
+             text-align: center;
+             display: inline-block;
+             align-items: center;
+             justify-content: center;
+             color: green;
+             width: 100%;
+        }
 
+        div.list-group-right {
+            width: 55%;
+            display: inline-flex;
+        }
 
-		}
+        #zarinpal{
+            pointer-events: none;
+            cursor: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+            flex-direction: column;
+        }
+            #zarinpal img {
+                width: 80px;
+            }
 
-		hr{
-			height: 1px ;
-			background-color: black ;
-			width: 325px;
-			margin-right: 20px;
-			margin-left: 20px;
-			right: 0;
-			left: 0;
-		}
+        @media screen and (max-width: 600px) {
+            .card {
+               width: 90%;
 
-		</style>
+           }
+        }
+
+</style>
 
 </head>
+
 <body>
 
-<a href="{% url 'home:home' %}"  style="font-size: 22px ; position: absolute ; margin-top: 30px ; margin-left: 40px ; cursor: pointer">بستن</a>
+<div class="logoHolder">
+
+    <img alt="" src="/media/{{ about.logo }}" class="logo">
+    <div class="typography">PowerGrow</div>
+
+</div>
 
 
-	<div class="slideshow-container">
 
-		<div class="mySlides fade">
-			<img alt="" src="/static/images/sucessful.jpg" style="width:100%;height:100% " >
-		</div>
+<div class="card" id="card">
 
-	</div>
+     <ul class="list-group list-group-flush">
+        <li class="list-group-item-fixed">
+            <h6 class="list-group-right">
+                نام دوره:
+            </h6>
+            <h6 class="list-group-left">
+                {{ participants.course.title }}
+            </h6>
+        </li>
+    </ul>
 
-    	<div class="card" id="card">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item-fixed">
+            <h6 class="list-group-right">
+                جنسیت دوره:
+            </h6>
+            <h6 id="startDay" class="list-group-left">
+               {{ participants.course.gender }}
+            </h6>
+        </li>
+    </ul>
+
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item-fixed">
+            <h6 class="list-group-right">
+                روزها برگزاری:
+            </h6>
+            <h6 id="startTime" class="list-group-left">
+                {{ participants.day.title}}
+            </h6>
+        </li>
+    </ul>
+
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item-fixed">
+            <h6 class="list-group-right">
+                نام مربی:
+            </h6>
+            <h6 class="list-group-left">
+                {{ participants.course.name }}
+            </h6>
+        </li>
+    </ul>
+
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item-fixed">
+            <h6 class="list-group-right">
+                ساعت برگزاری:
+            </h6>
+            <h6 id="price" class="list-group-left">
+                {{ participants.course.time }}
+            </h6>
+        </li>
+    </ul>
+
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item-fixed">
+            <h6 class="list-group-right">
+               تعداد جلسات:
+            </h6>
+            <h6 class="list-group-left">
+                {{ participants.session.number }} جلسه
+            </h6>
+        </li>
+    </ul>
+
+     <ul class="list-group list-group-flush">
+        <li class="list-group-item-fixed">
+            <h6 class="list-group-right">
+               شهریه ثابت:
+            </h6>
+            <h6 class="list-group-left">
+                {{ participants.day.price }}
+            </h6>
+        </li>
+    </ul>
+
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item-fixed">
+            <h6 class="list-group-right">
+               تخفیف:
+            </h6>
+            <h6 class="list-group-left">
+                {{ participants.day.off }}
+            </h6>
+        </li>
+    </ul>
+
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item-fixed">
+            <h6 class="list-group-right">
+               قیمت نهایی:
+            </h6>
+            <h6 id="final" class="list-group-left">
+                {{ participants.price }}
+            </h6>
+        </li>
+    </ul>
+
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item-fixed list-group-center ">
+            <h4>
+               پرداخت با موفقیت انجام شد
+            </h4>
+
+        </li>
+    </ul>
+
+    <ul class="list-group list-group-flush">
+        <li>
+             <button id="registerButton" class="card-button" onclick="window.location.replace('{% url 'product:product' participants.course.id participants.session.id participants.day.id  %}')">
+        تایید
+             </button>
+        </li>
+    </ul>
 
 
-		<ul class="card-title">
-			<li style="font-size: 16px;font-weight: bold ;display: inline">نام دوره :</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ;float: left">{{ product.title}}</li>
+</div>
 
-		</ul>
-
-		<hr style="margin-top: 50px ;width:90%  ; position: absolute">
-
-		<ul class="card-title">
-			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">جنسیت دوره :</li>
-			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin: -4px">{{ product.gender}}</li>
-
-		</ul>
-
-		<hr style="margin-top: 100px ;width:90% ; position: absolute">
-
-		<ul class="card-title">
-
-			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: right ; margin-top: -4px">روز های برگزاری :
-			</li>
-			<li style="font-size: 16px; font-weight: bold ; display: inline ;float: left ; margin-bottom:  -4px">
-                {{ days.title }}
-			</li>
-		</ul>
-
-
-		<hr style="margin-top: 150px ;width:90% ; position: absolute">
-
-             <ul class="card-title">
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">نام مربی :</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">{{ product.name }}</li>
-		</ul>
-
-			<ul class="card-title">
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">ساعت برگزاری :</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px">{{ product.time }}</li>
-		</ul>
-
-		<hr style="margin-top: 200px ;width:90% ; position: absolute">
-
-			<ul class="card-title">
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -4px">تعداد جلسات :</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -4px ; direction: rtl">{{ session.number }} جلسه</li>
-		</ul>
-
-		<hr style="margin-top: 250px ;width:90% ; position: absolute">
-
-		<hr style="margin-top: 300px ;width:90% ; position: absolute">
-
-			<ul class="card-title">
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right; margin-top: -4px">شهریه ثابت :</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left; margin-top: -4px ; direction: rtl">{{ product.tuition }} تومان </li>
-		</ul>
-
-		<hr style="margin-top: 350px ;width:90% ; position: absolute">
-
-			<ul class="card-title">
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; ; margin-top: -4px">تخفیف :</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; ; margin-top: -4px">{{ product.off }}%</li>
-		</ul>
-
-		<hr style="margin-top: 400px ;width:90% ; position: absolute">
-
-		<ul class="card-title">
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: right ; margin-top: -10px">قیمت نهایی :</li>
-			<li style="font-size: 16px;font-weight: bold ;display: inline ; float: left ; margin-top: -10px ; direction: rtl">{{ product.tuition }} تومان </li>
-		</ul>
-
-
-		<button class="card-button" onclick="register()">
-            تکمیل فرآیند
-		</button>
-
-        </div>
 </body>
-
-<script>
-
-    async function register() {
-
-        const cookieValue = document.cookie
-        .split("; ")
-        .find((row) => row.startsWith("token="))
-        ?.split("=")[1];
-
-        const param ={
-    "title": "{{ product.title }}",
-    "session": {{ session.id}},
-    "day": "{{ days.id }}",
-    "price": {{ product.tuition }},
-    "course": {{ product.id }}
-}
-
-        console.log(cookieValue)
-        const response = await fetch('/product/api/participate/', {
-        method: 'POST',
-        headers: {
-            'Authorization': `token  ${cookieValue}`,
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(param)
-
-    });
-    if (response.status===201){
-        window.location.replace("{% url "home:home" %}")
-    }else {
-        alert(response.statusText)
-    }
-    }
-
-</script>
-
-<script>
-    setTimeout(function(){
-        register()
-    }, 3000);
-  </script>
 
 </html>

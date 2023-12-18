@@ -1,16 +1,16 @@
 import requests
-from django.http import HttpResponse, JsonResponse
-from django.shortcuts import redirect
+from django.http import HttpResponse
 from django.template import loader
 from rest_framework import viewsets, filters, generics, status
+from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.utils import json
-
 from About.models import AboutUs
-from PowerGrow import settings
 from User.models import *
 from Product.serializer import *
+from django.conf import settings
+import json
 
 if settings.SANDBOX:
     sandbox = 'sandbox'
@@ -20,10 +20,7 @@ else:
 ZP_API_REQUEST = f"https://{sandbox}.zarinpal.com/pg/rest/WebGate/PaymentRequest.json"
 ZP_API_VERIFY = f"https://{sandbox}.zarinpal.com/pg/rest/WebGate/PaymentVerification.json"
 ZP_API_STARTPAY = f"https://{sandbox}.zarinpal.com/pg/StartPay/"
-description = "رزرو سالن چند منظور حجاب"  # Required
-phone = 'YOUR_PHONE_NUMBER'  # Optional
-# Important: need to edit for realy server.
-CallbackURL = 'https://powergrow.net/reservation/verify/'
+CallbackURL = 'https://powergrow.net/product/verify/'
 
 
 def product_view(request, pk, session, day):
@@ -244,29 +241,52 @@ class SessionView(viewsets.ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-class ParticipationView(viewsets.ModelViewSet):
+class ParticipationView(viewsets.ViewSet):
     queryset = Participants.objects.all()
     serializer_class = ParticipantsSerializer
     permission_classes = [IsAuthenticated]
 
-    def get_queryset(self):
+    def list(self):
         queryset = Participants.objects.filter(user=self.request.user.id)
         return queryset
 
-    def perform_create(self, serializer):
+    def create(self, serializer):
         data = self.request.data
-        session = Sessions.objects.filter(id=data["session"]).first()
-        day = Days.objects.filter(id=data["day"]).first()
-        course = Course.objects.filter(id=data["course"]).first()
-        participants = Participants.objects.update_or_create(title=data["title"],
-                                                             session=session,
-                                                             day=day,
-                                                             price=data["price"],
-                                                             user=self.request.user,
-                                                             course=course,
-                                                             created=self.request.user)
-        serializer = ParticipantsSerializer(participants)
-        return Response(serializer.data)
+        authority_data = {
+            "MerchantID": settings.MERCHANT,
+            "Amount": data["price"],
+            "phone": str(self.request.user.number),
+            "Description": data["description"],
+            "CallbackURL": CallbackURL,
+        }
+        authority_data = json.dumps(authority_data)
+        headers = {'content-type': 'application/json', 'content-length': str(len(authority_data))}
+        response = requests.post(ZP_API_REQUEST, data=authority_data, headers=headers, timeout=10)
+
+        try:
+            response_data = response.json()  # Parse the response content as JSON
+            if response_data['Status'] == 100:
+                session = Sessions.objects.filter(id=data["session"]).first()
+                day = Days.objects.filter(id=data["day"]).first()
+                course = Course.objects.filter(id=data["course"]).first()
+                Participants.objects.update_or_create(title=data["title"],
+                                                      description=data["description"],
+                                                      session=session,
+                                                      day=day,
+                                                      price=data["price"],
+                                                      user=self.request.user,
+                                                      course=course,
+                                                      authority=str(response_data['Authority']),
+                                                      success=False
+                                                      )
+                return Response({'payment': ZP_API_STARTPAY, 'authority': str(response_data['Authority'])},
+                                status=status.HTTP_200_OK)
+            else:
+                return Response({'error': 'Payment request failed'}, status=status.HTTP_400_BAD_REQUEST)
+        except json.JSONDecodeError:
+            return Response({'error': 'Failed to decode response JSON'}, status=status.HTTP_400_BAD_REQUEST)
+        except KeyError:
+            return Response({'error': 'Missing expected key in response JSON'}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class ManagerParticipationView(viewsets.ModelViewSet):
@@ -303,56 +323,34 @@ class CourseUserView(generics.ListAPIView):
     lookup_field = "id"
 
 
-def send_request(request, amount):
-    data = {
-        "MerchantID": settings.MERCHANT,
-        "Amount": amount,
-        "phone": phone,
-        "Description": description,
-        "CallbackURL": CallbackURL,
-        "metadata": {
-            "course": 100,
-            "session": 100,
-            "day": 100,
-        }
-    }
-    data = json.dumps(data)
-    # set content length by data
-    headers = {'content-type': 'application/json', 'content-length': str(len(data))}
-    try:
-        response = requests.post(ZP_API_REQUEST, data=data, headers=headers, timeout=10)
+@api_view(('GET',))
+def verify(request):
+    participants = Participants.objects.get(authority=request.GET.get('Authority', ''))
+    about = AboutUs.objects.values().first()
+    sport = Sport.objects.all().values()
 
-        if response.status_code == 200:
-            response = response.json()
-            if response['Status'] == 100:
-                return redirect(ZP_API_STARTPAY + str(response['Authority']))
-
-            else:
-                return JsonResponse({'status': False, 'code': str(response['Status'])})
-        return JsonResponse(response)
-
-    except requests.exceptions.Timeout:
-        return JsonResponse({'status': False, 'code': 'timeout'})
-    except requests.exceptions.ConnectionError:
-        return JsonResponse({'status': False, 'code': 'connection error'})
-
-
-def verify(authority):
-    data = {
-        "MerchantID": settings.MERCHANT,
-        "Amount": 10000,
-        "Authority": authority,
+    context = {
+        "about": about,
+        "sport": sport,
+        "participants": participants
     }
 
-    data = json.dumps(data)
-    # set content length by data
+    authority_data = {
+        "MerchantID": settings.MERCHANT,
+        "Authority": participants.authority,
+        "Amount": participants.price
+    }
+
+    data = json.dumps(authority_data)
     headers = {'content-type': 'application/json', 'content-length': str(len(data))}
     response = requests.post(ZP_API_VERIFY, data=data, headers=headers)
-
-    if response.status_code == 200:
-        response = response.json()
-        if response['Status'] == 100:
-            return JsonResponse({'status': True, 'RefID': response['RefID']})
-        else:
-            return JsonResponse({'status': False, 'code': str(response['Status'])})
-    return response
+    response = response.json()
+    if response['Status'] == 100:
+        template = loader.get_template('public/check.html')
+        participants.success = True
+        participants.save()
+        return HttpResponse(template.render(context, request))
+    else:
+        template = loader.get_template('public/error.html')
+        participants.delete()
+        return HttpResponse(template.render(context, request))

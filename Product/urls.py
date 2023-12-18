@@ -31,7 +31,7 @@ urlpatterns = [
     path('api/days/<int:pk>/', DaysView.as_view({'get': 'list'}), name='days'),
     path('days/', day_view, name='days-view'),
     path('days/admin/', admin_day_view, name='days-view_admin'),
-    path('api/participate/', ParticipationView.as_view({'post': 'create', 'get': 'list'}), name='participate'),
+    path('api/participate/', ParticipationView.as_view({'post': 'create'}), name='participate'),
     path('api/admin/participate/<int:pk>/delete/', ManagerParticipationView.as_view({'delete': 'destroy'}),
          name='delete-admin-participate'),
     path('api/admin/participate/<int:id>/create/', ManagerParticipationView.as_view({'post': 'create'}),
@@ -43,6 +43,5 @@ urlpatterns = [
     path('check/<int:pk>/<int:session>/<int:day>/', check_view, name='check'),
     path('api/participants/<int:pk>/', CourseUserView.as_view(), name='course_user'),
     path('<int:pk>/<int:session>/<int:day>/', product_view, name='product'),
-    path('request/<int:amount>/', send_request, name='request'),
     path('verify/', verify, name='verify'),
 ]
