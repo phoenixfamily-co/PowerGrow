@@ -165,22 +165,28 @@
             margin-top: 30px;
         }
 
-        .card {
-            width: 29%;
+        .card_holder{
             height: auto;
             border-top-right-radius: 1rem;
             border-bottom-right-radius: 1rem;
             position: fixed;
+            display: inline;
             left: 0;
+               }
+
+        .card {
+            width: 100%;
+            height: auto;
+            border-top-right-radius: 1rem;
+            border-bottom-right-radius: 1rem;
         }
 
         .teacher {
-            width: 29%;
+            width: 100%;
             height: 100px;
             border-top-right-radius: 1rem;
             border-bottom-right-radius: 1rem;
-            position: fixed;
-            left: 0;
+            margin-top: 15px;
         }
 
         .card-button {
@@ -284,23 +290,28 @@
                    margin-top: 10px;
                }
 
+               .card_holder{
+                   position: static;
+                   width: 98%;
+                   display: inline;
+                   height: auto;
+                   border-radius: 1rem;
+                   margin-left: 1%;
+                   margin-right: 1%;
+                   margin-top: 15px;
+
+               }
 
                 .card{
-                    position: static;
-                    width: 98%;
+                    width: 100%;
                     border-radius: 1rem;
-                    margin-left: 1%;
-                    margin-right: 1%;
-                    margin-top: 15px;
+                    margin-top: 5px;
                 }
 
                 .teacher{
                     position: static;
-                    width: 98%;
                     height: 100px;
                     border-radius: 1rem;
-                    margin-left: 1%;
-                    margin-right: 1%;
                     margin-top: 15px;
                 }
 
@@ -365,6 +376,7 @@
 <img class="img-responsive product-img" src="/media/{{ product.image }}" alt="product">
 
 
+<div class="card_holder">
 
 <div class="card" id="card">
 
@@ -469,6 +481,7 @@
 
 <div class="teacher">
     {{ product.name }}
+</div>
 </div>
 
 
