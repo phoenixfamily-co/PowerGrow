@@ -37,7 +37,7 @@ def product_view(request, pk, session, day):
         "participants": len(list(participants)),
         "session": sessions,
         "sport": sport,
-        "days": days,
+        "day": days,
 
     }
     return HttpResponse(template.render(context, request))
