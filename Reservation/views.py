@@ -202,7 +202,7 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
 
     def destroy(self, request, *args, **kwargs):
         reservation = Reservations.objects.get(id=self.kwargs['pk'])
-        time = Time.objects.filter(id=kwargs.get('time'))
+        time = Time.objects.filter(id=self.kwargs['time'])
         ids = Time.objects.filter(day__name=time.day.name, time=time.time,
                                   day__month__number__gte=time.day.month.number) \
                   .exclude(day__month__number=time.day.month.number,
