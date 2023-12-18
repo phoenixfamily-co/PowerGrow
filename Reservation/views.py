@@ -201,9 +201,13 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     def destroy(self, request, *args, **kwargs):
-        time = Time.objects.filter(id=self.kwargs['time']).first()
-        ids = Time.objects.filter(time=time.time)
-        Time.objects.filter(pk__in=list(ids)).update(reserved=False)
+        reservation = Reservations.objects.get(pk=self.kwargs['pk'])
+        ids = Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time,
+                                  day__month__number__gte=reservation.time.day.month.number) \
+                  .exclude(day__month__number=reservation.time.day.month.number,
+                           day__number__lt=reservation.time.day.number) \
+                  .order_by('day__month__number').values_list('pk', flat=True)[:int(reservation.session)]
+        Time.objects.filter(pk__in=list(ids)).update(reserved=True)
         try:
             instance = self.get_object()
             self.perform_destroy(instance)
