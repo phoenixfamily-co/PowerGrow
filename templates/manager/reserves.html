@@ -298,7 +298,7 @@
   {% for x in reserve.all %}
     <tr>
       <th scope="row">{{ x.id }}</th>
-        <th onclick="window.open('{% url 'reservation:delete-admin-reserve' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
+        <th onclick="window.open('{% url 'reservation:delete-admin-reserve' x.time.id x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
       <td>{{ x.gym.title }}</td>
         <td>{{ x.description }}</td>
         <td style="direction: ltr">{{ x.time.day.month.year.number }}/{{ x.time.day.month.number }}/{{ x.time.day.number }} | {{ x.time.time | date:"G:i:s"}} </td>
