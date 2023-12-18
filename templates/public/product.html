@@ -410,7 +410,7 @@
                شهریه ثابت:
             </h6>
             <h6 id="price" class="list-group-left">
-                {{ product.tuition }} تومان
+                {{ day.tuition }} تومان
             </h6>
         </li>
     </ul>
@@ -421,7 +421,7 @@
                تخفیف:
             </h6>
             <h6 id="off" class="list-group-left">
-                {{ product.off }}%
+                {{ day.off }}%
             </h6>
         </li>
     </ul>
@@ -565,10 +565,19 @@
 
 <script>
 
-    let participants = {{participants}};
-    let capacity = {{product.capacity}};
+    let participants =" {{participants}}";
+    let capacity = "{{product.capacity}}";
+    let off = "{{ day.off }}";
+    let price = "{{ day.tuition }}";
+    let day = "{{ day.id }}";
+    let session = "{{ session.id }}";
+    let course = "{{ product.id }}";
     const card = document.getElementById("card")
     const registerButton = document.querySelector(".list-group li button")
+    let final_price = (parseInt(price) - (parseInt(off) / 100 * parseInt(price)))
+
+
+         final.innerHTML = final_price.toString() + " " + "تومان"
 
 
     const cookieValue = document.cookie
@@ -591,7 +600,7 @@
     registerButton.addEventListener('click', function () {
 
         if (cookieValue !== undefined) {
-            window.location.assign(`/product/payment/{{ product.id }}/{{ session.id }}/{{ days.id }}/`)
+            window.location.assign(`/product/payment/${course}/${session}/${day}/`)
         } else {
             window.location.assign(`{% url 'user:login'  %}`)
         }
