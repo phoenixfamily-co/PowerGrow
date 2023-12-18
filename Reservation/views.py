@@ -11,7 +11,6 @@ from Reservation.serializer import GymSerializer, ReservationSerializer, AdminRe
 from django.conf import settings
 import requests
 import json
-from django.core import serializers
 
 if settings.SANDBOX:
     sandbox = 'sandbox'
@@ -202,15 +201,14 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
 
     def destroy(self, request, *args, **kwargs):
         reservation = Reservations.objects.filter(id=self.kwargs['pk']).first()
-        time = Time.objects.filter(id=self.kwargs['time']).first()
-        ids = Time.objects.filter(day__name=time.day.name, time=time.time,
-                                  day__month__number__gte=time.day.month.number) \
-                  .exclude(day__month__number=time.day.month.number,
-                           day__number__lt=time.day.number) \
+        ids = Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time,
+                                  day__month__number__gte=reservation.time.day.month.number) \
+                  .exclude(day__month__number=reservation.time.day.month.number,
+                           day__number__lt=reservation.time.day.number) \
                   .order_by('day__month__number').values_list('pk', flat=True)[:int(reservation.session)]
-        Time.objects.filter(pk__in=list(ids)).update(reserved=True)
+        Time.objects.filter(pk__in=list(ids)).update(reserved=False)
         try:
-            reservation.delete
+            reservation.delete()
         except Http404:
             pass
         return Response(status=status.HTTP_204_NO_CONTENT)
