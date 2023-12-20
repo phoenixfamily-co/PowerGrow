@@ -240,6 +240,11 @@ class SessionView(viewsets.ModelViewSet):
         queryset.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+    def update(self, request, *args, **kwargs):
+        Sessions.objects.filter(id=kwargs.get('pk')).update(number=self.request.data['number'],
+                                                            course=self.request.data['course'])
+        return Response(status=status.HTTP_202_ACCEPTED)
+
 
 class ParticipationView(viewsets.ViewSet):
     queryset = Participants.objects.all()
