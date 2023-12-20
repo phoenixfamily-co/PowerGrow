@@ -226,6 +226,13 @@ class DaysView(viewsets.ModelViewSet):
         queryset.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+    def update(self, request, *args, **kwargs):
+        Days.objects.filter(id=kwargs.get('pk')).update(title=self.request.data['title'],
+                                                        tuition=self.request.data['tuition'],
+                                                        off=self.request.data['off'],
+                                                        session=self.request.data['session'])
+        return Response(status=status.HTTP_202_ACCEPTED)
+
 
 class SessionView(viewsets.ModelViewSet):
     queryset = Sessions.objects.all()
