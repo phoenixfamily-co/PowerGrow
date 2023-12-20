@@ -399,11 +399,8 @@
           <div class="bg-image hover-overlay ripple ripple-surface ripple-surface-light"
             data-mdb-ripple-color="light">
             <img src="/media/{{ x.image }}"
-              style="border-top-left-radius: 15px; border-top-right-radius: 15px;" class="img-fluid"
+              style="border-top-left-radius: 15px; border-top-right-radius: 15px ; height: 300px ; object-fit: fill ;width: 100%" class="img-fluid img-responsive"
               alt="product" />
-            <a href="#!">
-              <div class="mask"></div>
-            </a>
           </div>
           <div class="card-body pb-0">
             <div class="d-flex justify-content-between">
@@ -421,7 +418,7 @@
           <div class="card-body pb-0">
             <div class="d-flex justify-content-between">
               <p><a style="text-decoration: none" class="text-dark">زمان دوره</a></p>
-              <p class="text-dark">{{ x.time }}</p>
+              <p class="text-dark" style="width: 65% ; text-align: left">{{ x.time }}</p>
             </div>
             <p class="small text-muted align-items-center">مناسب برای {{ x.gender }}</p>
           </div>
