@@ -267,13 +267,11 @@ def verify(request):
 
 def generate_pdf_file(request, reservation):
     pdfmetrics.registerFont(TTFont('BYekan', 'BYekan.ttf'))
-    styles = getSampleStyleSheet()
-    styles.add(ParagraphStyle(name='Right', alignment=TA_RIGHT, fontName='BYekan', fontSize=12))
 
     buffer = BytesIO()
     p = canvas.Canvas(buffer)
     p.setFont('BYekan', 12)
-    p.drawString(100, 100,"تاریخ:", direction=3)
+    p.drawRightString(100, 100,"تاریخ:")
     p.showPage()
     p.save()
     buffer.seek(0)
