@@ -210,6 +210,7 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
                                                              price=data["price"],
                                                              user=user,
                                                              gym=gym,
+                                                             success=True,
                                                              created=self.request.user,
                                                              endDate=ids.last())
         serializer = ReservationSerializer(reservations)
