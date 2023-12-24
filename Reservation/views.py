@@ -277,6 +277,8 @@ def generate_pdf_file(request, reservation):
     p.drawRightString(320, 760, text_converter("بسمه تعالی"))
     p.drawRightString(340, 730, text_converter("مجموعه ورزشی حجاب"))
     p.drawRightString(350, 700, text_converter("قرارداد اجاره سالن ورزشی"))
+    p.drawRightString(540, 670, text_converter("ماده 1 : موضوع قرارداد:"))
+    p.drawRightString(540, 650, text_converter("این قرارداد به منظور استفاده از سالن چند منظوره"))
     p.showPage()
     p.save()
     buffer.seek(0)
