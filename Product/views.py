@@ -303,7 +303,7 @@ class ParticipationView(viewsets.ViewSet):
 
 class ManagerParticipationView(viewsets.ModelViewSet):
     queryset = Participants.objects.all()
-    serializer_class = ParticipantsSerializer
+    serializer_class = ManagerParticipantsSerializer
     permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
@@ -319,6 +319,7 @@ class ManagerParticipationView(viewsets.ModelViewSet):
                                                              price=data["price"],
                                                              user=user,
                                                              course=course,
+                                                             success=True,
                                                              created=self.request.user)
         serializer = ParticipantsSerializer(participants)
         return Response(serializer.data)
