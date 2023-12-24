@@ -273,7 +273,7 @@ def generate_pdf_file(request, reservation):
     buffer = BytesIO()
     p = canvas.Canvas(buffer)
     p.setFont('BYekan', 12)
-    p.drawString(100, 100, get_farsi_bulleted_text(2,"تاریخ:"))
+    p.drawString(100, 100, get_farsi_bulleted_text("تاریخ:", 10))
     p.showPage()
     p.save()
     buffer.seek(0)
