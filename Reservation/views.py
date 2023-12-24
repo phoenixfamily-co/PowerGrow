@@ -162,7 +162,6 @@ class ReservationView(viewsets.ViewSet):
                     session=data["session"],
                     price=data["price"],
                     gym=gym,
-                    contract=FileResponse(generate_pdf_file(), as_attachment=True,filename=f'{time.time}{time.day.number}{time.day.month.number}{time.day.month.year.number}'),
                     user=self.request.user,
                     authority=str(response_data['Authority']),
                     success=False
@@ -202,6 +201,9 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
                                                              session=data["session"],
                                                              price=data["price"],
                                                              user=user,
+                                                             contract=FileResponse(generate_pdf_file(),
+                                                                                   as_attachment=True,
+                                                                                   filename=f'{time.time}{time.day.number}{time.day.month.number}{time.day.month.year.number}'),
                                                              gym=gym,
                                                              success=True,
                                                              created=self.request.user)
