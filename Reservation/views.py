@@ -273,6 +273,8 @@ def generate_pdf_file(request, reservation):
     p.setFont('BYekan', 12)
     p.setPageSize(A4)
     p.drawRightString(540, 790, text_converter("تاریخ:"))
+    p.drawRightString(100, 790, text_converter("شماره ثبت:"))
+
     p.showPage()
     p.save()
     buffer.seek(0)
