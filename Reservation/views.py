@@ -22,6 +22,7 @@ from reportlab.pdfgen import canvas
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from bidi.algorithm import get_display
+import datetime as dt
 
 if settings.SANDBOX:
     sandbox = 'sandbox'
@@ -272,7 +273,7 @@ def generate_pdf_file(request, pk):
     reservation = Reservations.objects.get(id=pk)
     startDate = f"{reservation.time.day.month.year.number}/{reservation.time.day.month.number}/{reservation.time.day.number}"
     endDate = f'{Time.objects.get(pk=reservation.endDate).day.month.year.number}/{Time.objects.get(pk=reservation.endDate).day.month.number}/{Time.objects.get(pk=reservation.endDate).day.number}'
-    endTime = reservation.time.time + datetime.timedelta(minutes=90)
+    endTime = (dt.datetime.combine(dt.date(1, 1, 1), reservation.time.time)+datetime.timedelta(minutes=90))
 
     buffer = BytesIO()
     p = canvas.Canvas(buffer)
@@ -285,12 +286,17 @@ def generate_pdf_file(request, pk):
     p.drawRightString(355, 700, text_converter("قرارداد اجاره سالن ورزشی"))
     p.drawRightString(540, 670, text_converter("ماده 1 : موضوع قرارداد:"))
     p.drawRightString(540, 650, text_converter("این قرارداد به منظور استفاده از سالن چند منظوره"))
-    p.drawRightString(540, 630, text_converter("مجموعه ورزشی حجاب واقع درتهران، بلوار کشاورز، خ حجاب ، روبه روی درب شرقی پارک لاله"))
-    p.drawRightString(540, 610, text_converter("بین خانم فاطمه خسروی بابادی به عنوان پیمانکار سالن حجاب به شماره تلفن 09911177140"))
-    p.drawRightString(540, 590, text_converter(f" و به نمایندگی آقای/خانم {reservation.user.name} به عنوان متقاضی به شماره تلفن {reservation.user.number} منعقد میشود."))
+    p.drawRightString(540, 630, text_converter(
+        "مجموعه ورزشی حجاب واقع درتهران، بلوار کشاورز، خ حجاب ، روبه روی درب شرقی پارک لاله"))
+    p.drawRightString(540, 610, text_converter(
+        "بین خانم فاطمه خسروی بابادی به عنوان پیمانکار سالن حجاب به شماره تلفن 09911177140"))
+    p.drawRightString(540, 590, text_converter(
+        f" و به نمایندگی آقای/خانم {reservation.user.name} به عنوان متقاضی به شماره تلفن {reservation.user.number} منعقد میشود."))
     p.drawRightString(540, 560, text_converter("ماده 2 : شرابط قرارداد:"))
-    p.drawRightString(540, 540, text_converter(f" مدت قرارداد از تاریخ {startDate} لغایت {endDate} به مدت 1 جلسه در هفته"))
-    p.drawRightString(540, 520, text_converter(f" در روزهای {reservation.time.day.name} از ساعت {reservation.time.time} الی {endTime} که جمعا به میزان {reservation.session} جلسه خواهد بود. "))
+    p.drawRightString(540, 540,
+                      text_converter(f" مدت قرارداد از تاریخ {startDate} لغایت {endDate} به مدت 1 جلسه در هفته"))
+    p.drawRightString(540, 520, text_converter(
+        f" در روزهای {reservation.time.day.name} از ساعت {reservation.time.time} الی {endTime} که جمعا به میزان {reservation.session} جلسه خواهد بود. "))
     p.showPage()
     p.save()
     buffer.seek(0)
