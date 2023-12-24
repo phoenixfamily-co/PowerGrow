@@ -149,7 +149,7 @@
         <td >{{ x.time.day.month.year.number }}/{{ x.time.day.month.number }}/{{ x.time.day.number }}</td>
         <td>{{ x.time.time | date:"G:i:s"}}</td>
         <td>{{ x.session }}</td>
-        <td> <a href="javascript:window.open('/media/{{ x.contract }}')">
+          <td> <a href='{% url 'reservation:generate_pdf' x.id %}'>
                 مشاهده قرارداد
             </a>
         </td>
