@@ -273,7 +273,7 @@ def generate_pdf_file(request, pk):
     reservation = Reservations.objects.get(id=pk)
     startDate = f"{reservation.time.day.month.year.number}/{reservation.time.day.month.number}/{reservation.time.day.number}"
     endDate = f'{Time.objects.get(pk=reservation.endDate).day.month.year.number}/{Time.objects.get(pk=reservation.endDate).day.month.number}/{Time.objects.get(pk=reservation.endDate).day.number}'
-    endTime = (dt.datetime.combine(dt.date(1, 1, 1), reservation.time.time)+datetime.timedelta(minutes=90)).time()
+    endTime = (dt.datetime.combine(dt.date(1, 1, 1), reservation.time.time) + datetime.timedelta(minutes=90)).time()
 
     buffer = BytesIO()
     p = canvas.Canvas(buffer)
@@ -297,6 +297,15 @@ def generate_pdf_file(request, pk):
                       text_converter(f" مدت قرارداد از تاریخ {startDate} لغایت {endDate} به مدت 1 جلسه در هفته"))
     p.drawRightString(540, 520, text_converter(
         f" در روزهای {reservation.time.day.name} از ساعت {reservation.time.time} الی {endTime} که جمعا به میزان {reservation.session} جلسه خواهد بود. "))
+    if reservation.holiday:
+        p.drawRightString(540, 500, text_converter(
+            "روزهای تعطیل محاسبه نشده است"))
+    else:
+        p.drawRightString(540, 500, text_converter(
+            "روزهای تعطیل محاسبه شده است"))
+
+    p.drawRightString(540, 470, text_converter("ماده3 : مبلغ قرارداد و نحوه پرداخت آن:"))
+    p.drawRightString(540, 450, text_converter(f" مبلغ قرارداد به ازاء هرجلسه {reservation.time.price} تومان و مبلغ کل قرارداد به میزان{reservation.price}تومان است "))
     p.showPage()
     p.save()
     buffer.seek(0)
