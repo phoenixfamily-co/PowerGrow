@@ -274,6 +274,12 @@ def generate_pdf_file(request, reservation):
     p.setPageSize(A4)
     p.drawRightString(540, 790, text_converter("تاریخ:"))
     p.drawRightString(200, 790, text_converter("شماره ثبت:"))
+    p.drawRightString(250, 750, text_converter("بسمه تعالی"))
+    p.drawRightString(250, 730, text_converter("مجموعه ورزشی حجاب"))
+    p.drawRightString(250, 700, text_converter("قرارداد سالن اجاره ورزشی"))
+
+
+
 
     p.showPage()
     p.save()
