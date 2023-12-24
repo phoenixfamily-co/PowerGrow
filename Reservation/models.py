@@ -28,3 +28,4 @@ class Reservations(models.Model):
                                 blank=True, null=True)
     authority = models.TextField(unique=True, blank=True, null=True)
     success = models.BooleanField(blank=True, null=True)
+    endDate = models.IntegerField(blank=True, null=True)

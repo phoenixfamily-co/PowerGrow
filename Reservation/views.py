@@ -255,6 +255,7 @@ def verify(request):
                            day__number__lt=reservation.time.day.number) \
                   .order_by('day__month__number').values_list('pk', flat=True)[:int(reservation.session)]
         Time.objects.filter(pk__in=list(ids)).update(reserved=True)
+        reservation.endDate = ids.last()
         reservation.save()
         return HttpResponse(template.render(context, request))
     else:
@@ -268,6 +269,8 @@ def verify(request):
 def generate_pdf_file(request, pk):
     pdfmetrics.registerFont(TTFont('BYekan', 'BYekan.ttf'))
     reservation = Reservations.objects.get(id=pk)
+    startDate = f"{reservation.time.day.month.year.number}/{reservation.time.day.month.number}/{reservation.time.day.number}"
+    endDate = Time.objects.get(pk=reservation.endDate)
 
     buffer = BytesIO()
     p = canvas.Canvas(buffer)
@@ -284,6 +287,8 @@ def generate_pdf_file(request, pk):
     p.drawRightString(540, 610, text_converter("بین خانم فاطمه خسروی بابادی به عنوان پیمانکار سالن حجاب به شماره تلفن 09911177140"))
     p.drawRightString(540, 590, text_converter(f" و به نمایندگی آقای/خانم {reservation.user.name} به عنوان متقاضی به شماره تلفن {reservation.user.number} منعقد میشود."))
     p.drawRightString(540, 560, text_converter("ماده 2 : شرابط قرارداد:"))
+    p.drawRightString(540, 540, text_converter(f" مدت قرارداد از تاریخ {startDate} لغایت {endDate} به مدت 1 جلسه در هفته"))
+
 
 
     p.showPage()
