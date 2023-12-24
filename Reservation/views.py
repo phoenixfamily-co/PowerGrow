@@ -194,9 +194,7 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         data = self.request.data
         gym = Gym.objects.filter(id=data["gym"]).first()
-        time = Time.objects.filter(id=self.kwargs['time']).first()
-        time.reserved = True
-        time.save()
+        time = Time.objects.get(id=self.kwargs['time'])
         user = User.objects.filter(id=data["user"]).first()
         ids = Time.objects.filter(day__name=time.day.name, time=time.time,
                                  day__month__number__gte=time.day.month.number) \
