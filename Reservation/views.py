@@ -279,6 +279,8 @@ def generate_pdf_file(request, reservation):
     p.drawRightString(350, 700, text_converter("قرارداد اجاره سالن ورزشی"))
     p.drawRightString(540, 670, text_converter("ماده 1 : موضوع قرارداد:"))
     p.drawRightString(540, 650, text_converter("این قرارداد به منظور استفاده از سالن چند منظوره"))
+    p.drawRightString(540, 630, text_converter("مجموعه ورزشی حجاب واقع درتهران، بلوار کشاروز، خ حجاب ، روبه روی درب شرقی پارک لاله"))
+
     p.showPage()
     p.save()
     buffer.seek(0)
