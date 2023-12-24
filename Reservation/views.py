@@ -198,6 +198,12 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
         time.reserved = True
         time.save()
         user = User.objects.filter(id=data["user"]).first()
+        ids = Time.objects.filter(day__name=time.day.name, time=time.time,
+                                 day__month__number__gte=time.day.month.number) \
+                 .exclude(day__month__number=time.day.month.number,
+                          day__number__lt=time.day.number) \
+                 .order_by('day__month__number').values_list('pk', flat=True)[:int(data["session"])]
+        Time.objects.filter(pk__in=list(ids)).update(reserved=True)
         reservations = Reservations.objects.update_or_create(title=data["title"],
                                                              description=data["description"],
                                                              time=time,
@@ -206,16 +212,8 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
                                                              price=data["price"],
                                                              user=user,
                                                              gym=gym,
-                                                             created=self.request.user)
-        reservation.success = True
-        ids = Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time,
-                                  day__month__number__gte=reservation.time.day.month.number) \
-                  .exclude(day__month__number=reservation.time.day.month.number,
-                           day__number__lt=reservation.time.day.number) \
-                  .order_by('day__month__number').values_list('pk', flat=True)[:int(reservation.session)]
-        Time.objects.filter(pk__in=list(ids)).update(reserved=True)
-        reservation.endDate = ids.last()
-        reservation.save()
+                                                             created=self.request.user,
+                                                             endDate=ids.last())
         serializer = ReservationSerializer(reservations)
         return Response(serializer.data)
 
