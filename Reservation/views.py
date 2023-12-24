@@ -272,7 +272,7 @@ def generate_pdf_file(request, reservation):
     p = canvas.Canvas(buffer)
     p.setFont('BYekan', 12)
     p.setPageSize(A4)
-    p.drawRightString(650, 1000, text_converter("تاریخ:"))
+    p.drawRightString(650, 800, text_converter("تاریخ:"))
     p.showPage()
     p.save()
     buffer.seek(0)
