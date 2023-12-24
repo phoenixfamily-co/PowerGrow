@@ -273,7 +273,7 @@ def generate_pdf_file(request, reservation):
     buffer = BytesIO()
     p = canvas.Canvas(buffer)
     p.setFont('BYekan', 12)
-    p.drawString(100, 100,"تاریخ:", direction=TA_RIGHT)
+    p.drawString(100, 100,"تاریخ:", direction=1)
     p.showPage()
     p.save()
     buffer.seek(0)
