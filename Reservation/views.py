@@ -1,3 +1,4 @@
+import datetime
 import json
 
 import requests
@@ -271,6 +272,7 @@ def generate_pdf_file(request, pk):
     reservation = Reservations.objects.get(id=pk)
     startDate = f"{reservation.time.day.month.year.number}/{reservation.time.day.month.number}/{reservation.time.day.number}"
     endDate = f'{Time.objects.get(pk=reservation.endDate).day.month.year.number}/{Time.objects.get(pk=reservation.endDate).day.month.number}/{Time.objects.get(pk=reservation.endDate).day.number}'
+    endTime = reservation.time.time + datetime.timedelta(minutes=90)
 
     buffer = BytesIO()
     p = canvas.Canvas(buffer)
@@ -288,6 +290,8 @@ def generate_pdf_file(request, pk):
     p.drawRightString(540, 590, text_converter(f" و به نمایندگی آقای/خانم {reservation.user.name} به عنوان متقاضی به شماره تلفن {reservation.user.number} منعقد میشود."))
     p.drawRightString(540, 560, text_converter("ماده 2 : شرابط قرارداد:"))
     p.drawRightString(540, 540, text_converter(f" مدت قرارداد از تاریخ {startDate} لغایت {endDate} به مدت 1 جلسه در هفته"))
+    p.drawRightString(540, 520, text_converter(f" در روزهای {reservation.time.day.name} از ساعت {reservation.time.time} الی {endTime} که جمعا به میزان {reservation.session} جلسه خواهد بود. "))
+
 
 
 
