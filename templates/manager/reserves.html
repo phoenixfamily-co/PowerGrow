@@ -420,7 +420,6 @@
     let prev = document.getElementById("prev")
     let next = document.getElementById("next")
     let days = document.getElementById("days")
-    let monthPosition = 2
     let result
     let monthSize
     let startDay = document.getElementById("startDay")
@@ -429,6 +428,8 @@
     today = today.split('/')
     let currentDay = today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
     let currentMonth = today[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
+    let monthPosition = currentMonth-7
+
 
     document.addEventListener("DOMContentLoaded", function() {
         getYear()
@@ -541,6 +542,8 @@
                 dayItem.classList.add("activeButton")
                 currentDayId = result[0].months[monthPosition].days[i].id
                 date = `${result[0].number}-${result[0].months[monthPosition].number}-${result[0].months[monthPosition].days[i].number}`
+                getTimes(currentDayId)
+
 
             }else if (result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number < parseInt(currentDay)){
                 dayItem.classList.add("disActiveButton")
@@ -562,10 +565,6 @@
 
                 })
             })
-
-         if(monthPosition===2) {
-            getTimes(currentDayId)
-        }
     }
 
 </script>
