@@ -280,6 +280,8 @@ def generate_pdf_file(request, reservation):
     p.drawRightString(540, 670, text_converter("ماده 1 : موضوع قرارداد:"))
     p.drawRightString(540, 650, text_converter("این قرارداد به منظور استفاده از سالن چند منظوره"))
     p.drawRightString(540, 630, text_converter("مجموعه ورزشی حجاب واقع درتهران، بلوار کشاورز، خ حجاب ، روبه روی درب شرقی پارک لاله"))
+    p.drawRightString(540, 620, text_converter("بین خانم فاطمه خسروی بابادی به عنوان پیمانکار سالن حجاب به شماره تلفن 09911177140"))
+
 
     p.showPage()
     p.save()
