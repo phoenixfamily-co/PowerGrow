@@ -265,8 +265,9 @@ def verify(request):
         return HttpResponse(template.render(context, request))
 
 
-def generate_pdf_file(request, reservation):
+def generate_pdf_file(request, pk):
     pdfmetrics.registerFont(TTFont('BYekan', 'BYekan.ttf'))
+    reservation = Reservations.objects.get(id=pk)
 
     buffer = BytesIO()
     p = canvas.Canvas(buffer)
@@ -281,13 +282,14 @@ def generate_pdf_file(request, reservation):
     p.drawRightString(540, 650, text_converter("این قرارداد به منظور استفاده از سالن چند منظوره"))
     p.drawRightString(540, 630, text_converter("مجموعه ورزشی حجاب واقع درتهران، بلوار کشاورز، خ حجاب ، روبه روی درب شرقی پارک لاله"))
     p.drawRightString(540, 610, text_converter("بین خانم فاطمه خسروی بابادی به عنوان پیمانکار سالن حجاب به شماره تلفن 09911177140"))
+    p.drawRightString(540, 610, text_converter(f"و به نمایندگی آقای/خانم {reservation.user.name}{reservation.user.number} به شماره تلفن"))
 
 
     p.showPage()
     p.save()
     buffer.seek(0)
 
-    return FileResponse(buffer, as_attachment=True, filename=f"{reservation}.pdf")
+    return FileResponse(buffer, as_attachment=True, filename=f"{pk}.pdf")
 
 
 def text_converter(text):
