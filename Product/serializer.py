@@ -2,11 +2,19 @@ from rest_framework import serializers
 from .models import Course, Days, Sport, Sessions, Participants
 
 
+class ManagerParticipantsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Participants
+        read_only_fields = ['authority', 'success', 'created']
+        exclude = ['datetime']
+
+
 class ParticipantsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Participants
-        read_only_fields = ['created', 'course']
+        read_only_fields = ['created']
         exclude = ['datetime']
 
 
@@ -14,7 +22,6 @@ class ParticipantsUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = Participants
         fields = ['user']
-        depth = 1
 
 
 class DaysSerializer(serializers.ModelSerializer):

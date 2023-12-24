@@ -180,15 +180,13 @@ class ReservationView(viewsets.ViewSet):
             return Response({'error': 'Missing expected key in response JSON'}, status=status.HTTP_400_BAD_REQUEST)
 
 
-class ManagerAddReservationView(viewsets.ModelViewSet):
+class ManagerAddReservationView(viewsets.ViewSet):
     queryset = Reservations.objects.all()
     serializer_class = AdminReservationSerializer
     permission_classes = [IsAuthenticated]
-    lookup_field = 'time'
 
-    def get_queryset(self):
-        data = self.kwargs
-        queryset = self.queryset.filter(time=data['time'])
+    def list(self, serializer):
+        queryset = Reservations.objects.filter(user=self.request.user.id)
         return queryset
 
     def perform_create(self, serializer):
