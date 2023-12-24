@@ -1,12 +1,11 @@
 import json
-import textwrap
 
 import requests
+from arabic_reshaper import arabic_reshaper
 from django.conf import settings
 from django.http import HttpResponse, Http404
 from django.template import loader
-from reportlab.lib.enums import TA_RIGHT
-from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.lib.pagesizes import A4
 from rest_framework import viewsets, status
 from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAuthenticated
@@ -21,6 +20,7 @@ from io import BytesIO
 from reportlab.pdfgen import canvas
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
+from bidi.algorithm import get_display
 
 if settings.SANDBOX:
     sandbox = 'sandbox'
@@ -269,11 +269,17 @@ def generate_pdf_file(request, reservation):
     pdfmetrics.registerFont(TTFont('BYekan', 'BYekan.ttf'))
 
     buffer = BytesIO()
-    p = canvas.Canvas(buffer)
+    p = canvas.Canvas(buffer,pagesize=A4)
     p.setFont('BYekan', 12)
-    p.drawRightString(100, 100,"تاریخ:")
+    p.drawRightString(100, 100,text_converter("تاریخ:"))
     p.showPage()
     p.save()
     buffer.seek(0)
 
     return FileResponse(buffer, as_attachment=True, filename=f"{reservation}.pdf")
+
+
+def text_converter(text):
+    reshaped_text = arabic_reshaper.reshape(text)
+    bidi_text = get_display(reshaped_text)
+    return bidi_text
