@@ -1,16 +1,24 @@
+import json
+
+import requests
+from django.conf import settings
 from django.http import HttpResponse, Http404
 from django.template import loader
 from rest_framework import viewsets, status
 from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+
 from About.models import AboutUs
 from Product.models import Sport
 from Reservation.models import *
 from Reservation.serializer import GymSerializer, ReservationSerializer, AdminReservationSerializer
-from django.conf import settings
-import requests
-import json
+import reportlab
+import io
+from django.http import FileResponse
+from io import BytesIO
+
+from reportlab.pdfgen import canvas
 
 if settings.SANDBOX:
     sandbox = 'sandbox'
@@ -154,6 +162,7 @@ class ReservationView(viewsets.ViewSet):
                     session=data["session"],
                     price=data["price"],
                     gym=gym,
+                    contract=FileResponse(generate_pdf_file(), as_attachment=True,filename=f'{time.time}{time.day.number}{time.day.month.number}{time.day.month.year.number}'),
                     user=self.request.user,
                     authority=str(response_data['Authority']),
                     success=False
@@ -253,3 +262,14 @@ def verify(request):
         reservation.time.save()
         reservation.delete()
         return HttpResponse(template.render(context, request))
+
+
+def generate_pdf_file():
+    buffer = BytesIO()
+    p = canvas.Canvas(buffer)
+    p.drawString(50, 50, "تاریخ:")
+    p.showPage()
+    p.save()
+
+    buffer.seek(0)
+    return buffer
