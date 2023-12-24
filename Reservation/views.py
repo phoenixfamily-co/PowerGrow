@@ -275,12 +275,8 @@ def generate_pdf_file(request, reservation):
     p.drawRightString(540, 790, text_converter("تاریخ:"))
     p.drawRightString(200, 790, text_converter("شماره ثبت:"))
     p.drawRightString(300, 750, text_converter("بسمه تعالی"))
-    p.drawRightString(300, 730, text_converter("مجموعه ورزشی حجاب"))
-    p.drawRightString(300, 710, text_converter("قرارداد سالن اجاره ورزشی"))
-
-
-
-
+    p.drawRightString(305, 730, text_converter("مجموعه ورزشی حجاب"))
+    p.drawRightString(310, 710, text_converter("قرارداد سالن اجاره ورزشی"))
     p.showPage()
     p.save()
     buffer.seek(0)
