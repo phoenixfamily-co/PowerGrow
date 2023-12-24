@@ -1,5 +1,6 @@
 import datetime
 import json
+import time
 
 import requests
 from arabic_reshaper import arabic_reshaper
@@ -272,7 +273,7 @@ def generate_pdf_file(request, pk):
     reservation = Reservations.objects.get(id=pk)
     startDate = f"{reservation.time.day.month.year.number}/{reservation.time.day.month.number}/{reservation.time.day.number}"
     endDate = f'{Time.objects.get(pk=reservation.endDate).day.month.year.number}/{Time.objects.get(pk=reservation.endDate).day.month.number}/{Time.objects.get(pk=reservation.endDate).day.number}'
-    endTime = reservation.time.time + datetime.timedelta(minutes=90)
+    endTime = 0
 
     buffer = BytesIO()
     p = canvas.Canvas(buffer)
