@@ -270,7 +270,7 @@ def generate_pdf_file(request, reservation):
 
     buffer = BytesIO()
     p = canvas.Canvas(buffer)
-    p.setFont('BYekan', 12)
+    p.setFont('BYekan', 16)
     p.setPageSize(A4)
     p.drawRightString(540, 790, text_converter("تاریخ:"))
     p.drawRightString(200, 790, text_converter("شماره ثبت:"))
@@ -279,7 +279,7 @@ def generate_pdf_file(request, reservation):
     p.drawRightString(350, 700, text_converter("قرارداد اجاره سالن ورزشی"))
     p.drawRightString(540, 670, text_converter("ماده 1 : موضوع قرارداد:"))
     p.drawRightString(540, 650, text_converter("این قرارداد به منظور استفاده از سالن چند منظوره"))
-    p.drawRightString(540, 630, text_converter("مجموعه ورزشی حجاب واقع درتهران، بلوار کشاروز، خ حجاب ، روبه روی درب شرقی پارک لاله"))
+    p.drawRightString(540, 630, text_converter("مجموعه ورزشی حجاب واقع درتهران، بلوار کشاورز، خ حجاب ، روبه روی درب شرقی پارک لاله"))
 
     p.showPage()
     p.save()
