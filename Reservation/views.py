@@ -1,9 +1,12 @@
 import json
+import textwrap
 
 import requests
 from django.conf import settings
 from django.http import HttpResponse, Http404
 from django.template import loader
+from reportlab.lib.enums import TA_RIGHT
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from rest_framework import viewsets, status
 from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAuthenticated
@@ -15,10 +18,6 @@ from Reservation.models import *
 from Reservation.serializer import GymSerializer, ReservationSerializer, AdminReservationSerializer
 from django.http import FileResponse
 from io import BytesIO
-
-from reportlab.pdfgen import canvas
-from reportlab.lib.units import mm
-from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
@@ -268,13 +267,26 @@ def verify(request):
 
 def generate_pdf_file(request, reservation):
     pdfmetrics.registerFont(TTFont('BYekan', 'BYekan.ttf'))
+    styles = getSampleStyleSheet()
+    styles.add(ParagraphStyle(name='Right', alignment=TA_RIGHT, fontName='BYekan', fontSize=12))
 
     buffer = BytesIO()
     p = canvas.Canvas(buffer)
     p.setFont('BYekan', 12)
-    p.drawString(100, 100, "تاریخ")
+    p.drawString(100, 100, get_farsi_bulleted_text(2,"تاریخ:"))
     p.showPage()
     p.save()
     buffer.seek(0)
 
     return FileResponse(buffer, as_attachment=True, filename=f"{reservation}.pdf")
+
+
+def get_farsi_bulleted_text(text, wrap_length=None):
+    farsi_text = text
+    if wrap_length:
+        line_list = textwrap.wrap(farsi_text, wrap_length)
+        line_list.reverse()
+        line_list[0] = '{} &#x02022;'.format(line_list[0])
+        farsi_text = '<br/>'.join(line_list)
+        return '<font>%s</font>' % farsi_text
+    return '<font>%s &#x02022;</font>' % farsi_text
