@@ -206,8 +206,16 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
                                                              price=data["price"],
                                                              user=user,
                                                              gym=gym,
-                                                             success=True,
                                                              created=self.request.user)
+        reservation.success = True
+        ids = Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time,
+                                  day__month__number__gte=reservation.time.day.month.number) \
+                  .exclude(day__month__number=reservation.time.day.month.number,
+                           day__number__lt=reservation.time.day.number) \
+                  .order_by('day__month__number').values_list('pk', flat=True)[:int(reservation.session)]
+        Time.objects.filter(pk__in=list(ids)).update(reserved=True)
+        reservation.endDate = ids.last()
+        reservation.save()
         serializer = ReservationSerializer(reservations)
         return Response(serializer.data)
 
