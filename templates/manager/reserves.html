@@ -310,7 +310,7 @@
             {% endif %}
         </td>
         <td>{{ x.session }}</td>
-          <td> <a href="javascript:window.open('/media/{{ x.contract }}')">
+          <td> <a href='{% url 'reservation:generate_pdf' x.id %}'>
                 مشاهده قرارداد
             </a>
         </td>

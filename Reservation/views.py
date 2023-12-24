@@ -201,9 +201,6 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
                                                              session=data["session"],
                                                              price=data["price"],
                                                              user=user,
-                                                             contract=FileResponse(generate_pdf_file(),
-                                                                                   as_attachment=True,
-                                                                                   filename=f'{time.time}{time.day.number}{time.day.month.number}{time.day.month.year.number}'),
                                                              gym=gym,
                                                              success=True,
                                                              created=self.request.user)
@@ -266,12 +263,12 @@ def verify(request):
         return HttpResponse(template.render(context, request))
 
 
-def generate_pdf_file():
+def generate_pdf_file(request):
     buffer = BytesIO()
     p = canvas.Canvas(buffer)
     p.drawString(50, 50, "تاریخ:")
     p.showPage()
     p.save()
-
     buffer.seek(0)
-    return buffer
+
+    return FileResponse(buffer, as_attachment=True, filename="hello.pdf")

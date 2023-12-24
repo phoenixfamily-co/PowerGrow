@@ -19,7 +19,6 @@ class Reservations(models.Model):
     time = models.ForeignKey(Time, on_delete=models.CASCADE, related_name='reservations', blank=True, null=True)
     holiday = models.BooleanField(blank=True, null=True)
     session = models.IntegerField(blank=True, null=True)
-    contract = models.FileField(upload_to="files/", blank=True, null=True)
     price = models.IntegerField(blank=True, null=True)
     datetime = models.DateTimeField(default=timezone.now)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='reservations',
