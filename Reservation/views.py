@@ -13,12 +13,15 @@ from About.models import AboutUs
 from Product.models import Sport
 from Reservation.models import *
 from Reservation.serializer import GymSerializer, ReservationSerializer, AdminReservationSerializer
-import reportlab
-import io
 from django.http import FileResponse
 from io import BytesIO
 
 from reportlab.pdfgen import canvas
+from reportlab.lib.units import mm
+from reportlab.lib.pagesizes import A4
+from reportlab.pdfgen import canvas
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
 
 if settings.SANDBOX:
     sandbox = 'sandbox'
@@ -264,9 +267,12 @@ def verify(request):
 
 
 def generate_pdf_file(request, reservation):
+    pdfmetrics.registerFont(TTFont('BYekan', 'BYekan.ttf'))
+
     buffer = BytesIO()
     p = canvas.Canvas(buffer)
-    p.drawString(100,100, "تاریخ")
+    p.setFont('BYekan', 12)
+    p.drawString(100, 100, "تاریخ")
     p.showPage()
     p.save()
     buffer.seek(0)
