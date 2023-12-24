@@ -292,7 +292,7 @@ def generate_pdf_file(request, pk):
         "بین خانم فاطمه خسروی بابادی به عنوان پیمانکار سالن حجاب به شماره تلفن 09911177140"))
     p.drawRightString(540, 590, text_converter(
         f" و به نمایندگی آقای/خانم {reservation.user.name} به عنوان متقاضی به شماره تلفن {reservation.user.number} منعقد میشود."))
-    p.drawRightString(540, 560, text_converter("ماده 2 : شرابط قرارداد:"))
+    p.drawRightString(540, 560, text_converter("ماده 2 : شرایط قرارداد:"))
     p.drawRightString(540, 540,
                       text_converter(f" مدت قرارداد از تاریخ {startDate} لغایت {endDate} به مدت 1 جلسه در هفته"))
     p.drawRightString(540, 520, text_converter(
