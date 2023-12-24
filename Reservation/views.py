@@ -263,7 +263,7 @@ def verify(request):
         return HttpResponse(template.render(context, request))
 
 
-def generate_pdf_file(request):
+def generate_pdf_file(request, reservation):
     buffer = BytesIO()
     p = canvas.Canvas(buffer)
     p.drawString(50, 50, "تاریخ:")
