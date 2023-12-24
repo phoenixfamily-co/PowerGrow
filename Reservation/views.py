@@ -306,6 +306,8 @@ def generate_pdf_file(request, pk):
 
     p.drawRightString(540, 460, text_converter("ماده3 : مبلغ قرارداد و نحوه پرداخت آن:"))
     p.drawRightString(540, 440, text_converter(f" مبلغ قرارداد برای هرجلسه {reservation.time.price}تومان و مبلغ کل قرارداد به میزان{reservation.price}تومان است "))
+    p.drawRightString(540, 460, text_converter("که متقاضی آن را در سایت به صورت انلاین پرداخت کرده است."))
+
     p.showPage()
     p.save()
     buffer.seek(0)
