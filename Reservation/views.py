@@ -269,9 +269,10 @@ def generate_pdf_file(request, reservation):
     pdfmetrics.registerFont(TTFont('BYekan', 'BYekan.ttf'))
 
     buffer = BytesIO()
-    p = canvas.Canvas(buffer, pagesize=A4, )
+    p = canvas.Canvas(buffer)
     p.setFont('BYekan', 12)
-    p.drawRightString(100, 100, text_converter("تاریخ:"))
+    p.setPageSize(A4)
+    p.drawRightString(500,700, text_converter("تاریخ:"))
     p.showPage()
     p.save()
     buffer.seek(0)
