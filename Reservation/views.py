@@ -305,7 +305,7 @@ def generate_pdf_file(request, pk):
             "روزهای تعطیل محاسبه شده است"))
 
     p.drawRightString(540, 470, text_converter("ماده3 : مبلغ قرارداد و نحوه پرداخت آن:"))
-    p.drawRightString(540, 450, text_converter(f" مبلغ قرارداد به ازاء هرجلسه {reservation.time.price} تومان و مبلغ کل قرارداد به میزان{reservation.price}تومان است "))
+    p.drawRightString(540, 450, text_converter(f" مبلغ قرارداد برای هرجلسه {reservation.time.price}تومان و مبلغ کل قرارداد به میزان{reservation.price}تومان است "))
     p.showPage()
     p.save()
     buffer.seek(0)
