@@ -197,12 +197,6 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
         gym = Gym.objects.filter(id=data["gym"]).first()
         time = Time.objects.filter(id=self.kwargs['time']).first()
         user = User.objects.filter(id=data["user"]).first()
-        ids = Time.objects.filter(day__name=time.day.name, time=time.time,
-                                 day__month__number__gte=time.day.month.number) \
-                 .exclude(day__month__number=time.day.month.number,
-                          day__number__lt=time.day.number) \
-                 .order_by('day__month__number').values_list('pk', flat=True)[:int(session)]
-        Time.objects.filter(pk__in=list(ids)).update(reserved=True)
         reservations = Reservations.objects.update_or_create(title=data["title"],
                                                              description=data["description"],
                                                              time=time,
@@ -212,8 +206,13 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
                                                              user=user,
                                                              gym=gym,
                                                              success=True,
-                                                             created=self.request.user,
-                                                             endDate=ids.last())
+                                                             created=self.request.user)
+        ids = Time.objects.filter(day__name=time.day.name, time=time.time,
+                                  day__month__number__gte=time.day.month.number) \
+                  .exclude(day__month__number=time.day.month.number,
+                           day__number__lt=time.day.number) \
+                  .order_by('day__month__number').values_list('pk', flat=True)[:int(session)]
+        Time.objects.filter(pk__in=list(ids)).update(reserved=True)
         serializer = ReservationSerializer(reservations)
         return Response(serializer.data)
 
