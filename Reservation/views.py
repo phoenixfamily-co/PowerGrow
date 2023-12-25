@@ -193,6 +193,7 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         data = self.request.data
+        session = data["session"]
         gym = Gym.objects.filter(id=data["gym"]).first()
         time = Time.objects.filter(id=self.kwargs['time']).first()
         user = User.objects.filter(id=data["user"]).first()
@@ -200,7 +201,7 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
                                  day__month__number__gte=time.day.month.number) \
                  .exclude(day__month__number=time.day.month.number,
                           day__number__lt=time.day.number) \
-                 .order_by('day__month__number').values_list('pk', flat=True)
+                 .order_by('day__month__number').values_list('pk', flat=True)[:int(session)]
         Time.objects.filter(pk__in=list(ids)).update(reserved=True)
         reservations = Reservations.objects.update_or_create(title=data["title"],
                                                              description=data["description"],
