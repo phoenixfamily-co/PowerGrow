@@ -327,7 +327,10 @@ def generate_pdf_file(request, pk):
     p.drawRightString(540, 250, text_converter("ساعات مورد نیاز خود جابه جا یا قرارداد را به طور کلي لغو کند که در صورت لغو قرارداد، وجوه"))
     p.drawRightString(540, 230, text_converter("واريزي بابت سانس هاي استفاده نشده مسترد خواهدشد."))
     p.drawRightString(540, 210, text_converter("۴-۴ : تعطيلي تمرينات به علت شرایط خاص آن، منوط به نظر مجموعه ورزشی حجاب خواهد بود که"))
-    p.drawRightString(540, 190, text_converter("در سالن، جلسات جبرانی در اختیار تیم متقاضي قرار خواهد گرفت."))
+    p.drawRightString(540, 190, text_converter("۴-۵: داشتن عضویت در کمیته خدمات درمانی فدراسیون پزشکی ورزشی برای تک تک افراد استفاده"))
+    p.drawRightString(540, 170, text_converter("کننده الزامی است؛بنابراین، در صورت هر گونه حادثه برای استفاده کنندگان مسئولیت هزینه ها برعهده ی"))
+    p.drawRightString(540, 150, text_converter("متقاضي خواهد بود."))
+
     p.showPage()
     p.save()
     buffer.seek(0)
