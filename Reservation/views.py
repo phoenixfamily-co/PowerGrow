@@ -330,6 +330,9 @@ def generate_pdf_file(request, pk):
     p.drawRightString(540, 190, text_converter("۴-۵: داشتن عضویت در کمیته خدمات درمانی فدراسیون پزشکی ورزشی برای تک تک افراد استفاده"))
     p.drawRightString(540, 170, text_converter("کننده الزامی است؛بنابراین، در صورت هر گونه حادثه برای استفاده کنندگان مسئولیت هزینه ها برعهده ی"))
     p.drawRightString(540, 150, text_converter("متقاضي خواهد بود."))
+    p.drawRightString(540, 120, text_converter("ماده ۵: امضا کننده ي قرارداد به عنوان متقاضي، مسئولیت كل مفاد قرارداد را بر عهده می گیرد."))
+    p.drawRightString(540, 100, text_converter("ماده ۶: این قرارداد هیچ گونه کسوراتی را در بر نمی گیرد.(شامل هیچ گونه کسوراتی نمی باشد)"))
+
 
     p.showPage()
     p.save()
