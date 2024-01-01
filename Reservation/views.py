@@ -332,8 +332,7 @@ def generate_pdf_file(request, pk):
     p.drawRightString(540, 150, text_converter("متقاضي خواهد بود."))
     p.drawRightString(540, 120, text_converter("ماده ۵: امضا کننده ي قرارداد به عنوان متقاضي، مسئولیت كل مفاد قرارداد را بر عهده می گیرد."))
     p.drawRightString(540, 100, text_converter("ماده ۶: این قرارداد هیچ گونه کسوراتی را در بر نمی گیرد.(شامل هیچ گونه کسوراتی نمی باشد)"))
-
-
+    p.drawRightString(540, 50, text_converter("صفحه ی 1 از 2"))
     p.showPage()
     p.save()
     buffer.seek(0)
