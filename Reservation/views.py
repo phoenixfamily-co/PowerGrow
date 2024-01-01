@@ -276,8 +276,14 @@ def generate_pdf_file(request, pk):
     pdfmetrics.registerFont(TTFont('BYekan', 'BYekan.ttf'))
     reservation = Reservations.objects.get(id=pk)
     startDate = f"{reservation.time.day.month.year.number}/{reservation.time.day.month.number}/{reservation.time.day.number}"
-    endDate = "تست"
     endTime = (dt.datetime.combine(dt.date(1, 1, 1), reservation.time.time) + datetime.timedelta(minutes=90)).time()
+    ids = Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time,
+                              day__month__number__gte=reservation.time.day.month.number) \
+              .exclude(day__month__number=reservation.time.day.month.number,
+                       day__number__lt=reservation.time.day.number) \
+              .order_by('day__month__number').values_list('pk', flat=True)[:int(reservation.session)]
+    endDateId = Time.objects.filter(pk=ids.last()).first()
+    endDate = f"{endDateId.day.month.year.number}/{endDateId.day.month.number}/{endDateId.day.number}"
 
     buffer = BytesIO()
     p = canvas.Canvas(buffer)
