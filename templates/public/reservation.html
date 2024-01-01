@@ -514,7 +514,6 @@
 <img class="img-responsive product-img" src="/media/{{ gym.image }}" alt="gym">
 
 
-
 <div class="card" id="card">
 
     <ul class="list-group list-group-flush">
@@ -756,6 +755,21 @@
 </footer>
 
 </body>
+
+
+<script>
+    let card = document.getElementById('card')
+
+    card.addEventListener("scroll",function () {
+
+        if (this.scrollTop>150){
+            console.log("ok")
+        }
+
+    })
+
+
+</script>
 
 
 <script>

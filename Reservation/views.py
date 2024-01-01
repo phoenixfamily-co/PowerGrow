@@ -214,7 +214,7 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
                   .order_by('day__month__number').values_list('pk', flat=True)[:int(session)]
         Time.objects.filter(pk__in=list(ids)).update(reserved=True)
         serializer = ReservationSerializer(reservations)
-        return Response({'id': '2'}, status=status.HTTP_200_OK)
+        return Response(serializer.data)
 
     def destroy(self, request, *args, **kwargs):
         reservation = Reservations.objects.filter(id=self.kwargs['pk']).first()
