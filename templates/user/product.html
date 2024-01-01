@@ -587,14 +587,14 @@
 
 <script>
 
-    let card = document.getElementById('card-holder')
+    let holder = document.getElementById('card-holder')
 
     window.onscroll = function () {
         if (document.body.scrollTop > 250 || document.documentElement.scrollTop > 250) {
-            card.classList.add("static-card")
+            holder.classList.add("static-card")
         }
         else {
-            card.classList.remove("static-card")
+            holder.classList.remove("static-card")
         }
     }
 
@@ -628,8 +628,8 @@
 
     let participants = {{size}};
     let capacity = {{participants.course.capacity}};
+    const card = document.getElementById("card")
     const registerButton = document.querySelector(".list-group li button")
-
 
     const cookieValue = document.cookie
         .split("; ")
