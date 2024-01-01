@@ -334,6 +334,17 @@ def generate_pdf_file(request, pk):
     p.drawRightString(540, 100, text_converter("ماده ۶: این قرارداد هیچ گونه کسوراتی را در بر نمی گیرد.(شامل هیچ گونه کسوراتی نمی باشد)"))
     p.drawRightString(320, 65, text_converter("صفحه ی 1 از 2"))
     p.showPage()
+
+    p.drawRightString(540, 700, text_converter("ماده ۷: فسخ قرارداد:"))
+    p.drawRightString(540, 780, text_converter("۷-۱: در صورت مشاهده ی هرگونه تخلف از سوی متقاضی در مفاد این قرارداد، حق فسخ قرارداد به"))
+    p.drawRightString(540, 700, text_converter("صورت یک طرفه برای مجموعه ورزشی حجاب محفوظ است و مبلغ واریز شده مسترد نخواهد شد."))
+    p.drawRightString(540, 700, text_converter("۷-۲: عدم پرداخت به موقع حق استفاده (ماده ۳ )"))
+    p.drawRightString(540, 700, text_converter("لازم به ذکر است پرداخت‌آنلاین در سایت به منزله قبولی و امضا تمامی قوانین و مقررات فوق می باشد"))
+    p.drawRightString(540, 700, text_converter("ماده ۸: این قرارداد شامل ۸ ماده و در دو نسخه تنظيم شده است که هر کدام حكم واحد را دارند."))
+    p.drawRightString(540, 700, text_converter("مهر و امضا پیمانکار مجم.عه حجاب"))
+    p.drawRightString(200, 700, text_converter("مهر و امضا متقاضی"))
+
+    p.showPage()
     p.save()
     buffer.seek(0)
 
