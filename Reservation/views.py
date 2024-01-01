@@ -344,7 +344,7 @@ def generate_pdf_file(request, pk):
     p.drawRightString(540, 710, text_converter("۷-۲: عدم پرداخت به موقع حق استفاده (ماده ۳ )"))
     p.drawRightString(540, 690, text_converter("لازم به ذکر است پرداخت‌آنلاین در سایت به منزله قبولی و امضا تمامی قوانین و مقررات فوق می باشد"))
     p.drawRightString(540, 660, text_converter("ماده ۸: این قرارداد شامل ۸ ماده و در دو نسخه تنظيم شده است که هر کدام حكم واحد را دارند."))
-    p.drawRightString(540, 600, text_converter("مهر و امضا پیمانکار مجم.عه حجاب"))
+    p.drawRightString(540, 600, text_converter("مهر و امضا پیمانکار مجموعه حجاب"))
     p.drawRightString(200, 600, text_converter("مهر و امضا متقاضی"))
     p.drawRightString(320, 65, text_converter("صفحه ی 2 از 2"))
 
