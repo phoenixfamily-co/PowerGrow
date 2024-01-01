@@ -184,6 +184,18 @@
             border-bottom-right-radius: 1rem;
         }
 
+         .static-card {
+            width: 29%;
+            height: auto;
+            background: transparent;
+            border-top-right-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+             margin-top: 700px;
+            position: absolute;
+            display: inline;
+            left: 0;
+         }
+
         .teacher {
             background: white;
             width: 100%;
@@ -389,7 +401,7 @@
 <img class="img-responsive product-img" src="/media/{{ product.image }}" alt="product">
 
 
-<div class="card_holder">
+<div id="card-holder" class="card_holder">
 
 <div class="card" id="card">
 
@@ -587,6 +599,21 @@
 </footer>
 
 </body>
+
+<script>
+    let card = document.getElementById('card-holder')
+
+    window.onscroll = function () {
+        if (document.body.scrollTop > 700 || document.documentElement.scrollTop > 700) {
+            card.classList.add("static-card")
+        }
+        else {
+            card.classList.remove("static-card")
+        }
+    }
+
+</script>
+
 
 <script>
 
