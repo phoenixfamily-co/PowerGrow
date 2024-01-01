@@ -338,7 +338,7 @@ def generate_pdf_file(request, pk):
     p.setFont('BYekan', 14)
     p.setPageSize(A4)
 
-    p.drawRightString(540, 700, text_converter("ماده ۷: فسخ قرارداد:"))
+    p.drawRightString(540, 750, text_converter("ماده ۷: فسخ قرارداد:"))
     p.drawRightString(540, 680, text_converter("۷-۱: در صورت مشاهده ی هرگونه تخلف از سوی متقاضی در مفاد این قرارداد، حق فسخ قرارداد به"))
     p.drawRightString(540, 660, text_converter("صورت یک طرفه برای مجموعه ورزشی حجاب محفوظ است و مبلغ واریز شده مسترد نخواهد شد."))
     p.drawRightString(540, 640, text_converter("۷-۲: عدم پرداخت به موقع حق استفاده (ماده ۳ )"))
