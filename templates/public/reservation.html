@@ -761,8 +761,11 @@
     let card = document.getElementById('card')
 
     window.onscroll = function () {
-        if (this.scrollTop>50){
-            console.log("ok")
+        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+            console.log("test")
+        }
+        else {
+            console.log("worked")
         }
     }
 
