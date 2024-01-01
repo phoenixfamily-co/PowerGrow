@@ -184,6 +184,16 @@
             cursor: pointer;
         }
 
+           .static-card {
+               width: 29%;
+               height: 500px;
+               border-top-right-radius: 1rem;
+               border-bottom-right-radius: 1rem;
+               margin-top: 750px;
+               position: absolute;
+               left: 0;
+           }
+
          .disabled-button{
             height: 50px;
             margin-top: 4%;
@@ -784,6 +794,21 @@
 </footer>
 
 </body>
+
+<script>
+    let card = document.getElementById('card')
+
+    window.onscroll = function () {
+        if (document.body.scrollTop > 750 || document.documentElement.scrollTop > 750) {
+            card.classList.add("static-card")
+        }
+        else {
+            card.classList.remove("static-card")
+        }
+    }
+
+</script>
+
 
 
 <script>
