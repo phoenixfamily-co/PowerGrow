@@ -586,6 +586,20 @@
 </body>
 
 <script>
+    let card = document.getElementById('card-holder')
+
+    window.onscroll = function () {
+        if (document.body.scrollTop > 250 || document.documentElement.scrollTop > 250) {
+            card.classList.add("static-card")
+        }
+        else {
+            card.classList.remove("static-card")
+        }
+    }
+
+</script>
+
+<script>
 
     let lat = {{ about.latitude }};
     let long =     {{ about.longitude }};
