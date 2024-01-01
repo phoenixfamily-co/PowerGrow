@@ -771,10 +771,10 @@
 
     window.onscroll = function () {
         if (document.body.scrollTop > 650 || document.documentElement.scrollTop > 650) {
-            card.addClass("static-card")
+            card.classList.add("static-card")
         }
         else {
-            card.removeClass("static-card")
+            card.classList.remove("static-card")
         }
     }
 
