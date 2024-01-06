@@ -152,7 +152,7 @@
          }
 
            .date-time{
-               width: 70%;
+               width: 50%;
                margin-top: 100px;
                display: inline;
         }
@@ -350,7 +350,6 @@
     let days = document.getElementById("days")
     let result
     let monthSize
-    let startDay = document.getElementById("startDay")
     let currentDayId
     let today = new Date().toLocaleDateString('fa-IR');
     today = today.split('/')
@@ -401,7 +400,6 @@
     function getDays(monthPosition) {
         monthTitle.innerHTML = result[0].months[monthPosition].name
         days.innerHTML=""
-        startDay.innerHTML = ""
 
         const emptyDay = document.createElement("li")
                 emptyDay.innerHTML = ' '
@@ -494,7 +492,6 @@
                         btn.classList.remove("activeButton")
                     })
                     button.classList.add("activeButton")
-                    startDay.innerHTML = `${result[0].number}/${result[0].months[monthPosition].number}/${button.textContent}`
                     date = `${result[0].number}-${result[0].months[monthPosition].number}-${button.textContent}`
 
                 })
