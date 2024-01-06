@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.template import loader
 from rest_framework import viewsets, generics, status
 from rest_framework.response import Response
-
+from User.models import *
 from About.models import AboutUs
 from Calendar.serializer import *
 
@@ -25,6 +25,17 @@ def calendar_view(request):
     context = {
         "day": day,
         "about": about,
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def teacher_calendar_view(request, pk):
+    about = AboutUs.objects.values().first()
+    user = User.objects.get(id=pk)
+    template = loader.get_template('teacher/calendar.html')
+    context = {
+        "about": about,
+        "user" : user,
     }
     return HttpResponse(template.render(context, request))
 
