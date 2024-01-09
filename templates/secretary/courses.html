@@ -129,6 +129,7 @@
     <tr>
         <th scope="col">#</th>
         <th scope="col"> </th>
+        <th scope="col"> </th>
         <th scope="col">نام دوره</th>
         <th scope="col">نام مربی</th>
         <th scope="col">جنسیت</th>
@@ -144,12 +145,13 @@
     <tr>
         <th scope="row">{{ x.id }}</th>
         <th onclick="window.open('{% url 'product:create-admin-participate' x.id %}')" style="text-decoration: underline ; cursor: pointer">ثبت نام</th>
+        <th onclick="window.location.assign('{% url 'user:teacher_user_list' x.id %}')" style="text-decoration: underline ; cursor: pointer">مشاهده لیست</th>
         <td>{{ x.title }}</td>
         <td>{{ x.name }}</td>
         <td>{{ x.gender }}</td>
         <td>{{ x.type }}</td>
         <td>{{ x.time }}</td>
-        <td>{{ x.participants|length }}/{{ x.capacity }}</td>
+        <td>{{ x.capacity }}</td>
         <td>{{ x.sport.title }}</td>
     </tr>
    {% endfor %}
