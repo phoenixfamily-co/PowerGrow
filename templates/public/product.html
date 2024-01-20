@@ -930,7 +930,6 @@
                 currentDayId = result[0].months[monthPosition].days[i].id
                 startDay.innerHTML = `${result[0].number}/${result[0].months[monthPosition].number}/${result[0].months[monthPosition].days[i].number}`
                 date = `${result[0].number}-${result[0].months[monthPosition].number}-${result[0].months[monthPosition].days[i].number}`
-                getTimes(currentDayId)
 
             }else if (result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number < parseInt(currentDay)){
                 dayItem.classList.add("disActiveButton")
@@ -949,7 +948,6 @@
                         btn.classList.remove("activeButton")
                     })
                     button.classList.add("activeButton")
-                    await getTimes(button.getAttribute("itemid"))
                     startDay.innerHTML = `${result[0].number}/${result[0].months[monthPosition].number}/${button.textContent}`
                     date = `${result[0].number}-${result[0].months[monthPosition].number}-${button.textContent}`
 
