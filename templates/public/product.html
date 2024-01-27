@@ -1054,7 +1054,7 @@
                 item.setAttribute("id", sum[i].id)
                 sessionList.appendChild(item)
             }
-            await getDays(sum[0].id)
+            await getWeeks(sum[0].id)
             sessionNumber.innerHTML = sum[0].number + 'جلسه'
             sessionId = sum[0].id
         }
@@ -1063,10 +1063,10 @@
         sessionList.addEventListener('change', function () {
             sessionNumber.innerHTML = this.value
             sessionId = this.options[this.options.selectedIndex].id
-            getDays(this.options[this.options.selectedIndex].id)
+            getWeeks(this.options[this.options.selectedIndex].id)
         })
 
-    async function getDays(query) {
+    async function getWeeks(query) {
 
         const response = await fetch(`/product/api/days/${query}/`, {
             method: 'GET',
