@@ -819,6 +819,7 @@
     let days = document.getElementById("days")
     let result
     let monthSize
+    let date
     let startDay = document.getElementById("startDay")
     let currentDayId
     let today = new Date().toLocaleDateString('fa-IR');
@@ -872,7 +873,6 @@
         monthTitle.innerHTML = result[0].months[monthPosition].name
         days.innerHTML=""
         startDay.innerHTML = ""
-        let date
 
         const emptyDay = document.createElement("li")
                 emptyDay.innerHTML = ' '
