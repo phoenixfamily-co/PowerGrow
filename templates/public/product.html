@@ -1047,6 +1047,8 @@
             const size = JSON.parse(res).length
             sessionList.innerHTML = ''
             week.innerHTML = ''
+            sessionNumber.innerHTML = ''
+            daySession.innerHTML = ''
             for (let i = 0; i < size; i++) {
                 const item = document.createElement("option")
                 item.innerHTML = sum[i].number + 'جلسه'
@@ -1078,6 +1080,7 @@
             const sum = JSON.parse(res)
             const size = JSON.parse(res).length
             week.innerHTML = ''
+             daySession.innerHTML = ''
             for (let i = 0; i < size; i++) {
                 const item = document.createElement("option")
                 item.innerHTML = sum[i].title
