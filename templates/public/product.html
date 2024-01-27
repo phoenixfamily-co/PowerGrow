@@ -1051,7 +1051,7 @@
             for (let i = 0; i < size; i++) {
                 const item = document.createElement("option")
                 item.innerHTML = sum[i].number + 'جلسه'
-                item.setAttribute("id", sum[i].id)
+                item.setAttribute("itemid", sum[i].id)
                 sessionList.appendChild(item)
             }
             await getDays(sum[0].id)
@@ -1061,7 +1061,7 @@
 
         sessionList.addEventListener('change', function () {
             sessionNumber.innerHTML = this.value
-            getDays(this.getAttribute("id"))
+            getDays(this.getAttribute("itemid"))
         })
 
     async function getDays(query) {
