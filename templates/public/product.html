@@ -389,7 +389,7 @@
         }
 
         .time-body{
-            margin-right: 20%;
+            margin-right: 10%;
             margin-top: 12%;
         }
 
@@ -674,7 +674,6 @@
         <label for="week">روزهای برگزاری در هفته را مشخص کنید:</label>
         <select name="week" id="week" style="margin-right: 20px">
         </select>
-
         </div>
 
 </div>
@@ -1056,12 +1055,12 @@
                 sessionList.appendChild(item)
             }
             await getDays(sum[0].id)
-            daySession.innerHTML = sum[0].number
+            sessionNumber.innerHTML = sum[0].number
         }
     }
 
         sessionList.addEventListener('change', function () {
-            daySession.innerHTML = this.innerHTML
+            sessionNumber.innerHTML = this.innerHTML
             getDays(this.value)
         })
 
