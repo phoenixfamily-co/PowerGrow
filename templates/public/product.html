@@ -598,7 +598,7 @@
                تخفیف:
             </h6>
             <h6 id="off" class="list-group-left">
-                {{ day.off }}%
+
             </h6>
         </li>
     </ul>
@@ -1018,6 +1018,8 @@
     const sessionList = document.getElementById("session");
     const daySession = document.getElementById("daySession");
     const sessionNumber = document.getElementById("sessionNumber");
+    const final = document.getElementById("final");
+    const offset = document.getElementById("off");
     let sessionId;
     let dayId;
 
@@ -1099,6 +1101,9 @@
     function changePrice(price, off){
         final_price = (parseInt(price) - (parseInt(off) / 100 * parseInt(price)))
         final.innerHTML = final_price.toString() + " " + "تومان"
+        offset.innerHTML = off.toString() + " " + "%"
+
+
     }
 
 </script>
