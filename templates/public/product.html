@@ -587,7 +587,6 @@
                شهریه ثابت:
             </h6>
             <h6 id="price" class="list-group-left">
-                {{ day.tuition }} تومان
             </h6>
         </li>
     </ul>
@@ -1020,6 +1019,7 @@
     const sessionNumber = document.getElementById("sessionNumber");
     const final = document.getElementById("final");
     const offset = document.getElementById("off");
+    const cost = document.getElementById("price");
     let sessionId;
     let dayId;
 
@@ -1101,6 +1101,7 @@
     function changePrice(price, off){
         final_price = (parseInt(price) - (parseInt(off) / 100 * parseInt(price)))
         final.innerHTML = final_price.toString() + " " + "تومان"
+        cost.innerHTML = parseInt(price) + " " + "تومان"
         offset.innerHTML = off.toString() + "%"
 
 
