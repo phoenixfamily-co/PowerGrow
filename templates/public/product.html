@@ -872,7 +872,7 @@
         monthTitle.innerHTML = result[0].months[monthPosition].name
         days.innerHTML=""
         startDay.innerHTML = ""
-        time = undefined
+        let date
 
         const emptyDay = document.createElement("li")
                 emptyDay.innerHTML = ' '
@@ -1002,7 +1002,7 @@
     registerButton.addEventListener('click', function () {
 
         if (cookieValue !== undefined) {
-            window.location.assign(`/product/payment/${course}/${sessionId}/${dayId}/${startDay}`)
+            window.location.assign(`/product/payment/${course}/${sessionId}/${dayId}/${date}`)
         } else {
             window.location.assign(`{% url 'user:login'  %}`)
         }
