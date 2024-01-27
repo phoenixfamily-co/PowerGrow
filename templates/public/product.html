@@ -1061,7 +1061,7 @@
 
         sessionList.addEventListener('change', function () {
             sessionNumber.innerHTML = this.value
-            getDays(this.id)
+            getDays(this.getAttribute("id"))
         })
 
     async function getDays(query) {
@@ -1079,7 +1079,7 @@
             const sum = JSON.parse(res)
             const size = JSON.parse(res).length
             week.innerHTML = ''
-             daySession.innerHTML = ''
+            daySession.innerHTML = ''
             for (let i = 0; i < size; i++) {
                 const item = document.createElement("option")
                 item.innerHTML = sum[i].title
