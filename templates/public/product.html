@@ -1002,7 +1002,7 @@
     registerButton.addEventListener('click', function () {
 
         if (cookieValue !== undefined) {
-            window.location.assign(`/product/payment/${course}/${sessionId}/${dayId}/`)
+            window.location.assign(`/product/payment/${course}/${sessionId}/${dayId}/${startDay}`)
         } else {
             window.location.assign(`{% url 'user:login'  %}`)
         }

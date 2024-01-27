@@ -39,7 +39,7 @@ urlpatterns = [
     path('api/admin/participate/', ManagerParticipationView.as_view({'get': 'list'}),
          name='admin-participate'),
     path('api/search/<int:pk>/', SearchView.as_view(), name='search'),
-    path('payment/<int:pk>/<int:session>/<int:day>/', payment_view, name='payment'),
+    path('payment/<int:pk>/<int:session>/<int:day>/<str:startDay>/', payment_view, name='payment'),
     path('check/<int:pk>/<int:session>/<int:day>/', check_view, name='check'),
     path('api/participants/<int:pk>/', CourseUserView.as_view(), name='course_user'),
     path('<int:pk>/', product_view, name='product'),
