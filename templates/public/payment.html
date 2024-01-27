@@ -282,6 +282,7 @@
     let day = "{{ day.id }}";
     let session = "{{ session.id }}";
     let course = "{{ product.id }}";
+    let start = "{{ start }}";
     let final = document.getElementById("final")
     const registerButton = document.querySelector(".list-group li button")
     let final_price = (parseInt(price) - (parseInt(off) / 100 * parseInt(price)))
@@ -310,6 +311,7 @@
             "session": parseInt(session),
             "course": parseInt(course),
             "price": final_price ,
+            "start":start,
             "description":"شرکت در دوره های باشگاه ورزشی حجاب",
         }
 

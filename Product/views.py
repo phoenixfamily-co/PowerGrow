@@ -39,7 +39,7 @@ def product_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
-def payment_view(request, pk, session, day):
+def payment_view(request, pk, session, day, start):
     about = AboutUs.objects.values().first()
     product = Course.objects.filter(id=pk).values().first()
     sessions = Sessions.objects.filter(id=session).values().first()
@@ -50,6 +50,7 @@ def payment_view(request, pk, session, day):
         "product": product,
         "session": sessions,
         "day": days,
+        "start" : start
     }
     return HttpResponse(template.render(context, request))
 
@@ -279,7 +280,7 @@ class ParticipationView(viewsets.ViewSet):
                 course = Course.objects.filter(id=data["course"]).first()
                 Participants.objects.update_or_create(title=data["title"],
                                                       description=data["description"],
-                                                      startDay=data["startDay"],
+                                                      startDay=data["start"],
                                                       session=session,
                                                       day=day,
                                                       price=data["price"],
@@ -309,10 +310,12 @@ class ManagerParticipationView(viewsets.ModelViewSet):
         day = Days.objects.filter(id=data["day"]).first()
         course = Course.objects.filter(id=self.kwargs['id']).first()
         user = User.objects.filter(id=data["user"]).first()
+        start = self.kwargs['start']
         participants = Participants.objects.update_or_create(title=data["title"],
                                                              description=data["description"],
                                                              session=session,
                                                              day=day,
+                                                             startDay=start,
                                                              price=data["price"],
                                                              user=user,
                                                              course=course,
