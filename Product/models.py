@@ -55,6 +55,7 @@ class Participants(models.Model):
     datetime = models.DateTimeField(default=timezone.now)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='participants',
                              blank=True, null=True)
+    startDay = models.TextField(blank=True , null=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='participants', null=True, blank=True)
     created = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='participant',
                                 blank=True, null=True)
