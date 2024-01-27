@@ -279,6 +279,7 @@ class ParticipationView(viewsets.ViewSet):
                 course = Course.objects.filter(id=data["course"]).first()
                 Participants.objects.update_or_create(title=data["title"],
                                                       description=data["description"],
+                                                      startDay=data["startDay"],
                                                       session=session,
                                                       day=day,
                                                       price=data["price"],
