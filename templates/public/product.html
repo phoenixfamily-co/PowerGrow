@@ -108,6 +108,14 @@
 
         }
 
+        .time-picker{
+            width: 49%;
+            height: 300px;
+            background: #FFFFFF ;
+            float: left;
+            border-radius: 1rem ;
+        }
+
         .navbar.navbar-dark.bg-dark li a{
             color: #fff;
         }
@@ -380,6 +388,11 @@
             margin-top: 15px
         }
 
+        .time-body{
+            margin-right: 20%;
+            margin-top: 12%;
+        }
+
 
 
            @media screen and (max-width: 600px) {
@@ -533,7 +546,6 @@
                 روزهای برگزاری:
             </h6>
             <h6 id="daySession" class="list-group-left">
-                {{ day.title }}
             </h6>
         </li>
     </ul>
@@ -564,8 +576,7 @@
             <h6 class="list-group-right">
                 تعداد جلسات:
             </h6>
-            <h6 id="session" class="list-group-left">
-                {{ session.number }}
+            <h6 id="sessionNumber" class="list-group-left">
             </h6>
         </li>
     </ul>
@@ -650,17 +661,24 @@
 
 <div class="time-picker">
 
-    <div class="container-fluid p-4">
+    <div class="time-body">
 
-    <div id="times" class="row justify-content-start  g-3">
+    <label for="session">تعداد جلسات در ماه را انتخاب کنید :</label>
+    <select name="session" id="session" style="margin-right: 20px">
+    </select>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <label for="week">روزهای برگزاری در هفته را مشخص کنید:</label>
+        <select name="week" id="week" style="margin-right: 20px">
+        </select>
 
-    </div>
-
-    </div>
-
-
+        </div>
 
 </div>
+
 </div>
 
 
@@ -963,8 +981,6 @@
     let capacity = "{{product.capacity}}";
     let off = "{{ day.off }}";
     let price = "{{ day.tuition }}";
-    let day = "{{ day.id }}";
-    let session = "{{ session.id }}";
     let course = "{{ product.id }}";
     const card = document.getElementById("card")
     const registerButton = document.querySelector(".list-group li button")
@@ -1000,6 +1016,76 @@
         }
 
     })
+
+</script>
+
+<script>
+    const session = document.getElementById("number");
+    const week = document.getElementById("week");
+    const sessionList = document.getElementById("session");
+    const daySession = document.getElementById("daySession");
+    const sessionNumber = document.getElementById("sessionNumber");
+    let sessionId;
+    let dayId;
+
+            const response = await fetch(`/product/api/sessions/${course}/`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            const result = await response.json()
+            if (response.status === 200) {
+                const res = JSON.stringify(result)
+                const sum = JSON.parse(res)
+                const size = JSON.parse(res).length
+                sessionList.innerHTML = ''
+                week.innerHTML = ''
+                for (let i = 0; i < size; i++) {
+                    const item = document.createElement("option")
+                    item.innerHTML = sum[i].number + 'جلسه'
+                    item.setAttribute("value", sum[i].id)
+                    sessionList.appendChild(item)
+                }
+                await getDays(sum[0].id)
+                daySession.innerHTML = sum[0].number
+        }
+
+        sessionList.addEventListener('change', function () {
+            daySession.innerHTML = this.innerHTML
+            getDays(this.value)
+        })
+
+    async function getDays(query) {
+
+        const response = await fetch(`/product/api/days/${query}/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        const result = await response.json()
+        if (response.status === 200) {
+            const res = JSON.stringify(result)
+            const sum = JSON.parse(res)
+            const size = JSON.parse(res).length
+            week.innerHTML = ''
+            for (let i = 0; i < size; i++) {
+                const item = document.createElement("option")
+                item.innerHTML = sum[i].title
+                item.setAttribute("value", sum[i].id)
+                week.appendChild(item)
+            }
+            dayId = sum[0].id
+            daySession.innerHTML = sum[0].title
+        }
+    }
+
+      week.addEventListener('change', function () {
+            daySession.innerHTML = this.innerHTML
+        })
 
 </script>
 

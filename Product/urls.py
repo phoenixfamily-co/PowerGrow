@@ -42,6 +42,6 @@ urlpatterns = [
     path('payment/<int:pk>/<int:session>/<int:day>/', payment_view, name='payment'),
     path('check/<int:pk>/<int:session>/<int:day>/', check_view, name='check'),
     path('api/participants/<int:pk>/', CourseUserView.as_view(), name='course_user'),
-    path('<int:pk>/<int:session>/<int:day>/', product_view, name='product'),
+    path('<int:pk>/', product_view, name='product'),
     path('verify/', verify, name='verify'),
 ]

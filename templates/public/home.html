@@ -141,6 +141,7 @@
         }
 
 
+
         .navbar.navbar-dark.bg-dark li a{
             color: #fff;
         }
@@ -425,7 +426,7 @@
           <hr class="my-0" />
           <div class="card-body">
             <div style="float: left" class="d-flex align-items-center pb-2 mb-1">
-              <button type="button" class="btn register-button" id="{{ x.id }}">ثبت نام</button>
+              <button type="button" class="btn register-button" onclick="location.assign('{% url "product:product" x.id %}')">ثبت نام</button>
             </div>
           </div>
         </div>
@@ -438,36 +439,6 @@
     </div>
 
 </div>
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">تعداد و روز جلسات را انتخاب کنید</h5>
-        <button id="exit" type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-           <label for="session">تعداد جلسات در ماه را انتخاب کنید :</label>
-        <select name="numbers" id="session" style="margin-right: 14.5vh">
-        </select>
-        <br>
-        <br>
-        <label for="week">روزهای برگزاری در هفته را مشخص کنید:</label>
-        <select name="days" id="week" style="margin-right: 10vh">
-        </select>
-
-      </div>
-      <div class="modal-footer">
-        <button id="closeButton" type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
-        <button id="continueButton" type="button" class="btn btn-primary">ادامه</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 
 <div style="width: 100% ; margin-bottom: 50px">
 
@@ -662,99 +633,5 @@
         }
     });
 </script>
-
-<script>
-    const registerButton = document.getElementById("registerButton");
-    const closeButton = document.getElementById("closeButton");
-    const exitButton = document.getElementById("exit");
-    const continueButton = document.getElementById("continueButton");
-    const myModal = new bootstrap.Modal(document.getElementById('myModal'));
-    const session = document.getElementById("number");
-    const week = document.getElementById("week");
-    const sessionList = document.getElementById("session");
-    let course;
-    let sessionId;
-    let dayId;
-
-
-    const buttons = document.querySelectorAll('.register-button');
-    Array.from(buttons).forEach(function (button) {
-        button.addEventListener('click', async function () {
-            course = this.id
-              myModal.toggle()
-            const response = await fetch(`/product/api/sessions/${course}/`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-
-            const result = await response.json()
-            if (response.status === 200) {
-                const res = JSON.stringify(result)
-                const sum = JSON.parse(res)
-                const size = JSON.parse(res).length
-                sessionList.innerHTML = ''
-                week.innerHTML = ''
-                for (let i = 0; i < size; i++) {
-                    const item = document.createElement("option")
-                    item.innerHTML = sum[i].number + 'جلسه'
-                    item.setAttribute("value", sum[i].id)
-                    sessionList.appendChild(item)
-                }
-                await getDays(sum[0].id)
-            }
-        })
-        sessionList.addEventListener('change', function () {
-            getDays(this.value)
-        })
-
-    })
-
-    closeButton.addEventListener("click", function () {
-        myModal.toggle()
-    })
-
-     exitButton.addEventListener("click", function () {
-        myModal.toggle()
-    })
-
-     continueButton.addEventListener("click", function () {
-        document.location.assign(`/product/${course}/${sessionId}/${dayId}/`)
-    })
-
-    async function getDays(query) {
-
-        sessionId = query
-
-        const response = await fetch(`/product/api/days/${query}/`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-
-        const result = await response.json()
-        if (response.status === 200) {
-            const res = JSON.stringify(result)
-            const sum = JSON.parse(res)
-            const size = JSON.parse(res).length
-            week.innerHTML = ''
-            for (let i = 0; i < size; i++) {
-                const item = document.createElement("option")
-                item.innerHTML = sum[i].title
-                item.setAttribute("value", sum[i].id)
-                week.appendChild(item)
-                dayId = sum[0].id
-            }
-        }
-    }
-
-    week.addEventListener('change', function () {
-        dayId = this.value
-    })
-
-</script>
-
 
 </html>
