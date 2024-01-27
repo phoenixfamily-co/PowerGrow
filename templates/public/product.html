@@ -1061,7 +1061,7 @@
 
         sessionList.addEventListener('change', function () {
             sessionNumber.innerHTML = this.value
-            getDays(this.value.id)
+            getDays(this.options.id)
         })
 
     async function getDays(query) {
