@@ -1056,11 +1056,13 @@
             }
             await getDays(sum[0].id)
             sessionNumber.innerHTML = sum[0].number + 'جلسه'
+            sessionId = sum[0].id
         }
     }
 
         sessionList.addEventListener('change', function () {
             sessionNumber.innerHTML = this.value
+            sessionId = this.options[this.options.selectedIndex].id
             getDays(this.options[this.options.selectedIndex].id)
         })
 
@@ -1087,11 +1089,14 @@
                 week.appendChild(item)
             }
             daySession.innerHTML = sum[0].title
+            dayId = sum[0].id
         }
     }
 
       week.addEventListener('change', function () {
-            daySession.innerHTML = this.value
+          daySession.innerHTML = this.value
+          dayId = this.options[this.options.selectedIndex].id
+
         })
 
 </script>
