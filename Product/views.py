@@ -23,21 +23,17 @@ ZP_API_STARTPAY = f"https://{sandbox}.zarinpal.com/pg/StartPay/"
 CallbackURL = 'https://powergrow.net/product/verify/'
 
 
-def product_view(request, pk, session, day):
+def product_view(request, pk):
     about = AboutUs.objects.values().first()
     sport = Sport.objects.all().values()
     product = Course.objects.get(id=pk)
     participants = Participants.objects.filter(course__pk=pk).values()
-    sessions = Sessions.objects.filter(id=session).values().first()
-    days = Days.objects.filter(id=day).values().first()
     template = loader.get_template('public/product.html')
     context = {
         "about": about,
         "product": product,
         "participants": len(list(participants)),
-        "session": sessions,
         "sport": sport,
-        "day": days,
 
     }
     return HttpResponse(template.render(context, request))
