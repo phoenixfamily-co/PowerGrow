@@ -835,6 +835,7 @@
 
     document.addEventListener("DOMContentLoaded", function() {
         getYear()
+        getSession()
     });
 
 
@@ -1027,29 +1028,35 @@
     let sessionId;
     let dayId;
 
-            const response = await fetch(`/product/api/sessions/${course}/`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
 
-            const result = await response.json()
-            if (response.status === 200) {
-                const res = JSON.stringify(result)
-                const sum = JSON.parse(res)
-                const size = JSON.parse(res).length
-                sessionList.innerHTML = ''
-                week.innerHTML = ''
-                for (let i = 0; i < size; i++) {
-                    const item = document.createElement("option")
-                    item.innerHTML = sum[i].number + 'جلسه'
-                    item.setAttribute("value", sum[i].id)
-                    sessionList.appendChild(item)
-                }
-                await getDays(sum[0].id)
-                daySession.innerHTML = sum[0].number
+
+    async function getSession() {
+
+
+        const response = await fetch(`/product/api/sessions/${course}/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        const result = await response.json()
+        if (response.status === 200) {
+            const res = JSON.stringify(result)
+            const sum = JSON.parse(res)
+            const size = JSON.parse(res).length
+            sessionList.innerHTML = ''
+            week.innerHTML = ''
+            for (let i = 0; i < size; i++) {
+                const item = document.createElement("option")
+                item.innerHTML = sum[i].number + 'جلسه'
+                item.setAttribute("value", sum[i].id)
+                sessionList.appendChild(item)
+            }
+            await getDays(sum[0].id)
+            daySession.innerHTML = sum[0].number
         }
+    }
 
         sessionList.addEventListener('change', function () {
             daySession.innerHTML = this.innerHTML
