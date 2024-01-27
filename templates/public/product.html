@@ -1055,12 +1055,12 @@
                 sessionList.appendChild(item)
             }
             await getDays(sum[0].id)
-            sessionNumber.innerHTML = sum[0].number
+            sessionNumber.innerHTML = sum[0].number + 'جلسه'
         }
     }
 
         sessionList.addEventListener('change', function () {
-            sessionNumber.innerHTML = sessionList.value
+            sessionNumber.innerHTML = this.value
             getDays(this.id)
         })
 
@@ -1083,7 +1083,7 @@
             for (let i = 0; i < size; i++) {
                 const item = document.createElement("option")
                 item.innerHTML = sum[i].title
-                item.setAttribute("value", sum[i].id)
+                item.setAttribute("id", sum[i].id)
                 week.appendChild(item)
             }
             dayId = sum[0].id
