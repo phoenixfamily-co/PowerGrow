@@ -99,6 +99,158 @@
              cursor: pointer
            }
 
+          .month {
+            width: 100%;
+            height: 25%;
+            float: right;
+            background: #e4633a;
+            text-align: center;
+            border-top-left-radius: 1rem
+        }
+
+        .month ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        .month ul li {
+            color: white;
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .month .prev {
+            float: right;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .month .next {
+            float: left;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .weekdays {
+            margin: 0;
+            padding: 5px 0;
+            background-color: #ddd;
+            direction: rtl;
+            border-top-left-radius: 1rem
+        }
+
+        .weekdays li {
+          display: inline-block;
+          width: 12.6%;
+          color: #666;
+          text-align: center;
+        }
+
+        .days {
+            padding: 5px 0;
+            margin: 0;
+            direction: rtl;
+            border-bottom-left-radius: 20px;
+        }
+
+        .days li {
+            list-style-type: none;
+            display: inline-block;
+            width: 13.3%;
+            text-align: center;
+            margin-bottom: 1px;
+            font-size:16px;
+            color: #000000;
+            cursor: pointer;
+        }
+        .activeButton {
+            border-radius: 50px;
+            background: #1a5bbc;
+            color: white !important
+        }
+
+         .holidayButton {
+            border-radius: 50px;
+            color: #ff0c0c !important;
+             cursor: pointer;
+        }
+
+         .disActiveButton{
+
+             cursor: none;
+             pointer-events: none;
+             opacity:0.6;
+         }
+
+        .disabled-button{
+            height: 50px;
+            margin-top: 4%;
+            margin-right: 5%;
+            margin-bottom: 4%;
+            width: 90%;
+            opacity: 0.5;
+            background: #e4633a;
+            border-color: transparent;
+            color: white;
+            cursor: none;
+            pointer-events: none;
+        }
+
+
+        .product-img{
+            width: 70%;
+            height: 30rem;
+            float: right;
+            border-radius: 1rem 0 0 1rem;
+
+        }
+         .list-group-item-fixed {
+             width: auto;
+             margin-top: 3.5%;
+             padding-bottom: 3.5%;
+        }
+        .list-group-left {
+            text-align: center;
+            float: left;
+            display: inline;
+            width: 40%;
+        }
+        .list-group-right {
+            text-align: right;
+            float: right;
+            display: inline;
+            width: 35%;
+        }
+
+        div.list-group-right {
+            width: 55%;
+            display: inline-flex;
+        }
+
+          .date-time{
+            width: 70%;
+            float: right;
+            margin-top: 15px;
+            display: inline;
+        }
+
+        .date-picker{
+            width: 50%;
+            height: 300px;
+            background: #FFFFFF ;
+            float: right;
+            border-top-left-radius: 1rem;
+            border-bottom-left-radius: 1rem;
+        }
+
+         .time-picker{
+            width: 49%;
+            height: 300px;
+            background: #FFFFFF ;
+            float: left;
+            border-radius: 1rem ;
+        }
 
     </style>
 </head>
@@ -153,7 +305,7 @@
         <th scope="row">{{ x.id }}</th>
         <th onclick="window.open('{% url 'product:delete-courses' x.id %}')"><i class="fa fa-times" aria-hidden="true" style="cursor: pointer"></i></th>
         <th onclick="window.open('{% url 'product:update-courses' x.id %}')"><i class="fa fa-pencil" aria-hidden="true" style="cursor: pointer"></i></th>
-        <th onclick="window.open('{% url 'product:create-admin-participate' x.id %}')" style="text-decoration: underline ; cursor: pointer">ثبت نام</th>
+        <th onclick="submit()" style="text-decoration: underline ; cursor: pointer">ثبت نام</th>
         <th onclick="window.location.assign('{% url 'user:teacher_user_list' x.id %}')" style="text-decoration: underline ; cursor: pointer">مشاهده لیست</th>
         <td>{{ x.title }}</td>
         <td>{{ x.name }}</td>
@@ -167,7 +319,256 @@
   </tbody>
 </table>
 
+<div class="modal fade" id="calendarPopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">زمان رزرو را انتخاب کنید</h5>
+        <button id="exit" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+<div class="date-picker">
+    <div class="month">
+  <ul>
+    <li id="next" class="prev">&#10094;</li>
+    <li id="prev" class="next">&#10095;</li>
+      <li id="monthTitle"></li>
+    <li>
+      <span id="yearTitle" style="font-size:18px"></span>
+    </li>
+  </ul>
+</div>
+<ul class="weekdays">
+  <li>ش</li>
+  <li>ی</li>
+  <li>د</li>
+  <li>س</li>
+  <li>چ</li>
+  <li>پ</li>
+  <li>ج</li>
+</ul>
+    <ul id="days" class="days">
+
+    </ul>
+</div>
+
+<div class="time-picker">
+
+    <div class="time-body">
+
+    <label for="session">تعداد جلسات در ماه را انتخاب کنید :</label>
+    <select name="session" id="session" style="margin-right: 20px">
+    </select>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <label for="week">روزهای برگزاری در هفته را مشخص کنید:</label>
+        <select name="week" id="week" style="margin-right: 10px">
+        </select>
+        </div>
+
+</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
+
+
+<script>
+    let calendarPopup = document.getElementById("calendarPopup")
+    let exit = document.getElementById("exit")
+
+
+
+
+    function submit() {
+        calendarPopup.classList.toggle("show");
+    }
+
+      window.addEventListener("click", function (event) {
+        if (event.target === calendarPopup) {
+            calendarPopup.classList.remove("show");
+        }
+    });
+
+    exit.addEventListener("click",function () {
+        calendarPopup.classList.remove("show");
+    })
+
+
+</script>
+
+<script>
+
+    let calendar = document.getElementById("calendar")
+    let monthTitle = document.getElementById("monthTitle")
+    let yearTitle = document.getElementById("yearTitle")
+    let prev = document.getElementById("prev")
+    let next = document.getElementById("next")
+    let days = document.getElementById("days")
+    let result
+    let monthSize
+    let date
+    let startDay = document.getElementById("startDay")
+    let currentDayId
+    let today = new Date().toLocaleDateString('fa-IR');
+    today = today.split('/')
+    let currentDay = today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
+    let currentMonth = today[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
+    let monthPosition = currentMonth-7
+
+
+
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+        getYear()
+        getSession()
+    });
+
+
+    async function getYear() {
+
+        const response = await fetch('/calendar/api/year/', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        result = await response.json()
+        result = JSON.parse(JSON.stringify(result))
+        monthSize = result[0].months.length
+
+        yearTitle.innerHTML = result[0].number
+        getDays(monthPosition)
+
+    }
+
+        next.addEventListener("click", function () {
+            if (monthPosition > 0) {
+                monthPosition = monthPosition - 1
+                getDays(monthPosition)
+            }
+        })
+
+    prev.addEventListener("click",function () {
+         if (monthPosition<monthSize-1){
+            monthPosition = monthPosition+1
+             getDays(monthPosition)
+        }
+    })
+
+    function getDays(monthPosition) {
+        monthTitle.innerHTML = result[0].months[monthPosition].name
+        days.innerHTML=""
+        startDay.innerHTML = ""
+
+        const emptyDay = document.createElement("li")
+                emptyDay.innerHTML = ' '
+
+        switch (result[0].months[monthPosition].startDay) {
+
+            case "یکشنبه" :
+                const empty0 = document.createElement("li")
+                days.appendChild(empty0)
+                break
+            case "دوشنبه" :
+                const empty1 = document.createElement("li")
+                days.appendChild(empty1)
+                const empty2 = document.createElement("li")
+                days.appendChild(empty2)
+                break
+
+            case "سه شنبه" :
+               const empty3 = document.createElement("li")
+                days.appendChild(empty3)
+                const empty4 = document.createElement("li")
+                days.appendChild(empty4)
+                const empty5 = document.createElement("li")
+                days.appendChild(empty5)
+                break
+             case "چهارشنبه" :
+                 const empty6 = document.createElement("li")
+                days.appendChild(empty6)
+                const empty7 = document.createElement("li")
+                days.appendChild(empty7)
+                const empty9 = document.createElement("li")
+                days.appendChild(empty9)
+                 const empty10 = document.createElement("li")
+                days.appendChild(empty10)
+
+                break
+             case "پنجشنبه" :
+                const empty11 = document.createElement("li")
+                days.appendChild(empty11)
+                const empty12 = document.createElement("li")
+                days.appendChild(empty12)
+                const empty13 = document.createElement("li")
+                days.appendChild(empty13)
+                 const empty14 = document.createElement("li")
+                days.appendChild(empty14)
+                 const empty15 = document.createElement("li")
+                days.appendChild(empty15)
+                break
+             case "جمعه" :
+                  const empty16 = document.createElement("li")
+                days.appendChild(empty16)
+                const empty17 = document.createElement("li")
+                days.appendChild(empty17)
+                const empty18 = document.createElement("li")
+                days.appendChild(empty18)
+                 const empty19 = document.createElement("li")
+                days.appendChild(empty19)
+                 const empty20 = document.createElement("li")
+                days.appendChild(empty20)
+                 const empty21 = document.createElement("li")
+                days.appendChild(empty21)
+                break
+        }
+        for (let i = 0 ; i< result[0].months[monthPosition].days.length ; i++){
+            const dayItem = document.createElement("li")
+            if (result[0].months[monthPosition].days[i].holiday === true && result[0].months[monthPosition].days[i].number > parseInt(currentDay)) {
+                dayItem.classList.add("holidayButton")
+            }else if ( result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number === parseInt(currentDay))
+            {
+                dayItem.classList.add("activeButton")
+                currentDayId = result[0].months[monthPosition].days[i].id
+                startDay.innerHTML = `${result[0].number}/${result[0].months[monthPosition].number}/${result[0].months[monthPosition].days[i].number}`
+                date = `${result[0].number}-${result[0].months[monthPosition].number}-${result[0].months[monthPosition].days[i].number}`
+
+            }else if (result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number < parseInt(currentDay)){
+                dayItem.classList.add("disActiveButton")
+            }else if (result[0].months[monthPosition].number < parseInt(currentMonth)){
+                dayItem.classList.add("disActiveButton")
+            }
+            dayItem.innerHTML = result[0].months[monthPosition].days[i].number
+            dayItem.setAttribute("itemid",result[0].months[monthPosition].days[i].id)
+            days.appendChild(dayItem)
+        }
+         const buttons = document.querySelectorAll('.days li');
+            Array.from(buttons).forEach(function (button) {
+                button.addEventListener('click', async function () {
+                    const selected = document.querySelectorAll('.activeButton')
+                    Array.from(selected).forEach(function (btn) {
+                        btn.classList.remove("activeButton")
+                    })
+                    button.classList.add("activeButton")
+                    currentDayId = button.getAttribute("itemid")
+                    startDay.innerHTML = `${result[0].number}/${result[0].months[monthPosition].number}/${button.textContent}`
+                    date = `${result[0].number}-${result[0].months[monthPosition].number}-${button.textContent}`
+
+                })
+            })
+    }
+
+</script>
 
 
 </html>
