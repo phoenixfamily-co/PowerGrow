@@ -252,6 +252,13 @@
             border-radius: 1rem ;
         }
 
+           .show {
+            display: block;
+            visibility: visible;
+            -webkit-animation: fadeIn 1s;
+            animation: fadeIn 1s;
+        }
+
     </style>
 </head>
 <body>
@@ -389,8 +396,9 @@
 
 
     function submit(course) {
-        getSession(course)
         calendarPopup.classList.toggle("show");
+        getSession(course)
+
     }
 
       window.addEventListener("click", function (event) {
