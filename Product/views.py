@@ -279,10 +279,11 @@ class ParticipationView(viewsets.ViewSet):
             if response_data['Status'] == 100:
                 session = Sessions.objects.filter(id=data["session"]).first()
                 day = Days.objects.filter(id=data["day"]).first()
+                start = Day.objects.filter(data["start"]).first()
                 course = Course.objects.filter(id=data["course"]).first()
                 Participants.objects.update_or_create(title=data["title"],
                                                       description=data["description"],
-                                                      startDay=data["start"],
+                                                      startDay=start,
                                                       session=session,
                                                       day=day,
                                                       price=data["price"],
