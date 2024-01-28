@@ -570,5 +570,86 @@
 
 </script>
 
+<script>
+    const session = document.getElementById("number");
+    const week = document.getElementById("week");
+    const sessionList = document.getElementById("session");
+    let sessionId;
+    let dayId;
+
+
+
+    async function getSession() {
+
+
+        const response = await fetch(`/product/api/sessions/${course}/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        const result = await response.json()
+        if (response.status === 200) {
+            const res = JSON.stringify(result)
+            const sum = JSON.parse(res)
+            const size = JSON.parse(res).length
+            sessionList.innerHTML = ''
+            week.innerHTML = ''
+            for (let i = 0; i < size; i++) {
+                const item = document.createElement("option")
+                item.innerHTML = sum[i].number + 'جلسه'
+                item.setAttribute("id", sum[i].id)
+                sessionList.appendChild(item)
+            }
+            await getWeeks(sum[0].id)
+            sessionId = sum[0].id
+        }
+    }
+
+        sessionList.addEventListener('change', function () {
+            sessionId = this.options[this.options.selectedIndex].id
+            getWeeks(this.options[this.options.selectedIndex].id)
+        })
+
+    async function getWeeks(query) {
+
+        const response = await fetch(`/product/api/days/${query}/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        const result = await response.json()
+        if (response.status === 200) {
+            const res = JSON.stringify(result)
+            const sum = JSON.parse(res)
+            const size = JSON.parse(res).length
+            week.innerHTML = ''
+            for (let i = 0; i < size; i++) {
+                const item = document.createElement("option")
+                item.innerHTML = sum[i].title
+                item.setAttribute("id", sum[i].id)
+                week.appendChild(item)
+            }
+            dayId = sum[0].id
+            changePrice(sum[0].tuition, sum[0].off)
+
+        }
+    }
+
+      week.addEventListener('change', function () {
+          dayId = this.options[this.options.selectedIndex].id
+            changePrice(sum[this.options.selectedIndex].tuition, sum[this.options.selectedIndex].off)
+
+        })
+
+    function changePrice(price, off){
+        final_price = (parseInt(price) - (parseInt(off) / 100 * parseInt(price)))
+    }
+
+</script>
+
 
 </html>
