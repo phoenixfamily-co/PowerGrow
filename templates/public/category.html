@@ -302,7 +302,7 @@
             data-mdb-ripple-color="light">
             <img src="/media/{{ x.image }}"
               style="border-top-left-radius: 15px; border-top-right-radius: 15px ; height: 300px ; object-fit: fill ;width: 100%" class="img-fluid img-responsive"
-              alt="product" />
+              alt="product"/>
           </div>
           <div class="card-body pb-0">
             <div class="d-flex justify-content-between">
@@ -327,7 +327,7 @@
           <hr class="my-0" />
           <div class="card-body">
             <div style="float: left" class="d-flex align-items-center pb-2 mb-1">
-              <button type="button" class="btn register-button" id="{{ x.id }}">ثبت نام</button>
+              <button onclick="location.assign('{% url "product:product" x.id %}')" type="button" class="btn register-button" id="{{ x.id }}">ثبت نام</button>
             </div>
           </div>
         </div>
@@ -335,37 +335,6 @@
             {% endfor %}
     </div>
 </div>
-
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">تعداد و روز جلسات را انتخاب کنید</h5>
-        <button id="exit" type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-           <label for="session">تعداد جلسات در ماه را انتخاب کنید :</label>
-        <select name="numbers" id="session" style="margin-right: 14.5vh">
-        </select>
-        <br>
-        <br>
-        <label for="week">روزهای برگزاری در هفته را مشخص کنید:</label>
-        <select name="days" id="week" style="margin-right: 10vh">
-        </select>
-
-      </div>
-      <div class="modal-footer">
-        <button id="closeButton" type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
-        <button id="continueButton" type="button" class="btn btn-primary">ادامه</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 
 
 {#<div class="searchbar">#}
@@ -410,7 +379,6 @@
 
        </li>
 
-
       <li>
        <div  style="display: inline-flex ; width: 350px" >
            <i class="fa-solid fa-phone-flip"
@@ -420,9 +388,7 @@
         </h5>
 
        </div>
-
        </li>
-
        <li>
 
             <div style="display: inline-flex ; width: 350px">
