@@ -387,9 +387,8 @@
         <select name="week" id="week" style="margin-right: 10px">
         </select>
         </div>
-
 </div>
-          <button id="continueButton" style="background-color: #E16539 ; height: 35px ; width: 70px ; color: white ; border: 0 ; float: left ">ادامه</button>
+          <button onclick="next()" id="continueButton" style="background-color: #E16539 ; height: 35px ; width: 70px ; color: white ; border: 0 ; float: left ">ادامه</button>
 
       </div>
     </div>
@@ -402,16 +401,21 @@
 <script>
     let calendarPopup = document.getElementById("calendarPopup")
     let exit = document.getElementById("exit")
+    let courseId
 
 
 
 
     function submit(course) {
+        courseId = course
         calendarPopup.classList.toggle("show");
         getSession(course)
 
     }
+    function next(){
+        window.location.assign(`/api/admin/participate/${courseId}/${sessionId}/${dayId}/${currentDayId}/create/`)
 
+    }
       window.addEventListener("click", function (event) {
         if (event.target === calendarPopup) {
             calendarPopup.classList.remove("show");
@@ -421,7 +425,6 @@
     exit.addEventListener("click",function () {
         calendarPopup.classList.remove("show");
     })
-
 
 </script>
 
@@ -648,20 +651,13 @@
                 week.appendChild(item)
             }
             dayId = sum[0].id
-            changePrice(sum[0].tuition, sum[0].off)
 
         }
     }
 
       week.addEventListener('change', function () {
           dayId = this.options[this.options.selectedIndex].id
-            changePrice(sum[this.options.selectedIndex].tuition, sum[this.options.selectedIndex].off)
-
         })
-
-    function changePrice(price, off){
-        final_price = (parseInt(price) - (parseInt(off) / 100 * parseInt(price)))
-    }
 
 </script>
 
