@@ -188,7 +188,7 @@
                 روزها برگزاری:
             </h6>
             <h6 id="startTime" class="list-group-left">
-                {{ day.title}}
+                {{ week.title}}
             </h6>
         </li>
     </ul>
@@ -211,6 +211,18 @@
             </h6>
             <h6 id="price" class="list-group-left">
                 {{ product.time }}
+            </h6>
+        </li>
+    </ul>
+
+
+     <ul class="list-group list-group-flush">
+        <li class="list-group-item-fixed">
+            <h6 class="list-group-right">
+                تاریخ شروع:
+            </h6>
+            <h6 id="price" class="list-group-left">
+                {{ start.month.year.number }}/{{ start.month.number }}/{{ start.number }}
             </h6>
         </li>
     </ul>
@@ -279,7 +291,7 @@
 
     let off = "{{ day.off }}";
     let price = "{{ day.tuition }}";
-    let day = "{{ day.id }}";
+    let day = "{{ week.id }}";
     let session = "{{ session.id }}";
     let course = "{{ product.id }}";
     let start = "{{ start }}";

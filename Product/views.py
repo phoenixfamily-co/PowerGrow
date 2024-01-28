@@ -7,6 +7,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.utils import json
 from About.models import AboutUs
+from Calendar.models import Day
 from User.models import *
 from Product.serializer import *
 from django.conf import settings
@@ -44,13 +45,14 @@ def payment_view(request, pk, session, day, start):
     product = Course.objects.filter(id=pk).values().first()
     sessions = Sessions.objects.filter(id=session).values().first()
     days = Days.objects.filter(id=day).values().first()
+    day = Day.objects.get(id=start)
     template = loader.get_template('public/payment.html')
     context = {
         "about": about,
         "product": product,
         "session": sessions,
         "day": days,
-        "start" : start
+        "start" : day,
     }
     return HttpResponse(template.render(context, request))
 
