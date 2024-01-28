@@ -822,7 +822,6 @@
     let date
     let startDay = document.getElementById("startDay")
     let currentDayId
-    let dayId
     let today = new Date().toLocaleDateString('fa-IR');
     today = today.split('/')
     let currentDay = today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
@@ -945,7 +944,6 @@
             {
                 dayItem.classList.add("activeButton")
                 currentDayId = result[0].months[monthPosition].days[i].id
-                dayId = result[0].months[monthPosition].days[i].id
                 startDay.innerHTML = `${result[0].number}/${result[0].months[monthPosition].number}/${result[0].months[monthPosition].days[i].number}`
                 date = `${result[0].number}-${result[0].months[monthPosition].number}-${result[0].months[monthPosition].days[i].number}`
 
@@ -966,7 +964,7 @@
                         btn.classList.remove("activeButton")
                     })
                     button.classList.add("activeButton")
-                    dayId = button.getAttribute("itemid")
+                    currentDayId = button.getAttribute("itemid")
                     startDay.innerHTML = `${result[0].number}/${result[0].months[monthPosition].number}/${button.textContent}`
                     date = `${result[0].number}-${result[0].months[monthPosition].number}-${button.textContent}`
 
@@ -1005,7 +1003,7 @@
     registerButton.addEventListener('click', function () {
 
         if (cookieValue !== undefined) {
-            window.location.assign(`/product/payment/${course}/${sessionId}/${dayId}/${dayId}`)
+            window.location.assign(`/product/payment/${course}/${sessionId}/${dayId}/${currentDayId}`)
         } else {
             window.location.assign(`{% url 'user:login'  %}`)
         }
