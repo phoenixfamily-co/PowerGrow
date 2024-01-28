@@ -305,7 +305,7 @@
         <th scope="row">{{ x.id }}</th>
         <th onclick="window.open('{% url 'product:delete-courses' x.id %}')"><i class="fa fa-times" aria-hidden="true" style="cursor: pointer"></i></th>
         <th onclick="window.open('{% url 'product:update-courses' x.id %}')"><i class="fa fa-pencil" aria-hidden="true" style="cursor: pointer"></i></th>
-        <th onclick="submit()" style="text-decoration: underline ; cursor: pointer">ثبت نام</th>
+        <th onclick="submit(x.id)" style="text-decoration: underline ; cursor: pointer">ثبت نام</th>
         <th onclick="window.location.assign('{% url 'user:teacher_user_list' x.id %}')" style="text-decoration: underline ; cursor: pointer">مشاهده لیست</th>
         <td>{{ x.title }}</td>
         <td>{{ x.name }}</td>
@@ -388,7 +388,8 @@
 
 
 
-    function submit() {
+    function submit(course) {
+        getSession(course)
         calendarPopup.classList.toggle("show");
     }
 
@@ -416,7 +417,6 @@
     let result
     let monthSize
     let date
-    let startDay = document.getElementById("startDay")
     let currentDayId
     let today = new Date().toLocaleDateString('fa-IR');
     today = today.split('/')
@@ -430,7 +430,6 @@
 
     document.addEventListener("DOMContentLoaded", function() {
         getYear()
-        getSession()
     });
 
 
@@ -468,7 +467,6 @@
     function getDays(monthPosition) {
         monthTitle.innerHTML = result[0].months[monthPosition].name
         days.innerHTML=""
-        startDay.innerHTML = ""
 
         const emptyDay = document.createElement("li")
                 emptyDay.innerHTML = ' '
@@ -540,7 +538,6 @@
             {
                 dayItem.classList.add("activeButton")
                 currentDayId = result[0].months[monthPosition].days[i].id
-                startDay.innerHTML = `${result[0].number}/${result[0].months[monthPosition].number}/${result[0].months[monthPosition].days[i].number}`
                 date = `${result[0].number}-${result[0].months[monthPosition].number}-${result[0].months[monthPosition].days[i].number}`
 
             }else if (result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number < parseInt(currentDay)){
@@ -561,7 +558,6 @@
                     })
                     button.classList.add("activeButton")
                     currentDayId = button.getAttribute("itemid")
-                    startDay.innerHTML = `${result[0].number}/${result[0].months[monthPosition].number}/${button.textContent}`
                     date = `${result[0].number}-${result[0].months[monthPosition].number}-${button.textContent}`
 
                 })
@@ -571,7 +567,6 @@
 </script>
 
 <script>
-    const session = document.getElementById("number");
     const week = document.getElementById("week");
     const sessionList = document.getElementById("session");
     let sessionId;
@@ -579,10 +574,10 @@
 
 
 
-    async function getSession() {
+    async function getSession(courseId) {
 
 
-        const response = await fetch(`/product/api/sessions/${course}/`, {
+        const response = await fetch(`/product/api/sessions/${courseId}/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
