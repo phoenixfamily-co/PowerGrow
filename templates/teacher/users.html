@@ -135,6 +135,7 @@
         <th scope="col">نام و نام خانوادگی</th>
         <th scope="col">شماره تلفن</th>
         <th scope="col">تاریخ تولد</th>
+        <th scope="col">تاریخ شروع</th>
     </tr>
   </thead>
   <tbody>
@@ -144,6 +145,7 @@
         <td>{{ x.user.name }}</td>
         <td>{{ x.user.number }}</td>
         <td>{{ x.user.birthdate }}</td>
+    <td>{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}</td>
     </tr>
    {% endfor %}
   </tbody>
