@@ -133,6 +133,7 @@
         <th scope="col">تعداد جلسات</th>
         <th scope="col">روزهای هفته</th>
         <th scope="col">زمان</th>
+        <th scope="col">تاریخ شروع</th>
         <th scope="col">نام مربی</th>
         <th scope="col">قیمت</th>
 
@@ -148,6 +149,7 @@
         <td>{{ x.session.number }}</td>
         <td>{{ x.day.title }}</td>
         <td>{{ x.course.time }}</td>
+        <td>{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}</td>
         <td>{{ x.course.name }}</td>
         <td>{{ x.price }}</td>
     </tr>
