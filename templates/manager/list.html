@@ -94,10 +94,150 @@
             background-color: #E16539 !important;
         }
 
+
+        .month {
+            width: 100%;
+            height: 25%;
+            float: right;
+            background: #e4633a;
+            text-align: center;
+            border-top-left-radius: 1rem
+        }
+
+        .month ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        .month ul li {
+            color: white;
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .month .prev {
+            float: right;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .month .next {
+            float: left;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .weekdays {
+            margin: 0;
+            padding: 5px 0;
+            background-color: #ddd;
+            direction: rtl;
+            border-top-left-radius: 1rem
+        }
+
+        .weekdays li {
+          display: inline-block;
+          width: 12.6%;
+          color: #666;
+          text-align: center;
+        }
+
+        .days {
+            padding: 5px 0;
+            margin: 0;
+            direction: rtl;
+            border-bottom-left-radius: 20px;
+        }
+
+        .days li {
+            list-style-type: none;
+            display: inline-block;
+            width: 13.3%;
+            text-align: center;
+            margin-bottom: 1px;
+            font-size:16px;
+            color: #000000;
+            cursor: pointer;
+        }
+        .activeButton {
+            border-radius: 50px;
+            background: #1a5bbc;
+            color: white !important
+        }
+
+         .holidayButton {
+            border-radius: 50px;
+            color: #ff0c0c !important;
+             cursor: pointer;
+        }
+
+         .disActiveButton{
+
+             cursor: none;
+             pointer-events: none;
+             opacity:0.6;
+         }
+
+        .disabled-button{
+            height: 50px;
+            margin-top: 4%;
+            margin-right: 5%;
+            margin-bottom: 4%;
+            width: 90%;
+            opacity: 0.5;
+            background: #e4633a;
+            border-color: transparent;
+            color: white;
+            cursor: none;
+            pointer-events: none;
+        }
+
           .fa.fa-times{
               color: red;
              cursor: pointer
            }
+
+            .date-time{
+            width: 70%;
+            float: right;
+            margin-top: 15px;
+            display: inline;
+        }
+
+        .date-picker{
+            width: 50%;
+            height: 300px;
+            background: #FFFFFF ;
+            float: right;
+            border-top-left-radius: 1rem;
+            border-bottom-left-radius: 1rem;
+        }
+
+         .time-picker{
+            width: 49%;
+            height: 300px;
+            background: #FFFFFF ;
+            float: left;
+            border-radius: 1rem ;
+        }
+
+           .show {
+            display: block;
+            visibility: visible;
+            -webkit-animation: fadeIn 1s;
+            animation: fadeIn 1s;
+        }
+
+
+          ul {
+            list-style-type: none;
+        }
+
+          .time-body{
+            margin-right: 5%;
+            margin-top: 10%;
+        }
 
 
     </style>
@@ -149,12 +289,72 @@
         <td>{{ x.user.number }}</td>
         <td>{{ x.user.birthdate }}</td>
     <td onclick="">{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}</td>
-        <td>{{ x.day.title }}</td>
-        <td>{{ x.session.number }}</td>
+        <td onclick="">{{ x.day.title }}</td>
+        <td onclick="">{{ x.session.number }}</td>
     </tr>
    {% endfor %}
   </tbody>
 </table>
+
+<div class="modal fade" id="calendarPopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">تاریخ َشروع را انتخاب کنید</h5>
+        <button id="exit" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+<div class="date-picker">
+    <div class="month">
+  <ul>
+    <li id="next" class="prev">&#10094;</li>
+    <li id="prev" class="next">&#10095;</li>
+      <li id="monthTitle"></li>
+    <li>
+      <span id="yearTitle" style="font-size:18px"></span>
+    </li>
+  </ul>
+</div>
+<ul class="weekdays">
+  <li>ش</li>
+  <li>ی</li>
+  <li>د</li>
+  <li>س</li>
+  <li>چ</li>
+  <li>پ</li>
+  <li>ج</li>
+</ul>
+    <ul id="days" class="days">
+
+    </ul>
+</div>
+
+<div class="time-picker">
+
+    <div class="time-body">
+
+    <label for="session">تعداد جلسات در ماه را انتخاب کنید :</label>
+    <select name="session" id="session" style="margin-right: 20px">
+    </select>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <label for="week">روزهای برگزاری در هفته را مشخص کنید:</label>
+        <select name="week" id="week" style="margin-right: 10px">
+        </select>
+        </div>
+</div>
+          <button onclick="apply()" id="continueButton" style="background-color: #E16539 ; height: 35px ; width: 70px ; color: white ; border: 0 ; float: left ">ادامه</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 
 <script>
@@ -229,6 +429,32 @@
 </script>
 
 <script>
+    let calendarPopup = document.getElementById("calendarPopup")
+    let exit = document.getElementById("exit")
+    let courseId
+
+    function submit(course) {
+        courseId = course
+        calendarPopup.classList.toggle("show");
+        getSession(course)
+
+    }
+    function apply(){
+        window.location.assign(`/product/api/admin/participate/${courseId}/${sessionId}/${dayId}/${currentDayId}/create/`)
+    }
+      window.addEventListener("click", function (event) {
+        if (event.target === calendarPopup) {
+            calendarPopup.classList.remove("show");
+        }
+    });
+
+    exit.addEventListener("click",function () {
+        calendarPopup.classList.remove("show");
+    })
+
+</script>
+
+<script>
 
     let calendar = document.getElementById("calendar")
     let monthTitle = document.getElementById("monthTitle")
@@ -240,10 +466,10 @@
     let monthSize
     let date
     let currentDayId
-    let today = new Date().toLocaleDateString('fa-IR');
-    today = today.split('/')
-    let currentDay = today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
-    let currentMonth = today[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
+    let todayCal = new Date().toLocaleDateString('fa-IR');
+    todayCal = todayCal.split('/')
+    let currentDayCal = todayCal[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
+    let currentMonth = todayCal[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
     let monthPosition = currentMonth-7
 
 
@@ -354,15 +580,15 @@
         }
         for (let i = 0 ; i< result[0].months[monthPosition].days.length ; i++){
             const dayItem = document.createElement("li")
-            if (result[0].months[monthPosition].days[i].holiday === true && result[0].months[monthPosition].days[i].number > parseInt(currentDay)) {
+            if (result[0].months[monthPosition].days[i].holiday === true && result[0].months[monthPosition].days[i].number > parseInt(currentDayCal)) {
                 dayItem.classList.add("holidayButton")
-            }else if ( result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number === parseInt(currentDay))
+            }else if ( result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number === parseInt(currentDayCal))
             {
                 dayItem.classList.add("activeButton")
                 currentDayId = result[0].months[monthPosition].days[i].id
                 date = `${result[0].number}-${result[0].months[monthPosition].number}-${result[0].months[monthPosition].days[i].number}`
 
-            }else if (result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number < parseInt(currentDay)){
+            }else if (result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number < parseInt(currentDayCal)){
                 dayItem.classList.add("disActiveButton")
             }else if (result[0].months[monthPosition].number < parseInt(currentMonth)){
                 dayItem.classList.add("disActiveButton")
