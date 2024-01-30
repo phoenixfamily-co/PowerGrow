@@ -47,5 +47,7 @@ urlpatterns = [
     path('api/participants/<int:pk>/', CourseUserView.as_view(), name='course_user'),
     path('<int:pk>/', product_view, name='product'),
     path('verify/', verify, name='verify'),
+    path('list/teacher/<int:pk>/', teacher_user_list, name='teacher_user_list'),
+    path('list/manager/<int:pk>/', manager_user_list, name='manager_user_list'),
 
 ]

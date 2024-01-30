@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 
 from About.models import AboutUs
-from Product.models import Participants, Sport, Course
+from Product.models import Sport
 from Reservation.models import Reservations
 from User.serializer import *
 from User.models import *
@@ -175,34 +175,6 @@ def admin_user_view(request):
     context = {
         "about": about,
         "user" : user
-    }
-    return HttpResponse(template.render(context, request))
-
-
-def teacher_user_list(request, pk):
-    about = AboutUs.objects.values().first()
-    template = loader.get_template('teacher/users.html')
-    course = Course.objects.get(id=pk)
-    size = course.participants.values()
-    context = {
-        "about": about,
-        "course" : course,
-        "size": len(list(size)),
-
-    }
-    return HttpResponse(template.render(context, request))
-
-
-def manager_user_list(request, pk):
-    about = AboutUs.objects.values().first()
-    template = loader.get_template('manager/list.html')
-    course = Course.objects.get(id=pk)
-    size = course.participants.values()
-    context = {
-        "about": about,
-        "course" : course,
-        "size": len(list(size)),
-
     }
     return HttpResponse(template.render(context, request))
 

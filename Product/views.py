@@ -197,6 +197,35 @@ def admin_day_view(request):
     return HttpResponse(template.render(context, request))
 
 
+def teacher_user_list(request, pk):
+    about = AboutUs.objects.values().first()
+    template = loader.get_template('teacher/users.html')
+    course = Course.objects.get(id=pk)
+    size = course.participants.values()
+    context = {
+        "about": about,
+        "course" : course,
+        "size": len(list(size)),
+
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def manager_user_list(request, pk):
+    about = AboutUs.objects.values().first()
+    template = loader.get_template('manager/list.html')
+    course = Course.objects.get(id=pk)
+    size = course.participants.values()
+    context = {
+        "about": about,
+        "course" : course,
+        "size": len(list(size)),
+
+    }
+    return HttpResponse(template.render(context, request))
+
+
+
 class CourseView(viewsets.ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
