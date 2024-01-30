@@ -348,7 +348,7 @@
         </select>
         </div>
 </div>
-          <button onclick="apply()" id="continueButton" style="background-color: #E16539 ; height: 35px ; width: 70px ; color: white ; border: 0 ; float: left ">ادامه</button>
+          <button onclick="apply()" id="continueButton" style="background-color: #E16539 ; height: 35px ; width: 70px ; color: white ; border: 0 ; float: left ">بروزرسانی</button>
 
       </div>
     </div>
@@ -440,7 +440,7 @@
 
     }
     function apply(){
-        window.location.assign(`/product/api/admin/participate/${courseId}/${sessionId}/${dayId}/${currentDayId}/create/`)
+        window.location.assign(`/product/api/admin/participate/${courseId}/${sessionId}/${dayId}/${currentDayId}/update/`)
     }
       window.addEventListener("click", function (event) {
         if (event.target === calendarPopup) {
