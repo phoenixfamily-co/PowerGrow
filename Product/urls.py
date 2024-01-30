@@ -36,7 +36,7 @@ urlpatterns = [
          name='delete-admin-participate'),
     path('api/admin/participate/<int:id>/<int:day>/<int:session>/<int:start>/create/', ManagerParticipationView.as_view({'post': 'create'}),
          name='create-admin-participate'),
-    path('api/admin/participate/<int:id>/<int:day>/<int:session>/<int:start>/update/',
+    path('api/admin/participate/<int:id>/<int:session>/<int:day>/<int:start>/update/',
          ManagerParticipationView.as_view({'put': 'update'}),
          name='update-admin-participate'),
     path('api/admin/participate/', ManagerParticipationView.as_view({'get': 'list'}),
