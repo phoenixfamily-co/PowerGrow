@@ -193,6 +193,20 @@ def teacher_user_list(request, pk):
     return HttpResponse(template.render(context, request))
 
 
+def manager_user_list(request, pk):
+    about = AboutUs.objects.values().first()
+    template = loader.get_template('manager/list.html')
+    course = Course.objects.get(id=pk)
+    size = course.participants.values()
+    context = {
+        "about": about,
+        "course" : course,
+        "size": len(list(size)),
+
+    }
+    return HttpResponse(template.render(context, request))
+
+
 class CustomObtainAuthToken(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
         response = super(CustomObtainAuthToken, self).post(request, *args, **kwargs)

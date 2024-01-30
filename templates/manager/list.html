@@ -1,0 +1,457 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://kit.fontawesome.com/1228ed801f.js" crossorigin="anonymous"></script>
+
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+        <title>مدیریت دوره ها</title>
+
+
+    <style>
+
+
+
+           @font-face {
+            font-family: BYekan;
+            font-style: normal;
+            font-weight: normal;
+            src: url("/static/fonts/BYekan.eot");/* IE9 Compat Modes */
+            src: url("/static/fonts/BYekan.woff") format('woff'),
+            url("/static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */ url("../../static/fonts/BYekan.ttf") format('truetype') /* Safari, Android, iOS */
+        }
+
+             * {
+            box-sizing: border-box
+        }
+
+           .logoHolder {
+               width: 50px;
+               position: absolute;
+               left: 0;
+               right: 0;
+               margin-right: 55%;
+               margin-top: 1%;
+               z-index: 10 !important;
+               direction: ltr;
+
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            position: absolute;
+            direction: ltr
+
+        }
+
+        .typography {
+            position: absolute;
+            margin-left: 60px;
+            margin-top: 20%;
+            color: white;
+            font-size: 20px
+
+        }
+           html {
+               min-height: 100%;
+               position: relative;
+               font-family: BYekan, serif !important;
+           }
+
+           body {
+               direction: rtl;
+               background: #282a36;
+
+           }
+
+           .navbar.navbar-dark.bg-dark li a{
+            color: #fff;
+        }
+
+          .navbar.navbar-dark.bg-dark a:hover{
+              color: grey;
+        }
+
+       .nav.navbar-nav li a {
+           color: #fff;
+           text-decoration: none;
+       }
+
+        .nav.navbar-nav a:hover {
+            color: grey;
+        }
+
+        .nav-pills > li > a.active {
+            background-color: #E16539 !important;
+        }
+
+          .fa.fa-times{
+              color: red;
+             cursor: pointer
+           }
+
+
+    </style>
+</head>
+<body>
+
+
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid" style="vertical-align: center">
+<ul class="nav nav-pills">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href='javascript:filterList()'>لیست امروز</a>
+  </li>
+</ul>
+
+  <ul class="nav nav-pills navbar-left">
+      <li class="nav-item">
+    <a class="nav-link" aria-current="page" href='javascript: history.go(-1)'>برگشت</a>
+  </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="logoHolder">
+
+    <img alt="" src="/media/{{ about.logo }}" class="logo">
+    <div class="typography">PowerGrow</div>
+
+</div>
+
+<table id="table" class="table" style="color: white ; margin-top: 100px">
+  <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">نام و نام خانوادگی</th>
+        <th scope="col">شماره تلفن</th>
+        <th scope="col">تاریخ تولد</th>
+        <th scope="col">تاریخ شروع</th>
+        <th scope="col">روزهای برگزاری</th>
+        <th scope="col">تعداد جلسه ها</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for x in course.participants.all %}
+    <tr>
+        <th scope="row">{{ x.user.id }}</th>
+        <td>{{ x.user.name }}</td>
+        <td>{{ x.user.number }}</td>
+        <td>{{ x.user.birthdate }}</td>
+    <td onclick="">{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}</td>
+        <td>{{ x.day }}</td>
+        <td>{{ x.session }}</td>
+
+    </tr>
+   {% endfor %}
+  </tbody>
+</table>
+</body>
+
+<script>
+
+    let table = document.getElementById('table');
+    let body = table.getElementsByTagName('tbody')[0];
+    let today = new Date().toLocaleDateString('fa-IR');
+    today = today.split('/')
+    let currentDay
+    const d = new Date();
+    let day = d.getDay();
+
+    switch (day) {
+        case 0:
+            currentDay="یکشنبه"
+            break
+        case 1:
+            currentDay="دوشنبه"
+            break
+        case 2:
+            currentDay="سه شنبه"
+            break
+        case 3:
+            currentDay="چهارشنبه"
+            break
+        case 4:
+            currentDay="پنجشنبه"
+            break
+        case 5:
+            currentDay="جمعه"
+            break
+        case 6:
+            currentDay="شنبه"
+            break
+    }
+
+    function filterList() {
+
+        body.innerHTML = ' '
+
+        {% for x in course.participants.all %}
+
+            if (currentDay==="{{x.day.title}}" || "{{x.day.title}}".split("،").includes(currentDay)){
+                let tr = document.createElement("tr")
+                let id = document.createElement("th")
+                id.innerHTML = "{{x.user.id}}"
+                let name = document.createElement("td")
+                name.innerHTML = "{{x.user.name}}"
+                let number = document.createElement("td")
+                number.innerHTML = "{{x.user.number}}"
+                 let birthdate = document.createElement("td")
+                birthdate.innerHTML = "{{x.user.birthdate}}"
+                tr.appendChild(id)
+                tr.appendChild(name)
+                tr.appendChild(number)
+                tr.appendChild(birthdate)
+                body.appendChild(tr)
+            }
+        {% endfor %}
+
+    }
+
+</script>
+
+<script>
+
+    let calendar = document.getElementById("calendar")
+    let monthTitle = document.getElementById("monthTitle")
+    let yearTitle = document.getElementById("yearTitle")
+    let prev = document.getElementById("prev")
+    let next = document.getElementById("next")
+    let days = document.getElementById("days")
+    let result
+    let monthSize
+    let date
+    let currentDayId
+    let today = new Date().toLocaleDateString('fa-IR');
+    today = today.split('/')
+    let currentDay = today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
+    let currentMonth = today[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
+    let monthPosition = currentMonth-7
+
+
+
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+        getYear()
+    });
+
+
+    async function getYear() {
+
+        const response = await fetch('/calendar/api/year/', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        result = await response.json()
+        result = JSON.parse(JSON.stringify(result))
+        monthSize = result[0].months.length
+
+        yearTitle.innerHTML = result[0].number
+        getDays(monthPosition)
+
+    }
+
+        next.addEventListener("click", function () {
+            if (monthPosition > 0) {
+                monthPosition = monthPosition - 1
+                getDays(monthPosition)
+            }
+        })
+
+    prev.addEventListener("click",function () {
+         if (monthPosition<monthSize-1){
+            monthPosition = monthPosition+1
+             getDays(monthPosition)
+        }
+    })
+
+    function getDays(monthPosition) {
+        monthTitle.innerHTML = result[0].months[monthPosition].name
+        days.innerHTML=""
+
+        const emptyDay = document.createElement("li")
+                emptyDay.innerHTML = ' '
+
+        switch (result[0].months[monthPosition].startDay) {
+
+            case "یکشنبه" :
+                const empty0 = document.createElement("li")
+                days.appendChild(empty0)
+                break
+            case "دوشنبه" :
+                const empty1 = document.createElement("li")
+                days.appendChild(empty1)
+                const empty2 = document.createElement("li")
+                days.appendChild(empty2)
+                break
+
+            case "سه شنبه" :
+               const empty3 = document.createElement("li")
+                days.appendChild(empty3)
+                const empty4 = document.createElement("li")
+                days.appendChild(empty4)
+                const empty5 = document.createElement("li")
+                days.appendChild(empty5)
+                break
+             case "چهارشنبه" :
+                 const empty6 = document.createElement("li")
+                days.appendChild(empty6)
+                const empty7 = document.createElement("li")
+                days.appendChild(empty7)
+                const empty9 = document.createElement("li")
+                days.appendChild(empty9)
+                 const empty10 = document.createElement("li")
+                days.appendChild(empty10)
+
+                break
+             case "پنجشنبه" :
+                const empty11 = document.createElement("li")
+                days.appendChild(empty11)
+                const empty12 = document.createElement("li")
+                days.appendChild(empty12)
+                const empty13 = document.createElement("li")
+                days.appendChild(empty13)
+                 const empty14 = document.createElement("li")
+                days.appendChild(empty14)
+                 const empty15 = document.createElement("li")
+                days.appendChild(empty15)
+                break
+             case "جمعه" :
+                  const empty16 = document.createElement("li")
+                days.appendChild(empty16)
+                const empty17 = document.createElement("li")
+                days.appendChild(empty17)
+                const empty18 = document.createElement("li")
+                days.appendChild(empty18)
+                 const empty19 = document.createElement("li")
+                days.appendChild(empty19)
+                 const empty20 = document.createElement("li")
+                days.appendChild(empty20)
+                 const empty21 = document.createElement("li")
+                days.appendChild(empty21)
+                break
+        }
+        for (let i = 0 ; i< result[0].months[monthPosition].days.length ; i++){
+            const dayItem = document.createElement("li")
+            if (result[0].months[monthPosition].days[i].holiday === true && result[0].months[monthPosition].days[i].number > parseInt(currentDay)) {
+                dayItem.classList.add("holidayButton")
+            }else if ( result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number === parseInt(currentDay))
+            {
+                dayItem.classList.add("activeButton")
+                currentDayId = result[0].months[monthPosition].days[i].id
+                date = `${result[0].number}-${result[0].months[monthPosition].number}-${result[0].months[monthPosition].days[i].number}`
+
+            }else if (result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number < parseInt(currentDay)){
+                dayItem.classList.add("disActiveButton")
+            }else if (result[0].months[monthPosition].number < parseInt(currentMonth)){
+                dayItem.classList.add("disActiveButton")
+            }
+            dayItem.innerHTML = result[0].months[monthPosition].days[i].number
+            dayItem.setAttribute("itemid",result[0].months[monthPosition].days[i].id)
+            days.appendChild(dayItem)
+        }
+         const buttons = document.querySelectorAll('.days li');
+            Array.from(buttons).forEach(function (button) {
+                button.addEventListener('click', async function () {
+                    const selected = document.querySelectorAll('.activeButton')
+                    Array.from(selected).forEach(function (btn) {
+                        btn.classList.remove("activeButton")
+                    })
+                    button.classList.add("activeButton")
+                    currentDayId = button.getAttribute("itemid")
+                    date = `${result[0].number}-${result[0].months[monthPosition].number}-${button.textContent}`
+
+                })
+            })
+    }
+
+</script>
+
+<script>
+    const week = document.getElementById("week");
+    const sessionList = document.getElementById("session");
+    let sessionId;
+    let dayId;
+
+
+
+    async function getSession(courseId) {
+
+
+        const response = await fetch(`/product/api/sessions/${courseId}/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        const result = await response.json()
+        if (response.status === 200) {
+            const res = JSON.stringify(result)
+            const sum = JSON.parse(res)
+            const size = JSON.parse(res).length
+            sessionList.innerHTML = ''
+            week.innerHTML = ''
+            for (let i = 0; i < size; i++) {
+                const item = document.createElement("option")
+                item.innerHTML = sum[i].number + 'جلسه'
+                item.setAttribute("id", sum[i].id)
+                sessionList.appendChild(item)
+            }
+            await getWeeks(sum[0].id)
+            sessionId = sum[0].id
+        }
+    }
+
+        sessionList.addEventListener('change', function () {
+            sessionId = this.options[this.options.selectedIndex].id
+            getWeeks(this.options[this.options.selectedIndex].id)
+        })
+
+    async function getWeeks(query) {
+
+        const response = await fetch(`/product/api/days/${query}/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        const result = await response.json()
+        if (response.status === 200) {
+            const res = JSON.stringify(result)
+            const sum = JSON.parse(res)
+            const size = JSON.parse(res).length
+            week.innerHTML = ''
+            for (let i = 0; i < size; i++) {
+                const item = document.createElement("option")
+                item.innerHTML = sum[i].title
+                item.setAttribute("id", sum[i].id)
+                week.appendChild(item)
+            }
+            dayId = sum[0].id
+
+        }
+    }
+
+      week.addEventListener('change', function () {
+          dayId = this.options[this.options.selectedIndex].id
+        })
+
+</script>
+
+
+</html>
