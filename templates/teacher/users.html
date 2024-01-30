@@ -136,6 +136,8 @@
         <th scope="col">شماره تلفن</th>
         <th scope="col">تاریخ تولد</th>
         <th scope="col">تاریخ شروع</th>
+         <th scope="col">روزهای برگزاری</th>
+        <th scope="col">تعداد جلسه ها</th>
     </tr>
   </thead>
   <tbody>
@@ -146,6 +148,8 @@
         <td>{{ x.user.number }}</td>
         <td>{{ x.user.birthdate }}</td>
     <td>{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}</td>
+     <td>{{ x.day.title }}</td>
+        <td>{{ x.session.number }}</td>
     </tr>
    {% endfor %}
   </tbody>
