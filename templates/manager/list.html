@@ -288,9 +288,9 @@
         <td>{{ x.user.name }}</td>
         <td>{{ x.user.number }}</td>
         <td>{{ x.user.birthdate }}</td>
-    <td onclick="submit('{{ x.course.id}}','{{x.id}}')">{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}</td>
-        <td onclick="">{{ x.day.title }}</td>
-        <td onclick="">{{ x.session.number }}</td>
+    <td style="cursor: pointer ; text-decoration: underline" onclick="submit('{{ x.course.id}}','{{x.id}}')">{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}</td>
+        <td style="cursor: pointer ; text-decoration: underline" onclick="">{{ x.day.title }}</td>
+        <td style="cursor: pointer ; text-decoration: underline" onclick="">{{ x.session.number }}</td>
     </tr>
    {% endfor %}
   </tbody>
