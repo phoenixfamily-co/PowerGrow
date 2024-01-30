@@ -142,7 +142,6 @@ def user_courses_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
-
 def teacher_courses_view(request, pk):
     template = loader.get_template('teacher/courses.html')
     about = AboutUs.objects.values().first()
