@@ -206,10 +206,16 @@
                 number.innerHTML = "{{x.user.number}}"
                  let birthdate = document.createElement("td")
                 birthdate.innerHTML = "{{x.user.birthdate}}"
+                 let dayTitle = document.createElement("td")
+                dayTitle.innerHTML = "{{x.day.title}}"
+                 let sessionNumber = document.createElement("td")
+                sessionNumber.innerHTML = "{{x.session.number}}"
                 tr.appendChild(id)
                 tr.appendChild(name)
                 tr.appendChild(number)
                 tr.appendChild(birthdate)
+                tr.appendChild(dayTitle)
+                tr.appendChild(sessionNumber)
                 body.appendChild(tr)
             }
         {% endfor %}
