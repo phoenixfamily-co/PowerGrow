@@ -323,7 +323,7 @@
         <th onclick="window.open('{% url 'product:delete-courses' x.id %}')"><i class="fa fa-times" aria-hidden="true" style="cursor: pointer"></i></th>
         <th onclick="window.open('{% url 'product:update-courses' x.id %}')"><i class="fa fa-pencil" aria-hidden="true" style="cursor: pointer"></i></th>
         <th onclick="submit({{ x.id }})" style="text-decoration: underline ; cursor: pointer">ثبت نام</th>
-        <th onclick="window.location.assign('{% url 'user:teacher_user_list' x.id %}')" style="text-decoration: underline ; cursor: pointer">مشاهده لیست</th>
+        <th onclick="window.location.assign('{% url 'user:manager_user_list' x.id %}')" style="text-decoration: underline ; cursor: pointer">مشاهده لیست</th>
         <td>{{ x.title }}</td>
         <td>{{ x.name }}</td>
         <td>{{ x.gender }}</td>
