@@ -225,7 +225,6 @@ def manager_user_list(request, pk):
     return HttpResponse(template.render(context, request))
 
 
-
 class CourseView(viewsets.ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
@@ -356,6 +355,16 @@ class ManagerParticipationView(viewsets.ModelViewSet):
         serializer = ParticipantsSerializer(participants)
         return Response(serializer.data)
 
+    def update(self, request, *args, **kwargs):
+        session = Sessions.objects.get(id=kwargs.get('session'))
+        day = Days.objects.get(id=kwargs.get('day'))
+        start = Day.objects.get(id=kwargs.get('start'))
+
+        Participants.objects.filter(id=kwargs.get('id')).update(session=session,
+                                                            day=day,
+                                                                startDay=start)
+        return Response(status=status.HTTP_202_ACCEPTED)
+
 
 class SportView(viewsets.ModelViewSet):
     queryset = Sport.objects.all()
@@ -366,9 +375,6 @@ class CourseUserView(generics.ListAPIView):
     queryset = Participants.objects.all()
     serializer_class = ParticipantsUserSerializer
     lookup_field = "id"
-
-
-
 
 
 @api_view(('GET',))
