@@ -366,7 +366,6 @@ class ManagerParticipationView(viewsets.ModelViewSet):
         return Response(status=status.HTTP_202_ACCEPTED)
 
 
-
 class SportView(viewsets.ModelViewSet):
     queryset = Sport.objects.all()
     serializer_class = SportSerializer
