@@ -456,7 +456,15 @@
 
     }
     function apply(){
-        window.location.assign(`/product/api/admin/participate/${participantId}/${sessionId}/${dayId}/${currentDayId}/update/`)
+
+          const response = fetch("/product/api/admin/participate/${participantId}/${sessionId}/${dayId}/${currentDayId}/update/", {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        calendarPopup.classList.remove("show");
+        window.location.reload()
     }
       window.addEventListener("click", function (event) {
         if (event.target === calendarPopup) {
