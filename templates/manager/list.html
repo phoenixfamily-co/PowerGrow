@@ -279,6 +279,8 @@
         <th scope="col">تاریخ شروع</th>
         <th scope="col">روزهای برگزاری</th>
         <th scope="col">تعداد جلسه ها</th>
+        <th scope="col">توضیحات</th>
+
 
     </tr>
   </thead>
@@ -293,6 +295,7 @@
     <td style="cursor: pointer ; text-decoration: underline" onclick="submit('{{ x.course.id}}','{{x.id}}')">{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}</td>
         <td style="cursor: pointer ; text-decoration: underline" onclick="submit('{{ x.course.id}}','{{x.id}}')">{{ x.day.title }}</td>
         <td style="cursor: pointer ; text-decoration: underline" onclick="submit('{{ x.course.id}}','{{x.id}}')">{{ x.session.number }}</td>
+        <td>{{ x.description }}</td>
     </tr>
    {% endfor %}
   </tbody>
