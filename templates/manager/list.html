@@ -415,7 +415,7 @@
                   let birthdate = document.createElement("td")
                 birthdate.innerHTML = "{{x.user.birthdate}}"
                 let startDay = document.createElement("td")
-                startDay.innerHTML = "{{x.day.title}}"
+                startDay.innerHTML = "{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}"
                  let dayTitle = document.createElement("td")
                 dayTitle.innerHTML = "{{x.day.title}}"
                  let sessionNumber = document.createElement("td")
