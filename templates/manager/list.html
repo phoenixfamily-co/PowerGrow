@@ -458,7 +458,7 @@
     function apply(){
 
           const response = fetch("/product/api/admin/participate/${participantId}/${sessionId}/${dayId}/${currentDayId}/update/", {
-            method: 'DELETE',
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
