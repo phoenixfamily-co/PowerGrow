@@ -457,7 +457,7 @@
     }
     function apply(){
 
-          const response = fetch("/product/api/admin/participate/${participantId}/${sessionId}/${dayId}/${currentDayId}/update/", {
+          const response = fetch("/product/api/admin/participate/" + participantId + "/"+ sessionId + "/" + dayId + "/" + currentDayId +"/update/", {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
