@@ -365,6 +365,11 @@ class ManagerParticipationView(viewsets.ModelViewSet):
                                                                 startDay=start)
         return Response(status=status.HTTP_202_ACCEPTED)
 
+    def destroy(self, request, *args, **kwargs):
+        queryset = Participants.objects.get(id=kwargs.get('id'))
+        queryset.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 class SportView(viewsets.ModelViewSet):
     queryset = Sport.objects.all()
