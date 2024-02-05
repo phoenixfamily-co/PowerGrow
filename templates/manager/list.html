@@ -290,7 +290,7 @@
         <th scope="row">{{ x.user.id }}</th>
         <th onclick="window.open('{% url 'product:delete-admin-participate' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
         <td>{{ x.user.name }}</td>
-        <td>{{ x.user.number }}</td>
+        <td style="direction: ltr">{{ x.user.number }}</td>
         <td>{{ x.user.birthdate }}</td>
     <td style="cursor: pointer ; text-decoration: underline" onclick="submit('{{ x.course.id}}','{{x.id}}')">{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}</td>
         <td style="cursor: pointer ; text-decoration: underline" onclick="submit('{{ x.course.id}}','{{x.id}}')">{{ x.day.title }}</td>
