@@ -178,8 +178,11 @@
         <td onclick="window.open('{% url 'user:change_debt' x.number %}')" style="cursor: pointer ; text-decoration: underline">{{ x.debt}}</td>
         <td onclick="window.open('{% url 'user:change_debt' x.number %}')" style="cursor: pointer ; text-decoration: underline">{{ x.description}}</td>
         <td>{{ x.created.name}}</td>
-        <td>{{ x.is_active}}</td>
-
+        <td> {% if x.is_active == True %}
+            فعال
+            {% else %}
+            غیرفعال
+        {% endif %}</td>
     </tr>
    {% endfor %}
   </tbody>
