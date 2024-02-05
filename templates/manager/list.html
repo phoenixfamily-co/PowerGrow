@@ -406,6 +406,7 @@
                 let tr = document.createElement("tr")
                 let id = document.createElement("th")
                 id.innerHTML = "{{x.user.id}}"
+                let escape = document.createElement("th")
                 let name = document.createElement("td")
                 name.innerHTML = "{{x.user.name}}"
                 let number = document.createElement("td")
@@ -421,6 +422,7 @@
                  let description = document.createElement("td")
                 description.innerHTML = "{{x.description}}"
                 tr.appendChild(id)
+                tr.appendChild(escape)
                 tr.appendChild(name)
                 tr.appendChild(number)
                 tr.appendChild(birthdate)
