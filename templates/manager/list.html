@@ -461,10 +461,11 @@
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
+                {#'Authorization' :  #}
             },
         })
 
-        console.log(response.status)
+        console.log(document.cookie)
 
         {#if (response.status===200){#}
         {#    #}
