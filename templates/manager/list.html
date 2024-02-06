@@ -463,8 +463,16 @@
                 'Content-Type': 'application/json',
             },
         })
-        calendarPopup.classList.remove("show");
-        window.location.reload()
+
+        console.log(response.status)
+
+        {#if (response.status===200){#}
+        {#    #}
+        {#    calendarPopup.classList.remove("show");#}
+        {#window.location.reload()#}
+        {#    #}
+
+
     }
       window.addEventListener("click", function (event) {
         if (event.target === calendarPopup) {
