@@ -448,6 +448,11 @@
     let courseId
     let participantId
 
+        const cookieValue = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("token="))
+        ?.split("=")[1];
+
     function submit(course,participant) {
         courseId = course
         participantId = participant
@@ -465,7 +470,7 @@
             },
         })
 
-        console.log(document.cookie)
+        console.log(cookieValue)
 
         {#if (response.status===200){#}
         {#    #}
