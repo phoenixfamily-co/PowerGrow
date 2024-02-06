@@ -470,13 +470,8 @@
             },
         })
 
-        {#if (response.status===200){#}
-        {#    #}
-        {#    calendarPopup.classList.remove("show");#}
-        {#window.location.reload()#}
-        {#    #}
-
-
+        calendarPopup.classList.remove("show");
+        window.location.reload()
     }
       window.addEventListener("click", function (event) {
         if (event.target === calendarPopup) {
