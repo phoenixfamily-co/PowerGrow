@@ -466,11 +466,9 @@
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                {#'Authorization' :  #}
+                'Authorization' :  `Token=${cookieValue}`
             },
         })
-
-        console.log(cookieValue)
 
         {#if (response.status===200){#}
         {#    #}
