@@ -35,7 +35,7 @@ def teacher_calendar_view(request, pk):
     template = loader.get_template('teacher/calendar.html')
     context = {
         "about": about,
-        "user" : user,
+        "user": user,
     }
     return HttpResponse(template.render(context, request))
 
@@ -96,10 +96,18 @@ class TimeView(viewsets.ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-class CostView(generics.UpdateAPIView):
+class CostView(viewsets.ModelViewSet):
     queryset = Time.objects.all()
     serializer_class = ChangeCostSerializer
-    lookup_field = "id"
+
+    def update(self, request, *args, **kwargs):
+        time = Time.objects.get(id=kwargs.get('id'))
+        if request.data['all']:
+            Time.objects.filter(time=time.time, day__name=time.day.name).update(price=request.data['price'])
+        else:
+            Time.objects.filter(id=kwargs.get('id')).update(price=request.data['price'])
+
+        return Response(status=status.HTTP_202_ACCEPTED)
 
 
 class ChangeDescriptionView(generics.UpdateAPIView, ):

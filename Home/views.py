@@ -1,11 +1,10 @@
-from rest_framework import viewsets, status, generics
-from rest_framework.response import Response
+from rest_framework import viewsets
 
 from Product.models import Course, Sport
 from About.models import AboutUs
 from django.template import loader
 from .serializer import *
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse
 
 
 def home_view(request):
@@ -16,7 +15,7 @@ def home_view(request):
     template = loader.get_template('public/home.html')
     context = {
         "images": images,
-        "first" : images.first(),
+        "first": images.first(),
         "selected": selected,
         "about": about,
         "sport": sport,
@@ -39,4 +38,3 @@ def slider_view(request):
 class SliderView(viewsets.ModelViewSet):
     queryset = Slider.objects.all()
     serializer_class = SliderSerializer
-

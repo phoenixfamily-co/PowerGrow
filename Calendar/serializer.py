@@ -35,16 +35,12 @@ class YearSerializer(serializers.ModelSerializer):
 
 
 class ChangeCostSerializer(serializers.ModelSerializer):
+    all = serializers.BooleanField()
+
     class Meta:
         model = Time
-        fields = ['price' , 'off']
-
-    def update(self, instance, validated_data):
-        instance.price = validated_data.get("price", instance.price)
-        instance.off = validated_data.get("off", instance.off)
-        instance.save()
-
-        return instance
+        fields = ['price', 'off']
+        read_only_fields = ('all',)
 
 
 class ChangeDescriptionSerializer(serializers.ModelSerializer):
