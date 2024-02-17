@@ -620,11 +620,11 @@
                   const span = document.createElement("span")
                   span.innerHTML = res[i].time
                   span.classList.add("tooltiptext")
+                  timeItem.appendChild(span)
                   timeItem.innerHTML = res[i].time
                   timeItem.setAttribute("id",`${i}`)
                   timeItem.setAttribute("itemid",res[i].id)
                   timeCover.classList.add("col")
-                  timeItem.classList.add("tooltip")
                   timeItem.classList.add("simpleTime")
                   timeCover.appendChild(timeItem)
 
