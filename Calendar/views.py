@@ -102,7 +102,7 @@ class CostView(viewsets.ModelViewSet):
 
     def update(self, request, *args, **kwargs):
         time = Time.objects.get(id=kwargs.get('id'))
-        if request.data['all']:
+        if bool(self.request.POST['all']):
             Time.objects.filter(time=time.time, day__name=time.day.name).update(price=request.data['price'])
         else:
             Time.objects.filter(id=kwargs.get('id')).update(price=request.data['price'])

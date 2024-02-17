@@ -39,7 +39,7 @@ class ChangeCostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Time
-        fields = ['price', 'off', 'all']
+        fields = ['price', 'off']
         read_only_fields = ('all',)
 
 
@@ -54,3 +54,4 @@ class ChangeDescriptionSerializer(serializers.ModelSerializer):
         instance.save()
 
         return instance
+
