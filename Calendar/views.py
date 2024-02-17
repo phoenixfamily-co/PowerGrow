@@ -115,3 +115,14 @@ class ChangeDescriptionView(generics.UpdateAPIView, ):
     queryset = Day.objects.all()
     lookup_field = "id"
     serializer_class = ChangeDescriptionSerializer
+
+
+class Reset(viewsets.ModelViewSet):
+    queryset = Time.objects.all()
+    serializer_class = TimeSerializer
+
+    def update(self, request, *args, **kwargs):
+        Time.objects.all().update(reserved=False)
+
+        return Response(status=status.HTTP_202_ACCEPTED)
+

@@ -22,6 +22,7 @@ urlpatterns = [
     path('api/time/<int:pk>/update/', TimeView.as_view({'put': 'update'}), name='time_update'),
     path('api/cost/<int:id>/', CostView.as_view({'put': 'update'}), name='cost'),
     path('api/description/<int:id>/', ChangeDescriptionView.as_view(), name='description'),
+    path('api/time/reset/', Reset.as_view({'put': 'update'}), name='reset'),
 
 ]
 
