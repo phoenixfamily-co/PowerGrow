@@ -614,7 +614,7 @@
 
                   if (res[i].reserved ===true){
                       const span = document.createElement("span")
-                      span.innerHTML = res[i].reservations.pk
+                      span.innerHTML = res[i].reservations
                       timeItem.classList.add("reservedTime")
                       span.classList.add("tooltiptext")
                       timeItem.appendChild(span)
