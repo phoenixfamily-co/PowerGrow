@@ -617,9 +617,6 @@
               for (let i = 0 ; i< res.length ; i++){
                   const timeCover = document.createElement("div")
                   const timeItem = document.createElement("div")
-                  const span = document.createElement("span")
-                  span.innerHTML = res[i].time
-                  span.classList.add("tooltiptext")
                   timeItem.appendChild(span)
                   timeItem.innerHTML = res[i].time
                   timeItem.setAttribute("id",`${i}`)
@@ -629,7 +626,12 @@
                   timeCover.appendChild(timeItem)
 
                   if (res[i].reserved ===true){
+                      const span = document.createElement("span")
+                      span.innerHTML = res[i].time
+                      span.classList.add("tooltiptext")
+                      timeItem.appendChild(span)
                       timeItem.classList.add("reservedTime")
+
                   }
                   times.appendChild(timeCover)
         }
