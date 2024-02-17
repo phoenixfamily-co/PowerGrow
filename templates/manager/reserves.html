@@ -171,13 +171,12 @@
         }
 
          .holidayButton {
-            border-radius: 50px;
-            color: #ff0c0c !important;
+             border-radius: 50px;
+             color: #ff0c0c !important;
              cursor: pointer;
         }
 
          .disActiveButton{
-
              cursor: none;
              pointer-events: none;
              opacity:0.6;
@@ -246,6 +245,32 @@
             animation: fadeIn 1s;
         }
 
+         .tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
 
     </style>
     <title>PowerGrow</title>
@@ -592,10 +617,14 @@
               for (let i = 0 ; i< res.length ; i++){
                   const timeCover = document.createElement("div")
                   const timeItem = document.createElement("div")
+                  const span = document.createElement("span")
+                  span.innerHTML = res[i].reservations.id
+                  span.classList.add("tooltiptext")
                   timeItem.innerHTML = res[i].time
                   timeItem.setAttribute("id",`${i}`)
                   timeItem.setAttribute("itemid",res[i].id)
                   timeCover.classList.add("col")
+                  timeItem.classList.add("tooltip")
                   timeItem.classList.add("simpleTime")
                   timeCover.appendChild(timeItem)
 
