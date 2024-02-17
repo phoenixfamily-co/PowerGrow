@@ -1,8 +1,10 @@
 from rest_framework import serializers
 from Calendar.models import *
+from Reservation.serializer import ReservationSerializer
 
 
 class TimeSerializer(serializers.ModelSerializer):
+    reservations = ReservationSerializer(read_only=True, many=True)
 
     class Meta:
         model = Time
