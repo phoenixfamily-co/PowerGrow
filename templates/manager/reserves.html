@@ -619,9 +619,9 @@
                   if (res[i].reserved ===true){
                       const span = document.createElement("span")
                       span.innerHTML = res[i].time
+                      timeItem.classList.add("reservedTime")
                       span.classList.add("tooltiptext")
                       timeItem.appendChild(span)
-                      timeItem.classList.add("reservedTime")
 
                   }
                   times.appendChild(timeCover)
