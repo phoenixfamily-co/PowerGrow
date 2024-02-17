@@ -1,13 +1,12 @@
 from django.urls import path
 from Reservation.views import *
 
-
 app_name = 'reservation'
 
 urlpatterns = [
 
     path('', reservation_view, name='reservation'),
-    path('reserve/', reserve_view , name='reserve_view'),
+    path('reserve/', reserve_view, name='reserve_view'),
     path('reserve/admin/', admin_reserve_view, name='reserve_view_admin'),
     path('reserve/user/<int:pk>/', user_reserves_view, name='reserve_view_user'),
     path('api/reserve/', ReservationView.as_view({'post': 'create'}), name='reserve'),
@@ -22,6 +21,6 @@ urlpatterns = [
     path('gym/', gym_view, name='gym_view'),
     path('gym/admin/', admin_gym_view, name='gym_view_admin'),
     path('transaction/<int:gym>/<int:time>/<int:session>/<str:holiday>/', transaction_view, name='transaction'),
-    path('verify/', verify , name='verify'),
+    path('verify/', verify, name='verify'),
     path('generate/pdf/<int:pk>/', generate_pdf_file, name='generate_pdf'),
 ]
