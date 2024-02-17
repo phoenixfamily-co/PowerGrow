@@ -35,8 +35,6 @@ class YearSerializer(serializers.ModelSerializer):
 
 
 class ChangeCostSerializer(serializers.ModelSerializer):
-    all = serializers.BooleanField()
-
     class Meta:
         model = Time
         fields = ['price', 'off']
