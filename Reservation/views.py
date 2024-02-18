@@ -261,7 +261,7 @@ def verify(request):
                   .exclude(day__month__number=reservation.time.day.month.number,
                            day__number__lt=reservation.time.day.number) \
                   .order_by('day__month__number').values_list('pk', flat=True)[:int(reservation.session)]
-        Time.objects.filter(pk__in=list(ids)).update(reserved=True)
+        Time.objects.filter(pk__in=list(ids)).update(reserved=True, res_id=reservation.id)
         reservation.save()
         return HttpResponse(template.render(context, request))
     else:
