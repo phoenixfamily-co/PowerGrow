@@ -614,8 +614,7 @@
 
                   if (res[i].reserved ===true){
                       const span = document.createElement("span")
-                      let reserve = JSON.parse(JSON.stringify(res[i].reservations))
-                      span.innerHTML = reserve[0].id
+                      span.innerHTML = res[i].res_id
                       timeItem.classList.add("reservedTime")
                       span.classList.add("tooltiptext")
                       timeItem.appendChild(span)
