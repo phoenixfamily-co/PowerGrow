@@ -33,6 +33,7 @@ class Time(models.Model):
     time = models.TimeField(blank=True, null=True)
     duration = models.IntegerField(blank=True, null=True)
     reserved = models.BooleanField(blank=True, null=True)
+    res_id = models.IntegerField(blank=True,null=True)
     price = models.IntegerField(default=695000)
     off = models.IntegerField(default=0)
     day = models.ForeignKey(Day, on_delete=models.CASCADE, related_name='times', null=True, blank=True)

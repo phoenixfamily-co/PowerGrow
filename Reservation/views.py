@@ -212,7 +212,7 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
                   .exclude(day__month__number=time.day.month.number,
                            day__number__lt=time.day.number) \
                   .order_by('day__month__number').values_list('pk', flat=True)[:int(session)]
-        Time.objects.filter(pk__in=list(ids)).update(reserved=True)
+        Time.objects.filter(pk__in=list(ids)).update(reserved=True, res_id=reservations.pk)
         serializer = ReservationSerializer(reservations)
         return Response(serializer.data)
 
