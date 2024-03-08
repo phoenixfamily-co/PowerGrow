@@ -58,6 +58,10 @@ class Participants(models.Model):
                              blank=True, null=True)
     startDay = models.ForeignKey(Day, on_delete=models.CASCADE, related_name='participants',
                              blank=True, null=True)
+
+    endDay = models.ForeignKey(Day, on_delete=models.CASCADE, related_name='end_participants',
+                                 blank=True, null=True)
+
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='participants', null=True, blank=True)
     created = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='participant',
                                 blank=True, null=True)
