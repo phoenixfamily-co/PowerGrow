@@ -52,7 +52,7 @@ def payment_view(request, pk, session, day, start):
         "product": product,
         "session": sessions,
         "day": days,
-        "start" : day,
+        "start": day,
     }
     return HttpResponse(template.render(context, request))
 
@@ -204,7 +204,7 @@ def teacher_user_list(request, pk):
     size = course.participants.values()
     context = {
         "about": about,
-        "course" : course,
+        "course": course,
         "size": len(list(size)),
 
     }
@@ -218,7 +218,7 @@ def manager_user_list(request, pk):
     size = course.participants.values()
     context = {
         "about": about,
-        "course" : course,
+        "course": course,
         "size": len(list(size)),
 
     }
@@ -343,11 +343,16 @@ class ManagerParticipationView(viewsets.ModelViewSet):
         start = Day.objects.filter(id=self.kwargs['start']).first()
         day = Days.objects.filter(id=self.kwargs['day']).first()
         session = Sessions.objects.filter(id=self.kwargs['session']).first()
-        end = Day.objects.filter()
+        end = Day.objects.filter(name=day.end, month__number__gte=start.month.number).exclude(
+            month__number=start.month.number,
+            number__lt=start.number) \
+                  .order_by('month__number').values_list('pk', flat=True)[:int(session.number)]
+
         participants = Participants.objects.update_or_create(title=data["title"],
                                                              description=data["description"],
                                                              session=session,
                                                              day=day,
+                                                             endDay=end,
                                                              startDay=start,
                                                              price=data["price"],
                                                              user=user,
@@ -363,7 +368,7 @@ class ManagerParticipationView(viewsets.ModelViewSet):
         start = Day.objects.get(id=kwargs.get('start'))
 
         Participants.objects.filter(id=kwargs.get('id')).update(session=session,
-                                                            day=day,
+                                                                day=day,
                                                                 startDay=start)
         return Response(status=status.HTTP_202_ACCEPTED)
 
