@@ -257,7 +257,7 @@ class DaysView(viewsets.ModelViewSet):
         Days.objects.filter(id=kwargs.get('pk')).update(title=self.request.data['title'],
                                                         tuition=self.request.data['tuition'],
                                                         off=self.request.data['off'],
-                                                        end=self.queryset.data['end'],
+                                                        end=self.request.data['end'],
                                                         session=self.request.data['session'])
         return Response(status=status.HTTP_202_ACCEPTED)
 
