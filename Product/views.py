@@ -352,7 +352,7 @@ class ManagerParticipationView(viewsets.ModelViewSet):
                                                              description=data["description"],
                                                              session=session,
                                                              day=day,
-                                                             endDay=end,
+                                                             endDay=end.last(),
                                                              startDay=start,
                                                              price=data["price"],
                                                              user=user,
