@@ -342,6 +342,7 @@ class ManagerParticipationView(viewsets.ModelViewSet):
         start = Day.objects.filter(id=self.kwargs['start']).first()
         day = Days.objects.filter(id=self.kwargs['day']).first()
         session = Sessions.objects.filter(id=self.kwargs['session']).first()
+        end = Day.objects.filter()
         participants = Participants.objects.update_or_create(title=data["title"],
                                                              description=data["description"],
                                                              session=session,
