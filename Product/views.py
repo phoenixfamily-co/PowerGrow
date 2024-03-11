@@ -346,7 +346,7 @@ class ManagerParticipationView(viewsets.ModelViewSet):
         ids = Day.objects.filter(name=day.end, month__number__gte=start.month.number).exclude(
             month__number=start.month.number,
             number__lt=start.number) \
-                  .order_by('month__number').values_list('pk', flat=True)[:int(session.number/2)]
+                  .order_by('month__number').values_list('pk', flat=True)[:int(session.number/3)]
         end = Day.objects.filter(pk__in=list(ids)).last()
 
         participants = Participants.objects.update_or_create(title=data["title"],
