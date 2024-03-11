@@ -343,16 +343,17 @@ class ManagerParticipationView(viewsets.ModelViewSet):
         start = Day.objects.filter(id=self.kwargs['start']).first()
         day = Days.objects.filter(id=self.kwargs['day']).first()
         session = Sessions.objects.filter(id=self.kwargs['session']).first()
-        end = Day.objects.filter(name=day.end, month__number__gte=start.month.number).exclude(
+        ids = Day.objects.filter(name=day.end, month__number__gte=start.month.number).exclude(
             month__number=start.month.number,
             number__lt=start.number) \
                   .order_by('month__number').values_list('pk', flat=True)[:int(session.number)]
+        end = Day.objects.filter(pk__in=list(ids)).last()
 
         participants = Participants.objects.update_or_create(title=data["title"],
                                                              description=data["description"],
                                                              session=session,
                                                              day=day,
-                                                             endDay=end.last(),
+                                                             endDay=end,
                                                              startDay=start,
                                                              price=data["price"],
                                                              user=user,
