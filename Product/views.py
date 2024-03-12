@@ -307,14 +307,20 @@ class ParticipationView(viewsets.ViewSet):
             response_data = response.json()  # Parse the response content as JSON
             if response_data['Status'] == 100:
                 session = Sessions.objects.filter(id=data["session"]).first()
-                day = Days.objects.filter(id=data["day"]).first()
+                week = Days.objects.filter(id=data["day"]).first()
                 start = Day.objects.filter(id=data["start"]).first()
                 course = Course.objects.filter(id=data["course"]).first()
+                day = week.title.split("،")
+                ids = Day.objects.filter(name__in=day, month__number__gte=start.month.number).exclude(
+                    month__number=start.month.number,
+                    number__lt=start.number) \
+                          .order_by('month__number').values_list('pk', flat=True)[:int(session.number)]
+                end = Day.objects.filter(pk__in=list(ids)).last()
                 Participants.objects.update_or_create(title=data["title"],
                                                       description=data["description"],
                                                       startDay=start,
                                                       session=session,
-                                                      day=day,
+                                                      day=week,
                                                       price=data["price"],
                                                       user=self.request.user,
                                                       course=course,
