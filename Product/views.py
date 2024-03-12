@@ -319,6 +319,7 @@ class ParticipationView(viewsets.ViewSet):
                 Participants.objects.update_or_create(title=data["title"],
                                                       description=data["description"],
                                                       startDay=start,
+                                                      endDay=end,
                                                       session=session,
                                                       day=week,
                                                       price=data["price"],
