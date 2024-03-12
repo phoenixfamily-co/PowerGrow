@@ -344,7 +344,7 @@ class ManagerParticipationView(viewsets.ModelViewSet):
         week = Days.objects.filter(id=self.kwargs['day']).first()
         session = Sessions.objects.filter(id=self.kwargs['session']).first()
         day = week.title.split("،")
-        ids = Day.objects.filter(name=day[1], month__number__gte=start.month.number).exclude(
+        ids = Day.objects.filter(name__in=day, month__number__gte=start.month.number).exclude(
             month__number=start.month.number,
             number__lt=start.number) \
                   .order_by('month__number').values_list('pk', flat=True)[:int(session.number)]
