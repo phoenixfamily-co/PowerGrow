@@ -353,7 +353,7 @@ class ManagerParticipationView(viewsets.ModelViewSet):
         participants = Participants.objects.update_or_create(title=data["title"],
                                                              description=data["description"],
                                                              session=session,
-                                                             day=day,
+                                                             day=week,
                                                              endDay=end,
                                                              startDay=start,
                                                              price=data["price"],
