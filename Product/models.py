@@ -43,7 +43,6 @@ class Sessions(models.Model):
 class Days(models.Model):
     title = models.TextField(blank=True, null=True)
     tuition = models.IntegerField()
-    end = models.CharField(default="شنبه", max_length=10)
     off = models.IntegerField(blank=True, null=True)
     session = models.ForeignKey(Sessions, on_delete=models.CASCADE, related_name='days', null=True, blank=True)
 
