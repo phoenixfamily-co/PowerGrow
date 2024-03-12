@@ -341,9 +341,10 @@ class ManagerParticipationView(viewsets.ModelViewSet):
         course = Course.objects.filter(id=self.kwargs['id']).first()
         user = User.objects.filter(id=data["user"]).first()
         start = Day.objects.filter(id=self.kwargs['start']).first()
-        day = Days.objects.filter(id=self.kwargs['day']).first()
+        week = Days.objects.filter(id=self.kwargs['day']).first()
         session = Sessions.objects.filter(id=self.kwargs['session']).first()
-        ids = Day.objects.filter(name=day.end, month__number__gte=start.month.number).exclude(
+        day = week.title.split("،")
+        ids = Day.objects.filter(name=day, month__number__gte=start.month.number).exclude(
             month__number=start.month.number,
             number__lt=start.number) \
                   .order_by('month__number').values_list('pk', flat=True)[:int(session.number/3)]
