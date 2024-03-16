@@ -47,6 +47,9 @@ urlpatterns = [
 
     path('api/admin/participate/', ManagerParticipationView.as_view({'get': 'list'}),
          name='admin-participate'),
+
+    path('api/end/<int:pk>/', ChangeDayView.as_view(), name='change_end'),
+
     path('api/search/<int:pk>/', SearchView.as_view(), name='search'),
     path('payment/<int:pk>/<int:session>/<int:day>/<int:start>/', payment_view, name='payment'),
     path('check/<int:pk>/<int:session>/<int:day>/', check_view, name='check'),

@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.template import loader
 from rest_framework import viewsets, filters, generics, status
 from rest_framework.decorators import api_view
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.utils import json
 from About.models import AboutUs
@@ -311,7 +311,7 @@ class ParticipationView(viewsets.ViewSet):
                 start = Day.objects.filter(id=data["start"]).first()
                 course = Course.objects.filter(id=data["course"]).first()
                 day = week.title.split("،")
-                ids = Day.objects.filter(name__in=day, month__number__gte=start.month.number).exclude(
+                ids = Day.objects.filter(name__in=day, month__number__gte=start.month.number, holiday=False).exclude(
                     month__number=start.month.number,
                     number__lt=start.number) \
                           .order_by('month__number').values_list('pk', flat=True)[:int(session.number)]
@@ -351,7 +351,7 @@ class ManagerParticipationView(viewsets.ModelViewSet):
         week = Days.objects.filter(id=self.kwargs['day']).first()
         session = Sessions.objects.filter(id=self.kwargs['session']).first()
         day = week.title.split("،")
-        ids = Day.objects.filter(name__in=day, month__number__gte=start.month.number).exclude(
+        ids = Day.objects.filter(name__in=day, month__number__gte=start.month.number, holiday=False).exclude(
             month__number=start.month.number,
             number__lt=start.number) \
                   .order_by('month__number').values_list('pk', flat=True)[:int(session.number)]
@@ -375,11 +375,17 @@ class ManagerParticipationView(viewsets.ModelViewSet):
         session = Sessions.objects.get(id=kwargs.get('session'))
         day = Days.objects.get(id=kwargs.get('day'))
         start = Day.objects.get(id=kwargs.get('start'))
-
         Participants.objects.filter(id=kwargs.get('id')).update(session=session,
                                                                 day=day,
                                                                 startDay=start)
         return Response(status=status.HTTP_202_ACCEPTED)
+
+
+class ChangeDayView(generics.UpdateAPIView, ):
+    queryset = Participants.objects.all()
+    lookup_field = "pk"
+    permission_classes = (AllowAny,)
+    serializer_class = ChangeDaySerializer
 
 
 class SportView(viewsets.ModelViewSet):

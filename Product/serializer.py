@@ -24,6 +24,18 @@ class ParticipantsUserSerializer(serializers.ModelSerializer):
         fields = ['user']
 
 
+class ChangeDaySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Participants
+        fields = ['endDay']
+
+    def update(self, instance, validated_data):
+        instance.endDay = validated_data.get("endDay", instance.endDay)
+        instance.save()
+
+        return instance
+
+
 class DaysSerializer(serializers.ModelSerializer):
     participants = ParticipantsSerializer(read_only=True, many=True)
 
