@@ -294,7 +294,7 @@
         <td>{{ x.user.number }}</td>
         <td>{{ x.user.birthdate }}</td>
     <td style="cursor: pointer ; text-decoration: underline" onclick="submit('{{ x.course.id}}','{{x.id}}')">{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}</td>
-            <td style="cursor: pointer ; text-decoration: underline" onclick="window.open('{% url 'product:change_end' x.id %}')">{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}</td>
+            <td style="cursor: pointer ; text-decoration: underline" onclick="showPopup()">{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}</td>
         <td style="cursor: pointer ; text-decoration: underline" onclick="submit('{{ x.course.id}}','{{x.id}}')">{{ x.day.title }}</td>
         <td style="cursor: pointer ; text-decoration: underline" onclick="submit('{{ x.course.id}}','{{x.id}}')">{{ x.session.number }}</td>
         <td>{{ x.price }} تومان </td>
@@ -357,6 +357,49 @@
         </div>
 </div>
           <button onclick="apply()" id="continueButton" style="background-color: #E16539 ; height: 35px ; width: 70px ; color: white ; border: 0 ; float: left ">بروزرسانی</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="endDayPopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">تاریخ پایان را انتخاب کنید</h5>
+        <button id="exit" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+<div class="date-picker">
+    <div class="month">
+  <ul>
+    <li id="next" class="prev">&#10094;</li>
+    <li id="prev" class="next">&#10095;</li>
+      <li id="monthTitle"></li>
+    <li>
+      <span id="yearTitle" style="font-size:18px"></span>
+    </li>
+  </ul>
+</div>
+<ul class="weekdays">
+  <li>ش</li>
+  <li>ی</li>
+  <li>د</li>
+  <li>س</li>
+  <li>چ</li>
+  <li>پ</li>
+  <li>ج</li>
+</ul>
+    <ul id="days" class="days">
+
+    </ul>
+</div>
+
+          <button onclick="update()" id="continueButton" style="background-color: #E16539 ; height: 35px ; width: 70px ; color: white ; border: 0 ; float: left ">بروزرسانی</button>
 
       </div>
     </div>
@@ -446,6 +489,7 @@
 
 <script>
     let calendarPopup = document.getElementById("calendarPopup")
+    let endDayPopup = document.getElementById("endDayPopup")
     let exit = document.getElementById("exit")
     let courseId
     let participantId
@@ -462,6 +506,11 @@
         getSession(course)
 
     }
+
+    function showPopup() {
+        endDayPopup.classList.toggle("show");
+    }
+
     function apply(){
 
           const response = fetch("/product/api/admin/participate/" + participantId + "/"+ sessionId + "/" + dayId + "/" + currentDayId +"/update/", {
@@ -475,14 +524,33 @@
         calendarPopup.classList.remove("show");
         window.location.reload()
     }
+
+    function update(){
+
+          const response = fetch("/product/api/end/" + participantId + "/", {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization' :  `token ${cookieValue}`
+            },
+        })
+
+        endDayPopup.classList.remove("show");
+        window.location.reload()
+    }
       window.addEventListener("click", function (event) {
         if (event.target === calendarPopup) {
             calendarPopup.classList.remove("show");
+        }
+            if (event.target === endDayPopup) {
+            endDayPopup.classList.remove("show");
         }
     });
 
     exit.addEventListener("click",function () {
         calendarPopup.classList.remove("show");
+        endDayPopup.classList.remove("show");
+
     })
 
 </script>
@@ -504,10 +572,6 @@
     let currentDayCal = todayCal[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
     let currentMonth = todayCal[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
     let monthPosition = currentMonth-7
-
-
-
-
 
     document.addEventListener("DOMContentLoaded", function() {
         getYear()
