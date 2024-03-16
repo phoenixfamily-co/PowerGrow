@@ -502,12 +502,14 @@
     function submit(course,participant) {
         courseId = course
         participantId = participant
+        getYear()
         calendarPopup.classList.toggle("show");
         getSession(course)
 
     }
 
     function showPopup() {
+        getYear()
         endDayPopup.classList.toggle("show");
     }
 
@@ -572,11 +574,6 @@
     let currentDayCal = todayCal[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
     let currentMonth = todayCal[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
     let monthPosition = currentMonth-7
-
-    document.addEventListener("DOMContentLoaded", function() {
-        getYear()
-    });
-
 
     async function getYear() {
 
