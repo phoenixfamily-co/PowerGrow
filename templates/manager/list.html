@@ -198,7 +198,7 @@
              cursor: pointer
            }
 
-            .date-time{
+           .date-time{
             width: 70%;
             float: right;
             margin-top: 15px;
@@ -207,6 +207,15 @@
 
         .date-picker{
             width: 50%;
+            height: 300px;
+            background: #FFFFFF ;
+            float: right;
+            border-top-left-radius: 1rem;
+            border-bottom-left-radius: 1rem;
+        }
+
+        .end-date-picker{
+
             height: 300px;
             background: #FFFFFF ;
             float: right;
@@ -313,7 +322,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+        <div class="modal-body">
 <div class="date-picker">
     <div class="month">
   <ul>
@@ -374,7 +383,7 @@
         </button>
       </div>
       <div class="modal-body">
-<div class="date-picker">
+<div class="end-date-picker">
     <div class="month">
   <ul>
     <li id="next" class="prev">&#10094;</li>
@@ -778,6 +787,4 @@
         })
 
 </script>
-
-
 </html>
