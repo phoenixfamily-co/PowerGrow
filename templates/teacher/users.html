@@ -139,6 +139,7 @@
         <th scope="col">تاریخ پایان</th>
          <th scope="col">روزهای برگزاری</th>
         <th scope="col">تعداد جلسه ها</th>
+        <th scope="col">توضیحات</th>
     </tr>
   </thead>
   <tbody>
@@ -152,6 +153,8 @@
         <td>{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}</td>
         <td>{{ x.day.title }}</td>
         <td>{{ x.session.number }}</td>
+        <td>{{ x.description }}</td>
+
     </tr>
    {% endfor %}
   </tbody>
