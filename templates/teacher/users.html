@@ -144,8 +144,7 @@
   </thead>
   <tbody>
   {% for x in course.participants.all %}
-      {% if course.participants.user.is_teacher != true %}
-
+      {% if x.user.is_teacher == false %}
     <tr>
         <th scope="row">{{ forloop.counter }}</th>
         <td>{{ x.user.name }}</td>
