@@ -666,7 +666,7 @@
             case "یکشنبه" :
                 const empty0 = document.createElement("li")
                 days.appendChild(empty0)
-                {#_days.appendChild(empty0)#}
+                _days.appendChild(empty0)
                 break
             case "دوشنبه" :
                 const empty1 = document.createElement("li")
@@ -753,7 +753,7 @@
             dayItem.innerHTML = result[0].months[monthPosition].days[i].number
             dayItem.setAttribute("itemid",result[0].months[monthPosition].days[i].id)
             days.appendChild(dayItem)
-            _days.appendChild(dayItem)
+            {#_days.appendChild(dayItem)#}
         }
          const buttons = document.querySelectorAll('.days li');
             Array.from(buttons).forEach(function (button) {
@@ -777,7 +777,6 @@
     const sessionList = document.getElementById("session");
     let sessionId;
     let dayId;
-
 
 
     async function getSession(courseId) {
