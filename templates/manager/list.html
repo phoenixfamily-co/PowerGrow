@@ -470,6 +470,8 @@
                 birthdate.innerHTML = "{{x.user.birthdate}}"
                 let startDay = document.createElement("td")
                 startDay.innerHTML = "{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}"
+                let endDay = document.createElement("td")
+                endDay.innerHTML = "{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}"
                  let dayTitle = document.createElement("td")
                 dayTitle.innerHTML = "{{x.day.title}}"
                  let sessionNumber = document.createElement("td")
@@ -484,6 +486,7 @@
                 tr.appendChild(number)
                 tr.appendChild(birthdate)
                 tr.appendChild(startDay)
+                tr.appendChild(endDay)
                 tr.appendChild(dayTitle)
                 tr.appendChild(sessionNumber)
                 tr.appendChild(price)
