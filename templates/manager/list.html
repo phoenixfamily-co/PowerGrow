@@ -536,12 +536,18 @@
 
     function update(){
 
+          const param = {
+            "endDay": `${currentDayId}`,
+        }
+
           const response = fetch("/product/api/end/" + participantId + "/", {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization' :  `token ${cookieValue}`
             },
+              body: JSON.stringify(param)
+
         })
 
         endDayPopup.classList.remove("show");
