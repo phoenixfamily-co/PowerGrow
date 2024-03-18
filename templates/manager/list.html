@@ -378,7 +378,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">تاریخ پایان را انتخاب کنید</h5>
-        <button id="exit" type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button id="_exit" type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -386,11 +386,11 @@
 <div class="end-date-picker">
     <div class="month">
   <ul>
-    <li id="next" class="prev">&#10094;</li>
-    <li id="prev" class="next">&#10095;</li>
-      <li id="monthTitle"></li>
+    <li id="_next" class="prev">&#10094;</li>
+    <li id="_prev" class="next">&#10095;</li>
+      <li id="_monthTitle"></li>
     <li>
-      <span id="yearTitle" style="font-size:18px"></span>
+      <span id="_yearTitle" style="font-size:18px"></span>
     </li>
   </ul>
 </div>
@@ -403,7 +403,7 @@
   <li>پ</li>
   <li>ج</li>
 </ul>
-    <ul id="days" class="days">
+    <ul id="_days" class="days">
 
     </ul>
 </div>
@@ -572,6 +572,11 @@
     let prev = document.getElementById("prev")
     let next = document.getElementById("next")
     let days = document.getElementById("days")
+     let _monthTitle = document.getElementById("_monthTitle")
+    let _yearTitle = document.getElementById("_yearTitle")
+    let _prev = document.getElementById("_prev")
+    let _next = document.getElementById("_next")
+    let _days = document.getElementById("_days")
     let result
     let monthSize
     let date
@@ -600,11 +605,20 @@
         monthSize = result[0].months.length
 
         yearTitle.innerHTML = result[0].number
+        _yearTitle.innerHTML = result[0].number
+
         getDays(monthPosition)
 
     }
 
         next.addEventListener("click", function () {
+            if (monthPosition > 0) {
+                monthPosition = monthPosition - 1
+                getDays(monthPosition)
+            }
+        })
+
+     _next.addEventListener("click", function () {
             if (monthPosition > 0) {
                 monthPosition = monthPosition - 1
                 getDays(monthPosition)
@@ -618,9 +632,19 @@
         }
     })
 
+     _prev.addEventListener("click",function () {
+         if (monthPosition<monthSize-1){
+            monthPosition = monthPosition+1
+             getDays(monthPosition)
+        }
+    })
+
     function getDays(monthPosition) {
         monthTitle.innerHTML = result[0].months[monthPosition].name
+        _monthTitle.innerHTML = result[0].months[monthPosition].name
         days.innerHTML=""
+        _days.innerHTML=""
+
 
         const emptyDay = document.createElement("li")
                 emptyDay.innerHTML = ' '
@@ -630,58 +654,80 @@
             case "یکشنبه" :
                 const empty0 = document.createElement("li")
                 days.appendChild(empty0)
+                _days.appendChild(empty0)
+
                 break
             case "دوشنبه" :
                 const empty1 = document.createElement("li")
                 days.appendChild(empty1)
+                _days.appendChild(empty1)
                 const empty2 = document.createElement("li")
                 days.appendChild(empty2)
+                _days.appendChild(empty1)
                 break
 
             case "سه شنبه" :
                const empty3 = document.createElement("li")
                 days.appendChild(empty3)
+                _days.appendChild(empty3)
                 const empty4 = document.createElement("li")
                 days.appendChild(empty4)
+                _days.appendChild(empty4)
                 const empty5 = document.createElement("li")
                 days.appendChild(empty5)
+                _days.appendChild(empty5)
                 break
              case "چهارشنبه" :
                  const empty6 = document.createElement("li")
                 days.appendChild(empty6)
+                 _days.appendChild(empty6)
                 const empty7 = document.createElement("li")
                 days.appendChild(empty7)
+                 _days.appendChild(empty7)
                 const empty9 = document.createElement("li")
                 days.appendChild(empty9)
+                 _days.appendChild(empty9)
                  const empty10 = document.createElement("li")
                 days.appendChild(empty10)
+                 _days.appendChild(empty10)
 
                 break
              case "پنجشنبه" :
                 const empty11 = document.createElement("li")
                 days.appendChild(empty11)
+                 _days.appendChild(empty11)
                 const empty12 = document.createElement("li")
                 days.appendChild(empty12)
+                 _days.appendChild(empty12)
                 const empty13 = document.createElement("li")
                 days.appendChild(empty13)
+                 _days.appendChild(empty13)
                  const empty14 = document.createElement("li")
                 days.appendChild(empty14)
+                 _days.appendChild(empty14)
                  const empty15 = document.createElement("li")
                 days.appendChild(empty15)
+                 _days.appendChild(empty15)
                 break
              case "جمعه" :
                   const empty16 = document.createElement("li")
                 days.appendChild(empty16)
+                 _days.appendChild(empty16)
                 const empty17 = document.createElement("li")
                 days.appendChild(empty17)
+                 _days.appendChild(empty17)
                 const empty18 = document.createElement("li")
                 days.appendChild(empty18)
+                 _days.appendChild(empty18)
                  const empty19 = document.createElement("li")
                 days.appendChild(empty19)
+                 _days.appendChild(empty19)
                  const empty20 = document.createElement("li")
                 days.appendChild(empty20)
+                 _days.appendChild(empty20)
                  const empty21 = document.createElement("li")
                 days.appendChild(empty21)
+                 _days.appendChild(empty21)
                 break
         }
         for (let i = 0 ; i< result[0].months[monthPosition].days.length ; i++){
@@ -692,11 +738,11 @@
                 dayItem.classList.add("activeButton")
                 currentDayId = result[0].months[monthPosition].days[i].id
                 date = `${result[0].number}-${result[0].months[monthPosition].number}-${result[0].months[monthPosition].days[i].number}`
-
             }
             dayItem.innerHTML = result[0].months[monthPosition].days[i].number
             dayItem.setAttribute("itemid",result[0].months[monthPosition].days[i].id)
             days.appendChild(dayItem)
+            _days.appendChild(dayItem)
         }
          const buttons = document.querySelectorAll('.days li');
             Array.from(buttons).forEach(function (button) {
