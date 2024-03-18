@@ -460,7 +460,7 @@
             if (currentDay==="{{x.day.title}}" || "{{x.day.title}}".split("،").includes(currentDay)){
                 let tr = document.createElement("tr")
                 let id = document.createElement("th")
-                id.innerHTML = "{{x.user.id}}"
+                id.innerHTML = "{{ forloop.counter }}"
                 let escape = document.createElement("th")
                 let name = document.createElement("td")
                 name.innerHTML = "{{x.user.name}}"
