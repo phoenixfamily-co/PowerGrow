@@ -172,8 +172,8 @@
     let currentDay
     const d = new Date();
     let day = d.getDay();
-    let month = parseInt(today[1])
-    let monthDay = parseInt(today[2])
+    let month = parseInt(today.at(1))
+    let monthDay = parseInt(today.at(2))
 
 
     switch (day) {
