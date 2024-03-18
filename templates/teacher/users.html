@@ -203,7 +203,9 @@
 
         {% for x in course.participants.all %}
 
-            if (currentDay==="{{x.day.title}}" || "{{x.day.title}}".split("،").includes(currentDay) && '{{ x.user.is_teacher}} '!== True){
+            {% if x.user.is_teacher != True %}
+
+            if (currentDay==="{{x.day.title}}" || "{{x.day.title}}".split("،").includes(currentDay)){
                 let tr = document.createElement("tr")
                 let id = document.createElement("th")
                 id.innerHTML = "{{ forloop.counter }}"
@@ -234,6 +236,8 @@
                  tr.appendChild(description)
                 body.appendChild(tr)
             }
+            {% endif %}
+
         {% endfor %}
     
     }
