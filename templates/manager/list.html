@@ -549,10 +549,9 @@
             },
             body: JSON.stringify(param)
         });
-        if (response.status === 200) {
             endDayPopup.classList.remove("show");
             window.location.reload()
-        }
+
         window.addEventListener("click", function (event) {
             if (event.target === calendarPopup) {
                 calendarPopup.classList.remove("show");
