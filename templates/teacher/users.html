@@ -217,6 +217,8 @@
                 dayTitle.innerHTML = "{{x.day.title}}"
                  let sessionNumber = document.createElement("td")
                 sessionNumber.innerHTML = "{{x.session.number}}"
+                 let description = document.createElement("td")
+                description.innerHTML = "{{x.description}}"
                 tr.appendChild(id)
                 tr.appendChild(name)
                 tr.appendChild(number)
@@ -224,6 +226,7 @@
                 tr.appendChild(startDay)
                 tr.appendChild(dayTitle)
                 tr.appendChild(sessionNumber)
+                 tr.appendChild(description)
                 body.appendChild(tr)
             }
         {% endfor %}
