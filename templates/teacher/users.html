@@ -212,38 +212,76 @@
 
                 {% if x.user.is_teacher != True %}
 
-                    if('{{ x.endDay.month.number }}' >= month) {
+                    if(parseInt('{{ x.endDay.month.number }}') >= month) {
 
-                        if (currentDay === "{{x.day.title}}" || "{{x.day.title}}".split("،").includes(currentDay)) {
-                            let tr = document.createElement("tr")
-                            let id = document.createElement("th")
-                            id.innerHTML = "{{ forloop.counter }}"
-                            let name = document.createElement("td")
-                            name.innerHTML = "{{x.user.name}}"
-                            let number = document.createElement("td")
-                            number.innerHTML = "{{x.user.number}}"
-                            let birthdate = document.createElement("td")
-                            birthdate.innerHTML = "{{x.user.birthdate}}"
-                            let startDay = document.createElement("td")
-                            startDay.innerHTML = "{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}"
-                            let dayTitle = document.createElement("td")
-                            let endDay = document.createElement("td")
-                            endDay.innerHTML = "{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}"
-                            dayTitle.innerHTML = "{{x.day.title}}"
-                            let sessionNumber = document.createElement("td")
-                            sessionNumber.innerHTML = "{{x.session.number}}"
-                            let description = document.createElement("td")
-                            description.innerHTML = "{{x.description}}"
-                            tr.appendChild(id)
-                            tr.appendChild(name)
-                            tr.appendChild(number)
-                            tr.appendChild(birthdate)
-                            tr.appendChild(startDay)
-                            tr.appendChild(endDay)
-                            tr.appendChild(dayTitle)
-                            tr.appendChild(sessionNumber)
-                            tr.appendChild(description)
-                            body.appendChild(tr)
+                        if (parseInt('{{ x.endDay.month.number }}') === month) {
+
+                            if (parseInt('{{ x.endDay.number }}') >= monthDay) {
+
+                                if (currentDay === "{{x.day.title}}" || "{{x.day.title}}".split("،").includes(currentDay)) {
+                                    let tr = document.createElement("tr")
+                                    let id = document.createElement("th")
+                                    id.innerHTML = "{{ forloop.counter }}"
+                                    let name = document.createElement("td")
+                                    name.innerHTML = "{{x.user.name}}"
+                                    let number = document.createElement("td")
+                                    number.innerHTML = "{{x.user.number}}"
+                                    let birthdate = document.createElement("td")
+                                    birthdate.innerHTML = "{{x.user.birthdate}}"
+                                    let startDay = document.createElement("td")
+                                    startDay.innerHTML = "{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}"
+                                    let dayTitle = document.createElement("td")
+                                    let endDay = document.createElement("td")
+                                    endDay.innerHTML = "{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}"
+                                    dayTitle.innerHTML = "{{x.day.title}}"
+                                    let sessionNumber = document.createElement("td")
+                                    sessionNumber.innerHTML = "{{x.session.number}}"
+                                    let description = document.createElement("td")
+                                    description.innerHTML = "{{x.description}}"
+                                    tr.appendChild(id)
+                                    tr.appendChild(name)
+                                    tr.appendChild(number)
+                                    tr.appendChild(birthdate)
+                                    tr.appendChild(startDay)
+                                    tr.appendChild(endDay)
+                                    tr.appendChild(dayTitle)
+                                    tr.appendChild(sessionNumber)
+                                    tr.appendChild(description)
+                                    body.appendChild(tr)
+                                }
+                            }
+                        }else {
+                            if (currentDay === "{{x.day.title}}" || "{{x.day.title}}".split("،").includes(currentDay)) {
+                                    let tr = document.createElement("tr")
+                                    let id = document.createElement("th")
+                                    id.innerHTML = "{{ forloop.counter }}"
+                                    let name = document.createElement("td")
+                                    name.innerHTML = "{{x.user.name}}"
+                                    let number = document.createElement("td")
+                                    number.innerHTML = "{{x.user.number}}"
+                                    let birthdate = document.createElement("td")
+                                    birthdate.innerHTML = "{{x.user.birthdate}}"
+                                    let startDay = document.createElement("td")
+                                    startDay.innerHTML = "{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}"
+                                    let dayTitle = document.createElement("td")
+                                    let endDay = document.createElement("td")
+                                    endDay.innerHTML = "{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}"
+                                    dayTitle.innerHTML = "{{x.day.title}}"
+                                    let sessionNumber = document.createElement("td")
+                                    sessionNumber.innerHTML = "{{x.session.number}}"
+                                    let description = document.createElement("td")
+                                    description.innerHTML = "{{x.description}}"
+                                    tr.appendChild(id)
+                                    tr.appendChild(name)
+                                    tr.appendChild(number)
+                                    tr.appendChild(birthdate)
+                                    tr.appendChild(startDay)
+                                    tr.appendChild(endDay)
+                                    tr.appendChild(dayTitle)
+                                    tr.appendChild(sessionNumber)
+                                    tr.appendChild(description)
+                                    body.appendChild(tr)
+                                }
                         }
                     }
 
