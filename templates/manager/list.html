@@ -297,7 +297,7 @@
   <tbody>
   {% for x in course.participants.all %}
     <tr>
-        <th scope="row">{{ x.id }}</th>
+        <th scope="row">{{ forloop.counter }}</th>
         <th onclick="window.open('{% url 'product:delete-admin-participate' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
         <td>{{ x.user.name }}</td>
         <td>{{ x.user.number }}</td>
