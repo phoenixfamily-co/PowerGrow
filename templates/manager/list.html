@@ -743,17 +743,24 @@
         }
         for (let i = 0 ; i< result[0].months[monthPosition].days.length ; i++){
             const dayItem = document.createElement("li")
+            const endDayItem = document.createElement("li")
+
             if (result[0].months[monthPosition].days[i].holiday === true && result[0].months[monthPosition].days[i].number > parseInt(currentDayCal)) {
                 dayItem.classList.add("holidayButton")
+                endDayItem.classList.add("holidayButton")
+
             }else if ( result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number === parseInt(currentDayCal)) {
                 dayItem.classList.add("activeButton")
+                endDayItem.classList.add("activeButton")
                 currentDayId = result[0].months[monthPosition].days[i].id
                 date = `${result[0].number}-${result[0].months[monthPosition].number}-${result[0].months[monthPosition].days[i].number}`
             }
             dayItem.innerHTML = result[0].months[monthPosition].days[i].number
             dayItem.setAttribute("itemid",result[0].months[monthPosition].days[i].id)
+            endDayItem.innerHTML = result[0].months[monthPosition].days[i].number
+            endDayItem.setAttribute("itemid",result[0].months[monthPosition].days[i].id)
             days.appendChild(dayItem)
-            {#_days.appendChild(dayItem)#}
+            _days.appendChild(endDayItem)
         }
          const buttons = document.querySelectorAll('.days li');
             Array.from(buttons).forEach(function (button) {
