@@ -388,6 +388,13 @@ class ChangeDayView(generics.UpdateAPIView, ):
     serializer_class = ChangeDaySerializer
 
 
+class ChangeDescriptionView(generics.UpdateAPIView, ):
+    queryset = Participants.objects.all()
+    lookup_field = "pk"
+    permission_classes = (AllowAny,)
+    serializer_class = ChangeDescriptionSerializer
+
+
 class SportView(viewsets.ModelViewSet):
     queryset = Sport.objects.all()
     serializer_class = SportSerializer
