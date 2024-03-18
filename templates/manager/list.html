@@ -500,6 +500,7 @@
     let calendarPopup = document.getElementById("calendarPopup")
     let endDayPopup = document.getElementById("endDayPopup")
     let exit = document.getElementById("exit")
+    let _exit = document.getElementById("_exit")
     let courseId
     let participantId
 
@@ -563,6 +564,10 @@
 
         exit.addEventListener("click", function () {
             calendarPopup.classList.remove("show");
+
+        })
+
+         _exit.addEventListener("click", function () {
             endDayPopup.classList.remove("show");
 
         })
