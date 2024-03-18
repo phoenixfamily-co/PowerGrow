@@ -549,8 +549,6 @@
             },
             body: JSON.stringify(param)
         });
-        const result = await response.json()
-        JSON.stringify(result)
         if (response.status === 200) {
             endDayPopup.classList.remove("show");
             window.location.reload()
