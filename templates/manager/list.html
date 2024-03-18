@@ -550,9 +550,10 @@
             },
             body: JSON.stringify(param)
         });
-            endDayPopup.classList.remove("show");
-            window.location.reload()
+        endDayPopup.classList.remove("show");
+        window.location.reload()
 
+    }
         window.addEventListener("click", function (event) {
             if (event.target === calendarPopup) {
                 calendarPopup.classList.remove("show");
@@ -571,7 +572,6 @@
             endDayPopup.classList.remove("show");
 
         })
-    }
 
 </script>
 
@@ -597,6 +597,7 @@
     let currentDayCal = todayCal[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
     let currentMonth = todayCal[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
     let monthPosition = currentMonth-7
+
 
     document.addEventListener("DOMContentLoaded", function() {
         getYear()
