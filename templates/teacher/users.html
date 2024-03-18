@@ -208,7 +208,7 @@
 
             {% if x.user.is_teacher != True %}
 
-            if (currentDay==="{{x.day.title}}" || "{{x.day.title}}".split("،").includes(currentDay) && month >= {{ x.endDay.month.number }} ){
+            if (currentDay==="{{x.day.title}}" || "{{x.day.title}}".split("،").includes(currentDay) && month >= parseInt("{{ x.endDay.month.number }}") ){
                 let tr = document.createElement("tr")
                 let id = document.createElement("th")
                 id.innerHTML = "{{ forloop.counter }}"
@@ -256,7 +256,7 @@
 
             {% if x.user.is_teacher != True %}
 
-            if (currentDay==="{{x.day.title}}" || "{{x.day.title}}".split("،").includes(currentDay) && month >= {{ x.endDay.month.number }}){
+            if (currentDay==="{{x.day.title}}" || "{{x.day.title}}".split("،").includes(currentDay) && month >= parseInt("{{ x.endDay.month.number }}")){
                 let tr = document.createElement("tr")
                 let id = document.createElement("th")
                 id.innerHTML = "{{ forloop.counter }}"
