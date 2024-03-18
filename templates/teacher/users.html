@@ -210,7 +210,9 @@
 
         {% for x in course.participants.all %}
 
-            {% if x.user.is_teacher != True %}
+                {% if x.user.is_teacher != True %}
+
+                    {% if x.endDay.month.number >= month %}
 
             if (currentDay==="{{x.day.title}}" || "{{x.day.title}}".split("،").includes(currentDay)){
                 let tr = document.createElement("tr")
@@ -240,9 +242,11 @@
                 tr.appendChild(endDay)
                 tr.appendChild(dayTitle)
                 tr.appendChild(sessionNumber)
-                 tr.appendChild(description)
+                tr.appendChild(description)
                 body.appendChild(tr)
             }
+            {% endif %}
+
             {% endif %}
 
         {% endfor %}
