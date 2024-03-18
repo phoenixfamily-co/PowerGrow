@@ -142,7 +142,7 @@
   <tbody>
   {% for x in participants %}
     <tr>
-        <th scope="row">{{ x.id }}</th>
+        <th scope="row">{{ forloop.counter }}</th>
         <th onclick="window.open('{% url 'user:user_product' x.id %}')" style="text-decoration: underline ; cursor: pointer">مشاهده دوره</th>
         <td>{{ x.course.title }}</td>
         <td>{{ x.description }}</td>
