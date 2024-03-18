@@ -535,39 +535,41 @@
         window.location.reload()
     }
 
-    function update(){
+    async function update() {
 
-          const param = {
+        const param = {
             "endDay": `${currentDayId}`,
         }
 
-          const response = fetch("/product/api/end/" + participantId + "/", {
+        const response = fetch("/product/api/end/" + participantId + "/", {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization' :  `token ${cookieValue}`
+                'Authorization': `token ${cookieValue}`
             },
-              body: JSON.stringify(param)
+            body: JSON.stringify(param)
+        });
+        const result = await response.json()
+        JSON.stringify(result)
+        if (response.status === 200) {
+            endDayPopup.classList.remove("show");
+            window.location.reload()
+        }
+        window.addEventListener("click", function (event) {
+            if (event.target === calendarPopup) {
+                calendarPopup.classList.remove("show");
+            }
+            if (event.target === endDayPopup) {
+                endDayPopup.classList.remove("show");
+            }
+        });
+
+        exit.addEventListener("click", function () {
+            calendarPopup.classList.remove("show");
+            endDayPopup.classList.remove("show");
 
         })
-
-        endDayPopup.classList.remove("show");
-        window.location.reload()
     }
-      window.addEventListener("click", function (event) {
-        if (event.target === calendarPopup) {
-            calendarPopup.classList.remove("show");
-        }
-            if (event.target === endDayPopup) {
-            endDayPopup.classList.remove("show");
-        }
-    });
-
-    exit.addEventListener("click",function () {
-        calendarPopup.classList.remove("show");
-        endDayPopup.classList.remove("show");
-
-    })
 
 </script>
 
