@@ -861,7 +861,7 @@
     today = today.split('/')
     let currentDay = today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
     let currentMonth = today[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
-    let monthPosition = currentMonth-7
+    let monthPosition = currentMonth
 
 
 
@@ -882,9 +882,9 @@
         });
         result = await response.json()
         result = JSON.parse(JSON.stringify(result))
-        monthSize = result[0].months.length
+        monthSize = result[1].months.length
 
-        yearTitle.innerHTML = result[0].number
+        yearTitle.innerHTML = result[1].number
         getDays(monthPosition)
 
     }
@@ -904,7 +904,7 @@
     })
 
     function getDays(monthPosition) {
-        monthTitle.innerHTML = result[0].months[monthPosition].name
+        monthTitle.innerHTML = result[1].months[monthPosition].name
         days.innerHTML=""
         times.innerHTML = ""
         startDay.innerHTML = ""
