@@ -45,7 +45,7 @@ class YearView(viewsets.ModelViewSet):
     serializer_class = YearSerializer
 
     def get_queryset(self):
-        query_set = Year.objects.get(number=self.kwargs.get('year'))
+        query_set = Year.objects.filter(number=self.kwargs.get('year')).first()
         return query_set
 
 
