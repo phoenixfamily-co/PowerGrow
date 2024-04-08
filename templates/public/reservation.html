@@ -861,20 +861,19 @@
     today = today.split('/')
     let currentDay = today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
     let currentMonth = today[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
+    let currentYear = today[0].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
     let monthPosition = currentMonth
 
 
 
-
-
     document.addEventListener("DOMContentLoaded", function() {
-        getYear()
+        getYear(currentYear)
     });
 
 
-    async function getYear() {
+    async function getYear(currentYear) {
 
-        const response = await fetch('/calendar/api/year/', {
+        const response = await fetch(`/calendar/api/year/${currentYear}/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -882,9 +881,8 @@
         });
         result = await response.json()
         result = JSON.parse(JSON.stringify(result))
-        monthSize = result[1].months.length
-
-        yearTitle.innerHTML = result[1].number
+        monthSize = result.months.length
+        yearTitle.innerHTML = result.number
         getDays(monthPosition)
 
     }

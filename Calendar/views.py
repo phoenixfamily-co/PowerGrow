@@ -44,6 +44,10 @@ class YearView(viewsets.ModelViewSet):
     queryset = Year.objects.all()
     serializer_class = YearSerializer
 
+    def get_queryset(self):
+        query_set = Year.objects.get(number=self.kwargs.get('year'))
+        return query_set
+
 
 class MonthView(viewsets.ModelViewSet):
     queryset = Month.objects.all()
