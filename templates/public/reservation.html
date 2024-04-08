@@ -870,8 +870,25 @@
         getYear(currentYear)
     });
 
+        next.addEventListener("click", function () {
+            if (monthPosition > 0) {
+                monthPosition = monthPosition - 1
+                getDays(monthPosition)
+            }else if (monthPosition === 0){
+                currentYear = currentYear-1
+                getYear(currentYear)
+            }
+        })
 
-    async function getYear(currentYear) {
+    prev.addEventListener("click",function () {
+         if (monthPosition<monthSize-1){
+            monthPosition = monthPosition+1
+             getDays(monthPosition)
+        }
+    })
+
+
+     async function getYear(currentYear) {
 
         const response = await fetch(`/calendar/api/year/${currentYear}/`, {
             method: 'GET',
@@ -886,20 +903,6 @@
         getDays(monthPosition)
 
     }
-
-        next.addEventListener("click", function () {
-            if (monthPosition > 0) {
-                monthPosition = monthPosition - 1
-                getDays(monthPosition)
-            }
-        })
-
-    prev.addEventListener("click",function () {
-         if (monthPosition<monthSize-1){
-            monthPosition = monthPosition+1
-             getDays(monthPosition)
-        }
-    })
 
     function getDays(monthPosition) {
         monthTitle.innerHTML = result[0].months[monthPosition].name
