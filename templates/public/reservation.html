@@ -881,7 +881,7 @@
         });
         result = await response.json()
         result = JSON.parse(JSON.stringify(result))
-        monthSize = result.months.length
+        monthSize = result[0].months.length
         yearTitle.innerHTML = result.number
         getDays(monthPosition)
 
@@ -902,7 +902,7 @@
     })
 
     function getDays(monthPosition) {
-        monthTitle.innerHTML = result[1].months[monthPosition].name
+        monthTitle.innerHTML = result[0].months[monthPosition].name
         days.innerHTML=""
         times.innerHTML = ""
         startDay.innerHTML = ""
