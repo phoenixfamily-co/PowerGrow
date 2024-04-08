@@ -443,20 +443,41 @@
     today = today.split('/')
     let currentDay = today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
     let currentMonth = today[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
-    let monthPosition = currentMonth-7
+    let thisYear = today[0].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
+    let monthPosition = currentMonth-1
 
 
 
 
 
-    document.addEventListener("DOMContentLoaded", function() {
-        getYear()
+   document.addEventListener("DOMContentLoaded", function() {
+        getYear(currentYear)
     });
 
+        next.addEventListener("click", function () {
+            if (monthPosition > 0) {
+                monthPosition = monthPosition - 1
+                getDays(monthPosition)
+            }else if (monthPosition === 0){
+                currentYear = currentYear-1
+                getYear(currentYear)
+            }
+        })
 
-    async function getYear() {
+    prev.addEventListener("click",function () {
+         if (monthPosition<monthSize-1){
+            monthPosition = monthPosition+1
+             getDays(monthPosition)
+        }else if (monthPosition === monthSize-1){
+              currentYear = currentYear+1
+                getYear(currentYear)
+         }
+    })
 
-        const response = await fetch('/calendar/api/year/', {
+
+     async function getYear(currentYear) {
+
+        const response = await fetch(`/calendar/api/year/${currentYear}/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -465,25 +486,20 @@
         result = await response.json()
         result = JSON.parse(JSON.stringify(result))
         monthSize = result[0].months.length
-
         yearTitle.innerHTML = result[0].number
-        getDays(monthPosition)
+
+         if (currentYear<thisYear){
+             monthPosition = monthSize-1
+             getDays(monthSize-1)
+         }else if(currentYear === thisYear){
+             monthPosition = currentMonth - 1
+             getDays(monthPosition)
+         }else{
+             monthPosition = 0
+             getDays(monthPosition)
+         }
 
     }
-
-        next.addEventListener("click", function () {
-            if (monthPosition > 0) {
-                monthPosition = monthPosition - 1
-                getDays(monthPosition)
-            }
-        })
-
-    prev.addEventListener("click",function () {
-         if (monthPosition<monthSize-1){
-            monthPosition = monthPosition+1
-             getDays(monthPosition)
-        }
-    })
 
     function getDays(monthPosition) {
         monthTitle.innerHTML = result[0].months[monthPosition].name
