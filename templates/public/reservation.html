@@ -884,7 +884,10 @@
          if (monthPosition<monthSize-1){
             monthPosition = monthPosition+1
              getDays(monthPosition)
-        }
+        }else if (monthPosition === monthSize){
+              currentYear = currentYear+1
+                getYear(currentYear)
+         }
     })
 
 
