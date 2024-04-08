@@ -882,7 +882,7 @@
         result = await response.json()
         result = JSON.parse(JSON.stringify(result))
         monthSize = result[0].months.length
-        yearTitle.innerHTML = result.number
+        yearTitle.innerHTML = result[0].number
         getDays(monthPosition)
 
     }
