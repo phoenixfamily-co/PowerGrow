@@ -613,8 +613,10 @@
                 monthPosition = monthPosition - 1
                 getDays(monthPosition)
             }else if (monthPosition === 0){
-                currentYear = currentYear-1
-                getYear(currentYear)
+               if(currentYear>1402) {
+                   currentYear = currentYear - 1
+                   getYear(currentYear)
+               }
             }
         })
 
@@ -623,8 +625,10 @@
                 monthPosition = monthPosition - 1
                 getDays(monthPosition)
             }else if (monthPosition === 0){
-                currentYear = currentYear-1
-                getYear(currentYear)
+               if(currentYear>1402) {
+                   currentYear = currentYear - 1
+                   getYear(currentYear)
+               }
             }
         })
 
@@ -633,8 +637,10 @@
             monthPosition = monthPosition+1
              getDays(monthPosition)
         }else if (monthPosition === monthSize-1){
-              currentYear = currentYear+1
-                getYear(currentYear)
+              if(currentYear<1403) {
+                  currentYear = currentYear + 1
+                  getYear(currentYear)
+              }
          }
     })
 
@@ -643,8 +649,10 @@
             monthPosition = monthPosition+1
              getDays(monthPosition)
         }else if (monthPosition === monthSize-1){
-              currentYear = currentYear+1
-                getYear(currentYear)
+               if(currentYear<1403) {
+                  currentYear = currentYear + 1
+                  getYear(currentYear)
+              }
          }
     })
 
