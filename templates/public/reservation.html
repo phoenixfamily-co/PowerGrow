@@ -1011,7 +1011,7 @@
             }else if (result[0].months[monthPosition].number < parseInt(currentMonth)){
                 dayItem.classList.add("disActiveButton")
             }
-            else if (result[0].number < parseInt(currentYear)){
+            else if (result[0].number < parseInt(thisYear)){
                 dayItem.classList.add("disActiveButton")
             }
             dayItem.innerHTML = result[0].months[monthPosition].days[i].number
