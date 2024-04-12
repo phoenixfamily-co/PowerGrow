@@ -454,23 +454,27 @@
         getYear(currentYear)
     });
 
-        next.addEventListener("click", function () {
+       next.addEventListener("click", function () {
             if (monthPosition > 0) {
                 monthPosition = monthPosition - 1
                 getDays(monthPosition)
             }else if (monthPosition === 0){
-                currentYear = currentYear-1
-                getYear(currentYear)
+               if(currentYear>1402) {
+                   currentYear = currentYear - 1
+                   getYear(currentYear)
+               }
             }
         })
 
-    prev.addEventListener("click",function () {
-         if (monthPosition<monthSize-1){
+     prev.addEventListener("click",function () {
+          if (monthPosition<monthSize-1){
             monthPosition = monthPosition+1
              getDays(monthPosition)
         }else if (monthPosition === monthSize-1){
-              currentYear = currentYear+1
-                getYear(currentYear)
+              if(currentYear<1403) {
+                  currentYear = currentYear + 1
+                  getYear(currentYear)
+              }
          }
     })
 

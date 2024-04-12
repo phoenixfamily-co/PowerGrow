@@ -871,26 +871,29 @@
         getYear(currentYear)
     });
 
-        next.addEventListener("click", function () {
+       next.addEventListener("click", function () {
             if (monthPosition > 0) {
                 monthPosition = monthPosition - 1
                 getDays(monthPosition)
             }else if (monthPosition === 0){
-                currentYear = currentYear-1
-                getYear(currentYear)
+               if(currentYear>1402) {
+                   currentYear = currentYear - 1
+                   getYear(currentYear)
+               }
             }
         })
 
-    prev.addEventListener("click",function () {
-         if (monthPosition<monthSize-1){
+     prev.addEventListener("click",function () {
+          if (monthPosition<monthSize-1){
             monthPosition = monthPosition+1
              getDays(monthPosition)
         }else if (monthPosition === monthSize-1){
-              currentYear = currentYear+1
-                getYear(currentYear)
+              if(currentYear<1403) {
+                  currentYear = currentYear + 1
+                  getYear(currentYear)
+              }
          }
     })
-
 
      async function getYear(currentYear) {
 
@@ -1006,6 +1009,9 @@
             }else if (result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number < parseInt(currentDay)){
                 dayItem.classList.add("disActiveButton")
             }else if (result[0].months[monthPosition].number < parseInt(currentMonth)){
+                dayItem.classList.add("disActiveButton")
+            }
+            else if (result[0].number < parseInt(currentYear)){
                 dayItem.classList.add("disActiveButton")
             }
             dayItem.innerHTML = result[0].months[monthPosition].days[i].number
