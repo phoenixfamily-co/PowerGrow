@@ -604,11 +604,11 @@
     let thisYear = today[0].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
 
 
-     document.addEventListener("DOMContentLoaded", function() {
-        getYear(currentYear)
+    document.addEventListener("DOMContentLoaded", function() {
+        getYear()
     });
 
-        next.addEventListener("click", function () {
+       next.addEventListener("click", function () {
             if (monthPosition > 0) {
                 monthPosition = monthPosition - 1
                 getDays(monthPosition)
@@ -618,7 +618,27 @@
             }
         })
 
+     _next.addEventListener("click", function () {
+           if (monthPosition > 0) {
+                monthPosition = monthPosition - 1
+                getDays(monthPosition)
+            }else if (monthPosition === 0){
+                currentYear = currentYear-1
+                getYear(currentYear)
+            }
+        })
+
     prev.addEventListener("click",function () {
+          if (monthPosition<monthSize-1){
+            monthPosition = monthPosition+1
+             getDays(monthPosition)
+        }else if (monthPosition === monthSize-1){
+              currentYear = currentYear+1
+                getYear(currentYear)
+         }
+    })
+
+     _prev.addEventListener("click",function () {
          if (monthPosition<monthSize-1){
             monthPosition = monthPosition+1
              getDays(monthPosition)
@@ -629,7 +649,7 @@
     })
 
 
-     async function getYear(currentYear) {
+    async function getYear() {
 
         const response = await fetch(`/calendar/api/year/${currentYear}/`, {
             method: 'GET',
@@ -640,20 +660,14 @@
         result = await response.json()
         result = JSON.parse(JSON.stringify(result))
         monthSize = result[0].months.length
-        yearTitle.innerHTML = result[0].number
 
-         if (currentYear<thisYear){
-             monthPosition = monthSize-1
-             getDays(monthSize-1)
-         }else if(currentYear === thisYear){
-             monthPosition = currentMonth - 1
-             getDays(monthPosition)
-         }else{
-             monthPosition = 0
-             getDays(monthPosition)
-         }
+        yearTitle.innerHTML = result[0].number
+        _yearTitle.innerHTML = result[0].number
+
+        getDays(monthPosition)
 
     }
+
     function getDays(monthPosition) {
         monthTitle.innerHTML = result[0].months[monthPosition].name
         _monthTitle.innerHTML = result[0].months[monthPosition].name
