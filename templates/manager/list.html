@@ -672,8 +672,16 @@
         yearTitle.innerHTML = result[0].number
         _yearTitle.innerHTML = result[0].number
 
-        getDays(monthPosition)
-
+          if (currentYear<thisYear){
+             monthPosition = monthSize-1
+             getDays(monthSize-1)
+         }else if(currentYear === thisYear){
+             monthPosition = currentMonth - 1
+             getDays(monthPosition)
+         }else{
+             monthPosition = 0
+             getDays(monthPosition)
+         }
     }
 
     function getDays(monthPosition) {
