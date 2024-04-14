@@ -203,7 +203,7 @@
     let input = document.getElementById("searchInput")
     
     input.addEventListener("change", async function () {
-        let inputs = this.target.value.toLowerCase()
+        let inputs = input.value.toLowerCase()
 
         const response = await fetch(`/all/?search=${inputs}`, {
             method: 'GET',
