@@ -197,15 +197,20 @@
   </tbody>
 </table>
 
+</body>
+
+
 <script>
+   let table = document.getElementById('table');
+    let body = table.getElementsByTagName('tbody')[0];
+
     let input = document.getElementById("searchInput")
 
     
     input.addEventListener("change", async function () {
         let inputs = input.value.toLowerCase()
 
-        let table = document.getElementById('table');
-        let body = table.getElementsByTagName('tbody')[0];
+
         body.innerHTML = ' '
 
         const response = await fetch(`/user/all/?search=${inputs}`, {
@@ -261,5 +266,4 @@
 
 </script>
 
-</body>
 </html>
