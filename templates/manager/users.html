@@ -222,6 +222,7 @@
         let tr = document.createElement("tr")
                 let id = document.createElement("th")
                 id.innerHTML = result[0].id
+                let escape = document.createElement("th")
                 let name = document.createElement("td")
                 name.innerHTML = result[0].name
                 let number = document.createElement("td")
@@ -241,12 +242,13 @@
                  let description = document.createElement("td")
                 description.innerHTML = result[0].description
                 let creator = document.createElement("td")
-                    creator.innerHTML = result[0].created.name
+                    creator.innerHTML = result[0].created
                 let active = document.createElement("td")
                     active.innerHTML = result[0].is_active
 
                 tr.appendChild(id)
                 tr.appendChild(name)
+                tr.appendChild(escape)
                 tr.appendChild(number)
                 tr.appendChild(birthdate)
                 tr.appendChild(datetime)
