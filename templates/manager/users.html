@@ -232,6 +232,19 @@
                 birthdate.innerHTML = result[0].birthdate
                 let datetime = document.createElement("td")
                 datetime.innerHTML =  result[0].datetime
+                let access = document.createElement("td")
+                if(result[0].is_staff === true) {
+                    access.innerHTML = "مدیر"
+                }else if (result[0].is_superuser === true){
+                    access.innerHTML = "منشی"
+
+                }else if (result[0].is_teacher === true){
+                    access.innerHTML = "مربی"
+
+                }else {
+                    access.innerHTML = "شاگرد"
+                }
+
                 let salary = document.createElement("td")
                 salary.innerHTML = result[0].salary
                  let fee = document.createElement("td")
