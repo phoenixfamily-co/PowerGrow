@@ -201,17 +201,13 @@
 
 
 <script>
-   let table = document.getElementById('table');
-    let body = table.getElementsByTagName('tbody');
-
     let input = document.getElementById("searchInput")
 
     
     input.addEventListener("change", async function () {
         let inputs = input.value.toLowerCase()
 
-
-        body.innerHTML = ' '
+        document.querySelectorAll("table tbody tr").forEach(function(e){e.remove()})
 
         const response = await fetch(`/user/all/?search=${inputs}`, {
             method: 'GET',
