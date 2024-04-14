@@ -199,12 +199,13 @@
 
 <script>
     let input = document.getElementById("searchInput")
-    let table = document.getElementById('table');
-    let body = table.getElementsByTagName('tbody')[0];
+
     
     input.addEventListener("change", async function () {
         let inputs = input.value.toLowerCase()
 
+        let table = document.getElementById('table');
+        let body = table.getElementsByTagName('tbody')[0];
         body.innerHTML = ' '
 
         const response = await fetch(`/user/all/?search=${inputs}`, {
