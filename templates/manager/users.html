@@ -134,7 +134,7 @@
 </div>
 
   <div style=" margin-top:150px ; margin-left: 50px ; margin-right: 50px" class="form-outline" data-mdb-input-init>
-    <input type="search" placeholder="شماره تلفن ، نام نام خانوادگی و . . ." id="form1" class="form-control" />
+    <input type="search" placeholder="شماره تلفن ، نام نام خانوادگی و . . ." id="searchInput" class="form-control" />
     <label class="form-label" for="form1">Search</label>
   </div>
 
@@ -198,6 +198,26 @@
 </table>
 
 </body>
+
+<script>
+    let input = document.getElementById("searchInput")
+    
+    input.addEventListener("change", async function () {
+        let inputs = this.target.value.toLowerCase()
+
+        const response = await fetch(`/all/?search=${inputs}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        const result = await response.json()
+        console.log(result[0].name)
+
+    })
+
+
+</script>
 
 
 </html>
