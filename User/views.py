@@ -1,7 +1,8 @@
 from django.http import HttpResponse
 from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
-from rest_framework import generics, status, viewsets
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import generics, status, viewsets, filters
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -278,7 +279,8 @@ class GetAccount(generics.ListAPIView, ):
 
 class GetAllAccount(generics.ListCreateAPIView, ):
     queryset = User.objects.all()
-    permission_classes = (AllowAny,)
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    search_fields = ["name", "number"]
     serializer_class = GetAccountSerializer
 
 
