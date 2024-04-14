@@ -202,12 +202,14 @@
 
 <script>
     let input = document.getElementById("searchInput")
+    let myTable = document.getElementById('myTable').getElementsByTagName('tbody')[0];
+
 
     
     input.addEventListener("change", async function () {
         let inputs = input.value.toLowerCase()
 
-        document.querySelectorAll("table tbody tr").forEach(function(e){e.remove()})
+        myTable.innerHTML = ''
 
         const response = await fetch(`/user/all/?search=${inputs}`, {
             method: 'GET',
@@ -256,7 +258,7 @@
                 tr.appendChild(creator)
                 tr.appendChild(active)
 
-                body.appendChild(tr)
+                myTable.appendChild(tr)
 
     })
 
