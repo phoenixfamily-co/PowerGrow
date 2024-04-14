@@ -205,7 +205,7 @@
     input.addEventListener("change", async function () {
         let inputs = input.value.toLowerCase()
 
-        const response = await fetch(`/all/?search=${inputs}`, {
+        const response = await fetch(`/user/all/?search=${inputs}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
