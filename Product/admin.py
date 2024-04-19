@@ -7,6 +7,6 @@ admin.site.register(Sport)
 admin.site.register(Participants)
 
 
-class QuestionAdmin(admin.ModelAdmin):
-    ordering = ['date_created']
-    search_fields = ["user__number"]
+@admin.register(Participants)
+class ParticipantsAdmin(admin.ModelAdmin):
+    autocomplete_fields = ['user__number']
