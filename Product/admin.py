@@ -7,7 +7,7 @@ admin.site.register(Course)
 admin.site.register(Days)
 admin.site.register(Sport)
 
-UserAdmin.search_fields = ('name', 'number')
+# UserAdmin.search_fields = ('name', 'number')
 
 
 class ParticipantsAdmin(admin.ModelAdmin):
