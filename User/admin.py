@@ -1,6 +1,10 @@
+from .models import *
 from django.contrib import admin
 
-from User.models import *
 
-admin.site.register(User)
+class UserAdmin(admin.ModelAdmin):
+    search_fields = ('name', 'number')
+    list_display = ('name', 'number')
 
+
+admin.site.register(User, UserAdmin)
