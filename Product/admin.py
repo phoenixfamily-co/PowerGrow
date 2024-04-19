@@ -1,15 +1,12 @@
-from Product.models import *
-from django.contrib import admin
+from .models import *
+import autocomplete_all as admin
 
 
 admin.site.register(Course)
 admin.site.register(Days)
 admin.site.register(Sport)
+admin.site.register(Sessions)
+admin.site.register(User)
 
 
-class ParticipantsAdmin(admin.ModelAdmin):
-    autocomplete_fields = ['user']
-    list_display = ['user']
 
-
-admin.site.register(Participants, ParticipantsAdmin)
