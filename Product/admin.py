@@ -13,3 +13,5 @@ class ParticipantsAdmin(admin.ModelAdmin):
     autocomplete_fields = ['user']
 
 
+admin.site.register(Participants, ParticipantsAdmin)
+

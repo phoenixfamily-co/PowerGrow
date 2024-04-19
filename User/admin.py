@@ -1,9 +1,11 @@
 from django.contrib import admin
-from django.contrib.auth.models import User
+from User.models import User
 
 
-@admin.register(User)
-class ParticipantsAdmin(admin.ModelAdmin):
+class UserAdmin(admin.ModelAdmin):
     list_display = ('name', 'number')
     search_fields = ('name', 'number')
+
+
+admin.site.register(User, UserAdmin)
 
