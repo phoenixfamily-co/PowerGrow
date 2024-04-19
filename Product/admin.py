@@ -10,6 +10,8 @@ admin.site.register(Sessions)
 
 
 class ParticipantsAdmin(admin.ModelAdmin):
+    autocomplete_fields = ['user',]
+
     def get_search_results(self, request, queryset, search_term):
         queryset, use_distinct = super().get_search_results(request, queryset, search_term)
         if 'autocomplete' in request.path:
