@@ -14,7 +14,7 @@ class ParticipantsAdmin(admin.ModelAdmin):
     autocomplete_fields = ['user']
 
 
-admin.site.unregister(User)
-admin.site.register(Participants, ParticipantsAdmin)
-admin.site.register(User, UserAdmin)
+# admin.site.unregister(User)
+# admin.site.register(Participants, ParticipantsAdmin)
+# admin.site.register(User, UserAdmin)
 
