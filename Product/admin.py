@@ -10,4 +10,4 @@ admin.register(Participants)
 
 
 class ParticipantsAdmin(admin.ModelAdmin):
-    autocomplete_fields = ['user__number']
+    autocomplete_fields = ['user']
