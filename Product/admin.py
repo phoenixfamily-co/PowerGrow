@@ -7,6 +7,8 @@ admin.site.register(Days)
 admin.site.register(Sport)
 admin.site.register(Sessions)
 admin.site.register(User)
+admin.site.register(Participants)
+
 
 
 
