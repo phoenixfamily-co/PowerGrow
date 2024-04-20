@@ -1,5 +1,6 @@
 from django.contrib import admin
 from admin_auto_filters.filters import AutocompleteFilter
+from .models import *
 
 
 class ParticipantsFilter(AutocompleteFilter):
@@ -13,3 +14,6 @@ class UserAdmin(admin.ModelAdmin):
 
 class ParticipantsAdmin(admin.ModelAdmin):
     list_filter = [ParticipantsFilter]
+
+
+admin.register(Participants,ParticipantsAdmin)
