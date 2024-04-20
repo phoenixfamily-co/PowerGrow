@@ -1,15 +1,11 @@
 from django.contrib import admin
-from admin_auto_filters.filters import AutocompleteFilter
 from .models import *
 
 
-class ParticipantsFilter(AutocompleteFilter):
-    title = 'User'  # display title
-    field_name = 'user'  # name of the foreign key field
-
-
 class ParticipantsAdmin(admin.ModelAdmin):
-    list_filter = [ParticipantsFilter]
+    def render_change_form(self, request, context, *args, **kwargs):
+        context['adminform'].form.fields['user'].queryset = User.objects.filter(name__iexact='participants')
+        return super(ParticipantsAdmin, self).render_change_form(request, context, *args, **kwargs)
 
 
 admin.site.register(Participants, ParticipantsAdmin)
