@@ -8,12 +8,8 @@ class ParticipantsFilter(AutocompleteFilter):
     field_name = 'user'  # name of the foreign key field
 
 
-class UserAdmin(admin.ModelAdmin):
-    search_fields = ('name', 'number')  # this is required for django's autocomplete functionality
-
-
 class ParticipantsAdmin(admin.ModelAdmin):
     list_filter = [ParticipantsFilter]
 
 
-admin.register(Participants,ParticipantsAdmin)
+admin.site.register(Participants, ParticipantsAdmin)
