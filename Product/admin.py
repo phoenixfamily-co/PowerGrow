@@ -2,10 +2,11 @@ from django.contrib import admin
 from .models import *
 
 
+@admin.register(Participants)
 class ParticipantsAdmin(admin.ModelAdmin):
-    def render_change_form(self, request, context, *args, **kwargs):
-        context['adminform'].form.fields['user'].queryset = User.objects.filter(name__iexact='participants')
-        return super(ParticipantsAdmin, self).render_change_form(request, context, *args, **kwargs)
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == "user":
+            kwargs["queryset"] = User.objects.filter(name__in=['God', 'Demi God'])
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
 
-admin.site.register(Participants, ParticipantsAdmin)
