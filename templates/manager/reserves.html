@@ -481,7 +481,7 @@
 
     async function getYear() {
 
-        const response = await fetch('/calendar/api/year/${currentYear}/', {
+        const response = await fetch(`/calendar/api/year/${currentYear}/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
