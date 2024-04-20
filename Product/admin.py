@@ -13,3 +13,4 @@ class ParticipantsAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Participants, ParticipantsAdmin)
+admin.site.register(User)
