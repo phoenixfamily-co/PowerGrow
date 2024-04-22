@@ -3,8 +3,7 @@ from .models import *
 
 
 class ParticipantsAdmin(admin.ModelAdmin):
-    model = Participants
-    autocomplete_fields = ['user']
+    raw_id_fields = ['user']
 
 
 admin.site.register(Participants, ParticipantsAdmin)
