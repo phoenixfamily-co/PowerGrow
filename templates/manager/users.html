@@ -742,7 +742,7 @@
                 let register = document.createElement("th")
                 register.innerHTML = "ثبت نام"
                 register.classList.add("register")
-                register.addEventListener("click",submit(result[0].id))
+                register.setAttribute("onclick",submit(result[0].id))
                 let name = document.createElement("td")
                 name.innerHTML = result[0].name
                 let number = document.createElement("td")
