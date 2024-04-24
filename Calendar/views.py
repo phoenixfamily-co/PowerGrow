@@ -70,6 +70,17 @@ class DayView(viewsets.ModelViewSet):
     queryset = Day.objects.all()
     serializer_class = DaySerializer
 
+    def perform_create(self, serializer):
+        times = list[
+            "06:30:00", "08:00:00", "09:30:00", "11:00:00", "12:30:00", "14:00:00", "15:30:00", "17:00:00", "18:30:00",
+            "20:00:00", "21:30:00", "23:00:00", "00:30:00"]
+        for x in range(13):
+            Time.objects.update_or_create(
+                time=times[x],
+                duration=90,
+                day=self.get_object().id
+            )
+
 
 class TimeView(viewsets.ModelViewSet):
     queryset = Time.objects.all()
@@ -129,4 +140,3 @@ class Reset(viewsets.ModelViewSet):
         Time.objects.all().update(reserved=False)
 
         return Response(status=status.HTTP_202_ACCEPTED)
-
