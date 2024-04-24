@@ -381,6 +381,40 @@ class ManagerParticipationView(viewsets.ModelViewSet):
         return Response(status=status.HTTP_202_ACCEPTED)
 
 
+class RegisterParticipants(viewsets.ModelViewSet):
+    queryset = Participants.objects.all()
+    serializer_class = ManagerParticipantsSerializer
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        data = self.request.data
+        course = Course.objects.filter(id=data["course"]).first()
+        user = User.objects.filter(id=self.kwargs['id']).first()
+        start = Day.objects.filter(id=self.kwargs['start']).first()
+        week = Days.objects.filter(id=self.kwargs['day']).first()
+        session = Sessions.objects.filter(id=self.kwargs['session']).first()
+        day = week.title.split("،")
+        ids = Day.objects.filter(name__in=day, month__number__gte=start.month.number, holiday=False).exclude(
+            month__number=start.month.number,
+            number__lt=start.number) \
+                  .order_by('month__number').values_list('pk', flat=True)[:int(session.number)]
+        end = Day.objects.filter(pk__in=list(ids)).last()
+
+        participants = Participants.objects.update_or_create(title=data["title"],
+                                                             description=data["description"],
+                                                             session=session,
+                                                             day=week,
+                                                             endDay=end,
+                                                             startDay=start,
+                                                             price=data["price"],
+                                                             user=user,
+                                                             course=course,
+                                                             success=True,
+                                                             created=self.request.user)
+        serializer = ParticipantsSerializer(participants)
+        return Response(serializer.data)
+
+
 class ChangeDayView(generics.UpdateAPIView, ):
     queryset = Participants.objects.all()
     lookup_field = "pk"
