@@ -274,6 +274,11 @@
             margin-top: 10%;
         }
 
+          .register{
+              text-decoration: underline ;
+              cursor: pointer
+          }
+
     </style>
 
 </head>
@@ -336,7 +341,7 @@
     <tr>
         <th scope="row">{{ forloop.counter }}</th>
         <th onclick="window.open('{% url 'user:delete_profile' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
-        <th onclick="submit({{ x.id }})" style="text-decoration: underline ; cursor: pointer">ثبت نام</th>
+        <th onclick="submit({{ x.id }})" class="register">ثبت نام</th>
         <td>{{ x.name }}</td>
         <td>{{ x.number }}</td>
         <td>{{ x.birthdate }}</td>
@@ -734,6 +739,9 @@
                 id.innerHTML = result[0].id
                 let escape = document.createElement("th")
                 escape.innerHTML = " "
+                let register = document.createElement("th")
+                register.innerHTML = "ثبت نام"
+                register.classList.add("register")
                 let name = document.createElement("td")
                 name.innerHTML = result[0].name
                 let number = document.createElement("td")
