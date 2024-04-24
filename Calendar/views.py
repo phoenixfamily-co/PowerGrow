@@ -70,10 +70,22 @@ class DayView(viewsets.ModelViewSet):
     queryset = Day.objects.all()
     serializer_class = DaySerializer
 
-    def add_time(self):
+    def perform_create(self, serializer):
+        data = self.request.data
+
+        Day.objects.update_or_create(
+            number=data["number"],
+            name=data["name"],
+            description=data["description"],
+            holiday=bool(self.request.POST.get('reserved', False)),
+            month=data["month"],
+
+        )
+
         times = list([
             "06:30:00", "08:00:00", "09:30:00", "11:00:00", "12:30:00", "14:00:00", "15:30:00", "17:00:00", "18:30:00",
             "20:00:00", "21:30:00", "23:00:00", "00:30:00"])
+
         for x in range(len(times)):
             Time.objects.update_or_create(
                 time=times[x],
