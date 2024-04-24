@@ -91,7 +91,7 @@ class DayView(viewsets.ModelViewSet):
             Time.objects.update_or_create(
                 time=times[x],
                 duration=90,
-                day=day.id
+                day_id=day.id
             )
 
 
