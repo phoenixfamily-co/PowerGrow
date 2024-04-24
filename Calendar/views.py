@@ -73,7 +73,7 @@ class DayView(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         data = self.request.data
 
-        Day.objects.update_or_create(
+        day = Day.objects.create(
             number=data["number"],
             name=data["name"],
             description=data["description"],
@@ -81,6 +81,7 @@ class DayView(viewsets.ModelViewSet):
             month_id=data["month"],
 
         )
+        day.save()
 
         times = list([
             "06:30:00", "08:00:00", "09:30:00", "11:00:00", "12:30:00", "14:00:00", "15:30:00", "17:00:00", "18:30:00",
@@ -90,7 +91,7 @@ class DayView(viewsets.ModelViewSet):
             Time.objects.update_or_create(
                 time=times[x],
                 duration=90,
-                day=self.get_object().id
+                day=day.id
             )
 
 
