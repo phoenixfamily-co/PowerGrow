@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.template import loader
+from django.views.decorators.cache import cache_page
 from rest_framework import viewsets, generics, status
 from rest_framework.response import Response
 from User.models import *
@@ -7,6 +8,7 @@ from About.models import AboutUs
 from Calendar.serializer import *
 
 
+@cache_page(60 * 15)
 def price_view(request):
     about = AboutUs.objects.values().first()
     time = Time.objects.all()
@@ -17,7 +19,7 @@ def price_view(request):
     }
     return HttpResponse(template.render(context, request))
 
-
+@cache_page(60 * 15)
 def calendar_view(request):
     about = AboutUs.objects.values().first()
     day = Day.objects.all()
@@ -28,7 +30,7 @@ def calendar_view(request):
     }
     return HttpResponse(template.render(context, request))
 
-
+@cache_page(60 * 15)
 def teacher_calendar_view(request, pk):
     about = AboutUs.objects.values().first()
     user = User.objects.get(id=pk)

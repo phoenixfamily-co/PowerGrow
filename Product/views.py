@@ -1,6 +1,7 @@
 import requests
 from django.http import HttpResponse
 from django.template import loader
+from django.views.decorators.cache import cache_page
 from rest_framework import viewsets, filters, generics, status
 from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAuthenticated, AllowAny
@@ -24,6 +25,7 @@ ZP_API_STARTPAY = f"https://{sandbox}.zarinpal.com/pg/StartPay/"
 CallbackURL = 'https://powergrow.net/product/verify/'
 
 
+@cache_page(60 * 15)
 def product_view(request, pk):
     about = AboutUs.objects.values().first()
     sport = Sport.objects.all().values()
@@ -70,7 +72,7 @@ def check_view(request, pk, session, day):
     }
     return HttpResponse(template.render(context, request))
 
-
+@cache_page(60 * 15)
 def category_view(request, pk):
     template = loader.get_template('public/category.html')
     about = AboutUs.objects.values().first()
@@ -86,6 +88,7 @@ def category_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
+@cache_page(60 * 15)
 def sports_view(request):
     template = loader.get_template('manager/sports.html')
     sport = Sport.objects.all()

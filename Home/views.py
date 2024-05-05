@@ -5,8 +5,10 @@ from About.models import AboutUs
 from django.template import loader
 from .serializer import *
 from django.http import HttpResponse
+from django.views.decorators.cache import cache_page
 
 
+@cache_page(60 * 15)
 def home_view(request):
     images = Slider.objects.all().order_by("datetime").values()
     selected = Course.objects.filter(selected=True).order_by("datetime").values()
@@ -24,6 +26,7 @@ def home_view(request):
     return HttpResponse(template.render(context, request))
 
 
+@cache_page(60 * 15)
 def slider_view(request):
     about = AboutUs.objects.values().first()
     slider = Slider.objects.all().values()

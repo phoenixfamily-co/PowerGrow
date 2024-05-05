@@ -6,6 +6,7 @@ from arabic_reshaper import arabic_reshaper
 from django.conf import settings
 from django.http import HttpResponse, Http404
 from django.template import loader
+from django.views.decorators.cache import cache_page
 from reportlab.lib.pagesizes import A4
 from rest_framework import viewsets, status
 from rest_framework.decorators import api_view
@@ -35,6 +36,7 @@ ZP_API_STARTPAY = f"https://{sandbox}.zarinpal.com/pg/StartPay/"
 CallbackURL = 'https://powergrow.net/reservation/verify/'
 
 
+@cache_page(60 * 15)
 def reservation_view(request):
     about = AboutUs.objects.values().first()
     gym = Gym.objects.values().first()
@@ -50,6 +52,7 @@ def reservation_view(request):
     return HttpResponse(template.render(context, request))
 
 
+@cache_page(60 * 15)
 def transaction_view(request, gym, time, session, holiday):
     about = AboutUs.objects.values().first()
     gym = Gym.objects.filter(id=gym).values().first()
@@ -67,6 +70,7 @@ def transaction_view(request, gym, time, session, holiday):
     return HttpResponse(template.render(context, request))
 
 
+@cache_page(60 * 15)
 def gym_view(request):
     about = AboutUs.objects.values().first()
     gym = Gym.objects.all()
@@ -78,6 +82,7 @@ def gym_view(request):
     return HttpResponse(template.render(context, request))
 
 
+@cache_page(60 * 15)
 def admin_gym_view(request):
     about = AboutUs.objects.values().first()
     gym = Gym.objects.all()
@@ -89,6 +94,7 @@ def admin_gym_view(request):
     return HttpResponse(template.render(context, request))
 
 
+@cache_page(60 * 15)
 def reserve_view(request):
     about = AboutUs.objects.values().first()
     reserve = Reservations.objects.filter(success=True).all()
@@ -102,6 +108,7 @@ def reserve_view(request):
     return HttpResponse(template.render(context, request))
 
 
+@cache_page(60 * 15)
 def admin_reserve_view(request):
     about = AboutUs.objects.values().first()
     reserve = Reservations.objects.filter(success=True).all()
@@ -115,6 +122,7 @@ def admin_reserve_view(request):
     return HttpResponse(template.render(context, request))
 
 
+@cache_page(60 * 15)
 def user_reserves_view(request, pk):
     template = loader.get_template('user/reserves.html')
     about = AboutUs.objects.values().first()

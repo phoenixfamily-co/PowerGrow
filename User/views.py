@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.template import loader
+from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_exempt
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics, status, viewsets, filters
@@ -16,6 +17,7 @@ from User.serializer import *
 from User.models import *
 
 
+@cache_page(60 * 15)
 def login_view(request):
     about = AboutUs.objects.values().first()
     template = loader.get_template('public/login.html')
@@ -30,6 +32,7 @@ def login_view(request):
 
 
 @csrf_exempt
+@cache_page(60 * 15)
 def register_view(request):
     about = AboutUs.objects.values().first()
     template = loader.get_template('public/register.html')
@@ -38,7 +41,7 @@ def register_view(request):
     }
     return HttpResponse(template.render(context, request))
 
-
+@cache_page(60 * 15)
 def verification_view(request, number):
     about = AboutUs.objects.values().first()
     data = {'to': number}
@@ -52,6 +55,7 @@ def verification_view(request, number):
     return HttpResponse(template.render(context, request))
 
 
+@cache_page(60 * 15)
 def forget_view(request):
     about = AboutUs.objects.values().first()
     template = loader.get_template('public/forget.html')
@@ -61,6 +65,7 @@ def forget_view(request):
     return HttpResponse(template.render(context, request))
 
 
+@cache_page(60 * 15)
 def pass_view(request, number):
     about = AboutUs.objects.values().first()
     template = loader.get_template('public/password.html')
@@ -72,6 +77,7 @@ def pass_view(request, number):
     return HttpResponse(template.render(context, request))
 
 
+@cache_page(60 * 15)
 def user_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('user/dashboard.html')
@@ -83,6 +89,7 @@ def user_home_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
+@cache_page(60 * 15)
 def user_gym_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('user/gym.html')
@@ -96,6 +103,7 @@ def user_gym_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
+@cache_page(60 * 15)
 def user_product_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('user/product.html')
@@ -112,6 +120,7 @@ def user_product_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
+@cache_page(60 * 15)
 def teacher_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('teacher/dashboard.html')
@@ -124,6 +133,7 @@ def teacher_home_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
+@cache_page(60 * 15)
 def secretary_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('secretary/dashboard.html')
@@ -136,6 +146,7 @@ def secretary_home_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
+@cache_page(60 * 15)
 def manager_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('manager/dashboard.html')
@@ -147,6 +158,7 @@ def manager_home_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
+@cache_page(60 * 15)
 def profile_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('public/profile.html')
@@ -158,6 +170,7 @@ def profile_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
+@cache_page(60 * 15)
 def user_view(request):
     about = AboutUs.objects.values().first()
     template = loader.get_template('manager/users.html')
@@ -169,6 +182,7 @@ def user_view(request):
     return HttpResponse(template.render(context, request))
 
 
+@cache_page(60 * 15)
 def admin_user_view(request):
     about = AboutUs.objects.values().first()
     template = loader.get_template('secretary/users.html')
