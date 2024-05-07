@@ -186,7 +186,8 @@
             color: rgb(51, 49, 49);
         }
 
-           @media screen and (max-width: 600px) {
+           @media screen and (max-width: 768px) {
+
             .copy{
                 font-size: 12px;
         }
@@ -222,6 +223,9 @@
                 .fa-eye{
                     margin-top: 30px;
         }
+                .hidden{
+                   display: none;
+               }
 
         }
 
@@ -253,8 +257,43 @@ button:hover {
 
 <body>
 
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg ">
 
-<nav class="navbar navbar-dark bg-dark">
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="nav navbar-nav">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href='{% url 'home:home' %}'>صفحه اصلی</a>
+  </li>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">ورزش ها</a>
+    <ul class="dropdown-menu bg-dark">
+         {% for x in sport %}
+             <li><a style="color: white ; width: 100% ; text-align: right" class="dropdown-item" href="{% url 'product:category' x.id %}">{{ x.title }}</a></li>
+         {% endfor %}
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'reservation:reservation' %}">اجاره سالن</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href='{% url 'about:aboutUs'%}'>درباره ما</a>
+  </li>
+
+     <li class="nav-item">
+    <a class="nav-link" href='{% url 'user:login' %}'>ورود و عضویت</a>
+  </li>
+</ul>
+  </div>
+</nav>
+
+
+<nav class="navbar navbar-dark bg-dark hidden">
   <div class="container-fluid" style="vertical-align: center">
 <ul class="nav nav-pills">
   <li class="nav-item">
