@@ -311,8 +311,9 @@
 </head>
 <body>
 
-<nav class="navbar navbar-dark bg-dark .hidden-sm .hidden-xs">
+<nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid" style="vertical-align: center">
+      <div class="collapse navbar-collapse" id="myNavbar">
 <ul class="nav nav-pills">
   <li class="nav-item">
     <a class="nav-link active" aria-current="page" href='{% url 'home:home' %}'>صفحه اصلی</a>
@@ -336,6 +337,7 @@
       <li><a href='{% url 'user:login' %}'><span class="glyphicon glyphicon-user"></span>ورود و عضویت</a></li>
     </ul>
   </div>
+    </div>
 </nav>
 
 <div class="logoHolder">
