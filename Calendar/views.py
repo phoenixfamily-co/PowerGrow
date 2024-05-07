@@ -79,10 +79,10 @@ class DayView(viewsets.ModelViewSet):
             number=data["number"],
             name=data["name"],
             description=data["description"],
-            holiday=bool(self.request.POST.get('reserved', False)),
+            holiday=bool(self.request.POST.get('holiday', False)),
             month_id=data["month"],
-
         )
+
         day.save()
 
         times = list([
