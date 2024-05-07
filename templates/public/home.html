@@ -295,6 +295,24 @@
                footer ul li {
                    margin-top: 10px;
                }
+               .navbar.navbar-dark{
+                   display: none;
+               }
+
+        }
+
+        @media only screen and (min-width: 600px) {
+
+            .navbar.navbar-dark{
+                display: none;
+            }
+
+        }
+
+        @media only screen and (min-width: 768px) {
+            .navbar.navbar-dark{
+                display: none;
+            }
 
         }
 
@@ -310,7 +328,7 @@
 
 
 <nav class="navbar navbar-dark bg-dark fixed-top">
-  <div class="container-fluid" style="vertical-align: center">
+  <div class="container-fluid">
 <ul class="nav nav-pills">
   <li class="nav-item">
     <a class="nav-link active" aria-current="page" href='{% url 'home:home' %}'>صفحه اصلی</a>
