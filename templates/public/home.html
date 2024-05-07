@@ -295,14 +295,20 @@
         }
 
 
-        ::-webkit-scrollbar{
-            overflow-y: hidden;
-        }
+        .example::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.example {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
 
     </style>
 
 </head>
-<body>
+<body class="example">
 
 
 <nav class="navbar navbar-dark bg-dark navbar-expand-lg ">
