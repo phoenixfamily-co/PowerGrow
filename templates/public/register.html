@@ -28,8 +28,16 @@
         		 url("/static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */
         		 url("/static/fonts/BYekan.ttf")  format('truetype') /* Safari, Android, iOS */
 		}
-           * {
-            box-sizing: border-box
+
+             html {
+                 min-height: 100%;
+                 position: relative;
+                 font-family: BYekan, serif !important;
+             }
+
+        body {
+            margin-bottom: 500px;
+
         }
 
         img {
@@ -37,14 +45,16 @@
         }
 
         .logoHolder {
-            width: 50px;
+            width: 100%;
             position: absolute;
-            left: 0;
-            right: 0;
-            margin-right: 55%;
-            margin-top: 1%;
+            margin-top: 20px;
+            display: inline-flex;
             z-index: 10 !important;
             direction: ltr;
+            align-content: center;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
 
         }
 
@@ -52,20 +62,15 @@
             width: 50px;
             height: 50px;
             border-radius: 25px;
-            position: absolute;
-            direction: ltr
 
         }
 
         .typography {
-            position: absolute;
-            margin-left: 60px;
-            margin-top: 20%;
             color: black;
-            font-size: 20px
+            font-size: 20px;
+            margin-left: 10px;
 
         }
-
 
         .dropdown {
             position: relative;
@@ -88,21 +93,12 @@
         }
 
         /* Change color of dropdown links on hover */
-        .dropdown-content a:hover {
-            background-color: #f1f1f1
+        .dropdown-menu li a:hover {
+            background-color: black ;
         }
 
-
-        html{
-            min-height: 100%;
-            position: relative;
-            font-family: BYekan, serif !important;
-        }
-
-        body {
+        .navbar{
             direction: rtl;
-            margin-bottom: 500px;
-
         }
 
 
@@ -128,6 +124,7 @@
         }
 
         footer{
+            direction: rtl;
             position: absolute;
             left: 0;
             bottom: 0;
@@ -163,7 +160,7 @@
             position: absolute;
             margin-top: -40px;
             margin-left: 50px;
-            left: 0;
+             right: 0;
             cursor: pointer;
             color: rgb(51, 49, 49);
         }
@@ -171,11 +168,6 @@
            @media screen and (max-width: 768px) {
             .copy{
                 font-size: 12px;
-        }
-
-               .img-seo{
-                   width: 100%;
-
         }
 
                .container{
@@ -206,9 +198,7 @@
                footer ul li {
                    margin-top: 10px;
                }
-                .fa-eye{
-                    margin-top: 30px;
-        }
+
                 .hidden{
                    display: none;
                }
