@@ -315,8 +315,8 @@
 {#  </div>#}
 {#</div>#}
 
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
+<nav class="navbar navbar-dark bg-dark fixed-top">
+  <div class="container-fluid" style="vertical-align: center">
 
   <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -330,9 +330,7 @@
 {#    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">#}
 {#      <span class="navbar-toggler-icon"></span>#}
 {#    </button>#}
-
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-<ul class="nav navbar-nav">
+<ul class="nav nav-pills">
   <li class="nav-item">
     <a class="nav-link active" aria-current="page" href='{% url 'home:home' %}'>صفحه اصلی</a>
   </li>
@@ -351,7 +349,6 @@
     <a class="nav-link" href='{% url 'about:aboutUs'%}'>درباره ما</a>
   </li>
 </ul>
-      </div>
   <ul class="nav navbar-nav navbar-left">
       <li><a href='{% url 'user:login' %}'><span class="glyphicon glyphicon-user"></span>ورود و عضویت</a></li>
     </ul>
