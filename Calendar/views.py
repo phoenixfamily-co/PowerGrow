@@ -19,6 +19,7 @@ def price_view(request):
     }
     return HttpResponse(template.render(context, request))
 
+
 @cache_page(60 * 15)
 def calendar_view(request):
     about = AboutUs.objects.values().first()
@@ -29,6 +30,7 @@ def calendar_view(request):
         "about": about,
     }
     return HttpResponse(template.render(context, request))
+
 
 @cache_page(60 * 15)
 def teacher_calendar_view(request, pk):
