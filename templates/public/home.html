@@ -79,7 +79,7 @@
         }
 
         .dropdown-content a {
-            color: black;
+            color: white;
             padding: 5px 16px;
             font-size: 16px;
             text-decoration: none;
@@ -88,7 +88,7 @@
 
         /* Change color of dropdown links on hover */
         .dropdown-content a:hover {
-            background-color: transparent;
+            background-color: black ;
         }
 
 
@@ -354,7 +354,7 @@
     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">ورزش ها</a>
     <ul class="dropdown-menu dropdown-menu-right bg-dark">
          {% for x in sport %}
-             <li><a style="color: black ; width: 100% ; text-align: center" class="dropdown-item" href="{% url 'product:category' x.id %}">{{ x.title }}</a></li>
+             <li><a style="color: white ; width: 100% ; text-align: center" class="dropdown-item" href="{% url 'product:category' x.id %}">{{ x.title }}</a></li>
          {% endfor %}
     </ul>
   </li>
