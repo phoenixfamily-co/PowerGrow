@@ -295,9 +295,20 @@
         }
 
 
+        .example::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.example {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
     </style>
 
 </head>
+
 <body>
 
 
@@ -417,7 +428,7 @@
 
 <div class="container-fluid py-2">
 
-    <div class="d-flex flex-row flex-nowrap overflow-auto">
+    <div class="d-flex flex-row flex-nowrap overflow-auto example">
 
 
     {% for x in selected %}
