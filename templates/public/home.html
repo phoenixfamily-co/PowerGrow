@@ -352,7 +352,7 @@
   </li>
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">ورزش ها</a>
-    <ul class="dropdown-menu dropdown-menu-right">
+    <ul class="dropdown-menu dropdown-menu-right bg-dark">
          {% for x in sport %}
              <li><a style="color: black ; width: 100% ; text-align: center" class="dropdown-item" href="{% url 'product:category' x.id %}">{{ x.title }}</a></li>
          {% endfor %}
