@@ -26,23 +26,32 @@
             url("/static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */ url("../../static/fonts/BYekan.ttf") format('truetype') /* Safari, Android, iOS */
         }
 
-        * {
-            box-sizing: border-box
+
+        html{
+            min-height: 100%;
+            position: relative;
+            font-family: BYekan, serif !important;
+        }
+
+        body {
+            margin-bottom: 1300px;
         }
 
         img {
             vertical-align: middle;
         }
 
-        .logoHolder {
-            width: 50px;
+       .logoHolder {
+            width: 100%;
             position: absolute;
-            left: 0;
-            right: 0;
-            margin-right: 55%;
-            margin-top: 1%;
+            margin-top: 20px;
+            display: inline-flex;
             z-index: 10 !important;
             direction: ltr;
+            align-content: center;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
 
         }
 
@@ -50,17 +59,13 @@
             width: 50px;
             height: 50px;
             border-radius: 25px;
-            position: absolute;
-            direction: ltr
 
         }
 
         .typography {
-            position: absolute;
-            margin-left: 60px;
-            margin-top: 20%;
-            color: black;
-            font-size: 20px
+            color: white;
+            font-size: 20px;
+            margin-left: 10px;
 
         }
 
@@ -86,23 +91,9 @@
         }
 
         /* Change color of dropdown links on hover */
-        .dropdown-content a:hover {
-            background-color: #f1f1f1
+         .dropdown-menu li a:hover {
+            background-color: black ;
         }
-
-
-        html{
-            min-height: 100%;
-            position: relative;
-            font-family: BYekan, serif !important;
-        }
-
-        body {
-            direction: rtl;
-            margin-bottom: 1300px;
-
-        }
-
 
         .col {
             width: 30%;
@@ -115,6 +106,10 @@
             font-family: BYekan, serif !important;
             font-size: 10px;
 
+        }
+
+        .navbar{
+            direction: rtl;
         }
 
 
@@ -144,6 +139,7 @@
         }
 
         footer{
+            direction: rtl;
             position: absolute;
             left: 0;
             bottom: 0;
@@ -218,11 +214,6 @@
                    display: none;
                }
 
-               .nav.navbar-nav.navbar-left{
-                   position: absolute;
-                   left: 0;
-                   margin-top: 5%;
-               }
 
                .img-seo{
                    width: 100%;
@@ -248,13 +239,17 @@
 ''
                }
                .footer-container{
-                   height: 600px;
+                   height: 700px;
                }
 
-               .footer-logo{
-                   float: none;
-                   height: 200px;
-                   margin-right: 30%;
+                .footer-logo {
+                   width: 100%;
+                   height: 300px;
+                   display: inline-block;
+                   justify-content: center;
+                   align-items: center;
+                   align-content: center;
+                   text-align: center;
                }
 
                footer ul li {
@@ -347,11 +342,11 @@
 
     <div class="right-seo">
 
-    <h3>
+    <h3 style="padding-right: 10px">
        درباره ما
     </h3>
 
-        <p style="font-size: 20px">
+        <p style="font-size: 20px ; padding-right: 10px ; padding-left: 10px">
             {{ about.description }}
         </p>
 
@@ -388,8 +383,8 @@
     <img class="img-responsive img-seo" src="../../static/images/contact.jpg" alt="" style="float: right">
 
     <div class="left-seo">
-        <h3>ارتباط با ما</h3>
-      <p style="font-size: 18px">
+        <h3 style="padding-left: 10px ; padding-right: 10px">ارتباط با ما</h3>
+        <p style="font-size: 20px ; padding-right: 10px ; padding-left: 10px">
         شما می‌توانید در این بخش با ما در ارتباط باشید و نظرات، پیشنهادات و سوالات خود را با ما در میان بگذارید
         اگر شما تمایل دارید به صورت تلفنی با ما صحبت کنید، شماره تلفن ما نیز در بخش ارتباط با ما قابل دسترس است. شما
         می‌توانید با شماره تلفن ما تماس بگیرید و با یکی از نمایندگان ما صحبت کنید.
