@@ -26,23 +26,34 @@
             url("/static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */ url("../../static/fonts/BYekan.ttf") format('truetype') /* Safari, Android, iOS */
         }
 
-        * {
-            box-sizing: border-box
+
+          html{
+            min-height: 100%;
+            position: relative;
+            font-family: BYekan, serif !important;
         }
+
+        body {
+            margin-bottom: 1100px;
+
+        }
+
 
         img {
             vertical-align: middle;
         }
 
-        .logoHolder {
-            width: 50px;
+       .logoHolder {
+            width: 100%;
             position: absolute;
-            left: 0;
-            right: 0;
-            margin-right: 55%;
-            margin-top: 1%;
+            margin-top: 20px;
+            display: inline-flex;
             z-index: 10 !important;
             direction: ltr;
+            align-content: center;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
 
         }
 
@@ -50,20 +61,15 @@
             width: 50px;
             height: 50px;
             border-radius: 25px;
-            position: absolute;
-            direction: ltr
 
         }
 
         .typography {
-            position: absolute;
-            margin-left: 60px;
-            margin-top: 20%;
             color: black;
-            font-size: 20px
+            font-size: 20px;
+            margin-left: 10px;
 
         }
-
 
         .dropdown {
             position: relative;
@@ -86,15 +92,15 @@
         }
 
         /* Change color of dropdown links on hover */
-        .dropdown-content a:hover {
-            background-color: #f1f1f1
+        .dropdown-menu li a:hover {
+            background-color: black ;
         }
 
 
 
 
-
         .card {
+            direction: rtl;
             width: 20rem;
             background: #C1C1C1;
         }
@@ -113,16 +119,8 @@
             cursor: pointer;
         }
 
-        html{
-            min-height: 100%;
-            position: relative;
-            font-family: BYekan, serif !important;
-        }
-
-        body {
+        .navbar{
             direction: rtl;
-            margin-bottom: 1100px;
-
         }
 
 
@@ -153,6 +151,7 @@
         }
 
         footer{
+            direction: rtl;
             position: absolute;
             left: 0;
             bottom: 0;
@@ -199,23 +198,27 @@
         }
 
 
-               .map{
+               .map {
                    height: 200px;
                    width: 200px;
                    margin-top: 50px;
                    margin-right: 30%;
-''
                }
+
+
                .footer-container{
-                   height: 600px;
+                   height: 250px;
                }
 
-               .footer-logo{
-                   float: none;
-                   height: 200px;
-                   margin-right: 30%;
-               }
-
+        .footer-logo{
+            height: 100%;
+            float: left;
+            display: inline-block;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            text-align: center;
+        }
                footer ul li {
                    margin-top: 10px;
                }
