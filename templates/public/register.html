@@ -17,7 +17,7 @@
     {% bootstrap_css %}
     {% bootstrap_javascript %}
 
-    <style>
+<style>
 
         	@font-face {
 			font-family: BYekan;
@@ -29,16 +29,16 @@
         		 url("/static/fonts/BYekan.ttf")  format('truetype') /* Safari, Android, iOS */
 		}
 
-             html {
-                 min-height: 100%;
-                 position: relative;
-                 font-family: BYekan, serif !important;
-             }
+              html {
+                  min-height: 100%;
+                  position: relative;
+                  font-family: BYekan, serif !important;
+              }
 
         body {
             margin-bottom: 500px;
-
         }
+
 
         img {
             vertical-align: middle;
@@ -72,6 +72,7 @@
 
         }
 
+
         .dropdown {
             position: relative;
             display: inline-block;
@@ -92,15 +93,14 @@
             display: block;
         }
 
-        /* Change color of dropdown links on hover */
-        .dropdown-menu li a:hover {
-            background-color: black ;
-        }
-
         .navbar{
             direction: rtl;
         }
 
+        /* Change color of dropdown links on hover */
+         .dropdown-menu li a:hover {
+            background-color: black ;
+        }
 
         .navbar.navbar-dark.bg-dark li a{
             color: #fff;
@@ -143,9 +143,14 @@
             height: 250px;
         }
 
-        .footer-logo{
+       .footer-logo{
             height: 100%;
             float: left;
+            display: inline-block;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            text-align: center;
         }
 
          ul {
@@ -159,13 +164,14 @@
          .fa-eye{
             position: absolute;
             margin-top: -40px;
-            margin-left: 50px;
-             right: 0;
+            margin-right: 50px;
+            right: 0;
             cursor: pointer;
             color: rgb(51, 49, 49);
         }
 
            @media screen and (max-width: 768px) {
+
             .copy{
                 font-size: 12px;
         }
@@ -185,7 +191,7 @@
                    margin-bottom: 800px;
                }
 
-                .footer-container{
+              .footer-container{
                    height: 700px;
                }
 
@@ -198,6 +204,7 @@
                    align-content: center;
                    text-align: center;
                }
+
                footer ul li {
                    margin-top: 10px;
                }
@@ -207,7 +214,6 @@
                }
 
         }
-
 
 input[type=text], input[type=password] {
   width: 100%;
