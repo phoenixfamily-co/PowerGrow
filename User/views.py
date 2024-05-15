@@ -36,10 +36,14 @@ def login_view(request):
 def register_view(request):
     about = AboutUs.objects.values().first()
     template = loader.get_template('public/register.html')
+    sport = Sport.objects.all().values()
     context = {
         "about": about,
+        "sport": sport,
+
     }
     return HttpResponse(template.render(context, request))
+
 
 @cache_page(60 * 15)
 def verification_view(request, number):
