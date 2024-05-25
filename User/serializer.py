@@ -171,24 +171,19 @@ class ChangeDebtSerializer(serializers.ModelSerializer):
         return instance
 
 
-
 class UpdateProfileSerializer(serializers.ModelSerializer):
     reservations = ReservationSerializer(read_only=True, many=True)
     participants = ParticipantsSerializer(read_only=True, many=True)
 
     class Meta:
         model = User
-        extra_kwargs = {
-            'number': {'required': False},
-            'password': {'required': False},
-            'name': {'required': True},
-            'birthdate': {'required': True},
-        }
-        exclude = ['number', 'password']
+        fields = ['name', 'number', 'birthdate', 'password']
 
     def update(self, instance, validated_data):
         instance.name = validated_data.get("name", instance.name)
-        instance.email = validated_data.get("email", instance.email)
+        instance.number = validated_data.get("number", instance.email)
+        instance.birthdate = validated_data.get("birthdate", instance.email)
+        instance.password = validated_data.get("password", instance.email)
 
         instance.save()
         return instance
