@@ -404,13 +404,7 @@
 
         if (input.value.length===0){
 
-            const response = await fetch(`/user/all/`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-            const result = await response.json()
+            {% for x in page_obj.object_list %}
 
             let tr = document.createElement("tr")
             let id = document.createElement("th")
@@ -422,39 +416,39 @@
                 window.open(`/user/delete/${result[0].id}/`)
             }
             let name = document.createElement("td")
-            name.innerHTML = result[0].name
+            name.innerHTML = x.name
             let number = document.createElement("td")
-            number.innerHTML = result[0].number
+            number.innerHTML = x.number
             let birthdate = document.createElement("td")
-            birthdate.innerHTML = result[0].birthdate
+            birthdate.innerHTML = x.birthdate
             let datetime = document.createElement("td")
-            datetime.innerHTML = result[0].datetime
+            datetime.innerHTML = x.datetime
             let access = document.createElement("td")
-            if (result[0].is_staff === true) {
+            if (x.is_staff === true) {
                 access.innerHTML = "مدیر"
-            } else if (result[0].is_superuser === true) {
+            } else if (x.is_superuser === true) {
                 access.innerHTML = "منشی"
 
-            } else if (result[0].is_teacher === true) {
+            } else if (x.is_teacher === true) {
                 access.innerHTML = "مربی"
 
             } else {
                 access.innerHTML = "شاگرد"
             }
             let salary = document.createElement("td")
-            salary.innerHTML = result[0].salary
+            salary.innerHTML = x.salary
             let fee = document.createElement("td")
-            fee.innerHTML = result[0].fee
+            fee.innerHTML = x.fee
             let situation = document.createElement("td")
-            situation.innerHTML = result[0].situation
+            situation.innerHTML = x.situation
             let debt = document.createElement("td")
-            debt.innerHTML = result[0].debt
+            debt.innerHTML = x.debt
             let description = document.createElement("td")
-            description.innerHTML = result[0].description
+            description.innerHTML = x.description
             let creator = document.createElement("td")
-            creator.innerHTML = result[0].created
+            creator.innerHTML = x.created
             let active = document.createElement("td")
-            active.innerHTML = result[0].is_active
+            active.innerHTML = x.is_active
 
             tr.appendChild(id)
             tr.appendChild(deactive)
@@ -472,6 +466,8 @@
             tr.appendChild(active)
 
             myTable.appendChild(tr)
+
+            {% endfor %}
 
 
         }else {
