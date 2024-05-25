@@ -402,7 +402,7 @@
 
         console.log(inputs)
 
-        if (inputs===null){
+        if (input.value === ""){
 
             const response = await fetch(`/user/all/`, {
                 method: 'GET',
