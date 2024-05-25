@@ -352,7 +352,7 @@
   <tbody>
   {% for x in page_obj.object_list %}
     <tr>
-        <th scope="row">{{ forloop.counter }}</th>
+        <th scope="row">{{ x.id }}</th>
         <th onclick="window.open('{% url 'user:delete_profile' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
         <th onclick="submit({{ x.id }})" class="register">ثبت نام</th>
         <td>{{ x.name }}</td>
