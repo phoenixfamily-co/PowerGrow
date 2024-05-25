@@ -414,7 +414,7 @@
                 deactive.innerHTML = "مسدودسازی"
                 deactive.classList.add("register")
                 deactive.onclick = function () {
-                   window.open(`user/delete/${result[0].id}/`)
+                   window.open(`/user/delete/${result[0].id}/`)
                 }
                 let name = document.createElement("td")
                 name.innerHTML = result[0].name
