@@ -400,8 +400,6 @@
 
         myTable.innerHTML = ''
 
-        console.log(input.value.length)
-
         if (input.value.length===0){
 
             {% for x in page_obj.object_list %}
@@ -479,7 +477,7 @@
             });
             const result = await response.json()
 
-            let tr = document.createElement("tr")
+            let tr1 = document.createElement("tr")
             let id = document.createElement("th")
             id.innerHTML = result[0].id
             let deactive = document.createElement("th")
@@ -523,20 +521,20 @@
             let active = document.createElement("td")
             active.innerHTML = result[0].is_active
 
-            tr.appendChild(id)
-            tr.appendChild(deactive)
-            tr.appendChild(name)
-            tr.appendChild(number)
-            tr.appendChild(birthdate)
-            tr.appendChild(datetime)
-            tr.appendChild(access)
-            tr.appendChild(salary)
-            tr.appendChild(fee)
-            tr.appendChild(situation)
-            tr.appendChild(debt)
-            tr.appendChild(description)
-            tr.appendChild(creator)
-            tr.appendChild(active)
+            tr1.appendChild(id)
+            tr1.appendChild(deactive)
+            tr1.appendChild(name)
+            tr1.appendChild(number)
+            tr1.appendChild(birthdate)
+            tr1.appendChild(datetime)
+            tr1.appendChild(access)
+            tr1.appendChild(salary)
+            tr1.appendChild(fee)
+            tr1.appendChild(situation)
+            tr1.appendChild(debt)
+            tr1.appendChild(description)
+            tr1.appendChild(creator)
+            tr1.appendChild(active)
 
             myTable.appendChild(tr)
 
