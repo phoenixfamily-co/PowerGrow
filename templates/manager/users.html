@@ -338,7 +338,7 @@
     </tr>
   </thead>
   <tbody>
-  {% for x in user %}
+  {% for x in page_obj.object_list %}
     <tr>
         <th scope="row">{{ forloop.counter }}</th>
         <th onclick="window.open('{% url 'user:delete_profile' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
