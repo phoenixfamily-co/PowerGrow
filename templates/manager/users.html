@@ -282,6 +282,12 @@
               color: red;
           }
 
+          .edit{
+              text-decoration: underline ;
+              cursor: pointer;
+              color: white;
+          }
+
     </style>
 
 </head>
@@ -424,6 +430,12 @@
             deactive.onclick = function () {
                 window.open(`/user/delete/${result[0].id}/`)
             }
+            let edit = document.createElement("th")
+            edit.innerHTML = "ویرایش"
+            edit.classList.add("edit")
+            edit.onclick = function () {
+                window.open(`/user/update/${result[0].number}/`)
+            }
             let name = document.createElement("td")
             name.innerHTML = result[0].name
             let number = document.createElement("td")
@@ -461,6 +473,7 @@
 
             tr.appendChild(id)
             tr.appendChild(deactive)
+            tr.appendChild(edit)
             tr.appendChild(name)
             tr.appendChild(number)
             tr.appendChild(birthdate)
