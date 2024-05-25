@@ -321,7 +321,7 @@
     <tr>
         <th scope="row">{{ x.id }}</th>
         <th onclick="window.open('{% url 'product:delete-courses' x.id %}')"><i class="fa fa-times" aria-hidden="true" style="cursor: pointer"></i></th>
-        <th onclick="window.open('{% url 'product:update-courses' x.number %}')"><i class="fa fa-pencil" aria-hidden="true" style="cursor: pointer"></i></th>
+        <th onclick="window.open('{% url 'product:update-courses' x.id %}')"><i class="fa fa-pencil" aria-hidden="true" style="cursor: pointer"></i></th>
         <th onclick="submit({{ x.id }})" style="text-decoration: underline ; cursor: pointer">ثبت نام</th>
         <th onclick="window.location.assign('{% url 'product:manager_user_list' x.id %}')" style="text-decoration: underline ; cursor: pointer">مشاهده لیست</th>
         <td>{{ x.title }}</td>

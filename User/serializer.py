@@ -181,9 +181,9 @@ class UpdateProfileSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         instance.name = validated_data.get("name", instance.name)
-        instance.number = validated_data.get("number", instance.email)
-        instance.birthdate = validated_data.get("birthdate", instance.email)
-        instance.password = validated_data.get("password", instance.email)
+        instance.number = validated_data.get("number", instance.number)
+        instance.birthdate = validated_data.get("birthdate", instance.birthdate)
+        instance.password = validated_data.get("password", instance.password)
 
         instance.save()
         return instance
