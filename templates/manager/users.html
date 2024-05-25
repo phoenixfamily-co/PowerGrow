@@ -400,9 +400,9 @@
 
         myTable.innerHTML = ''
 
-        console.log(input.value)
+        console.log(input.length)
 
-        if (!input.value){
+        if (input.length===0){
 
             const response = await fetch(`/user/all/`, {
                 method: 'GET',
