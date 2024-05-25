@@ -399,9 +399,9 @@
 
         myTable.innerHTML = ''
 
-        console.log(inputs.innerHTML)
+        console.log(inputs)
 
-        if (inputs.innerHTML === ""){
+        if (inputs === ""){
 
             const response = await fetch(`/user/all/`, {
                 method: 'GET',
