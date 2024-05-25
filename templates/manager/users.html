@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="https://kit.fontawesome.com/1228ed801f.js" crossorigin="anonymous"></script>
 
-    <link href="/static/Clusterize.js-master/clusterize.css" rel="stylesheet">
-    <script src="/static/Clusterize.js-master/clusterize.min.js"></script>
+
 
     {% load bootstrap5 %}
     {% bootstrap_css %}
@@ -316,72 +315,9 @@
     <label class="form-label" for="form1">Search</label>
   </div>
 
-{#<div class="table-responsive">#}
-{#<table id="table" class="table" style="color: white ; margin-top: 70px">#}
-{#  <thead>#}
-{#    <tr>#}
-{#        <th scope="col">#</th>#}
-{#        <th scope="col"> </th>#}
-{#        <th scope="col"> </th>#}
-{#        <th scope="col">نام و نام خانوادگی</th>#}
-{#        <th scope="col">شماره تلفن</th>#}
-{#        <th scope="col">تاریخ تولد</th>#}
-{#        <th scope="col">تاریخ ثبت نام</th>#}
-{#        <th scope="col">دسترسی</th>#}
-{#        <th scope="col">نوع حقوق</th>#}
-{#        <th scope="col">مقدار حقوق</th>#}
-{#        <th scope="col">نوع حساب</th>#}
-{#        <th scope="col">مقدار حساب</th>#}
-{#        <th scope="col">توضیحات</th>#}
-{#        <th scope="col">ثبت شده توسط</th>#}
-{#        <th scope="col">وضعیت</th>#}
-{##}
-{##}
-{#    </tr>#}
-{#  </thead>#}
-{#  <tbody>#}
-{#  {% for x in user %}#}
-{#    <tr>#}
-{#        <th scope="row">{{ forloop.counter }}</th>#}
-{#        <th onclick="window.open('{% url 'user:delete_profile' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>#}
-{#        <th onclick="submit({{ x.id }})" class="register">ثبت نام</th>#}
-{#        <td>{{ x.name }}</td>#}
-{#        <td>{{ x.number }}</td>#}
-{#        <td>{{ x.birthdate }}</td>#}
-{#        <td>{{ x.datetime }}</td>#}
-{#    <td onclick="window.open('{% url 'user:manage_access' x.number %}')" style="cursor: pointer ; text-decoration: underline">#}
-{#        {% if x.is_staff == True %}#}
-{#            مدیر#}
-{#        {% elif x.is_superuser == True %}#}
-{#            منشی#}
-{#        {% elif x.is_teacher == True %}#}
-{#            مربی#}
-{#            {% else %}#}
-{#            شاگرد#}
-{#        {% endif %}#}
-{#    </td>#}
-{##}
-{#        <td onclick="window.open('{% url 'user:change_salary' x.number %}')" style="cursor: pointer ; text-decoration: underline">{{ x.salary}}</td>#}
-{#        <td onclick="window.open('{% url 'user:change_salary' x.number %}')" style="cursor: pointer ; text-decoration: underline">{{ x.fee}}</td>#}
-{#        <td onclick="window.open('{% url 'user:change_debt' x.number %}')" style="cursor: pointer ; text-decoration: underline">{{ x.situation}}</td>#}
-{#        <td onclick="window.open('{% url 'user:change_debt' x.number %}')" style="cursor: pointer ; text-decoration: underline">{{ x.debt}}</td>#}
-{#        <td onclick="window.open('{% url 'user:change_debt' x.number %}')" style="cursor: pointer ; text-decoration: underline">{{ x.description}}</td>#}
-{#        <td>{{ x.created.name}}</td>#}
-{#        <td> {% if x.is_active == True %}#}
-{#            فعال#}
-{#            {% else %}#}
-{#            غیرفعال#}
-{#        {% endif %}</td>#}
-{#    </tr>#}
-{#   {% endfor %}#}
-{#  </tbody>#}
-{#</table>#}
-{#</div>#}
-
-
-<div class="clusterize table-responsive">
-    <table class="table" style="color: white ; margin-top: 70px">
-    <thead>
+<div class="table-responsive">
+<table id="table" class="table" style="color: white ; margin-top: 70px">
+  <thead>
     <tr>
         <th scope="col">#</th>
         <th scope="col"> </th>
@@ -402,10 +338,7 @@
 
     </tr>
   </thead>
-  </table>
-  <div id="scrollArea" class="clusterize-scroll">
-    <table id="table" class="table" style="color: white ; margin-top: 70px">
-      <tbody id="contentArea" class="clusterize-content">
+  <tbody>
   {% for x in user %}
     <tr>
         <th scope="row">{{ forloop.counter }}</th>
@@ -441,17 +374,8 @@
     </tr>
    {% endfor %}
   </tbody>
-    </table>
-  </div>
+</table>
 </div>
-
-
-
-
-
-
-
-
 
 
 <div class="modal fade" id="calendarPopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
