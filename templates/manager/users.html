@@ -315,6 +315,18 @@
     <label class="form-label" for="form1">Search</label>
   </div>
 
+
+<center>
+        {%if page_obj.has_previous %} {# whether the previous page exists #}
+            <a href="?page={{page_obj.previous_page_number}}"><</a> {# link to the prev page #}
+        {% endif %}
+        <span>{{page_obj.number}}</span> {# the current page number #}
+
+        {%if page_obj.has_next %} {# whether the next page exists #}
+            <a href="?page={{page_obj.next_page_number}}">></a> {# link to the next page #}
+        {% endif %}
+    </center>
+
 <table id="table" class="table" style="color: white ; margin-top: 70px">
   <thead>
     <tr>
