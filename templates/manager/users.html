@@ -402,70 +402,7 @@
 
         if (input.value.length===0){
 
-            {% for x in page_obj.object_list %}
-
-            let tr0 = document.createElement("tr")
-            let id = document.createElement("th")
-            id.innerHTML = result[0].id
-            let deactive = document.createElement("th")
-            deactive.innerHTML = "مسدودسازی"
-            deactive.classList.add("register")
-            deactive.onclick = function () {
-                window.open(`/user/delete/${result[0].id}/`)
-            }
-            let name = document.createElement("td")
-            name.innerHTML = x.name
-            let number = document.createElement("td")
-            number.innerHTML = x.number
-            let birthdate = document.createElement("td")
-            birthdate.innerHTML = x.birthdate
-            let datetime = document.createElement("td")
-            datetime.innerHTML = x.datetime
-            let access = document.createElement("td")
-            if (x.is_staff === true) {
-                access.innerHTML = "مدیر"
-            } else if (x.is_superuser === true) {
-                access.innerHTML = "منشی"
-
-            } else if (x.is_teacher === true) {
-                access.innerHTML = "مربی"
-
-            } else {
-                access.innerHTML = "شاگرد"
-            }
-            let salary = document.createElement("td")
-            salary.innerHTML = x.salary
-            let fee = document.createElement("td")
-            fee.innerHTML = x.fee
-            let situation = document.createElement("td")
-            situation.innerHTML = x.situation
-            let debt = document.createElement("td")
-            debt.innerHTML = x.debt
-            let description = document.createElement("td")
-            description.innerHTML = x.description
-            let creator = document.createElement("td")
-            creator.innerHTML = x.created
-            let active = document.createElement("td")
-            active.innerHTML = x.is_active
-
-            tr0.appendChild(id)
-            tr0.appendChild(deactive)
-            tr0.appendChild(name)
-            tr0.appendChild(number)
-            tr0.appendChild(birthdate)
-            tr0.appendChild(datetime)
-            tr0.appendChild(access)
-            tr0.appendChild(salary)
-            tr0.appendChild(fee)
-            tr0.appendChild(situation)
-            tr0.appendChild(debt)
-            tr0.appendChild(description)
-            tr0.appendChild(creator)
-            tr0.appendChild(active)
-
-            myTable.appendChild(tr)
-
-            {% endfor %}
+            window.location.reload()
 
 
         }else {
@@ -477,7 +414,7 @@
             });
             const result = await response.json()
 
-            let tr1 = document.createElement("tr")
+            let tr = document.createElement("tr")
             let id = document.createElement("th")
             id.innerHTML = result[0].id
             let deactive = document.createElement("th")
@@ -521,20 +458,20 @@
             let active = document.createElement("td")
             active.innerHTML = result[0].is_active
 
-            tr1.appendChild(id)
-            tr1.appendChild(deactive)
-            tr1.appendChild(name)
-            tr1.appendChild(number)
-            tr1.appendChild(birthdate)
-            tr1.appendChild(datetime)
-            tr1.appendChild(access)
-            tr1.appendChild(salary)
-            tr1.appendChild(fee)
-            tr1.appendChild(situation)
-            tr1.appendChild(debt)
-            tr1.appendChild(description)
-            tr1.appendChild(creator)
-            tr1.appendChild(active)
+            tr.appendChild(id)
+            tr.appendChild(deactive)
+            tr.appendChild(name)
+            tr.appendChild(number)
+            tr.appendChild(birthdate)
+            tr.appendChild(datetime)
+            tr.appendChild(access)
+            tr.appendChild(salary)
+            tr.appendChild(fee)
+            tr.appendChild(situation)
+            tr.appendChild(debt)
+            tr.appendChild(description)
+            tr.appendChild(creator)
+            tr.appendChild(active)
 
             myTable.appendChild(tr)
 
