@@ -404,7 +404,7 @@
 
             {% for x in page_obj.object_list %}
 
-            let tr = document.createElement("tr")
+            let tr0 = document.createElement("tr")
             let id = document.createElement("th")
             id.innerHTML = result[0].id
             let deactive = document.createElement("th")
@@ -448,20 +448,20 @@
             let active = document.createElement("td")
             active.innerHTML = x.is_active
 
-            tr.appendChild(id)
-            tr.appendChild(deactive)
-            tr.appendChild(name)
-            tr.appendChild(number)
-            tr.appendChild(birthdate)
-            tr.appendChild(datetime)
-            tr.appendChild(access)
-            tr.appendChild(salary)
-            tr.appendChild(fee)
-            tr.appendChild(situation)
-            tr.appendChild(debt)
-            tr.appendChild(description)
-            tr.appendChild(creator)
-            tr.appendChild(active)
+            tr0.appendChild(id)
+            tr0.appendChild(deactive)
+            tr0.appendChild(name)
+            tr0.appendChild(number)
+            tr0.appendChild(birthdate)
+            tr0.appendChild(datetime)
+            tr0.appendChild(access)
+            tr0.appendChild(salary)
+            tr0.appendChild(fee)
+            tr0.appendChild(situation)
+            tr0.appendChild(debt)
+            tr0.appendChild(description)
+            tr0.appendChild(creator)
+            tr0.appendChild(active)
 
             myTable.appendChild(tr)
 
