@@ -174,7 +174,6 @@ def profile_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
-@cache_page(60 * 15)
 def user_view(request):
     about = AboutUs.objects.values().first()
     template = loader.get_template('manager/users.html')
