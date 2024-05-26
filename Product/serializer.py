@@ -6,7 +6,7 @@ class ManagerParticipantsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Participants
-        read_only_fields = ['authority', 'success', 'created', 'course', 'startDay', 'session', 'day', 'endDay']
+        read_only_fields = ['authority', 'success', 'created', 'course', 'startDay', 'session', 'day', 'endDay', 'user']
         exclude = ['datetime']
 
 
