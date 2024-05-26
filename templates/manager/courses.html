@@ -735,7 +735,7 @@ input[type=submit] {
 
         let userList = []
 
-        {% for x in user %}
+        {% for x in user.all %}
             userList.push("{{x.name}}")
         {% endfor %}
 
