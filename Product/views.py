@@ -115,9 +115,11 @@ def courses_view(request):
     template = loader.get_template('manager/courses.html')
     course = Course.objects.all()
     about = AboutUs.objects.values().first()
+    user = User.objects.all()
     context = {
         "about": about,
         "course": course,
+        "user":User
     }
     return HttpResponse(template.render(context, request))
 
