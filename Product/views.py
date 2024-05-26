@@ -351,7 +351,7 @@ class ManagerParticipationView(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         data = self.request.data
         course = Course.objects.filter(id=self.kwargs['id']).first()
-        user = User.objects.filter(id=data["user"]).first()
+        user = User.objects.filter(id=self.kwargs['user']).first()
         start = Day.objects.filter(id=self.kwargs['start']).first()
         week = Days.objects.filter(id=self.kwargs['day']).first()
         session = Sessions.objects.filter(id=self.kwargs['session']).first()
