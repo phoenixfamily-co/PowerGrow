@@ -734,7 +734,7 @@ input[type=submit] {
     async function getAllUser() {
 
 
-      let mylist = {{user|safe}};
+      let mylist = "{{user|safe}}";
 
       for(let i = 0; i < mylist.length; i++){
           console.log(mylist[i])
