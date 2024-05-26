@@ -476,3 +476,9 @@ def verify(request):
         template = loader.get_template('public/error.html')
         participants.delete()
         return HttpResponse(template.render(context, request))
+
+
+class ChangeCourseTitle(generics.UpdateAPIView, ):
+    queryset = User.objects.all()
+    lookup_field = "pk"
+    serializer_class = ChangeTitleSerializer

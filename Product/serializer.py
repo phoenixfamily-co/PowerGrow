@@ -3,7 +3,6 @@ from .models import Course, Days, Sport, Sessions, Participants
 
 
 class ManagerParticipantsSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Participants
         read_only_fields = ['authority', 'success', 'created', 'course', 'startDay', 'session', 'day', 'endDay', 'user']
@@ -11,7 +10,6 @@ class ManagerParticipantsSerializer(serializers.ModelSerializer):
 
 
 class RegisterParticipantsSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Participants
         read_only_fields = ['authority', 'success', 'created', 'user', 'startDay', 'session', 'day', 'endDay']
@@ -19,7 +17,6 @@ class RegisterParticipantsSerializer(serializers.ModelSerializer):
 
 
 class ParticipantsSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Participants
         read_only_fields = ['created', 'endDay']
@@ -56,7 +53,6 @@ class ChangeDescriptionSerializer(serializers.ModelSerializer):
         return instance
 
 
-
 class DaysSerializer(serializers.ModelSerializer):
     participants = ParticipantsSerializer(read_only=True, many=True)
 
@@ -89,3 +85,87 @@ class SportSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sport
         fields = "__all__"
+
+
+class ChangeNameSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Course
+        fields = ['name']
+
+    def update(self, instance, validated_data):
+        instance.name = validated_data.get("name", instance.name)
+        instance.save()
+
+        return instance
+
+
+class ChangeTitleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Course
+        fields = ['title']
+
+    def update(self, instance, validated_data):
+        instance.title = validated_data.get("title", instance.title)
+        instance.save()
+
+        return instance
+
+
+class ChangeGenderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Course
+        fields = ['gender']
+
+    def update(self, instance, validated_data):
+        instance.gender = validated_data.get("gender", instance.gender)
+        instance.save()
+
+        return instance
+
+
+class ChangeTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Course
+        fields = ['type']
+
+    def update(self, instance, validated_data):
+        instance.type = validated_data.get("type", instance.type)
+        instance.save()
+
+        return instance
+
+
+class ChangeTimeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Course
+        fields = ['time']
+
+    def update(self, instance, validated_data):
+        instance.time = validated_data.get("time", instance.time)
+        instance.save()
+
+        return instance
+
+
+class ChangeSportSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Course
+        fields = ['sport']
+
+    def update(self, instance, validated_data):
+        instance.sport = validated_data.get("sport", instance.sport)
+        instance.save()
+
+        return instance
+
+
+class ChangeCapacitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Course
+        fields = ['capacity']
+
+    def update(self, instance, validated_data):
+        instance.capacity = validated_data.get("capacity", instance.capacity)
+        instance.save()
+
+        return instance
