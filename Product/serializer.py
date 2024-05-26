@@ -169,3 +169,18 @@ class ChangeCapacitySerializer(serializers.ModelSerializer):
         instance.save()
 
         return instance
+
+
+class UpdateCourseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Course
+        fields = ['image', 'selected', 'description']
+
+    def update(self, instance, validated_data):
+        instance.image = validated_data.get("image", instance.image)
+        instance.selected = validated_data.get("selected", instance.selected)
+        instance.description = validated_data.get("description", instance.description)
+
+        instance.save()
+
+        return instance
