@@ -733,13 +733,18 @@ input[type=submit] {
 
     async function getAllUser() {
 
-        let userList = []
+        let userList = [];
 
-        {% for x in user.all %}
-            userList.push("a")
-        {% endfor %}
 
-    console.log(userList)
+        {{ user|safe }}.forEach(item => {
+            console.log(item)
+        })
+
+{#        {% for x in user %}#}
+{#            userList.push("a")#}
+{#        {% endfor %}#}
+{##}
+{#    console.log(userList)#}
 
 
 
