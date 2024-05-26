@@ -401,12 +401,12 @@ input[type=submit] {
         <th onclick="submit({{ x.id }})" style="text-decoration: underline ; cursor: pointer">ثبت نام</th>
         <th onclick="window.location.assign('{% url 'product:manager_user_list' x.id %}')" style="text-decoration: underline ; cursor: pointer">مشاهده لیست</th>
         <td onclick="window.open('{% url 'product:update-courses-title' x.id %}')" style="cursor: pointer ; text-decoration: underline ">{{ x.title }}</td>
-        <td>{{ x.name }}</td>
-        <td>{{ x.gender }}</td>
-        <td>{{ x.type }}</td>
-        <td>{{ x.time }}</td>
-        <td>{{ x.capacity }}</td>
-        <td>{{ x.sport.title }}</td>
+        <td onclick="window.open('{% url 'product:update-courses-name' x.id %}')" style="cursor: pointer ; text-decoration: underline ">{{ x.name }}</td>
+        <td onclick="window.open('{% url 'product:update-courses-gender' x.id %}')" style="cursor: pointer ; text-decoration: underline ">{{ x.gender }}</td>
+        <td onclick="window.open('{% url 'product:update-courses-type' x.id %}')" style="cursor: pointer ; text-decoration: underline ">{{ x.type }}</td>
+        <td onclick="window.open('{% url 'product:update-courses-time' x.id %}')" style="cursor: pointer ; text-decoration: underline ">{{ x.time }}</td>
+        <td onclick="window.open('{% url 'product:update-courses-capacity' x.id %}')" style="cursor: pointer ; text-decoration: underline ">{{ x.capacity }}</td>
+        <td onclick="window.open('{% url 'product:update-courses-sport' x.id %}')" style="cursor: pointer ; text-decoration: underline ">{{ x.sport.title }}</td>
     </tr>
    {% endfor %}
   </tbody>

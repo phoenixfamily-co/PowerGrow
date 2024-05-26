@@ -72,6 +72,7 @@ def check_view(request, pk, session, day):
     }
     return HttpResponse(template.render(context, request))
 
+
 @cache_page(60 * 15)
 def category_view(request, pk):
     template = loader.get_template('public/category.html')
@@ -482,3 +483,39 @@ class ChangeCourseTitle(generics.UpdateAPIView, ):
     queryset = Course.objects.all()
     lookup_field = "pk"
     serializer_class = ChangeTitleSerializer
+
+
+class ChangeCourseName(generics.UpdateAPIView, ):
+    queryset = Course.objects.all()
+    lookup_field = "pk"
+    serializer_class = ChangeNameSerializer
+
+
+class ChangeCourseGender(generics.UpdateAPIView, ):
+    queryset = Course.objects.all()
+    lookup_field = "pk"
+    serializer_class = ChangeGenderSerializer
+
+
+class ChangeCourseType(generics.UpdateAPIView, ):
+    queryset = Course.objects.all()
+    lookup_field = "pk"
+    serializer_class = ChangeTypeSerializer
+
+
+class ChangeCourseTime(generics.UpdateAPIView, ):
+    queryset = Course.objects.all()
+    lookup_field = "pk"
+    serializer_class = ChangeTimeSerializer
+
+
+class ChangeCourseCapacity(generics.UpdateAPIView, ):
+    queryset = Course.objects.all()
+    lookup_field = "pk"
+    serializer_class = ChangeCapacitySerializer
+
+
+class ChangeCourseSport(generics.UpdateAPIView, ):
+    queryset = Course.objects.all()
+    lookup_field = "pk"
+    serializer_class = ChangeSportSerializer
