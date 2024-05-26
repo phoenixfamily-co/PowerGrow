@@ -484,6 +484,7 @@ input[type=submit] {
 <script>
     let calendarPopup = document.getElementById("calendarPopup")
     let exit = document.getElementById("exit")
+    let userInput = document.getElementById("myInput")
     let courseId
 
 
@@ -495,7 +496,7 @@ input[type=submit] {
 
     }
     function apply(){
-        window.location.assign(`/product/api/admin/participate/${courseId}/${sessionId}/${dayId}/${currentDayId}/${userId}/create/`)
+        window.location.assign(`/product/api/admin/participate/${courseId}/${sessionId}/${dayId}/${currentDayId}/${userInput.value}/create/`)
     }
       window.addEventListener("click", function (event) {
         if (event.target === calendarPopup) {
