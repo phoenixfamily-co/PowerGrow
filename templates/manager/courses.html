@@ -733,17 +733,21 @@ input[type=submit] {
 
     async function getAllUser() {
 
-        const response = await fetch(`/user/all/}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-        const result = await response.json()
+        let userList = []
+
+        {% for x in user %}
+            userList.push({{x.name}})
+        {% endfor %}
+
+
 
         autocomplete(document.getElementById("myInput"), result);
 
+
+
     }
+
+
 
 </script>
 
