@@ -519,3 +519,9 @@ class ChangeCourseSport(generics.UpdateAPIView, ):
     queryset = Course.objects.all()
     lookup_field = "pk"
     serializer_class = ChangeSportSerializer
+
+
+class UpdateCourse(generics.UpdateAPIView, ):
+    queryset = Course.objects.all()
+    lookup_field = "pk"
+    serializer_class = UpdateCourseSerializer
