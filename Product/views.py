@@ -119,7 +119,7 @@ def courses_view(request):
     context = {
         "about": about,
         "course": course,
-        "user": User
+        "user": user
     }
     return HttpResponse(template.render(context, request))
 
