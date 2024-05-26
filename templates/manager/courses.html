@@ -406,7 +406,7 @@ input[type=submit] {
         <td onclick="window.open('{% url 'product:update-courses-type' x.id %}')" style="cursor: pointer ; text-decoration: underline ">{{ x.type }}</td>
         <td onclick="window.open('{% url 'product:update-courses-time' x.id %}')" style="cursor: pointer ; text-decoration: underline ">{{ x.time }}</td>
         <td onclick="window.open('{% url 'product:update-courses-capacity' x.id %}')" style="cursor: pointer ; text-decoration: underline ">{{ x.capacity }}</td>
-        <td onclick="window.open('{% url 'product:update-courses-sport' x.id %}')" style="cursor: pointer ; text-decoration: underline ">{{ x.sport.title }}</td>
+        <td onclick="window.open('{% url 'product:update-courses_sport' x.id %}')" style="cursor: pointer ; text-decoration: underline ">{{ x.sport.title }}</td>
     </tr>
    {% endfor %}
   </tbody>
