@@ -479,6 +479,6 @@ def verify(request):
 
 
 class ChangeCourseTitle(generics.UpdateAPIView, ):
-    queryset = User.objects.all()
+    queryset = Course.objects.all()
     lookup_field = "pk"
     serializer_class = ChangeTitleSerializer
