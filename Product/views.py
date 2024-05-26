@@ -115,7 +115,7 @@ def courses_view(request):
     template = loader.get_template('manager/courses.html')
     course = Course.objects.all()
     about = AboutUs.objects.values().first()
-    user = User.objects.all()
+    user = User.objects.all().values()
     context = {
         "about": about,
         "course": course,
