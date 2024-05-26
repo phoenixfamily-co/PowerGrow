@@ -736,8 +736,9 @@ input[type=submit] {
 
       let userList = [];
 
-        {% for x in user|safe %}
+        {% for x in user.all %}
             userList.push("{{ x.name }}")
+
         {% endfor %}
 
     console.log(userList)
