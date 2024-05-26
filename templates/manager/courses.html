@@ -736,9 +736,11 @@ input[type=submit] {
         let userList = [];
 
 
-        {{ user|safe }}.forEach(item => {
-            console.log(item)
-        })
+      var mylist = {{user}};
+
+      for(i = 0; i < mylist.length; i++){
+          console.log(mylist[i])
+      }
 
 {#        {% for x in user %}#}
 {#            userList.push("a")#}
