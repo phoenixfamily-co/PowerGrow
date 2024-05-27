@@ -36,6 +36,7 @@ ZP_API_STARTPAY = f"https://{sandbox}.zarinpal.com/pg/StartPay/"
 CallbackURL = 'https://powergrow.net/reservation/verify/'
 
 
+@cache_page(60 * 15)
 def reservation_view(request):
     about = AboutUs.objects.values().first()
     gym = Gym.objects.values().first()
@@ -93,7 +94,7 @@ def admin_gym_view(request):
     return HttpResponse(template.render(context, request))
 
 
-@cache_page(60 * 15)
+
 def reserve_view(request):
     about = AboutUs.objects.values().first()
     reserve = Reservations.objects.filter(success=True).all()
