@@ -289,7 +289,7 @@ def generate_pdf_file(request, pk):
               .exclude(day__month__number=reservation.time.day.month.number,
                        day__number__lt=reservation.time.day.number) \
               .order_by('day__month__number').values_list('pk', flat=True)[:int(reservation.session)]
-    endDateId = Time.objects.filter(pk__in=list(ids)).first()
+    endDateId = Time.objects.filter(pk__in=list(ids)).last()
     endDate = f"{endDateId.day.month.year.number}/{endDateId.day.month.number}/{endDateId.day.number}"
 
     buffer = BytesIO()
