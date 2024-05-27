@@ -320,7 +320,7 @@ class ParticipationView(viewsets.ViewSet):
                 ids = Day.objects.filter(name__in=day, month__number__gte=start.month.number, holiday=False).exclude(
                     month__number=start.month.number,
                     number__lt=start.number) \
-                          .order_by('month__number').values_list('pk', flat=True)[:int(session.number)]
+                          .order_by('pk').values_list('pk', flat=True)[:int(session.number)]
                 end = Day.objects.filter(pk__in=list(ids)).last()
                 Participants.objects.update_or_create(title=data["title"],
                                                       description=data["description"],
@@ -360,7 +360,7 @@ class ManagerParticipationView(viewsets.ModelViewSet):
         ids = Day.objects.filter(name__in=day, month__number__gte=start.month.number, holiday=False).exclude(
             month__number=start.month.number,
             number__lt=start.number) \
-                  .order_by('month__number').values_list('pk', flat=True)[:int(session.number)]
+                  .order_by('pk').values_list('pk', flat=True)[:int(session.number)]
         end = Day.objects.filter(pk__in=list(ids)).last()
 
         participants = Participants.objects.update_or_create(title=data["title"],
@@ -403,7 +403,7 @@ class RegisterParticipants(viewsets.ModelViewSet):
         ids = Day.objects.filter(name__in=day, month__number__gte=start.month.number, holiday=False).exclude(
             month__number=start.month.number,
             number__lt=start.number) \
-                  .order_by('month__number').values_list('pk', flat=True)[:int(session.number)]
+                  .order_by('pk').values_list('pk', flat=True)[:int(session.number)]
         end = Day.objects.filter(pk__in=list(ids)).last()
 
         participants = Participants.objects.update_or_create(title=data["title"],
