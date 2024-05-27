@@ -317,7 +317,8 @@ class ParticipationView(viewsets.ViewSet):
                 start = Day.objects.filter(id=data["start"]).first()
                 course = Course.objects.filter(id=data["course"]).first()
                 day = week.title.split("،")
-                ids = Day.objects.filter(name__in=day, month__number__gte=start.month.number, holiday=False).exclude(
+                ids = Day.objects.filter(name__in=day, month__number__gte=start.month.number,
+                                         month__year__number__gte=start.month.year.number, holiday=False).exclude(
                     month__number=start.month.number,
                     number__lt=start.number) \
                           .order_by('pk').values_list('pk', flat=True)[:int(session.number)]
@@ -357,7 +358,8 @@ class ManagerParticipationView(viewsets.ModelViewSet):
         week = Days.objects.filter(id=self.kwargs['day']).first()
         session = Sessions.objects.filter(id=self.kwargs['session']).first()
         day = week.title.split("،")
-        ids = Day.objects.filter(name__in=day, month__number__gte=start.month.number, holiday=False).exclude(
+        ids = Day.objects.filter(name__in=day, month__number__gte=start.month.number,
+                                 month__year__number__gte=start.month.year.number, holiday=False).exclude(
             month__number=start.month.number,
             number__lt=start.number) \
                   .order_by('pk').values_list('pk', flat=True)[:int(session.number)]
@@ -400,7 +402,7 @@ class RegisterParticipants(viewsets.ModelViewSet):
         week = Days.objects.filter(id=self.kwargs['day']).first()
         session = Sessions.objects.filter(id=self.kwargs['session']).first()
         day = week.title.split("،")
-        ids = Day.objects.filter(name__in=day, month__number__gte=start.month.number, holiday=False).exclude(
+        ids = Day.objects.filter(name__in=day, month__number__gte=start.month.number,month__year__number__gte=start.month.year.number, holiday=False).exclude(
             month__number=start.month.number,
             number__lt=start.number) \
                   .order_by('pk').values_list('pk', flat=True)[:int(session.number)]
