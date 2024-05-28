@@ -135,6 +135,7 @@
         <th scope="col">روزهای هفته</th>
         <th scope="col">زمان</th>
         <th scope="col">تاریخ شروع</th>
+        <th scope="col">تاریخ پایان</th>
         <th scope="col">نام مربی</th>
         <th scope="col">قیمت</th>
 
@@ -143,14 +144,14 @@
   <tbody>
   {% for x in participants %}
     <tr>
-        <th scope="row">{{ forloop.counter }}</th>
-        <th onclick="window.open('{% url 'user:user_product' x.id %}')" style="text-decoration: underline ; cursor: pointer">مشاهده دوره</th>
+        <th scope="row">{{ x.id}}</th>
         <td>{{ x.course.title }}</td>
         <td>{{ x.description }}</td>
         <td>{{ x.session.number }}</td>
         <td>{{ x.day.title }}</td>
         <td>{{ x.course.time }}</td>
         <td>{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}</td>
+        <td>{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}</td>
         <td>{{ x.course.name }}</td>
         <td>{{ x.price }}</td>
     </tr>
