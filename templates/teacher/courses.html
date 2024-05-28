@@ -129,7 +129,6 @@
     <tr>
         <th scope="col">#</th>
         <th scope="col"> </th>
-        <th scope="col"> </th>
         <th scope="col">نام دوره</th>
         <th scope="col">زمان</th>
         <th scope="col">نام مربی</th>
@@ -139,8 +138,7 @@
   <tbody>
   {% for x in participants %}
     <tr>
-        <th scope="row">{{ x.id }}</th>
-        <th onclick="window.open('{% url 'user:user_product' x.id %}')" style="text-decoration: underline ; cursor: pointer">مشاهده دوره</th>
+        <th scope="row">{{ x.course.id }}</th>
         <th onclick="window.location.assign('{% url 'product:teacher_user_list' x.course.id %}')" style="text-decoration: underline ; cursor: pointer">مشاهده لیست</th>
         <td>{{ x.course.title }}</td>
         <td>{{ x.course.time }}</td>
