@@ -6,7 +6,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics, status, viewsets, filters
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
@@ -102,7 +102,7 @@ def user_gym_view(request, pk):
     sport = Sport.objects.all().values()
     context = {
         "about": about,
-        "reservation" : reservation,
+        "reservation": reservation,
         "sport": sport,
     }
     return HttpResponse(template.render(context, request))
@@ -117,8 +117,8 @@ def user_product_view(request, pk):
     size = Participants.objects.filter(course__pk=participants.course.id).values()
     context = {
         "about": about,
-        "participants" : participants,
-        "size" : len(list(size)),
+        "participants": participants,
+        "size": len(list(size)),
         "sport": sport,
 
     }
@@ -133,7 +133,7 @@ def teacher_home_view(request, pk):
     context = {
         "about": about,
         "id": pk,
-        "user" : user
+        "user": user
     }
     return HttpResponse(template.render(context, request))
 
@@ -145,7 +145,7 @@ def secretary_home_view(request, pk):
     user = User.objects.all().get(id=pk)
     context = {
         "about": about,
-        "user" : user
+        "user": user
 
     }
     return HttpResponse(template.render(context, request))
@@ -158,7 +158,7 @@ def manager_home_view(request, pk):
     user = User.objects.all().get(id=pk)
     context = {
         "about": about,
-        "user" : user
+        "user": user
     }
     return HttpResponse(template.render(context, request))
 
@@ -170,7 +170,7 @@ def profile_view(request, pk):
     user = User.objects.filter(id=pk).values().first()
     context = {
         "about": about,
-        "user" : user
+        "user": user
     }
     return HttpResponse(template.render(context, request))
 
@@ -197,14 +197,13 @@ def user_view(request):
     return HttpResponse(template.render(context, request))
 
 
-@cache_page(60 * 15)
 def admin_user_view(request):
     about = AboutUs.objects.values().first()
     template = loader.get_template('secretary/users.html')
     user = User.objects.all()
     context = {
         "about": about,
-        "user" : user
+        "user": user
     }
     return HttpResponse(template.render(context, request))
 
@@ -223,32 +222,34 @@ class RegisterView(generics.CreateAPIView):
     serializer_class = RegisterSerializer
 
 
-@permission_classes([IsAuthenticated])
+@permission_classes([IsAdminUser])
 class UpdateProfile(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "number"
     serializer_class = UpdateProfileSerializer
 
 
-@permission_classes([IsAuthenticated])
+@permission_classes([IsAdminUser])
 class AdminRegisterUser(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = AdminRegisterSerializer
 
 
-@permission_classes([IsAuthenticated])
+@permission_classes([IsAdminUser])
 class SecretaryRegisterUser(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = SecretaryRegisterSerializer
 
-@permission_classes([IsAuthenticated])
+
+@permission_classes([IsAdminUser])
 class ChangePasswordView(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "number"
     permission_classes = (AllowAny,)
     serializer_class = ChangePasswordSerializer
 
-@permission_classes([IsAuthenticated])
+
+@permission_classes([IsAdminUser])
 class ChangeSalaryView(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "number"
@@ -256,14 +257,15 @@ class ChangeSalaryView(generics.UpdateAPIView, ):
     serializer_class = ChangeSalarySerializer
 
 
-@permission_classes([IsAuthenticated])
+@permission_classes([IsAdminUser])
 class ChangeDebtView(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "number"
     permission_classes = (AllowAny,)
     serializer_class = ChangeDebtSerializer
 
-@permission_classes([IsAuthenticated])
+
+@permission_classes([IsAdminUser])
 class DeleteAccount(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "id"
@@ -271,7 +273,7 @@ class DeleteAccount(generics.UpdateAPIView, ):
     serializer_class = DeleteAccountSerializer
 
 
-@permission_classes([IsAuthenticated])
+@permission_classes([IsAdminUser])
 class ActivateAccount(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "number"
@@ -297,7 +299,7 @@ def get_verification(request, number):
         return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 
-@permission_classes([AllowAny])
+@permission_classes([IsAdminUser])
 class GetAccount(generics.ListAPIView, ):
     queryset = User.objects.all()
     lookup_field = "number"
@@ -308,7 +310,7 @@ class GetAccount(generics.ListAPIView, ):
         return queryset
 
 
-@permission_classes([IsAuthenticated])
+@permission_classes([IsAdminUser])
 class GetAllAccount(generics.ListCreateAPIView, ):
     queryset = User.objects.all()
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
@@ -316,49 +318,50 @@ class GetAllAccount(generics.ListCreateAPIView, ):
     serializer_class = GetAccountSerializer
 
 
-@permission_classes([IsAuthenticated])
+@permission_classes([IsAdminUser])
 class ManagePermission(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "number"
     serializer_class = ManagePermissionSerializer
 
 
-@permission_classes([IsAuthenticated])
+@permission_classes([IsAdminUser])
 class ManageAccess(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "number"
     serializer_class = ManageAccessSerializer
 
 
-@permission_classes([IsAuthenticated])
+@permission_classes([IsAdminUser])
 class ChangeNameView(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "pk"
     serializer_class = ChangeNameSerializer
 
-@permission_classes([IsAuthenticated])
+
+@permission_classes([IsAdminUser])
 class ChangeNumberView(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "pk"
     serializer_class = ChangeNumberSerializer
 
 
-@permission_classes([IsAuthenticated])
+@permission_classes([IsAdminUser])
 class ChangeBirthView(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "pk"
     serializer_class = ChangeBirthSerializer
 
 
-@permission_classes([IsAuthenticated])
+@permission_classes([IsAdminUser])
 class ChangePassView(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "pk"
     serializer_class = ChangePasswordSerializer
 
-@permission_classes([IsAuthenticated])
+
+@permission_classes([IsAdminUser])
 class ChangeDescriptionView(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "pk"
     serializer_class = ChangeDescriptionSerializer
-

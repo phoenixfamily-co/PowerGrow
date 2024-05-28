@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.template import loader
 from django.views.decorators.cache import cache_page
 from rest_framework import viewsets, generics, status
+from rest_framework.decorators import permission_classes
+from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
 from User.models import *
 from About.models import AboutUs
@@ -67,6 +69,7 @@ def teacher_calendar_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
+@permission_classes([IsAdminUser])
 class YearView(viewsets.ModelViewSet):
     queryset = Year.objects.all()
     serializer_class = YearSerializer
@@ -76,6 +79,7 @@ class YearView(viewsets.ModelViewSet):
         return query_set
 
 
+@permission_classes([IsAdminUser])
 class MonthView(viewsets.ModelViewSet):
     queryset = Month.objects.all()
     serializer_class = MonthSerializer
@@ -93,6 +97,7 @@ class MonthView(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 
+@permission_classes([IsAdminUser])
 class DayView(viewsets.ModelViewSet):
     queryset = Day.objects.all()
     serializer_class = DaySerializer
@@ -122,6 +127,7 @@ class DayView(viewsets.ModelViewSet):
             )
 
 
+@permission_classes([IsAdminUser])
 class TimeView(viewsets.ModelViewSet):
     queryset = Time.objects.all()
     serializer_class = TimeSerializer
@@ -151,6 +157,7 @@ class TimeView(viewsets.ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+@permission_classes([IsAdminUser])
 class CostView(viewsets.ModelViewSet):
     queryset = Time.objects.all()
     serializer_class = ChangeCostSerializer
@@ -166,6 +173,7 @@ class CostView(viewsets.ModelViewSet):
         return Response(status=status.HTTP_202_ACCEPTED)
 
 
+@permission_classes([IsAdminUser])
 class ChangeDescriptionView(generics.UpdateAPIView, ):
     queryset = Day.objects.all()
     lookup_field = "id"
