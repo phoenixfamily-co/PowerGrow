@@ -487,8 +487,8 @@
                 var id = document.createElement("th")
                 id.innerHTML = "{{ forloop.counter }}"
                 var remove = document.createElement("th")
-                remove.innerHTML = " "
-                remove.classList.add("fa fa-times")
+                remove.innerHTML = "حذف"
+                remove.classList.add("edit")
                 remove.onclick = function () {
                     window.open('{% url 'product:delete-admin-participate' x.id %}')
                 }
