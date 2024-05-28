@@ -175,9 +175,21 @@ def session_view(request):
     template = loader.get_template('manager/sessions.html')
     session = Sessions.objects.all()
     about = AboutUs.objects.values().first()
+
+    p = Paginator(session, 50)
+    page_number = request.GET.get('page')
+    try:
+        page_obj = p.get_page(page_number)  # returns the desired page object
+    except PageNotAnInteger:
+        # if page_number is not an integer then assign the first page
+        page_obj = p.page(1)
+    except EmptyPage:
+        # if page is empty then return last page
+        page_obj = p.page(p.num_pages)
+
     context = {
         "about": about,
-        "session": session,
+        'page_obj': page_obj,
     }
     return HttpResponse(template.render(context, request))
 
@@ -197,9 +209,20 @@ def day_view(request):
     template = loader.get_template('manager/days.html')
     day = Days.objects.all()
     about = AboutUs.objects.values().first()
+
+    p = Paginator(day, 50)
+    page_number = request.GET.get('page')
+    try:
+        page_obj = p.get_page(page_number)  # returns the desired page object
+    except PageNotAnInteger:
+        # if page_number is not an integer then assign the first page
+        page_obj = p.page(1)
+    except EmptyPage:
+        # if page is empty then return last page
+        page_obj = p.page(p.num_pages)
     context = {
         "about": about,
-        "day": day,
+        'page_obj': page_obj,
     }
     return HttpResponse(template.render(context, request))
 
