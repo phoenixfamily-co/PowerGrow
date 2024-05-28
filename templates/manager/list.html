@@ -465,9 +465,9 @@
             id.innerHTML = "{{ forloop.counter }}"
             var escape = document.createElement("th")
             escape.innerHTML = " "
-            let name = document.createElement("td")
+            var name = document.createElement("td")
             name.innerHTML = "{{x.user.name}}"
-            let number = document.createElement("td")
+            var number = document.createElement("td")
             number.innerHTML = "{{x.user.number}}"
             var birthdate = document.createElement("td")
             birthdate.innerHTML = "{{x.user.birthdate}}"
@@ -481,7 +481,7 @@
             sessionNumber.innerHTML = "{{x.session.number}}"
             var price = document.createElement("td")
             price.innerHTML = " {{x.price}} تومان"
-            let description = document.createElement("td")
+            var description = document.createElement("td")
             description.innerHTML = "{{x.description}}"
             tr.appendChild(id)
             tr.appendChild(escape)
