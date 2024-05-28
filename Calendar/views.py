@@ -12,10 +12,21 @@ from Calendar.serializer import *
 @cache_page(60 * 15)
 def price_view(request):
     about = AboutUs.objects.values().first()
-    time = Time.objects.all()
+    time = Time.objects.all().order_by('-day_id', 'pk')
     template = loader.get_template('manager/price.html')
+    p = Paginator(time, 50)
+    page_number = request.GET.get('page')
+    try:
+        page_obj = p.get_page(page_number)  # returns the desired page object
+    except PageNotAnInteger:
+        # if page_number is not an integer then assign the first page
+        page_obj = p.page(1)
+    except EmptyPage:
+        # if page is empty then return last page
+        page_obj = p.page(p.num_pages)
+
     context = {
-        "time": time,
+        'page_obj': page_obj,
         "about": about,
     }
     return HttpResponse(template.render(context, request))
