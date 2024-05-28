@@ -389,6 +389,7 @@ class ManagerParticipationView(viewsets.ModelViewSet):
         return Response(status=status.HTTP_202_ACCEPTED)
 
 
+
 class ChangeDayView(generics.UpdateAPIView, ):
     queryset = Participants.objects.all()
     lookup_field = "pk"

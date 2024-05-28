@@ -324,3 +324,27 @@ class ManageAccess(generics.UpdateAPIView, ):
     lookup_field = "number"
     serializer_class = ManageAccessSerializer
 
+
+class ChangeNameView(generics.UpdateAPIView, ):
+    queryset = User.objects.all()
+    lookup_field = "pk"
+    serializer_class = ChangeNameSerializer
+
+
+class ChangeNumberView(generics.UpdateAPIView, ):
+    queryset = User.objects.all()
+    lookup_field = "pk"
+    serializer_class = ChangeNumberSerializer
+
+
+class ChangeBirthView(generics.UpdateAPIView, ):
+    queryset = User.objects.all()
+    lookup_field = "pk"
+    serializer_class = ChangeBirthSerializer
+
+
+class ChangePassView(generics.UpdateAPIView, ):
+    queryset = User.objects.all()
+    lookup_field = "pk"
+    serializer_class = ChangePasswordSerializer
+

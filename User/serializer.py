@@ -144,6 +144,42 @@ class ChangePasswordSerializer(serializers.ModelSerializer):
         return instance
 
 
+class ChangeNameSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['name']
+
+    def update(self, instance, validated_data):
+        instance.name = validated_data.get("name", instance.name)
+        instance.save()
+
+        return instance
+
+
+class ChangeNumberSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['number']
+
+    def update(self, instance, validated_data):
+        instance.number = validated_data.get("number", instance.number)
+        instance.save()
+
+        return instance
+
+
+class ChangeBirthSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['birthdate']
+
+    def update(self, instance, validated_data):
+        instance.birthdate = validated_data.get("birthdate", instance.birthdate)
+        instance.save()
+
+        return instance
+
+
 class ChangeSalarySerializer(serializers.ModelSerializer):
     class Meta:
         model = User
