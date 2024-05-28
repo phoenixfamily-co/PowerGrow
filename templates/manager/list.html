@@ -486,8 +486,12 @@
 
                 var id = document.createElement("th")
                 id.innerHTML = "{{ forloop.counter }}"
-                var escape = document.createElement("th")
-                escape.innerHTML = " "
+                var remove = document.createElement("th")
+                remove.innerHTML = " "
+                remove.classList.add("fa fa-times")
+                remove.onclick = function () {
+                    window.open('{% url 'product:delete-admin-participate' x.id %}')
+                }
                 var name = document.createElement("td")
                 name.innerHTML = "{{x.user.name}}"
                 var number = document.createElement("td")
