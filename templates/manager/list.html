@@ -516,8 +516,17 @@
                 sessionNumber.innerHTML = "{{x.session.number}}"
                 var price = document.createElement("td")
                 price.innerHTML = " {{x.price}} تومان"
+                price.classList.add("edit")
+                price.onclick = function () {
+                    window.open('{% url 'product:update-participants_price' x.id %}')
+                }
                 var description = document.createElement("td")
                 description.innerHTML = "{{x.description}}"
+                description.classList.add("edit")
+                description.onclick = function () {
+                    window.open('{% url 'product:update-participants-description' x.id %}')
+                }
+
                 tr.appendChild(id)
                 tr.appendChild(remove)
                 tr.appendChild(name)
@@ -555,8 +564,12 @@
 
                 var id = document.createElement("th")
                 id.innerHTML = "{{ forloop.counter }}"
-                var escape = document.createElement("th")
-                escape.innerHTML = " "
+                var remove = document.createElement("th")
+                remove.innerHTML = "حذف"
+                remove.classList.add("edit")
+                remove.onclick = function () {
+                    window.open('{% url 'product:delete-admin-participate' x.id %}')
+                }
                 var name = document.createElement("td")
                 name.innerHTML = "{{x.user.name}}"
                 var number = document.createElement("td")
@@ -584,7 +597,7 @@
                 var description = document.createElement("td")
                 description.innerHTML = "{{x.description}}"
                 tr.appendChild(id)
-                tr.appendChild(escape)
+                tr.appendChild(remove)
                 tr.appendChild(name)
                 tr.appendChild(number)
                 tr.appendChild(birthdate)

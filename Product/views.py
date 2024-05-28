@@ -517,6 +517,7 @@ class ChangeCourseTime(generics.UpdateAPIView, ):
     lookup_field = "pk"
     serializer_class = ChangeTimeSerializer
 
+
 @permission_classes([IsAdminUser])
 class ChangeCourseCapacity(generics.UpdateAPIView, ):
     queryset = Course.objects.all()
@@ -536,3 +537,17 @@ class UpdateCourse(generics.UpdateAPIView, ):
     queryset = Course.objects.all()
     lookup_field = "pk"
     serializer_class = UpdateCourseSerializer
+
+
+@permission_classes([IsAdminUser])
+class ChangeParticipantsPrice(generics.UpdateAPIView, ):
+    queryset = Participants.objects.all()
+    lookup_field = "pk"
+    serializer_class = ChangePriceSerializer
+
+
+@permission_classes([IsAdminUser])
+class ChangeParticipantsDescription(generics.UpdateAPIView, ):
+    queryset = Participants.objects.all()
+    lookup_field = "pk"
+    serializer_class = ChangeDescriptionSerializer

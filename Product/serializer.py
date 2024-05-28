@@ -184,3 +184,15 @@ class UpdateCourseSerializer(serializers.ModelSerializer):
         instance.save()
 
         return instance
+
+
+class ChangePriceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Participants
+        fields = ['price']
+
+    def update(self, instance, validated_data):
+        instance.price = validated_data.get("price", instance.price)
+        instance.save()
+
+        return instance
