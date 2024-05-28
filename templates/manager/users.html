@@ -476,13 +476,13 @@
             salary.innerHTML = result[0].salary
             salary.classList.add("edit")
              salary.onclick = function (){
-                 window.open(`/salary/api/${result[0].number}/`)
+                 window.open(`/user/salary/api/${result[0].number}/`)
             }
             let fee = document.createElement("td")
             fee.innerHTML = result[0].fee
             fee.classList.add("edit")
              fee.onclick = function (){
-                 window.open(`/salary/api/${result[0].number}/`)
+                 window.open(`/user/salary/api/${result[0].number}/`)
             }
             let situation = document.createElement("td")
             situation.innerHTML = result[0].situation
