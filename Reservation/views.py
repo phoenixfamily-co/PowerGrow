@@ -9,7 +9,7 @@ from django.template import loader
 from django.views.decorators.cache import cache_page
 from reportlab.lib.pagesizes import A4
 from rest_framework import viewsets, status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
@@ -131,11 +131,13 @@ def user_reserves_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
+@permission_classes([IsAuthenticated])
 class GymView(viewsets.ModelViewSet):
     queryset = Gym.objects.all()
     serializer_class = GymSerializer
 
 
+@permission_classes([IsAuthenticated])
 class ReservationView(viewsets.ViewSet):
     queryset = Reservations.objects.all()
     serializer_class = ReservationSerializer

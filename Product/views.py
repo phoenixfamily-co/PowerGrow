@@ -426,7 +426,6 @@ class ManagerParticipationView(viewsets.ModelViewSet):
         return Response(status=status.HTTP_202_ACCEPTED)
 
 
-
 @permission_classes([IsAdminUser])
 class ChangeDayView(generics.UpdateAPIView, ):
     queryset = Participants.objects.all()
@@ -441,6 +440,7 @@ class ChangeDescriptionView(generics.UpdateAPIView, ):
     serializer_class = ChangeDescriptionSerializer
 
 
+@permission_classes([IsAdminUser])
 class SportView(viewsets.ModelViewSet):
     queryset = Sport.objects.all()
     serializer_class = SportSerializer
