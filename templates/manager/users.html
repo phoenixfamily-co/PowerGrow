@@ -431,13 +431,17 @@
                 window.open(`/user/delete/${result[0].id}/`)
             }
             let edit = document.createElement("th")
-            edit.innerHTML = "ویرایش"
+            edit.innerHTML = "تغییر پسورد"
             edit.classList.add("edit")
             edit.onclick = function () {
-                window.open(`/user/update/${result[0].number}/`)
+                window.open(`/user/change/pass/api/${result[0].id}/`)
             }
             let name = document.createElement("td")
             name.innerHTML = result[0].name
+            name.classList.add("edit")
+            name.onclick = function (){
+                 window.open(`/user/change/name/api/${result[0].id}/`)
+            }
             let number = document.createElement("td")
             number.innerHTML = result[0].number
             let birthdate = document.createElement("td")
@@ -467,7 +471,7 @@
             let description = document.createElement("td")
             description.innerHTML = result[0].description
             let creator = document.createElement("td")
-            creator.innerHTML = result[0].created
+            creator.innerHTML = result[0].created.name
             let active = document.createElement("td")
             if (result[0].is_active ===true) {
                 active.innerHTML = "فعال"
