@@ -118,7 +118,7 @@ def courses_view(request):
     course = Course.objects.all()
     about = AboutUs.objects.values().first()
     user = User.objects.all()
-    p = Paginator(Course, 50)
+    p = Paginator(course, 50)
     page_number = request.GET.get('page')
     try:
         page_obj = p.get_page(page_number)  # returns the desired page object
