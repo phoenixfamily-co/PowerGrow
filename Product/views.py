@@ -1,4 +1,5 @@
 import requests
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponse
 from django.template import loader
 from django.views.decorators.cache import cache_page
@@ -117,9 +118,20 @@ def courses_view(request):
     course = Course.objects.all()
     about = AboutUs.objects.values().first()
     user = User.objects.all()
+    p = Paginator(Course, 50)
+    page_number = request.GET.get('page')
+    try:
+        page_obj = p.get_page(page_number)  # returns the desired page object
+    except PageNotAnInteger:
+        # if page_number is not an integer then assign the first page
+        page_obj = p.page(1)
+    except EmptyPage:
+        # if page is empty then return last page
+        page_obj = p.page(p.num_pages)
+
     context = {
         "about": about,
-        "course": course,
+        'page_obj': page_obj,
         "user": user
     }
     return HttpResponse(template.render(context, request))
