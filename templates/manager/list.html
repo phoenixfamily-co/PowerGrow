@@ -295,21 +295,21 @@
     </tr>
   </thead>
   <tbody>
-  {% for x in course.participants.all %}
-    <tr>
-        <th scope="row">{{ forloop.counter }}</th>
-        <th onclick="window.open('{% url 'product:delete-admin-participate' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
-        <td>{{ x.user.name }}</td>
-        <td>{{ x.user.number }}</td>
-        <td>{{ x.user.birthdate }}</td>
-        <td style="cursor: pointer ; text-decoration: underline" onclick="submit('{{ x.course.id}}','{{x.id}}')">{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}</td>
-        <td style="cursor: pointer ; text-decoration: underline" onclick="showPopup({{ x.id }})">{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}</td>
-        <td style="cursor: pointer ; text-decoration: underline" onclick="submit('{{ x.course.id}}','{{x.id}}')">{{ x.day.title }}</td>
-        <td style="cursor: pointer ; text-decoration: underline" onclick="submit('{{ x.course.id}}','{{x.id}}')">{{ x.session.number }}</td>
-        <td>{{ x.price }} تومان </td>
-        <td style="cursor: pointer ; text-decoration: underline"  onclick="window.open('{% url 'product:change_description' x.id %}')">{{ x.description }}</td>
-    </tr>
-   {% endfor %}
+{#  {% for x in course.participants.all %}#}
+{#    <tr>#}
+{#        <th scope="row">{{ forloop.counter }}</th>#}
+{#        <th onclick="window.open('{% url 'product:delete-admin-participate' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>#}
+{#        <td>{{ x.user.name }}</td>#}
+{#        <td>{{ x.user.number }}</td>#}
+{#        <td>{{ x.user.birthdate }}</td>#}
+{#        <td style="cursor: pointer ; text-decoration: underline" onclick="submit('{{ x.course.id}}','{{x.id}}')">{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}</td>#}
+{#        <td style="cursor: pointer ; text-decoration: underline" onclick="showPopup({{ x.id }})">{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}</td>#}
+{#        <td style="cursor: pointer ; text-decoration: underline" onclick="submit('{{ x.course.id}}','{{x.id}}')">{{ x.day.title }}</td>#}
+{#        <td style="cursor: pointer ; text-decoration: underline" onclick="submit('{{ x.course.id}}','{{x.id}}')">{{ x.session.number }}</td>#}
+{#        <td>{{ x.price }} تومان </td>#}
+{#        <td style="cursor: pointer ; text-decoration: underline"  onclick="window.open('{% url 'product:change_description' x.id %}')">{{ x.description }}</td>#}
+{#    </tr>#}
+{#   {% endfor %}#}
   </tbody>
 </table>
 </div>
@@ -459,27 +459,27 @@
 
         {% for x in course.participants.all %}
 
-            let tr = document.createElement("tr")
+            var tr = document.createElement("tr")
 
-            let id = document.createElement("th")
+            var id = document.createElement("th")
             id.innerHTML = "{{ forloop.counter }}"
-            let escape = document.createElement("th")
+            var escape = document.createElement("th")
             escape.innerHTML = " "
             let name = document.createElement("td")
             name.innerHTML = "{{x.user.name}}"
             let number = document.createElement("td")
             number.innerHTML = "{{x.user.number}}"
-            let birthdate = document.createElement("td")
+            var birthdate = document.createElement("td")
             birthdate.innerHTML = "{{x.user.birthdate}}"
-            let startDay = document.createElement("td")
+            var startDay = document.createElement("td")
             startDay.innerHTML = "{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}"
-            let endDay = document.createElement("td")
+            var endDay = document.createElement("td")
             endDay.innerHTML = "{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}"
-            let dayTitle = document.createElement("td")
+            var dayTitle = document.createElement("td")
             dayTitle.innerHTML = "{{x.day.title}}"
-            let sessionNumber = document.createElement("td")
+            var sessionNumber = document.createElement("td")
             sessionNumber.innerHTML = "{{x.session.number}}"
-            let price = document.createElement("td")
+            var price = document.createElement("td")
             price.innerHTML = " {{x.price}} تومان"
             let description = document.createElement("td")
             description.innerHTML = "{{x.description}}"
