@@ -23,7 +23,7 @@ def price_view(request):
 @cache_page(60 * 15)
 def calendar_view(request):
     about = AboutUs.objects.values().first()
-    day = Day.objects.all()
+    day = Day.objects.all().order_by('-pk')
     template = loader.get_template('manager/calendar.html')
     context = {
         "day": day,
