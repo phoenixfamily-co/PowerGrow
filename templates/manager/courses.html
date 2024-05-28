@@ -509,7 +509,11 @@ input[type=submit] {
 
     }
     function apply(){
-        window.location.assign(`/product/api/admin/participate/${courseId}/${sessionId}/${dayId}/${currentDayId}/${userInput.value}/create/`)
+        if (userInput.value !=null || userInput.value !=="")
+            window.location.assign(`/product/api/admin/participate/${courseId}/${sessionId}/${dayId}/${currentDayId}/${userInput.value}/create/`)
+        else {
+            alert("شناسه کاربری الزامی است")
+        }
     }
       window.addEventListener("click", function (event) {
         if (event.target === calendarPopup) {
@@ -786,13 +790,7 @@ input[type=submit] {
 
         {% endfor %}
 
-    console.log(userList)
-
-
-
         autocomplete(document.getElementById("myInput"), userList);
-
-
 
     }
 
