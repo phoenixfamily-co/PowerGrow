@@ -455,9 +455,10 @@
     function filterList() {
 
         body.innerHTML = ' '
+        const tr = document.createElement("tr")
+
 
         {% for x in course.participants.all %}
-            const tr = document.createElement("tr")
             let id = document.createElement("th")
             id.innerHTML = "{{ forloop.counter }}"
             let escape = document.createElement("th")
