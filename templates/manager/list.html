@@ -294,23 +294,23 @@
 
     </tr>
   </thead>
-{#  <tbody>#}
-{#  {% for x in course.participants.all %}#}
-{#    <tr>#}
-{#        <th scope="row">{{ forloop.counter }}</th>#}
-{#        <th onclick="window.open('{% url 'product:delete-admin-participate' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>#}
-{#        <td>{{ x.user.name }}</td>#}
-{#        <td>{{ x.user.number }}</td>#}
-{#        <td>{{ x.user.birthdate }}</td>#}
-{#        <td style="cursor: pointer ; text-decoration: underline" onclick="submit('{{ x.course.id}}','{{x.id}}')">{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}</td>#}
-{#        <td style="cursor: pointer ; text-decoration: underline" onclick="showPopup({{ x.id }})">{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}</td>#}
-{#        <td style="cursor: pointer ; text-decoration: underline" onclick="submit('{{ x.course.id}}','{{x.id}}')">{{ x.day.title }}</td>#}
-{#        <td style="cursor: pointer ; text-decoration: underline" onclick="submit('{{ x.course.id}}','{{x.id}}')">{{ x.session.number }}</td>#}
-{#        <td>{{ x.price }} تومان </td>#}
-{#        <td style="cursor: pointer ; text-decoration: underline"  onclick="window.open('{% url 'product:change_description' x.id %}')">{{ x.description }}</td>#}
-{#    </tr>#}
-{#   {% endfor %}#}
-{#  </tbody>#}
+  <tbody>
+  {% for x in course.participants.all %}
+    <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <th onclick="window.open('{% url 'product:delete-admin-participate' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
+        <td>{{ x.user.name }}</td>
+        <td>{{ x.user.number }}</td>
+        <td>{{ x.user.birthdate }}</td>
+        <td style="cursor: pointer ; text-decoration: underline" onclick="submit('{{ x.course.id}}','{{x.id}}')">{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}</td>
+        <td style="cursor: pointer ; text-decoration: underline" onclick="showPopup({{ x.id }})">{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}</td>
+        <td style="cursor: pointer ; text-decoration: underline" onclick="submit('{{ x.course.id}}','{{x.id}}')">{{ x.day.title }}</td>
+        <td style="cursor: pointer ; text-decoration: underline" onclick="submit('{{ x.course.id}}','{{x.id}}')">{{ x.session.number }}</td>
+        <td>{{ x.price }} تومان </td>
+        <td style="cursor: pointer ; text-decoration: underline"  onclick="window.open('{% url 'product:change_description' x.id %}')">{{ x.description }}</td>
+    </tr>
+   {% endfor %}
+  </tbody>
 </table>
 </div>
 
@@ -455,10 +455,12 @@
     function filterList() {
 
         body.innerHTML = ' '
-        const tr = document.createElement("tr")
 
 
         {% for x in course.participants.all %}
+
+            let tr = document.createElement("tr")
+
             let id = document.createElement("th")
             id.innerHTML = "{{ forloop.counter }}"
             let escape = document.createElement("th")
@@ -493,6 +495,7 @@
             tr.appendChild(price)
             tr.appendChild(description)
             body.appendChild(tr)
+
         {% endfor %}
 
     }
