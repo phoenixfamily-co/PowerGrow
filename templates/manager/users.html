@@ -444,8 +444,16 @@
             }
             let number = document.createElement("td")
             number.innerHTML = result[0].number
+            number.classList.add("edit")
+            number.onclick = function (){
+                 window.open(`/user/change/number/api/${result[0].id}/`)
+            }
             let birthdate = document.createElement("td")
             birthdate.innerHTML = result[0].birthdate
+            birthdate.classList.add("edit")
+            birthdate.onclick = function (){
+                 window.open(`/user/change/birth/api/${result[0].id}/`)
+            }
             let datetime = document.createElement("td")
             datetime.innerHTML = result[0].datetime
             let access = document.createElement("td")
@@ -460,10 +468,22 @@
             } else {
                 access.innerHTML = "شاگرد"
             }
+            access.classList.add("edit")
+             access.onclick = function (){
+                 window.open(`/user/access/${result[0].number}/`)
+            }
             let salary = document.createElement("td")
             salary.innerHTML = result[0].salary
+            salary.classList.add("edit")
+             salary.onclick = function (){
+                 window.open(`/salary/api/${result[0].number}/`)
+            }
             let fee = document.createElement("td")
             fee.innerHTML = result[0].fee
+            fee.classList.add("edit")
+             fee.onclick = function (){
+                 window.open(`/salary/api/${result[0].number}/`)
+            }
             let situation = document.createElement("td")
             situation.innerHTML = result[0].situation
             let debt = document.createElement("td")
