@@ -4,7 +4,7 @@ from django.template import loader
 from django.views.decorators.cache import cache_page
 from rest_framework import viewsets, generics, status
 from rest_framework.decorators import permission_classes
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 from User.models import *
 from About.models import AboutUs
@@ -95,6 +95,7 @@ class MonthView(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 
+@permission_classes([IsAuthenticated])
 class DayView(viewsets.ModelViewSet):
     queryset = Day.objects.all()
     serializer_class = DaySerializer
