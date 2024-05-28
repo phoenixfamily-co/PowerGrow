@@ -248,6 +248,12 @@
             margin-top: 10%;
         }
 
+           .edit{
+              text-decoration: underline ;
+              cursor: pointer;
+              color: white;
+          }
+
 
     </style>
 </head>
@@ -473,8 +479,17 @@
             birthdate.innerHTML = "{{x.user.birthdate}}"
             var startDay = document.createElement("td")
             startDay.innerHTML = "{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}"
+             startDay.classList.add("edit")
+             startDay.onclick = function (){
+                 submit("{{ x.course.id }}")
+            }
             var endDay = document.createElement("td")
             endDay.innerHTML = "{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}"
+             endDay.classList.add("edit")
+             endDay.onclick = function (){
+                showPopup("{{ x.id }}")
+
+            }
             var dayTitle = document.createElement("td")
             dayTitle.innerHTML = "{{x.day.title}}"
             var sessionNumber = document.createElement("td")
