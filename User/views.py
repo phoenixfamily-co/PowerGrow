@@ -241,7 +241,6 @@ class SecretaryRegisterUser(viewsets.ModelViewSet):
     serializer_class = SecretaryRegisterSerializer
 
 
-@permission_classes([IsAdminUser])
 class ChangePasswordView(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "number"
