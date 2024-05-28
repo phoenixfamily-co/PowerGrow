@@ -457,7 +457,7 @@
         body.innerHTML = ' '
 
         {% for x in course.participants.all %}
-            let tr = document.createElement("tr")
+            const tr = document.createElement("tr")
             let id = document.createElement("th")
             id.innerHTML = "{{ forloop.counter }}"
             let escape = document.createElement("th")
