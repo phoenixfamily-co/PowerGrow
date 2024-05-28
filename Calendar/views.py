@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponse
 from django.template import loader
 from django.views.decorators.cache import cache_page
@@ -25,8 +26,19 @@ def calendar_view(request):
     about = AboutUs.objects.values().first()
     day = Day.objects.all().order_by('-pk')
     template = loader.get_template('manager/calendar.html')
+    p = Paginator(day, 50)
+    page_number = request.GET.get('page')
+    try:
+        page_obj = p.get_page(page_number)  # returns the desired page object
+    except PageNotAnInteger:
+        # if page_number is not an integer then assign the first page
+        page_obj = p.page(1)
+    except EmptyPage:
+        # if page is empty then return last page
+        page_obj = p.page(p.num_pages)
+
     context = {
-        "day": day,
+        'page_obj': page_obj,
         "about": about,
     }
     return HttpResponse(template.render(context, request))

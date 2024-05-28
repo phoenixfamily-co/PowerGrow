@@ -269,6 +269,18 @@
 
 </div>
 
+
+<center>
+        {%if page_obj.has_previous %} {# whether the previous page exists #}
+            <a style="color: white" href="?page={{page_obj.previous_page_number}}"><</a> {# link to the prev page #}
+        {% endif %}
+        <span style="color: white"> صفحه {{page_obj.number}}</span> {# the current page number #}
+
+        {%if page_obj.has_next %} {# whether the next page exists #}
+            <a style="color:white;" href="?page={{page_obj.next_page_number}}">></a> {# link to the next page #}
+        {% endif %}
+    </center>
+
 <div class="table-responsive">
 <table class="table" style="color: white ; margin-top: 100px">
   <thead>
@@ -286,7 +298,7 @@
     </tr>
   </thead>
   <tbody>
-  {% for x in day %}
+  {% for x in page_obj.object_list %}
     <tr>
       <th scope="row">{{ x.id }}</th>
         <th onclick="window.open('{% url 'calendar:day_delete' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
