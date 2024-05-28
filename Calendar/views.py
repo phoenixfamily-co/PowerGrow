@@ -78,6 +78,7 @@ class YearView(viewsets.ModelViewSet):
         return query_set
 
 
+@permission_classes([IsAuthenticated])
 class MonthView(viewsets.ModelViewSet):
     queryset = Month.objects.all()
     serializer_class = MonthSerializer
@@ -125,7 +126,6 @@ class DayView(viewsets.ModelViewSet):
             )
 
 
-@permission_classes([IsAdminUser])
 class TimeView(viewsets.ModelViewSet):
     queryset = Time.objects.all()
     serializer_class = TimeSerializer

@@ -281,7 +281,6 @@ class SearchView(viewsets.generics.ListAPIView):
         return Course.objects.filter(sport=self.kwargs['pk'])
 
 
-@permission_classes([IsAdminUser])
 class DaysView(viewsets.ModelViewSet):
     queryset = Days.objects.all()
     serializer_class = DaysSerializer
@@ -291,11 +290,13 @@ class DaysView(viewsets.ModelViewSet):
         return queryset
 
     def destroy(self, request, *args, **kwargs):
+        self.permission_classes =[IsAuthenticated]
         queryset = Days.objects.filter(id=self.kwargs.get('pk'))
         queryset.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
     def update(self, request, *args, **kwargs):
+        self.permission_classes =[IsAuthenticated]
         Days.objects.filter(id=kwargs.get('pk')).update(title=self.request.data['title'],
                                                         tuition=self.request.data['tuition'],
                                                         off=self.request.data['off'],
@@ -304,7 +305,6 @@ class DaysView(viewsets.ModelViewSet):
         return Response(status=status.HTTP_202_ACCEPTED)
 
 
-@permission_classes([IsAdminUser])
 class SessionView(viewsets.ModelViewSet):
     queryset = Sessions.objects.all()
     serializer_class = SessionSerializer
@@ -314,11 +314,13 @@ class SessionView(viewsets.ModelViewSet):
         return queryset
 
     def destroy(self, request, *args, **kwargs):
+        self.permission_classes =[IsAuthenticated]
         queryset = Sessions.objects.get(id=kwargs.get('pk'))
         queryset.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
     def update(self, request, *args, **kwargs):
+        self.permission_classes =[IsAuthenticated]
         Sessions.objects.filter(id=kwargs.get('pk')).update(number=self.request.data['number'],
                                                             course=self.request.data['course'])
         return Response(status=status.HTTP_202_ACCEPTED)
