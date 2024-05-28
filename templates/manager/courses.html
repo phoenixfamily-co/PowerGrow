@@ -511,11 +511,11 @@ input[type=submit] {
     function apply(){
         console.log(userInput.value)
 
-        if (userInput.value !=null || userInput.value !=="") {
-            window.location.assign(`/product/api/admin/participate/${courseId}/${sessionId}/${dayId}/${currentDayId}/${userInput.value}/create/`)
+        if (userInput.value === "") {
+            alert("شناسه کاربری الزامی است")
         }
         else {
-            alert("شناسه کاربری الزامی است")
+            window.location.assign(`/product/api/admin/participate/${courseId}/${sessionId}/${dayId}/${currentDayId}/${userInput.value}/create/`)
         }
     }
       window.addEventListener("click", function (event) {
