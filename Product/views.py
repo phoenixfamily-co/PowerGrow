@@ -4,8 +4,8 @@ from django.http import HttpResponse
 from django.template import loader
 from django.views.decorators.cache import cache_page
 from rest_framework import viewsets, filters, generics, status
-from rest_framework.decorators import api_view
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from rest_framework.utils import json
 from About.models import AboutUs
@@ -281,6 +281,7 @@ class SearchView(viewsets.generics.ListAPIView):
         return Course.objects.filter(sport=self.kwargs['pk'])
 
 
+@permission_classes([IsAdminUser])
 class DaysView(viewsets.ModelViewSet):
     queryset = Days.objects.all()
     serializer_class = DaysSerializer
@@ -303,6 +304,7 @@ class DaysView(viewsets.ModelViewSet):
         return Response(status=status.HTTP_202_ACCEPTED)
 
 
+@permission_classes([IsAdminUser])
 class SessionView(viewsets.ModelViewSet):
     queryset = Sessions.objects.all()
     serializer_class = SessionSerializer
@@ -425,17 +427,17 @@ class ManagerParticipationView(viewsets.ModelViewSet):
 
 
 
+@permission_classes([IsAdminUser])
 class ChangeDayView(generics.UpdateAPIView, ):
     queryset = Participants.objects.all()
     lookup_field = "pk"
-    permission_classes = (AllowAny,)
     serializer_class = ChangeDaySerializer
 
 
+@permission_classes([IsAdminUser])
 class ChangeDescriptionView(generics.UpdateAPIView, ):
     queryset = Participants.objects.all()
     lookup_field = "pk"
-    permission_classes = (AllowAny,)
     serializer_class = ChangeDescriptionSerializer
 
 
@@ -483,48 +485,55 @@ def verify(request):
         return HttpResponse(template.render(context, request))
 
 
+@permission_classes([IsAdminUser])
 class ChangeCourseTitle(generics.UpdateAPIView, ):
     queryset = Course.objects.all()
     lookup_field = "pk"
     serializer_class = ChangeTitleSerializer
 
 
+@permission_classes([IsAdminUser])
 class ChangeCourseName(generics.UpdateAPIView, ):
     queryset = Course.objects.all()
     lookup_field = "pk"
     serializer_class = ChangeNameSerializer
 
 
+@permission_classes([IsAdminUser])
 class ChangeCourseGender(generics.UpdateAPIView, ):
     queryset = Course.objects.all()
     lookup_field = "pk"
     serializer_class = ChangeGenderSerializer
 
 
+@permission_classes([IsAdminUser])
 class ChangeCourseType(generics.UpdateAPIView, ):
     queryset = Course.objects.all()
     lookup_field = "pk"
     serializer_class = ChangeTypeSerializer
 
 
+@permission_classes([IsAdminUser])
 class ChangeCourseTime(generics.UpdateAPIView, ):
     queryset = Course.objects.all()
     lookup_field = "pk"
     serializer_class = ChangeTimeSerializer
 
-
+@permission_classes([IsAdminUser])
 class ChangeCourseCapacity(generics.UpdateAPIView, ):
     queryset = Course.objects.all()
     lookup_field = "pk"
     serializer_class = ChangeCapacitySerializer
 
 
+@permission_classes([IsAdminUser])
 class ChangeCourseSport(generics.UpdateAPIView, ):
     queryset = Course.objects.all()
     lookup_field = "pk"
     serializer_class = ChangeSportSerializer
 
 
+@permission_classes([IsAdminUser])
 class UpdateCourse(generics.UpdateAPIView, ):
     queryset = Course.objects.all()
     lookup_field = "pk"

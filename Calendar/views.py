@@ -180,6 +180,7 @@ class ChangeDescriptionView(generics.UpdateAPIView, ):
     serializer_class = ChangeDescriptionSerializer
 
 
+@permission_classes([IsAdminUser])
 class Reset(viewsets.ModelViewSet):
     queryset = Time.objects.all()
     serializer_class = TimeSerializer
