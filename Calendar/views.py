@@ -69,7 +69,6 @@ def teacher_calendar_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
-@permission_classes([IsAdminUser])
 class YearView(viewsets.ModelViewSet):
     queryset = Year.objects.all()
     serializer_class = YearSerializer
@@ -79,7 +78,6 @@ class YearView(viewsets.ModelViewSet):
         return query_set
 
 
-@permission_classes([IsAdminUser])
 class MonthView(viewsets.ModelViewSet):
     queryset = Month.objects.all()
     serializer_class = MonthSerializer
@@ -97,7 +95,6 @@ class MonthView(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 
-@permission_classes([IsAdminUser])
 class DayView(viewsets.ModelViewSet):
     queryset = Day.objects.all()
     serializer_class = DaySerializer
