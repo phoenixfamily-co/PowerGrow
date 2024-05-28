@@ -254,6 +254,10 @@
               color: white;
           }
 
+           .passed{
+               background: red;
+           }
+
 
     </style>
 </head>
@@ -438,9 +442,7 @@
     let month = parseInt(today[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
     let monthDay = parseInt(today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
 
-    console.log(year)
-    console.log(month)
-    console.log(monthDay)
+    const thisDate = new Date(`${year}-${month}-${monthDay}`)
 
 
     switch (day) {
@@ -474,7 +476,13 @@
 
         {% for x in course.participants.all %}
 
+            var userDay = new Date('{{ x.endDay.month.year.number }}-{{ x.endDay.month.number }}-{{ x.endDay.number }}')
+
             var tr = document.createElement("tr")
+
+            if (userDay<thisDate) {
+                tr.classList.add('passed')
+            }
 
             var id = document.createElement("th")
             id.innerHTML = "{{ forloop.counter }}"
@@ -488,16 +496,15 @@
             birthdate.innerHTML = "{{x.user.birthdate}}"
             var startDay = document.createElement("td")
             startDay.innerHTML = "{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}"
-             startDay.classList.add("edit")
-             startDay.onclick = function (){
-                 submit("{{ x.course.id }}")
+            startDay.classList.add("edit")
+            startDay.onclick = function () {
+                submit("{{ x.course.id }}")
             }
             var endDay = document.createElement("td")
             endDay.innerHTML = "{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}"
-             endDay.classList.add("edit")
-             endDay.onclick = function (){
+            endDay.classList.add("edit")
+            endDay.onclick = function () {
                 showPopup("{{ x.id }}")
-
             }
             var dayTitle = document.createElement("td")
             dayTitle.innerHTML = "{{x.day.title}}"
