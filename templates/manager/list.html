@@ -434,9 +434,11 @@
     let currentDay
     const d = new Date();
     let day = d.getDay();
+    let year = parseInt(today[0].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
     let month = parseInt(today[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
     let monthDay = parseInt(today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
 
+    console.log(year)
     console.log(month)
     console.log(monthDay)
 
