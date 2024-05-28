@@ -223,6 +223,7 @@ class RegisterView(generics.CreateAPIView):
     serializer_class = RegisterSerializer
 
 
+@permission_classes([IsAuthenticated])
 class UpdateProfile(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "number"
@@ -240,14 +241,14 @@ class SecretaryRegisterUser(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = SecretaryRegisterSerializer
 
-
+@permission_classes([IsAuthenticated])
 class ChangePasswordView(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "number"
     permission_classes = (AllowAny,)
     serializer_class = ChangePasswordSerializer
 
-
+@permission_classes([IsAuthenticated])
 class ChangeSalaryView(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "number"
@@ -255,13 +256,14 @@ class ChangeSalaryView(generics.UpdateAPIView, ):
     serializer_class = ChangeSalarySerializer
 
 
+@permission_classes([IsAuthenticated])
 class ChangeDebtView(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "number"
     permission_classes = (AllowAny,)
     serializer_class = ChangeDebtSerializer
 
-
+@permission_classes([IsAuthenticated])
 class DeleteAccount(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "id"
@@ -269,7 +271,7 @@ class DeleteAccount(generics.UpdateAPIView, ):
     serializer_class = DeleteAccountSerializer
 
 
-@permission_classes([AllowAny])
+@permission_classes([IsAuthenticated])
 class ActivateAccount(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "number"
@@ -306,6 +308,7 @@ class GetAccount(generics.ListAPIView, ):
         return queryset
 
 
+@permission_classes([IsAuthenticated])
 class GetAllAccount(generics.ListCreateAPIView, ):
     queryset = User.objects.all()
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
@@ -313,42 +316,47 @@ class GetAllAccount(generics.ListCreateAPIView, ):
     serializer_class = GetAccountSerializer
 
 
+@permission_classes([IsAuthenticated])
 class ManagePermission(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "number"
     serializer_class = ManagePermissionSerializer
 
 
+@permission_classes([IsAuthenticated])
 class ManageAccess(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "number"
     serializer_class = ManageAccessSerializer
 
 
+@permission_classes([IsAuthenticated])
 class ChangeNameView(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "pk"
     serializer_class = ChangeNameSerializer
 
-
+@permission_classes([IsAuthenticated])
 class ChangeNumberView(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "pk"
     serializer_class = ChangeNumberSerializer
 
 
+@permission_classes([IsAuthenticated])
 class ChangeBirthView(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "pk"
     serializer_class = ChangeBirthSerializer
 
 
+@permission_classes([IsAuthenticated])
 class ChangePassView(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "pk"
     serializer_class = ChangePasswordSerializer
 
-
+@permission_classes([IsAuthenticated])
 class ChangeDescriptionView(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "pk"
