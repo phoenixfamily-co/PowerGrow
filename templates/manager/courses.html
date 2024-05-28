@@ -509,8 +509,11 @@ input[type=submit] {
 
     }
     function apply(){
-        if (userInput.value !=null || userInput.value !=="")
+        console.log(userInput.value)
+
+        if (userInput.value !=null || userInput.value !=="") {
             window.location.assign(`/product/api/admin/participate/${courseId}/${sessionId}/${dayId}/${currentDayId}/${userInput.value}/create/`)
+        }
         else {
             alert("شناسه کاربری الزامی است")
         }
