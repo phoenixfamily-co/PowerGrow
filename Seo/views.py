@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 from django.template import loader
 from rest_framework import viewsets
+from rest_framework.decorators import permission_classes
+from rest_framework.permissions import IsAuthenticated
 
 from About.models import AboutUs
 from Seo.models import News
@@ -29,6 +31,7 @@ def admin_news_view(request):
     return HttpResponse(template.render(context, request))
 
 
+@permission_classes([IsAuthenticated])
 class NewsApi(viewsets.ModelViewSet):
     queryset = News.objects.all()
     serializer_class = NewsSerializer
