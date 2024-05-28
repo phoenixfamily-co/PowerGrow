@@ -592,10 +592,18 @@
                 dayTitle.innerHTML = "{{x.day.title}}"
                 var sessionNumber = document.createElement("td")
                 sessionNumber.innerHTML = "{{x.session.number}}"
-                var price = document.createElement("td")
+               var price = document.createElement("td")
                 price.innerHTML = " {{x.price}} تومان"
+                price.classList.add("edit")
+                price.onclick = function () {
+                    window.open('{% url 'product:update-participants_price' x.id %}')
+                }
                 var description = document.createElement("td")
                 description.innerHTML = "{{x.description}}"
+                description.classList.add("edit")
+                description.onclick = function () {
+                    window.open('{% url 'product:update-participants-description' x.id %}')
+                }
                 tr.appendChild(id)
                 tr.appendChild(remove)
                 tr.appendChild(name)
