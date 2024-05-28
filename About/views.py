@@ -2,6 +2,9 @@ from django.http import HttpResponse
 from django.template import loader
 from django.views.decorators.cache import cache_page
 from rest_framework import viewsets
+from rest_framework.decorators import permission_classes
+from rest_framework.permissions import IsAuthenticated
+
 from Product.models import Sport
 from .serializer import *
 
@@ -21,6 +24,7 @@ def about_view(request):
     return HttpResponse(template.render(context, request))
 
 
+@permission_classes([IsAuthenticated])
 class About(viewsets.ModelViewSet):
     queryset = AboutUs.objects.all()
     serializer_class = AboutSerializer
