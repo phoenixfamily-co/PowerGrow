@@ -492,6 +492,12 @@
                 remove.onclick = function () {
                     window.open('{% url 'product:delete-admin-participate' x.id %}')
                 }
+                 var transport = document.createElement("th")
+                transport.innerHTML = "انتقال"
+                transport.classList.add("edit")
+                transport.onclick = function () {
+                    window.open('{% url 'product:update-participants-course' x.id %}')
+                }
                 var name = document.createElement("td")
                 name.innerHTML = "{{x.user.name}}"
                 var number = document.createElement("td")

@@ -551,3 +551,10 @@ class ChangeParticipantsDescription(generics.UpdateAPIView, ):
     queryset = Participants.objects.all()
     lookup_field = "pk"
     serializer_class = ChangeDescriptionSerializer
+
+
+@permission_classes([IsAdminUser])
+class ChangeParticipantsCourse(generics.UpdateAPIView, ):
+    queryset = Participants.objects.all()
+    lookup_field = "pk"
+    serializer_class = ChangeCourseSerializer

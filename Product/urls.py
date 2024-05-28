@@ -23,6 +23,8 @@ urlpatterns = [
     path('api/course/sport/update/<int:pk>/', ChangeCourseSport.as_view(), name='update-courses_sport'),
     path('api/participants/price/update/<int:pk>/', ChangeParticipantsPrice.as_view(), name='update-participants_price'),
     path('api/participants/description/update/<int:pk>/', ChangeParticipantsDescription.as_view(), name='update-participants-description'),
+    path('api/participants/course/update/<int:pk>/', ChangeParticipantsCourse.as_view(),
+         name='update-participants-course'),
     path('api/course/', CourseView.as_view({'get': 'list'}), name='courses'),
     path('course/', courses_view, name='courses_view'),
     path('course/admin/', admin_courses_view, name='courses_view_admin'),
