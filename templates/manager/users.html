@@ -382,7 +382,7 @@
         <td onclick="window.open('{% url 'user:change_salary' x.number %}')" style="cursor: pointer ; text-decoration: underline">{{ x.fee}}</td>
         <td onclick="window.open('{% url 'user:change_debt' x.number %}')" style="cursor: pointer ; text-decoration: underline">{{ x.situation}}</td>
         <td onclick="window.open('{% url 'user:change_debt' x.number %}')" style="cursor: pointer ; text-decoration: underline">{{ x.debt}}</td>
-        <td onclick="window.open('{% url 'user:change_debt' x.number %}')" style="cursor: pointer ; text-decoration: underline">{{ x.description}}</td>
+        <td onclick="window.open('{% url 'user:change_description' x.id %}')" style="cursor: pointer ; text-decoration: underline">{{ x.description}}</td>
         <td>{{ x.created.name}}</td>
         <td> {% if x.is_active == True %}
             فعال
@@ -486,10 +486,22 @@
             }
             let situation = document.createElement("td")
             situation.innerHTML = result[0].situation
+            situation.classList.add("edit")
+             situation.onclick = function (){
+                 window.open(`/user/debt/api/${result[0].number}/`)
+            }
             let debt = document.createElement("td")
             debt.innerHTML = result[0].debt
+            debt.classList.add("edit")
+             debt.onclick = function (){
+                 window.open(`/user/debt/api/${result[0].number}/`)
+            }
             let description = document.createElement("td")
             description.innerHTML = result[0].description
+             description.classList.add("edit")
+             description.onclick = function (){
+                 window.open(`/user/change/description/api/${result[0].id}/`)
+            }
             let creator = document.createElement("td")
             creator.innerHTML = result[0].created.name
             let active = document.createElement("td")
