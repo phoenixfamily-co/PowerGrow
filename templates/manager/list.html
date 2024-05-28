@@ -262,7 +262,7 @@
     </style>
 </head>
 
-<body onload="filterList()">
+<body onload="insertTable()">
 
 
 <nav class="navbar navbar-dark bg-dark">
@@ -469,6 +469,69 @@
             break
     }
 
+     function insertTable() {
+
+        body.innerHTML = ' '
+
+
+        {% for x in course.participants.all %}
+
+                var userDay = new Date('{{ x.endDay.month.year.number }}-{{ x.endDay.month.number }}-{{ x.endDay.number }}')
+
+                var tr = document.createElement("tr")
+
+                if (userDay < thisDate) {
+                    tr.classList.add('passed')
+                }
+
+                var id = document.createElement("th")
+                id.innerHTML = "{{ forloop.counter }}"
+                var escape = document.createElement("th")
+                escape.innerHTML = " "
+                var name = document.createElement("td")
+                name.innerHTML = "{{x.user.name}}"
+                var number = document.createElement("td")
+                number.innerHTML = "{{x.user.number}}"
+                var birthdate = document.createElement("td")
+                birthdate.innerHTML = "{{x.user.birthdate}}"
+                var startDay = document.createElement("td")
+                startDay.innerHTML = "{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}"
+                startDay.classList.add("edit")
+                startDay.onclick = function () {
+                    submit("{{ x.course.id }}")
+                }
+                var endDay = document.createElement("td")
+                endDay.innerHTML = "{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}"
+                endDay.classList.add("edit")
+                endDay.onclick = function () {
+                    showPopup("{{ x.id }}")
+                }
+                var dayTitle = document.createElement("td")
+                dayTitle.innerHTML = "{{x.day.title}}"
+                var sessionNumber = document.createElement("td")
+                sessionNumber.innerHTML = "{{x.session.number}}"
+                var price = document.createElement("td")
+                price.innerHTML = " {{x.price}} تومان"
+                var description = document.createElement("td")
+                description.innerHTML = "{{x.description}}"
+                tr.appendChild(id)
+                tr.appendChild(escape)
+                tr.appendChild(name)
+                tr.appendChild(number)
+                tr.appendChild(birthdate)
+                tr.appendChild(startDay)
+                tr.appendChild(endDay)
+                tr.appendChild(dayTitle)
+                tr.appendChild(sessionNumber)
+                tr.appendChild(price)
+                tr.appendChild(description)
+                body.appendChild(tr)
+
+        {% endfor %}
+
+    }
+
+
     function filterList() {
 
         body.innerHTML = ' '
@@ -476,56 +539,59 @@
 
         {% for x in course.participants.all %}
 
-            var userDay = new Date('{{ x.endDay.month.year.number }}-{{ x.endDay.month.number }}-{{ x.endDay.number }}')
+            if (currentDay === "{{x.day.title}}" || "{{x.day.title}}".split("،").includes(currentDay)) {
 
-            var tr = document.createElement("tr")
+                var userDay = new Date('{{ x.endDay.month.year.number }}-{{ x.endDay.month.number }}-{{ x.endDay.number }}')
 
-            if (userDay<thisDate) {
-                tr.classList.add('passed')
-            }
+                var tr = document.createElement("tr")
 
-            var id = document.createElement("th")
-            id.innerHTML = "{{ forloop.counter }}"
-            var escape = document.createElement("th")
-            escape.innerHTML = " "
-            var name = document.createElement("td")
-            name.innerHTML = "{{x.user.name}}"
-            var number = document.createElement("td")
-            number.innerHTML = "{{x.user.number}}"
-            var birthdate = document.createElement("td")
-            birthdate.innerHTML = "{{x.user.birthdate}}"
-            var startDay = document.createElement("td")
-            startDay.innerHTML = "{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}"
-            startDay.classList.add("edit")
-            startDay.onclick = function () {
-                submit("{{ x.course.id }}")
+                if (userDay < thisDate) {
+                    tr.classList.add('passed')
+                }
+
+                var id = document.createElement("th")
+                id.innerHTML = "{{ forloop.counter }}"
+                var escape = document.createElement("th")
+                escape.innerHTML = " "
+                var name = document.createElement("td")
+                name.innerHTML = "{{x.user.name}}"
+                var number = document.createElement("td")
+                number.innerHTML = "{{x.user.number}}"
+                var birthdate = document.createElement("td")
+                birthdate.innerHTML = "{{x.user.birthdate}}"
+                var startDay = document.createElement("td")
+                startDay.innerHTML = "{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}"
+                startDay.classList.add("edit")
+                startDay.onclick = function () {
+                    submit("{{ x.course.id }}")
+                }
+                var endDay = document.createElement("td")
+                endDay.innerHTML = "{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}"
+                endDay.classList.add("edit")
+                endDay.onclick = function () {
+                    showPopup("{{ x.id }}")
+                }
+                var dayTitle = document.createElement("td")
+                dayTitle.innerHTML = "{{x.day.title}}"
+                var sessionNumber = document.createElement("td")
+                sessionNumber.innerHTML = "{{x.session.number}}"
+                var price = document.createElement("td")
+                price.innerHTML = " {{x.price}} تومان"
+                var description = document.createElement("td")
+                description.innerHTML = "{{x.description}}"
+                tr.appendChild(id)
+                tr.appendChild(escape)
+                tr.appendChild(name)
+                tr.appendChild(number)
+                tr.appendChild(birthdate)
+                tr.appendChild(startDay)
+                tr.appendChild(endDay)
+                tr.appendChild(dayTitle)
+                tr.appendChild(sessionNumber)
+                tr.appendChild(price)
+                tr.appendChild(description)
+                body.appendChild(tr)
             }
-            var endDay = document.createElement("td")
-            endDay.innerHTML = "{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}"
-            endDay.classList.add("edit")
-            endDay.onclick = function () {
-                showPopup("{{ x.id }}")
-            }
-            var dayTitle = document.createElement("td")
-            dayTitle.innerHTML = "{{x.day.title}}"
-            var sessionNumber = document.createElement("td")
-            sessionNumber.innerHTML = "{{x.session.number}}"
-            var price = document.createElement("td")
-            price.innerHTML = " {{x.price}} تومان"
-            var description = document.createElement("td")
-            description.innerHTML = "{{x.description}}"
-            tr.appendChild(id)
-            tr.appendChild(escape)
-            tr.appendChild(name)
-            tr.appendChild(number)
-            tr.appendChild(birthdate)
-            tr.appendChild(startDay)
-            tr.appendChild(endDay)
-            tr.appendChild(dayTitle)
-            tr.appendChild(sessionNumber)
-            tr.appendChild(price)
-            tr.appendChild(description)
-            body.appendChild(tr)
 
         {% endfor %}
 
