@@ -352,5 +352,5 @@ class ChangePassView(generics.UpdateAPIView, ):
 class ChangeDescriptionView(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "pk"
-    serializer_class = ChangeDebtSerializer
+    serializer_class = ChangeDescriptionSerializer
 
