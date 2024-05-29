@@ -11,6 +11,8 @@ SALARY_CHOICE = (
 DEBT_CHOICE = (
     ('بدهکار', 'debt'),
     ('تسویه', 'clear'),
+    ('پستانکار', 'mammal'),
+
 )
 
 
