@@ -200,7 +200,7 @@
     var counter = 0
     var price = 0
 
-    {% for x in user.participants.all %}
+    {% for x in user.participants %}
 
         var thisDate = new Date(`{{x.endDay.day.number}}-{{x.endDay.day.month.number}}-{{x.endDay.day.month.year.number}}`)
          console.log({{ x.user }})
