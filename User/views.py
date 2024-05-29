@@ -179,14 +179,15 @@ def profile_view(request, pk):
 def salary_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('teacher/salary.html')
-    user = User.objects.filter(id=pk).first()
+    user = User.objects.filter(id=pk).values_list("participants__course__id",flat=True)
     participants = Participants.objects.filter(course_id__in=user, user__is_teacher=False,
                                                user__is_superuser=False, user__is_staff=False,
-                                               price__gt=0).values()
+                                               price__gt=0)
+    size = Participants.objects.filter(course__pk__in=user).values()
     context = {
         "about": about,
         "user": user,
-        "size": len(list(participants)),
+        "size": len(list(size)),
 
     }
     return HttpResponse(template.render(context, request))
