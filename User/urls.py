@@ -38,6 +38,7 @@ urlpatterns = [
     path('home/admin/<int:pk>/', secretary_home_view, name='admin_home'),
     path('home/manager/<int:pk>/', manager_home_view, name='manager_home'),
     path('profile/<int:pk>/', profile_view, name='profile'),
+    path('salary/<int:pk>/', salary_view, name='salary'),
     path('reservation/<int:pk>/', user_gym_view, name='user_gym'),
     path('product/<int:pk>/', user_product_view, name='user_product'),
     path('users/', user_view, name='users_view'),

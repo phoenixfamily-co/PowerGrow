@@ -1,0 +1,276 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://kit.fontawesome.com/1228ed801f.js" crossorigin="anonymous"></script>
+
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+        <title>مدیریت دوره ها</title>
+
+
+    <style>
+
+
+
+           @font-face {
+            font-family: BYekan;
+            font-style: normal;
+            font-weight: normal;
+            src: url("/static/fonts/BYekan.eot");/* IE9 Compat Modes */
+            src: url("/static/fonts/BYekan.woff") format('woff'),
+            url("/static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */ url("../../static/fonts/BYekan.ttf") format('truetype') /* Safari, Android, iOS */
+        }
+
+             * {
+            box-sizing: border-box
+        }
+
+           .logoHolder {
+               width: 50px;
+               position: absolute;
+               left: 0;
+               right: 0;
+               margin-right: 55%;
+               margin-top: 1%;
+               z-index: 10 !important;
+               direction: ltr;
+
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            position: absolute;
+            direction: ltr
+
+        }
+
+        .typography {
+            position: absolute;
+            margin-left: 60px;
+            margin-top: 20%;
+            color: white;
+            font-size: 20px
+
+        }
+           html {
+               min-height: 100%;
+               position: relative;
+               font-family: BYekan, serif !important;
+           }
+
+           body {
+               direction: rtl;
+               background: #282a36;
+
+           }
+
+           .navbar.navbar-dark.bg-dark li a{
+            color: #fff;
+        }
+
+          .navbar.navbar-dark.bg-dark a:hover{
+              color: grey;
+        }
+
+       .nav.navbar-nav li a {
+           color: #fff;
+           text-decoration: none;
+       }
+
+        .nav.navbar-nav a:hover {
+            color: grey;
+        }
+
+        .nav-pills > li > a.active {
+            background-color: #E16539 !important;
+        }
+
+          .fa.fa-times{
+              color: red;
+             cursor: pointer
+           }
+
+
+    </style>
+</head>
+<body onload="insertTable()">
+
+
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid" style="vertical-align: center">
+<ul class="nav nav-pills">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href='javascript:filterList()'>لیست امروز</a>
+  </li>
+</ul>
+
+  <ul class="nav nav-pills navbar-left">
+      <li class="nav-item">
+    <a class="nav-link" aria-current="page" href='javascript: history.go(-1)'>برگشت</a>
+  </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="logoHolder">
+
+    <img alt="" src="/media/{{ about.logo }}" class="logo">
+    <div class="typography">PowerGrow</div>
+
+</div>
+
+<div class="table-responsive">
+
+<div class='row'>
+  <div class="col-md-6">
+    <div class="row"> از تاریخ :</div>
+    <div class="row"> تا تاریخ :</div>
+    <div class="row"> تعداد دوره ها</div>
+      <div class="row">تعداد شاگرد ها :</div>
+      <div class="row"> نوع حقوق :</div>
+      <div class="row"> حقوق پایه :</div>
+      <div class="row"> درمجموع :</div>
+
+
+  </div>
+  <div class="col-md-6">
+       <div class="row">1/1/1</div>
+    <div class="row">1/1/1</div>
+  </div>
+</div>
+
+</div>
+</body>
+
+<script>
+
+    let table = document.getElementById('table');
+    let body = table.getElementsByTagName('tbody')[0];
+    let today = new Date().toLocaleDateString('fa-IR');
+    today = today.split('/')
+    let currentDay
+    const d = new Date();
+    let day = d.getDay();
+    let year = parseInt(today[0].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
+    let month = parseInt(today[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
+    let monthDay = parseInt(today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
+
+        const thisDate = new Date(`${year}-${month}-${monthDay}`)
+
+    switch (day) {
+        case 0:
+            currentDay="یکشنبه"
+            break
+        case 1:
+            currentDay="دوشنبه"
+            break
+        case 2:
+            currentDay="سه شنبه"
+            break
+        case 3:
+            currentDay="چهارشنبه"
+            break
+        case 4:
+            currentDay="پنجشنبه"
+            break
+        case 5:
+            currentDay="جمعه"
+            break
+        case 6:
+            currentDay="شنبه"
+            break
+    }
+
+
+    function insertTable() {
+
+        body.innerHTML = ' '
+
+
+        {% for x in course.participants.all %}
+
+                var userDay = new Date('{{ x.endDay.month.year.number }}-{{ x.endDay.month.number }}-{{ x.endDay.number }}')
+
+                if (userDay >= thisDate) {
+                    var tr = document.createElement("tr")
+                    var id = document.createElement("th")
+                    id.innerHTML = "{{ forloop.counter }}"
+                    var name = document.createElement("td")
+                    name.innerHTML = "{{x.user.name}}"
+                    var startDay = document.createElement("td")
+                    startDay.innerHTML = "{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}"
+                    var endDay = document.createElement("td")
+                    endDay.innerHTML = "{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}"
+                    var dayTitle = document.createElement("td")
+                    dayTitle.innerHTML = "{{x.day.title}}"
+                    var sessionNumber = document.createElement("td")
+                    sessionNumber.innerHTML = "{{x.session.number}}"
+
+                    tr.appendChild(id)
+                    tr.appendChild(name)
+                    tr.appendChild(startDay)
+                    tr.appendChild(endDay)
+                    tr.appendChild(dayTitle)
+                    tr.appendChild(sessionNumber)
+                    body.appendChild(tr)
+                }
+        {% endfor %}
+
+    }
+
+
+    function filterList() {
+
+        body.innerHTML = ' '
+
+
+        {% for x in course.participants.all %}
+
+            if (currentDay === "{{x.day.title}}" || "{{x.day.title}}".split("،").includes(currentDay)) {
+
+                var userDay = new Date('{{ x.endDay.month.year.number }}-{{ x.endDay.month.number }}-{{ x.endDay.number }}')
+
+                var tr = document.createElement("tr")
+
+                if (userDay < thisDate) {
+                    tr.classList.add('passed')
+                }
+
+                var id = document.createElement("th")
+                id.innerHTML = "{{ forloop.counter }}"
+                var name = document.createElement("td")
+                name.innerHTML = "{{x.user.name}}"
+                var startDay = document.createElement("td")
+                startDay.innerHTML = "{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}"
+                var endDay = document.createElement("td")
+                endDay.innerHTML = "{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}"
+                var dayTitle = document.createElement("td")
+                dayTitle.innerHTML = "{{x.day.title}}"
+                var sessionNumber = document.createElement("td")
+                sessionNumber.innerHTML = "{{x.session.number}}"
+
+                tr.appendChild(id)
+                tr.appendChild(name)
+                tr.appendChild(startDay)
+                tr.appendChild(endDay)
+                tr.appendChild(dayTitle)
+                tr.appendChild(sessionNumber)
+                body.appendChild(tr)
+            }
+
+        {% endfor %}
+
+    }
+
+</script>
+
+</html>

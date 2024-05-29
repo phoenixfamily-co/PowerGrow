@@ -175,6 +175,18 @@ def profile_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
+@cache_page(60 * 15)
+def salary_view(request, pk):
+    about = AboutUs.objects.values().first()
+    template = loader.get_template('teacher/salary.html')
+    user = User.objects.filter(id=pk).values().first()
+    context = {
+        "about": about,
+        "user": user
+    }
+    return HttpResponse(template.render(context, request))
+
+
 def user_view(request):
     about = AboutUs.objects.values().first()
     template = loader.get_template('manager/users.html')
