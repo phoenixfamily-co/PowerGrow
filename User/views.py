@@ -6,7 +6,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics, status, viewsets, filters
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
+from rest_framework.permissions import AllowAny, IsAdminUser
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
@@ -272,7 +272,6 @@ class DeleteAccount(generics.UpdateAPIView, ):
     serializer_class = DeleteAccountSerializer
 
 
-@permission_classes([IsAdminUser])
 class ActivateAccount(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "number"
