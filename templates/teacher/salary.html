@@ -195,6 +195,32 @@
 
 </div>
 
+<script>
+
+    var counter = 0
+    var price = 0
+
+    {% for x in user.participants %}
+            {% for y in x.course.participants  %}
+                {% if y.user.id == user.id %}
+                    const thisDate = new Date(`${y.endDay.day.number}-${y.endDay.day.month.number}-${y.endDay.day.month.year.number}`)
+                {% endif %}
+            {% endfor %}
+
+        {% for y in x.course.participants  %}
+            const userDate = new Date(`${y.endDay.day.number}-${y.endDay.day.month.number}-${y.endDay.day.month.year.number}`)
+            if (userDate>=thisDate){
+                counter = counter+1
+                price = price + parseInt("{{ y.price }}")
+            }
+            {% endfor %}
+    {% endfor %}
+
+    console.log(counter)
+    console.log(price)
+
+</script>
+
 
 </body>
 {##}
