@@ -128,6 +128,7 @@
   <thead>
     <tr>
         <th scope="col">#</th>
+        <th scope="col"> </th>
         <th scope="col">نام دوره</th>
         <th scope="col">توضیحات</th>
         <th scope="col">تعداد جلسات</th>
@@ -144,6 +145,7 @@
   {% for x in participants %}
     <tr>
         <th scope="row">{{ x.id}}</th>
+        <th onclick="window.location.assign('{% url 'product:product' x.course.id %}')" style="text-decoration: underline ; cursor: pointer">مشاهده دوره</th>
         <td>{{ x.course.title }}</td>
         <td>{{ x.description }}</td>
         <td>{{ x.session.number }}</td>
