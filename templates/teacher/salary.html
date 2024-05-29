@@ -174,7 +174,15 @@
 
  <tr>
         <th scope="col">مقدار حساب:</th>
-        <th scope="col">{{ user.debt}}</th>
+         {% if user.salary == "بدهکار"  %}
+                 <th scope="col"  style="color: red">{{ user.debt }} تومان</th>
+             {% elif user.salary == "پستانکار" %}
+             <th scope="col"  style="color: green">{{ user.debt }} تومان</th>
+
+         {% else %}
+         <th scope="col">{{ user.fee }} تومان</th>
+
+         {% endif %}
     </tr>
 
      <tr>
