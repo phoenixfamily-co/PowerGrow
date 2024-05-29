@@ -164,12 +164,18 @@
 
      <tr>
         <th scope="col">نوع حقوق :</th>
-        <th scope="col">ثابت</th>
+        <th scope="col">{{ user.salary }}</th>
     </tr>
 
      <tr>
         <th scope="col">حقوق پایه :</th>
-        <th scope="col">500000</th>
+         {{% if user.salary == "ثابت"  %}
+                 <th scope="col">5000000 تومان</th>
+
+         {{% else %}}
+         <th scope="col">15 درصد</th>
+
+         {% endif %} }
     </tr>
 
      <tr>
