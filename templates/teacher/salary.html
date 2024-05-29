@@ -203,7 +203,7 @@
     {% for x in user.participants.all %}
             {% for y in x.course.participants.all  %}
                 {% if y.user.id == user.id %}
-                    var thisDate = new Date(`${y.endDay.day.number}-${y.endDay.day.month.number}-${y.endDay.day.month.year.number}`)
+                    var thisDate = new Date(`${{y.endDay.day.number}}-${{y.endDay.day.month.number}}-${{y.endDay.day.month.year.number}}`)
                     console.log(thisDate)
                 {% endif %}
             {% endfor %}
