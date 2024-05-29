@@ -140,17 +140,6 @@
 
 <table id="table" class="table table-bordered" style="color: white">
 
-
-    <tr>
-        <th scope="col">از تاریخ :</th>
-        <th scope="col"> </th>
-    </tr>
-
-        <tr>
-        <th scope="col">تا تاریخ:</th>
-        <th scope="col"> </th>
-    </tr>
-
         <tr>
         <th scope="col">تعداد دوره ها :</th>
         <th scope="col"> </th>
@@ -176,6 +165,16 @@
          <th scope="col">{{ user.fee }} درصد</th>
 
          {% endif %}
+    </tr>
+
+ <tr>
+        <th scope="col">وضعیت تسویه حساب:</th>
+        <th scope="col">{{ user.situation}}</th>
+ </tr>
+
+ <tr>
+        <th scope="col">مقدار حساب:</th>
+        <th scope="col">{{ user.debt}}</th>
     </tr>
 
      <tr>
