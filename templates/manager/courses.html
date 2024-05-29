@@ -412,7 +412,7 @@ input[type=submit] {
         <th scope="row">{{ x.id }}</th>
         <th onclick="window.open('{% url 'product:delete-courses' x.id %}')"><i class="fa fa-times" aria-hidden="true" style="cursor: pointer"></i></th>
         <th onclick="window.open('{% url 'product:update-courses' x.id %}')"><i class="fa fa-pencil" aria-hidden="true" style="cursor: pointer"></i></th>
-        <th onclick="window.location.assign('{% url 'product:product' x.course.id %}')" style="text-decoration: underline ; cursor: pointer">مشاهده دوره</th>
+        <th onclick="window.location.assign('{% url 'product:product' x.id %}')" style="text-decoration: underline ; cursor: pointer">مشاهده دوره</th>
         <th onclick="submit({{ x.id }})" style="text-decoration: underline ; cursor: pointer">ثبت نام</th>
         <th onclick="window.location.assign('{% url 'product:manager_user_list' x.id %}')" style="text-decoration: underline ; cursor: pointer">مشاهده لیست</th>
         <td onclick="window.open('{% url 'product:update-courses-title' x.id %}')" style="cursor: pointer ; text-decoration: underline ">{{ x.title }}</td>
