@@ -143,23 +143,23 @@
 
     <tr>
         <th scope="col">از تاریخ :</th>
-        <th scope="col"> 1/1/1</th>
+        <th scope="col"> </th>
     </tr>
 
         <tr>
         <th scope="col">تا تاریخ:</th>
-        <th scope="col">1/1/1</th>
+        <th scope="col"> </th>
     </tr>
 
         <tr>
         <th scope="col">تعداد دوره ها :</th>
-        <th scope="col">20</th>
+        <th scope="col"> </th>
     </tr>
 
 
         <tr>
         <th scope="col">تعداد شاگرد ها :</th>
-        <th scope="col">50</th>
+        <th scope="col"> </th>
     </tr>
 
      <tr>
@@ -170,17 +170,17 @@
      <tr>
         <th scope="col">حقوق پایه :</th>
          {% if user.salary == "ثابت"  %}
-                 <th scope="col">5000000 تومان</th>
+                 <th scope="col">{{ user.fee }} تومان</th>
 
          {% else %}
-         <th scope="col">15 درصد</th>
+         <th scope="col">{{ user.fee }} درصد</th>
 
          {% endif %}
     </tr>
 
      <tr>
         <th scope="col">مجموع :</th>
-        <th scope="col">500000</th>
+        <th scope="col"> </th>
     </tr>
 
 
