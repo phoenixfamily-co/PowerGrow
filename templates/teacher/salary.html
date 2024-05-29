@@ -200,14 +200,14 @@
     var counter = 0
     var price = 0
 
-    {% for x in user.participants %}
-            {% for y in x.course.participants  %}
+    {% for x in user.participants.all %}
+            {% for y in x.course.participants.all  %}
                 {% if y.user.id == user.id %}
                     const thisDate = new Date(`${y.endDay.day.number}-${y.endDay.day.month.number}-${y.endDay.day.month.year.number}`)
                 {% endif %}
             {% endfor %}
 
-        {% for y in x.course.participants  %}
+        {% for y in x.course.participants.all  %}
             const userDate = new Date(`${y.endDay.day.number}-${y.endDay.day.month.number}-${y.endDay.day.month.year.number}`)
             if (userDate>=thisDate){
                 counter = counter+1
