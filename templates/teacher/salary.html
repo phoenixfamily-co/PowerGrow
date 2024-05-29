@@ -211,24 +211,8 @@
                     counter = counter+1
                     price = price + parseInt("{{ y.price }}")
                 }
-
             {% endif %}
-
-
-{#            {% for y in x.course.participants.all  %}#}
-{#                {% if y.user.id == user.id %}#}
-{#                    var thisDate = new Date(`${{y.endDay.day.number}}-${{y.endDay.day.month.number}}-${{y.endDay.day.month.year.number}}`)#}
-{#                    console.log({{y.endDay.day.number})#}
-{#                {% endif %}#}
-{#            {% endfor %}#}
-{##}
-{#        {% for z in x.course.participants.all  %}#}
-{#            var userDate = new Date(`${z.endDay.day.number}-${z.endDay.day.month.number}-${z.endDay.day.month.year.number}`)#}
-{#            if (userDate>=thisDate){#}
-{#                counter = counter+1#}
-{#                price = price + parseInt("{{ y.price }}")#}
-{#            }#}
-            {% endfor %}
+        {% endfor %}
     {% endfor %}
 
     console.log(counter)
