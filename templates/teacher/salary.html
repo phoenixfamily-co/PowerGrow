@@ -204,7 +204,7 @@
 
         var thisDate = new Date(`{{x.endDay.day.number}}-{{x.endDay.day.month.number}}-{{x.endDay.day.month.year.number}}`)
         var endDay = JSON.parse(JSON.stringify("{{ x.endDay}}"))
-        console.log(endDay.number)
+        console.log("{{ x.endDay | safe}}")
         {% for y in  active %}
             {% if x.course.id == y.course.id%}
                 var userDate = new Date(`{{y.endDay.day.number}}-{{y.endDay.day.month.number}}-{{y.endDay.day.month.year.number}}`)
