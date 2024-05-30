@@ -214,6 +214,9 @@
     var teacherStart
     var teacherEnd
 
+    const minDate =  new Date(2020,1,1)
+
+
 
 
     {% if user.salary == "ثابت" %}
@@ -272,8 +275,6 @@
                 userEnd = jalaali.jalaaliToDateObject(userEndYear, userEndMonth, userEndDay)
 
                 {% if  z.course.id == x.id %}
-
-                    var minDate =  new Date(2020,1,1)
 
                   if ( minDate < userEndDay) {
                       counter += 1
