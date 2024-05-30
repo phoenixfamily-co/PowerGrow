@@ -228,13 +228,11 @@
 
             {% for y in x.participants.all %}
 
+            {% if y.user.id == user.id %}
+
                 console.log("yes")
 
-{#            {% if y.user.id == user.id %}#}
-{##}
-{#                console.log("yes")#}
-{##}
-{#                {% endif %}#}
+                {% endif %}
 
             {% endfor %}
 
