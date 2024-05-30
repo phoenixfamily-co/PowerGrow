@@ -246,11 +246,9 @@
 
                 var text = `${teacherYear}/${teacherMonth}/${teacherDay}`
 
-                var yes = new Date(text).toLocaleDateString('fa-IR')
-
                 var persianDate = moment(text).locale('fa').format('YYYY/M/D'); // 1367/11/4
 
-                console.log(yes)
+                console.log(persianDate)
                 {#console.log(teacherEndDay)#}
 
             {% endif %}
