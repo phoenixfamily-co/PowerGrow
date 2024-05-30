@@ -241,18 +241,12 @@
                 var userEndDay = new Date("{{ y.endDay.month.year.number }}-{{ y.endDay.month.number }}-{{ y.endDay.number }}")
 
                 if (userStartDay>=teacherStartDay && userEndDay<=teacherEndDay){
-                    console.log("{{ y.user }}")
                     counter = counter+1
                 }
 
             {% endfor %}
 
         {% endfor %}
-
-        console.log(counter)
-
-
-
 
     {% endif %}
 
