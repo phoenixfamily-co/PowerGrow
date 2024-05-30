@@ -509,7 +509,7 @@
                 startDay.innerHTML = "{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}"
                 startDay.classList.add("edit")
                 startDay.onclick = function () {
-                    submit("{{ x.course.id }}")
+                    submit("{{ x.course.id }}","{{ x.id }}")
                 }
                 var endDay = document.createElement("td")
                 endDay.innerHTML = "{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}"
