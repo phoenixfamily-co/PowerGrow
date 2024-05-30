@@ -141,7 +141,7 @@
     <tr>
         <th scope="row">{{ x.course.id }}</th>
         <th onclick="window.location.assign('{% url 'product:product' x.course.id %}')" style="text-decoration: underline ; cursor: pointer">مشاهده دوره</th>
-        <th onclick="window.location.assign('{% url 'product:teacher_user_list' x.course.id user.id %}')" style="text-decoration: underline ; cursor: pointer">مشاهده لیست</th>
+        <th onclick="window.location.assign('{% url 'product:teacher_user_list' x.course.id user %}')" style="text-decoration: underline ; cursor: pointer">مشاهده لیست</th>
         <td>{{ x.course.title }}</td>
         <td>{{ x.course.time }}</td>
         <td>{{ x.course.name }}</td>

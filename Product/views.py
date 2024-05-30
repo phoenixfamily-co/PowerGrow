@@ -167,7 +167,7 @@ def teacher_courses_view(request, pk):
     context = {
         "about": about,
         "participants": participants,
-        "user":pk,
+        "user": pk,
     }
     return HttpResponse(template.render(context, request))
 
