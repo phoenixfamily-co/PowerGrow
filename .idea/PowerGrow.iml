@@ -29,6 +29,7 @@
     <orderEntry type="library" name="1228ed801f" level="application" />
     <orderEntry type="library" name="font-awesome" level="application" />
     <orderEntry type="library" name="jalali-moment" level="application" />
+    <orderEntry type="library" name="jalaali-js" level="application" />
   </component>
   <component name="PyDocumentationSettings">
     <option name="format" value="PLAIN" />

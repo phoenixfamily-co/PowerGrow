@@ -8,7 +8,11 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="https://kit.fontawesome.com/1228ed801f.js" crossorigin="anonymous"></script>
 
-    <script src="https://unpkg.com/jalali-moment/dist/jalali-moment.browser.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/jalaali-js/dist/jalaali.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jalaali-js/dist/jalaali.min.js"></script>
+
+<script src="https://unpkg.com/jalaali-js/dist/jalaali.js"></script>
+<script src="https://unpkg.com/jalaali-js/dist/jalaali.min.js"></script>
 
 
     {% load bootstrap5 %}
@@ -244,11 +248,10 @@
                 {#var teacherStartDay = new Date("{{ y.startDay.month.year.number }}",parseInt("{{ y.startDay.month.number }}")-1,"{{ y.startDay.number }}");#}
                 {#var teacherEndDay = new Date("{{ y.endDay.month.year.number }}",parseInt("{{ y.endDay.month.number }}")-1,"{{ y.endDay.number }}");#}
 
-                var text = `${teacherYear}/${teacherMonth}/${teacherDay}`
-
-                var persianDate = moment(text).locale('fa').format('YYYY/M/D'); // 1367/11/4
+                var persianDate = jalaali.jalaaliToDateObject(teacherYear, teacherMonth, teacherDay)
 
                 console.log(persianDate)
+
                 {#console.log(teacherEndDay)#}
 
             {% endif %}
