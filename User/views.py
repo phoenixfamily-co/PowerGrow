@@ -46,7 +46,6 @@ def register_view(request):
     return HttpResponse(template.render(context, request))
 
 
-@cache_page(60 * 15)
 def verification_view(request, number):
     about = AboutUs.objects.values().first()
     data = {'to': number}
