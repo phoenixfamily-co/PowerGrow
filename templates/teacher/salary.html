@@ -253,11 +253,11 @@
                  var teacherEndMonth = parseInt("{{ y.endDay.month.number }}");
                  var teacherEndDay = parseInt("{{ y.endDay.number }}");
 
-                teacherStart = jalaali.jalaaliToDateObject(teacherStartYear, teacherStartMonth, teacherStartDay)
-                teacherEnd = jalaali.jalaaliToDateObject(teacherEndYear, teacherEndMonth, teacherEndDay)
+                teacherStart = jalaali.j2d(teacherStartYear, teacherStartMonth, teacherStartDay)
+                teacherEnd = jalaali.j2d(teacherEndYear, teacherEndMonth, teacherEndDay)
 
-                console.log(teacherStart[1])
                 console.log(teacherStart)
+                console.log(teacherEnd)
 
             {% endif %}
 
