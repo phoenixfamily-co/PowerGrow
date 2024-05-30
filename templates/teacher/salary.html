@@ -224,8 +224,8 @@
 
             {% else %}
 
-        {% for x in course %}
-            {% for y in x.participants %}
+        {% for x in course.all %}
+            {% for y in x.participants.all %}
 
             {% if y.user.id == user.id %}
 
