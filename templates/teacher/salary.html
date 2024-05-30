@@ -211,6 +211,9 @@
     var price = 0
     var counter = 0
 
+    var teacherStart
+    var teacherEnd
+
 
 
     {% if user.salary == "ثابت" %}
@@ -239,20 +242,19 @@
 
             {% if y.user.id == user.id %}
 
-                var teacherYear = parseInt("{{ y.startDay.month.year.number }}");
-                var teacherMonth = parseInt("{{ y.startDay.month.number }}");
-                var teacherDay = parseInt("{{ y.startDay.number }}");
+                 var teacherStartYear = parseInt("{{ y.startDay.month.year.number }}");
+                 var teacherStartMonth = parseInt("{{ y.startDay.month.number }}");
+                 var teacherStartDay = parseInt("{{ y.startDay.number }}");
 
+                 var teacherEndYear = parseInt("{{ y.endDay.month.year.number }}");
+                 var teacherEndMonth = parseInt("{{ y.endDay.month.number }}");
+                 var teacherEndDay = parseInt("{{ y.endDay.number }}");
 
+                teacherStart = jalaali.jalaaliToDateObject(teacherStartYear, teacherStartMonth, teacherStartDay)
+                teacherEnd = jalaali.jalaaliToDateObject(teacherStartYear, teacherStartMonth, teacherStartDay)
 
-                {#var teacherStartDay = new Date("{{ y.startDay.month.year.number }}",parseInt("{{ y.startDay.month.number }}")-1,"{{ y.startDay.number }}");#}
-                {#var teacherEndDay = new Date("{{ y.endDay.month.year.number }}",parseInt("{{ y.endDay.month.number }}")-1,"{{ y.endDay.number }}");#}
-
-                var persianDate = jalaali.jalaaliToDateObject(teacherYear, teacherMonth, teacherDay)
-
-                console.log(persianDate)
-
-                {#console.log(teacherEndDay)#}
+                console.log(teacherStart)
+                console.log(teacherEnd)
 
             {% endif %}
 
