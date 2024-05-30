@@ -260,20 +260,20 @@
 
             {% for z in active.all %}
 
-                var userStartYear = parseInt("{{ y.startDay.month.year.number }}");
-                 var userStartMonth = parseInt("{{ y.startDay.month.number }}");
-                 var userStartDay = parseInt("{{ y.startDay.number }}");
+                var userStartYear = parseInt("{{ z.startDay.month.year.number }}");
+                 var userStartMonth = parseInt("{{ z.startDay.month.number }}");
+                 var userStartDay = parseInt("{{ z.startDay.number }}");
 
-                 var userEndYear = parseInt("{{ y.endDay.month.year.number }}");
-                 var userEndMonth = parseInt("{{ y.endDay.month.number }}");
-                 var userEndDay = parseInt("{{ y.endDay.number }}");
+                 var userEndYear = parseInt("{{ z.endDay.month.year.number }}");
+                 var userEndMonth = parseInt("{{ z.endDay.month.number }}");
+                 var userEndDay = parseInt("{{ z.endDay.number }}");
 
                 userStart = jalaali.jalaaliToDateObject(userStartYear, userStartMonth, userStartDay)
                 userEnd = jalaali.jalaaliToDateObject(userEndYear, userEndMonth, userEndDay)
 
                 {% if  z.course.id == x.id %}
 
-                  if (teacherStart <= userStart <= teacherEnd){
+                  if (teacherStart <= userStart <= teacherEnd && teacherStart <= userStart <= teacherEnd ){
 
                       console.log("{{ z.user.name }}")
 
