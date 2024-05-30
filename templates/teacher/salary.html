@@ -224,8 +224,8 @@
 
             {% else %}
 
-        {% for x in course.all %}
-            {% for y in x.participants.all %}
+        {% for x in course %}
+            {% for y in x.participants %}
 
                 console.log("yes")
 
