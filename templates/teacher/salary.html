@@ -235,14 +235,20 @@
 
             {% if y.user.id == user.id %}
 
-                var teacherStartDay = new Date("{{ y.startDay.month.year.number }}",parseInt("{{ y.startDay.month.number }}")-1,"{{ y.startDay.number }}");
-                var teacherEndDay = new Date("{{ y.endDay.month.year.number }}",parseInt("{{ y.endDay.month.number }}")-1,"{{ y.endDay.number }}");
+                var teacherYear = parseInt("{{ y.startDay.month.year.number }}");
+                var teacherMonth = parseInt("{{ y.startDay.month.number }}");
+                var teacherDay = parseInt("{{ y.startDay.number }}");
 
-                {#var persianDate = moment("'{{ y.startDay.month.year.number }}'/'{{ y.startDay.month.number }}'/'{{ y.startDay.number }}'").locale('fa').format('YYYY/M/D'); // 1367/11/4#}
 
 
-                console.log("{{ y.startDay.month.year.number}}")
-                console.log(teacherEndDay)
+                {#var teacherStartDay = new Date("{{ y.startDay.month.year.number }}",parseInt("{{ y.startDay.month.number }}")-1,"{{ y.startDay.number }}");#}
+                {#var teacherEndDay = new Date("{{ y.endDay.month.year.number }}",parseInt("{{ y.endDay.month.number }}")-1,"{{ y.endDay.number }}");#}
+
+                var persianDate = moment(`${teacherYear}/${teacherMonth}/${teacherDay}`).locale('fa').format('YYYY/M/D'); // 1367/11/4
+
+
+                console.log(persianDate)
+                {#console.log(teacherEndDay)#}
 
             {% endif %}
 
