@@ -271,19 +271,14 @@
                 userStart = jalaali.jalaaliToDateObject(userStartYear, userStartMonth, userStartDay)
                 userEnd = jalaali.jalaaliToDateObject(userEndYear, userEndMonth, userEndDay)
 
-                console.log(userStart)
-                console.log(userEnd)
-
                 {% if  z.course.id == x.id %}
 
-                  if ( userEnd <= teacherEnd ) {
+                  if ( userEnd >= teacherEnd ) {
                       counter += 1
                       console.log("{{ z.user.name }}")
                   }
 
-
                 {% endif %}
-
 
             {% endfor %}
 
