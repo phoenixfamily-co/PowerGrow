@@ -270,7 +270,7 @@ class ChangePasswordView(generics.UpdateAPIView, ):
 @permission_classes([IsAdminUser])
 class ChangeSalaryView(generics.UpdateAPIView, ):
     queryset = User.objects.all()
-    lookup_field = "number"
+    lookup_field = "pk"
     permission_classes = (AllowAny,)
     serializer_class = ChangeSalarySerializer
 
@@ -278,7 +278,7 @@ class ChangeSalaryView(generics.UpdateAPIView, ):
 @permission_classes([IsAdminUser])
 class ChangeDebtView(generics.UpdateAPIView, ):
     queryset = User.objects.all()
-    lookup_field = "number"
+    lookup_field = "pk"
     permission_classes = (AllowAny,)
     serializer_class = ChangeDebtSerializer
 
