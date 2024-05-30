@@ -176,7 +176,7 @@
     let month = parseInt(today[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
     let monthDay = parseInt(today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
 
-        const thisDate = new Date(`${year}-${month}-${monthDay}`)
+    const thisDate = new Date(year,month,monthDay)
 
     switch (day) {
         case 0:
@@ -212,7 +212,7 @@
             if ("{{x.user.id}}" !== "{{ user.id }}" ) {
 
 
-                var userDay = new Date('{{ x.endDay.month.year.number }}-{{ x.endDay.month.number }}-{{ x.endDay.number }}')
+                var userDay = new Date("{{ x.endDay.month.year.number }}","{{ x.endDay.month.number }}","{{ x.endDay.number }}")
 
                 if (userDay >= thisDate) {
                     var tr = document.createElement("tr")
@@ -254,7 +254,7 @@
 
             if (currentDay === "{{x.day.title}}" || "{{x.day.title}}".split("،").includes(currentDay)) {
 
-                var userDay = new Date('{{ x.endDay.month.year.number }}-{{ x.endDay.month.number }}-{{ x.endDay.number }}')
+                var userDay = new Date("{{ x.endDay.month.year.number }}","{{ x.endDay.month.number }}","{{ x.endDay.number }}")
 
                 if (userDay >= thisDate) {
 
