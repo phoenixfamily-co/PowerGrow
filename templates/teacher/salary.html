@@ -229,10 +229,13 @@
             {% for y in x.participants.all %}
 
             {% if y.user.id == user.id %}
+                var teacherStartDay = new Date("{{ y.startDay.month.year.number }}-{{ y.startDay.day.month.number }}-{{ y.startDay.day.number }}")
+                var teacherEndDay = new Date("{{ y.endDay.month.year.number }}-{{ y.endDay.day.month.number }}-{{ y.endDay.day.number }}")
 
-                console.log("yes")
+                console.log(teacherStartDay)
+                console.log(teacherEndDay)
 
-                {% endif %}
+            {% endif %}
 
             {% endfor %}
 
