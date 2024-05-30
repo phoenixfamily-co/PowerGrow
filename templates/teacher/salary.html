@@ -273,7 +273,7 @@
 
                 {% if  z.course.id == x.id %}
 
-                  if ( new Date ("2020/01/01")< userEnd <= teacherEnd ) {
+                  if ( userEnd <= teacherEnd ) {
                       counter += 1
                       console.log("{{ z.user.name }}")
                       console.log(userStart)
