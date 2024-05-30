@@ -201,15 +201,28 @@
     var table = document.getElementById("table");
     var tr    = table.getElementsByTagName("tr")[7];
     var th   = tr.getElementsByTagName("th")[1];
+    var price = 0
+    var counter = 0
 
     {% if user.salary == "ثابت" %}
 
-        th.innerHTML = "{{ user.fee }} تومان"
+        {% if user.situation == "بدهکار" %}
 
-    {% endif %}
+            price = parseInt({{ user.fee }}) - parseInt({{ user.debt }})
 
-    var counter = 0
-    var price = 0
+             {% elif user.situation == "پستانکار" %}
+
+            price = parseInt({{ user.fee }}) + parseInt({{ user.debt }})
+
+            {% else %}
+
+            price = parseInt({{ user.fee }})
+
+            {% endif %}
+
+        th.innerHTML = `${price} تومان `
+
+            {% else %}
 
     {% for x in user.participants.all %}
 
@@ -226,6 +239,11 @@
             {% endif %}
         {% endfor %}
     {% endfor %}
+
+
+    {% endif %}
+
+
 </script>
 
 
