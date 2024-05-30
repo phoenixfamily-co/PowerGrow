@@ -235,7 +235,7 @@
 
             {% endfor %}
 
-            {% for y in participants.all %}
+            {% for y in active.all %}
 
                 var userStartDay = new Date("{{ y.startDay.month.year.number }}-{{ y.startDay.month.number }}-{{ y.startDay.number }}")
                 var userEndDay = new Date("{{ y.endDay.month.year.number }}-{{ y.endDay.month.number }}-{{ y.endDay.number }}")

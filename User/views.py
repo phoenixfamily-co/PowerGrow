@@ -188,7 +188,7 @@ def salary_view(request, pk):
     context = {
         "about": about,
         "user": user,
-        "course":course,
+        "course": course,
         "participants": len(list(participants)),
         "active": participants,
         "size": len(list(size)),
