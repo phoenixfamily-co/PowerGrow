@@ -273,19 +273,20 @@
                 userStart = jalaali.j2d(userStartYear, userStartMonth, userStartDay)
                 userEnd = jalaali.j2d(userEndYear, userEndMonth, userEndDay)
 
-                console.log(userStart)
-                console.log(userEnd)
 
-{#                {% if  z.course.id == x.id %}#}
-{##}
-{#                  if ( minDate < userEndDay) {#}
-{#                      counter += 1#}
-{#                      console.log("{{ z.user.name }}")#}
-{#                      console.log(userStart)#}
-{#                      console.log(userEnd)#}
-{#                  }#}
-{##}
-{#                {% endif %}#}
+
+                {% if  z.course.id == x.id %}
+
+                    console.log(userStart)
+                    console.log(userEnd)
+
+                  {#if ( minDate < userEndDay) {#}
+                  {#    counter += 1#}
+                  {#    console.log("{{ z.user.name }}")#}
+                  {#    console.log(userStart)#}
+                  {#    console.log(userEnd)#}
+
+                {% endif %}
 
             {% endfor %}
 
