@@ -240,10 +240,14 @@
                 var userStartDay = new Date("{{ z.startDay.month.year.number }}-{{ z.startDay.month.number }}-{{ z.startDay.number }}")
                 var userEndDay = new Date("{{ z.endDay.month.year.number }}-{{ z.endDay.month.number }}-{{ z.endDay.number }}")
 
-                if (userEndDay <= teacherEndDay) {
-                    console.log("{{ z.id }}")
-                    counter = counter + 1
-                }
+
+                console.log("{{ z.id }}")
+                counter = counter+1
+
+                {#if (userEndDay <= teacherEndDay) {#}
+                {#    console.log("{{ z.id }}")#}
+                {#    counter = counter + 1#}
+                {#}#}
 
             {% endfor %}
 
