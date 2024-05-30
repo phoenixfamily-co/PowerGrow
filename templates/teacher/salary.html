@@ -256,9 +256,6 @@
                 teacherStart = jalaali.j2d(teacherStartYear, teacherStartMonth, teacherStartDay)
                 teacherEnd = jalaali.j2d(teacherEndYear, teacherEndMonth, teacherEndDay)
 
-                console.log(teacherStart)
-                console.log(teacherEnd)
-
             {% endif %}
 
             {% endfor %}
@@ -273,10 +270,13 @@
                  var userEndMonth = parseInt("{{ z.endDay.month.number }}");
                  var userEndDay = parseInt("{{ z.endDay.number }}");
 
-                userStart = jalaali.jalaaliToDateObject(userStartYear, userStartMonth, userStartDay)
-                userEnd = jalaali.jalaaliToDateObject(userEndYear, userEndMonth, userEndDay)
+                userStart = jalaali.j2d(userStartYear, userStartMonth, userStartDay)
+                userEnd = jalaali.j2d(userEndYear, userEndMonth, userEndDay)
 
-                {% if  z.course.id == x.id %}
+                console.log(userStart)
+                console.log(userEnd)
+
+{#                {% if  z.course.id == x.id %}#}
 {##}
 {#                  if ( minDate < userEndDay) {#}
 {#                      counter += 1#}
@@ -284,8 +284,8 @@
 {#                      console.log(userStart)#}
 {#                      console.log(userEnd)#}
 {#                  }#}
-
-                {% endif %}
+{##}
+{#                {% endif %}#}
 
             {% endfor %}
 
