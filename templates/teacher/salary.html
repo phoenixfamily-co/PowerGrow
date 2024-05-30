@@ -185,7 +185,7 @@
          {% endif %}
     </tr>
 
-     <tr>
+     <tr id="submit">
         <th scope="col">مجموع :</th>
         <th scope="col"> </th>
     </tr>
@@ -196,6 +196,14 @@
 </div>
 
 <script>
+
+    let submit = document.getElementById("submit")
+
+    {% if user.salary == "ثابت" %}
+
+        submit.innerHTML = {{ user.fee }}
+
+    {% endif %}
 
     var counter = 0
     var price = 0
