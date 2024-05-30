@@ -241,7 +241,7 @@
                 var userEndDay = new Date("{{ y.endDay.month.year.number }}-{{ y.endDay.month.number }}-{{ y.endDay.number }}")
 
                 if (userStartDay>=teacherStartDay && userEndDay<=teacherEndDay){
-                    console.log(y)
+                    console.log({{ y }})
                     counter = counter+1
                 }
 
