@@ -253,8 +253,6 @@
                 teacherStart = jalaali.jalaaliToDateObject(teacherStartYear, teacherStartMonth, teacherStartDay)
                 teacherEnd = jalaali.jalaaliToDateObject(teacherEndYear, teacherEndMonth, teacherEndDay)
 
-                console.log(teacherStart)
-                console.log(teacherEnd)
 
             {% endif %}
 
@@ -262,22 +260,26 @@
 
             {% for z in active.all %}
 
-                {#var userStartDay = new Date("{{ z.startDay.month.year.number }}",parseInt("{{ z.startDay.month.number }}")-1,"{{ z.startDay.number }}");#}
-                {#var userEndDay = new Date("{{ z.endDay.month.year.number }}",parseInt("{{ z.endDay.month.number }}")-1,"{{ z.endDay.number }}");#}
-                {##}
-                {#{% if  z.course.id == x.id %}#}
-                {##}
-                {#    if(teacherStartDay<=userStartDay) {#}
-                {#        if(userStartDay<=teacherEndDay) {#}
-                {#            if (teacherStartDay<=userEndDay) {#}
-                {#                if (userEndDay <= teacherEndDay) {#}
-                {#                    console.log("{{ z.user.name }}")#}
-                {#                }#}
-                {#            }#}
-                {#        }#}
-                {#    }#}
+                var userStartYear = parseInt("{{ y.startDay.month.year.number }}");
+                 var userStartMonth = parseInt("{{ y.startDay.month.number }}");
+                 var userStartDay = parseInt("{{ y.startDay.number }}");
 
-{#                {% endif %}#}
+                 var userEndYear = parseInt("{{ y.endDay.month.year.number }}");
+                 var userEndMonth = parseInt("{{ y.endDay.month.number }}");
+                 var userEndDay = parseInt("{{ y.endDay.number }}");
+
+                userStart = jalaali.jalaaliToDateObject(userStartYear, userStartMonth, userStartDay)
+                userEnd = jalaali.jalaaliToDateObject(userEndYear, userEndMonth, userEndDay)
+
+                {% if  z.course.id == x.id %}
+
+                  if (teacherStart <= userStart <= teacherEnd && teacherStart <= userEnd <= teacherEnd ){
+
+                      console.log("{{ z.user.name }}")
+
+                  }
+
+                {% endif %}
 
 
             {% endfor %}
