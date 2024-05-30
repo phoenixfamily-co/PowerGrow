@@ -244,7 +244,7 @@
                 var userStartDay = new Date("{{ z.startDay.month.year.number }}","{{ z.startDay.month.number }}","{{ z.startDay.number }}");
                 var userEndDay = new Date("{{ z.endDay.month.year.number }}","{{ z.endDay.month.number }}","{{ z.endDay.number }}");
 
-                if (teacherStartDay<=userStartDay<=teacherEndDay){
+                if (userEndDay<= teacherEndDay){
                     counter = counter+1
                 }
 
