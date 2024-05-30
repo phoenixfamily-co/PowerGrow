@@ -235,6 +235,9 @@
                 var teacherStartDay = new Date("{{ y.startDay.month.year.number }}",parseInt("{{ y.startDay.month.number }}")-1,"{{ y.startDay.number }}");
                 var teacherEndDay = new Date("{{ y.endDay.month.year.number }}",parseInt("{{ y.endDay.month.number }}")-1,"{{ y.endDay.number }}");
 
+                console.log(teacherStartDay)
+                console.log(teacherEndDay)
+
             {% endif %}
 
             {% endfor %}
