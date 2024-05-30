@@ -167,6 +167,7 @@ def teacher_courses_view(request, pk):
     context = {
         "about": about,
         "participants": participants,
+        "user":pk,
     }
     return HttpResponse(template.render(context, request))
 
@@ -238,14 +239,16 @@ def admin_day_view(request):
     return HttpResponse(template.render(context, request))
 
 
-def teacher_user_list(request, pk):
+def teacher_user_list(request, pk, user):
     about = AboutUs.objects.values().first()
     template = loader.get_template('teacher/users.html')
     course = Course.objects.get(id=pk)
+    user = User.objects.get(id=user)
     size = course.participants.values()
     context = {
         "about": about,
         "course": course,
+        "user": user,
         "size": len(list(size)),
 
     }
