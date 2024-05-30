@@ -232,8 +232,8 @@
 
             {% if y.user.id == user.id %}
 
-                var teacherStartDay = new Date("{{ z.startDay.month.year.number }}-{{ z.startDay.month.number }}-{{ z.startDay.number }}").toLocaleDateString('fa-IR', options);
-                var teacherEndDay = new Date("{{ z.endDay.month.year.number }}-{{ z.endDay.month.number }}-{{ z.endDay.number }}").toLocaleDateString('fa-IR', options);
+                var teacherStartDay = new Date("{{ y.startDay.month.year.number }}-{{ y.startDay.month.number }}-{{ y.startDay.number }}").toLocaleDateString('fa-IR', options);
+                var teacherEndDay = new Date("{{ y.endDay.month.year.number }}-{{ y.endDay.month.number }}-{{ y.endDay.number }}").toLocaleDateString('fa-IR', options);
 
 
                 console.log(teacherStartDay)
