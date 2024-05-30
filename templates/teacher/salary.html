@@ -227,11 +227,13 @@
         {% for x in course.all %}
             {% for y in x.participants.all %}
 
-            {% if y.user.id == user.id %}
-
                 console.log("yes")
 
-                {% endif %}
+{#            {% if y.user.id == user.id %}#}
+{##}
+{#                console.log("yes")#}
+{##}
+{#                {% endif %}#}
 
             {% endfor %}
 
