@@ -244,9 +244,13 @@
                 var userStartDay = new Date("{{ z.startDay.month.year.number }}",parseInt("{{ z.startDay.month.number }}")-1,"{{ z.startDay.number }}");
                 var userEndDay = new Date("{{ z.endDay.month.year.number }}",parseInt("{{ z.endDay.month.number }}")-1,"{{ z.endDay.number }}");
 
-                if (userEndDay<= teacherEndDay){
+                {% if  z.course.id == x.id %}
+
+                    if (userEndDay<= teacherEndDay){
                     console.log("{{ z.user.name }}")
                 }
+
+                {% endif %}
 
 
             {% endfor %}
