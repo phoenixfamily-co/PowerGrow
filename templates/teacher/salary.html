@@ -223,7 +223,19 @@
         th.innerHTML = `${price} تومان `
 
             {% else %}
-        console.log("{{ course}}")
+
+        {% for x in course %}
+            {% for y in x.participants %}
+
+            {% if y.user.id == user.id %}
+
+                console.log("yes")
+
+                {% endif %}
+
+            {% endfor %}
+
+        {% endfor %}
 
 
 
