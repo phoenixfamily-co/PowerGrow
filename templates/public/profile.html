@@ -220,7 +220,7 @@
 					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 						<div class="form-group">
 							<label for="pass">پسورد</label>
-							<input type="password" class="form-control" id="email" placeholder="******" >
+							<input type="password" class="form-control" id="password" placeholder="******" >
 						</div>
 					</div>
 				</div>
@@ -245,12 +245,12 @@
 
     let number = document.getElementById("number")
     let name = document.getElementById("name")
-    let email = document.getElementById("email")
+    let password = document.getElementById("password")
     let birthdate = document.getElementById("birthdate")
     let user = document.getElementById("user")
     let username = "{{ user.number }}";
     let gender = "{{ user.gender }}";
-    let lastEmail = "{{ user.email }}";
+    let lastPassword = "{{ user.password }}";
     let lastAddress = "{{ user.address }}";
     let lastZipcode = "{{ user.zipCode }}";
     let lastTelephone = "{{ user.telephone }}";
@@ -258,9 +258,6 @@
     let lastAccountId = "{{ user.accountId }}";
     let login = "{{ user.last_login }}"
 
-    if (lastEmail !=="" || lastEmail !==null){
-        email.value = lastEmail
-    }
 
     number.value = username.toString()
     user.innerHTML = username.toString().replace('+98','')
