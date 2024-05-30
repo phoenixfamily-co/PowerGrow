@@ -246,6 +246,8 @@
 
         {% for x in course.participants.all %}
 
+            if ("{{x.user.id}}" !== "{{ user.id }}" ){
+
             if (currentDay === "{{x.day.title}}" || "{{x.day.title}}".split("،").includes(currentDay)) {
 
                 var userDay = new Date('{{ x.endDay.month.year.number }}-{{ x.endDay.month.number }}-{{ x.endDay.number }}')
@@ -280,6 +282,7 @@
                     body.appendChild(tr)
                 }
             }
+        }
 
         {% endfor %}
 
