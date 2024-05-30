@@ -246,8 +246,11 @@
 
                 {% if  z.course.id == x.id %}
 
-                    if (teacherStartDay<=userEndDay<=teacherEndDay){
-                    console.log("{{ z.user.name }}")
+                    if (teacherStartDay<=userEndDay){
+                        if(userEndDay<=teacherEndDay)
+                        {
+                            console.log("{{ z.user.name }}")
+                        }
                 }
 
                 {% endif %}
