@@ -162,7 +162,6 @@ def manager_home_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
-@cache_page(60 * 15)
 def profile_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('public/profile.html')
