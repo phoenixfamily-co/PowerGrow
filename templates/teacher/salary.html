@@ -231,6 +231,10 @@
             {% if y.user.id == user.id %}
                 var teacherStartDay = new Date("{{ y.startDay.month.year.number }}-{{ y.startDay.month.number }}-{{ y.startDay.number }}")
                 var teacherEndDay = new Date("{{ y.endDay.month.year.number }}-{{ y.endDay.month.number }}-{{ y.endDay.number }}")
+
+                console.log(teacherStartDay)
+                console.log(teacherEndDay)
+
             {% endif %}
 
             {% endfor %}
@@ -241,12 +245,10 @@
                 var userEndDay = new Date("{{ z.endDay.month.year.number }}-{{ z.endDay.month.number }}-{{ z.endDay.number }}")
 
 
-                console.log("{{ z.id }}")
-                counter = counter+1
-
-                {#if (userEndDay <= teacherEndDay) {#}
-                {#    console.log("{{ z.id }}")#}
-                {#    counter = counter + 1#}
+                if (userEndDay <= teacherEndDay) {
+                    console.log("{{ z.id }}")
+                    counter = counter + 1
+                }
 
             {% endfor %}
 

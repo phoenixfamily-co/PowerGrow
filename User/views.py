@@ -181,7 +181,7 @@ def salary_view(request, pk):
     size = User.objects.filter(id=pk).values_list("participants__course", flat=True)
     participants = Participants.objects.filter(course_id__in=ids, user__is_teacher=False,
                                                user__is_superuser=False, user__is_staff=False,
-                                               price__gt=0,success=True)
+                                               price__gt=0, success=True)
 
     course = Course.objects.filter(participants__user__id=pk)
 
