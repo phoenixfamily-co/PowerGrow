@@ -183,7 +183,7 @@ def salary_view(request, pk):
                                                user__is_superuser=False, user__is_staff=False,
                                                price__gt=0).values()
 
-    course = Course.objects.filter(participants__user__id=pk).values()
+    course = Course.objects.filter(participants__user__id=pk)
 
     context = {
         "about": about,
