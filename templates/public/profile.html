@@ -189,7 +189,13 @@
 						<h6 id="user" class="user-email">{{ user.number }}</h6>
                         <br>
                         <h5 class="user-name">وضعیت حساب</h5>
-						<h6>{{ user.situation }}</h6>
+                        {% if  user.situation == "بدهکار"  %}
+                            <h6 style="color:red;">{{ user.situation }}</h6>
+                        {% elif user.situation == "پستانکار" %}
+                            <h6 style="color:green;">{{ user.situation }}</h6>
+                            {% else %}
+                            <h6 style="color:white;">{{ user.situation }}</h6>
+                        {% endif %}
 					</div>
 				</div>
 			</div>
