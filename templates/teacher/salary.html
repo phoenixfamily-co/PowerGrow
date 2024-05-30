@@ -277,14 +277,14 @@
 
                 {% if  z.course.id == x.id %}
 
-                    console.log(userStart)
-                    console.log(userEnd)
 
-                  {#if ( minDate < userEndDay) {#}
-                  {#    counter += 1#}
-                  {#    console.log("{{ z.user.name }}")#}
-                  {#    console.log(userStart)#}
-                  {#    console.log(userEnd)#}
+                  if ( 0 < userEndDay) {
+                      counter += 1
+                      console.log("{{ z.user.name }}")
+                      console.log(userStart)
+                      console.log(userEnd)
+                  }
+
 
                 {% endif %}
 
