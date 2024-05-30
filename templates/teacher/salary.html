@@ -244,10 +244,11 @@
                 {#var teacherStartDay = new Date("{{ y.startDay.month.year.number }}",parseInt("{{ y.startDay.month.number }}")-1,"{{ y.startDay.number }}");#}
                 {#var teacherEndDay = new Date("{{ y.endDay.month.year.number }}",parseInt("{{ y.endDay.month.number }}")-1,"{{ y.endDay.number }}");#}
 
-                var persianDate = moment(`${teacherYear}/${teacherMonth}/${teacherDay}`).locale('fa').format('YYYY/M/D'); // 1367/11/4
                 var text = `${teacherYear}/${teacherMonth}/${teacherDay}`
 
-                console.log(text)
+                var persianDate = moment('text').locale('fa').format('YYYY/MM/DD'); // 1367/11/4
+
+                console.log(moment)
                 {#console.log(teacherEndDay)#}
 
             {% endif %}
