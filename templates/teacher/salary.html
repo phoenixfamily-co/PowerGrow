@@ -232,16 +232,16 @@
 
             {% if y.user.id == user.id %}
 
-                var teacherStartDay = new Date("{{ y.startDay.month.year.number }}","{{ y.startDay.month.number }}","{{ y.startDay.number }}");
-                var teacherEndDay = new Date("{{ y.endDay.month.year.number }}","{{ y.endDay.month.number }}","{{ y.endDay.number }}");
+                var teacherStartDay = new Date("{{ y.startDay.month.year.number }}",parseInt("{{ y.startDay.month.number }}")-1,"{{ y.startDay.number }}");
+                var teacherEndDay = new Date("{{ y.endDay.month.year.number }}",parseInt("{{ y.endDay.month.number }}")-1,"{{ y.endDay.number }}");
 
             {% endif %}
 
-                var teacherStartDa = new Date("{{ y.startDay.month.year.number }}","{{ y.startDay.month.number }}","{{ y.startDay.number }}");
-                var teacherEndDa = new Date("{{ y.endDay.month.year.number }}","{{ y.endDay.month.number }}","{{ y.endDay.number }}");
+                 var teacherStartDa = new Date("{{ y.startDay.month.year.number }}",parseInt("{{ y.startDay.month.number }}")-1,"{{ y.startDay.number }}");
+                var teacherEndDa = new Date("{{ y.endDay.month.year.number }}",parseInt("{{ y.endDay.month.number }}")-1,"{{ y.endDay.number }}");
 
                 console.log("{{ y.user.name }}")
-                console.log(teacherStartDa.toLocaleDateString('fa-IR'))
+                console.log(teacherStartDa)
                 console.log(teacherEndDa)
 
 
