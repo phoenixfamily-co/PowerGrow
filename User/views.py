@@ -12,7 +12,7 @@ from rest_framework.authtoken.models import Token
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from About.models import AboutUs
-from Product.models import Sport
+from Product.models import *
 from Reservation.models import Reservations
 from User.serializer import *
 from User.models import *
@@ -183,9 +183,12 @@ def salary_view(request, pk):
                                                user__is_superuser=False, user__is_staff=False,
                                                price__gt=0).values()
 
+    course = Course.objects.filter(participants__user__id=pk).values()
+
     context = {
         "about": about,
         "user": user,
+        "course":course,
         "participants": len(list(participants)),
         "active": participants,
         "size": len(list(size)),
