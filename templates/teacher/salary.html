@@ -256,22 +256,22 @@
 
             {% for z in active.all %}
 
-                var userStartDay = new Date("{{ z.startDay.month.year.number }}",parseInt("{{ z.startDay.month.number }}")-1,"{{ z.startDay.number }}");
-                var userEndDay = new Date("{{ z.endDay.month.year.number }}",parseInt("{{ z.endDay.month.number }}")-1,"{{ z.endDay.number }}");
+                {#var userStartDay = new Date("{{ z.startDay.month.year.number }}",parseInt("{{ z.startDay.month.number }}")-1,"{{ z.startDay.number }}");#}
+                {#var userEndDay = new Date("{{ z.endDay.month.year.number }}",parseInt("{{ z.endDay.month.number }}")-1,"{{ z.endDay.number }}");#}
+                {##}
+                {#{% if  z.course.id == x.id %}#}
+                {##}
+                {#    if(teacherStartDay<=userStartDay) {#}
+                {#        if(userStartDay<=teacherEndDay) {#}
+                {#            if (teacherStartDay<=userEndDay) {#}
+                {#                if (userEndDay <= teacherEndDay) {#}
+                {#                    console.log("{{ z.user.name }}")#}
+                {#                }#}
+                {#            }#}
+                {#        }#}
+                {#    }#}
 
-                {% if  z.course.id == x.id %}
-
-                    if(teacherStartDay<=userStartDay) {
-                        if(userStartDay<=teacherEndDay) {
-                            if (teacherStartDay<=userEndDay) {
-                                if (userEndDay <= teacherEndDay) {
-                                    console.log("{{ z.user.name }}")
-                                }
-                            }
-                        }
-                    }
-
-                {% endif %}
+{#                {% endif %}#}
 
 
             {% endfor %}
