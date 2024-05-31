@@ -371,7 +371,7 @@
 
     {% endif %}
         <td onclick="window.open('{% url 'user:change_name' x.id %}')" style="cursor: pointer ; text-decoration: underline">{{ x.name}}</td>
-        <td onclick="window.open('{% url 'user:change_number' x.id %}')" style="cursor: pointer ; text-decoration: underline">{{ x.number}}</td>
+        <td onclick="window.open('{% url 'user:change_number' x.id %}')" style="cursor: pointer ; text-decoration: underline ; text-align: right" dir="auto">{{ x.number}}</td>
         <td onclick="window.open('{% url 'user:change_birth' x.id %}')" style="cursor: pointer ; text-decoration: underline">{{ x.birthdate}}</td>
         <td>{{ x.datetime }}</td>
     <td onclick="window.open('{% url 'user:manage_access' x.number %}')" style="cursor: pointer ; text-decoration: underline">
