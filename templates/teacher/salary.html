@@ -262,6 +262,8 @@
 
             {% for z in active.all %}
 
+                {% if  z.course.id == x.id %}
+
                 var userStartYear = parseInt("{{ z.startDay.month.year.number }}");
                  var userStartMonth = parseInt("{{ z.startDay.month.number }}");
                  var userStartDay = parseInt("{{ z.startDay.number }}");
@@ -272,11 +274,6 @@
 
                 userStart = jalaali.j2d(userStartYear, userStartMonth, userStartDay)
                 userEnd = jalaali.j2d(userEndYear, userEndMonth, userEndDay)
-
-
-
-                {% if  z.course.id == x.id %}
-
 
                   if ( 0 < userEndDay ) {
                       if (teacherStart <= userStart) {
