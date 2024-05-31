@@ -300,7 +300,11 @@
      {% if user.salary == "ثابت"  %}
          activeUser.innerHTML = `-`
          {% else %}
+         {% if user.fee >= 0 %}
                   activeUser.innerHTML = `${counter} نفر `
+             {% else %}
+             activeUser.innerHTML = `0 نقر `
+             {% endif %}
          {% endif %}
 
     {% if user.situation == "بدهکار"  %}
