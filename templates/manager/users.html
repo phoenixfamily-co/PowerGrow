@@ -363,6 +363,12 @@
         <th scope="row">{{ x.id }}</th>
         <th onclick="window.open('{% url 'user:delete_profile' x.id %}')"><i class="fa fa-times" aria-hidden="true" style="cursor: pointer"></i></th>
         <th onclick="window.open('{% url 'user:change_pass' x.id %}')"><i class="fa fa-pencil" aria-hidden="true" style="cursor: pointer"></i></th>
+    {% if x.is_teacher == "True" %}
+                    <th onclick="window.open('{% url 'user:change_pass' x.id %}')" style="cursor: pointer ; text-decoration: underline">مشاهده حقوق</th>
+        {% else %}
+            <th onclick="window.open('{% url 'user:change_pass' x.id %}')" style="cursor: pointer ; text-decoration: underline" disabled>مشاهده حقوق</th>
+
+    {% endif %}
         <td onclick="window.open('{% url 'user:change_name' x.id %}')" style="cursor: pointer ; text-decoration: underline">{{ x.name}}</td>
         <td onclick="window.open('{% url 'user:change_number' x.id %}')" style="cursor: pointer ; text-decoration: underline">{{ x.number}}</td>
         <td onclick="window.open('{% url 'user:change_birth' x.id %}')" style="cursor: pointer ; text-decoration: underline">{{ x.birthdate}}</td>
