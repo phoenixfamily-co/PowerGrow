@@ -258,6 +258,10 @@
                background: red;
            }
 
+           .number{
+               text-align: right;
+           }
+
 
     </style>
 </head>
@@ -503,6 +507,8 @@
                 name.innerHTML = "{{x.user.name}}"
                 var number = document.createElement("td")
                 number.innerHTML = "{{x.user.number}}"
+                number.classList.add("number")
+                number.dir = "auto"
                 var birthdate = document.createElement("td")
                 birthdate.innerHTML = "{{x.user.birthdate}}"
                 var startDay = document.createElement("td")
@@ -588,6 +594,8 @@
                 name.innerHTML = "{{x.user.name}}"
                 var number = document.createElement("td")
                 number.innerHTML = "{{x.user.number}}"
+                number.classList.add("number")
+                number.dir = "auto"
                 var birthdate = document.createElement("td")
                 birthdate.innerHTML = "{{x.user.birthdate}}"
                 var startDay = document.createElement("td")
