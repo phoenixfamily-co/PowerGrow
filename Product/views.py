@@ -321,7 +321,7 @@ class SessionView(viewsets.ModelViewSet):
 
     def update(self, request, *args, **kwargs):
         Sessions.objects.filter(id=kwargs.get('pk')).update(number=self.request.data['number'],
-                                                            course=self.request.data['course'])
+                                                            course=kwargs.get('course'))
         return Response(status=status.HTTP_202_ACCEPTED)
 
 

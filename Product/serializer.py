@@ -67,6 +67,7 @@ class SessionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Sessions
+        read_only_fields = ['course']
         fields = "__all__"
 
 
