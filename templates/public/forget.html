@@ -164,9 +164,6 @@
         <input type="number" maxlength="1" />
     </label>
 
-    <label hidden="hidden" style="display: none">
-        <input type="number" maxlength="1" />
-    </label>
 </div>
 
 </body>
@@ -194,6 +191,10 @@
           if (i !==inputs.length - 1) inputs[i + 1].focus(); event.preventDefault();
       }
     }
+      if (i===inputs.length-1) {
+          submit()
+          return true
+      }
         })
     }
 
