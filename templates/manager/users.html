@@ -367,7 +367,7 @@
     {% if x.is_teacher == True %}
                     <th onclick="window.open('{% url 'user:salary' x.id %}')" style="cursor: pointer ; text-decoration: underline">مشاهده حقوق</th>
         {% else %}
-            <th onclick="window.open('{% url 'user:salary' x.id %}')" disabled>مشاهده حقوق</th>
+            <th style="color: #8c8c8c" disabled>مشاهده حقوق</th>
 
     {% endif %}
         <td onclick="window.open('{% url 'user:change_name' x.id %}')" style="cursor: pointer ; text-decoration: underline">{{ x.name}}</td>
