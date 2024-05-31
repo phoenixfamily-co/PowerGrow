@@ -295,7 +295,7 @@ def generate_pdf_file(request, pk):
     ids = Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time,
                               day__month__number__gte=reservation.time.day.month.number) \
               .exclude(day__month__number=reservation.time.day.month.number,
-                       day__number__lt=reservation.time.day.number) \
+                       day__number__lt=reservation.time.day.number).exclude(day__holiday=reservation.holiday) \
               .order_by('day__month__number').values_list('pk', flat=True)[:int(reservation.session)]
     endDateId = Time.objects.filter(pk__in=list(ids)).order_by("pk").last()
     endDate = f"{endDateId.day.month.year.number}/{endDateId.day.month.number}/{endDateId.day.number}"
