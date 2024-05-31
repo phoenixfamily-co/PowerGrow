@@ -17,7 +17,7 @@ class Reservations(models.Model):
     title = models.TextField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     time = models.ForeignKey(Time, on_delete=models.CASCADE, related_name='reservations_Start', blank=True, null=True)
-    time = models.ForeignKey(Time, on_delete=models.CASCADE, related_name='reservations_End', blank=True, null=True)
+    endDate = models.ForeignKey(Time, on_delete=models.CASCADE, related_name='reservations_End', blank=True, null=True)
     holiday = models.BooleanField(blank=True, null=True)
     session = models.IntegerField(blank=True, null=True)
     price = models.IntegerField(blank=True, null=True)
