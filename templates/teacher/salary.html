@@ -154,10 +154,9 @@
     </tr>
 
   <tr>
-        <th scope="col">تعداد شاگرد های فعال :</th>
-          {% if user.salary == "ثابت"  %}
-                 <th scope="col">-</th>
-         {% endif %}
+      <th scope="col">تعداد شاگرد های فعال :</th>
+      <th scope="col">-</th>
+
     </tr>
 
      <tr>
@@ -224,6 +223,8 @@
 
 
     {% if user.salary == "ثابت" %}
+
+        activeUser.innerHTML = '-'
 
         {% if user.situation == "بدهکار" %}
 
@@ -295,9 +296,7 @@
 
         {% endfor %}
 
-    {% endif %}
-
- activeUser.innerHTML = `${counter} نفر `
+        activeUser.innerHTML = `${counter} نفر `
 
         {% if user.situation == "بدهکار"  %}
         debt = parseInt("{{ user.debt }}")
@@ -311,6 +310,7 @@
         th.innerHTML = `${price} تومان `
          {% endif %}
 
+    {% endif %}
 
 </script>
 
