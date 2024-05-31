@@ -297,14 +297,8 @@
 
     {% endif %}
 
-     {% if user.salary == "ثابت"  %}
-         activeUser.innerHTML = `-`
-         {% else %}
-         {% if user.fee >= 0 %}
-                  activeUser.innerHTML = `${counter} نفر `
-             {% else %}
-             activeUser.innerHTML = `0 نقر `
-             {% endif %}
+     {% if user.salary == "درصدی"  %}
+         activeUser.innerHTML = `${counter} نفر `
          {% endif %}
 
     {% if user.situation == "بدهکار"  %}
