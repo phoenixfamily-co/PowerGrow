@@ -227,7 +227,7 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
         ids = Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time,
                                   day__month__number__gte=reservation.time.day.month.number) \
                   .exclude(day__month__number=reservation.time.day.month.number,
-                           day__number__lt=reservation.time.day.number) \
+                           day__number__lt=reservation.time.day.number).exclude(day__holiday=bool(self.request.POST.get("holiday"))) \
                   .order_by('day__month__number').values_list('pk', flat=True)[:int(reservation.session)]
         Time.objects.filter(pk__in=list(ids)).update(reserved=False)
         try:
