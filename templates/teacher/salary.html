@@ -300,6 +300,7 @@
 
         {% if user.situation == "بدهکار"  %}
         debt = parseInt("{{ user.debt }}")
+            price = price * parseInt("{{user.fee}}")/100
         price = price-debt
         th.innerHTML = `${price} تومان `
              {% elif user.situation == "پستانکار" %}
