@@ -291,6 +291,7 @@ def generate_pdf_file(request, pk):
     reservation = Reservations.objects.get(id=pk)
     startDate = f"{reservation.time.day.month.year.number}/{reservation.time.day.month.number}/{reservation.time.day.number}"
     endTime = (dt.datetime.combine(dt.date(1, 1, 1), reservation.time.time) + datetime.timedelta(minutes=90)).time()
+
     ids = Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time,
                               day__month__number__gte=reservation.time.day.month.number) \
               .exclude(day__month__number=reservation.time.day.month.number,
@@ -315,7 +316,8 @@ def generate_pdf_file(request, pk):
     p.drawRightString(540, 610, text_converter(
         "بین خانم فاطمه خسروی بابادی به عنوان پیمانکار سالن حجاب به شماره تلفن 09911177140"))
     p.drawRightString(540, 590, text_converter(
-        f" و به نمایندگی آقای/خانم {reservation.user.name} به عنوان متقاضی به شماره تلفن {reservation.user.number} منعقد میشود."))
+        f" و به نمایندگی آقای/خانم {reservation.user.name} به عنوان متقاضی به شماره تلفن"
+        f" {reservation.user.number} منعقد میشود."))
     p.drawRightString(540, 560, text_converter("ماده 2 : شرایط قرارداد:"))
     p.drawRightString(540, 540,
                       text_converter(f" مدت قرارداد از تاریخ {startDate} لغایت {endDate} به مدت 1 جلسه در هفته"))
