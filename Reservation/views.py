@@ -325,39 +325,39 @@ def generate_pdf_file(request, pk):
     p.drawRightString(560, 520, text_converter(
         f" در روزهای {reservation.time.day.name} از ساعت {reservation.time.time} الی {endTime} که جمعا به میزان {reservation.session} جلسه خواهد بود. "))
     if reservation.holiday:
-        p.drawRightString(540, 490, text_converter(
+        p.drawRightString(560, 490, text_converter(
             "روزهای تعطیل محاسبه نشده است."))
     else:
-        p.drawRightString(540, 490, text_converter(
+        p.drawRightString(560, 490, text_converter(
             "روزهای تعطیل محاسبه شده است."))
 
-    p.drawRightString(540, 460, text_converter("ماده 3 : مبلغ قرارداد و نحوه پرداخت آن:"))
-    p.drawRightString(540, 440, text_converter(
+    p.drawRightString(560, 460, text_converter("ماده 3 : مبلغ قرارداد و نحوه پرداخت آن:"))
+    p.drawRightString(560, 440, text_converter(
         f" مبلغ قرارداد برای هرجلسه {reservation.time.price}تومان و مبلغ کل قرارداد به میزان{reservation.price}تومان است "))
-    p.drawRightString(540, 420, text_converter("که متقاضی آن را در سایت مجموعه به صورت انلاین پرداخت کرده است."))
-    p.drawRightString(540, 390, text_converter("ماده 4 : تعهدات طرفین:"))
-    p.drawRightString(540, 370, text_converter("۴-۱: میزان ساعت هر جلسه برای استفاده ی متقاضي ۹۰ دقيقه"))
-    p.drawRightString(540, 350, text_converter(
+    p.drawRightString(560, 420, text_converter("که متقاضی آن را در سایت مجموعه به صورت انلاین پرداخت کرده است."))
+    p.drawRightString(560, 390, text_converter("ماده 4 : تعهدات طرفین:"))
+    p.drawRightString(560, 370, text_converter("۴-۱: میزان ساعت هر جلسه برای استفاده ی متقاضي ۹۰ دقيقه"))
+    p.drawRightString(560, 350, text_converter(
         "آموزشی امکان پذیر نیست مگر با مجوز کتبی داده شده توسط مجموعه و حداکثر نفرات استفاده کننده"))
-    p.drawRightString(540, 330, text_converter("از سوي متقاضی در هر سانس اعلام باید گردد."))
-    p.drawRightString(540, 310, text_converter(
+    p.drawRightString(560, 330, text_converter("از سوي متقاضی در هر سانس اعلام باید گردد."))
+    p.drawRightString(560, 310, text_converter(
         "۴-۲: متقاضی متعهد مي شود تا نهایت امانت داری را در طي مدت قرارداد رعایت فرماید و مبلغ"))
-    p.drawRightString(540, 290, text_converter("هرگونه خسارت به تجهیزات و تاسیسات ورزشی را پرداخت کند."))
-    p.drawRightString(540, 270, text_converter(
+    p.drawRightString(560, 290, text_converter("هرگونه خسارت به تجهیزات و تاسیسات ورزشی را پرداخت کند."))
+    p.drawRightString(560, 270, text_converter(
         "۴-۳: مجموعه ورزشی حجاب میتواند در صورت نیاز به سالن، با اعلام حداقل دو هفته زودتر،"))
-    p.drawRightString(540, 250, text_converter(
+    p.drawRightString(560, 250, text_converter(
         "ساعات مورد نیاز خود جابه جا یا قرارداد را به طور کلي لغو کند که در صورت لغو قرارداد، وجوه"))
-    p.drawRightString(540, 230, text_converter("واريزي بابت سانس هاي استفاده نشده مسترد خواهدشد."))
-    p.drawRightString(540, 210, text_converter(
+    p.drawRightString(560, 230, text_converter("واريزي بابت سانس هاي استفاده نشده مسترد خواهدشد."))
+    p.drawRightString(560, 210, text_converter(
         "۴-۴ : تعطيلي تمرينات به علت شرایط خاص آن، منوط به نظر مجموعه ورزشی حجاب خواهد بود که"))
-    p.drawRightString(540, 190, text_converter(
+    p.drawRightString(560, 190, text_converter(
         "۴-۵: داشتن عضویت در کمیته خدمات درمانی فدراسیون پزشکی ورزشی برای تک تک افراد استفاده"))
-    p.drawRightString(540, 170, text_converter(
+    p.drawRightString(560, 170, text_converter(
         "کننده الزامی است؛بنابراین، در صورت هر گونه حادثه برای استفاده کنندگان مسئولیت هزینه ها برعهده ی"))
-    p.drawRightString(540, 150, text_converter("متقاضي خواهد بود."))
-    p.drawRightString(540, 120, text_converter(
+    p.drawRightString(560, 150, text_converter("متقاضي خواهد بود."))
+    p.drawRightString(560, 120, text_converter(
         "ماده ۵: امضا کننده ي قرارداد به عنوان متقاضي، مسئولیت كل مفاد قرارداد را بر عهده می گیرد."))
-    p.drawRightString(540, 100, text_converter(
+    p.drawRightString(560, 100, text_converter(
         "ماده ۶: این قرارداد هیچ گونه کسوراتی را در بر نمی گیرد.(شامل هیچ گونه کسوراتی نمی باشد)"))
     p.drawRightString(320, 65, text_converter("صفحه ی 1 از 2"))
     p.showPage()
@@ -365,17 +365,17 @@ def generate_pdf_file(request, pk):
     p.setFont('BYekan', 14)
     p.setPageSize(A4)
 
-    p.drawRightString(540, 770, text_converter("ماده ۷: فسخ قرارداد:"))
-    p.drawRightString(540, 750, text_converter(
+    p.drawRightString(560, 770, text_converter("ماده ۷: فسخ قرارداد:"))
+    p.drawRightString(560, 750, text_converter(
         "۷-۱: در صورت مشاهده ی هرگونه تخلف از سوی متقاضی در مفاد این قرارداد، حق فسخ قرارداد به"))
-    p.drawRightString(540, 730,
+    p.drawRightString(560, 730,
                       text_converter("صورت یک طرفه برای مجموعه ورزشی حجاب محفوظ است و مبلغ واریز شده مسترد نخواهد شد."))
-    p.drawRightString(540, 710, text_converter("۷-۲: عدم پرداخت به موقع حق استفاده (ماده ۳ )"))
-    p.drawRightString(540, 690, text_converter(
+    p.drawRightString(560, 710, text_converter("۷-۲: عدم پرداخت به موقع حق استفاده (ماده ۳ )"))
+    p.drawRightString(560, 690, text_converter(
         "لازم به ذکر است پرداخت‌آنلاین در سایت به منزله قبولی و امضا تمامی قوانین و مقررات فوق می باشد"))
-    p.drawRightString(540, 660, text_converter(
+    p.drawRightString(560, 660, text_converter(
         "ماده ۸: این قرارداد شامل ۸ ماده و در دو نسخه تنظيم شده است که هر کدام حكم واحد را دارند."))
-    p.drawRightString(540, 600, text_converter("مهر و امضا پیمانکار مجموعه حجاب"))
+    p.drawRightString(560, 600, text_converter("مهر و امضا پیمانکار مجموعه حجاب"))
     p.drawRightString(200, 600, text_converter("مهر و امضا متقاضی"))
     p.drawRightString(320, 65, text_converter("صفحه ی 2 از 2"))
 
