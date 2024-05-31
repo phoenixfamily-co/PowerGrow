@@ -207,7 +207,7 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
         ids = Time.objects.filter(day__name=time.day.name, time=time.time,
                                   day__month__number__gte=time.day.month.number, reserved=False) \
                   .exclude(day__month__number=time.day.month.number,
-                           day__number__lt=time.day.number).exclude(day__holiday=bool(self.request.POST.get("holiday"))) \
+                           day__number__lt=time.day.number).exclude(day__holiday=bool(data["holiday"])) \
                   .order_by('day__month__number').values_list('pk', flat=True)[:int(session)]
         endDateId = Time.objects.filter(pk__in=list(ids)).order_by("pk").last()
         reservations = Reservations.objects.update_or_create(title=data["title"],
