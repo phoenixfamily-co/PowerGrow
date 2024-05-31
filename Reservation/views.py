@@ -319,7 +319,7 @@ def generate_pdf_file(request, pk, end):
     reservation = Reservations.objects.get(id=pk)
     startDate = f"{reservation.time.day.month.year.number}/{reservation.time.day.month.number}/{reservation.time.day.number}"
     endTime = (dt.datetime.combine(dt.date(1, 1, 1), reservation.time.time) + datetime.timedelta(minutes=90)).time()
-    endDateId = Time.objects.filter(pk=end)
+    endDateId = Time.objects.get(pk=end)
     endDate = f"{endDateId.day.month.year.number}/{endDateId.day.month.number}/{endDateId.day.number}"
 
     buffer = BytesIO()
