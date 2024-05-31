@@ -61,6 +61,14 @@ class DaysSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class UpdateDaysSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Days
+        fields = ["tuition", "tuition"]
+
+
+
+
 class SessionSerializer(serializers.ModelSerializer):
     days = DaysSerializer(read_only=True, many=True)
     participants = ParticipantsSerializer(read_only=True, many=True)

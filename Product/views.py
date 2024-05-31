@@ -567,3 +567,10 @@ class ChangeSessionCourse(generics.UpdateAPIView, ):
     queryset = Sessions.objects.all()
     lookup_field = "pk"
     serializer_class = UpdateSessionSerializer
+
+
+@permission_classes([IsAdminUser])
+class ChangeDaysCourse(generics.UpdateAPIView, ):
+    queryset = Days.objects.all()
+    lookup_field = "pk"
+    serializer_class = UpdateDaysSerializer
