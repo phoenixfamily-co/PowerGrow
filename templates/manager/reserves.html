@@ -300,7 +300,7 @@
         <th scope="col"> </th>
       <th scope="col">نام سالن</th>
         <th scope="col">توضیحات</th>
-        <th scope="col">زمان شروغ</th>
+        <th scope="col">زمان شروع</th>
         <th scope="col">تاریخ پایان</th>
         <th scope="col">تعطیلات</th>
         <th scope="col">تعداد جلسه</th>
@@ -319,7 +319,7 @@
       <td>{{ x.gym.title }}</td>
         <td>{{ x.description }}</td>
         <td style="direction: ltr">{{ x.time.day.month.year.number }}/{{ x.time.day.month.number }}/{{ x.time.day.number }} | {{ x.time.time | date:"G:i:s"}} </td>
-        <td style="direction: ltr">{{ x.endDate }} </td>
+        <td style="direction: ltr">{{ x.endDate.day.month.year.number }}/{{ x.endDate.day.month.number }}/{{ x.endDate.day.number }} | {{ x.endDate.time | date:"G:i:s"}} </td>
         <td>
             {% if x.holiday == True %}
                 محاسبه نشود

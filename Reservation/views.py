@@ -203,9 +203,17 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
         gym = Gym.objects.filter(id=data["gym"]).first()
         time = Time.objects.filter(id=self.kwargs['time']).first()
         user = User.objects.filter(id=data["user"]).first()
+
+        ids = Time.objects.filter(day__name=time.day.name, time=time.time,
+                                  day__month__number__gte=time.day.month.number, reserved=False) \
+                  .exclude(day__month__number=time.day.month.number,
+                           day__number__lt=time.day.number).exclude(day__holiday=bool(self.request.POST.get("holiday"))) \
+                  .order_by('day__month__number').values_list('pk', flat=True)[:int(session)]
+        endDateId = Time.objects.filter(pk__in=list(ids)).order_by("day_id").last()
         reservations = Reservations.objects.update_or_create(title=data["title"],
                                                              description=data["description"],
                                                              time=time,
+                                                             endDate=endDateId,
                                                              holiday=bool(self.request.POST.get("holiday")),
                                                              session=data["session"],
                                                              price=data["price"],
@@ -213,11 +221,7 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
                                                              gym=gym,
                                                              success=True,
                                                              created=self.request.user)
-        ids = Time.objects.filter(day__name=time.day.name, time=time.time,
-                                  day__month__number__gte=time.day.month.number, reserved=False) \
-                  .exclude(day__month__number=time.day.month.number,
-                           day__number__lt=time.day.number).exclude(day__holiday=bool(self.request.POST.get("holiday"))) \
-                  .order_by('day__month__number').values_list('pk', flat=True)[:int(session)]
+
         Time.objects.filter(pk__in=list(ids)).update(reserved=True, res_id=reservations[0].pk)
         serializer = ReservationSerializer(reservations)
         return Response(serializer.data)
@@ -270,9 +274,8 @@ def verify(request):
         Time.objects.filter(pk__in=list(ids)).update(reserved=True, res_id=reservation.id)
 
         endDateId = Time.objects.filter(pk__in=list(ids)).order_by("day_id").last()
-        endDate = f"{endDateId.day.month.year.number}/{endDateId.day.month.number}/{endDateId.day.number}"
+        endDate = endDateId
         reservation.endDate = endDate
-
         reservation.save()
         return HttpResponse(template.render(context, request))
     else:
