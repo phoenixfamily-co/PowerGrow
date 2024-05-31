@@ -295,13 +295,9 @@
 
         {% endfor %}
 
-    {% endif %}
+        activeUser.innerHTML = `${counter} نفر `
 
-     {% if user.salary == "درصدی"  %}
-         activeUser.innerHTML = `${counter} نفر `
-         {% endif %}
-
-    {% if user.situation == "بدهکار"  %}
+        {% if user.situation == "بدهکار"  %}
         debt = parseInt("{{ user.debt }}")
         price = price-debt
         th.innerHTML = `${price} تومان `
@@ -312,6 +308,9 @@
          {% else %}
         th.innerHTML = `${price} تومان `
          {% endif %}
+
+    {% endif %}
+
 
 </script>
 
