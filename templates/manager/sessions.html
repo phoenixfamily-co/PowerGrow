@@ -156,7 +156,7 @@
     <tr>
       <th scope="row">{{ x.id }}</th>
         <th onclick="window.open('{% url 'product:delete_sessions' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
-        <th onclick="window.open('{% url 'product:update_sessions' pk=x.id course=x.course.id %}')"><i class="fa fa fa-pencil" aria-hidden="true" style="cursor: pointer"></i></th>
+        <th onclick="window.open('{% url 'product:update_sessions' x.id %}')"><i class="fa fa fa-pencil" aria-hidden="true" style="cursor: pointer"></i></th>
       <td>{{ x.number }}</td>
         <td>{{ x.course.id }}</td>
         <td>{{ x.course.title }}</td>

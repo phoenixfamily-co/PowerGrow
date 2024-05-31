@@ -320,8 +320,7 @@ class SessionView(viewsets.ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
     def update(self, request, *args, **kwargs):
-        Sessions.objects.filter(id=kwargs.get('pk')).update(number=self.request.data['number'],
-                                                            course=kwargs.get('course'))
+        Sessions.objects.filter(id=kwargs.get('pk')).update(number=self.request.data['number'])
         return Response(status=status.HTTP_202_ACCEPTED)
 
 
@@ -561,3 +560,10 @@ class ChangeParticipantsCourse(generics.UpdateAPIView, ):
     queryset = Participants.objects.all()
     lookup_field = "pk"
     serializer_class = ChangeCourseSerializer
+
+
+@permission_classes([IsAdminUser])
+class ChangeSessionCourse(generics.UpdateAPIView, ):
+    queryset = Sessions.objects.all()
+    lookup_field = "pk"
+    serializer_class = UpdateSessionSerializer
