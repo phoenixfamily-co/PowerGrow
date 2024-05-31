@@ -155,7 +155,9 @@
 
   <tr>
         <th scope="col">تعداد شاگرد های فعال :</th>
-        <th scope="col"></th>
+          {% if user.salary == "ثابت"  %}
+                 <th scope="col">-</th>
+         {% endif %}
     </tr>
 
      <tr>
