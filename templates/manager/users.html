@@ -288,6 +288,13 @@
               color: white;
           }
 
+            .number{
+                text-decoration: underline ;
+              cursor: pointer;
+              color: white;
+               text-align: right;
+           }
+
     </style>
 
 </head>
@@ -452,7 +459,8 @@
             }
             let number = document.createElement("td")
             number.innerHTML = result[0].number
-            number.classList.add("edit")
+            number.dir = "auto"
+            number.classList.add("number")
             number.onclick = function (){
                  window.open(`/user/change/number/api/${result[0].id}/`)
             }
