@@ -22,5 +22,5 @@ urlpatterns = [
     path('gym/admin/', admin_gym_view, name='gym_view_admin'),
     path('transaction/<int:gym>/<int:time>/<int:session>/<str:holiday>/', transaction_view, name='transaction'),
     path('verify/', verify, name='verify'),
-    path('generate/pdf/<int:pk>/', generate_pdf_file, name='generate_pdf'),
+    path('generate/pdf/<int:pk>/<int:end>/', generate_pdf_file, name='generate_pdf'),
 ]

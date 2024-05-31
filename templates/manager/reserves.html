@@ -328,7 +328,7 @@
             {% endif %}
         </td>
         <td>{{ x.session }}</td>
-          <td> <a href='{% url 'reservation:generate_pdf' x.id %}'>
+          <td> <a href='{% url 'reservation:generate_pdf' x.id x.endDate.id %}'>
                 مشاهده قرارداد
             </a>
         </td>
