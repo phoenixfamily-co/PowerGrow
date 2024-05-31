@@ -319,10 +319,10 @@ def generate_pdf_file(request, pk):
         f" و به نمایندگی آقای/خانم {reservation.user.name} به عنوان متقاضی به شماره تلفن {reservation.user.number}"))
 
     p.drawRightString(560, 570, text_converter("منعقد میشود"))
-    p.drawRightString(560, 555, text_converter("ماده 2 : شرایط قرارداد:"))
-    p.drawRightString(560, 540,
+    p.drawRightString(560, 540, text_converter("ماده 2 : شرایط قرارداد:"))
+    p.drawRightString(560, 520,
                       text_converter(f" مدت قرارداد از تاریخ {startDate} لغایت {endDate} به مدت 1 جلسه در هفته"))
-    p.drawRightString(560, 520, text_converter(
+    p.drawRightString(560, 510, text_converter(
         f" در روزهای {reservation.time.day.name} از ساعت {reservation.time.time} الی {endTime} که جمعا به میزان {reservation.session} جلسه خواهد بود. "))
     if reservation.holiday:
         p.drawRightString(560, 490, text_converter(
