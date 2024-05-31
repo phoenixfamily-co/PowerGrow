@@ -298,18 +298,19 @@
 
         activeUser.innerHTML = `${counter} نفر `
 
+        price = price * parseInt("{{user.fee}}")/100
+
         {% if user.situation == "بدهکار"  %}
         debt = parseInt("{{ user.debt }}")
-            price = price * parseInt("{{user.fee}}")/100
-        price = price-debt
-        th.innerHTML = `${price} تومان `
+            price = price-debt
+            th.innerHTML = `${price} تومان `
              {% elif user.situation == "پستانکار" %}
-        debt = parseInt("{{ user.debt }}")
-        price = price+debt
-        th.innerHTML = `${price} تومان `
-         {% else %}
-        th.innerHTML = `${price} تومان `
-         {% endif %}
+            debt = parseInt("{{ user.debt }}")
+            price = price+debt
+            th.innerHTML = `${price} تومان `
+        {% else %}
+            th.innerHTML = `${price} تومان `
+        {% endif %}
 
     {% endif %}
 
