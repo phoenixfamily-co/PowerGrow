@@ -213,7 +213,7 @@
     var th0    = table.getElementsByTagName("tr")[2];
     var activeUser   = th0.getElementsByTagName("th")[1];
     var price = 0
-    let counter = 0
+    var counter = 0
 
     var teacherStart
     var teacherEnd
@@ -297,8 +297,11 @@
 
     {% endif %}
 
-
-    activeUser.innerHTML =  counter
+     {% if user.salary == "ثابت"  %}
+         activeUser.innerHTML = `-`
+         {% else %}
+                  activeUser.innerHTML = `${counter} نفر `
+         {% endif %}
 
     {% if user.situation == "بدهکار"  %}
         debt = parseInt("{{ user.debt }}")
