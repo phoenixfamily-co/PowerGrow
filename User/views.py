@@ -68,7 +68,6 @@ def forget_view(request):
     return HttpResponse(template.render(context, request))
 
 
-@cache_page(60 * 15)
 def pass_view(request, number):
     about = AboutUs.objects.values().first()
     template = loader.get_template('public/password.html')
