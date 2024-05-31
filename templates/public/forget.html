@@ -174,13 +174,20 @@
 
     const inputs = document.querySelectorAll(".otp-field label input");
 
+    let counter = 0
+
     for (let i = 0; i < inputs.length; i++) {
         inputs[i].addEventListener('keydown', function(event) {
     if (event.key==="Backspace" ) {
       inputs[i].value='' ;
       if (i !==0) inputs[i - 1].focus(); }
     else {
-      if (i===inputs.length-1) {
+        inputs.forEach((input) => {
+            if(input.value !== ''){
+                counter +=1
+            }
+        });
+      if (i===inputs.length-1 && counter===inputs.length) {
           submit()
           return true
       }
