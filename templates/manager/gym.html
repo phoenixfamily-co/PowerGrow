@@ -133,6 +133,7 @@
       <th scope="col">#</th>
         <th scope="col"> </th>
         <th scope="col"> </th>
+        <th scope="col"> </th>
       <th scope="col">نام سالن</th>
         <th scope="col">قرارداد</th>
     </tr>
@@ -143,7 +144,8 @@
       <th scope="row">{{ x.id }}</th>
         <th onclick="window.open('{% url 'reservation:delete_gym' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
         <th onclick="window.open('{% url 'reservation:update_gym' x.id %}')"><i class="fa fa-pencil" aria-hidden="true" style="cursor: pointer"></i></th>
-      <td>{{ x.title }}</td>
+        <th onclick="window.location.assign('{% url 'reserve_view'  %}')" style="text-decoration: underline ; cursor: pointer">مشاهده سالن</th>
+        <td>{{ x.title }}</td>
         <td> <a href="javascript:window.open('/media/{{ x.contract }}')">
                 مشاهده قرارداد
             </a>
