@@ -297,7 +297,9 @@
 
     {% endif %}
 
-    activeUser.innerHTML = `${counter} نفر `
+     {% if user.salary == "درصدی"  %}
+         activeUser.innerHTML = `${counter} نفر `
+         {% endif %}
 
     {% if user.situation == "بدهکار"  %}
         debt = parseInt("{{ user.debt }}")
