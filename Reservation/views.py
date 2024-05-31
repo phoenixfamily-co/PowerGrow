@@ -225,7 +225,7 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
     def destroy(self, request, *args, **kwargs):
         reservation = Reservations.objects.filter(id=self.kwargs['pk']).first()
         ids = Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time,
-                                  day__month__number__gte=reservation.time.day.month.number, reserved=True) \
+                                  day__month__number__gte=reservation.time.day.month.number) \
                   .exclude(day__month__number=reservation.time.day.month.number,
                            day__number__lt=reservation.time.day.number).exclude(day__holiday=reservation.holiday) \
                   .order_by('day__month__number').values_list('pk', flat=True)[:int(reservation.session)]
