@@ -204,11 +204,20 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
         time = Time.objects.filter(id=self.kwargs['time']).first()
         user = User.objects.filter(id=data["user"]).first()
 
-        ids = Time.objects.filter(day__name=time.day.name, time=time.time,
-                                  day__month__number__gte=time.day.month.number, reserved=False) \
-                  .exclude(day__month__number=time.day.month.number,
-                           day__number__lt=time.day.number).exclude(day__holiday=bool(self.request.POST.get("holiday"))) \
-                  .order_by('day__month__number').values_list('pk', flat=True)[:int(session)]
+        if bool(self.request.POST.get("holiday")):
+            ids = Time.objects.filter(day__name=time.day.name, time=time.time,
+                                      day__month__number__gte=time.day.month.number, reserved=False) \
+                      .exclude(day__month__number=time.day.month.number,
+                               day__number__lt=time.day.number).exclude(
+                day__holiday=bool(self.request.POST.get("holiday"))) \
+                      .order_by('day__month__number').values_list('pk', flat=True)[:int(session)]
+        else:
+            ids = Time.objects.filter(day__name=time.day.name, time=time.time,
+                                      day__month__number__gte=time.day.month.number, reserved=False) \
+                      .exclude(day__month__number=time.day.month.number,
+                               day__number__lt=time.day.number) \
+                      .order_by('day__month__number').values_list('pk', flat=True)[:int(session)]
+
         endDateId = Time.objects.filter(pk__in=list(ids)).order_by("pk").last()
         reservations = Reservations.objects.update_or_create(title=data["title"],
                                                              description=data["description"],
@@ -266,11 +275,21 @@ def verify(request):
     if response['Status'] == 100:
         template = loader.get_template('public/successful.html')
         reservation.success = True
-        ids = Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time,
-                                  day__month__number__gte=reservation.time.day.month.number) \
-                  .exclude(day__month__number=reservation.time.day.month.number,
-                           day__number__lt=reservation.time.day.number , reserved=False).exclude(day__holiday=reservation.holiday) \
-                  .order_by('day__month__number').values_list('pk', flat=True)[:int(reservation.session)]
+
+        if reservation.holiday:
+            ids = Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time,
+                                      day__month__number__gte=reservation.time.day.month.number) \
+                      .exclude(day__month__number=reservation.time.day.month.number,
+                               day__number__lt=reservation.time.day.number, reserved=False).exclude(
+                day__holiday=reservation.holiday) \
+                      .order_by('day__month__number').values_list('pk', flat=True)[:int(reservation.session)]
+        else:
+            ids = Time.objects.filter(day__name=reservation.time.day.name, time=reservation.time.time,
+                                      day__month__number__gte=reservation.time.day.month.number) \
+                      .exclude(day__month__number=reservation.time.day.month.number,
+                               day__number__lt=reservation.time.day.number, reserved=False) \
+                      .order_by('day__month__number').values_list('pk', flat=True)[:int(reservation.session)]
+
         Time.objects.filter(pk__in=list(ids)).update(reserved=True, res_id=reservation.id)
 
         endDateId = Time.objects.filter(pk__in=list(ids)).order_by("day_id").last()
