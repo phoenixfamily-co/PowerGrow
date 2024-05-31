@@ -216,7 +216,7 @@
     var teacherStart
     var teacherEnd
 
-    const minDate =  new Date()
+    var debt = 0
 
 
 
@@ -281,6 +281,7 @@
                       if (teacherStart <= userStart) {
                           if(teacherEnd >= userStart) {
                               counter += 1
+                              price += parseInt("{{ z.price }}")
                           }
                       }
                   }
@@ -295,6 +296,19 @@
     {% endif %}
 
     activeUser.innerHTML = `${counter} نفر `
+
+    {% if user.situation == "بدهکار"  %}
+        debt = parseInt("{{ user.debt }}")
+        price = price-debt
+        tr.innerHTML = `${price} تومان `
+             {% elif user.situation == "پستانکار" %}
+        debt = parseInt("{{ user.debt }}")
+        price = price+debt
+        tr.innerHTML = `${price} تومان `
+         {% else %}
+        tr.innerHTML = `${price} تومان `
+         {% endif %}
+
 
 </script>
 
