@@ -195,7 +195,7 @@
     async function submit() {
 
         let code = "";
-        for (let i = 0; i < inputs.length; i++) {
+        for (let i = 0; i <= inputs.length; i++) {
             code += inputs[i].value;
         }
         const response = await fetch('api/' + '+98' + code, {
