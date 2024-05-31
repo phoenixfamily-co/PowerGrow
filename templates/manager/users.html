@@ -295,6 +295,12 @@
                text-align: right;
            }
 
+
+           .disable{
+               color: #8c8c8c
+           }
+
+
     </style>
 
 </head>
@@ -451,6 +457,18 @@
             edit.onclick = function () {
                 window.open(`/user/change/pass/api/${result[0].id}/`)
             }
+
+              let view = document.createElement("th")
+            view.innerHTML = "تغییر پسورد"
+            if(result[0].is_teacher === true) {
+                view.classList.add("edit")
+                view.onclick = function () {
+                    window.open(`/user/salary/${result[0].id}/`)
+                }
+            }else{
+                view.classList.add("edit")
+                }
+
             let name = document.createElement("td")
             name.innerHTML = result[0].name
             name.classList.add("edit")
