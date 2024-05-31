@@ -76,7 +76,7 @@ class UpdateSessionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Sessions
-        fields = "number"
+        fields = ["number"]
 
 
 
