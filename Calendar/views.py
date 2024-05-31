@@ -11,7 +11,6 @@ from About.models import AboutUs
 from Calendar.serializer import *
 
 
-@cache_page(60 * 15)
 def price_view(request):
     about = AboutUs.objects.values().first()
     time = Time.objects.all().order_by('-day_id', 'pk')
