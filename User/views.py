@@ -59,7 +59,6 @@ def verification_view(request, number):
     return HttpResponse(template.render(context, request))
 
 
-@cache_page(60 * 15)
 def forget_view(request):
     about = AboutUs.objects.values().first()
     template = loader.get_template('public/forget.html')
