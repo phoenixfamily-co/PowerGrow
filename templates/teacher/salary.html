@@ -278,11 +278,15 @@
                 {% if  z.course.id == x.id %}
 
 
-                  if ( teacherStart <= userEndDay <= teacherEnd ) {
-                      counter += 1
-                      console.log("{{ z.user.name }}")
-                      console.log(userStart)
-                      console.log(userEnd)
+                  if ( 0 < userEndDay ) {
+                      if (teacherStart <= userStart) {
+                          if(teacherEnd >= userStart) {
+                              counter += 1
+                              console.log("{{ z.user.name }}")
+                              console.log(userStart)
+                              console.log(userEnd)
+                          }
+                      }
                   }
 
 
