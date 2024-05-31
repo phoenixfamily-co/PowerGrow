@@ -315,9 +315,11 @@ def generate_pdf_file(request, pk):
         "مجموعه ورزشی حجاب واقع درتهران، بلوار کشاورز، خ حجاب ، روبه روی درب شرقی پارک لاله"))
     p.drawRightString(560, 610, text_converter(
         "بین خانم فاطمه خسروی بابادی به عنوان پیمانکار سالن حجاب به شماره تلفن 09911177140"))
-    p.drawRightString(560, 590, text_converter(
-        f" و به نمایندگی آقای/خانم {reservation.user.name} به عنوان متقاضی به شماره تلفن {reservation.user.number} منعقد میشود."))
-    p.drawRightString(560, 560, text_converter("ماده 2 : شرایط قرارداد:"))
+    p.drawRightString(560, 595, text_converter(
+        f" و به نمایندگی آقای/خانم {reservation.user.name} به عنوان متقاضی به شماره تلفن {reservation.user.number}"))
+
+    p.drawRightString(560, 575, text_converter("منعقد میشود"))
+    p.drawRightString(560, 555, text_converter("ماده 2 : شرایط قرارداد:"))
     p.drawRightString(560, 540,
                       text_converter(f" مدت قرارداد از تاریخ {startDate} لغایت {endDate} به مدت 1 جلسه در هفته"))
     p.drawRightString(560, 520, text_converter(
