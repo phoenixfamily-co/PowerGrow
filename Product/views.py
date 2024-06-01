@@ -26,7 +26,6 @@ ZP_API_STARTPAY = f"https://{sandbox}.zarinpal.com/pg/StartPay/"
 CallbackURL = 'https://powergrow.net/product/verify/'
 
 
-@cache_page(60 * 15)
 def product_view(request, pk):
     about = AboutUs.objects.values().first()
     sport = Sport.objects.all().values()
