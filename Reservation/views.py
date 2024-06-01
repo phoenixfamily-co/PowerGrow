@@ -118,7 +118,6 @@ def admin_reserve_view(request):
     return HttpResponse(template.render(context, request))
 
 
-@cache_page(60 * 15)
 def user_reserves_view(request, pk):
     template = loader.get_template('user/reserves.html')
     about = AboutUs.objects.values().first()
