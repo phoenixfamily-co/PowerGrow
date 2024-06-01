@@ -8,6 +8,15 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="https://kit.fontawesome.com/1228ed801f.js" crossorigin="anonymous"></script>
 
+
+     <script src="https://cdn.jsdelivr.net/npm/jalaali-js/dist/jalaali.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jalaali-js/dist/jalaali.min.js"></script>
+
+<script src="https://unpkg.com/jalaali-js/dist/jalaali.js"></script>
+<script src="https://unpkg.com/jalaali-js/dist/jalaali.min.js"></script>
+
+
+
     {% load bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
@@ -176,7 +185,7 @@
     let month = parseInt(today[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
     let monthDay = parseInt(today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
 
-    const thisDate = new Date(year,month,monthDay)
+    const thisDate = jalaali.j2d(year, month, monthDay)
 
     switch (day) {
         case 0:
@@ -211,8 +220,11 @@
 
             if (parseInt("{{x.user.id}}") !== parseInt("{{ user.id }}") ) {
 
+                  var userEndYear = parseInt("{{ x.endDay.month.year.number }}");
+                 var userEndMonth = parseInt("{{ x.endDay.month.number }}");
+                 var userEndDay = parseInt("{{ x.endDay.number }}");
 
-                var userDay = new Date("{{ x.endDay.month.year.number }}","{{ x.endDay.month.number }}","{{ x.endDay.number }}")
+                 var userDay = jalaali.j2d(userEndYear, userEndMonth, userEndDay)
 
                 if (userDay >= thisDate) {
                     var tr = document.createElement("tr")
@@ -254,7 +266,12 @@
 
             if (currentDay === "{{x.day.title}}" || "{{x.day.title}}".split("،").includes(currentDay)) {
 
-                var userDay = new Date("{{ x.endDay.month.year.number }}","{{ x.endDay.month.number }}","{{ x.endDay.number }}")
+
+                 var userEndYear = parseInt("{{ x.endDay.month.year.number }}");
+                 var userEndMonth = parseInt("{{ x.endDay.month.number }}");
+                 var userEndDay = parseInt("{{ x.endDay.number }}");
+
+                 var userDay = jalaali.j2d(userEndYear, userEndMonth, userEndDay)
 
                 if (userDay >= thisDate) {
 
