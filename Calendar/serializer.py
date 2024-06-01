@@ -17,7 +17,7 @@ class DaySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Day
-        fields = ['number', 'name', 'description', 'holiday', 'month']
+        fields = "__all__"
 
 
 class MonthSerializer(serializers.ModelSerializer):
