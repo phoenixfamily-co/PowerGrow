@@ -416,6 +416,11 @@
     let myTable = document.getElementById('table').getElementsByTagName('tbody')[0];
 
 
+     const cookieValue = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("token="))
+        ?.split("=")[1];
+
 
     input.addEventListener("change", async function () {
         let inputs = input.value.toLowerCase()
@@ -429,9 +434,11 @@
         }else {
             const response = await fetch(`/user/all/?search=${inputs}`, {
                 method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                 headers: {
+            'Authorization': `token  ${cookieValue}`,
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
             });
             const result = await response.json()
 
