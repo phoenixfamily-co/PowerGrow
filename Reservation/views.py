@@ -52,7 +52,6 @@ def reservation_view(request):
     return HttpResponse(template.render(context, request))
 
 
-@cache_page(60 * 15)
 def transaction_view(request, gym, time, session, holiday):
     about = AboutUs.objects.values().first()
     gym = Gym.objects.filter(id=gym).values().first()
