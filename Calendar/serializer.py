@@ -17,6 +17,7 @@ class DaySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Day
+        exclude = ['times']
         fields = "__all__"
 
 
