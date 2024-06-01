@@ -202,13 +202,14 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
         gym = Gym.objects.filter(id=data["gym"]).first()
         time = Time.objects.filter(id=self.kwargs['time']).first()
         user = User.objects.filter(id=data["user"]).first()
+        holiday = bool(self.request.POST.get("holiday"))
 
-        if bool(self.request.POST.get("holiday")):
+        if holiday:
             ids = Time.objects.filter(day__name=time.day.name, time=time.time,
                                       day__month__number__gte=time.day.month.number, reserved=False) \
                       .exclude(day__month__number=time.day.month.number,
                                day__number__lt=time.day.number).exclude(
-                day__holiday=bool(self.request.POST.get("holiday"))) \
+                day__holiday=holiday) \
                       .order_by('day__month__number').values_list('pk', flat=True)[:int(session)]
         else:
             ids = Time.objects.filter(day__name=time.day.name, time=time.time,
@@ -222,7 +223,7 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
                                                              description=data["description"],
                                                              time=time,
                                                              endDate=endDateId,
-                                                             holiday=bool(self.request.POST.get("holiday")),
+                                                             holiday=holiday,
                                                              session=data["session"],
                                                              price=data["price"],
                                                              user=user,
