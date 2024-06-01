@@ -9,6 +9,7 @@ class TimeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Time
         read_only_fields = ['day']
+        exclude = ['reservations_Start', 'reservations_end']
         fields = "__all__"
 
 
@@ -17,6 +18,7 @@ class DaySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Day
+        exclude = ['participants', 'end_participants']
         fields = "__all__"
 
 
