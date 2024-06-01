@@ -264,13 +264,7 @@
     const registerButton = document.querySelector(".list-group li button")
     let final_price = (parseInt(price) - (parseInt(off) / 100 * parseInt(price))) * session
     let result
-    let holiday
 
-    if ("{{ holiday }}"===false) {
-        holiday = "true"
-    }else {
-        holiday = "false"
-    }
 
 
     final.innerHTML = final_price.toString() + " " + "تومان"
@@ -295,7 +289,7 @@
             "gym": parseInt(gym),
             "price": final_price ,
             "description":"رزرو سالن ورزشی حجاب",
-            "holiday": true,
+            "holiday": "{{ holiday }}",
         }
 
         const response = await fetch("{% url 'reservation:reserve' %}", {
