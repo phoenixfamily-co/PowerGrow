@@ -295,7 +295,7 @@
             "gym": parseInt(gym),
             "price": final_price ,
             "description":"رزرو سالن ورزشی حجاب",
-            "holiday": '',
+            "holiday": holiday,
         }
 
         const response = await fetch("{% url 'reservation:reserve' %}", {
