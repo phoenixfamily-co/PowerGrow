@@ -96,6 +96,7 @@ def reserve_view(request):
     about = AboutUs.objects.values().first()
     reserve = Reservations.objects.filter(success=True).all()
     gym = Gym.objects.all().first()
+    user = User.objects.all()
     template = loader.get_template('manager/reserves.html')
 
     p = Paginator(reserve, 50)
@@ -113,6 +114,8 @@ def reserve_view(request):
         "about": about,
         'page_obj': page_obj,
         "gym": gym,
+        "user": user
+
     }
     return HttpResponse(template.render(context, request))
 
@@ -225,7 +228,7 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
         session = data["session"]
         gym = Gym.objects.filter(id=data["gym"]).first()
         time = Time.objects.filter(id=self.kwargs['time']).first()
-        user = User.objects.filter(id=data["user"]).first()
+        user = User.objects.filter(id=self.kwargs['user']).first()
         holiday = bool(self.request.POST.get("holiday"))
 
         if holiday:

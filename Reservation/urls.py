@@ -10,7 +10,7 @@ urlpatterns = [
     path('reserve/admin/', admin_reserve_view, name='reserve_view_admin'),
     path('reserve/user/<int:pk>/', user_reserves_view, name='reserve_view_user'),
     path('api/reserve/', ReservationView.as_view({'post': 'create'}), name='reserve'),
-    path('api/admin/reserve/<int:time>/', ManagerAddReservationView.as_view({'post': 'create'}),
+    path('api/admin/reserve/<int:time>/<int:user>', ManagerAddReservationView.as_view({'post': 'create'}),
          name='admin-reserve'),
     path('api/admin/reserve/<int:time>/<int:pk>/', ManagerAddReservationView.as_view({'delete': 'destroy'}),
          name='delete-admin-reserve'),
