@@ -126,6 +126,7 @@
   <thead>
     <tr>
       <th scope="col">#</th>
+      <th scope="col"> </th>
       <th scope="col">نام سالن</th>
         <th scope="col">قرارداد</th>
     </tr>
@@ -134,6 +135,7 @@
   {% for x in gym %}
     <tr>
       <th scope="row">{{ x.id }}</th>
+        <th onclick="window.location.assign('{% url 'reservation:reservation'  %}')" style="text-decoration: underline ; cursor: pointer">مشاهده سالن</th>
       <td>{{ x.title }}</td>
         <td> <a href="javascript:window.open('/media/{{ x.contract }}')">
                 مشاهده قرارداد
