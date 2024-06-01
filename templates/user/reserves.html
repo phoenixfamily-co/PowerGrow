@@ -147,8 +147,8 @@
         <th onclick="window.open('{% url 'reservation:reservation'  %}')" style="text-decoration: underline ; cursor: pointer">مشاهده سالن</th>
         <td>{{ x.gym.title }}</td>
         <td>{{ x.description }}</td>
-        <td >{{ x.time.day.month.year.number }}/{{ x.time.day.month.number }}/{{ x.time.day.number }} | {{ x.time.time | date:"G:i:s"}}</td>
-        <td>{{ x.endDate.day.month.year.number }}/{{ x.endDate.day.month.number }}/{{ x.endDate.day.number }} | {{ x.endDate.time | date:"G:i:s"}}</td>
+        <td style="direction: ltr">{{ x.time.day.month.year.number }}/{{ x.time.day.month.number }}/{{ x.time.day.number }} | {{ x.time.time | date:"G:i:s"}}</td>
+        <td style="direction: ltr">{{ x.endDate.day.month.year.number }}/{{ x.endDate.day.month.number }}/{{ x.endDate.day.number }} | {{ x.endDate.time | date:"G:i:s"}}</td>
         <td>{{ x.session }}</td>
           <td> <a href='{% url 'reservation:generate_pdf' x.id x.endDate.id %}'>
                 مشاهده قرارداد
