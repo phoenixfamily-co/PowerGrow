@@ -310,7 +310,6 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-        <th scope="col"> </th>
       <th scope="col">نام سالن</th>
         <th scope="col">توضیحات</th>
         <th scope="col">زمان شروع</th>
@@ -328,7 +327,6 @@
   {% for x in page_obj.object_list %}
     <tr>
       <th scope="row">{{ x.id }}</th>
-        <th onclick="window.open('{% url 'reservation:delete-admin-reserve' x.time.id x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
       <td>{{ x.gym.title }}</td>
         <td>{{ x.description }}</td>
         <td style="direction: ltr ; text-align: right">{{ x.time.day.month.year.number }}/{{ x.time.day.month.number }}/{{ x.time.day.number }} | {{ x.time.time | date:"G:i:s"}} </td>
