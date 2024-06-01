@@ -218,12 +218,23 @@ def user_view(request):
 
 
 def admin_user_view(request):
-    about = AboutUs.objects.values().first()
     template = loader.get_template('secretary/users.html')
+    about = AboutUs.objects.values().first()
     user = User.objects.all()
+    p = Paginator(user, 50)
+    page_number = request.GET.get('page')
+    try:
+        page_obj = p.get_page(page_number)  # returns the desired page object
+    except PageNotAnInteger:
+        # if page_number is not an integer then assign the first page
+        page_obj = p.page(1)
+    except EmptyPage:
+        # if page is empty then return last page
+        page_obj = p.page(p.num_pages)
+
     context = {
         "about": about,
-        "user": user
+        'page_obj': page_obj
     }
     return HttpResponse(template.render(context, request))
 
