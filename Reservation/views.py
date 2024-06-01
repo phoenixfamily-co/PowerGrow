@@ -167,7 +167,7 @@ class ReservationView(viewsets.ViewSet):
                     title=data["title"],
                     description=data["description"],
                     time=time,
-                    holiday=bool(data["holiday"]),
+                    holiday=data["holiday"],
                     session=data["session"],
                     price=data["price"],
                     gym=gym,
