@@ -4,6 +4,7 @@ import json
 import requests
 from arabic_reshaper import arabic_reshaper
 from django.conf import settings
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponse, Http404
 from django.template import loader
 from django.views.decorators.cache import cache_page
@@ -96,9 +97,21 @@ def reserve_view(request):
     reserve = Reservations.objects.filter(success=True).all()
     gym = Gym.objects.all().first()
     template = loader.get_template('manager/reserves.html')
+
+    p = Paginator(reserve, 50)
+    page_number = request.GET.get('page')
+    try:
+        page_obj = p.get_page(page_number)  # returns the desired page object
+    except PageNotAnInteger:
+        # if page_number is not an integer then assign the first page
+        page_obj = p.page(1)
+    except EmptyPage:
+        # if page is empty then return last page
+        page_obj = p.page(p.num_pages)
+
     context = {
         "about": about,
-        "reserve": reserve,
+        'page_obj': page_obj,
         "gym": gym,
     }
     return HttpResponse(template.render(context, request))
@@ -109,9 +122,20 @@ def admin_reserve_view(request):
     reserve = Reservations.objects.filter(success=True).all()
     gym = Gym.objects.all().first()
     template = loader.get_template('secretary/reserves.html')
+    p = Paginator(reserve, 50)
+    page_number = request.GET.get('page')
+    try:
+        page_obj = p.get_page(page_number)  # returns the desired page object
+    except PageNotAnInteger:
+        # if page_number is not an integer then assign the first page
+        page_obj = p.page(1)
+    except EmptyPage:
+        # if page is empty then return last page
+        page_obj = p.page(p.num_pages)
+
     context = {
         "about": about,
-        "reserve": reserve,
+        'page_obj': page_obj,
         "gym": gym,
     }
     return HttpResponse(template.render(context, request))
