@@ -873,9 +873,9 @@
         if (cookieValue !== undefined) {
             if (date !==undefined && time!== undefined && checkedValue.checked) {
                 if (holidayBox.checked){
-                    holiday = "False"
-                }else {
                     holiday = "True"
+                }else {
+                    holiday = "False"
                 }
                 window.location.assign(`/reservation/transaction/${gym}/${time}/${session}/${holiday}`)
             }else {
