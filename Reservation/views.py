@@ -163,11 +163,13 @@ class ReservationView(viewsets.ViewSet):
             if response_data['Status'] == 100:
                 gym = Gym.objects.filter(id=data["gym"]).first()
                 time = Time.objects.filter(id=data["time"]).first()
+                holiday = bool(self.request.POST.get("holiday"))
+
                 Reservations.objects.update_or_create(
                     title=data["title"],
                     description=data["description"],
                     time=time,
-                    holiday=True,
+                    holiday=holiday,
                     session=data["session"],
                     price=data["price"],
                     gym=gym,
