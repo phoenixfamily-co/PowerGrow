@@ -386,7 +386,9 @@
         <td>{{ x.session.number }}</td>
         <td>{{ x.course.time }}</td>
     </tr>
-      {% for x in reservation %}
+   {% endfor %}
+
+   {% for x in reservation %}
     <tr>
       <th scope="row">{{ x.id }}</th>
       <td>{{ x.title }}</td>
@@ -394,7 +396,6 @@
         <td>{{ x.session }}</td>
         <td>{{ x.time.time }}</td>
     </tr>
-   {% endfor %}
    {% endfor %}
   </tbody>
 </table>
