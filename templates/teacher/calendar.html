@@ -152,6 +152,12 @@
             color: white !important
         }
 
+         .courseButton {
+            border-radius: 50px;
+            background: #e4633a;
+            color: white !important
+        }
+
          .holidayButton {
             border-radius: 50px;
             color: #ff0c0c !important;
@@ -407,11 +413,7 @@
     let currentYear = today[0].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
     let thisYear = today[0].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
     let monthPosition = currentMonth-1
-    let test = "{{ thisList }}"
-
-
-    console.log(test)
-
+    let thisList = "{{ thisList }}"
 
     document.addEventListener("DOMContentLoaded", function() {
         getYear()
@@ -545,13 +547,12 @@
                 dayItem.classList.add("holidayButton")
             }else if ( result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number === parseInt(currentDay))
             {
-                {#dayItem.classList.add("activeButton")#}
+                dayItem.classList.add("activeButton")
                 currentDayId = result[0].months[monthPosition].days[i].id
                 date = `${result[0].number}-${result[0].months[monthPosition].number}-${result[0].months[monthPosition].days[i].number}`
 
-            }else if (test.includes(result[0].months[monthPosition].days[i].id )){
-                dayItem.classList.add("activeButton")
-
+            }else if (thisList.includes(result[0].months[monthPosition].days[i].id )){
+                dayItem.classList.add("courseButton")
             }
             dayItem.innerHTML = result[0].months[monthPosition].days[i].number
             dayItem.setAttribute("itemid",result[0].months[monthPosition].days[i].id)
