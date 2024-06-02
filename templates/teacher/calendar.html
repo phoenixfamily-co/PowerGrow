@@ -321,6 +321,7 @@
 </div>
 
 <div class="date-time">
+
 <div class="date-picker">
     <div class="month">
   <ul>
@@ -348,9 +349,10 @@
 </div>
 
 <div class="time-picker">
+
  <div class="table-responsive">
 
-<table class="table" style="color: white ; margin-top: 50px">
+<table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -365,7 +367,7 @@
   {% for x in participants %}
     <tr>
       <th scope="row">{{ forloop.counter}}</th>
-      <td>{{ x.course.name }}</td>
+      <td>{{ x.course.title }}</td>
         <td>{{ x.day.title }}</td>
         <td>{{ x.session.number }}</td>
         <td>{{ x.course.time }}</td>
