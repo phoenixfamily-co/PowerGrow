@@ -114,7 +114,7 @@ def user_calendar_view(request, pk):
                 holiday=x.holiday) \
                       .order_by('month__number').values_list('pk', flat=True)[:int(x.session)]
         else:
-            ids = Day.objects.filter(name=x.time.day.name, time=x.time.time,
+            ids = Day.objects.filter(name=x.time.day.name,
                                      month__number__gte=x.time.day.month.number) \
                       .exclude(month__number=x.time.day.month.number,
                                number__lt=x.time.day.number) \
