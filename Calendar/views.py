@@ -120,7 +120,7 @@ def user_calendar_view(request, pk):
 
         resList.extend(list(idr))
 
-    template = loader.get_template('teacher/calendar.html')
+    template = loader.get_template('user/calendar.html')
 
     context = {
         "about": about,
