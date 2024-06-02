@@ -7,6 +7,8 @@ from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 from User.models import *
+from Product.models import *
+from Reservation.models import *
 from About.models import AboutUs
 from Calendar.serializer import *
 
@@ -57,6 +59,35 @@ def calendar_view(request):
 
 @cache_page(60 * 15)
 def teacher_calendar_view(request, pk):
+    about = AboutUs.objects.values().first()
+    user = User.objects.get(id=pk)
+    participants = Participants.objects.filter(user_id=pk)
+    thisList = []
+
+    for x in participants:
+        week = Days.objects.filter(id=x.day).first()
+        day = week.title.split("،")
+        ids = Day.objects.filter(name__in=day, month__number__gte=x.startDay.month.number,
+                                 month__year__number__gte=x.startDay.month.year.number, holiday=False).exclude(
+            month__number=x.startDay.month.number,
+            number__lt=x.startDay.number) \
+            .order_by('pk').values_list('pk', flat=True)[:int(x.session.number)]
+        thisList.extend(list(ids))
+
+    template = loader.get_template('teacher/calendar.html')
+
+    context = {
+        "about": about,
+        "user": user,
+        "participants": participants,
+        "thisList": thisList,
+
+    }
+    return HttpResponse(template.render(context, request))
+
+
+@cache_page(60 * 15)
+def user_calendar_view(request, pk):
     about = AboutUs.objects.values().first()
     user = User.objects.get(id=pk)
     template = loader.get_template('teacher/calendar.html')
