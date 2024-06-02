@@ -394,7 +394,7 @@
       <td>{{ x.title }}</td>
         <td>{{ x.time.day.name }}</td>
         <td>{{ x.session }}</td>
-        <td>{{ x.time.time }}</td>
+        <td>{{ x.time.time | date:"G:i:s"}}</td>
     </tr>
    {% endfor %}
   </tbody>
