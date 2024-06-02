@@ -417,11 +417,20 @@ class ManagerParticipationView(viewsets.ModelViewSet):
 
     def update(self, request, *args, **kwargs):
         session = Sessions.objects.get(id=kwargs.get('session'))
-        day = Days.objects.get(id=kwargs.get('day'))
+        days = Days.objects.get(id=kwargs.get('day'))
         start = Day.objects.get(id=kwargs.get('start'))
+        day = days.title.split("،")
+        ids = Day.objects.filter(name__in=day, month__number__gte=start.month.number,
+                                 month__year__number__gte=start.month.year.number, holiday=False).exclude(
+            month__number=start.month.number,
+            number__lt=start.number) \
+            .order_by('pk').values_list('pk', flat=True)[:int(session.number)]
+        end = Day.objects.filter(pk__in=list(ids)).last()
+
         Participants.objects.filter(id=kwargs.get('id')).update(session=session,
-                                                                day=day,
-                                                                startDay=start)
+                                                                day=days,
+                                                                startDay=start,
+                                                                endDay=end)
         return Response(status=status.HTTP_202_ACCEPTED)
 
 
