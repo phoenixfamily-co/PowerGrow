@@ -70,7 +70,7 @@ def teacher_calendar_view(request, pk):
                                  month__year__number__gte=x.startDay.month.year.number, holiday=False).exclude(
             month__number=x.startDay.month.number,
             number__lt=x.startDay.number) \
-            .order_by('pk').values_list('pk', flat=True)[:int(x.session.number)]
+                  .order_by('pk').values_list('pk', flat=True)[:int(x.session.number)]
         thisList.extend(list(ids))
 
     template = loader.get_template('teacher/calendar.html')
@@ -107,18 +107,18 @@ def user_calendar_view(request, pk):
 
     for x in reservation:
         if x.holiday:
-            ids = Time.objects.filter(day__name=x.time.day.name, time=x.time.time,
-                                      day__month__number__gte=x.time.day.month.number, reserved=False) \
-                      .exclude(day__month__number=x.time.day.month.number,
-                               day__number__lt=x.time.day.number).exclude(
-                day__holiday=x.holiday) \
-                      .order_by('day__month__number').values_list('pk', flat=True)[:int(x.session)]
+            ids = Day.objects.filter(name=x.time.day.name,
+                                     month__number__gte=x.time.day.month.number, reserved=False) \
+                      .exclude(month__number=x.time.day.month.number,
+                               number__lt=x.time.day.number).exclude(
+                holiday=x.holiday) \
+                      .order_by('month__number').values_list('pk', flat=True)[:int(x.session)]
         else:
-            ids = Time.objects.filter(day__name=x.time.day.name, time=x.time.time,
-                                      day__month__number__gte=x.time.day.month.number, reserved=False) \
-                      .exclude(day__month__number=x.time.day.month.number,
-                               day__number__lt=x.time.day.number) \
-                      .order_by('day__month__number').values_list('pk', flat=True)[:int(x.session)]
+            ids = Day.objects.filter(name=x.time.day.name, time=x.time.time,
+                                     month__number__gte=x.time.day.month.number, reserved=False) \
+                      .exclude(month__number=x.time.day.month.number,
+                               number__lt=x.time.day.number) \
+                      .order_by('month__number').values_list('pk', flat=True)[:int(x.session)]
 
         resList.extend(list(ids))
 
