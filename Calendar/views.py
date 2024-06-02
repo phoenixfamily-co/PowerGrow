@@ -65,7 +65,7 @@ def teacher_calendar_view(request, pk):
     thisList = []
 
     for x in participants:
-        week = Days.objects.filter(id=x.day).first()
+        week = Days.objects.filter(id=x.day.id).first()
         day = week.title.split("،")
         ids = Day.objects.filter(name__in=day, month__number__gte=x.startDay.month.number,
                                  month__year__number__gte=x.startDay.month.year.number, holiday=False).exclude(
