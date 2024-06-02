@@ -85,7 +85,6 @@ def teacher_calendar_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
-@cache_page(60 * 15)
 def user_calendar_view(request, pk):
     about = AboutUs.objects.values().first()
     user = User.objects.get(id=pk)

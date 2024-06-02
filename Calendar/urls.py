@@ -11,6 +11,7 @@ urlpatterns = [
     path('price/', price_view, name='price'),
     path('calendar/', calendar_view, name='calendar'),
     path('teacher/<int:pk>/', teacher_calendar_view, name='teacher_calendar'),
+    path('user/<int:pk>/', user_calendar_view, name='user_calendar'),
     path('api/year/<int:year>/', YearView.as_view({'post': 'create', 'get': 'list'}), name='year'),
     path('api/month/', MonthView.as_view({'post': 'create', 'get': 'list'}), name='month'),
     path('api/day/', DayView.as_view({'get': 'list'}), name='day'),
