@@ -58,7 +58,7 @@ def calendar_view(request):
 def teacher_calendar_view(request, pk):
     about = AboutUs.objects.values().first()
     user = User.objects.get(id=pk)
-    participants = Participants.objects.filter(user_id=pk)
+    participants = Participants.objects.filter(user_id=pk, success=True)
     thisList = []
 
     for x in participants:
@@ -86,8 +86,8 @@ def teacher_calendar_view(request, pk):
 def user_calendar_view(request, pk):
     about = AboutUs.objects.values().first()
     user = User.objects.get(id=pk)
-    participants = Participants.objects.filter(user_id=pk)
-    reservation = Reservations.objects.filter(user_id=pk)
+    participants = Participants.objects.filter(user_id=pk, success=True)
+    reservation = Reservations.objects.filter(user_id=pk, success=True)
 
     thisList = []
 
