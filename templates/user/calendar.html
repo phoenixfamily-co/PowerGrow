@@ -378,23 +378,23 @@
     </tr>
   </thead>
   <tbody>
-  {% for x in reservation %}
-    <tr>
-      <th scope="row">{{ forloop.counter}}</th>
-      <td>{{ x.title }}</td>
-        <td>{{ x.time.da.name }}</td>
-        <td>{{ x.session }}</td>
-        <td>{{ x.time.time }}</td>
-    </tr>
-   {% endfor %}
   {% for x in participants %}
     <tr>
-      <th scope="row">{{ forloop.counter}}</th>
+      <th scope="row">{{ x.id }}</th>
       <td>{{ x.course.title }}</td>
         <td>{{ x.day.title }}</td>
         <td>{{ x.session.number }}</td>
         <td>{{ x.course.time }}</td>
     </tr>
+      {% for x in reservation %}
+    <tr>
+      <th scope="row">{{ x.id }}</th>
+      <td>{{ x.title }}</td>
+        <td>{{ x.time.day.name }}</td>
+        <td>{{ x.session }}</td>
+        <td>{{ x.time.time }}</td>
+    </tr>
+   {% endfor %}
    {% endfor %}
   </tbody>
 </table>
