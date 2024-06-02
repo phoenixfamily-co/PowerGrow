@@ -348,6 +348,32 @@
 </div>
 
 <div class="time-picker">
+ <div class="table-responsive">
+
+<table class="table" style="color: white ; margin-top: 50px">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+        <th scope="col"> نام دوره</th>
+        <th scope="col">روزهای برگزاری</th>
+        <th scope="col">تعداد جلسات</th>
+        <th scope="col">زمان دوره</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for x in participants %}
+    <tr>
+      <th scope="row">{{ forloop.counter}}</th>
+      <td>{{ x.course.name }}</td>
+        <td>{{ x.day }}</td>
+        <td>{{ x.session }}</td>
+        <td>{{ x.course.time }}</td>
+    </tr>
+   {% endfor %}
+  </tbody>
+</table>
+</div>
 
 </div>
 </div>
