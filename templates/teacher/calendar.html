@@ -366,8 +366,8 @@
     <tr>
       <th scope="row">{{ forloop.counter}}</th>
       <td>{{ x.course.name }}</td>
-        <td>{{ x.day }}</td>
-        <td>{{ x.session }}</td>
+        <td>{{ x.day.title }}</td>
+        <td>{{ x.session.number }}</td>
         <td>{{ x.course.time }}</td>
     </tr>
    {% endfor %}
