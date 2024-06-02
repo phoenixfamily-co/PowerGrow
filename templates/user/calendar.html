@@ -1,0 +1,573 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://kit.fontawesome.com/1228ed801f.js" crossorigin="anonymous"></script>
+
+
+     <script src="https://cdn.jsdelivr.net/npm/jalaali-js/dist/jalaali.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jalaali-js/dist/jalaali.min.js"></script>
+
+<script src="https://unpkg.com/jalaali-js/dist/jalaali.js"></script>
+<script src="https://unpkg.com/jalaali-js/dist/jalaali.min.js"></script>
+
+
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+    <style>
+
+           @font-face {
+            font-family: BYekan;
+            font-style: normal;
+            font-weight: normal;
+            src: url("/static/fonts/BYekan.eot");/* IE9 Compat Modes */
+            src: url("/static/fonts/BYekan.woff") format('woff'),
+            url("/static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */ url("../../static/fonts/BYekan.ttf") format('truetype') /* Safari, Android, iOS */
+        }
+
+             * {
+            box-sizing: border-box
+        }
+
+           .logoHolder {
+               width: 50px;
+               position: absolute;
+               left: 0;
+               right: 0;
+               margin-right: 55%;
+               margin-top: 1%;
+               z-index: 10 !important;
+               direction: ltr;
+
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            position: absolute;
+            direction: ltr
+
+        }
+
+        .typography {
+            position: absolute;
+            margin-left: 60px;
+            margin-top: 20%;
+            color: white;
+            font-size: 20px
+
+        }
+           html {
+               min-height: 100%;
+               position: relative;
+               font-family: BYekan, serif !important;
+           }
+
+           body {
+               direction: rtl;
+               background: #282a36;
+
+           }
+            .month {
+                width: 100%;
+                height: 25%;
+                float: right;
+                background: #e4633a;
+                text-align: center;
+                border-top-left-radius: 1rem;
+                border-top-right-radius: 1rem
+
+
+            }
+
+        .month ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        .month ul li {
+            color: white;
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .month .prev {
+            float: right;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .month .next {
+            float: left;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .weekdays {
+            margin: 0;
+            padding: 5px 0;
+            background-color: #ddd;
+            direction: rtl;
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem
+
+
+        }
+
+        .weekdays li {
+          display: inline-block;
+          width: 12.6%;
+          color: #666;
+          text-align: center;
+        }
+
+        .days {
+            padding: 5px 0;
+            margin: 0;
+            direction: rtl;
+            border-bottom-left-radius: 20px;
+        }
+
+        .days li {
+            list-style-type: none;
+            display: inline-block;
+            width: 13.3%;
+            text-align: center;
+            margin-bottom: 1px;
+            font-size:16px;
+            color: #000000;
+            cursor: pointer;
+        }
+        .activeButton {
+            border-radius: 50px;
+            background: #1a5bbc;
+            color: white !important
+        }
+
+         .courseButton {
+            border-radius: 50px;
+            background: #e4633a;
+            color: white !important
+        }
+
+         .holidayButton {
+            border-radius: 50px;
+            color: #ff0c0c !important;
+             cursor: pointer;
+        }
+
+         .disActiveButton{
+
+             cursor: none;
+             pointer-events: none;
+             opacity:0.6;
+         }
+
+           .date-time{
+               width: 80%;
+               margin-top: 150px;
+               align-content: center;
+               margin-right: 10%;
+               display: inline-block;
+               align-items: center;
+               justify-content: center;
+
+        }
+
+        .date-picker{
+            width: 50%;
+            height: 300px;
+            float: right;
+            background: #FFFFFF ;
+            border-radius: 1rem ;
+        }
+
+          .time-picker {
+              width: 49%;
+              height: 300px;
+              float: left;
+              background: #FFFFFF;
+              border-radius: 1rem;
+          }
+
+          ul {
+            list-style-type: none;
+        }
+
+
+           .navbar.navbar-dark.bg-dark li a{
+            color: #fff;
+        }
+
+          .navbar.navbar-dark.bg-dark a:hover{
+              color: grey;
+        }
+
+       .nav.navbar-nav li a {
+           color: #fff;
+           text-decoration: none;
+       }
+
+        .nav.navbar-nav a:hover {
+            color: grey;
+        }
+
+        .nav-pills > li > a.active {
+            background-color: #E16539 !important;
+        }
+
+           .wrimagecard {
+               margin-top: 0;
+               margin-bottom: 1.5rem;
+               text-align: left;
+               position: relative;
+               background: #fff;
+               box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.15);
+               border-radius: 4px;
+               transition: all 0.3s ease;
+           }
+            .wrimagecard .fa{
+                position: relative;
+                font-size: 70px;
+            }
+            .wrimagecard-topimage_header {
+                padding: 20px;
+            }
+            a.wrimagecard:hover, .wrimagecard-topimage:hover {
+                box-shadow: 2px 4px 8px 0 rgba(46,61,73,0.2);
+            }
+            .wrimagecard-topimage a {
+                width: 100%;
+                height: 100%;
+                display: block;
+            }
+            .wrimagecard-topimage_title {
+                height: 80px;
+                padding: 20px 24px 0.75rem;
+                position: relative;
+            }
+            .wrimagecard-topimage a {
+                border-bottom: none;
+                text-decoration: none;
+                color: #525c65;
+                transition: color 0.3s ease;
+            }
+
+
+            table {
+  max-height: 280px;
+  overflow: auto;
+  display:inline-block;
+}
+
+             @media screen and (max-width: 600px) {
+
+               footer ul li {
+                   margin-top: 10px;
+               }
+
+                .date-time {
+                    width: 100%;
+                    margin-top: 100px;
+                    margin-left: 1%;
+                    margin-right: 1%;
+                    display: inline-block;
+                }
+                 .date-picker {
+                     width: 100%;
+                     height: 300px;
+                     background: #FFFFFF;
+                     border-radius: 1rem;
+                 }
+                 .time-picker {
+                     width: 100%;
+                     height: auto;
+                     background: #FFFFFF;
+                     border-radius: 1rem;
+                     margin-top: 15px;
+                 }
+
+
+                 body{
+                     margin-bottom: 2500px;
+                 }
+
+                  .month {
+                      border-top-right-radius: 1rem
+                  }
+
+                    .weekdays {
+                        border-top-right-radius: 1rem
+                    }
+
+        }
+
+
+
+    </style>
+    <title>PowerGrow</title>
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid" style="vertical-align: center">
+  <ul class="nav nav-pills navbar-left">
+      <li class="nav-item">
+    <a class="nav-link" aria-current="page" href='javascript: history.go(-1)'>برگشت</a>
+  </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="logoHolder">
+
+    <img alt="" src="/media/{{ about.logo }}" class="logo">
+    <div class="typography">PowerGrow</div>
+
+</div>
+
+<div class="date-time">
+
+<div class="date-picker">
+    <div class="month">
+  <ul>
+    <li id="next" class="prev">&#10094;</li>
+    <li id="prev" class="next">&#10095;</li>
+      <li id="monthTitle"></li>
+    <li>
+      <span id="yearTitle" style="font-size:18px"></span>
+    </li>
+  </ul>
+</div>
+<ul class="weekdays">
+  <li>ش</li>
+  <li>ی</li>
+  <li>د</li>
+  <li>س</li>
+  <li>چ</li>
+  <li>پ</li>
+  <li>ج</li>
+</ul>
+    <ul id="days" class="days">
+
+    </ul>
+
+</div>
+
+<div class="time-picker">
+
+ <div class="table-responsive" style="margin: 10px">
+
+<table class="table table-bordered" style="border-color: black" >
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+        <th scope="col"> نام </th>
+        <th scope="col">روزهای برگزاری</th>
+        <th scope="col">تعداد جلسات</th>
+        <th scope="col">زمان </th>
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for x in participants %}
+    <tr>
+      <th scope="row">{{ forloop.counter}}</th>
+      <td>{{ x.course.title }}</td>
+        <td>{{ x.day.title }}</td>
+        <td>{{ x.session.number }}</td>
+        <td>{{ x.course.time }}</td>
+    </tr>
+   {% endfor %}
+  {% for x in reservation %}
+    <tr>
+      <th scope="row">{{ forloop.counter}}</th>
+      <td>{{ x.title }}</td>
+        <td>{{ x.time.da.name }}</td>
+        <td>{{ x.session }}</td>
+        <td>{{ x.time.time }}</td>
+    </tr>
+   {% endfor %}
+  </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</body>
+
+<script>
+
+    let calendar = document.getElementById("calendar")
+    let monthTitle = document.getElementById("monthTitle")
+    let yearTitle = document.getElementById("yearTitle")
+    let prev = document.getElementById("prev")
+    let next = document.getElementById("next")
+    let days = document.getElementById("days")
+    let result
+    let monthSize
+    let currentDayId
+    let today = new Date().toLocaleDateString('fa-IR');
+    today = today.split('/')
+    let currentDay = today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
+    let currentMonth = today[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
+    let currentYear = today[0].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
+    let thisYear = today[0].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
+    let monthPosition = currentMonth-1
+    let thisList = "{{ thisList }}"
+
+    document.addEventListener("DOMContentLoaded", function() {
+        getYear()
+
+    });
+
+      next.addEventListener("click", function () {
+            if (monthPosition > 0) {
+                monthPosition = monthPosition - 1
+                getDays(monthPosition)
+            }else if (monthPosition === 0){
+               if(currentYear>1402) {
+                   currentYear = currentYear - 1
+                   getYear(currentYear)
+               }
+            }
+        })
+
+     prev.addEventListener("click",function () {
+          if (monthPosition<monthSize-1){
+            monthPosition = monthPosition+1
+             getDays(monthPosition)
+        }else if (monthPosition === monthSize-1){
+              if(currentYear<1403) {
+                  currentYear = currentYear + 1
+                  getYear(currentYear)
+              }
+         }
+    })
+
+
+    async function getYear() {
+
+        const response = await fetch(`/calendar/api/year/${currentYear}/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        result = await response.json()
+        result = JSON.parse(JSON.stringify(result))
+        monthSize = result[0].months.length
+        yearTitle.innerHTML = result[0].number
+
+         if (currentYear<thisYear){
+             monthPosition = monthSize-1
+             getDays(monthSize-1)
+         }else if(currentYear === thisYear){
+             monthPosition = currentMonth - 1
+             getDays(monthPosition)
+         }else{
+             monthPosition = 0
+             getDays(monthPosition)
+         }
+
+    }
+
+
+    function getDays(monthPosition) {
+        monthTitle.innerHTML = result[0].months[monthPosition].name
+        days.innerHTML=""
+
+        const emptyDay = document.createElement("li")
+                emptyDay.innerHTML = ' '
+
+        switch (result[0].months[monthPosition].startDay) {
+
+            case "یکشنبه" :
+                const empty0 = document.createElement("li")
+                days.appendChild(empty0)
+                break
+            case "دوشنبه" :
+                const empty1 = document.createElement("li")
+                days.appendChild(empty1)
+                const empty2 = document.createElement("li")
+                days.appendChild(empty2)
+                break
+
+            case "سه شنبه" :
+               const empty3 = document.createElement("li")
+                days.appendChild(empty3)
+                const empty4 = document.createElement("li")
+                days.appendChild(empty4)
+                const empty5 = document.createElement("li")
+                days.appendChild(empty5)
+                break
+             case "چهارشنبه" :
+                 const empty6 = document.createElement("li")
+                days.appendChild(empty6)
+                const empty7 = document.createElement("li")
+                days.appendChild(empty7)
+                const empty9 = document.createElement("li")
+                days.appendChild(empty9)
+                 const empty10 = document.createElement("li")
+                days.appendChild(empty10)
+                break
+             case "پنجشنبه" :
+                const empty11 = document.createElement("li")
+                days.appendChild(empty11)
+                const empty12 = document.createElement("li")
+                days.appendChild(empty12)
+                const empty13 = document.createElement("li")
+                days.appendChild(empty13)
+                 const empty14 = document.createElement("li")
+                days.appendChild(empty14)
+                 const empty15 = document.createElement("li")
+                days.appendChild(empty15)
+                break
+             case "جمعه" :
+                  const empty16 = document.createElement("li")
+                days.appendChild(empty16)
+                const empty17 = document.createElement("li")
+                days.appendChild(empty17)
+                const empty18 = document.createElement("li")
+                days.appendChild(empty18)
+                 const empty19 = document.createElement("li")
+                days.appendChild(empty19)
+                 const empty20 = document.createElement("li")
+                days.appendChild(empty20)
+                 const empty21 = document.createElement("li")
+                days.appendChild(empty21)
+                break
+        }
+        for (let i = 0 ; i< result[0].months[monthPosition].days.length ; i++){
+            const dayItem = document.createElement("li")
+
+            if (result[0].months[monthPosition].days[i].holiday === true) {
+                dayItem.classList.add("holidayButton")
+            }else if ( result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number === parseInt(currentDay))
+            {
+                dayItem.classList.add("activeButton")
+                currentDayId = result[0].months[monthPosition].days[i].id
+                date = `${result[0].number}-${result[0].months[monthPosition].number}-${result[0].months[monthPosition].days[i].number}`
+
+            }else if (thisList.includes(result[0].months[monthPosition].days[i].id )){
+                dayItem.classList.add("courseButton")
+            }
+            dayItem.innerHTML = result[0].months[monthPosition].days[i].number
+            dayItem.setAttribute("itemid",result[0].months[monthPosition].days[i].id)
+            days.appendChild(dayItem)
+        }
+    }
+
+</script>
+
+
+
+</html>

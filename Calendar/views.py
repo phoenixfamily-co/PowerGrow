@@ -89,10 +89,50 @@ def teacher_calendar_view(request, pk):
 def user_calendar_view(request, pk):
     about = AboutUs.objects.values().first()
     user = User.objects.get(id=pk)
+    participants = Participants.objects.filter(user_id=pk)
+    reservation = Reservations.objects.filter(user_id=pk)
+
+    thisList = []
+
+    resList = []
+
+    for x in participants:
+        week = Days.objects.filter(id=x.day.id).first()
+        day = week.title.split("،")
+        ids = Day.objects.filter(name__in=day, month__number__gte=x.startDay.month.number,
+                                 month__year__number__gte=x.startDay.month.year.number, holiday=False).exclude(
+            month__number=x.startDay.month.number,
+            number__lt=x.startDay.number) \
+                  .order_by('pk').values_list('pk', flat=True)[:int(x.session.number)]
+        thisList.extend(list(ids))
+
+    for x in reservation:
+        if x.holiday:
+            ids = Time.objects.filter(day__name=x.time.day.name, time=x.time.time,
+                                      day__month__number__gte=x.time.day.month.number, reserved=False) \
+                      .exclude(day__month__number=x.time.day.month.number,
+                               day__number__lt=x.time.day.number).exclude(
+                day__holiday=x.holiday) \
+                      .order_by('day__month__number').values_list('pk', flat=True)[:int(x.session)]
+        else:
+            ids = Time.objects.filter(day__name=x.time.day.name, time=x.time.time,
+                                      day__month__number__gte=x.time.day.month.number, reserved=False) \
+                      .exclude(day__month__number=x.time.day.month.number,
+                               day__number__lt=x.time.day.number) \
+                      .order_by('day__month__number').values_list('pk', flat=True)[:int(x.session)]
+
+        resList.extend(list(ids))
+
     template = loader.get_template('teacher/calendar.html')
+
     context = {
         "about": about,
         "user": user,
+        "participants": participants,
+        "thisList": thisList,
+        "resList": resList,
+        "reservation": reservation,
+
     }
     return HttpResponse(template.render(context, request))
 
