@@ -509,9 +509,12 @@
                 dayItem.classList.add("holidayButton")
             }else if ( result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number === parseInt(currentDay))
             {
-                dayItem.classList.add("activeButton")
+                {#dayItem.classList.add("activeButton")#}
                 currentDayId = result[0].months[monthPosition].days[i].id
                 date = `${result[0].number}-${result[0].months[monthPosition].number}-${result[0].months[monthPosition].days[i].number}`
+
+            }else if (test.includes(result[0].months[monthPosition].days[i].id )){
+                dayItem.classList.add("activeButton")
 
             }
             dayItem.innerHTML = result[0].months[monthPosition].days[i].number
