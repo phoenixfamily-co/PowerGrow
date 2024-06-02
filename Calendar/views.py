@@ -108,14 +108,14 @@ def user_calendar_view(request, pk):
     for x in reservation:
         if x.holiday:
             ids = Day.objects.filter(name=x.time.day.name,
-                                     month__number__gte=x.time.day.month.number, reserved=False) \
+                                     month__number__gte=x.time.day.month.number) \
                       .exclude(month__number=x.time.day.month.number,
                                number__lt=x.time.day.number).exclude(
                 holiday=x.holiday) \
                       .order_by('month__number').values_list('pk', flat=True)[:int(x.session)]
         else:
             ids = Day.objects.filter(name=x.time.day.name, time=x.time.time,
-                                     month__number__gte=x.time.day.month.number, reserved=False) \
+                                     month__number__gte=x.time.day.month.number) \
                       .exclude(month__number=x.time.day.month.number,
                                number__lt=x.time.day.number) \
                       .order_by('month__number').values_list('pk', flat=True)[:int(x.session)]
