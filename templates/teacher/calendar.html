@@ -445,7 +445,6 @@
     })
 
 
-
     async function getYear() {
 
         const response = await fetch(`/calendar/api/year/${currentYear}/`, {
@@ -541,8 +540,6 @@
         for (let i = 0 ; i< result[0].months[monthPosition].days.length ; i++){
             const dayItem = document.createElement("li")
 
-            var thisDate = jalaali.j2d(result[0].number, result[0].months[monthPosition].number, result[0].months[monthPosition].days[i].number)
-
             if (result[0].months[monthPosition].days[i].holiday === true) {
                 dayItem.classList.add("holidayButton")
             }else if ( result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number === parseInt(currentDay))
@@ -558,20 +555,6 @@
             dayItem.setAttribute("itemid",result[0].months[monthPosition].days[i].id)
             days.appendChild(dayItem)
         }
-         const buttons = document.querySelectorAll('.days li');
-            Array.from(buttons).forEach(function (button) {
-                button.addEventListener('click', async function () {
-                    const selected = document.querySelectorAll('.activeButton')
-                    Array.from(selected).forEach(function (btn) {
-                        btn.classList.remove("activeButton")
-                    })
-                    button.classList.add("activeButton")
-                    date = `${result[0].number}-${result[0].months[monthPosition].number}-${button.textContent}`
-
-                })
-
-            })
-
     }
 
 </script>
