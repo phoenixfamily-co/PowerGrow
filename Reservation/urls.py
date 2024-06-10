@@ -1,11 +1,13 @@
 from django.urls import path
 from Reservation.views import *
+from Home.views import *
+
 
 app_name = 'reservation'
 
 urlpatterns = [
 
-    path('', reservation_view, name='reservation'),
+    path('', home_view, name='reservation'),
     path('reserve/', reserve_view, name='reserve_view'),
     path('reserve/admin/', admin_reserve_view, name='reserve_view_admin'),
     path('reserve/user/<int:pk>/', user_reserves_view, name='reserve_view_user'),
