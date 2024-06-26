@@ -4,14 +4,14 @@ from django.utils import timezone
 from phonenumber_field.modelfields import PhoneNumberField
 
 SALARY_CHOICE = (
-    ('درصدی', 'percentage'),
-    ('ثابت', 'static'),
+    ('درصدی', 'درصدی'),
+    ('ثابت', 'ثابت'),
 )
 
 DEBT_CHOICE = (
-    ('بدهکار', 'debt'),
-    ('تسویه', 'clear'),
-    ('پستانکار', 'mammal'),
+    ('بدهکار', 'بدهکار'),
+    ('تسویه', 'تسویه'),
+    ('پستانکار', 'پستانکار'),
 
 )
 
