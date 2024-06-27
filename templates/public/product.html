@@ -13,6 +13,13 @@
             src="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.js"></script>
 
 
+       <script src="https://cdn.jsdelivr.net/npm/jalaali-js/dist/jalaali.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jalaali-js/dist/jalaali.min.js"></script>
+
+<script src="https://unpkg.com/jalaali-js/dist/jalaali.js"></script>
+<script src="https://unpkg.com/jalaali-js/dist/jalaali.min.js"></script>
+
+
 
      <title>دوره {{ product.title }}</title>
 
@@ -899,6 +906,9 @@
     let thisYear = today[0].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
     let monthPosition = currentMonth-1
 
+    const thisDate = jalaali.j2d(currentYear, currentMonth, currentDay)
+
+
 
 
 
@@ -1066,8 +1076,8 @@
 
 <script>
 
-    let participants =" {{participants}}";
-    let capacity = "{{product.capacity}}";
+    let participants
+    var capacity = "{{product.capacity}}";
     let course = "{{ product.id }}";
     const card = document.getElementById("card")
     const registerButton = document.querySelector(".list-group li button")
@@ -1077,6 +1087,23 @@
         .split("; ")
         .find((row) => row.startsWith("token="))
         ?.split("=")[1];
+
+
+    {% for x in participants.all %}
+
+        var userEndYear = parseInt("{{ x.endDay.month.year.number }}");
+        var userEndMonth = parseInt("{{ x.endDay.month.number }}");
+        var userEndDay = parseInt("{{ x.endDay.number }}");
+
+        userEnd = jalaali.j2d(userEndYear, userEndMonth, userEndDay)
+
+        if (userEnd<=thisDate){
+            capacity = capacity+1
+        }
+
+    {% endfor %}
+
+
 
     if (parseInt(participants) < parseInt(capacity)){
         registerButton.classList.remove("disabled-button")

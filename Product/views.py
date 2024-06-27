@@ -30,12 +30,15 @@ def product_view(request, pk):
     about = AboutUs.objects.values().first()
     sport = Sport.objects.all().values()
     product = Course.objects.get(id=pk)
-    participants = Participants.objects.filter(course__pk=pk).values()
+    participants = Participants.objects.filter(user__is_teacher=False,
+                                               user__is_superuser=False, user__is_staff=False,
+                                               price__gt=0, success=True)
+
     template = loader.get_template('public/product.html')
     context = {
         "about": about,
         "product": product,
-        "participants": len(list(participants)),
+        "participants": participants,
         "sport": sport,
 
     }
