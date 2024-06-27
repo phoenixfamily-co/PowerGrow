@@ -30,7 +30,7 @@ def product_view(request, pk):
     about = AboutUs.objects.values().first()
     sport = Sport.objects.all().values()
     product = Course.objects.get(id=pk)
-    participants = Participants.objects.filter(course_id=pk, user__is_teacher=False,
+    participants = Participants.objects.filter(course__pk=pk, user__is_teacher=False,
                                                user__is_superuser=False, user__is_staff=False,
                                                price__gt=0, success=True)
 
