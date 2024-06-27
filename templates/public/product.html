@@ -611,7 +611,6 @@
                 ظرفیت باقی مانده:
             </h6>
             <h6 id="number" class="list-group-left">
-                {{ participants }}/{{  product.capacity }}
             </h6>
         </li>
     </ul>
@@ -1076,10 +1075,11 @@
 
 <script>
 
-    let participants
-    var capacity = "{{product.capacity}}";
+    var participants
+    let capacity = "{{product.capacity}}";
     let course = "{{ product.id }}";
     const card = document.getElementById("card")
+    const capacityNumber = document.getElementById("number")
     const registerButton = document.querySelector(".list-group li button")
     let final_price
 
@@ -1098,10 +1098,13 @@
         userEnd = jalaali.j2d(userEndYear, userEndMonth, userEndDay)
 
         if (userEnd<=thisDate){
-            participants = participants+1
+            participants += 1
         }
 
     {% endfor %}
+
+
+    capacityNumber.innerHTML = `${participants}/${parseInt(capacity)}`
 
 
 
