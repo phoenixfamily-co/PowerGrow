@@ -905,8 +905,6 @@
     let thisYear = today[0].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
     let monthPosition = currentMonth-1
 
-    const thisDate = jalaali.j2d(currentYear, currentMonth, currentDay)
-
 
     document.addEventListener("DOMContentLoaded", function() {
         getYear()
@@ -1080,6 +1078,12 @@
     const registerButton = document.querySelector(".list-group li button")
     let final_price
 
+    let year = parseInt(today[0].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
+    let month = parseInt(today[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
+    let monthDay = parseInt(today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
+
+    const thisDate = jalaali.j2d(year, month, monthDay)
+
     const cookieValue = document.cookie
         .split("; ")
         .find((row) => row.startsWith("token="))
@@ -1094,7 +1098,7 @@
 
         userEnd = jalaali.j2d(userEndYear, userEndMonth, userEndDay)
 
-        if (userEnd<=thisDate){
+        if (0<userEnd<=thisDate){
             counter = counter+1
         }
 
