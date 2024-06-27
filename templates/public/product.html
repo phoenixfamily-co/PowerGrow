@@ -1098,8 +1098,10 @@
 
         var userEnd = jalaali.j2d(userEndYear, userEndMonth, userEndDay)
 
-        if (0<userEnd>=thisDate){
-            counter = counter+1
+        if (0<userEnd){
+            if(userEnd>=thisDate) {
+                counter = counter + 1
+            }
         }
 
     {% endfor %}
