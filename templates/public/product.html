@@ -907,7 +907,7 @@
 
     const thisDate = jalaali.j2d(currentYear, currentMonth, currentDay)
 
-
+    console.log(thisDate)
 
 
 
@@ -1075,7 +1075,7 @@
 
 <script>
 
-    let participants = 0
+    let counter = 0
     let capacity = "{{product.capacity}}";
     let course = "{{ product.id }}";
     const card = document.getElementById("card")
@@ -1098,17 +1098,17 @@
         userEnd = jalaali.j2d(userEndYear, userEndMonth, userEndDay)
 
         if (userEnd<=thisDate){
-            participants += 1
+            counter += 1
         }
 
     {% endfor %}
 
 
-    capacityNumber.innerHTML = `${participants}/${parseInt(capacity)}`
+    capacityNumber.innerHTML = `${counter}/${parseInt(capacity)}`
 
 
 
-    if (parseInt(participants) < parseInt(capacity)){
+    if (parseInt(counter) < parseInt(capacity)){
         registerButton.classList.remove("disabled-button")
         registerButton.classList.add("card-button")
         registerButton.innerHTML = "ثبت نام کنید"
