@@ -1071,7 +1071,6 @@
 <script>
 
     let counter = 0
-    let userEnd
     let capacity = "{{product.capacity}}";
     let course = "{{ product.id }}";
     const card = document.getElementById("card")
@@ -1097,7 +1096,7 @@
         var userEndMonth = parseInt("{{ x.endDay.month.number }}");
         var userEndDay = parseInt("{{ x.endDay.number }}");
 
-        userEnd = jalaali.j2d(userEndYear, userEndMonth, userEndDay)
+        var userEnd = jalaali.j2d(userEndYear, userEndMonth, userEndDay)
 
         if (0<userEnd<=thisDate){
             counter = counter+1
