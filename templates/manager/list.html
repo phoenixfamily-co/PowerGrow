@@ -488,7 +488,7 @@
 
         {% for x in course.participants.all %}
 
-            {% if x.success == true %}
+            {% if x.success == True %}
 
                   var userEndYear = parseInt("{{ x.endDay.month.year.number }}");
                  var userEndMonth = parseInt("{{ x.endDay.month.number }}");
