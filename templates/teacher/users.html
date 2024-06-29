@@ -218,6 +218,9 @@
 
         {% for x in course.participants.all %}
 
+            {% if x.success == True %}
+
+
             if (parseInt("{{x.user.id}}") !== parseInt("{{ user.id }}") ) {
 
                   var userEndYear = parseInt("{{ x.endDay.month.year.number }}");
@@ -250,6 +253,8 @@
                     body.appendChild(tr)
                 }
             }
+
+            {% endif %}
         {% endfor %}
 
     }
@@ -261,6 +266,8 @@
 
 
         {% for x in course.participants.all %}
+
+            {% if x.success == True %}
 
             if ("{{x.user.id}}" !== "{{ user.id }}" ){
 
@@ -304,6 +311,8 @@
                 }
             }
         }
+
+            {% endif %}
 
         {% endfor %}
 
