@@ -488,6 +488,8 @@
 
         {% for x in course.participants.all %}
 
+            {% if x.success == true %}
+
                   var userEndYear = parseInt("{{ x.endDay.month.year.number }}");
                  var userEndMonth = parseInt("{{ x.endDay.month.number }}");
                  var userEndDay = parseInt("{{ x.endDay.number }}");
@@ -565,6 +567,8 @@
                 tr.appendChild(description)
                 body.appendChild(tr)
 
+            {% endif %}
+
         {% endfor %}
 
     }
@@ -576,6 +580,8 @@
 
 
         {% for x in course.participants.all %}
+
+            {% if x.success == true %}
 
             if (currentDay === "{{x.day.title}}" || "{{x.day.title}}".split("،").includes(currentDay)) {
 
@@ -655,6 +661,8 @@
                 tr.appendChild(description)
                 body.appendChild(tr)
             }
+
+            {% endif %}
 
         {% endfor %}
 
