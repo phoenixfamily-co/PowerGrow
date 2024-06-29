@@ -581,7 +581,7 @@
 
         {% for x in course.participants.all %}
 
-            {% if x.success == true %}
+            {% if x.success == True %}
 
             if (currentDay === "{{x.day.title}}" || "{{x.day.title}}".split("،").includes(currentDay)) {
 
