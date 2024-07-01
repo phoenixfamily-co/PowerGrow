@@ -221,71 +221,51 @@
 
     var salary = 0
 
-
-
-
-    {% if user.salary == "ثابت" %}
-
-        activeUser.innerHTML = '-'
-
-         {% for x in course.all %}
+    {% for x in course.all %}
 
             {% for y in x.participants.all %}
 
             {% if y.user.id == user.id %}
 
-                salary = salary + parseInt({{ y.user.fee }}) * parseInt({{ y.session.number }})
+                var teacherStartYear = parseInt("{{ y.startDay.month.year.number }}");
+                var teacherStartMonth = parseInt("{{ y.startDay.month.number }}");
+                var teacherStartDay = parseInt("{{ y.startDay.number }}");
 
-        {% for z in x.news.all %}
-
-            {% if z.title == "کنسلی" %}
-
-                salary = salary - parseInt({{ y.user.fee }})
-
-            {% endif %}
-
-         {% endfor %}
-
-            {% endif %}
-
-            {% endfor %}
-
-         {% endfor %}
-
-        {% if user.situation == "بدهکار" %}
-
-            price = salary - parseInt({{ user.debt }})
-
-             {% elif user.situation == "پستانکار" %}
-
-            price = salary + parseInt({{ user.debt }})
-
-            {% else %}
-
-            price = salary
-
-            {% endif %}
-
-        th.innerHTML = `${price} تومان `
-
-            {% else %}
-
-        {% for x in course.all %}
-
-            {% for y in x.participants.all %}
-
-            {% if y.user.id == user.id %}
-
-                 var teacherStartYear = parseInt("{{ y.startDay.month.year.number }}");
-                 var teacherStartMonth = parseInt("{{ y.startDay.month.number }}");
-                 var teacherStartDay = parseInt("{{ y.startDay.number }}");
-
-                 var teacherEndYear = parseInt("{{ y.endDay.month.year.number }}");
-                 var teacherEndMonth = parseInt("{{ y.endDay.month.number }}");
-                 var teacherEndDay = parseInt("{{ y.endDay.number }}");
+                var teacherEndYear = parseInt("{{ y.endDay.month.year.number }}");
+                var teacherEndMonth = parseInt("{{ y.endDay.month.number }}");
+                var teacherEndDay = parseInt("{{ y.endDay.number }}");
 
                 teacherStart = jalaali.j2d(teacherStartYear, teacherStartMonth, teacherStartDay)
                 teacherEnd = jalaali.j2d(teacherEndYear, teacherEndMonth, teacherEndDay)
+
+                {% if y.user.salary == "ثابت" %}
+
+                    salary = salary + parseInt({{ y.user.fee }}) * parseInt({{ y.session.number }})
+
+                    {% for z in x.news.all %}
+
+                        var newsYear = parseInt("{{ z.date.month.year.number }}");
+                        var newsMonth = parseInt("{{ z.date.month.number }}");
+                        var newsDay = parseInt("{{ z.date.number }}");
+
+                        var newsDate = jalaali.j2d(newsYear, newsMonth, newsDay)
+
+                        {% if z.title == "کنسلی" %}
+
+                         if ( 0 < newsDate ) {
+                      if (teacherStart <= newsDate) {
+                          if(teacherEnd >= newsDate) {
+
+                              salary = salary - parseInt({{ y.user.fee }})
+
+                          }
+                      }
+                  }
+                        {% endif %}
+
+                    {% endfor %}
+
+                    {% endif %}
 
             {% endif %}
 
@@ -315,30 +295,49 @@
                       }
                   }
 
-
                 {% endif %}
 
             {% endfor %}
 
         {% endfor %}
 
-        activeUser.innerHTML = `${counter} نفر `
+    activeUser.innerHTML = `${counter} نفر `
 
-        price = price * parseInt("{{user.fee}}")/100
 
-        {% if user.situation == "بدهکار"  %}
-        debt = parseInt("{{ user.debt }}")
-            price = price-debt
-            th.innerHTML = `${price} تومان `
+
+    {% if user.salary == "ثابت" %}
+
+        {% if user.situation == "بدهکار" %}
+
+            salary = salary - parseInt({{ user.debt }})
+
              {% elif user.situation == "پستانکار" %}
-            debt = parseInt("{{ user.debt }}")
-            price = price+debt
-            th.innerHTML = `${price} تومان `
-        {% else %}
-            th.innerHTML = `${price} تومان `
-        {% endif %}
+
+            salary = salary + parseInt({{ user.debt }})
+
+            {% endif %}
+
+        th.innerHTML = `${salary} تومان `
+
+    {% else %}
+
+        price = price * parseInt({{ user.fee }}) / 100
+
+         {% if user.situation == "بدهکار" %}
+
+            price = price - parseInt({{ user.debt }})
+
+             {% elif user.situation == "پستانکار" %}
+
+            price = price + parseInt({{ user.debt }})
+
+        th.innerHTML = `${price} تومان `
+
+             {% endif %}
 
     {% endif %}
+
+
 
 </script>
 
