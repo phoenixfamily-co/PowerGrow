@@ -132,6 +132,7 @@
     <tr>
       <th scope="col">#</th>
         <th scope="col"> </th>
+        <th scope="col">تاریخ</th>
       <th scope="col">نام</th>
         <th scope="col">توضیحات</th>
     </tr>
@@ -141,7 +142,8 @@
     <tr>
       <th scope="row">{{ x.id }}</th>
         <th onclick="window.open('{% url 'seo:destroy-news' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
-      <td>{{ x.title }}</td>
+            <td>{{ x.date }}</td>
+        <td>{{ x.title }}</td>
         <td>{{ x.description }}</td>
     </tr>
    {% endfor %}

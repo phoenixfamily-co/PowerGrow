@@ -219,6 +219,8 @@
 
     var debt = 0
 
+    var salary = 0
+
 
 
 
@@ -226,13 +228,35 @@
 
         activeUser.innerHTML = '-'
 
+         {% for x in course.all %}
+
+            {% for y in x.participants.all %}
+
+            {% if y.user.id == user.id %}
+
+                salary = salary + parseInt({{ y.user.fee }}) * parseInt({{ y.session.number }})
+
+            {% endif %}
+
+            {% endfor %}
+
+        {% for z in x.news.all %}
+
+            {% if z.title == "کنسلی" %}
+
+                salary = salary - parseInt({{ y.user.fee }})
+
+            {% endif %}
+
+         {% endfor %}
+
         {% if user.situation == "بدهکار" %}
 
-            price = parseInt({{ user.fee }}) - parseInt({{ user.debt }})
+            price = salary - parseInt({{ user.debt }})
 
              {% elif user.situation == "پستانکار" %}
 
-            price = parseInt({{ user.fee }}) + parseInt({{ user.debt }})
+            price = salary + parseInt({{ user.debt }})
 
             {% else %}
 
