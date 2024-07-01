@@ -236,10 +236,6 @@
 
                 salary = salary + parseInt({{ y.user.fee }}) * parseInt({{ y.session.number }})
 
-            {% endif %}
-
-            {% endfor %}
-
         {% for z in x.news.all %}
 
             {% if z.title == "کنسلی" %}
@@ -249,6 +245,10 @@
             {% endif %}
 
          {% endfor %}
+
+            {% endif %}
+
+            {% endfor %}
 
          {% endfor %}
 
