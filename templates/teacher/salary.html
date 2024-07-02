@@ -155,7 +155,13 @@
 
   <tr>
       <th scope="col">تعداد شاگرد های فعال :</th>
-      <th scope="col">-</th>
+      <th scope="col"> </th>
+
+    </tr>
+
+    <tr id="canceled">
+        <th scope="col">تعداد جلسات کنسل شده :</th>
+        <th scope="col"> </th>
 
     </tr>
 
@@ -211,8 +217,12 @@
     var th   = tr.getElementsByTagName("th")[1];
     var th0    = table.getElementsByTagName("tr")[2];
     let activeUser   = th0.getElementsByTagName("th")[1];
+    var th1    = table.getElementsByTagName("tr")[2];
+    let canceled   = th1.getElementsByTagName("th")[3];
     var price = 0
     var counter = 0
+    var operator = 0
+
 
     var teacherStart
     var teacherEnd
@@ -255,7 +265,7 @@
                          if ( 0 < newsDate ) {
                       if (teacherStart <= newsDate) {
                           if(teacherEnd >= newsDate) {
-
+                              operator +=1
                               salary = salary - parseInt({{ y.user.fee }})
 
                           }
@@ -302,6 +312,7 @@
         {% endfor %}
 
     activeUser.innerHTML = `${counter} نفر `
+    canceled.innerHTML = `${operator} جلسه `
 
 
 
