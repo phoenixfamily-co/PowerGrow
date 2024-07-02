@@ -219,7 +219,7 @@
     var th1    = table.getElementsByTagName("tr")[3];
     let canceled   = th1.getElementsByTagName("th")[1];
     var th2    = table.getElementsByTagName("tr")[8];
-    let submit   = th1.getElementsByTagName("th")[1];
+    let submit   = th2.getElementsByTagName("th")[1];
     var price = 0
     var counter = 0
     var operator = 0
@@ -329,7 +329,7 @@
 
             {% endif %}
 
-        th.innerHTML = `${salary} تومان `
+        submit.innerHTML = `${salary} تومان `
 
     {% else %}
 
@@ -343,7 +343,7 @@
 
             price = price + parseInt({{ user.debt }})
 
-        th.innerHTML = `${price} تومان `
+        submit.innerHTML = `${price} تومان `
 
              {% endif %}
 
