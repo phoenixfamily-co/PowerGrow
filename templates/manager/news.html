@@ -138,7 +138,7 @@
     </tr>
   </thead>
   <tbody>
-  {% for x in news %}
+  {% for x in news.all %}
     <tr>
       <th scope="row">{{ x.id }}</th>
         <th onclick="window.open('{% url 'seo:destroy-news' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
