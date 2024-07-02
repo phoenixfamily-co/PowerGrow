@@ -22,7 +22,7 @@ def news_view(request):
 
 def admin_news_view(request):
     about = AboutUs.objects.values().first()
-    news = News.objects.all().values()
+    news = News.objects.all()
     template = loader.get_template('secretary/news.html')
     context = {
         "news": news,
