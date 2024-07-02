@@ -127,6 +127,7 @@
   <thead>
     <tr>
       <th scope="col">#</th>
+        <th scope="col">تاریخ</th>
       <th scope="col">نام</th>
         <th scope="col">توضیحات</th>
     </tr>
@@ -135,6 +136,7 @@
   {% for x in news %}
     <tr>
       <th scope="row">{{ x.id }}</th>
+        <td>{{ x.date.month.year.number }}/{{ x.date.month.number }}/{{ x.date.number }}</td>
       <td>{{ x.title }}</td>
         <td>{{ x.description }}</td>
     </tr>
