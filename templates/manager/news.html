@@ -142,7 +142,7 @@
     <tr>
       <th scope="row">{{ x.id }}</th>
         <th onclick="window.open('{% url 'seo:destroy-news' x.id %}')"><i class="fa fa-times" aria-hidden="true"></i></th>
-            <td>{{ x.date }}</td>
+            <td>{{ x.date.number }}/{{ x.date.month.number }}/{{ x.date.month.year.number }}</td>
         <td>{{ x.title }}</td>
         <td>{{ x.description }}</td>
     </tr>
