@@ -534,7 +534,6 @@
                 dayItem.classList.add("activeButton")
                 currentDayId = result[0].months[monthPosition].days[i].id
                 date = `${result[0].number}-${result[0].months[monthPosition].number}-${result[0].months[monthPosition].days[i].number}`
-                getTimes(currentDayId)
 
 
             }
@@ -550,7 +549,6 @@
                         btn.classList.remove("activeButton")
                     })
                     button.classList.add("activeButton")
-                    await getTimes(button.getAttribute("itemid"))
                     date = `${result[0].number}-${result[0].months[monthPosition].number}-${button.textContent}`
 
                 })
