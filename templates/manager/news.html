@@ -301,13 +301,12 @@
 </div>
 
 
-
 <div class="modal fade" id="calendarPopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">زمان کنسلی را انتخاب کنید</h5>
-        <button id="exit" type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <h5 class="modal-title" id="exampleModalLabel">تاریخ پایان را انتخاب کنید</h5>
+        <button id="_exit" type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -332,10 +331,13 @@
   <li>پ</li>
   <li>ج</li>
 </ul>
-    <ul id="days" class="days">
+    <ul id="_days" class="days">
 
     </ul>
 </div>
+
+          <button onclick="update()" id="continueButton" style="background-color: #E16539 ; height: 35px ; width: 70px ; color: white ; border: 0 ; float: left ">بروزرسانی</button>
+
       </div>
     </div>
   </div>
