@@ -357,16 +357,9 @@
         calendarPopup.classList.toggle("show");
     }
 
-     function apply(){
+     function apply(itemId){
 
-        if (userInput.value === "") {
-            alert("شناسه کاربری الزامی است")
-        }else if(time===0){
-            alert("زمان الزامی است")
-        }
-        else {
-            window.open(`/reservation/api/admin/reserve/${time}/${userInput.value}`)
-        }
+        window.open(`/reservation/api/admin/reserve/${time}/${userInput.value}`)
     }
 
       window.addEventListener("click", function (event) {
@@ -549,7 +542,9 @@
                         btn.classList.remove("activeButton")
                     })
                     button.classList.add("activeButton")
-                    date = `${result[0].number}-${result[0].months[monthPosition].number}-${button.textContent}`
+                    apply(button.getAttribute("itemid"))
+                    date = `${result[0].number}-${result[0].months[monthPosition].number}-${button.textContent}
+
 
                 })
             })
