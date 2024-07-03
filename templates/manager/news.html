@@ -357,9 +357,9 @@
         calendarPopup.classList.toggle("show");
     }
 
-     function apply(itemId){
+     function apply(itemid){
 
-        window.open(`/reservation/api/admin/reserve/${time}/${userInput.value}`)
+        window.open(`/seo/api/news/${itemid}/create/`)
     }
 
       window.addEventListener("click", function (event) {
@@ -543,8 +543,7 @@
                     })
                     button.classList.add("activeButton")
                     apply(button.getAttribute("itemid"))
-                    date = `${result[0].number}-${result[0].months[monthPosition].number}-${button.textContent}
-
+                    date = `${result[0].number}-${result[0].months[monthPosition].number}-${button.textContent}`
 
                 })
             })

@@ -43,7 +43,7 @@ class NewsApi(viewsets.ModelViewSet):
         data = self.request.data
         title = data["title"]
         description = data["description"]
-        date = Day.objects.filter(id=self.kwargs['course']).first()
+        date = Day.objects.filter(id=self.kwargs['day']).first()
         course = Course.objects.filter(id=data["course"]).first()
         news = News.objects.update_or_create(title=title, description=description, date=date, course=course)
 
