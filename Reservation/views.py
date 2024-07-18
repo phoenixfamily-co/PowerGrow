@@ -228,7 +228,7 @@ class ManagerAddReservationView(viewsets.ModelViewSet):
         session = data["session"]
         gym = Gym.objects.filter(id=data["gym"]).first()
         time = Time.objects.filter(id=self.kwargs['time']).first()
-        user = User.objects.filter(id=self.kwargs['user']).first()
+        user = User.objects.filter(number=self.kwargs['user']).first()
         holiday = bool(self.request.POST.get("holiday"))
 
         if holiday:

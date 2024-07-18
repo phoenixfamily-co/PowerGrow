@@ -401,8 +401,8 @@
     </div>
 </div>
 
-           <div class="autocomplete">
-             <input id="myInput" type="text" name="myCountry" placeholder="شناسه کاربری">
+           <div dir="ltr" class="autocomplete ltr">
+             <input dir="ltr" id="myInput" type="text" name="myCountry" placeholder="شماره همراه : 9123456789">
          </div>
         <br>
           <button onclick="apply()" id="continueButton" style="background-color: #E16539 ; height: 35px ; width: 70px ; color: white ; border: 0 ; float: left ">ادامه</button>
@@ -434,7 +434,7 @@
             alert("زمان الزامی است")
         }
         else {
-            window.open(`/reservation/api/admin/reserve/${time}/${userInput.value}`)
+            window.open(`/reservation/api/admin/reserve/${time}/+98${userInput.value}`)
         }
     }
 
@@ -706,9 +706,11 @@
 
       let userList = [];
 
-        {% for x in user.all %}
+       {% for x in user.all %}
+            phone = "{{ x.number }}"
+            phone = phone.replace("+98","")
 
-            userList.push("{{ x.id }}")
+            userList.push(phone)
 
         {% endfor %}
 
