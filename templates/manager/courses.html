@@ -791,7 +791,7 @@ input[type=submit] {
 
         {% for x in user.all %}
             phone = "{{ x.number }}"
-            phone.replace("+98","0")
+            phone = phone.replace("+98","0")
 
             userList.push(phone)
 
