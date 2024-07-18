@@ -280,34 +280,36 @@
 
                  var userDay = jalaali.j2d(userEndYear, userEndMonth, userEndDay)
 
-                if (userDay >= thisDate) {
+                if(userDay>0) {
+                    if (userDay >= thisDate) {
 
-                    var tr = document.createElement("tr")
+                        var tr = document.createElement("tr")
 
-                    if (userDay < thisDate) {
-                        tr.classList.add('passed')
+                        if (userDay < thisDate) {
+                            tr.classList.add('passed')
+                        }
+
+                        var id = document.createElement("th")
+                        id.innerHTML = "{{ forloop.counter }}"
+                        var name = document.createElement("td")
+                        name.innerHTML = "{{x.user.name}}"
+                        var startDay = document.createElement("td")
+                        startDay.innerHTML = "{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}"
+                        var endDay = document.createElement("td")
+                        endDay.innerHTML = "{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}"
+                        var dayTitle = document.createElement("td")
+                        dayTitle.innerHTML = "{{x.day.title}}"
+                        var sessionNumber = document.createElement("td")
+                        sessionNumber.innerHTML = "{{x.session.number}}"
+
+                        tr.appendChild(id)
+                        tr.appendChild(name)
+                        tr.appendChild(startDay)
+                        tr.appendChild(endDay)
+                        tr.appendChild(dayTitle)
+                        tr.appendChild(sessionNumber)
+                        body.appendChild(tr)
                     }
-
-                    var id = document.createElement("th")
-                    id.innerHTML = "{{ forloop.counter }}"
-                    var name = document.createElement("td")
-                    name.innerHTML = "{{x.user.name}}"
-                    var startDay = document.createElement("td")
-                    startDay.innerHTML = "{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}"
-                    var endDay = document.createElement("td")
-                    endDay.innerHTML = "{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}"
-                    var dayTitle = document.createElement("td")
-                    dayTitle.innerHTML = "{{x.day.title}}"
-                    var sessionNumber = document.createElement("td")
-                    sessionNumber.innerHTML = "{{x.session.number}}"
-
-                    tr.appendChild(id)
-                    tr.appendChild(name)
-                    tr.appendChild(startDay)
-                    tr.appendChild(endDay)
-                    tr.appendChild(dayTitle)
-                    tr.appendChild(sessionNumber)
-                    body.appendChild(tr)
                 }
             }
         }

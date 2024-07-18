@@ -593,6 +593,7 @@
 
                 var tr = document.createElement("tr")
 
+                if (userDay>0){
                 if (userDay < thisDate) {
                     tr.classList.add('passed')
                 }
@@ -660,6 +661,7 @@
                 tr.appendChild(price)
                 tr.appendChild(description)
                 body.appendChild(tr)
+            }
             }
 
             {% endif %}
