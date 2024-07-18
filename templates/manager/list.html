@@ -498,7 +498,7 @@
 
                 var tr = document.createElement("tr")
 
-                if (userDay < thisDate) {
+                if (userDay < thisDate && userDay===0) {
                     tr.classList.add('passed')
                 }
 
