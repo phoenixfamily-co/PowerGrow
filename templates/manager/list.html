@@ -594,9 +594,7 @@
                 var tr = document.createElement("tr")
 
                 if (userDay>0){
-                if (userDay < thisDate) {
-                    tr.classList.add('passed')
-                }
+                if (userDay>=thisDate) {
 
                 var id = document.createElement("th")
                 id.innerHTML = "{{ forloop.counter }}"
@@ -661,6 +659,7 @@
                 tr.appendChild(price)
                 tr.appendChild(description)
                 body.appendChild(tr)
+            }
             }
             }
 
