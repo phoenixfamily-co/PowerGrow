@@ -787,10 +787,13 @@ input[type=submit] {
 
 
       let userList = [];
+      var phone
 
         {% for x in user.all %}
+            phone = "{{ x.number }}"
+            phone.replace("+98","0")
 
-            userList.push("{{ x.number }}")
+            userList.push(phone)
 
         {% endfor %}
 
