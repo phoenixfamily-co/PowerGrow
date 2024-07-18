@@ -480,7 +480,7 @@ input[type=submit] {
         <br>
         <br>
          <div class="autocomplete">
-             <input id="myInput" type="text" name="myCountry" placeholder="شناسه کاربری">
+             <input id="myInput" type="text" name="myCountry" placeholder="شماره همراه">
          </div>
 </div>
         <br>
@@ -790,7 +790,7 @@ input[type=submit] {
 
         {% for x in user.all %}
 
-            userList.push("{{ x.id }}")
+            userList.push("{{ x.number }}")
 
         {% endfor %}
 
