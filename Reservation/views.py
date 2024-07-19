@@ -23,6 +23,7 @@ from io import BytesIO
 from reportlab.pdfgen import canvas
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
+from arabic_reshaper import arabic_reshaper
 from bidi.algorithm import get_display
 import datetime as dt
 

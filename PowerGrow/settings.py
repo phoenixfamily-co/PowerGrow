@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'django_crontab',
+    'django_apscheduler',
     "phonenumber_field",
     'Home',
     'About',
@@ -78,9 +78,9 @@ INSTALLED_APPS = [
 
 ]
 
-# CRONJOBS =[
-#     ('0 0 1 * *', )
-# ]
+CRONJOBS =[
+    ('0 0 1 * *', 'Product.Cron.refresh_teacher_day'),
+]
 
 
 REST_FRAMEWORK = {
@@ -188,3 +188,23 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = 'media/'
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
