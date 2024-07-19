@@ -50,7 +50,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     created = models.ForeignKey("self", on_delete=models.CASCADE, null=True, blank=True)
     datetime = models.DateTimeField(default=timezone.now)
     USERNAME_FIELD = 'number'
-    REQUIRED_FIELDS = ['name', 'password' , 'birthdate']
+    REQUIRED_FIELDS = ['name', 'password', 'birthdate']
 
     objects = CustomAccountManager()
 

@@ -50,21 +50,20 @@ class Days(models.Model):
 class Participants(models.Model):
     title = models.TextField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
-    session = models.ForeignKey(Sessions, on_delete=models.CASCADE, related_name='participants',  null=True, blank=True)
+    session = models.ForeignKey(Sessions, on_delete=models.CASCADE, related_name='participants', null=True, blank=True)
     day = models.ForeignKey(Days, on_delete=models.CASCADE, related_name='participants', null=True, blank=True)
     price = models.IntegerField(blank=True, null=True)
     datetime = models.DateTimeField(default=timezone.now)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='participants',
                              blank=True, null=True)
     startDay = models.ForeignKey(Day, on_delete=models.CASCADE, related_name='participants',
-                             blank=True, null=True)
+                                 blank=True, null=True)
 
     endDay = models.ForeignKey(Day, on_delete=models.CASCADE, related_name='end_participants',
-                                 blank=True, null=True)
+                               blank=True, null=True)
 
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='participants', null=True, blank=True)
     created = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='participant',
                                 blank=True, null=True)
     authority = models.TextField(unique=True, blank=True, null=True)
     success = models.BooleanField(blank=True, null=True)
-

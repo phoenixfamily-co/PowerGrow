@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'django_crontab',
     "phonenumber_field",
     'Home',
     'About',
@@ -76,6 +77,11 @@ INSTALLED_APPS = [
     'bootstrap5',
 
 ]
+
+# CRONJOBS =[
+#     ('0 0 1 * *', )
+# ]
+
 
 REST_FRAMEWORK = {
 
