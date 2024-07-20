@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'User',
     'Calendar',
     'django_otp',
+    'bootstrap5',
     'django_otp.plugins.otp_static',
     'django_otp.plugins.otp_totp',
     'django_otp.plugins.otp_email',  # <- if you want email capability.
@@ -74,12 +75,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'django_filters',
     'django_jalali',
-    'bootstrap5',
 
-]
-
-CRONJOBS =[
-    ('0 0 1 * *', 'Product.Cron.refresh_teacher_day'),
 ]
 
 

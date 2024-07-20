@@ -1,6 +1,6 @@
 from khayyam import JalaliDate
 from apscheduler.schedulers.background import BackgroundScheduler
-from django_apscheduler.jobstores import DjangoJobStore
+from django_appscheduler.jobstores import DjangoJobStore
 from .models import Participants
 from Calendar.models import Day
 import logging
@@ -44,7 +44,7 @@ def start():
 
     try:
         # Register the job with a function reference as a string
-        scheduler.add_job('Product.jobs.refresh_teacher_day', 'cron', month="*", day="1", id="refresh_teacher_day")
+        scheduler.add_job(refresh_teacher_day, 'interval', day=31, id="refresh")
     except Exception as e:
         logger.error(f"Error adding job: {str(e)}")
 
