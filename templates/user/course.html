@@ -143,7 +143,6 @@
   </thead>
   <tbody>
   {% for x in participants %}
-        {% if x.success == True %}
     <tr>
         <th scope="row">{{ x.id}}</th>
         <th onclick="window.location.assign('{% url 'product:product' x.course.id %}')" style="text-decoration: underline ; cursor: pointer">مشاهده دوره</th>
@@ -157,7 +156,6 @@
         <td>{{ x.course.name }}</td>
         <td>{{ x.price }}</td>
     </tr>
-       {% endif %}
    {% endfor %}
   </tbody>
 </table>
