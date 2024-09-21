@@ -511,10 +511,10 @@
     <a class="nav-link" aria-current="page" href='{% url 'home:home' %}'>صفحه اصلی</a>
   </li>
   <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">ورزش ها</a>
+    <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">ورزش ها</a>
     <ul class="dropdown-menu bg-dark">
          {% for x in sport %}
-             <li><a class="dropdown-item active" href="{% url 'product:category' x.id %}">{{ x.title }}</a></li>
+             <li><a class="dropdown-item" href="{% url 'product:category' x.id %}">{{ x.title }}</a></li>
          {% endfor %}
     </ul>
   </li>
@@ -782,6 +782,7 @@
         </div>
     </div>
 </div>
+    </div>
 </footer>
 
 </body>
