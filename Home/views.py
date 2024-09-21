@@ -13,7 +13,7 @@ from django.views.decorators.cache import cache_page
 @cache_page(60 * 15)
 def home_view(request):
     images = Slider.objects.all().order_by("datetime").values()
-    selected = Course.objects.filter(selected=True).order_by("datetime").values()
+    selected = Course.objects.filter(selected=True , active=True).order_by("datetime").values()
     about = AboutUs.objects.values().first()
     sport = Sport.objects.all().values()
     template = loader.get_template('public/home.html')
