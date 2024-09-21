@@ -306,7 +306,6 @@
              }
 
         }
-
         .example::-webkit-scrollbar {
             display: none;
         }
@@ -354,7 +353,7 @@
 
 <div class="logoHolder">
 
-    <img alt="" src="/media/{{ about.logo }}" class="logo">
+    <img alt="" src="{% get_media_prefix%}{{ about.logo }}" class="logo">
     <div class="typography">PowerGrow</div>
 
 </div>
