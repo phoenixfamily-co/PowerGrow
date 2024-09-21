@@ -117,7 +117,7 @@ def admin_sports_view(request):
 
 def courses_view(request):
     template = loader.get_template('manager/courses.html')
-    course = Course.objects.all()
+    course = Course.objects.all().order_by("-pk")
     about = AboutUs.objects.values().first()
     user = User.objects.all()
     p = Paginator(course, 50)
