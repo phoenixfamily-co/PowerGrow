@@ -130,7 +130,7 @@
 
        .card_holder {
            width: 29%;
-           height: 500px;
+           height: auto;
            float: left;
            border-top-right-radius: 1rem;
            border-bottom-right-radius: 1rem;
@@ -143,7 +143,7 @@
              position: sticky;
              border-top-right-radius: 1rem;
              border-bottom-right-radius: 1rem;
-             height: 100%; /* ارتفاع کارت به 80% ارتفاع صفحه */
+             height: 80vh; /* ارتفاع کارت به 80% ارتفاع صفحه */
          }
 
          .list-group-item-fixed {
@@ -417,47 +417,47 @@
                 <h6 class="mb-0">{{ product.title }} ({{ product.gender }})</h6>
             </li>
 
-            <li class="list-group-item d-flex justify-content-between align-items-center rtl">
+            <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
                 <h6 class="mb-0">نام مربی:</h6>
                 <h6 class="mb-0">{{ product.name }}</h6>
             </li>
 
-            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed">
+            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed" dir="rtl">
                 <h6 class="mb-0">ظرفیت باقی مانده:</h6>
                 <h6 id="number" class="mb-0"></h6>
             </li>
 
-            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed">
+            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed" dir="rtl">
                 <h6 class="mb-0">روزهای برگزاری:</h6>
                 <h6 id="daySession" class="mb-0"></h6>
             </li>
 
-            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed">
+            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed" dir="rtl">
                 <h6 class="mb-0">ساعت برگزاری:</h6>
                 <h6 class="mb-0">{{ product.time }}</h6>
             </li>
 
-            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed">
+            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed" dir="rtl">
                 <h6 class="mb-0">تاریخ شروع:</h6>
                 <h6 id="startDay" class="mb-0"></h6>
             </li>
 
-            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed">
+            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed" dir="rtl">
                 <h6 class="mb-0">تعداد جلسات:</h6>
                 <h6 id="sessionNumber" class="mb-0"></h6>
             </li>
 
-            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed">
+            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed" dir="rtl">
                 <h6 class="mb-0">شهریه ثابت:</h6>
                 <h6 id="price" class="mb-0"></h6>
             </li>
 
-            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed">
+            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed" dir="rtl">
                 <h6 class="mb-0">تخفیف:</h6>
                 <h6 id="off" class="mb-0"></h6>
             </li>
 
-            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed">
+            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed" dir="rtl">
                 <h6 class="mb-0">قیمت نهایی:</h6>
                 <h6 id="final" class="mb-0"></h6>
             </li>
