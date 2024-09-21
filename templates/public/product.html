@@ -131,7 +131,7 @@
        .card_holder {
            width: 29%;
            height: auto;
-           margin: 0 auto;
+           margin: 0;
            float: left;
            border-top-right-radius: 1rem;
            border-bottom-right-radius: 1rem;
@@ -602,32 +602,6 @@
 >
 
 </body>
-
-{#<script>#}
-{#document.addEventListener('scroll', function () {#}
-{#    const card = document.getElementById('card'); // کارت#}
-{#    const footer = document.querySelector('footer'); // فوتر#}
-{#    const cardHolder = document.getElementById('card-holder'); // والد کارت#}
-{##}
-{#    // فاصله فوتر از بالای صفحه#}
-{#    const footerTop = footer.getBoundingClientRect().top;#}
-{##}
-{#    // ارتفاع کارت#}
-{#    const cardHeight = card.offsetHeight;#}
-{##}
-{#    // فاصله کارت از بالای صفحه#}
-{#    const cardTop = card.getBoundingClientRect().top;#}
-{##}
-{#    // اگر کارت به فوتر رسید#}
-{#    if (footerTop <= cardHeight + 20) {#}
-{#        card.style.position = 'absolute';#}
-{#        card.style.bottom = '0';#}
-{#    } else {#}
-{#        card.style.position = 'sticky';#}
-{#        card.style.top = '20px';#}
-{#    }#}
-{#});#}
-{#</script>#}
 
 
 <script>
