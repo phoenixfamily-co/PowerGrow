@@ -148,7 +148,7 @@
             background: transparent;
             border-top-right-radius: 1rem;
             border-bottom-right-radius: 1rem;
-            position: fixed;
+            position: relative;
             display: inline;
             left: 0;
                }
@@ -160,6 +160,9 @@
             border-top-right-radius: 1rem;
             border-bottom-right-radius: 1rem;
             direction: rtl;
+            position: sticky;
+            top: 20px; /* فاصله کارت از بالای صفحه هنگام اسکرول */
+            z-index: 10;
         }
 
          .static-card {
@@ -730,17 +733,29 @@
 </body>
 
 <script>
-    let holder = document.getElementById('card-holder')
+document.addEventListener('scroll', function () {
+    const card = document.getElementById('card'); // کارت
+    const footer = document.querySelector('footer'); // فوتر
+    const cardHolder = document.getElementById('card-holder'); // والد کارت
 
-    window.onscroll = function () {
-        if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
-            holder.classList.add("static-card")
-        }
-        else {
-            holder.classList.remove("static-card")
-        }
+    // فاصله فوتر از بالای صفحه
+    const footerTop = footer.getBoundingClientRect().top;
+
+    // ارتفاع کارت
+    const cardHeight = card.offsetHeight;
+
+    // فاصله کارت از بالای صفحه
+    const cardTop = card.getBoundingClientRect().top;
+
+    // اگر کارت به فوتر رسید
+    if (footerTop <= cardHeight + 20) {
+        card.style.position = 'absolute';
+        card.style.bottom = '0';
+    } else {
+        card.style.position = 'sticky';
+        card.style.top = '20px';
     }
-
+});
 </script>
 
 
