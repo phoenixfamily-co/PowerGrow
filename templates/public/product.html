@@ -45,7 +45,7 @@
         }
 
         body {
-            margin-bottom: 1250px;
+            margin-bottom: 1590px;
             background: #ACACAC;
 
         }
@@ -506,7 +506,7 @@
                      margin-top: 15px
                  }
                  body{
-                     margin-bottom: 1600px;
+                     margin-bottom: 2350px;
                  }
                  .hidden{
                    display: none;
@@ -758,7 +758,11 @@
 <div class="description">
 
     <p style="direction: rtl ; font-size: 20px ; height: 100% ; margin-right: 10px ; margin-left: 5px ; padding-bottom: 5px">
-        {{ product.description }}
+         {% autoescape off %}
+
+            {{ product.description|linebreaksbr }}
+
+        {% endautoescape %}
     </p>
 
 </div>
@@ -849,7 +853,7 @@
     let holder = document.getElementById('card-holder')
 
     window.onscroll = function () {
-        if (document.body.scrollTop > 250 || document.documentElement.scrollTop > 250) {
+        if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
             holder.classList.add("static-card")
         }
         else {

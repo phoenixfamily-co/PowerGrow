@@ -333,6 +333,7 @@
     <div class="row justify-content-between gy-5" style="justify-content: center; justify-items: center ; align-content: center ; align-items: center">
 
         {% for x in selected %}
+            {% if x.capacity != 0 %}
 
       <div class="col-md-4">
         <div class="card" style="border-radius: 15px;">
@@ -370,7 +371,8 @@
           </div>
         </div>
       </div>
-            {% endfor %}
+        {% endif %}
+      {% endfor %}
     </div>
 </div>
 

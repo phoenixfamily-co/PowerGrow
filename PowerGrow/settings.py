@@ -13,7 +13,6 @@ import os
 from datetime import timedelta
 from pathlib import Path
 
-from django.conf.global_settings import SESSION_EXPIRE_AT_BROWSER_CLOSE
 from django.template.context_processors import media
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,16 +25,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-4d1zr0@xm8ov^a*+$1%p4l(5(uf_z-!cf+w&6&3+h*609r#)d@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-SANDBOX = True
+DEBUG =  False
+
+MERCHANT = "d2f95f64-0068-4d7c-a5d1-53f13d810abd"
+
+SANDBOX = False
+
+SECURE_CROSS_ORIGIN_OPENER_POLICY = None
 
 DATE_INPUT_FORMATS = ('%d-%m-%Y', '%Y-%m-%d')
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-ALLOW_UNICODE_SLUGS = True
+ACTIVATE_JWT = True
+DRFSO2_URL_NAMESPACE = "drf"
 
+ALLOW_UNICODE_SLUGS = True
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
@@ -53,7 +59,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'django_apscheduler',
     "phonenumber_field",
     'Home',
     'About',
@@ -63,7 +68,6 @@ INSTALLED_APPS = [
     'User',
     'Calendar',
     'django_otp',
-    'bootstrap5',
     'django_otp.plugins.otp_static',
     'django_otp.plugins.otp_totp',
     'django_otp.plugins.otp_email',  # <- if you want email capability.
@@ -74,26 +78,20 @@ INSTALLED_APPS = [
     'otp_yubikey',
     'rest_framework.authtoken',
     'django_filters',
-    'django_jalali',
+    'bootstrap5',
+    'jquery',
+    'admin_auto_filters'
+
 
 ]
 
-
 REST_FRAMEWORK = {
 
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
-
-}
-
-SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(hours=12),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
-    "ROTATE_REFRESH_TOKENS": False,
-    "BLACKLIST_AFTER_ROTATION": False,
-    "UPDATE_LAST_LOGIN": True,
 }
 
 AUTH_USER_MODEL = 'User.User'
@@ -111,6 +109,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'PowerGrow.urls'
+
 
 TEMPLATES = [
     {
@@ -136,8 +135,15 @@ WSGI_APPLICATION = 'PowerGrow.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'powergro_powergrow',
+        'USER': 'powergro_powergrow',
+        'PASSWORD': 'jFrTKevq%uVpAsVq',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        }
     }
 }
 
@@ -162,18 +168,17 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fa-IR'
 
 TIME_ZONE = 'UTC'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-]
-STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
+STATIC_ROOT = os.path.join(BASE_DIR, '/home/powergro/public_html/static/')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -181,26 +186,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Base url to serve images files
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = 'media/'
-
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': 'debug.log',
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['file'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-    },
-}
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, '/home/powergro/public_html/media/')
