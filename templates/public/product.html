@@ -457,110 +457,60 @@
 
 <div id="card-holder" class="card_holder">
 
-<div class="card" id="card">
+    <div class="card shadow-sm" id="card">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <h6>نام دوره:</h6>
+                <h6>{{ product.title }} ({{ product.gender }})</h6>
+            </li>
 
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item-fixed">
-            <h6 class="list-group-right">
-                نام دوره:
-            </h6>
-            <h6 class="list-group-left">
-                {{ product.title }}({{ product.gender }})
-            </h6>
-        </li>
-    </ul>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <h6>ظرفیت باقی مانده:</h6>
+                <h6 id="number"></h6>
+            </li>
 
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item-fixed">
-            <h6 style="width: auto" class="list-group-right">
-                ظرفیت باقی مانده:
-            </h6>
-            <h6 id="number" class="list-group-left">
-            </h6>
-        </li>
-    </ul>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <h6>روزهای برگزاری:</h6>
+                <h6 id="daySession"></h6>
+            </li>
 
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item-fixed">
-            <h6 class="list-group-right">
-                روزهای برگزاری:
-            </h6>
-            <h6 id="daySession" class="list-group-left">
-            </h6>
-        </li>
-    </ul>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <h6>ساعت برگزاری:</h6>
+                <h6>{{ product.time }}</h6>
+            </li>
 
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item-fixed">
-            <h6 class="list-group-right">
-                ساعت برگزاری:
-            </h6>
-            <h6 id="timeSession" class="list-group-left">
-                {{ product.time }}
-            </h6>
-        </li>
-    </ul>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <h6>تاریخ شروع:</h6>
+                <h6 id="startDay"></h6>
+            </li>
 
-     <ul class="list-group list-group-flush">
-        <li class="list-group-item-fixed">
-            <h6 class="list-group-right">
-                تاریخ شروع:
-            </h6>
-            <h6 id="startDay" class="list-group-left">
-            </h6>
-        </li>
-    </ul>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <h6>تعداد جلسات:</h6>
+                <h6 id="sessionNumber"></h6>
+            </li>
 
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item-fixed">
-            <h6 class="list-group-right">
-                تعداد جلسات:
-            </h6>
-            <h6 id="sessionNumber" class="list-group-left">
-            </h6>
-        </li>
-    </ul>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <h6>شهریه ثابت:</h6>
+                <h6 id="price"></h6>
+            </li>
 
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item-fixed">
-            <h6 class="list-group-right">
-               شهریه ثابت:
-            </h6>
-            <h6 id="price" class="list-group-left">
-            </h6>
-        </li>
-    </ul>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <h6>تخفیف:</h6>
+                <h6 id="off"></h6>
+            </li>
 
-     <ul class="list-group list-group-flush">
-        <li class="list-group-item-fixed">
-            <h6 class="list-group-right">
-               تخفیف:
-            </h6>
-            <h6 id="off" class="list-group-left">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <h6>قیمت نهایی:</h6>
+                <h6 id="final"></h6>
+            </li>
 
-            </h6>
-        </li>
-    </ul>
-
- <ul class="list-group list-group-flush">
-        <li class="list-group-item-fixed">
-            <h6 class="list-group-right">
-               قیمت نهایی:
-            </h6>
-            <h6 id="final" class="list-group-left">
-            </h6>
-        </li>
-    </ul>
-
-    <ul class="list-group list-group-flush">
-
-        <li style="align-content: center ; align-items: center">
-             <button id="registerButton" class="card-button">
-        ثبت نام کنید
-             </button>
-        </li>
-
-    </ul>
+            <li class="list-group-item text-center">
+                <button id="registerButton" class="btn btn-primary w-100">
+                    ثبت نام کنید
+                </button>
+            </li>
+        </ul>
+    </div>
 
 </div>
 
