@@ -32,6 +32,7 @@ class Course(models.Model):
     capacity = models.IntegerField(blank=True, null=True)
     gender = models.CharField(max_length=10, choices=GENDER_CHOICE)
     datetime = models.DateTimeField(default=timezone.now)
+    active = models.BooleanField(default=True)
     sport = models.ForeignKey(Sport, on_delete=models.CASCADE, related_name='courses', null=True, blank=True)
 
 

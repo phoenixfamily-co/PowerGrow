@@ -403,6 +403,8 @@ input[type=submit] {
         <th scope="col">زمان</th>
         <th scope="col">ظرفیت</th>
         <th scope="col">ورزش</th>
+        <th scope="col">وضعیت</th>
+
 
     </tr>
   </thead>
@@ -422,6 +424,11 @@ input[type=submit] {
         <td onclick="window.open('{% url 'product:update-courses-time' x.id %}')" style="cursor: pointer ; text-decoration: underline ">{{ x.time }}</td>
         <td onclick="window.open('{% url 'product:update-courses-capacity' x.id %}')" style="cursor: pointer ; text-decoration: underline ">{{ x.capacity }}</td>
         <td onclick="window.open('{% url 'product:update-courses_sport' x.id %}')" style="cursor: pointer ; text-decoration: underline ">{{ x.sport.title }}</td>
+        {% if x.active == true %}
+            <td onclick="window.open('{% url 'product:update-courses_sport' x.id %}')" style="cursor: pointer"><i class="fa-solid fa-circle-check" style="color: #63E6BE;"></i></td>
+            {% else %}
+            <td onclick="window.open('{% url 'product:update-courses_sport' x.id %}')" style="cursor: pointer"><i class="fa-solid fa-ban" style="color: #ff0000;"></i></td>
+        {% endif %}
     </tr>
    {% endfor %}
   </tbody>
