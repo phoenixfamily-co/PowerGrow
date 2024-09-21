@@ -34,7 +34,7 @@ urlpatterns = [
     path('calendar/', include('Calendar.urls', namespace='calendar')),
     path('seo/', include('Seo.urls', namespace='seo')),
     path('favicon.ico', lambda _: redirect('static/images/logo.jpg', permanent=True)),
-    path(r'^$', TemplateView.as_view(template_name='public/update.html'), name='home'),
+    path('update/', TemplateView.as_view(template_name='public/update.html'), name='update'),
 
 ]
 
