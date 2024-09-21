@@ -135,6 +135,19 @@ class ChangeGenderSerializer(serializers.ModelSerializer):
         return instance
 
 
+class ChangeActiveSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Course
+        fields = ['active']
+
+    def update(self, instance, validated_data):
+        instance.active = validated_data.get("active", instance.active)
+        instance.save()
+
+        return instance
+
+
+
 class ChangeTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course

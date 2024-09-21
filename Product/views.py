@@ -518,6 +518,13 @@ class ChangeCourseGender(generics.UpdateAPIView, ):
 
 
 @permission_classes([IsAdminUser])
+class ChangeCourseActive(generics.UpdateAPIView, ):
+    queryset = Course.objects.all()
+    lookup_field = "pk"
+    serializer_class = ChangeGenderSerializer
+
+
+@permission_classes([IsAdminUser])
 class ChangeCourseType(generics.UpdateAPIView, ):
     queryset = Course.objects.all()
     lookup_field = "pk"

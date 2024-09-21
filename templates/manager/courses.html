@@ -425,9 +425,9 @@ input[type=submit] {
         <td onclick="window.open('{% url 'product:update-courses-capacity' x.id %}')" style="cursor: pointer ; text-decoration: underline ">{{ x.capacity }}</td>
         <td onclick="window.open('{% url 'product:update-courses_sport' x.id %}')" style="cursor: pointer ; text-decoration: underline ">{{ x.sport.title }}</td>
         {% if x.active == True %}
-            <td onclick="window.open('{% url 'product:update-courses_sport' x.id %}')" style="cursor: pointer ; text-align: center ; justify-content: center"><i class="fa-solid fa-circle-check" style="color: #6EC531;"></i></td>
+            <td onclick="window.open('{% url 'product:update-courses-active' x.id %}')" style="cursor: pointer ; text-align: center ; justify-content: center"><i class="fa-solid fa-circle-check" style="color: #6EC531;"></i></td>
             {% else %}
-            <td onclick="window.open('{% url 'product:update-courses_sport' x.id %}')" style="cursor: pointer ; text-align: center ; justify-content: center"><i class="fa-solid fa-ban" style="color: #ff0000;"></i></td>
+            <td onclick="window.open('{% url 'product:update-courses-active' x.id %}')" style="cursor: pointer ; text-align: center ; justify-content: center"><i class="fa-solid fa-ban" style="color: #ff0000;"></i></td>
         {% endif %}
     </tr>
    {% endfor %}

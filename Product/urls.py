@@ -20,6 +20,7 @@ urlpatterns = [
     path('api/course/type/update/<int:pk>/', ChangeCourseType.as_view(), name='update-courses-type'),
     path('api/course/time/update/<int:pk>/', ChangeCourseTime.as_view(), name='update-courses-time'),
     path('api/course/capacity/update/<int:pk>/', ChangeCourseCapacity.as_view(), name='update-courses-capacity'),
+    path('api/course/active/update/<int:pk>/', ChangeCourseActive.as_view(), name='update-courses-active'),
     path('api/course/sport/update/<int:pk>/', ChangeCourseSport.as_view(), name='update-courses_sport'),
     path('api/participants/price/update/<int:pk>/', ChangeParticipantsPrice.as_view(),
          name='update-participants_price'),
