@@ -81,7 +81,7 @@ INSTALLED_APPS = [
     'bootstrap5',
     'jquery',
     'admin_auto_filters'
-
+    'django_apscheduler',
 
 ]
 
