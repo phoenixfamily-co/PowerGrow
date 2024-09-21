@@ -38,32 +38,24 @@
             url("/static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */ url("../../static/fonts/BYekan.ttf") format('truetype') /* Safari, Android, iOS */
         }
 
-          html{
-            min-height: 100%;
-            position: relative;
+        html, body {
+            margin: 0;
+            padding: 0 ;
+            overflow-x: hidden;
             font-family: BYekan, serif !important;
         }
 
-        body {
-            margin-bottom: 1590px;
-            background: #ACACAC;
 
-        }
 
-        img {
-            vertical-align: middle;
-        }
-
-      .logoHolder {
+       .logoHolder {
             width: 100%;
             position: absolute;
             margin-top: 20px;
-            display: inline-flex;
+            left: 0;
+            display: flex;
             z-index: 10 !important;
             direction: ltr;
-            align-content: center;
             align-items: center;
-            text-align: center;
             justify-content: center;
 
         }
@@ -120,32 +112,31 @@
 
         .navbar{
             direction: rtl;
+            background: #312f2e;
         }
 
-        .navbar.navbar-dark.bg-dark li a{
-            color: #fff;
+        .navbar-nav > li {
+            margin-left: 20px;
+            margin-right: 20px;
         }
 
-          .navbar.navbar-dark.bg-dark a:hover{
-              color: grey;
-        }
-
-       .nav.navbar-nav li a {
-           color: #fff;
-           text-decoration: none;
+        .navbar-nav > li a {
+            color: white !important;
+            text-decoration: none;
        }
 
-        .nav.navbar-nav a:hover {
-            color: grey;
+        .navbar-nav > li a:hover{
+            color: gray !important;
+       }
+
+        .nav-link.active {
+            color: #E16539!important;
         }
 
-        .nav-pills > li > a.active {
-            background-color: #E16539 !important;
+        .nav-link.disabled {
+            color: #EBEBE4!important;
         }
 
-        .nav.navbar-nav.navbar-left {
-            margin-left: 20px;
-        }
 
         footer{
             direction:rtl;;
@@ -411,11 +402,6 @@
             .copy{
                 font-size: 12px;
         }
-               .nav.navbar-nav.navbar-left{
-                   position: absolute;
-                   left: 0;
-                   margin-top: 5%;
-               }
 
                .map{
                    height: 200px;
@@ -505,41 +491,35 @@
                      border-radius: 1rem;
                      margin-top: 15px
                  }
-                 body{
-                     margin-bottom: 2350px;
-                 }
-                 .hidden{
-                   display: none;
-               }
+
            }
     </style>
 
 </head>
 <body>
 
-<nav class="navbar navbar-dark bg-dark navbar-expand-lg ">
+<nav class="navbar navbar-dark navbar-expand-lg w-100 ">
 
   <!-- Toggler/collapsibe Button -->
-  <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
+  <button style="outline: none; box-shadow: none;" class="navbar-toggler justify-content-center" type="button" data-toggle="collapse" data-bs-toggle="collapse"   data-target="#collapsibleNavbar" data-bs-target="#collapsibleNavbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="" role="button" ><i class="fa fa-bars" aria-hidden="true" style="color:#e6e6ff"></i></span>
+</button>
   <!-- Navbar links -->
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="nav navbar-nav">
   <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href='{% url 'home:home' %}'>صفحه اصلی</a>
+    <a class="nav-link" aria-current="page" href='{% url 'home:home' %}'>صفحه اصلی</a>
   </li>
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">ورزش ها</a>
     <ul class="dropdown-menu bg-dark">
          {% for x in sport %}
-             <li><a style="color: white ; width: 100% ; text-align: right" class="dropdown-item" href="{% url 'product:category' x.id %}">{{ x.title }}</a></li>
+             <li><a class="dropdown-item active" href="{% url 'product:category' x.id %}">{{ x.title }}</a></li>
          {% endfor %}
     </ul>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="{% url 'reservation:reservation' %}">اجاره سالن</a>
+  <li class="nav-item disabled">
+    <a class="nav-link disabled" href="{% url 'reservation:reservation' %}">اجاره سالن</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href='{% url 'about:aboutUs'%}'>درباره ما</a>
@@ -552,34 +532,12 @@
   </div>
 </nav>
 
+<div class="logoHolder">
 
-<nav class="navbar navbar-dark bg-dark hidden fixed-top">
-  <div class="container-fluid" style="vertical-align: center">
-<ul class="nav nav-pills">
-  <li class="nav-item">
-    <a class="nav-link" aria-current="page" href='{% url 'home:home' %}'>صفحه اصلی</a>
-  </li>
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">ورزش ها</a>
-    <ul class="dropdown-menu dropdown-menu-right bg-dark">
-         {% for x in sport %}
-             <li><a style="color: white ; width: 100% ; text-align: center" class="dropdown-item" href="{% url 'product:category' x.id %}">{{ x.title }}</a></li>
-         {% endfor %}
-    </ul>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="{% url 'reservation:reservation' %}">اجاره سالن</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href='{% url 'about:aboutUs'%}'>درباره ما</a>
-  </li>
-</ul>
-  <ul class="nav navbar-nav navbar-left">
-      <li><a href='{% url 'user:login' %}'><span class="glyphicon glyphicon-user"></span>ورود و عضویت</a></li>
-    </ul>
-  </div>
-</nav>
+    <img alt="" src="{% get_media_prefix%}{{ about.logo }}" class="logo">
+    <div class="typography">PowerGrow</div>
 
+</div>
 <div class="logoHolder">
 
     <img alt="" src="/media/{{ about.logo }}" class="logo">
@@ -767,84 +725,63 @@
 
 </div>
 
-<footer>
-       <div class="footer-container">
+<footer class="text-white pt-4">
+    <div class="container-fluid p-0">
+        <div class="row align-items-center py-4" dir="rtl" style="background-color: #312f2e">
+             <!-- Info Section -->
+            <div class="col-md-4">
+                <ul class="list-unstyled">
+                    <li class="mb-5">
+                        <div class="d-flex align-items-start">
+                            <i class="fa-solid fa-location-dot fa-2x mr-3"></i>
+                            <h5 class="mb-0 me-2">{{ about.address|linebreaksbr }}</h5>
+                        </div>
+                    </li>
+                    <li class="mb-5">
+                        <div class="d-flex align-items-start">
+                            <i class="fa-solid fa-phone-flip fa-2x mr-3"></i>
+                            <h5 class="mb-0 me-2">{{ about.phone }}<br>{{ about.telephone }}</h5>
+                        </div>
+                    </li>
+                    <li class="mb-2">
+                        <div class="d-flex align-items-start">
+                            <i class="fa-brands fa-instagram fa-2x mr-3"></i>
+                            <h5 class="mb-0 me-2">{{ about.instagram }}</h5>
+                        </div>
+                    </li>
+                </ul>
+            </div>
 
-        <div class="footer-logo">
+            <!-- Map Section -->
+            <div class="col-md-4 d-flex justify-content-center mb-4">
+                <div id="map" class="img-fluid bg-light" style="width: 60%; height: 250px;"></div>
+            </div>
 
-            <h3 style="color: white ; direction: ltr ; text-align: center ; margin-top: 20px">PowerGrow</h3>
-            <img class="img-responsive" style="width: 200px ; height: 200px"  src="/media/{{ about.transparent_logo }}"
-                 alt="">
+             <!-- Logo Section -->
+            <div class="col-md-4 text-center mb-4">
+                <h3>PowerGrow</h3>
+                <img class="img-fluid mb-3" style="max-width: 200px; height: auto" src="/media/{{ about.transparent_logo }}" alt="Logo">
+            </div>
+
         </div>
 
-       <ul style="float: right">
+        <!-- Copyright Section -->
+       <div class="row bg-dark">
+    <div class="col-md-12 d-flex justify-content-between align-items-center py-3"> <!-- استفاده از justify-content-between -->
+        <a class="mb-0 ms-3" href="https://abbaslotfinasab.com/" style="color: white ; text-decoration: none"  target="_blank">&copy; <span id="year">2023</span> AbbasLotfinasab, All rights reserved.</a>
 
-       <li>
-            <div style="display: inline-flex ; width: 350px ">
+        <div class="d-flex align-items-center ms-auto">
+            <span class="d-inline me-1">Follow us :</span>
 
-        <i class="fa-solid fa-location-dot"
-           style="color: #ffffff; font-size: 30px"></i>
-        <h5 style="color:white ; margin-right: 5px">
-
-            {% autoescape off %}
-
-                {{ about.address|linebreaksbr }}
-
-            {% endautoescape %}
-
-        </h5>
-
-       </div>
-
-       </li>
-
-
-      <li>
-       <div  style="display: inline-flex ; width: 350px" >
-           <i class="fa-solid fa-phone-flip"
-                   style="color: #ffffff; font-size: 30px"></i>
-        <h5 style="color:white ; margin-right: 5px">
-            {{ about.phone }}<br> {{ about.telephone }}
-        </h5>
-
-       </div>
-
-       </li>
-
-       <li>
-
-            <div style="display: inline-flex ; width: 350px">
-
-        <i class="fa-brands fa-instagram"
-           style="color: #ffffff; font-size: 30px"></i>
-        <h5 style="color:white ; margin-right: 5px">
-            {{ about.instagram }}
-        </h5>
-
-       </div>
-
-       </li>
-
-       </ul>
-
-        <div id="map" class="img-responsive map">
+            <a href="//www.instagram.com/abbas_lotfinasab?igsh=MmVlMjlkMTBhMg==" class="text-white ms-2 me-2">
+                <i class="fa-brands fa-instagram fa-2x"></i>
+            </a>
+            <a href="//www.linkedin.com/in/abbaslotfinasab" class="text-white ms-2 me-2">
+                <i class="fa-brands fa-linkedin fa-2x"></i>
+            </a>
         </div>
-
     </div>
-
-  <!-- Copyright -->
- <div class="p-3 copy" style="background: #151111 ; color: #B1B2B2; direction: ltr">&copy;<span id="year"
-                                    style="font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif'">2023</span><span> Abbas_Lotfinasab. All rights reserved.</span>
-        <a href="//www.instagram.com/abbas_lotfinasab?igsh=MmVlMjlkMTBhMg=="
-           style="right: 0 ; position: absolute ; margin-right:15px">
-            <i class="fa-brands fa-instagram" style="color: #ffffff ; font-size: 30px"></i>
-        </a>
-        <a href="//www.linkedin.com/in/abbaslotfinasab" style="right: 0 ; position: absolute ; margin-right:55px">
-            <i class="fa-brands fa-linkedin" style="color: #ffffff ; font-size: 30px"></i>
-        </a>
-        <span style="right: 0;margin-right: 90px; position: absolute">Follow me:</span>
-    </div>
-  <!-- Copyright -->
+</div>
 </footer>
 
 </body>
