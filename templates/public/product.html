@@ -136,12 +136,10 @@
            border-bottom-right-radius: 1rem;
            background: transparent;
            position: relative;
-           display: inline;
        }
          .card {
              width: 100%;
              background-color: white;
-             direction: rtl;
              position: sticky;
              border-top-right-radius: 1rem;
              border-bottom-right-radius: 1rem;
@@ -413,8 +411,8 @@
 
 <div id="card-holder" class="card_holder">
     <div class="card justify-content-center" id="card">
-        <ul class="list-group list-group-flush w-100 me-0 ms-0">
-            <li class="list-group-item d-flex justify-content-between align-items-start">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
                 <h6 class="mb-0">نام دوره:</h6>
                 <h6 class="mb-0">{{ product.title }} ({{ product.gender }})</h6>
             </li>
