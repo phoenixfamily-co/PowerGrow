@@ -504,68 +504,68 @@
 {#    {{ product.name }}#}
 {#</div>#}
 
-<div class="date-time">
-<div class="date-picker">
-    <div class="month">
-  <ul>
-    <li id="next" class="next">&#10094;</li>
-    <li id="prev" class="prev">&#10095;</li>
-      <li id="monthTitle"></li>
-    <li>
-      <span id="yearTitle" style="font-size:18px"></span>
-    </li>
-  </ul>
-</div>
-<ul class="weekdays">
-  <li>ش</li>
-  <li>ی</li>
-  <li>د</li>
-  <li>س</li>
-  <li>چ</li>
-  <li>پ</li>
-  <li>ج</li>
-</ul>
-    <ul id="days" class="days">
-
-    </ul>
-
-
-
-</div>
-
-<div class="time-picker">
-
-    <div class="time-body">
-
-    <label for="session">تعداد جلسات در ماه را انتخاب کنید :</label>
-    <select name="session" id="session" style="margin-right: 20px">
-    </select>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <label for="week">روزهای برگزاری در هفته را مشخص کنید:</label>
-        <select name="week" id="week" style="margin-right: 10px">
-        </select>
-        </div>
-
-</div>
-
-</div>
-
-
-<div class="description">
-
-    <p style="direction: rtl ; font-size: 20px ; height: 100% ; margin-right: 10px ; margin-left: 5px ; padding-bottom: 5px">
-         {% autoescape off %}
-
-            {{ product.description|linebreaksbr }}
-
-        {% endautoescape %}
-    </p>
-
-</div>
+{#<div class="date-time">#}
+{#<div class="date-picker">#}
+{#    <div class="month">#}
+{#  <ul>#}
+{#    <li id="next" class="next">&#10094;</li>#}
+{#    <li id="prev" class="prev">&#10095;</li>#}
+{#      <li id="monthTitle"></li>#}
+{#    <li>#}
+{#      <span id="yearTitle" style="font-size:18px"></span>#}
+{#    </li>#}
+{#  </ul>#}
+{#</div>#}
+{#<ul class="weekdays">#}
+{#  <li>ش</li>#}
+{#  <li>ی</li>#}
+{#  <li>د</li>#}
+{#  <li>س</li>#}
+{#  <li>چ</li>#}
+{#  <li>پ</li>#}
+{#  <li>ج</li>#}
+{#</ul>#}
+{#    <ul id="days" class="days">#}
+{##}
+{#    </ul>#}
+{##}
+{##}
+{##}
+{#</div>#}
+{##}
+{#<div class="time-picker">#}
+{##}
+{#    <div class="time-body">#}
+{##}
+{#    <label for="session">تعداد جلسات در ماه را انتخاب کنید :</label>#}
+{#    <select name="session" id="session" style="margin-right: 20px">#}
+{#    </select>#}
+{#        <br>#}
+{#        <br>#}
+{#        <br>#}
+{#        <br>#}
+{#        <br>#}
+{#        <label for="week">روزهای برگزاری در هفته را مشخص کنید:</label>#}
+{#        <select name="week" id="week" style="margin-right: 10px">#}
+{#        </select>#}
+{#        </div>#}
+{##}
+{#</div>#}
+{##}
+{#</div>#}
+{##}
+{##}
+{#<div class="description">#}
+{##}
+{#    <p style="direction: rtl ; font-size: 20px ; height: 100% ; margin-right: 10px ; margin-left: 5px ; padding-bottom: 5px">#}
+{#         {% autoescape off %}#}
+{##}
+{#            {{ product.description|linebreaksbr }}#}
+{##}
+{#        {% endautoescape %}#}
+{#    </p>#}
+{##}
+{#</div>#}
 
 <footer class="text-white pt-4">
     <div class="container-fluid p-0">
