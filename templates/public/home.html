@@ -201,6 +201,79 @@
             margin-top: 30px;
         }
 
+        .footer-container {
+    background-color: #151111;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer-logo {
+    text-align: center;
+    color: white;
+}
+
+.footer-logo h3 {
+    margin-bottom: 15px;
+}
+
+.footer-logo-img {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
+
+.footer-info {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-info li {
+    margin-bottom: 15px;
+}
+
+.footer-item {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 16px;
+}
+
+.footer-item i {
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+.footer-map {
+    width: 100%;
+    height: 200px;
+    background-color: #ccc;
+    margin-top: 20px;
+}
+
+.footer-copy {
+    background-color: #151111;
+    color: #B1B2B2;
+    padding: 10px;
+    text-align: center;
+    position: relative;
+}
+
+.footer-copy .social-icon {
+    margin: 0 10px;
+    font-size: 30px;
+    color: white;
+    text-decoration: none;
+}
+
+.follow-me {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: white;
+}
+
            @media screen and (max-width: 768px) {
 
             .copy{
@@ -494,82 +567,46 @@
 </div>
 
 <footer>
-       <div class="footer-container">
-
+    <div class="footer-container">
         <div class="footer-logo">
-            <h3 style="color: white ; text-align: center ; margin-top: 20px">PowerGrow</h3>
-            <img class="img-responsive" style="width: 200px ; height: 200px"  src="/media/{{ about.transparent_logo }}"
-                 alt="">
+            <h3>PowerGrow</h3>
+            <img class="footer-logo-img" src="/media/{{ about.transparent_logo }}" alt="Logo">
         </div>
 
-       <ul style="float: right">
+        <ul class="footer-info">
+            <li>
+                <div class="footer-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <h5>{{ about.address|linebreaksbr }}</h5>
+                </div>
+            </li>
+            <li>
+                <div class="footer-item">
+                    <i class="fa-solid fa-phone-flip"></i>
+                    <h5>{{ about.phone }}<br>{{ about.telephone }}</h5>
+                </div>
+            </li>
+            <li>
+                <div class="footer-item">
+                    <i class="fa-brands fa-instagram"></i>
+                    <h5>{{ about.instagram }}</h5>
+                </div>
+            </li>
+        </ul>
 
-       <li>
-            <div style="display: inline-flex ; width: 350px ">
-
-        <i class="fa-solid fa-location-dot"
-           style="color: #ffffff; font-size: 30px"></i>
-        <h5 style="color:white ; margin-right: 5px">
-
-            {% autoescape off %}
-
-                {{ about.address|linebreaksbr }}
-
-            {% endautoescape %}
-
-        </h5>
-
-       </div>
-
-       </li>
-
-
-      <li>
-       <div  style="display: inline-flex ; width: 350px" >
-           <i class="fa-solid fa-phone-flip"
-                   style="color: #ffffff; font-size: 30px"></i>
-        <h5 style="color:white ; margin-right: 5px">
-            {{ about.phone }}<br> {{ about.telephone }}
-        </h5>
-
-       </div>
-
-       </li>
-
-       <li>
-
-            <div style="display: inline-flex ; width: 350px">
-
-        <i class="fa-brands fa-instagram"
-           style="color: #ffffff; font-size: 30px"></i>
-        <h5 style="color:white ; margin-right: 5px">
-            {{ about.instagram }}
-        </h5>
-
-       </div>
-
-       </li>
-
-       </ul>
-
-        <div id="map" class="img-responsive map">
-        </div>
-
+        <div id="map" class="footer-map"></div>
     </div>
 
-  <!-- Copyright -->
- <div class="p-3 copy" style="background: #151111 ; color: #B1B2B2; direction: ltr">&copy;<span id="year"
-                                    style="font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif'">2023</span><span> Abbas_Lotfinasab. All rights reserved.</span>
-        <a href="//www.instagram.com/abbas_lotfinasab?igsh=MmVlMjlkMTBhMg=="
-           style="right: 0 ; position: absolute ; margin-right:15px">
-            <i class="fa-brands fa-instagram" style="color: #ffffff ; font-size: 30px"></i>
+    <div class="footer-copy">
+        &copy; <span id="year">2023</span> Abbas_Lotfinasab. All rights reserved.
+        <a href="//www.instagram.com/abbas_lotfinasab?igsh=MmVlMjlkMTBhMg==" class="social-icon">
+            <i class="fa-brands fa-instagram"></i>
         </a>
-        <a href="//www.linkedin.com/in/abbaslotfinasab" style="right: 0 ; position: absolute ; margin-right:55px">
-            <i class="fa-brands fa-linkedin" style="color: #ffffff ; font-size: 30px"></i>
+        <a href="//www.linkedin.com/in/abbaslotfinasab" class="social-icon">
+            <i class="fa-brands fa-linkedin"></i>
         </a>
-        <span style="right: 0;margin-right: 90px; position: absolute">Follow me:</span>
+        <span class="follow-me">Follow me:</span>
     </div>
-  <!-- Copyright -->
 </footer>
 
 </body>
