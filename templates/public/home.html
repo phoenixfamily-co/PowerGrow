@@ -308,10 +308,9 @@
 <nav class="navbar navbar-dark bg-dark navbar-expand-lg ">
 
   <!-- Toggler/collapsibe Button -->
-  <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
+  <button style="outline: none; box-shadow: none;" class="navbar-toggler justify-content-center" type="button" data-toggle="collapse" data-bs-toggle="collapse"   data-target="#collapsibleNavbar" data-bs-target="#collapsibleNavbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="" role="button" ><i class="fa fa-bars" aria-hidden="true" style="color:#e6e6ff"></i></span>
+</button>
   <!-- Navbar links -->
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="nav navbar-nav">
@@ -337,34 +336,6 @@
     <a class="nav-link" href='{% url 'user:login' %}'>ورود و عضویت</a>
   </li>
 </ul>
-  </div>
-</nav>
-
-
-<nav class="navbar navbar-dark bg-dark fixed-top hidden">
-  <div class="container-fluid">
-<ul class="nav nav-pills">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href='{% url 'home:home' %}'>صفحه اصلی</a>
-  </li>
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">ورزش ها</a>
-    <ul class="dropdown-menu dropdown-menu-right bg-dark">
-         {% for x in sport %}
-             <li><a style="color: white ; width: 100% ; text-align: center" class="dropdown-item" href="{% url 'product:category' x.id %}">{{ x.title }}</a></li>
-         {% endfor %}
-    </ul>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="{% url 'reservation:reservation' %}">اجاره سالن</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href='{% url 'about:aboutUs'%}'>درباره ما</a>
-  </li>
-</ul>
-  <ul class="nav navbar-nav navbar-left">
-      <li><a href='{% url 'user:login' %}'><span class="glyphicon glyphicon-user"></span>ورود و عضویت</a></li>
-    </ul>
   </div>
 </nav>
 
