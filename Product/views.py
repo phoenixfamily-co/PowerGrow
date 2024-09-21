@@ -86,6 +86,7 @@ def category_view(request, pk):
         "about": about,
         "sport": sport,
         "course": course,
+        "title": sport.filter(id=pk).values().first(),
         "id": pk
     }
     return HttpResponse(template.render(context, request))
