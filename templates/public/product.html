@@ -147,20 +147,27 @@
            height: auto;
            margin: 0 auto;
            float: left;
+           border-top-right-radius: 1rem;
+           border-bottom-right-radius: 1rem;
            background: transparent;
            position: relative;
+           display: inline;
        }
          .card {
              width: 100%;
+             background-color: white;
              direction: rtl;
              position: sticky;
+             border-top-right-radius: 1rem;
+             border-bottom-right-radius: 1rem;
              top: 20px; /* فاصله کارت از بالای صفحه هنگام اسکرول */
               height: 80vh; /* ارتفاع کارت به 80% ارتفاع صفحه */
              display: flex;
-             flex-direction: column;
-             justify-content: space-between; /* برای توزیع فضای بین آیتم‌ها */
-             padding: 20px; /* برای ایجاد فضای داخلی بیشتر */
+             padding: 20px; /* برای اضافه کردن فاصله داخلی */
+             box-sizing: border-box;
          }
+
+
          .list-group-item-fixed {
              margin-bottom: 20px; /* افزایش فاصله بین آیتم‌ها */
          }
@@ -487,7 +494,7 @@
                 <h6 id="final" class="mb-0"></h6>
             </li>
 
-            <li class="list-group-item text-center w-100 list-group-item-fixed">
+            <li class="list-group-item text-center w-100">
                 <button id="registerButton" class="btn btn-primary w-100">
                     ثبت نام کنید
                 </button>
