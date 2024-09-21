@@ -170,25 +170,8 @@
 
 
          .list-group-item-fixed {
-             margin-bottom: 15px; /* افزایش فاصله بین آیتم‌ها */
+             margin-bottom: 10px; /* افزایش فاصله بین آیتم‌ها */
          }
-
-         .teacher {
-            background: white;
-            width: 100%;
-            height: 60px;
-            display: inline-block;
-            align-items: center;
-            text-align: center;
-            vertical-align: center;
-            line-height: 60px;
-            font-size: 20px;
-            font-weight: bold;
-            border-top-right-radius: 1rem;
-            border-bottom-right-radius: 1rem;
-            margin-top: 15px;
-            margin-bottom: 15px;
-        }
 
         .month {
             width: 100%;
@@ -453,6 +436,11 @@
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <h6 class="mb-0">نام دوره:</h6>
                 <h6 class="mb-0">{{ product.title }} ({{ product.gender }})</h6>
+            </li>
+
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <h6 class="mb-0">نام مربی:</h6>
+                <h6 class="mb-0">{{ product.name }}</h6>
             </li>
 
             <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed">
