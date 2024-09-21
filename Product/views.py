@@ -153,7 +153,7 @@ def admin_courses_view(request):
 def user_courses_view(request, pk):
     template = loader.get_template('user/course.html')
     about = AboutUs.objects.values().first()
-    participants = Participants.objects.filter(user=pk).all()
+    participants = Participants.objects.filter(user=pk, success=True).all()
 
     context = {
         "about": about,
