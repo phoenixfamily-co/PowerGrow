@@ -82,6 +82,13 @@
             display: block;
         }
 
+
+         .dropdown-menu li a {
+            color: white ;
+             width: 100% ;
+             text-align: right
+        }
+
         /* Change color of dropdown links on hover */
         .dropdown-menu li a:hover {
             background-color: black ;
@@ -157,10 +164,6 @@
             text-align: center;
             justify-content: center;
             margin-top: 20px;
-        }
-
-        .nav.navbar-nav.navbar-left {
-            margin-left: 20px;
         }
 
         footer{
@@ -318,7 +321,7 @@
     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">ورزش ها</a>
     <ul class="dropdown-menu bg-dark">
          {% for x in sport %}
-             <li><a style="color: white ; width: 100% ; text-align: center" class="dropdown-item" href="{% url 'product:category' x.id %}">{{ x.title }}</a></li>
+             <li><a class="dropdown-item" href="{% url 'product:category' x.id %}">{{ x.title }}</a></li>
          {% endfor %}
     </ul>
   </li>
@@ -329,7 +332,7 @@
     <a class="nav-link" href='{% url 'about:aboutUs'%}'>درباره ما</a>
   </li>
 
-     <li class="nav-item" style="float: left">
+     <li class="nav-item">
     <a class="nav-link" href='{% url 'user:login' %}'>ورود و عضویت</a>
   </li>
 </ul>
