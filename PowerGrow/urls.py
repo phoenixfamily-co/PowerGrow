@@ -19,6 +19,7 @@ from django.shortcuts import redirect
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
+from django.views.generic import TemplateView
 
 admin.autodiscover()
 
@@ -33,6 +34,7 @@ urlpatterns = [
     path('calendar/', include('Calendar.urls', namespace='calendar')),
     path('seo/', include('Seo.urls', namespace='seo')),
     path('favicon.ico', lambda _: redirect('static/images/logo.jpg', permanent=True)),
+    path(r'^$', TemplateView.as_view(template_name='public/update.html'), name='home'),
 
 ]
 
