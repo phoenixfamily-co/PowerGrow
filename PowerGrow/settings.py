@@ -78,10 +78,10 @@ INSTALLED_APPS = [
     'otp_yubikey',
     'rest_framework.authtoken',
     'django_filters',
+    'django_apscheduler',
     'bootstrap5',
     'jquery',
     'admin_auto_filters',
-    'django_apscheduler',
 ]
 
 REST_FRAMEWORK = {
