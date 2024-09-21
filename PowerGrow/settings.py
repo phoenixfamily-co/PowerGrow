@@ -80,9 +80,8 @@ INSTALLED_APPS = [
     'django_filters',
     'bootstrap5',
     'jquery',
-    'admin_auto_filters'
+    'admin_auto_filters',
     'django_apscheduler',
-
 ]
 
 REST_FRAMEWORK = {
