@@ -1,6 +1,6 @@
 from khayyam import JalaliDate
 from apscheduler.schedulers.background import BackgroundScheduler
-from django_appscheduler.jobstores import DjangoJobStore
+from django_apscheduler.jobstores import DjangoJobStore
 from .models import Participants
 from Calendar.models import Day
 import logging
