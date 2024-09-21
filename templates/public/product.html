@@ -144,6 +144,7 @@
 
        .card_holder {
            width: 29%;
+           height: auto;
            margin: 0 auto;
            float: left;
            background: transparent;
@@ -154,7 +155,17 @@
              direction: rtl;
              position: sticky;
              top: 20px; /* فاصله کارت از بالای صفحه هنگام اسکرول */
+              height: 80vh; /* ارتفاع کارت به 80% ارتفاع صفحه */
+             display: flex;
+             flex-direction: column;
+             justify-content: space-between; /* برای توزیع فضای بین آیتم‌ها */
+             padding: 20px; /* برای ایجاد فضای داخلی بیشتر */
          }
+
+
+.list-group-item-fixed {
+    margin-bottom: 20px; /* افزایش فاصله بین آیتم‌ها */
+}
 
          .teacher {
             background: white;
