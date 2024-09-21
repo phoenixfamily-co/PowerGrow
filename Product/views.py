@@ -81,11 +81,11 @@ def category_view(request, pk):
     template = loader.get_template('public/category.html')
     about = AboutUs.objects.values().first()
     sport = Sport.objects.all()
-    course = Course.objects.all()
+    course = Course.objects.all().filter(sport=pk, active=True).values()
     context = {
         "about": about,
         "sport": sport,
-        "selected": course.filter(sport=pk).values(),
+        "course": course,
         "title": sport.filter(id=pk).values().first(),
         "id": pk
     }
