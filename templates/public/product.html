@@ -847,13 +847,11 @@
 
 
     if (parseInt(counter) < parseInt(capacity)){
-        registerButton.classList.remove("disabled-button")
-        registerButton.classList.add("card-button")
+        registerButton.disabled = false
         registerButton.innerHTML = "ثبت نام کنید"
 
     }else {
-        registerButton.classList.remove("card-button")
-        registerButton.classList.add("disabled-button")
+        registerButton.disabled = true
         registerButton.innerHTML = "ظرفیت تکمیل است"
     }
 
