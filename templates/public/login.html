@@ -182,42 +182,40 @@ button:hover {
 
 </div>
 
-  <div class="container py-5 h-100 mt-5">
+ <div class="container py-5 h-100 mt-5">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-        <div class="card bg-dark text-white" style="border-radius: 1rem">
-          <div class="card-body p-5 text-center">
-            <div class="mb-md-5 mt-md-4 pb-5">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card bg-dark text-white" style="border-radius: 1rem">
+                <div class="card-body p-5 text-center">
+                    <h2 class="fw-bold mb-2 text-uppercase">ورود</h2>
+                    <p class="text-white-50 mb-4">لطفا اطلاعات خود را وارد کنید</p>
 
-              <h2 class="fw-bold mb-2 text-uppercase">ورود</h2>
-              <p class="text-white-50 mb-5">لطفا اطلاعات خود را وارد کنید</p>
+                    <form>
+                        <div class="form-outline form-white mb-4">
+                            <input type="tel" id="number" class="form-control form-control-lg" placeholder="9123456780" required />
+                            <label class="form-label" for="number">موبایل</label>
+                        </div>
 
-              <div class="form-outline form-white mb-4">
-                <input type="tel" id="number" class="form-control form-control-lg" placeholder="9123456780" />
-                <label class="form-label" for="number">موبایل</label>
-              </div>
+                        <div class="form-outline form-white mb-4">
+                            <input type="password" id="password" class="form-control form-control-lg" placeholder="رمز عبور" required />
+                            <label class="form-label" for="password">رمز عبور</label>
+                        </div>
 
-              <div class="form-outline form-white mb-4">
-                  <input type="password" id="password" class="form-control form-control-lg" placeholder="رمز عبور"/>
-                  <label class="form-label" for="password">رمز عبور</label>
-              </div>
+                        <p class="small mb-4">
+                            <a class="text-white-50" href="{% url 'user:forget' %}">فراموشی رمز عبور؟</a>
+                        </p>
 
-              <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="{% url 'user:forget' %}">فراموشی رمز عبور ؟</a></p>
+                        <button class="btn btn-outline-light btn-lg px-5" type="submit">ورود</button>
+                    </form>
 
-              <button id="submit" class="btn btn-outline-light btn-lg px-5" type="submit">ورود</button>
-
+                    <p class="mt-4 mb-0">اکانت ندارید؟
+                        <a href="{% url 'user:register' %}" class="text-white-50 fw-bold">ثبت نام کنید</a>
+                    </p>
+                </div>
             </div>
-
-            <div>
-              <p class="mb-0">اکانت ندارید؟ <a href="{% url 'user:register' %}" class="text-white-50 fw-bold">ثبت نام کنید</a>
-              </p>
-            </div>
-
-          </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
 
 
 
