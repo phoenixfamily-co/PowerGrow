@@ -27,31 +27,22 @@
         		 url("/static/fonts/BYekan.ttf")  format('truetype') /* Safari, Android, iOS */
 		}
 
-              html {
-                  min-height: 100%;
-                  position: relative;
-                  font-family: BYekan, serif !important;
-              }
-
-        body {
-            margin-bottom: 500px;
-        }
-
-
-        img {
-            vertical-align: middle;
+            html, body {
+            margin: 0;
+            padding: 0 ;
+            overflow-x: hidden;
+            font-family: BYekan, serif !important;
         }
 
         .logoHolder {
             width: 100%;
             position: absolute;
             margin-top: 20px;
-            display: inline-flex;
+            left: 0;
+            display: flex;
             z-index: 10 !important;
             direction: ltr;
-            align-content: center;
             align-items: center;
-            text-align: center;
             justify-content: center;
 
         }
@@ -71,146 +62,63 @@
         }
 
 
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-
-
-        .dropdown:hover {
-            display: block;
-
-        }
-
-        .dropdown-content a {
-            color: black;
+         .dropdown-content a {
+            color: white;
             padding: 5px 16px;
             font-size: 16px;
             text-decoration: none;
             display: block;
         }
 
-        .navbar{
-            direction: rtl;
+
+         .dropdown-menu li a {
+            color: white ;
+             width: 100% ;
+             text-align: right
         }
 
         /* Change color of dropdown links on hover */
-         .dropdown-menu li a:hover {
+        .dropdown-menu li a:hover {
             background-color: black ;
         }
 
-        .navbar.navbar-dark.bg-dark li a{
-            color: #fff;
+        .navbar-nav > li > .dropdown-menu {
+            background-color: #312f2e;
         }
 
-          .navbar.navbar-dark.bg-dark a:hover{
-              color: grey;
+
+        .btn {
+            background-color: #E16539;
+            border-color: transparent;
+            color: white;
+            cursor: pointer;
         }
 
-       .nav.navbar-nav li a {
-           color: #fff;
-           text-decoration: none;
+        .navbar{
+            direction: rtl;
+            background: #312f2e;
+        }
+
+        .navbar-nav > li {
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .navbar-nav > li a {
+            color: white !important;
+            text-decoration: none;
        }
 
-        .nav.navbar-nav a:hover {
-            color: grey;
+        .navbar-nav > li a:hover{
+            color: gray !important;
+       }
+
+        .nav-link.active {
+            color: #E16539!important;
         }
 
-        .nav-pills > li > a.active {
-            background-color: #E16539 !important;
-        }
-
-        footer{
-            direction: rtl;
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            background: #303030;
-
-        }
-
-        .map{
-            height: 100% ;
-            width: 20% ;
-            margin-right: 40%
-        }
-
-        .footer-container{
-            height: 250px;
-        }
-
-       .footer-logo{
-            height: 100%;
-            float: left;
-            display: inline-block;
-            justify-content: center;
-            align-items: center;
-            align-content: center;
-            text-align: center;
-        }
-
-         ul {
-            list-style-type: none;
-        }
-
-        footer ul li {
-            margin-top: 30px;
-        }
-
-         .fa-eye{
-            position: absolute;
-            margin-top: -40px;
-            margin-right: 50px;
-            right: 0;
-            cursor: pointer;
-            color: rgb(51, 49, 49);
-        }
-
-           @media screen and (max-width: 768px) {
-
-            .copy{
-                font-size: 12px;
-        }
-
-               .container{
-                   width: 100% ;
-        }
-
-               .map{
-                   height: 200px;
-                   width: 200px;
-                   margin-top: 50px;
-                   margin-right: 30%;
-''
-               }
-               body{
-                   margin-bottom: 800px;
-               }
-
-              .footer-container{
-                   height: 700px;
-               }
-
-               .footer-logo {
-                   width: 100%;
-                   height: 300px;
-                   display: inline-block;
-                   justify-content: center;
-                   align-items: center;
-                   align-content: center;
-                   text-align: center;
-               }
-
-               footer ul li {
-                   margin-top: 10px;
-               }
-
-                .hidden{
-                   display: none;
-               }
-
+        .nav-link.disabled {
+            color: #EBEBE4!important;
         }
 
 input[type=text], input[type=password] {
@@ -227,23 +135,18 @@ button:hover {
   opacity: 0.8;
 }
 
-.container {
-  padding: 16px;
-}
-
 </style>
 
 </head>
 
 <body>
 
-<nav class="navbar navbar-dark bg-dark navbar-expand-lg ">
+<nav class="navbar navbar-dark navbar-expand-lg w-100 ">
 
   <!-- Toggler/collapsibe Button -->
-  <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
+  <button style="outline: none; box-shadow: none;" class="navbar-toggler justify-content-center" type="button" data-toggle="collapse" data-bs-toggle="collapse"   data-target="#collapsibleNavbar" data-bs-target="#collapsibleNavbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="" role="button" ><i class="fa fa-bars" aria-hidden="true" style="color:#e6e6ff"></i></span>
+</button>
   <!-- Navbar links -->
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="nav navbar-nav">
@@ -252,14 +155,14 @@ button:hover {
   </li>
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">ورزش ها</a>
-    <ul class="dropdown-menu bg-dark">
+    <ul class="dropdown-menu">
          {% for x in sport %}
-             <li><a style="color: white ; width: 100% ; text-align: right" class="dropdown-item" href="{% url 'product:category' x.id %}">{{ x.title }}</a></li>
+             <li><a class="dropdown-item" href="{% url 'product:category' x.id %}">{{ x.title }}</a></li>
          {% endfor %}
     </ul>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="{% url 'reservation:reservation' %}">اجاره سالن</a>
+  <li class="nav-item disabled">
+    <a class="nav-link disabled" href="{% url 'reservation:reservation' %}">اجاره سالن</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href='{% url 'about:aboutUs'%}'>درباره ما</a>
@@ -272,157 +175,127 @@ button:hover {
   </div>
 </nav>
 
-
-<nav class="navbar navbar-dark bg-dark hidden fixed-top">
-  <div class="container-fluid" style="vertical-align: center">
-<ul class="nav nav-pills">
-  <li class="nav-item">
-    <a class="nav-link" aria-current="page" href='{% url 'home:home' %}'>صفحه اصلی</a>
-  </li>
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">ورزش ها</a>
-    <ul class="dropdown-menu dropdown-menu-right bg-dark">
-         {% for x in sport %}
-             <li><a style="color: white ; width: 100% ; text-align: center" class="dropdown-item" href="{% url 'product:category' x.id %}">{{ x.title }}</a></li>
-         {% endfor %}
-    </ul>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="{% url 'reservation:reservation' %}">اجاره سالن</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href='{% url 'about:aboutUs'%}'>درباره ما</a>
-  </li>
-</ul>
-  <ul class="navbar-left nav-pills">
-      <li class="nav-item"><a style="margin-right: 2px ; margin-left: 2px" class="nav-link active" href='{% url 'user:login' %}'>ورود و عضویت</a></li>
-    </ul>
-  </div>
-</nav>
-
 <div class="logoHolder">
 
-    <img alt="" src="/media/{{ about.logo }}" class="logo">
+    <img alt="" src="{% get_media_prefix%}{{ about.logo }}" class="logo">
     <div class="typography">PowerGrow</div>
 
 </div>
 
-  <div class="container py-5 h-100" style="margin-top: 100px">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-        <div class="card bg-dark text-white" style="border-radius: 1rem">
-          <div class="card-body p-5 text-center">
-            <div class="mb-md-5 mt-md-4 pb-5">
+{#  <div class="container py-5 h-100" style="margin-top: 100px">#}
+{#    <div class="row d-flex justify-content-center align-items-center h-100">#}
+{#      <div class="col-12 col-md-8 col-lg-6 col-xl-5">#}
+{#        <div class="card bg-dark text-white" style="border-radius: 1rem">#}
+{#          <div class="card-body p-5 text-center">#}
+{#            <div class="mb-md-5 mt-md-4 pb-5">#}
+{##}
+{#              <h2 class="fw-bold mb-2 text-uppercase">ورود</h2>#}
+{#              <p class="text-white-50 mb-5">لطفا اطلاعات خود را وارد کنید</p>#}
+{##}
+{#              <div class="form-outline form-white mb-4">#}
+{#                <input type="tel" id="number" class="form-control form-control-lg" placeholder="9123456780" />#}
+{#                <label class="form-label" for="number">موبایل</label>#}
+{#              </div>#}
+{##}
+{#              <div class="form-outline form-white mb-4">#}
+{#                  <input type="password" id="password" class="form-control form-control-lg" placeholder="رمز عبور"/>#}
+{#                  <i id="eye" class="fa fa-eye"></i>#}
+{#                  <label class="form-label" for="password">رمز عبور</label>#}
+{#              </div>#}
+{##}
+{#              <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="{% url 'user:forget' %}">فراموشی رمز عبور ؟</a></p>#}
+{##}
+{#              <button id="submit" class="btn btn-outline-light btn-lg px-5" type="submit">ورود</button>#}
+{##}
+{#            </div>#}
+{##}
+{#            <div>#}
+{#              <p class="mb-0">اکانت ندارید؟ <a href="{% url 'user:register' %}" class="text-white-50 fw-bold">ثبت نام کنید</a>#}
+{#              </p>#}
+{#            </div>#}
+{##}
+{#          </div>#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
 
-              <h2 class="fw-bold mb-2 text-uppercase">ورود</h2>
-              <p class="text-white-50 mb-5">لطفا اطلاعات خود را وارد کنید</p>
 
-              <div class="form-outline form-white mb-4">
-                <input type="tel" id="number" class="form-control form-control-lg" placeholder="9123456780" />
-                <label class="form-label" for="number">موبایل</label>
-              </div>
+<div class="login-form">
+        <form>
+            <h3 class="text-center mb-4">ورود</h3>
+            <div class="mb-3">
+                <label for="username" class="form-label">نام کاربری</label>
+                <input type="text" class="form-control" id="username" placeholder="نام کاربری خود را وارد کنید">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">رمز عبور</label>
+                <input type="password" class="form-control" id="password" placeholder="رمز عبور خود را وارد کنید">
+            </div>
+            <button type="submit" class="btn btn-custom w-100">ورود</button>
+            <div class="text-center mt-3">
+                <a href="#" class="form-text">رمز عبور خود را فراموش کرده‌اید؟</a><br>
+                <a href="#" class="form-text">عضویت</a>
+            </div>
+        </form>
+    </div>
 
-              <div class="form-outline form-white mb-4">
-                  <input type="password" id="password" class="form-control form-control-lg" placeholder="رمز عبور"/>
-                  <i id="eye" class="fa fa-eye"></i>
-                  <label class="form-label" for="password">رمز عبور</label>
-              </div>
-
-              <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="{% url 'user:forget' %}">فراموشی رمز عبور ؟</a></p>
-
-              <button id="submit" class="btn btn-outline-light btn-lg px-5" type="submit">ورود</button>
-
+<footer class="text-white pt-4">
+    <div class="container-fluid p-0">
+        <div class="row align-items-center py-4" dir="rtl" style="background-color: #312f2e">
+            <!-- Info Section -->
+            <div class="col-md-4">
+                <ul class="list-unstyled">
+                    <li class="mb-5">
+                        <div class="d-flex align-items-start">
+                            <i class="fa-solid fa-location-dot fa-2x mr-3"></i>
+                            <h5 class="mb-0 me-2">{{ about.address|linebreaksbr }}</h5>
+                        </div>
+                    </li>
+                    <li class="mb-5">
+                        <div class="d-flex align-items-start">
+                            <i class="fa-solid fa-phone-flip fa-2x mr-3"></i>
+                            <h5 class="mb-0 me-2">{{ about.phone }}<br>{{ about.telephone }}</h5>
+                        </div>
+                    </li>
+                    <li class="mb-2">
+                        <div class="d-flex align-items-start">
+                            <i class="fa-brands fa-instagram fa-2x mr-3"></i>
+                            <h5 class="mb-0 me-2">{{ about.instagram }}</h5>
+                        </div>
+                    </li>
+                </ul>
             </div>
 
-            <div>
-              <p class="mb-0">اکانت ندارید؟ <a href="{% url 'user:register' %}" class="text-white-50 fw-bold">ثبت نام کنید</a>
-              </p>
+            <!-- Map Section -->
+            <div class="col-md-4 d-flex justify-content-center mb-4">
+                <div id="map" class="img-fluid bg-light" style="width: 60%; height: 250px;"></div>
             </div>
 
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<footer>
-       <div class="footer-container">
-
-        <div class="footer-logo">
-
-            <h3 style="color: white ; direction: ltr ; text-align: center ; margin-top: 20px">PowerGrow</h3>
-            <img class="img-responsive" style="width: 200px ; height: 200px"  src="/media/{{ about.transparent_logo }}"
-                 alt="">
+            <!-- Logo Section -->
+            <div class="col-md-4 text-center mb-4">
+                <h3>PowerGrow</h3>
+                <img class="img-fluid mb-3" style="max-width: 200px; height: auto" src="/media/{{ about.transparent_logo }}" alt="Logo">
+            </div>
         </div>
 
-       <ul style="float: right">
+        <!-- Copyright Section -->
+        <div class="row bg-dark">
+            <div class="col-md-12 d-flex justify-content-between align-items-center py-3">
+                <a class="mb-0 ms-3" href="https://abbaslotfinasab.com/" style="color: white; text-decoration: none" target="_blank">&copy; <span id="year">2023</span> AbbasLotfinasab, All rights reserved.</a>
 
-       <li>
-            <div style="display: inline-flex ; width: 350px ">
-
-        <i class="fa-solid fa-location-dot"
-           style="color: #ffffff; font-size: 30px"></i>
-        <h5 style="color:white ; margin-right: 5px">
-
-            {% autoescape off %}
-
-                {{ about.address|linebreaksbr }}
-
-            {% endautoescape %}
-
-        </h5>
-
-       </div>
-
-       </li>
-
-
-      <li>
-       <div  style="display: inline-flex ; width: 350px" >
-           <i class="fa-solid fa-phone-flip"
-                   style="color: #ffffff; font-size: 30px"></i>
-        <h5 style="color:white ; margin-right: 5px">
-            {{ about.phone }}<br> {{ about.telephone }}
-        </h5>
-
-       </div>
-
-       </li>
-
-       <li>
-
-            <div style="display: inline-flex ; width: 350px">
-
-        <i class="fa-brands fa-instagram"
-           style="color: #ffffff; font-size: 30px"></i>
-        <h5 style="color:white ; margin-right: 5px">
-            {{ about.instagram }}
-        </h5>
-
-       </div>
-
-       </li>
-
-       </ul>
-
-        <div id="map" class="img-responsive map">
-        </div>
-
+                <div class="d-flex align-items-center ms-auto">
+                    <span class="d-inline me-1">Follow us:</span>
+                    <a href="//www.instagram.com/abbas_lotfinasab?igsh=MmVlMjlkMTBhMg==" class="text-white ms-2 me-2">
+                        <i class="fa-brands fa-instagram fa-2x"></i>
+                    </a>
+                    <a href="//www.linkedin.com/in/abbaslotfinasab" class="text-white ms-2 me-2">
+                        <i class="fa-brands fa-linkedin fa-2x"></i>
+                    </a>
+                </div>
+            </div>
+        </div> <!-- این div را برای بستن copyright اضافه کنید -->
     </div>
-
-  <!-- Copyright -->
-  <div class="p-3 copy" style="background: #151111 ; color: #B1B2B2; direction: ltr">&copy;<span id="year"
-                                    style="font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif'">2023</span><span> Abbas_Lotfinasab. All rights reserved.</span>
-        <a href="//www.instagram.com/abbas_lotfinasab?igsh=MmVlMjlkMTBhMg=="
-           style="right: 0 ; position: absolute ; margin-right:15px">
-            <i class="fa-brands fa-instagram" style="color: #ffffff ; font-size: 30px"></i>
-        </a>
-        <a href="//www.linkedin.com/in/abbaslotfinasab" style="right: 0 ; position: absolute ; margin-right:55px">
-            <i class="fa-brands fa-linkedin" style="color: #ffffff ; font-size: 30px"></i>
-        </a>
-        <span style="right: 0;margin-right: 90px; position: absolute">Follow me:</span>
-    </div>
-  <!-- Copyright -->
 </footer>
 
 </body>
