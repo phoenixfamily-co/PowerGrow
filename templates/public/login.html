@@ -182,7 +182,7 @@ button:hover {
 
 </div>
 
- <div class="container py-5 h-100 my-5">
+ <div class="container py-5 h-100 mt-5">
     <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
             <div class="card bg-dark text-white" style="border-radius: 1rem">
@@ -196,9 +196,12 @@ button:hover {
                             <label class="form-label" for="number">موبایل</label>
                         </div>
 
-                        <div class="form-outline form-white mb-4">
+                        <div class="form-outline form-white mb-4 position-relative">
                             <input type="password" id="password" class="form-control form-control-lg" placeholder="رمز عبور" required />
                             <label class="form-label" for="password">رمز عبور</label>
+                            <span id="togglePassword" class="position-absolute" style="right: 15px; top: 12px; cursor: pointer;">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </span>
                         </div>
 
                         <p class="small mb-4">
@@ -280,16 +283,14 @@ button:hover {
 </body>
 
 <script>
-    const passwordInput = document.getElementById("password")
-    const eye = document.getElementById("eye")
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('password');
 
-    eye.addEventListener("click", function(){
-  this.classList.toggle("fa-eye-slash")
-  const type = passwordInput.getAttribute("type") === "password" ? "text" : "password"
-  passwordInput.setAttribute("type", type)
-})
-
-
+    togglePassword.addEventListener('click', function () {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        this.querySelector('i').classList.toggle('fa-eye-slash');
+    });
 </script>
 
 
