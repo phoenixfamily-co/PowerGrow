@@ -182,63 +182,45 @@ button:hover {
 
 </div>
 
-{#  <div class="container py-5 h-100" style="margin-top: 100px">#}
-{#    <div class="row d-flex justify-content-center align-items-center h-100">#}
-{#      <div class="col-12 col-md-8 col-lg-6 col-xl-5">#}
-{#        <div class="card bg-dark text-white" style="border-radius: 1rem">#}
-{#          <div class="card-body p-5 text-center">#}
-{#            <div class="mb-md-5 mt-md-4 pb-5">#}
-{##}
-{#              <h2 class="fw-bold mb-2 text-uppercase">ورود</h2>#}
-{#              <p class="text-white-50 mb-5">لطفا اطلاعات خود را وارد کنید</p>#}
-{##}
-{#              <div class="form-outline form-white mb-4">#}
-{#                <input type="tel" id="number" class="form-control form-control-lg" placeholder="9123456780" />#}
-{#                <label class="form-label" for="number">موبایل</label>#}
-{#              </div>#}
-{##}
-{#              <div class="form-outline form-white mb-4">#}
-{#                  <input type="password" id="password" class="form-control form-control-lg" placeholder="رمز عبور"/>#}
-{#                  <i id="eye" class="fa fa-eye"></i>#}
-{#                  <label class="form-label" for="password">رمز عبور</label>#}
-{#              </div>#}
-{##}
-{#              <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="{% url 'user:forget' %}">فراموشی رمز عبور ؟</a></p>#}
-{##}
-{#              <button id="submit" class="btn btn-outline-light btn-lg px-5" type="submit">ورود</button>#}
-{##}
-{#            </div>#}
-{##}
-{#            <div>#}
-{#              <p class="mb-0">اکانت ندارید؟ <a href="{% url 'user:register' %}" class="text-white-50 fw-bold">ثبت نام کنید</a>#}
-{#              </p>#}
-{#            </div>#}
-{##}
-{#          </div>#}
-{#        </div>#}
-{#      </div>#}
-{#    </div>#}
-{#  </div>#}
+  <div class="container py-5 h-100" style="margin-top: 100px">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-dark text-white" style="border-radius: 1rem">
+          <div class="card-body p-5 text-center">
+            <div class="mb-md-5 mt-md-4 pb-5">
 
+              <h2 class="fw-bold mb-2 text-uppercase">ورود</h2>
+              <p class="text-white-50 mb-5">لطفا اطلاعات خود را وارد کنید</p>
 
-<div class="login-form">
-        <form>
-            <h3 class="text-center mb-4">ورود</h3>
-            <div class="mb-3">
-                <label for="username" class="form-label">نام کاربری</label>
-                <input type="text" class="form-control" id="username" placeholder="نام کاربری خود را وارد کنید">
+              <div class="form-outline form-white mb-4">
+                <input type="tel" id="number" class="form-control form-control-lg" placeholder="9123456780" />
+                <label class="form-label" for="number">موبایل</label>
+              </div>
+
+              <div class="form-outline form-white mb-4">
+                  <input type="password" id="password" class="form-control form-control-lg" placeholder="رمز عبور"/>
+                  <i id="eye" class="fa fa-eye"></i>
+                  <label class="form-label" for="password">رمز عبور</label>
+              </div>
+
+              <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="{% url 'user:forget' %}">فراموشی رمز عبور ؟</a></p>
+
+              <button id="submit" class="btn btn-outline-light btn-lg px-5" type="submit">ورود</button>
+
             </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">رمز عبور</label>
-                <input type="password" class="form-control" id="password" placeholder="رمز عبور خود را وارد کنید">
+
+            <div>
+              <p class="mb-0">اکانت ندارید؟ <a href="{% url 'user:register' %}" class="text-white-50 fw-bold">ثبت نام کنید</a>
+              </p>
             </div>
-            <button type="submit" class="btn btn-custom w-100">ورود</button>
-            <div class="text-center mt-3">
-                <a href="#" class="form-text">رمز عبور خود را فراموش کرده‌اید؟</a><br>
-                <a href="#" class="form-text">عضویت</a>
-            </div>
-        </form>
+
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+
+
 
 <footer class="text-white pt-4">
     <div class="container-fluid p-0">
