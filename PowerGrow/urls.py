@@ -19,7 +19,7 @@ from django.shortcuts import redirect
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, RedirectView
 
 admin.autodiscover()
 
@@ -35,6 +35,7 @@ urlpatterns = [
     path('seo/', include('Seo.urls', namespace='seo')),
     path('favicon.ico', lambda _: redirect('static/images/logo.jpg', permanent=True)),
     path('update/', TemplateView.as_view(template_name='public/update.html'), name='update'),
+    path('', RedirectView.as_view(url='/home/', permanent=True)),  # ریدایرکت دائمی
 
 ]
 
