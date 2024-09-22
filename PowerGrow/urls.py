@@ -35,7 +35,7 @@ urlpatterns = [
     path('seo/', include('Seo.urls', namespace='seo')),
     path('favicon.ico', lambda _: redirect('static/images/logo.jpg', permanent=True)),
     path('update/', TemplateView.as_view(template_name='public/update.html'), name='update'),
-    path('', RedirectView.as_view(url='/home/', permanent=True)),  # ریدایرکت دائمی
+    path('', RedirectView.as_view(url='home/', permanent=True)),  # ریدایرکت دائمی
 
 ]
 
