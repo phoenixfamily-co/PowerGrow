@@ -580,10 +580,6 @@
     </div>
 </footer>
 
-
-</body>
-
-
 <script>
 
     let lat = {{ about.latitude }};
@@ -845,16 +841,9 @@
     }
 
     card.appendChild(registerButton)
+
     registerButton.addEventListener('click', function () {
-
-
-
-        if (cookieValue !== undefined) {
-            window.location.assign(`/product/payment/${course}/${sessionId}/${dayId}/${currentDayId}`)
-        } else {
-            window.location.assign(`{% url 'user:login'  %}`)
-        }
-
+        window.location.assign(`/product/payment/${course}/${sessionId}/${dayId}/${currentDayId}`)
     })
 
 </script>
@@ -957,4 +946,5 @@
 
 </script>
 
+</body>
 </html>
