@@ -1,8 +1,9 @@
 import json
 from functools import wraps
 
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.http import HttpResponse, JsonResponse
+from django.shortcuts import redirect
 from django.template import loader
 from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_exempt
@@ -267,10 +268,10 @@ def custom_login(request):
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
 
-@api_view(['GET'])
-@session_auth_required
-def check_token(request):
-    return Response({'valid': True})
+def custom_logout(request):
+    logout(request)  # خروج کاربر
+
+    return redirect('login')
 
 
 class RegisterView(generics.CreateAPIView):

@@ -9,7 +9,7 @@ urlpatterns = [
 
     path('login/', login_view, name='login'),
     path('login/api/', custom_login, name='login_api'),
-    path('check/api/', check_token, name='token_check'),
+    path('logout/api/', custom_logout, name='logout_api'),  # ثبت ویو logout
     path('register/', register_view, name='register'),
     path('register/api/', RegisterView.as_view(), name="api_register"),
     path('register/manager/api/', AdminRegisterUser.as_view({'post': 'create'}), name="admin_register"),
