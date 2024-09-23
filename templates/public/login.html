@@ -323,6 +323,7 @@ button:hover {
     const username = document.getElementById('number');
     const pass = document.getElementById('password');
     const submit = document.getElementById('submit');
+    let userRole
 
     if (submit) { // چک کردن وجود دکمه
         submit.addEventListener('click', async (event) => {
@@ -345,7 +346,7 @@ button:hover {
                 const result = await response.json();
 
                 if (response.ok) { // چک کردن وضعیت پاسخ
-                    const userRole = result.user;
+                     userRole = result.user;
                     let redirectUrl;
 
                     if (userRole.is_staff) {
