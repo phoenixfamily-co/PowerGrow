@@ -191,7 +191,7 @@ button:hover {
                     <h2 class="fw-bold mb-2 text-uppercase">ورود</h2>
                     <p class="text-white-50 mb-4">لطفا اطلاعات خود را وارد کنید</p>
                     {% csrf_token %}
-                    <form method="POST" action="{% url 'login' %}">
+                    <form>
                         <div class="form-outline form-white mb-4">
                             <input type="tel" id="number" class="form-control form-control-lg" placeholder="9123456780" required />
                             <label class="form-label" for="number">موبایل</label>
