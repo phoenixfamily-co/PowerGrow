@@ -410,7 +410,7 @@ class ManagerParticipationView(viewsets.ModelViewSet):
                                                              day=week,
                                                              endDay=end,
                                                              startDay=start,
-                                                             price=data["price"],
+                                                             price=int(data["price"]),
                                                              user=user,
                                                              course=course,
                                                              success=True,
