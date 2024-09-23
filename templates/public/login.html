@@ -329,8 +329,8 @@ button:hover {
         submit.addEventListener('click', async (event) => {
             event.preventDefault(); // جلوگیری از ارسال پیش‌فرض فرم
 
-            const username = '+98' + document.getElementById('number').textContent.trim()
-            const password = document.getElementById('password').textContent.trim()
+            const username = '+98' + document.getElementById('number').value.trim()
+            const password = document.getElementById('password').value
 
             console.log(username)
             console.log(password)
