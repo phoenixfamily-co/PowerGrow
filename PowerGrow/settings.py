@@ -52,6 +52,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
     'powergrow.net',
+    'https://powergrow.net/',
 ]
 
 # Application definition
@@ -98,6 +99,7 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
 
+
 AUTH_USER_MODEL = 'User.User'
 
 MIDDLEWARE = [
@@ -111,6 +113,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django_otp.middleware.OTPMiddleware',
 ]
+
+CORS_ALLOWED_ORIGINS = [
+    "https://powergrow.net/",
+    "localhost"
+]
+
+CORS_ALLOW_CREDENTIALS = True
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
