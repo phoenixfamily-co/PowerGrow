@@ -1,3 +1,4 @@
+import json
 from functools import wraps
 
 from django.contrib.auth import login, authenticate
@@ -243,14 +244,16 @@ def admin_user_view(request):
     return HttpResponse(template.render(context, request))
 
 
+@csrf_exempt
 def custom_login(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+        data = json.loads(request.body)  # داده‌ها از JSON خوانده می‌شوند
+        username = data.get('username')
+        password = data.get('password')
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
-            login(request, user)  # ورود کاربر و ذخیره سشن
+            login(request, user)
             return JsonResponse({
                 'message': 'Login successful',
                 'user': {

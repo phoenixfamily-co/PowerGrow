@@ -321,8 +321,6 @@ button:hover {
 <script>
 
    document.addEventListener('DOMContentLoaded', () => {
-       const username = document.getElementById('number');
-       const pass = document.getElementById('password');
        const submit = document.getElementById('submit');
        let redirectUrl;
 
@@ -331,10 +329,12 @@ button:hover {
         submit.addEventListener('click', async (event) => {
             event.preventDefault(); // جلوگیری از ارسال پیش‌فرض فرم
 
-            const param = {
-                username: `+98${username.value}`,
-                password: pass.value,
-            };
+            const username = '+98' + document.getElementById('number').textContent.trim()
+            const password = document.getElementById('password').textContent.trim()
+
+            console.log(username)
+            console.log(password)
+
 
             try {
 
@@ -347,7 +347,7 @@ button:hover {
                         'X-CSRFToken': csrfToken, // اضافه کردن CSRF token
 
                     },
-                    body: JSON.stringify(param),
+                    body: JSON.stringify({ username: username, password: password }) // ارسال username و password
                 });
                 const result = await response.json();
                 JSON.stringify(result)
