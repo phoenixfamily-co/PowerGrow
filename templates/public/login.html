@@ -332,7 +332,7 @@ button:hover {
         };
 
         try {
-            const response = await fetch({% url 'user:token_obtain_pair' %}, {
+            const response = await fetch("{% url 'user:token_obtain_pair' %}", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
