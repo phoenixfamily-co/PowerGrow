@@ -5,7 +5,8 @@ from django.http import JsonResponse
 class SessionAuthMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
-        self.non_auth_paths = ['/user/login/', '/user/login/api/', '/home/', '/sport/', 'about']
+        self.non_auth_paths = ['/user/login/', '/user/login/api/', '/home/', '/sport/', '/about/', '/product/',
+                               '/reservation/']
 
     def __call__(self, request):
         # بررسی مسیرهای غیر حفاظتی
