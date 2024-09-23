@@ -264,7 +264,7 @@ class CustomObtainAuthToken(ObtainAuthToken):
             key='token',
             value=token.key,
             httponly=True,
-            secure=False,
+            secure=True,
             samesite='Lax',
             path='/'  # این گزینه می‌تواند کمک کند تا کوکی در تمام مسیرها قابل دسترسی باشد
         )
@@ -272,6 +272,7 @@ class CustomObtainAuthToken(ObtainAuthToken):
         return response
 
 
+@csrf_exempt
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def check_token(request):
