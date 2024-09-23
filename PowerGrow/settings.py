@@ -116,7 +116,7 @@ MIDDLEWARE = [
 
 JWT_AUTH = {
     # Authorization:Token xxx
-    'JWT_AUTH_HEADER_PREFIX': 'Token',
+    'JWT_AUTH_HEADER_PREFIX': '',
 }
 
 CORS_ALLOWED_ORIGINS = [
