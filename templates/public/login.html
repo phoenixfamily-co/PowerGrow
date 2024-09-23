@@ -323,7 +323,7 @@ button:hover {
     const username = document.getElementById('number');
     const pass = document.getElementById('password');
     const submit = document.getElementById('submit');
-    let userRole = 0
+    let userId
 
     if (submit) { // چک کردن وجود دکمه
         submit.addEventListener('click', async (event) => {
@@ -346,17 +346,18 @@ button:hover {
                 const result = await response.json();
 
                 if (response.ok) { // چک کردن وضعیت پاسخ
-                     userRole = result.user;
+                    const userRole = result.user;
+                    userId = userRole.id
                     let redirectUrl;
 
                     if (userRole.is_staff) {
-                        redirectUrl = `{% url 'user:manager_home' userRole.id %}`;
+                        redirectUrl = `{% url 'user:manager_home' userId%}`;
                     } else if (userRole.is_superuser) {
-                        redirectUrl = `{% url 'user:admin_home' userRole.id %}`;
+                        redirectUrl = `{% url 'user:admin_home' userId %}`;
                     } else if (userRole.is_teacher) {
-                        redirectUrl = `{% url 'user:teacher_home' userRole.id %}`;
+                        redirectUrl = `{% url 'user:teacher_home' userId %}`;
                     } else {
-                        redirectUrl = `{% url 'user:user_home' userRole.id %}`;
+                        redirectUrl = `{% url 'user:user_home' userId %}`;
                     }
 
                     window.location.assign(redirectUrl);
