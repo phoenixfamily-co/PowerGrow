@@ -15,6 +15,7 @@ from rest_framework.authtoken.models import Token
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from About.models import AboutUs
+from PowerGrow.decorators import session_auth_required
 from Product.models import *
 from Reservation.models import Reservations
 from User.serializer import *
@@ -240,15 +241,6 @@ def admin_user_view(request):
         'page_obj': page_obj
     }
     return HttpResponse(template.render(context, request))
-
-
-def session_auth_required(view_func):
-    @wraps(view_func)
-    def _wrapped_view(request, *args, **kwargs):
-        if request.user.is_authenticated:
-            return view_func(request, *args, **kwargs)
-        return JsonResponse({'error': 'Authentication required'}, status=401)
-    return _wrapped_view
 
 
 def custom_login(request):

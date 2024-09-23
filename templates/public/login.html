@@ -2,8 +2,10 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+
 <script src="https://kit.fontawesome.com/f872c5c890.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.css" />
 <script src="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.js"></script>
@@ -319,10 +321,11 @@ button:hover {
 <script>
 
    document.addEventListener('DOMContentLoaded', () => {
-    const username = document.getElementById('number');
-    const pass = document.getElementById('password');
-    const submit = document.getElementById('submit');
-    let redirectUrl;
+       const username = document.getElementById('number');
+       const pass = document.getElementById('password');
+       const submit = document.getElementById('submit');
+       let redirectUrl;
+
 
     if (submit) { // چک کردن وجود دکمه
         submit.addEventListener('click', async (event) => {
@@ -334,10 +337,15 @@ button:hover {
             };
 
             try {
+
+                const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
                 const response = await fetch("{% url 'user:login_api' %}", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
+                        'X-CSRFToken': csrfToken, // اضافه کردن CSRF token
+
                     },
                     body: JSON.stringify(param),
                 });
