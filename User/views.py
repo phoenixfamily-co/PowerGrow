@@ -239,7 +239,7 @@ def admin_user_view(request):
     return HttpResponse(template.render(context, request))
 
 
-class CustomAuthToken(ObtainAuthToken):
+class CustomObtainAuthToken(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
