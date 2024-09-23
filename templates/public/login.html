@@ -190,8 +190,8 @@ button:hover {
                 <div class="card-body p-5 text-center">
                     <h2 class="fw-bold mb-2 text-uppercase">ورود</h2>
                     <p class="text-white-50 mb-4">لطفا اطلاعات خود را وارد کنید</p>
-
-                    <form>
+                    {% csrf_token %}
+                    <form method="POST" action="{% url 'login' %}">
                         <div class="form-outline form-white mb-4">
                             <input type="tel" id="number" class="form-control form-control-lg" placeholder="9123456780" required />
                             <label class="form-label" for="number">موبایل</label>
@@ -208,7 +208,6 @@ button:hover {
                         <p class="small mb-4">
                             <a class="text-white-50" href="{% url 'user:forget' %}">فراموشی رمز عبور؟</a>
                         </p>
-
                         <button class="btn btn-outline-light btn-lg px-5" type="submit">ورود</button>
                     </form>
 
@@ -320,50 +319,53 @@ button:hover {
 
 
 <script>
-
     const username = document.getElementById('number');
     const pass = document.getElementById('password');
-    const submit = document.getElementById('submit')
+    const submit = document.getElementById('submit');
 
-    submit.addEventListener('click',async function () {
+    submit.addEventListener('click', async (event) => {
+        event.preventDefault(); // جلوگیری از ارسال پیش‌فرض فرم
 
         const param = {
-            "username": `+98${username.value}`,
-            "password": pass.value,
-        }
+            username: `+98${username.value}`,
+            password: pass.value,
+        };
 
-    const response = await fetch('login/api/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(param)
+        try {
+            const response = await fetch({% url 'user:token_obtain_pair' %}, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(param),
+            });
+
+            const result = await response.json();
+
+            if (response.ok) { // چک کردن وضعیت پاسخ
+                const userRole = result.user;
+                let redirectUrl;
+
+                if (userRole.is_staff) {
+                    redirectUrl = `/user/home/manager/${userRole.id}/`;
+                } else if (userRole.is_superuser) {
+                    redirectUrl = `/user/home/admin/${userRole.id}/`;
+                } else if (userRole.is_teacher) {
+                    redirectUrl = `/user/home/teacher/${userRole.id}/`;
+                } else {
+                    redirectUrl = `/user/home/user/${userRole.id}/`;
+                }
+
+                window.location.assign(redirectUrl);
+            } else {
+                alert("نام کاربری یا پسورد اشتباه است");
+            }
+        } catch (error) {
+            console.error("Error during login:", error);
+            alert("خطایی در ارتباط با سرور پیش آمد. لطفاً دوباره تلاش کنید.");
+        }
     });
-    const result = await response.json()
-        JSON.stringify(result)
-    if (response.status===200){
-        JSON.stringify(result)
-        document.cookie = `token=${result.token}; max-age=3600*24 ; path=/`
-
-        if (result.user.is_staff===true){
-
-            window.location.assign(`/user/home/manager/${result.user.id}/`)
-
-        }else if (result.user.is_superuser===true){
-
-            window.location.assign(`/user/home/admin/${result.user.id}/`)
-
-        }else if (result.user.is_teacher===true){
-            window.location.assign(`/user/home/teacher/${result.user.id}/`)
-
-        }else {
-            window.location.assign(`/user/home/user/${result.user.id}/`)
-        }
-    }else {
-            alert("نام کاربری یا پسورد اشتباه است")
-    }
-
-    })
-
 </script>
+
+
 </html>

@@ -238,8 +238,7 @@ def admin_user_view(request):
     }
     return HttpResponse(template.render(context, request))
 
-
-class CustomObtainAuthToken(ObtainAuthToken):
+class CustomObtainAuthToken( ObtainAuthToken):
     def post(self, request, *args, **kwargs):
         response = super(CustomObtainAuthToken, self).post(request, *args, **kwargs)
         token = Token.objects.get(key=response.data['token'])
