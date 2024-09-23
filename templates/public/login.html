@@ -351,13 +351,13 @@ button:hover {
                     let role = JSON.parse(JSON.stringify(userRole))
 
                     if (role.is_staff) {
-                        redirectUrl = `/user/home/manager/${userRole.id}/`;
+                        redirectUrl = `/user/home/manager/${role.id}/`;
                     } else if (role.is_superuser) {
-                        redirectUrl = `/user/home/admin/${userRole.id}/`;
+                        redirectUrl = `/user/home/admin/${role.id}/`;
                     } else if (role.is_teacher) {
-                        redirectUrl = `/user/home/teacher/${userRole.id}/`;
+                        redirectUrl = `/user/home/teacher/${role.id}/`;
                     } else {
-                        redirectUrl = `/user/home/user/${userRole.id}/`;
+                        redirectUrl = `/user/home/user/${role.id}/`;
                     }
 
                     window.location.assign(redirectUrl);
