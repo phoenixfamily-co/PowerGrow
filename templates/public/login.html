@@ -351,7 +351,7 @@ button:hover {
                     let redirectUrl;
 
                     if (userRole.is_staff) {
-                        redirectUrl = `{% url 'user:manager_home' userId%}`;
+                        redirectUrl = `{% url 'user:manager_home' userId %}`;
                     } else if (userRole.is_superuser) {
                         redirectUrl = `{% url 'user:admin_home' userId %}`;
                     } else if (userRole.is_teacher) {
