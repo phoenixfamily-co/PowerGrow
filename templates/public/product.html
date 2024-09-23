@@ -353,6 +353,9 @@
 </head>
 <body>
 
+    {% csrf_token %}
+
+
 <nav class="navbar navbar-dark navbar-expand-lg w-100 ">
 
   <!-- Toggler/collapsibe Button -->
@@ -580,10 +583,6 @@
         </div>
     </div>
 </footer>
-
-
-</body>
-
 
 <script>
 
@@ -852,6 +851,9 @@
             const response = await fetch("{% url 'user:token_check' %}", {
                 method: 'GET',
                 credentials: 'include', // اطمینان از ارسال کوکی‌ها
+                 headers: {
+                    'X-CSRFToken': csrftoken
+                }
             });
 
             if (response.ok) {
@@ -968,4 +970,5 @@
 
 </script>
 
+</body>
 </html>
