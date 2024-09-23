@@ -1,4 +1,5 @@
 import json
+from audioop import reverse
 from functools import wraps
 
 from django.contrib.auth import login, authenticate, logout
@@ -271,7 +272,7 @@ def custom_login(request):
 def custom_logout(request):
     logout(request)  # خروج کاربر
 
-    return redirect('login')
+    return redirect(reverse('login'))
 
 
 class RegisterView(generics.CreateAPIView):
