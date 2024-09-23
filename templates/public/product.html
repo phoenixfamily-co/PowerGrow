@@ -847,25 +847,11 @@
     card.appendChild(registerButton)
     registerButton.addEventListener('click', async function () {
 
-        try {
-            const response = await fetch("{% url 'user:token_check' %}", {
-                method: 'GET',
-                credentials: 'include', // اطمینان از ارسال کوکی‌ها
-                 headers: {
-                    'X-CSRFToken': csrftoken
-                }
-            });
 
-            if (response.ok) {
-                const result = await response.json();
-                if (result.valid) {
-                    window.location.assign(`/product/payment/${course}/${sessionId}/${dayId}/${currentDayId}`)                } else {
-                }
-            } else {
-                window.location.assign(`{% url 'user:login'  %}`)
-            }
-        } catch (error) {
-            console.error("Error:", error);
+        if (cookieValue !== undefined) {
+            window.location.assign(`/product/payment/${course}/${sessionId}/${dayId}/${currentDayId}`)
+        } else {
+            window.location.assign(`{% url 'user:login'  %}`)
         }
 
     })
