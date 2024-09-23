@@ -112,6 +112,10 @@ MIDDLEWARE = [
     'django_otp.middleware.OTPMiddleware',
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+
 ROOT_URLCONF = 'PowerGrow.urls'
 
 
