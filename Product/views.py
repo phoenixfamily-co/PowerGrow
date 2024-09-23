@@ -10,6 +10,7 @@ from rest_framework.response import Response
 from rest_framework.utils import json
 from About.models import AboutUs
 from Calendar.models import Day
+from PowerGrow.decorators import session_auth_required
 from User.models import *
 from Product.serializer import *
 from django.conf import settings
@@ -45,6 +46,7 @@ def product_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
+@session_auth_required
 def payment_view(request, pk, session, day, start):
     about = AboutUs.objects.values().first()
     product = Course.objects.filter(id=pk).values().first()
