@@ -263,9 +263,10 @@ class CustomObtainAuthToken(ObtainAuthToken):
         response.set_cookie(
             key='token',
             value=token.key,
-            httponly=True,  # فقط از طریق HTTP قابل دسترسی است
-            secure=True,  # فقط از طریق HTTPS ارسال می‌شود
-            samesite='Lax'  # جلوگیری از ارسال کوکی در درخواست‌های بین‌سایتی
+            httponly=True,
+            secure=False,
+            samesite='Lax',
+            path='/'  # این گزینه می‌تواند کمک کند تا کوکی در تمام مسیرها قابل دسترسی باشد
         )
 
         return response
