@@ -318,6 +318,7 @@ button:hover {
 
 
 <script>
+
    document.addEventListener('DOMContentLoaded', () => {
     const username = document.getElementById('number');
     const pass = document.getElementById('password');
@@ -333,7 +334,7 @@ button:hover {
             };
 
             try {
-                const response = await fetch(apiUrl, {
+                const response = await fetch("{% url 'user:token_obtain_pair' %}", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -348,13 +349,13 @@ button:hover {
                     let redirectUrl;
 
                     if (userRole.is_staff) {
-                        redirectUrl = `/user/home/manager/${userRole.id}/`;
+                        redirectUrl = `{% url 'user:manager_home' userRole.id %}`;
                     } else if (userRole.is_superuser) {
-                        redirectUrl = `/user/home/admin/${userRole.id}/`;
+                        redirectUrl = `{% url 'user:admin_home' userRole.id %}`;
                     } else if (userRole.is_teacher) {
-                        redirectUrl = `/user/home/teacher/${userRole.id}/`;
+                        redirectUrl = `{% url 'user:teacher_home' userRole.id %}`;
                     } else {
-                        redirectUrl = `/user/home/user/${userRole.id}/`;
+                        redirectUrl = `{% url 'user:user_home' userRole.id %}`;
                     }
 
                     window.location.assign(redirectUrl);
