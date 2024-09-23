@@ -323,6 +323,7 @@ button:hover {
     const username = document.getElementById('number');
     const pass = document.getElementById('password');
     const submit = document.getElementById('submit');
+    let result
 
     if (submit) { // چک کردن وجود دکمه
         submit.addEventListener('click', async (event) => {
@@ -341,23 +342,21 @@ button:hover {
                     },
                     body: JSON.stringify(param),
                 });
-
-                const result = await response.json();
+                result = await response.json();
 
                 if (response.ok) { // چک کردن وضعیت پاسخ
+                    result = JSON.parse(JSON.stringify(result))
                     const userRole = result.user;
                     let redirectUrl;
 
-                    let role = JSON.parse(JSON.stringify(userRole))
-
-                    if (role.is_staff) {
-                        redirectUrl = `/user/home/manager/${role.id}/`;
-                    } else if (role.is_superuser) {
-                        redirectUrl = `/user/home/admin/${role.id}/`;
-                    } else if (role.is_teacher) {
-                        redirectUrl = `/user/home/teacher/${role.id}/`;
+                    if (userRole.is_staff) {
+                        redirectUrl = `/user/home/manager/${userRole.id}/`;
+                    } else if (userRole.is_superuser) {
+                        redirectUrl = `/user/home/admin/${userRole.id}/`;
+                    } else if (userRole.is_teacher) {
+                        redirectUrl = `/user/home/teacher/${userRole.id}/`;
                     } else {
-                        redirectUrl = `/user/home/user/${role.id}/`;
+                        redirectUrl = `/user/home/user/${userRole.id}/`;
                     }
 
                     window.location.assign(redirectUrl);
