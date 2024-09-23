@@ -346,36 +346,36 @@ button:hover {
 
 
                 if (response.ok) { // چک کردن وضعیت پاسخ
-                     const userRole = result
+                    const userRole = result
 
-            if (!userRole) {
-                alert("کاربری یافت نشد");
-                return;
+                    if (!userRole) {
+                        alert("کاربری یافت نشد");
+                        return;
+                    }
+
+                    const userId = userRole.user_id; // شناسه کاربر
+                    // دسترسی به ویژگی‌ها
+                    const isStaff = userRole.is_staff;
+                    const isSuperuser = userRole.is_superuser;
+                    const isTeacher = userRole.is_teacher;
+                    if (isStaff) {
+                        redirectUrl = `/user/home/manager/${userId}/`;
+                    } else if (isSuperuser) {
+                        redirectUrl = `/user/home/admin/${userId}/`;
+                    } else if (isTeacher) {
+                        redirectUrl = `/user/home/teacher/${userId}/`;
+                    } else {
+                        redirectUrl = `/user/home/${userId}/`;
+                    }
+
+                    window.location.assign(redirectUrl);
+                } else {
+                    alert("نام کاربری یا پسورد اشتباه است");
+                }
+            } catch (error) {
+                console.error("Error during login:", error);
+                alert("خطایی در ارتباط با سرور پیش آمد. لطفاً دوباره تلاش کنید.");
             }
-
-             userId = userRole.user_id; // شناسه کاربر
-            // دسترسی به ویژگی‌ها
-            const isStaff = userRole.is_staff;
-            const isSuperuser = userRole.is_superuser;
-            const isTeacher = userRole.is_teacher;
-            if (isStaff) {
-                redirectUrl = `/user/home/manager/${userId}/`;
-            } else if (isSuperuser) {
-                redirectUrl = `/user/home/admin/${userId}/`;
-            } else if (isTeacher) {
-                redirectUrl = `/user/home/teacher/${userId}/`;
-            } else {
-                redirectUrl = `/user/home/${userId}/`;
-            }
-
-            window.location.assign(redirectUrl);
-        } else {
-            alert("نام کاربری یا پسورد اشتباه است");
-        }
-    } catch (error) {
-        console.error("Error during login:", error);
-        alert("خطایی در ارتباط با سرور پیش آمد. لطفاً دوباره تلاش کنید.");
-    }
 
         });
     } else {
