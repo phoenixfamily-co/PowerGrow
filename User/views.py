@@ -1,4 +1,7 @@
-from django.http import HttpResponse
+from functools import wraps
+
+from django.contrib.auth import login, authenticate
+from django.http import HttpResponse, JsonResponse
 from django.template import loader
 from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_exempt
@@ -239,17 +242,38 @@ def admin_user_view(request):
     return HttpResponse(template.render(context, request))
 
 
-class CustomObtainAuthToken(ObtainAuthToken):
-    def post(self, request, *args, **kwargs):
-        response = super(CustomObtainAuthToken, self).post(request, *args, **kwargs)
-        token = Token.objects.get(key=response.data['token'])
-        user = User.objects.get(id=token.user_id)
-        return Response({'token': token.key, 'user': GetAccountSerializer(user).data})
+def session_auth_required(view_func):
+    @wraps(view_func)
+    def _wrapped_view(request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return view_func(request, *args, **kwargs)
+        return JsonResponse({'error': 'Authentication required'}, status=401)
+    return _wrapped_view
 
 
-@csrf_exempt
+def custom_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)  # ورود کاربر و ذخیره سشن
+            return JsonResponse({
+                'message': 'Login successful',
+                'user': {
+                    'id': user.id,
+                    'is_staff': user.is_staff,
+                    'is_superuser': user.is_superuser,
+                    'is_teacher': user.is_teacher
+                }
+            }, status=200)
+        return JsonResponse({'error': 'Invalid credentials'}, status=400)
+    return JsonResponse({'error': 'Invalid request'}, status=400)
+
+
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+@session_auth_required
 def check_token(request):
     return Response({'valid': True})
 

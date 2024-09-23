@@ -347,8 +347,6 @@ button:hover {
                 if (response.ok) { // چک کردن وضعیت پاسخ
                     JSON.stringify(result)
 
-                    document.cookie = `token=${result.token}; max-age=3600*24 ; path=/`
-
                     const userRole = result.user
 
                     if (!userRole) {
