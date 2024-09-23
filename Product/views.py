@@ -396,6 +396,10 @@ class ManagerParticipationView(viewsets.ModelViewSet):
         start = Day.objects.filter(id=self.kwargs['start']).first()
         week = Days.objects.filter(id=self.kwargs['day']).first()
         session = Sessions.objects.filter(id=self.kwargs['session']).first()
+        if data["price"]:
+            price = data["price"]
+        else:
+            price = 0
         day = week.title.split("،")
         ids = Day.objects.filter(name__in=day, month__number__gte=start.month.number,
                                  month__year__number__gte=start.month.year.number, holiday=False).exclude(
@@ -410,7 +414,7 @@ class ManagerParticipationView(viewsets.ModelViewSet):
                                                              day=week,
                                                              endDay=end,
                                                              startDay=start,
-                                                             price=int(data["price"]),
+                                                             price=price,
                                                              user=user,
                                                              course=course,
                                                              success=True,
