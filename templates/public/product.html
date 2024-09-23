@@ -848,7 +848,7 @@
     registerButton.addEventListener('click', async function () {
 
 
-        if (cookieValue !== undefined) {
+        if (getCookie('token')) {
             window.location.assign(`/product/payment/${course}/${sessionId}/${dayId}/${currentDayId}`)
         } else {
             window.location.assign(`{% url 'user:login'  %}`)
