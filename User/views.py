@@ -252,7 +252,11 @@ class CustomObtainAuthToken(ObtainAuthToken):
         response = Response({
             'message': 'Login successful',
             'user_id': user.pk,
-            'username': str(user.number)
+            'username': str(user.number),
+            'is_staff': user.is_staff,
+            'is_superuser': user.is_superuser,
+            'is_teacher': user.is_teacher,
+
         })
 
         # تنظیم کوکی با ویژگی‌های HttpOnly و Secure
