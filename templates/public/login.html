@@ -343,15 +343,20 @@ button:hover {
                     body: JSON.stringify(param),
                 });
                 const result = await response.json();
-
+                JSON.stringify(result)
 
                 if (response.ok) { // چک کردن وضعیت پاسخ
-                    const userRole = result
+                    JSON.stringify(result)
+
+                    const userRole = result.user
 
                     if (!userRole) {
                         alert("کاربری یافت نشد");
                         return;
                     }
+
+                    document.cookie = `token=${result.token}; max-age=3600*24 ; path=/`
+
 
                     const userId = userRole.user_id; // شناسه کاربر
                     // دسترسی به ویژگی‌ها

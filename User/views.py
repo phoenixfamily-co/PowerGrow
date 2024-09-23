@@ -241,35 +241,10 @@ def admin_user_view(request):
 
 class CustomObtainAuthToken(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
-        serializer = self.serializer_class(data=request.data)
-        serializer.is_valid(raise_exception=True)
-
-        # احراز هویت کاربر
-        user = serializer.validated_data['user']
-        token, _ = Token.objects.get_or_create(user=user)
-
-        # ایجاد پاسخ و تنظیم کوکی
-        response = Response({
-            'message': 'Login successful',
-            'user_id': user.pk,
-            'username': str(user.number),
-            'is_staff': user.is_staff,
-            'is_superuser': user.is_superuser,
-            'is_teacher': user.is_teacher,
-
-        })
-
-        # تنظیم کوکی با ویژگی‌های HttpOnly و Secure
-        response.set_cookie(
-            key='token',
-            value=token.key,
-            httponly=True,
-            secure=True,
-            samesite='Lax',
-            path='/'  # این گزینه می‌تواند کمک کند تا کوکی در تمام مسیرها قابل دسترسی باشد
-        )
-
-        return response
+        response = super(CustomObtainAuthToken, self).post(request, *args, **kwargs)
+        token = Token.objects.get(key=response.data['token'])
+        user = User.objects.get(id=token.user_id)
+        return Response({'token': token.key, 'user': GetAccountSerializer(user).data})
 
 
 @csrf_exempt
