@@ -272,7 +272,7 @@ def custom_login(request):
 def custom_logout(request):
     logout(request)  # خروج کاربر
 
-    return redirect(reverse('login'))
+    return redirect('login')
 
 
 class RegisterView(generics.CreateAPIView):
