@@ -334,7 +334,7 @@ button:hover {
             };
 
             try {
-                const response = await fetch("{% url 'user:token_obtain_pair' %}", {
+                const response = await fetch("{% url 'user:login_api' %}", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
