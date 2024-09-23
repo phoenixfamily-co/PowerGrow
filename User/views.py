@@ -346,7 +346,6 @@ class GetAccount(generics.ListAPIView, ):
         return queryset
 
 
-@permission_classes([IsAdminUser])
 class GetAllAccount(generics.ListCreateAPIView, ):
     queryset = User.objects.all()
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
