@@ -114,6 +114,11 @@ MIDDLEWARE = [
     'django_otp.middleware.OTPMiddleware',
 ]
 
+JWT_AUTH = {
+    # Authorization:Token xxx
+    'JWT_AUTH_HEADER_PREFIX': 'Token',
+}
+
 CORS_ALLOWED_ORIGINS = [
     "https://powergrow.net/",
     "localhost"
