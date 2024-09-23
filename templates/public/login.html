@@ -323,7 +323,7 @@ button:hover {
     const username = document.getElementById('number');
     const pass = document.getElementById('password');
     const submit = document.getElementById('submit');
-    let result
+    let redirectUrl;
 
     if (submit) { // چک کردن وجود دکمه
         submit.addEventListener('click', async (event) => {
@@ -342,31 +342,41 @@ button:hover {
                     },
                     body: JSON.stringify(param),
                 });
-                result = await response.json();
+                const result = await response.json();
+
 
                 if (response.ok) { // چک کردن وضعیت پاسخ
-                    result = JSON.parse(JSON.stringify(result))
-                    const userRole = result.user;
-                    let redirectUrl;
+                     const userRole = result
 
-                    if (userRole.is_staff) {
-                        redirectUrl = `/user/home/manager/${userRole.id}/`;
-                    } else if (userRole.is_superuser) {
-                        redirectUrl = `/user/home/admin/${userRole.id}/`;
-                    } else if (userRole.is_teacher) {
-                        redirectUrl = `/user/home/teacher/${userRole.id}/`;
-                    } else {
-                        redirectUrl = `/user/home/user/${userRole.id}/`;
-                    }
-
-                    window.location.assign(redirectUrl);
-                } else {
-                    alert("نام کاربری یا پسورد اشتباه است");
-                }
-            } catch (error) {
-                console.error("Error during login:", error);
-                alert("خطایی در ارتباط با سرور پیش آمد. لطفاً دوباره تلاش کنید.");
+            if (!userRole) {
+                alert("کاربری یافت نشد");
+                return;
             }
+
+             userId = userRole.user_id; // شناسه کاربر
+            // دسترسی به ویژگی‌ها
+            const isStaff = userRole.is_staff;
+            const isSuperuser = userRole.is_superuser;
+            const isTeacher = userRole.is_teacher;
+            if (isStaff) {
+                redirectUrl = `/user/home/manager/${userId}/`;
+            } else if (isSuperuser) {
+                redirectUrl = `/user/home/admin/${userId}/`;
+            } else if (isTeacher) {
+                redirectUrl = `/user/home/teacher/${userId}/`;
+            } else {
+                redirectUrl = `/user/home/${userId}/`;
+            }
+
+            window.location.assign(redirectUrl);
+        } else {
+            alert("نام کاربری یا پسورد اشتباه است");
+        }
+    } catch (error) {
+        console.error("Error during login:", error);
+        alert("خطایی در ارتباط با سرور پیش آمد. لطفاً دوباره تلاش کنید.");
+    }
+
         });
     } else {
         console.error("Submit button not found");
