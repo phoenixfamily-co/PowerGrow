@@ -353,9 +353,6 @@
 </head>
 <body>
 
-    {% csrf_token %}
-
-
 <nav class="navbar navbar-dark navbar-expand-lg w-100 ">
 
   <!-- Toggler/collapsibe Button -->
@@ -583,6 +580,10 @@
         </div>
     </div>
 </footer>
+
+
+</body>
+
 
 <script>
 
@@ -845,10 +846,9 @@
     }
 
     card.appendChild(registerButton)
-    registerButton.addEventListener('click', async function () {
+    registerButton.addEventListener('click', function () {
 
 
-        console.log(cookieValue)
 
         if (cookieValue !== undefined) {
             window.location.assign(`/product/payment/${course}/${sessionId}/${dayId}/${currentDayId}`)
@@ -958,5 +958,4 @@
 
 </script>
 
-</body>
 </html>
