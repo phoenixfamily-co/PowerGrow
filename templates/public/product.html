@@ -848,6 +848,8 @@
     registerButton.addEventListener('click', async function () {
 
 
+        console.log(cookieValue)
+
         if (cookieValue !== undefined) {
             window.location.assign(`/product/payment/${course}/${sessionId}/${dayId}/${currentDayId}`)
         } else {
