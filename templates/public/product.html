@@ -849,7 +849,7 @@
     registerButton.addEventListener('click', async function () {
 
         try {
-            const response = await fetch('/api/check_token/', {
+            const response = await fetch("{% url 'user:token_check' %}", {
                 method: 'GET',
                 credentials: 'include', // اطمینان از ارسال کوکی‌ها
             });
