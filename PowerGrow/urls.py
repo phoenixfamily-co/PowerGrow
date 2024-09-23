@@ -25,7 +25,6 @@ admin.autodiscover()
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("api-auth/", include("rest_framework.urls")),
     path('home/', include('Home.urls', namespace='home')),
     path('product/', include('Product.urls', namespace='product')),
     path('reservation/', include('Reservation.urls', namespace='reservation')),
