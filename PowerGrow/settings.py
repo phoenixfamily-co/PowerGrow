@@ -206,3 +206,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Base url to serve images files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '/home/powergro/public_html/media/')
+
+
+LOGIN_URL = '/user/login/'  # URL سفارشی شما
+LOGIN_REDIRECT_URL = '/'  # URL بعد از ورود موفق

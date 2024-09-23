@@ -7,7 +7,7 @@ app_name = 'user'
 
 urlpatterns = [
 
-    path('', login_view, name='login'),
+    path('login/', login_view, name='login'),
     path('login/api/', CustomObtainAuthToken.as_view(), name='token_obtain_pair'),
     path('check/api/', check_token, name='token_check'),
     path('register/', register_view, name='register'),
