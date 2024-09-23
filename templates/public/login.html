@@ -348,7 +348,7 @@ button:hover {
                 if (response.ok) { // چک کردن وضعیت پاسخ
                     JSON.stringify(result)
 
-                    const userRole = JSON.stringify(result).user
+                    const userRole = result.user
 
                     if (!userRole) {
                         alert("کاربری یافت نشد");
@@ -358,7 +358,7 @@ button:hover {
                     document.cookie = `token=${result.token}; max-age=3600*24 ; path=/`
 
 
-                    const userId = userRole.user_id; // شناسه کاربر
+                    const userId = userRole.id; // شناسه کاربر
                     // دسترسی به ویژگی‌ها
                     const isStaff = userRole.is_staff;
                     const isSuperuser = userRole.is_superuser;
