@@ -348,6 +348,9 @@ button:hover {
                     const userRole = result.user;
                     let redirectUrl;
 
+                    console.log(result);
+
+
                     if (userRole.is_staff) {
                         redirectUrl = `/user/home/manager/${userRole.id}/`;
                     } else if (userRole.is_superuser) {
