@@ -348,7 +348,7 @@ button:hover {
                 if (response.ok) { // چک کردن وضعیت پاسخ
                     JSON.stringify(result)
 
-                    const userRole = result.user
+                    const userRole = JSON.stringify(result).user
 
                     if (!userRole) {
                         alert("کاربری یافت نشد");
