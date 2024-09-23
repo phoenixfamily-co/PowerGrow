@@ -9,7 +9,7 @@ urlpatterns = [
 
     path('', login_view, name='login'),
     path('login/api/', CustomObtainAuthToken.as_view(), name='token_obtain_pair'),
-    path('ceheck/api/', check_token, name='token_check'),
+    path('check/api/', check_token, name='token_check'),
     path('register/', register_view, name='register'),
     path('register/api/', RegisterView.as_view(), name="api_register"),
     path('register/manager/api/', AdminRegisterUser.as_view({'post': 'create'}), name="admin_register"),
