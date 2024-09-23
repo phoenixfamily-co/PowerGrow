@@ -280,7 +280,6 @@ button:hover {
     </div>
 </footer>
 
-</body>
 
 <script>
     const togglePassword = document.getElementById('togglePassword');
@@ -319,53 +318,59 @@ button:hover {
 
 
 <script>
+   document.addEventListener('DOMContentLoaded', () => {
     const username = document.getElementById('number');
     const pass = document.getElementById('password');
     const submit = document.getElementById('submit');
 
-    submit.addEventListener('click', async (event) => {
-        event.preventDefault(); // جلوگیری از ارسال پیش‌فرض فرم
+    if (submit) { // چک کردن وجود دکمه
+        submit.addEventListener('click', async (event) => {
+            event.preventDefault(); // جلوگیری از ارسال پیش‌فرض فرم
 
-        const param = {
-            username: `+98${username.value}`,
-            password: pass.value,
-        };
+            const param = {
+                username: `+98${username.value}`,
+                password: pass.value,
+            };
 
-        try {
-            const response = await fetch("{% url 'user:token_obtain_pair' %}", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(param),
-            });
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(param),
+                });
 
-            const result = await response.json();
+                const result = await response.json();
 
-            if (response.ok) { // چک کردن وضعیت پاسخ
-                const userRole = result.user;
-                let redirectUrl;
+                if (response.ok) { // چک کردن وضعیت پاسخ
+                    const userRole = result.user;
+                    let redirectUrl;
 
-                if (userRole.is_staff) {
-                    redirectUrl = `/user/home/manager/${userRole.id}/`;
-                } else if (userRole.is_superuser) {
-                    redirectUrl = `/user/home/admin/${userRole.id}/`;
-                } else if (userRole.is_teacher) {
-                    redirectUrl = `/user/home/teacher/${userRole.id}/`;
+                    if (userRole.is_staff) {
+                        redirectUrl = `/user/home/manager/${userRole.id}/`;
+                    } else if (userRole.is_superuser) {
+                        redirectUrl = `/user/home/admin/${userRole.id}/`;
+                    } else if (userRole.is_teacher) {
+                        redirectUrl = `/user/home/teacher/${userRole.id}/`;
+                    } else {
+                        redirectUrl = `/user/home/user/${userRole.id}/`;
+                    }
+
+                    window.location.assign(redirectUrl);
                 } else {
-                    redirectUrl = `/user/home/user/${userRole.id}/`;
+                    alert("نام کاربری یا پسورد اشتباه است");
                 }
-
-                window.location.assign(redirectUrl);
-            } else {
-                alert("نام کاربری یا پسورد اشتباه است");
+            } catch (error) {
+                console.error("Error during login:", error);
+                alert("خطایی در ارتباط با سرور پیش آمد. لطفاً دوباره تلاش کنید.");
             }
-        } catch (error) {
-            console.error("Error during login:", error);
-            alert("خطایی در ارتباط با سرور پیش آمد. لطفاً دوباره تلاش کنید.");
-        }
-    });
+        });
+    } else {
+        console.error("Submit button not found");
+    }
+});
 </script>
 
-
+</body>
 </html>
