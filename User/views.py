@@ -238,12 +238,33 @@ def admin_user_view(request):
     }
     return HttpResponse(template.render(context, request))
 
-class CustomObtainAuthToken( ObtainAuthToken):
+
+class CustomAuthToken(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
-        response = super(CustomObtainAuthToken, self).post(request, *args, **kwargs)
-        token = Token.objects.get(key=response.data['token'])
-        user = User.objects.get(id=token.user_id)
-        return Response({'token': token.key, 'user': GetAccountSerializer(user).data})
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        # احراز هویت کاربر
+        user = serializer.validated_data['user']
+        token, _ = Token.objects.get_or_create(user=user)
+
+        # ایجاد پاسخ و تنظیم کوکی
+        response = Response({
+            'message': 'Login successful',
+            'user_id': user.pk,
+            'username': user.username
+        })
+
+        # تنظیم کوکی با ویژگی‌های HttpOnly و Secure
+        response.set_cookie(
+            key='token',
+            value=token.key,
+            httponly=True,  # فقط از طریق HTTP قابل دسترسی است
+            secure=True,  # فقط از طریق HTTPS ارسال می‌شود
+            samesite='Lax'  # جلوگیری از ارسال کوکی در درخواست‌های بین‌سایتی
+        )
+
+        return response
 
 
 class RegisterView(generics.CreateAPIView):
