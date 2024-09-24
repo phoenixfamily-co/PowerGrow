@@ -311,11 +311,6 @@
 
     async function register() {
 
-        const cookieValue = document.cookie
-        .split("; ")
-        .find((row) => row.startsWith("token="))
-        ?.split("=")[1];
-
         const param = {
             "title": "{{ gym.title }}",
             "day": parseInt(day),
@@ -329,7 +324,6 @@
         const response = await fetch("{% url 'product:participate' %}", {
         method: 'POST',
         headers: {
-            'Authorization': `token  ${cookieValue}`,
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         },
