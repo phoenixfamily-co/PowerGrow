@@ -791,7 +791,7 @@
 <script>
 
     let counter = 0
-    let activity = "{{product.active}}" === "true";
+    let activity = JSON.parse("{{product.active}}");
     let capacity = "{{product.capacity}}";
     let course = "{{ product.id }}";
     const card = document.getElementById("card")
