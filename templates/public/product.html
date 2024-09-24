@@ -791,7 +791,6 @@
 <script>
 
     let counter = 0
-    let activity = JSON.parse("{{product.active}}");
     let capacity = "{{product.capacity}}";
     let course = "{{ product.id }}";
     const card = document.getElementById("card")
@@ -804,11 +803,6 @@
     let monthDay = parseInt(today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
 
     const thisDate = jalaali.j2d(year, month, monthDay)
-
-    const cookieValue = document.cookie
-        .split("; ")
-        .find((row) => row.startsWith("token="))
-        ?.split("=")[1];
 
 
     {% for x in participants.all %}
@@ -831,17 +825,12 @@
     capacityNumber.innerHTML = `${counter}/${parseInt(capacity)}`
 
 
-    if (activity) {
-        if (parseInt(counter) < parseInt(capacity)) {
+    if (parseInt(counter) < parseInt(capacity)) {
         registerButton.disabled = false;
         registerButton.innerHTML = "ثبت نام کنید";
     } else {
         registerButton.disabled = true;
         registerButton.innerHTML = "ظرفیت تکمیل است";
-    }
-} else {
-    registerButton.disabled = true;
-    registerButton.innerHTML = "دوره منقضی شده است";
 }
 
     card.appendChild(registerButton)
