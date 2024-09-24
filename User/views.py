@@ -1,6 +1,4 @@
 import json
-from audioop import reverse
-from functools import wraps
 
 from django.contrib.auth import login, authenticate, logout
 from django.http import HttpResponse, JsonResponse
@@ -10,15 +8,12 @@ from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_exempt
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics, status, viewsets, filters
-from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAdminUser
 from rest_framework.response import Response
-from rest_framework.authtoken.models import Token
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from About.models import AboutUs
-from PowerGrow.decorators import session_auth_required
 from Product.models import *
 from Reservation.models import Reservations
 from User.serializer import *
@@ -35,7 +30,7 @@ def login_view(request):
         "about": about,
         "sport": sport,
     }
-    i
+
     return HttpResponse(template.render(context, request))
 
 
