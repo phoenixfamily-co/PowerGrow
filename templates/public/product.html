@@ -831,7 +831,8 @@
     capacityNumber.innerHTML = `${counter}/${parseInt(capacity)}`
 
 
-    if (activity ===True) {
+    console.log(activity)
+
 
         if (parseInt(counter) < parseInt(capacity)) {
             registerButton.disabled = false
@@ -841,11 +842,6 @@
             registerButton.disabled = true
             registerButton.innerHTML = "ظرفیت تکمیل است"
         }
-
-    }else {
-        registerButton.disabled = true
-        registerButton.innerHTML = "دوره منقضی شده است"
-    }
 
     card.appendChild(registerButton)
 
