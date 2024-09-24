@@ -343,7 +343,7 @@ class ParticipationView(viewsets.ViewSet):
         data = request.data
 
         # Validate required fields
-        required_fields = ['price', 'description', 'session', 'day', 'start', 'course', 'title']
+        required_fields = ['price', 'description', 'session', 'day', 'startDay', 'course', 'title']
         for field in required_fields:
             if field not in data:
                 return Response({'error': f'Missing field: {field}'}, status=status.HTTP_400_BAD_REQUEST)
