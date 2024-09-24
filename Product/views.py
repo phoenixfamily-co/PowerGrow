@@ -326,6 +326,8 @@ class SessionView(viewsets.ModelViewSet):
         return Response(status=status.HTTP_202_ACCEPTED)
 
 
+# This class uses ZP_API_REQUEST, STARTPAY, calback
+
 class ParticipationView(viewsets.ViewSet):
     queryset = Participants.objects.all()
     serializer_class = ParticipantsSerializer
@@ -335,7 +337,7 @@ class ParticipationView(viewsets.ViewSet):
         queryset = Participants.objects.filter(user=self.request.user.id)
         return queryset
 
-    def create(self, serializer):
+    def create(self, request):
         data = self.request.data
         authority_data = {
             "MerchantID": settings.MERCHANT,
@@ -359,8 +361,7 @@ class ParticipationView(viewsets.ViewSet):
                 ids = Day.objects.filter(name__in=day, month__number__gte=start.month.number,
                                          month__year__number__gte=start.month.year.number, holiday=False).exclude(
                     month__number=start.month.number,
-                    number__lt=start.number) \
-                          .order_by('pk').values_list('pk', flat=True)[:int(session.number)]
+                    number__lt=start.number).order_by('pk').values_list('pk', flat=True)[:int(session.number)]
                 end = Day.objects.filter(pk__in=list(ids)).last()
                 Participants.objects.update_or_create(title=data["title"],
                                                       description=data["description"],
@@ -382,6 +383,39 @@ class ParticipationView(viewsets.ViewSet):
             return Response({'error': 'Failed to decode response JSON'}, status=status.HTTP_400_BAD_REQUEST)
         except KeyError:
             return Response({'error': 'Missing expected key in response JSON'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(('POST',))
+def verify(request):
+    participants = Participants.objects.get(authority=request.GET.get('Authority', ''))
+    about = AboutUs.objects.values().first()
+    sport = Sport.objects.all().values()
+
+    context = {
+        "about": about,
+        "sport": sport,
+        "participants": participants
+    }
+
+    authority_data = {
+        "MerchantID": settings.MERCHANT,
+        "Authority": participants.authority,
+        "Amount": participants.price
+    }
+
+    data = json.dumps(authority_data)
+    headers = {'content-type': 'application/json', 'content-length': str(len(data))}
+    response = requests.post(ZP_API_VERIFY, data=data, headers=headers)
+    response = response.json()
+    if response['Status'] == 100:
+        template = loader.get_template('public/check.html')
+        participants.success = True
+        participants.save()
+        return HttpResponse(template.render(context, request))
+    else:
+        template = loader.get_template('public/error.html')
+        participants.delete()
+        return HttpResponse(template.render(context, request))
 
 
 class ManagerParticipationView(viewsets.ModelViewSet):
@@ -427,7 +461,7 @@ class ManagerParticipationView(viewsets.ModelViewSet):
                                  month__year__number__gte=start.month.year.number, holiday=False).exclude(
             month__number=start.month.number,
             number__lt=start.number) \
-            .order_by('pk').values_list('pk', flat=True)[:int(session.number)]
+                  .order_by('pk').values_list('pk', flat=True)[:int(session.number)]
         end = Day.objects.filter(pk__in=list(ids)).last()
 
         Participants.objects.filter(id=kwargs.get('id')).update(session=session,
@@ -457,43 +491,12 @@ class SportView(viewsets.ModelViewSet):
     serializer_class = SportSerializer
 
 
+# This class use zp_api_request
+
 class CourseUserView(generics.ListAPIView):
     queryset = Participants.objects.all()
     serializer_class = ParticipantsUserSerializer
     lookup_field = "id"
-
-
-@api_view(('GET',))
-def verify(request):
-    participants = Participants.objects.get(authority=request.GET.get('Authority', ''))
-    about = AboutUs.objects.values().first()
-    sport = Sport.objects.all().values()
-
-    context = {
-        "about": about,
-        "sport": sport,
-        "participants": participants
-    }
-
-    authority_data = {
-        "MerchantID": settings.MERCHANT,
-        "Authority": participants.authority,
-        "Amount": participants.price
-    }
-
-    data = json.dumps(authority_data)
-    headers = {'content-type': 'application/json', 'content-length': str(len(data))}
-    response = requests.post(ZP_API_VERIFY, data=data, headers=headers)
-    response = response.json()
-    if response['Status'] == 100:
-        template = loader.get_template('public/check.html')
-        participants.success = True
-        participants.save()
-        return HttpResponse(template.render(context, request))
-    else:
-        template = loader.get_template('public/error.html')
-        participants.delete()
-        return HttpResponse(template.render(context, request))
 
 
 @permission_classes([IsAdminUser])
