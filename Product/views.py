@@ -3,7 +3,6 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponse
 from django.template import loader
 from django.views.decorators.cache import cache_page
-from django.views.decorators.csrf import csrf_exempt
 from rest_framework import viewsets, filters, generics, status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
@@ -362,8 +361,8 @@ class ParticipationView(viewsets.ViewSet):
 
             if response_data.get('Status') == 100:
                 session = Sessions.objects.get(id=data["session"])
-                week = Days.objects.get(id=data["day"])
-                start = Day.objects.get(id=data["startDay"])
+                week = Days.objects.filter(id=data["day"]).first()
+                start = Day.objects.filter(id=data["startDay"]).first()
                 course = Course.objects.get(id=data["course"])
 
                 day = week.title.split("،")
@@ -379,7 +378,7 @@ class ParticipationView(viewsets.ViewSet):
                     'title': data["title"],
                     'description': data["description"],
                     'startDay': start.id,
-                    'endDay': end.id,
+                    'endDay': end,
                     'session': session.id,
                     'day': week.id,
                     'price': data["price"],
