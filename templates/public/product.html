@@ -791,7 +791,7 @@
 <script>
 
     let counter = 0
-    let activity = "{{product.active}}"
+    let activity = Boolean("{{product.active}}")
     let capacity = "{{product.capacity}}";
     let course = "{{ product.id }}";
     const card = document.getElementById("card")
@@ -831,8 +831,7 @@
     capacityNumber.innerHTML = `${counter}/${parseInt(capacity)}`
 
 
-    console.log(activity)
-
+    if (activity ===true) {
 
         if (parseInt(counter) < parseInt(capacity)) {
             registerButton.disabled = false
@@ -842,6 +841,11 @@
             registerButton.disabled = true
             registerButton.innerHTML = "ظرفیت تکمیل است"
         }
+
+    }else {
+        registerButton.disabled = true
+        registerButton.innerHTML = "دوره منقضی شده است"
+    }
 
     card.appendChild(registerButton)
 
