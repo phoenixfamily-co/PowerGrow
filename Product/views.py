@@ -3,6 +3,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponse
 from django.template import loader
 from django.views.decorators.cache import cache_page
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework import viewsets, filters, generics, status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
@@ -328,9 +329,11 @@ class SessionView(viewsets.ModelViewSet):
         return Response(status=status.HTTP_202_ACCEPTED)
 
 
+@csrf_exempt
 class ParticipationView(viewsets.ViewSet):
     queryset = Participants.objects.all()
     serializer_class = ParticipantsSerializer
+    permission_classes = [IsAuthenticated]
 
     def list(self):
         queryset = Participants.objects.filter(user=self.request.user.id)
