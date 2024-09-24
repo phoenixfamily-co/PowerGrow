@@ -22,19 +22,25 @@
             url("/static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */ url("../../static/fonts/BYekan.ttf") format('truetype') /* Safari, Android, iOS */
         }
 
-             * {
-            box-sizing: border-box
+           html, body {
+            margin: 0;
+            padding: 0 ;
+            overflow-x: hidden;
+               background: #312f2e;
+            font-family: BYekan, serif !important;
         }
 
-           .logoHolder {
-               width: 50px;
-               position: absolute;
-               left: 0;
-               right: 0;
-               margin-right: 55%;
-               margin-top: 1%;
-               z-index: 10 !important;
-               direction: ltr;
+
+             .logoHolder {
+            width: 100%;
+            position: absolute;
+            margin-top: 20px;
+            left: 0;
+            display: flex;
+            z-index: 10 !important;
+            direction: ltr;
+            align-items: center;
+            justify-content: center;
 
         }
 
@@ -42,50 +48,14 @@
             width: 50px;
             height: 50px;
             border-radius: 25px;
-            position: absolute;
-            direction: ltr
 
         }
 
         .typography {
-            position: absolute;
-            margin-left: 60px;
-            margin-top: 20%;
             color: white;
-            font-size: 20px
+            font-size: 20px;
+            margin-left: 10px;
 
-        }
-           html {
-               min-height: 100%;
-               position: relative;
-               font-family: BYekan, serif !important;
-           }
-
-           body {
-               direction: rtl;
-               background: #282a36;
-
-           }
-
-           .navbar.navbar-dark.bg-dark li a{
-            color: #fff;
-        }
-
-          .navbar.navbar-dark.bg-dark a:hover{
-              color: grey;
-        }
-
-       .nav.navbar-nav li a {
-           color: #fff;
-           text-decoration: none;
-       }
-
-        .nav.navbar-nav a:hover {
-            color: grey;
-        }
-
-        .nav-pills > li > a.active {
-            background-color: #E16539 !important;
         }
 
            .wrimagecard {
@@ -210,19 +180,46 @@
            </a>
       </div>
 	</div>
+
+        <div class="col-md-3 col-sm-4">
+      <div class="wrimagecard wrimagecard-topimage">
+             <a href='{% url 'home:home' %}'>
+          <div class="wrimagecard-topimage_header" style="background-color:rgba(225,101,57,0.1) ; text-align: center; ">
+              <i class="fa fa-solid fa-house " aria-hidden="true" style="display: inline-block ; color: rgba(225,101,57,0.9) "></i>
+          </div>
+          <div class="wrimagecard-topimage_title" style="text-align: center">
+            <h4 style="display: inline-block">پروفایل</h4>
+          </div>
+           </a>
+      </div>
+	</div>
+
+        <div class="col-md-3 col-sm-4">
+      <div class="wrimagecard wrimagecard-topimage">
+             <a href='{% url 'home:home' %}'>
+          <div class="wrimagecard-topimage_header" style="background-color:rgba(225,101,57,0.1) ; text-align: center; ">
+              <i class="fa fa-solid fa-house " aria-hidden="true" style="display: inline-block ; color: rgba(225,101,57,0.9) "></i>
+          </div>
+          <div class="wrimagecard-topimage_title" style="text-align: center">
+            <h4 style="display: inline-block">صفحه اصلی</h4>
+          </div>
+           </a>
+      </div>
+	</div>
+          <div class="col-md-3 col-sm-4">
+      <div class="wrimagecard wrimagecard-topimage">
+             <a href='{% url 'user:logout_api' %}'>
+          <div class="wrimagecard-topimage_header" style="background-color:rgba(121,71,71,0.1) ; text-align: center; ">
+              <i class="fa fa-solid fa-right-from-bracket" aria-hidden="true" style="display: inline-block ; color: rgba(121,71,71,0.9) "></i>
+          </div>
+          <div class="wrimagecard-topimage_title" style="text-align: center">
+            <h4 style="display: inline-block">خروج</h4>
+          </div>
+           </a>
+      </div>
+	</div>
 </div>
 </div>
 </body>
-
-<script>
-
-    function logout() {
-
-        document.cookie = 'token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-
-    window.location.replace('{% url 'user:login' %}');
-    }
-
-</script>
 
 </html>
