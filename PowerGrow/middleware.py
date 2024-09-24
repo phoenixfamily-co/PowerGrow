@@ -1,5 +1,6 @@
 import re
 from django.http import JsonResponse
+from django.shortcuts import redirect
 
 
 class SessionAuthMiddleware:
@@ -15,6 +16,6 @@ class SessionAuthMiddleware:
                 return self.get_response(request)
 
         if not request.user.is_authenticated:
-            return JsonResponse({'error': 'Authentication required'}, status=401)
+            return redirect('user:login')
 
         return self.get_response(request)
