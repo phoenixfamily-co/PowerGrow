@@ -360,7 +360,7 @@ class ParticipationView(viewsets.ViewSet):
             response_data = response.json()
 
             if response_data.get('Status') == 100:
-                session = Sessions.objects.get(id=data["session"])
+                session = Sessions.objects.filter(id=data["session"]).first()
                 week = Days.objects.filter(id=data["day"]).first()
                 start = Day.objects.filter(id=data["startDay"]).first()
                 course = Course.objects.get(id=data["course"])
