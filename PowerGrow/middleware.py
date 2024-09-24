@@ -10,7 +10,7 @@ class SessionAuthMiddleware:
                                '/reservation/', '/calendar/api/year/', '/user/register/', '/user/register/api/'
                                '/user/register/', '/user/verification/', '/user/verification/api/',
                                '/user/forget/', '/user/forget/api/', '/user/verification/password/',
-                               '/user/verification/password/api/']
+                               '/user/verification/password/api/', 'product/api/participate/']
 
     def __call__(self, request):
         # بررسی مسیرهای غیر حفاظتی
