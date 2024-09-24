@@ -11,6 +11,9 @@
     {% bootstrap_css %}
     {% bootstrap_javascript %}
 
+        <title>پنل کاربری</title>
+
+
     <style>
 
            @font-face {
@@ -31,7 +34,7 @@
         }
 
 
-             .logoHolder {
+           .logoHolder {
             width: 100%;
             position: absolute;
             margin-top: 20px;
@@ -63,7 +66,7 @@
                margin-bottom: 1.5rem;
                text-align: left;
                position: relative;
-               background: #fff;
+               background: #f7f0e8;
                box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.15);
                border-radius: 4px;
                transition: all 0.3s ease;
@@ -99,29 +102,9 @@
 
 
     </style>
-    <title>PowerGrow</title>
+
 </head>
 <body>
-
-
-<nav class="navbar navbar-dark bg-dark">
-  <div class="container-fluid" style="vertical-align: center">
-<ul class="nav nav-pills">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href='{% url 'home:home' %}'>ورود به سایت</a>
-  </li>
-</ul>
-  <ul class="nav nav-pills navbar-left">
-      <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">سلام {{ user.name }} عزیز</a>
-    <ul class="dropdown-menu dropdown-menu-right">
-        <li><a style="color: black ; width: 100% ; text-align: center" class="dropdown-item" href='{% url 'user:profile' user.id %}'>پروفایل</a></li>
-        <li><a style="color: black ; width: 100% ; text-align: center" class="dropdown-item" href="javascript:logout()">خروج</a></li>
-    </ul>
-  </li>
-    </ul>
-  </div>
-</nav>
 
 <div class="logoHolder">
 
@@ -130,7 +113,7 @@
 
 </div>
 
-<div class="container-fluid" style="margin-top: 200px">
+<div class="container-fluid" style="margin-top: 100px">
 	<div class="row">
 	<div class="col-md-3 col-sm-4">
 	<div class="wrimagecard wrimagecard-topimage">
