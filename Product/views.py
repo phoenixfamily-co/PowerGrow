@@ -335,56 +335,79 @@ class ParticipationView(viewsets.ViewSet):
     permission_classes = [IsAuthenticated]
 
     def list(self):
-        queryset = Participants.objects.filter(user=self.request.user.id)
-        return queryset
+        queryset = Participants.objects.filter(user=self.request.user)
+        serializer = self.serializer_class(queryset, many=True)
+        return Response(serializer.data)
 
-    def create(self, serializer):
-        data = self.request.data
+    def create(self, request):
+        data = request.data
+
+        # Validate required fields
+        required_fields = ['price', 'description', 'session', 'day', 'start', 'course', 'title']
+        for field in required_fields:
+            if field not in data:
+                return Response({'error': f'Missing field: {field}'}, status=status.HTTP_400_BAD_REQUEST)
+
         authority_data = {
             "MerchantID": settings.MERCHANT,
             "Amount": data["price"],
-            "phone": str(self.request.user.number),
+            "phone": str(request.user.number),
             "Description": data["description"],
             "CallbackURL": CallbackURL,
         }
-        authority_data = json.dumps(authority_data)
-        headers = {'content-type': 'application/json', 'content-length': str(len(authority_data))}
-        response = requests.post(ZP_API_REQUEST, data=authority_data, headers=headers, timeout=10)
 
         try:
-            response_data = response.json()  # Parse the response content as JSON
-            if response_data['Status'] == 100:
-                session = Sessions.objects.filter(id=data["session"]).first()
-                week = Days.objects.filter(id=data["day"]).first()
-                start = Day.objects.filter(id=data["start"]).first()
-                course = Course.objects.filter(id=data["course"]).first()
+            response = requests.post(ZP_API_REQUEST, json=authority_data, timeout=10)
+            response_data = response.json()
+
+            if response_data.get('Status') == 100:
+                session = Sessions.objects.get(id=data["session"])
+                week = Days.objects.get(id=data["day"])
+                start = Day.objects.get(id=data["start"])
+                course = Course.objects.get(id=data["course"])
+
                 day = week.title.split("،")
                 ids = Day.objects.filter(name__in=day, month__number__gte=start.month.number,
-                                         month__year__number__gte=start.month.year.number, holiday=False).exclude(
-                    month__number=start.month.number,
-                    number__lt=start.number) \
+                                         month__year__number__gte=start.month.year.number, holiday=False) \
+                          .exclude(month__number=start.month.number, number__lt=start.number) \
                           .order_by('pk').values_list('pk', flat=True)[:int(session.number)]
+
                 end = Day.objects.filter(pk__in=list(ids)).last()
-                Participants.objects.update_or_create(title=data["title"],
-                                                      description=data["description"],
-                                                      startDay=start,
-                                                      endDay=end,
-                                                      session=session,
-                                                      day=week,
-                                                      price=data["price"],
-                                                      user=self.request.user,
-                                                      course=course,
-                                                      authority=str(response_data['Authority']),
-                                                      success=False
-                                                      )
-                return Response({'payment': ZP_API_STARTPAY, 'authority': str(response_data['Authority'])},
-                                status=status.HTTP_200_OK)
+
+                # Create participant using serializer
+                participant_data = {
+                    'title': data["title"],
+                    'description': data["description"],
+                    'startDay': start.id,
+                    'endDay': end.id,
+                    'session': session.id,
+                    'day': week.id,
+                    'price': data["price"],
+                    'user': request.user.id,
+                    'course': course.id,
+                    'authority': str(response_data['Authority']),
+                    'success': False
+                }
+
+                serializer = self.serializer_class(data=participant_data)
+                if serializer.is_valid():
+                    serializer.save()
+                    return Response({'payment': ZP_API_STARTPAY, 'authority': str(response_data['Authority'])},
+                                    status=status.HTTP_201_CREATED)
+                else:
+                    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
             else:
                 return Response({'error': 'Payment request failed'}, status=status.HTTP_400_BAD_REQUEST)
+
+        except requests.exceptions.RequestException as e:
+            return Response({'error': f'Request failed: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        except (Sessions.DoesNotExist, Days.DoesNotExist, Day.DoesNotExist, Course.DoesNotExist) as e:
+            return Response({'error': f'Invalid data: {str(e)}'}, status=status.HTTP_400_BAD_REQUEST)
         except json.JSONDecodeError:
             return Response({'error': 'Failed to decode response JSON'}, status=status.HTTP_400_BAD_REQUEST)
-        except KeyError:
-            return Response({'error': 'Missing expected key in response JSON'}, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response({'error': f'An unexpected error occurred: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class ManagerParticipationView(viewsets.ModelViewSet):
