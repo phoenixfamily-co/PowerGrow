@@ -378,7 +378,7 @@ class ParticipationView(viewsets.ViewSet):
                     'title': data["title"],
                     'description': data["description"],
                     'startDay': start.id,
-                    'endDay': end,
+                    'endDay': end.id,
                     'session': session.id,
                     'day': week.id,
                     'price': data["price"],

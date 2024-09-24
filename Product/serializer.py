@@ -19,7 +19,7 @@ class RegisterParticipantsSerializer(serializers.ModelSerializer):
 class ParticipantsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Participants
-        read_only_fields = ['created']
+        read_only_fields = ['created', 'endDay']
         exclude = ['datetime']
 
 
