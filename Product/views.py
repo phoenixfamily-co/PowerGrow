@@ -329,7 +329,6 @@ class SessionView(viewsets.ModelViewSet):
         return Response(status=status.HTTP_202_ACCEPTED)
 
 
-@csrf_exempt
 class ParticipationView(viewsets.ViewSet):
     queryset = Participants.objects.all()
     serializer_class = ParticipantsSerializer
