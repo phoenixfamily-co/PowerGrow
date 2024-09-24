@@ -331,7 +331,6 @@ class SessionView(viewsets.ModelViewSet):
 class ParticipationView(viewsets.ViewSet):
     queryset = Participants.objects.all()
     serializer_class = ParticipantsSerializer
-    permission_classes = [IsAuthenticated]
 
     def list(self):
         queryset = Participants.objects.filter(user=self.request.user.id)
