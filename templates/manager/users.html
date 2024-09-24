@@ -5,6 +5,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token }}">
     <script src="https://kit.fontawesome.com/f872c5c890.js" crossorigin="anonymous"></script>
 
 
@@ -422,13 +423,6 @@
     let myTable = document.getElementById('table').getElementsByTagName('tbody')[0];
 
 
-     const cookieValue = document.cookie
-        .split("; ")
-        .find((row) => row.startsWith("token="))
-        ?.split("=")[1];
-
-
-
     input.addEventListener("change", async function () {
         let inputs = input.value.toLowerCase()
 
@@ -439,12 +433,17 @@
             window.location.reload()
 
         }else {
+
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
             const response = await fetch(`/user/all/?search=${inputs}`, {
                 method: 'GET',
                headers: {
-            'Authorization': `token  ${cookieValue}`,
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                   'Content-Type': 'application/json',
+                   'X-CSRFToken': csrfToken, // اضافه کردن CSRF token
+
+
         },
             });
             const result = await response.json()
