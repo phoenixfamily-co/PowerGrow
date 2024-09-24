@@ -791,6 +791,7 @@
 <script>
 
     let counter = 0
+    let activity = "{{product.active}}"
     let capacity = "{{product.capacity}}";
     let course = "{{ product.id }}";
     const card = document.getElementById("card")
@@ -830,14 +831,20 @@
     capacityNumber.innerHTML = `${counter}/${parseInt(capacity)}`
 
 
+    if (activity ===true) {
 
-    if (parseInt(counter) < parseInt(capacity)){
-        registerButton.disabled = false
-        registerButton.innerHTML = "ثبت نام کنید"
+        if (parseInt(counter) < parseInt(capacity)) {
+            registerButton.disabled = false
+            registerButton.innerHTML = "ثبت نام کنید"
+
+        } else {
+            registerButton.disabled = true
+            registerButton.innerHTML = "ظرفیت تکمیل است"
+        }
 
     }else {
         registerButton.disabled = true
-        registerButton.innerHTML = "ظرفیت تکمیل است"
+        registerButton.innerHTML = "دوره منقضی شده است"
     }
 
     card.appendChild(registerButton)
