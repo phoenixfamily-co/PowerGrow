@@ -34,8 +34,8 @@ def login_view(request):
     context = {
         "about": about,
         "sport": sport,
-
     }
+    i
     return HttpResponse(template.render(context, request))
 
 

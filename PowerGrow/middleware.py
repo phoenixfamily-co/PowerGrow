@@ -7,7 +7,8 @@ class SessionAuthMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
         self.non_auth_paths = ['/user/login/', '/user/login/api/', '/home/', '/sport/', '/about/', '/product/',
-                               '/reservation/', '/calendar/api/year/']
+                               '/reservation/', '/calendar/api/year/', '/user/register/', 'user/register/api/'
+                               '/user/register/', '/user/verification/', '/user/verification/api/']
 
     def __call__(self, request):
         # بررسی مسیرهای غیر حفاظتی
