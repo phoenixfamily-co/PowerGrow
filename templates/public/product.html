@@ -848,12 +848,12 @@
             daySession.innerHTML = ''
             for (let i = 0; i < size; i++) {
                 const item = document.createElement("option")
-                item.innerHTML = sum[i].number + 'جلسه'
+                item.innerHTML = sum[i].number + ' جلسه '
                 item.setAttribute("id", sum[i].id)
                 sessionList.appendChild(item)
             }
             await getWeeks(sum[0].id)
-            sessionNumber.innerHTML = sum[0].number + 'جلسه'
+            sessionNumber.innerHTML = sum[0].number + ' جلسه '
             sessionId = sum[0].id
         }
     }
