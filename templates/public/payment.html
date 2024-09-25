@@ -64,25 +64,22 @@
         }
 
             .card_holder {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: #f8f9fa; /* رنگ پس‌زمینه صفحه */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background: #f8f9fa; /* رنگ پس‌زمینه صفحه */
 }
 
-.card {
-    border-radius: 1rem;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* اضافه کردن سایه برای زیبایی */
-}
+            .card {
+                border-radius: 1rem;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* اضافه کردن سایه برای زیبایی */
+            }
 
 .list-group-item {
     border: none; /* حذف حاشیه آیتم‌ها برای زیباتر شدن */
 }
 
-         .list-group-item-fixed {
-             margin-bottom: 10px; /* افزایش فاصله بین آیتم‌ها */
-         }
 
         #zarinpal{
             pointer-events: none;
@@ -192,7 +189,7 @@
     let course = "{{ product.id }}";
     let start = "{{ start.id }}";
     let final = document.getElementById("final");
-    const registerButton = document.querySelector(".list-group li button");
+    const registerButton = document.getElementById("registerButton");
 
     let final_price = (parseInt(price) - (parseInt(off) / 100 * parseInt(price)));
     final.innerHTML = final_price.toString() + " تومان";
