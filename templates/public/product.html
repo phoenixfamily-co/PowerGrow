@@ -216,22 +216,22 @@
 
         }
 
-         .custom-container {
-             margin-top: 15px;
-             display: flex;
-             flex: 1;
-             justify-content: space-between; /* عناصر را به سمت راست می‌برد */
-             width: 70%; /* عرض کل 70 درصد */
-             direction: rtl;
-        }
+        .custom-container {
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-end; /* عناصر را به سمت راست می‌برد */
+    width: 100%; /* عرض کل 100 درصد */
+    direction: rtl;
+}
 
-        .date-picker, .time-picker {
-            background: #FFFFFF;
-            border-radius: 1rem;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin: 10px; /* فاصله بین دو عنصر */
-        }
+.date-picker, .time-picker {
+    background: #FFFFFF;
+    border-radius: 1rem;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px; /* فاصله بین دو عنصر */
+    width: calc(50% - 20px); /* عرض نصف صفحه منهای فضای بین */
+}
 
         .time-picker {
             direction: rtl;
