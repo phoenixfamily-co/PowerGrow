@@ -14,6 +14,7 @@ from rest_framework.response import Response
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from About.models import AboutUs
+from PowerGrow.decorators import session_auth_required
 from Product.models import *
 from Reservation.models import Reservations
 from User.serializer import *
@@ -241,7 +242,6 @@ def admin_user_view(request):
     return HttpResponse(template.render(context, request))
 
 
-@csrf_exempt
 def custom_login(request):
     if request.method == 'POST':
         data = json.loads(request.body)  # داده‌ها از JSON خوانده می‌شوند
@@ -262,6 +262,19 @@ def custom_login(request):
             }, status=200)
         return JsonResponse({'error': 'Invalid credentials'}, status=400)
     return JsonResponse({'error': 'Invalid request'}, status=400)
+
+
+@session_auth_required
+def check_session(request):
+    user = request.user
+    user_info = {
+        'is_authenticated': True,
+        'user': user.id,
+        'is_staff': user.is_staff,  # فرض می‌کنیم که یک فیلد user_type دارید
+        'is_superuser': user.is_superuser,
+        'is_teacher': user.is_teacher,
+    }
+    return JsonResponse(user_info)
 
 
 def custom_logout(request):
