@@ -37,46 +37,20 @@
             url("/static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */ url("../../static/fonts/BYekan.ttf") format('truetype') /* Safari, Android, iOS */
         }
 
-          html, body {
-                margin: 0;
-                padding: 0 ;
-                overflow-x: hidden;
-                background: #312f2e;
-                font-family: BYekan, serif !important;
-        }
-
-
          html, body {
-             height: 100%; /* اطمینان از اینکه ارتفاع صفحه 100% است */
-         }
-
-.container-fluid {
-    flex: 1; /* اطمینان از اینکه این بخش فضای باقی‌مانده را پر می‌کند */
-}
-
-.footer {
-    position: relative; /* موقعیت نسبی */
-    bottom: 0; /* به پایین صفحه بچسبانید */
-    width: 100%; /* عرض کامل */
-    background-color: #312f2e; /* رنگ پس‌زمینه */
-}
-
-         body {
-             display: flex;
-             flex-direction: column;
-             min-height: 100vh; /* اطمینان از اینکه حداقل 100vh ارتفاع دارد */
-             overflow-x: hidden;
+            margin: 0;
+            padding: 0 ;
+            overflow-x: hidden;
             background-color: #f7f0e8;
             font-family: BYekan, serif !important;
-         }
-
+        }
 
 
 
        .logoHolder {
             width: 100%;
             position: absolute;
-            margin-top: 10%;
+            margin-top: 20px;
             left: 0;
             display: flex;
             z-index: 10 !important;
@@ -85,6 +59,17 @@
             justify-content: center;
 
         }
+
+         .container-fluid {
+             flex: 1; /* اطمینان از اینکه این بخش فضای باقی‌مانده را پر می‌کند */
+         }
+
+         .footer {
+             position: relative; /* موقعیت نسبی */
+             bottom: 0; /* به پایین صفحه بچسبانید */
+             width: 100%; /* عرض کامل */
+             background-color: #312f2e; /* رنگ پس‌زمینه */
+         }
 
         .logo {
             width: 50px;
