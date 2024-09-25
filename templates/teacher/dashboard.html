@@ -11,6 +11,9 @@
     {% bootstrap_css %}
     {% bootstrap_javascript %}
 
+        <title>پنل کاربری</title>
+
+
     <style>
 
            @font-face {
@@ -22,19 +25,25 @@
             url("/static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */ url("../../static/fonts/BYekan.ttf") format('truetype') /* Safari, Android, iOS */
         }
 
-             * {
-            box-sizing: border-box
+           html, body {
+            margin: 0;
+            padding: 0 ;
+            overflow-x: hidden;
+               background: #312f2e;
+            font-family: BYekan, serif !important;
         }
 
+
            .logoHolder {
-               width: 50px;
-               position: absolute;
-               left: 0;
-               right: 0;
-               margin-right: 55%;
-               margin-top: 1%;
-               z-index: 10 !important;
-               direction: ltr;
+            width: 100%;
+            position: absolute;
+            margin-top: 20px;
+            left: 0;
+            display: flex;
+            z-index: 10 !important;
+            direction: ltr;
+            align-items: center;
+            justify-content: center;
 
         }
 
@@ -42,50 +51,14 @@
             width: 50px;
             height: 50px;
             border-radius: 25px;
-            position: absolute;
-            direction: ltr
 
         }
 
         .typography {
-            position: absolute;
-            margin-left: 60px;
-            margin-top: 20%;
             color: white;
-            font-size: 20px
+            font-size: 20px;
+            margin-left: 10px;
 
-        }
-           html {
-               min-height: 100%;
-               position: relative;
-               font-family: BYekan, serif !important;
-           }
-
-           body {
-               direction: rtl;
-               background: #282a36;
-
-           }
-
-           .navbar.navbar-dark.bg-dark li a{
-            color: #fff;
-        }
-
-          .navbar.navbar-dark.bg-dark a:hover{
-              color: grey;
-        }
-
-       .nav.navbar-nav li a {
-           color: #fff;
-           text-decoration: none;
-       }
-
-        .nav.navbar-nav a:hover {
-            color: grey;
-        }
-
-        .nav-pills > li > a.active {
-            background-color: #E16539 !important;
         }
 
            .wrimagecard {
@@ -93,7 +66,7 @@
                margin-bottom: 1.5rem;
                text-align: left;
                position: relative;
-               background: #fff;
+               background: #f7f0e8;
                box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.15);
                border-radius: 4px;
                transition: all 0.3s ease;
@@ -129,30 +102,9 @@
 
 
     </style>
-    <title>PowerGrow</title>
+
 </head>
 <body>
-
-
-<nav class="navbar navbar-dark bg-dark">
-  <div class="container-fluid" style="vertical-align: center">
-<ul class="nav nav-pills">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href='{% url 'home:home' %}'>ورود به سایت</a>
-  </li>
-</ul>
-
-  <ul class="nav nav-pills navbar-left">
-      <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">سلام {{ user.name }} عزیز</a>
-    <ul class="dropdown-menu dropdown-menu-right">
-        <li><a style="color: black ; width: 100% ; text-align: center" class="dropdown-item" href='{% url 'user:profile' user.id %}'>پروفایل</a></li>
-        <li><a style="color: black ; width: 100% ; text-align: center" class="dropdown-item" href="javascript:logout()">خروج</a></li>
-    </ul>
-  </li>
-    </ul>
-  </div>
-</nav>
 
 <div class="logoHolder">
 
@@ -161,11 +113,11 @@
 
 </div>
 
-<div class="container-fluid" style="margin-top: 200px">
+<div class="container-fluid" style="margin-top: 100px">
 	<div class="row">
 	<div class="col-md-3 col-sm-4">
 	<div class="wrimagecard wrimagecard-topimage">
-          <a href="{% url 'product:courses_view_teacher' user.id %}">
+          <a href="{% url 'product:courses_view_user' user.id %}">
           <div class="wrimagecard-topimage_header" style="background-color:rgba(119, 178, 88, 0.1) ; text-align: center; ">
               <i class="fa fa-superpowers" aria-hidden="true" style="display: inline-block ; color: rgba(119, 178, 88, 0.9)"></i>
           </div>
@@ -175,7 +127,7 @@
         </a>
       </div>
       </div>
-      <div class="col-md-3 col-sm-4">
+     <div class="col-md-3 col-sm-4">
       <div class="wrimagecard wrimagecard-topimage">
              <a href="{% url 'user:salary' user.id %}">
           <div class="wrimagecard-topimage_header" style="background-color:rgba(250, 188, 9, 0.1) ; text-align: center; ">
@@ -189,11 +141,11 @@
 	</div>
          <div class="col-md-3 col-sm-4">
       <div class="wrimagecard wrimagecard-topimage">
-             <a href="{% url 'calendar:teacher_calendar' user.id %}">
-          <div class="wrimagecard-topimage_header" style="background-color:rgba(119, 178, 88, 0.1) ; text-align: center; ">
-              <i class="fa fa-calendar" aria-hidden="true" style="display: inline-block ; color: rgba(119, 178, 88, 0.9)"></i>
+             <a href="{% url 'calendar:user_calendar' user.id %}">
+          <div class="wrimagecard-topimage_header" style="background-color:rgba(250, 188, 9, 0.1) ; text-align: center; ">
+              <i class="fa fa-calendar" aria-hidden="true" style="display: inline-block ; color: rgba(250, 188, 9, 0.9)"></i>
           </div>
-          <div class="wrimagecard-topimage_title" style="text-align: center">
+          <div class="wrimagecard-topimage_title"  style="text-align: center">
             <h4 style="display: inline-block">تقویم</h4>
           </div>
            </a>
@@ -211,19 +163,46 @@
            </a>
       </div>
 	</div>
+
+        <div class="col-md-3 col-sm-4">
+      <div class="wrimagecard wrimagecard-topimage">
+             <a href='{% url 'user:profile' user.id %}'>
+          <div class="wrimagecard-topimage_header" style="background-color:rgba(57,149,225,0.1) ; text-align: center; ">
+              <i class="fa fa-solid fa-user " aria-hidden="true" style="display: inline-block ; color: rgba(57,130,225,0.9) "></i>
+          </div>
+          <div class="wrimagecard-topimage_title" style="text-align: center">
+            <h4 style="display: inline-block">پروفایل</h4>
+          </div>
+           </a>
+      </div>
+	</div>
+
+        <div class="col-md-3 col-sm-4">
+      <div class="wrimagecard wrimagecard-topimage">
+             <a href='{% url 'home:home' %}'>
+          <div class="wrimagecard-topimage_header" style="background-color:rgba(225,101,57,0.1) ; text-align: center; ">
+              <i class="fa fa-solid fa-house " aria-hidden="true" style="display: inline-block ; color: rgba(225,101,57,0.9) "></i>
+          </div>
+          <div class="wrimagecard-topimage_title" style="text-align: center">
+            <h4 style="display: inline-block">صفحه اصلی</h4>
+          </div>
+           </a>
+      </div>
+	</div>
+          <div class="col-md-3 col-sm-4">
+      <div class="wrimagecard wrimagecard-topimage">
+             <a href='{% url 'user:logout_api' %}'>
+          <div class="wrimagecard-topimage_header" style="background-color:rgba(121,71,71,0.1) ; text-align: center; ">
+              <i class="fa fa-solid fa-right-from-bracket" aria-hidden="true" style="display: inline-block ; color: rgba(121,71,71,0.9) "></i>
+          </div>
+          <div class="wrimagecard-topimage_title" style="text-align: center">
+            <h4 style="display: inline-block">خروج</h4>
+          </div>
+           </a>
+      </div>
+	</div>
 </div>
 </div>
 </body>
-
-<script>
-
-    function logout() {
-
-        document.cookie = 'token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-
-    window.location.replace('{% url 'user:login' %}');
-    }
-
-</script>
 
 </html>
