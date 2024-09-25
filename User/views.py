@@ -14,14 +14,12 @@ from rest_framework.response import Response
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from About.models import AboutUs
-from PowerGrow.decorators import session_auth_required
 from Product.models import *
 from Reservation.models import Reservations
 from User.serializer import *
 from User.models import *
 
 
-@cache_page(60 * 15)
 def login_view(request):
     about = AboutUs.objects.values().first()
     template = loader.get_template('public/login.html')
