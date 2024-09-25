@@ -51,6 +51,10 @@
              flex-direction: column;
          }
 
+          .container-fluid {
+             flex: 1; /* اطمینان از اینکه این بخش فضای باقی‌مانده را پر می‌کند */
+         }
+
 
 
        .logoHolder {
@@ -65,10 +69,6 @@
             justify-content: center;
 
         }
-
-         .container-fluid {
-             flex: 1; /* اطمینان از اینکه این بخش فضای باقی‌مانده را پر می‌کند */
-         }
 
 
         .logo {
@@ -151,12 +151,14 @@
        .card_holder {
            width: 30%;
            height: 100%;
-           position: relative;
+           display: flex; /* استفاده از Flexbox */
+           justify-content: flex-start; /* قرارگیری کارت در سمت چپ */
+           align-items: flex-start; /* قرارگیری کارت در بالا */
            border-bottom-right-radius: 1rem;
            border-bottom-left-radius: 1rem;
-           justify-content: flex-start;
            background: transparent;
        }
+
          .card {
              width: 30%;
              background-color: white;
