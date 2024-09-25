@@ -227,10 +227,19 @@
          .description-container{
              margin-top: 15px;
              display: flex;
-             justify-content: flex-start; /* عناصر را به سمت راست می‌برد */
+             justify-content: flex-end; /* عناصر را به سمت راست می‌برد */
              direction: rtl;
              background-color: transparent;
-             width: calc(70% - 15px); /* عرض کل 100 درصد */
+             width:100%
+         }
+
+          .description{
+             margin-top: 15px;
+             display: flex;
+             justify-content: flex-end; /* عناصر را به سمت راست می‌برد */
+             direction: rtl;
+             background-color: white;
+             width:68%
          }
 
 
@@ -576,15 +585,13 @@
     </div>
 
 <div class="description-container">
-    <div class="row" dir="rtl">
-            <div class="bg-white p-4 border my-3" style="border-radius: 1rem;">
+            <div class="description p-4 border" style="border-radius: 1rem;">
                 <p class="text-end" style="font-size: 20px;">
                     {% autoescape off %}
                         {{ product.description|linebreaksbr }}
                     {% endautoescape %}
                 </p>
             </div>
-    </div>
 </div>
 
 <footer class="footer text-white pt-4">
