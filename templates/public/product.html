@@ -368,15 +368,16 @@
          @media only screen and (min-resolution: 3dppx) {
 
              .card_holder{
-                 width: auto;
-                 justify-content: center;
-                 position: relative;
-                 margin-top: 0;
-                 padding: 0;
-                 height: auto;
-                 align-items: center;
-                 border-top-left-radius: 1rem;
-                 border-top-right-radius: 1rem;
+                   width: calc(100% - 30px);
+                   justify-content: center;
+                   margin: 15px 15px 15px 15px;
+                   position: static;
+                   height: auto;
+                   text-align: center;
+                   align-content: center;
+                   align-items: center;
+                   border-top-left-radius: 1rem;
+                   border-top-right-radius: 1rem;
                }
 
                .card{
@@ -388,25 +389,37 @@
                }
 
                .custom-container{
-                   width: 100%;
-                   flex-wrap: wrap
+                   align-items: center;
+                   width: calc(100% - 30px);
+                   flex-wrap: wrap;
+                   justify-content: center;
+                   margin: 0 15px 0 15px;
+
                }
 
                .date-picker, .time-picker {
                 width: 100%; /* در اندازه‌های موبایل، عرض کامل */
-                margin: 10px 0; /* فاصله عمودی */
+                margin: 15px 0; /* فاصله عمودی */
             }
 
-                .list-group-item {
-                    margin-bottom: 12px; /* افزایش فاصله بین آیتم‌ها */
+
+                .description-container{
+                    width: calc(100% - 30px);
+                    align-items: center;
+                   justify-content: center;
+                    margin: 0 15px 0 15px;
+
+
                 }
 
                 .product-img{
                     width: 100%;
-                    height: 60vh;
-                    border-radius: 0 0 1rem 1rem;
+                    height: 30vh;
+                    border-radius: 0;
                     margin-bottom: 15px;
                 }
+
+
 
 }
     </style>
