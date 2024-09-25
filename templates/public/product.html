@@ -229,7 +229,8 @@
              display: flex;
              justify-content: flex-end; /* عناصر را به سمت راست می‌برد */
              direction: rtl;
-             width: calc(100% - 20px); /* عرض کل 100 درصد */
+             background-color: transparent;
+             width: 100%; /* عرض کل 100 درصد */
          }
 
 
@@ -581,7 +582,7 @@
 <div class="description-container">
     <div class="row" dir="rtl">
         <div class="col-12 col-md-8">
-            <div class="bg-white p-4 border my-3" style="border-radius: 1rem;">
+            <div class="bg-white p-4 border my-3 w-70 flex-end" style="border-radius: 1rem;">
                 <p class="text-end" style="font-size: 20px;">
                     {% autoescape off %}
                         {{ product.description|linebreaksbr }}
