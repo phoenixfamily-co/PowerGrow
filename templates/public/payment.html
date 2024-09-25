@@ -29,24 +29,13 @@
         		 url("/static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */
         		 url("/static/fonts/BYekan.ttf")  format('truetype') /* Safari, Android, iOS */
 		}
-        * {
-            box-sizing: border-box
-        }
 
-             html{
-                 position: relative;
-                 font-family: BYekan, serif !important;
+            html, body {
+            margin: 0;
+            padding: 0 ;
+            overflow-x: hidden;
+            font-family: BYekan, serif !important;
         }
-
-            body {
-                display: flex;
-                direction: rtl;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-                background: #282a36;
-                color: #fff;
-            }
 
              .logoHolder {
                  position: absolute;
@@ -174,10 +163,32 @@
     <ul class="list-group list-group-flush">
         <li class="list-group-item-fixed">
             <h6 class="list-group-right">
+                نام مربی:
+            </h6>
+            <h6 class="list-group-left">
+                {{ product.name }}
+            </h6>
+        </li>
+    </ul>
+
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item-fixed">
+            <h6 class="list-group-right">
                 جنسیت دوره:
             </h6>
             <h6 id="startDay" class="list-group-left">
                {{ product.gender }}
+            </h6>
+        </li>
+    </ul>
+
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item-fixed">
+            <h6 class="list-group-right">
+                ساعت برگزاری:
+            </h6>
+            <h6 id="time" class="list-group-left">
+                {{ product.time }}
             </h6>
         </li>
     </ul>
@@ -192,29 +203,6 @@
             </h6>
         </li>
     </ul>
-
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item-fixed">
-            <h6 class="list-group-right">
-                نام مربی:
-            </h6>
-            <h6 class="list-group-left">
-                {{ product.name }}
-            </h6>
-        </li>
-    </ul>
-
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item-fixed">
-            <h6 class="list-group-right">
-                ساعت برگزاری:
-            </h6>
-            <h6 id="time" class="list-group-left">
-                {{ product.time }}
-            </h6>
-        </li>
-    </ul>
-
 
      <ul class="list-group list-group-flush">
         <li class="list-group-item-fixed">
