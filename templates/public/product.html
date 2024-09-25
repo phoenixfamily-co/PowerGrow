@@ -159,14 +159,6 @@
              margin-bottom: 10px; /* افزایش فاصله بین آیتم‌ها */
          }
 
-          .time-picker{
-            direction: rtl;
-            width: 49%;
-            height: 300px;
-            background: #FFFFFF ;
-            float: left;
-            border-radius: 1rem ;
-        }
 
         .month {
             width: 100%;
@@ -293,9 +285,20 @@
         }
 
 
-        .time-body{
-            margin-right: 5%;
+        .time-picker {
+            direction: rtl;
+            background: #FFFFFF;
+            border-radius: 1rem;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .time-body {
             margin-top: 10%;
+        }
+
+        label {
+            font-weight: bold;
         }
 
 
@@ -487,24 +490,24 @@
 
 </div>
 
-<div class="time-picker">
-
-    <div class="time-body">
-
-    <label for="session">تعداد جلسات در ماه را انتخاب کنید :</label>
-    <select name="session" id="session" style="margin-right: 20px">
-    </select>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <label for="week">روزهای برگزاری در هفته را مشخص کنید:</label>
-        <select name="week" id="week" style="margin-right: 10px">
-        </select>
+ <div class="container mt-5">
+        <div class="time-picker">
+            <div class="time-body">
+                <div class="form-group">
+                    <label for="session">تعداد جلسات در ماه را انتخاب کنید:</label>
+                    <select class="form-control" name="session" id="session">
+                        <!-- گزینه‌ها از سمت سرور می‌آیند -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="week">روزهای برگزاری در هفته را مشخص کنید:</label>
+                    <select class="form-control" name="week" id="week">
+                        <!-- گزینه‌ها از سمت سرور می‌آیند -->
+                    </select>
+                </div>
+            </div>
         </div>
-
-</div>
+    </div>
 
 </div>
 
