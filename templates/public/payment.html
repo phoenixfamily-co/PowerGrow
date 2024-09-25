@@ -63,23 +63,22 @@
 
         }
 
-           .card_holder {
-           width: 30%;
-           height: auto;
-           float: left;
-           position: relative;
-           border-bottom-right-radius: 1rem;
-           border-bottom-left-radius: 1rem;
-           justify-content: flex-start;
-           background: transparent;
-       }
-         .card {
-             width: 100%;
-             background-color: white;
-             border-bottom-right-radius: 1rem;
-             border-bottom-left-radius: 1rem;
-             height: 81vh; /* ارتفاع کارت به 80% ارتفاع صفحه */
-         }
+            .card_holder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f8f9fa; /* رنگ پس‌زمینه صفحه */
+}
+
+.card {
+    border-radius: 1rem;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* اضافه کردن سایه برای زیبایی */
+}
+
+.list-group-item {
+    border: none; /* حذف حاشیه آیتم‌ها برای زیباتر شدن */
+}
 
          .list-group-item-fixed {
              margin-bottom: 10px; /* افزایش فاصله بین آیتم‌ها */
@@ -118,8 +117,8 @@
 
 </div>
 
-    <div id="card-holder" class="card_holder">
-    <div class="card justify-content-center" id="card">
+   <div class="card_holder">
+    <div class="card">
         <ul class="list-group list-group-flush">
             <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
                 <h6 class="mb-0">نام دوره:</h6>
@@ -131,72 +130,59 @@
                 <h6 class="mb-0">{{ product.name }}</h6>
             </li>
 
-            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed" dir="rtl">
+            <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
                 <h6 class="mb-0">جنسیت دوره:</h6>
-                <h6 id="number" class="mb-0">
-                    {{ product.gender }}
-                </h6>
+                <h6 class="mb-0">{{ product.gender }}</h6>
             </li>
 
-            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed" dir="rtl">
+            <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
                 <h6 class="mb-0">روزهای برگزاری:</h6>
-                <h6 id="daySession" class="mb-0">
-                    {{ day.title}}
-                </h6>
+                <h6 class="mb-0">{{ day.title }}</h6>
             </li>
 
-            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed" dir="rtl">
+            <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
                 <h6 class="mb-0">ساعت برگزاری:</h6>
                 <h6 class="mb-0">{{ product.time }}</h6>
             </li>
 
-            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed" dir="rtl">
+            <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
                 <h6 class="mb-0">تاریخ شروع:</h6>
-                <h6 id="startDay" class="mb-0">
-                    {{ start.month.year.number }}/{{ start.month.number }}/{{ start.number }}
-                </h6>
+                <h6 class="mb-0">{{ start.month.year.number }}/{{ start.month.number }}/{{ start.number }}</h6>
             </li>
 
-            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed" dir="rtl">
+            <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
                 <h6 class="mb-0">تعداد جلسات:</h6>
-                <h6 id="sessionNumber" class="mb-0">
-                    {{ session.number }} جلسه
-                </h6>
+                <h6 class="mb-0">{{ session.number }} جلسه</h6>
             </li>
 
-            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed" dir="rtl">
+            <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
                 <h6 class="mb-0">شهریه ثابت:</h6>
-                <h6 id="price" class="mb-0">
-                    {{ day.tuition }} تومان
-                </h6>
+                <h6 class="mb-0">{{ day.tuition }} تومان</h6>
             </li>
 
-            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed" dir="rtl">
+            <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
                 <h6 class="mb-0">تخفیف:</h6>
-                <h6 id="off" class="mb-0">
-                    {{ day.off }}%
-                </h6>
+                <h6 class="mb-0">{{ day.off }}%</h6>
             </li>
 
-            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed" dir="rtl">
+            <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
                 <h6 class="mb-0">قیمت نهایی:</h6>
                 <h6 id="final" class="mb-0"></h6>
             </li>
         </ul>
 
-         <div id="zarinpal">
-        <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script>
+        <div id="zarinpal" class="text-center my-3">
+            <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script>
+            <img src="https://www.zarinpal.com/webservice/TrustCode" alt="Zarinpal Logo">
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <button id="registerButton" class="btn btn-primary w-80 mx-3 my-3">
+                ثبت نام کنید
+            </button>
+        </div>
     </div>
-
-     <div class="d-flex justify-content-center align-items-center ">
-    <button id="registerButton" class="btn mx-3 my-3 w-80" style="background-color:#E16539 ; color: white ">
-        ثبت نام کنید
-    </button>
 </div>
-
-    </div>
-</div>
-
 
 <script>
     let off = "{{ day.off }}";
