@@ -202,13 +202,24 @@
 
         }
 
-        .date-picker {
+            .container {
+            margin-top: 50px;
+        }
+
+        .date-picker, .time-picker {
             background: #FFFFFF;
             border-radius: 1rem;
             padding: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 50%;
-            height: 300px;
+            margin: 10px; /* فاصله بین دو عنصر */
+        }
+
+        .time-picker {
+            width: 48%; /* کاهش عرض برای جایگذاری در کنار هم */
+        }
+
+        .date-picker {
+            width: 48%; /* کاهش عرض برای جایگذاری در کنار هم */
         }
 
         .month {
@@ -280,32 +291,6 @@
             border-radius: 5px;
         }
 
-
-          .date-time{
-              width: 70%;
-              left: 0;
-              margin-top: 15px;
-              margin-bottom: 20px;
-        }
-
-
-        .time-picker {
-            direction: rtl;
-            background: #FFFFFF;
-            border-radius: 1rem;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 49%;
-        }
-
-        label {
-            font-weight: bold;
-        }
-
-
-         ul {
-            list-style-type: none;
-        }
 
            @media screen and (max-width: 768px) {
 
@@ -462,8 +447,24 @@
     </div>
 </div>
 
-<div class="date-time float-end">
- <div class="container-fluid">
+    <div class="container d-flex justify-content-between float-end">
+        <div class="time-picker">
+            <div class="time-body">
+                <div class="form-group">
+                    <label for="session">تعداد جلسات در ماه را انتخاب کنید:</label>
+                    <select class="form-control" name="session" id="session">
+                        <!-- گزینه‌ها از سمت سرور می‌آیند -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="week">روزهای برگزاری در هفته را مشخص کنید:</label>
+                    <select class="form-control" name="week" id="week">
+                        <!-- گزینه‌ها از سمت سرور می‌آیند -->
+                    </select>
+                </div>
+            </div>
+        </div>
+
         <div class="date-picker">
             <div class="month">
                 <ul>
@@ -487,27 +488,6 @@
             </ul>
         </div>
     </div>
-
- <div class="container-fluid">
-        <div class="time-picker">
-            <div class="time-body">
-                <div class="form-group">
-                    <label for="session">تعداد جلسات در ماه را انتخاب کنید:</label>
-                    <select class="form-control" name="session" id="session">
-                        <!-- گزینه‌ها از سمت سرور می‌آیند -->
-                    </select>
-                </div>
-                <div class="form-group mt-5">
-                    <label for="week">روزهای برگزاری در هفته را مشخص کنید:</label>
-                    <select class="form-control" name="week" id="week">
-                        <!-- گزینه‌ها از سمت سرور می‌آیند -->
-                    </select>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>
 
 <div class="container-fluid float-end">
     <div class="row" dir="rtl">
