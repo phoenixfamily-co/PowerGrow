@@ -37,7 +37,6 @@
                 background: #312f2e;
                 font-family: BYekan, serif !important;
         }
-
             .logoHolder {
             width: 100%;
             position: absolute;
@@ -48,8 +47,7 @@
             direction: ltr;
             align-items: center;
             justify-content: center;
-
-        }
+            }
 
         .logo {
             width: 50px;
@@ -65,54 +63,27 @@
 
         }
 
-            ul {
-            list-style-type: none;
-        }
+           .card_holder {
+           width: 30%;
+           height: auto;
+           float: left;
+           position: relative;
+           border-bottom-right-radius: 1rem;
+           border-bottom-left-radius: 1rem;
+           justify-content: flex-start;
+           background: transparent;
+       }
+         .card {
+             width: 100%;
+             background-color: white;
+             border-bottom-right-radius: 1rem;
+             border-bottom-left-radius: 1rem;
+             height: 81vh; /* ارتفاع کارت به 80% ارتفاع صفحه */
+         }
 
-           .card {
-               width: 35%;
-               height: auto;
-               border-radius: 1rem;
-               margin-top: 100px;
-               margin-bottom: 100px;
-               background: #f7f0e8;
-               color: black;
-               left: 0;
-               right: 0;
-           }
-
-        .card-button {
-            height: 50px;
-            margin-top: 5%;
-            margin-bottom: 5%;
-            width: 90%;
-            background: #E16539;
-            border-color: transparent;
-            color: white;
-            cursor: pointer;
-        }
          .list-group-item-fixed {
-             width: auto;
-             margin-top: 4%;
-             padding-bottom: 4%;
-        }
-        .list-group-left {
-            text-align: center;
-            float: left;
-            display: inline;
-            width: 40%;
-        }
-        .list-group-right {
-            text-align: right;
-            float: right;
-            display: inline;
-            width: 35%;
-        }
-
-        div.list-group-right {
-            width: 55%;
-            display: inline-flex;
-        }
+             margin-bottom: 10px; /* افزایش فاصله بین آیتم‌ها */
+         }
 
         #zarinpal{
             pointer-events: none;
@@ -147,133 +118,85 @@
 
 </div>
 
+    <div id="card-holder" class="card_holder">
+    <div class="card justify-content-center" id="card">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
+                <h6 class="mb-0">نام دوره:</h6>
+                <h6 class="mb-0">{{ product.title }}</h6>
+            </li>
 
+            <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
+                <h6 class="mb-0">نام مربی:</h6>
+                <h6 class="mb-0">{{ product.name }}</h6>
+            </li>
 
-<div class="card" id="card">
+            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed" dir="rtl">
+                <h6 class="mb-0">جنسیت دوره:</h6>
+                <h6 id="number" class="mb-0">
+                    {{ product.gender }}
+                </h6>
+            </li>
 
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item-fixed" dir="rtl">
-            <h6 class="list-group-right">
-                نام دوره:
-            </h6>
-            <h6 class="list-group-left">
-                {{ product.title }}
-            </h6>
-        </li>
-    </ul>
+            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed" dir="rtl">
+                <h6 class="mb-0">روزهای برگزاری:</h6>
+                <h6 id="daySession" class="mb-0">
+                    {{ day.title}}
+                </h6>
+            </li>
 
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item-fixed" dir="rtl">
-            <h6 class="list-group-right">
-                نام مربی:
-            </h6>
-            <h6 class="list-group-left" dir="rtl">
-                {{ product.name }}
-            </h6>
-        </li>
-    </ul>
+            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed" dir="rtl">
+                <h6 class="mb-0">ساعت برگزاری:</h6>
+                <h6 class="mb-0">{{ product.time }}</h6>
+            </li>
 
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item-fixed" dir="rtl">
-            <h6 class="list-group-right">
-                جنسیت دوره:
-            </h6>
-            <h6 id="startDay" class="list-group-left" dir="rtl">
-               {{ product.gender }}
-            </h6>
-        </li>
-    </ul>
+            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed" dir="rtl">
+                <h6 class="mb-0">تاریخ شروع:</h6>
+                <h6 id="startDay" class="mb-0">
+                    {{ start.month.year.number }}/{{ start.month.number }}/{{ start.number }}
+                </h6>
+            </li>
 
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item-fixed"dir="rtl">
-            <h6 class="list-group-right">
-                ساعت برگزاری:
-            </h6>
-            <h6 id="time" class="list-group-left">
-                {{ product.time }}
-            </h6>
-        </li>
-    </ul>
+            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed" dir="rtl">
+                <h6 class="mb-0">تعداد جلسات:</h6>
+                <h6 id="sessionNumber" class="mb-0">
+                    {{ session.number }} جلسه
+                </h6>
+            </li>
 
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item-fixed" dir="rtl">
-            <h6 class="list-group-right">
-                روزها برگزاری:
-            </h6>
-            <h6 id="startTime" class="list-group-left">
-                {{ day.title}}
-            </h6>
-        </li>
-    </ul>
+            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed" dir="rtl">
+                <h6 class="mb-0">شهریه ثابت:</h6>
+                <h6 id="price" class="mb-0">
+                    {{ day.tuition }} تومان
+                </h6>
+            </li>
 
-     <ul class="list-group list-group-flush">
-        <li class="list-group-item-fixed" dir="rtl">
-            <h6 class="list-group-right">
-                تاریخ شروع:
-            </h6>
-            <h6 id="start" class="list-group-left">
-                {{ start.month.year.number }}/{{ start.month.number }}/{{ start.number }}
-            </h6>
-        </li>
-    </ul>
+            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed" dir="rtl">
+                <h6 class="mb-0">تخفیف:</h6>
+                <h6 id="off" class="mb-0">
+                    {{ day.off }}%
+                </h6>
+            </li>
 
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item-fixed" dir="rtl">
-            <h6 class="list-group-right">
-               تعداد جلسات:
-            </h6>
-            <h6 class="list-group-left">
-                {{ session.number }} جلسه
-            </h6>
-        </li>
-    </ul>
+            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed" dir="rtl">
+                <h6 class="mb-0">قیمت نهایی:</h6>
+                <h6 id="final" class="mb-0"></h6>
+            </li>
+        </ul>
 
-     <ul class="list-group list-group-flush">
-        <li class="list-group-item-fixed" dir="rtl">
-            <h6 class="list-group-right">
-               شهریه ثابت:
-            </h6>
-            <h6 class="list-group-left">
-                {{ day.tuition }} تومان
-            </h6>
-        </li>
-    </ul>
-
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item-fixed"dir="rtl">
-            <h6 class="list-group-right">
-               تخفیف:
-            </h6>
-            <h6 class="list-group-left">
-                {{ day.off }}%
-            </h6>
-        </li>
-    </ul>
-
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item-fixed" dir="rtl">
-            <h6 class="list-group-right">
-               قیمت نهایی:
-            </h6>
-            <h6 id="final" class="list-group-left">
-            </h6>
-        </li>
-    </ul>
-
-    <div id="zarinpal">
+         <div id="zarinpal">
         <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script>
     </div>
 
-    <ul class="list-group list-group-flush">
-        <li>
-             <button id="registerButton" class="card-button">
-        پرداخت
-             </button>
-        </li>
-    </ul>
-
-
+     <div class="d-flex justify-content-center align-items-center ">
+    <button id="registerButton" class="btn mx-3 my-3 w-80" style="background-color:#E16539 ; color: white ">
+        ثبت نام کنید
+    </button>
 </div>
+
+    </div>
+</div>
+
 
 <script>
     let off = "{{ day.off }}";

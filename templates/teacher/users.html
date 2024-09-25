@@ -228,8 +228,6 @@
 
                  var userDay = jalaali.j2d(userEndYear, userEndMonth, userEndDay)
 
-                if(userDay>0) {
-                    if (userDay >= thisDate) {
                         var tr = document.createElement("tr")
                         var id = document.createElement("th")
                         id.innerHTML = "{{ forloop.counter }}"
@@ -252,8 +250,6 @@
                         tr.appendChild(sessionNumber)
                         body.appendChild(tr)
                     }
-                }
-            }
 
             {% endif %}
         {% endfor %}
