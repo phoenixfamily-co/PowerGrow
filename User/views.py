@@ -26,11 +26,24 @@ def login_view(request):
     about = AboutUs.objects.values().first()
     template = loader.get_template('public/login.html')
     sport = Sport.objects.all().values()
-
     context = {
         "about": about,
         "sport": sport,
     }
+    if request.user.is_authenticated:
+        if request.user.is_staff:
+            # ریدایرکت به داشبورد ادمین
+            return redirect(f'/home/manager/{request.user.id}/')
+
+        elif request.user.is_superuser:
+            return redirect(f'/home/admin/{request.user.id}/')
+
+        elif request.user.is_teacher:
+            return redirect(f'/home/teacher/{request.user.id}/')
+
+        else:
+            # ریدایرکت به داشبورد کاربر عادی
+            return redirect(f'/home/user/{request.user.id}/')
 
     return HttpResponse(template.render(context, request))
 
