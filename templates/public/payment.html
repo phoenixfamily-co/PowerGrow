@@ -83,6 +83,12 @@
     gap: 40px; /* فاصله افقی بین h6 ها */
 }
 
+            #registerButton {
+    width: calc(100% - 20px); /* عرض دکمه 100% منهای 20px (10px فاصله از چپ و راست) */
+    margin: 10px; /* 10px فاصله از چپ و راست */
+    background-color: #E16539;
+    color: white;
+            }
 
         #zarinpal{
             pointer-events: none;
@@ -96,10 +102,6 @@
             #zarinpal img {
                 width: 80px;
             }
-
-        @media screen and (max-width: 600px) {
-
-        }
 
 </style>
 
@@ -173,8 +175,8 @@
         </div>
 
         <div class="d-flex justify-content-center">
-            <button id="registerButton" class="btn btn-primary w-80 mx-3 my-3">
-                ثبت نام کنید
+            <button id="registerButton" class="btn my-3">
+                پرداخت
             </button>
         </div>
     </div>
