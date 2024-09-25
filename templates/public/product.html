@@ -205,7 +205,6 @@
          .custom-container {
              margin-top: 15px;
              display: flex;
-             flex-wrap: wrap;
              justify-content: flex-end; /* عناصر را به سمت راست می‌برد */
              width: 70%; /* عرض کل 70 درصد */
         }
@@ -297,6 +296,10 @@
 
 
            @media screen and (max-width: 768px) {
+
+               .custom-container{
+                   flex-wrap: wrap
+               }
 
                .date-picker, .time-picker {
                 width: 100%; /* در اندازه‌های موبایل، عرض کامل */
