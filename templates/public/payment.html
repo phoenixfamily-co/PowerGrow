@@ -87,6 +87,10 @@
     text-align: right; /* نوشته‌های داخل h6 راست‌چین می‌شوند */
 }
 
+                .list-group-item h5 {
+    text-align: left; /* نوشته‌های داخل h6 راست‌چین می‌شوند */
+}
+
             #registerButton {
     width: calc(100% - 20px); /* عرض دکمه 100% منهای 20px (10px فاصله از چپ و راست) */
     margin: 10px; /* 10px فاصله از چپ و راست */
@@ -125,52 +129,52 @@
         <ul class="list-group list-group-flush">
             <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
                 <h6 class="mb-0">نام دوره:</h6>
-                <h6 class="mb-0">{{ product.title }}</h6>
+                <h5 class="mb-0">{{ product.title }}</h5>
             </li>
 
             <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
                 <h6 class="mb-0">نام مربی:</h6>
-                <h6 class="mb-0">{{ product.name }}</h6>
+                <h5 class="mb-0">{{ product.name }}</h5>
             </li>
 
             <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
                 <h6 class="mb-0">جنسیت دوره:</h6>
-                <h6 class="mb-0">{{ product.gender }}</h6>
+                <h5 class="mb-0">{{ product.gender }}</h5>
             </li>
 
             <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
                 <h6 class="mb-0">روزهای برگزاری:</h6>
-                <h6 class="mb-0">{{ day.title }}</h6>
+                <h5 class="mb-0">{{ day.title }}</h5>
             </li>
 
             <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
                 <h6 class="mb-0">ساعت برگزاری:</h6>
-                <h6 class="mb-0">{{ product.time }}</h6>
+                <h5 class="mb-0">{{ product.time }}</h5>
             </li>
 
             <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
                 <h6 class="mb-0">تاریخ شروع:</h6>
-                <h6 class="mb-0">{{ start.month.year.number }}/{{ start.month.number }}/{{ start.number }}</h6>
+                <h5 class="mb-0">{{ start.month.year.number }}/{{ start.month.number }}/{{ start.number }}</h5>
             </li>
 
             <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
                 <h6 class="mb-0">تعداد جلسات:</h6>
-                <h6 class="mb-0">{{ session.number }} جلسه</h6>
+                <h5 class="mb-0">{{ session.number }} جلسه</h5>
             </li>
 
             <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
                 <h6 class="mb-0">شهریه ثابت:</h6>
-                <h6 class="mb-0">{{ day.tuition }} تومان</h6>
+                <h5 class="mb-0">{{ day.tuition }} تومان</h5>
             </li>
 
             <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
                 <h6 class="mb-0">تخفیف:</h6>
-                <h6 class="mb-0">{{ day.off }}%</h6>
+                <h5 class="mb-0">{{ day.off }}%</h5>
             </li>
 
             <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
                 <h6 class="mb-0">قیمت نهایی:</h6>
-                <h6 id="final" class="mb-0"></h6>
+                <h5 id="final" class="mb-0"></h5>
             </li>
         </ul>
 
