@@ -151,8 +151,7 @@
        .card_holder {
            position: fixed; /* برای ثابت نگه‌داشتن */
            left: 0; /* چسباندن به سمت چپ */
-           margin-top: 50px;
-           margin-bottom: 50px;
+           margin-top: 45px;
            width: 30%; /* عرض کارت هولدر */
            height: calc(100vh - 80px); /* ارتفاع کل صفحه منهای ارتفاع نوار ناوبری و فوتر */
            overflow-y: auto; /* اجازه اسکرول عمودی */
@@ -160,12 +159,13 @@
            z-index: 5; /* قرار دادن بالاتر از دیگر عناصر */
            padding: 10px; /* مقداری پدینگ */
          }
+         .card {
+             background-color: white; /* رنگ پس‌زمینه کارت */
+             border-bottom-left-radius: 1rem; /* گرد کردن گوشه‌ها */
+             border-bottom-right-radius-radius: 1rem; /* گرد کردن گوشه‌ها */
 
-.card {
-    background-color: white; /* رنگ پس‌زمینه کارت */
-    border-radius: 1rem; /* گرد کردن گوشه‌ها */
-    width: 100%; /* عرض کامل */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* سایه */
+             width: 100%; /* عرض کامل */
+             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* سایه */
 }
          .list-group-item {
              display: flex;
