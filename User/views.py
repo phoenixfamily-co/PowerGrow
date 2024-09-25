@@ -40,12 +40,11 @@ def login_view(request):
 
         elif request.user.is_teacher:
             return redirect(f'/home/teacher/{request.user.id}/')
-
         else:
             # ریدایرکت به داشبورد کاربر عادی
             return redirect(f'/home/user/{request.user.id}/')
-
-    return HttpResponse(template.render(context, request))
+    else:
+        return HttpResponse(template.render(context, request))
 
 
 @csrf_exempt
@@ -275,19 +274,6 @@ def custom_login(request):
             }, status=200)
         return JsonResponse({'error': 'Invalid credentials'}, status=400)
     return JsonResponse({'error': 'Invalid request'}, status=400)
-
-
-@session_auth_required
-def check_session(request):
-    user = request.user
-    user_info = {
-        'is_authenticated': True,
-        'user': user.id,
-        'is_staff': user.is_staff,  # فرض می‌کنیم که یک فیلد user_type دارید
-        'is_superuser': user.is_superuser,
-        'is_teacher': user.is_teacher,
-    }
-    return JsonResponse(user_info)
 
 
 def custom_logout(request):

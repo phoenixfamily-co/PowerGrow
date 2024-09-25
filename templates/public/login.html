@@ -392,58 +392,5 @@ button:hover {
 });
 </script>
 
-{#<script>#}
-{##}
-{#document.addEventListener('DOMContentLoaded', function() {#}
-{##}
-{#    let redirectUrl;#}
-{##}
-{#    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');#}
-{##}
-{#    fetch("{% url 'user:check_session' %}", {#}
-{#        method: 'GET',#}
-{#        credentials: 'include', // اطمینان حاصل می‌کند که کوکی‌ها ارسال می‌شوند#}
-{#         headers: {#}
-{#             'Content-Type': 'application/json',#}
-{#             'X-CSRFToken': csrfToken, // اضافه کردن CSRF token#}
-{##}
-{#         },#}
-{#    })#}
-{#    .then(response => {#}
-{#        if (!response.ok) {#}
-{#            throw new Error('Network response was not ok');#}
-{#        }#}
-{#        return response.json();#}
-{#    })#}
-{#    .then(data => {#}
-{##}
-{#        if (data.is_authenticated) {#}
-{##}
-{#            const userId = data.user; // شناسه کاربر#}
-{##}
-{##}
-{#            const isStaff = data.is_staff;#}
-{#            const isSuperuser = data.is_superuser;#}
-{#            const isTeacher = data.is_teacher;#}
-{##}
-{#            if (isStaff) {#}
-{#                redirectUrl = `/user/home/manager/${userId}/`;#}
-{#            } else if (isSuperuser) {#}
-{#                redirectUrl = `/user/home/admin/${userId}/`;#}
-{#            } else if (isTeacher) {#}
-{#                redirectUrl = `/user/home/teacher/${userId}/`;#}
-{#            } else {#}
-{#                redirectUrl = `/user/home/user/${userId}/`;#}
-{#            }#}
-{##}
-{#            window.location.assign(redirectUrl);#}
-{##}
-{#        }#}
-{#    })#}
-{#    .catch(error => {#}
-{#        console.error('There was a problem with the fetch operation:', error);#}
-{#    });#}
-{#</script>#}
-
 </body>
 </html>

@@ -9,7 +9,6 @@ urlpatterns = [
 
     path('login/', login_view, name='login'),
     path('login/api/', custom_login, name='login_api'),
-    path('check-session/api/', check_session, name='check_session'),
     path('logout/api/', custom_logout, name='logout_api'),  # ثبت ویو logout
     path('register/', register_view, name='register'),
     path('register/api/', RegisterView.as_view(), name="api_register"),
