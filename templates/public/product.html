@@ -37,13 +37,31 @@
             url("/static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */ url("../../static/fonts/BYekan.ttf") format('truetype') /* Safari, Android, iOS */
         }
 
-        html, body {
-            margin: 0;
-            padding: 0 ;
-            overflow-x: hidden;
+
+         html, body {
+    height: 100%; /* اطمینان از اینکه ارتفاع صفحه 100% است */
+}
+
+.container-fluid {
+    flex: 1; /* اطمینان از اینکه این بخش فضای باقی‌مانده را پر می‌کند */
+}
+
+.footer {
+    position: relative; /* موقعیت نسبی */
+    bottom: 0; /* به پایین صفحه بچسبانید */
+    width: 100%; /* عرض کامل */
+    background-color: #312f2e; /* رنگ پس‌زمینه */
+}
+
+         body {
+             display: flex;
+             flex-direction: column;
+             min-height: 100vh; /* اطمینان از اینکه حداقل 100vh ارتفاع دارد */
+             overflow-x: hidden;
             background-color: #f7f0e8;
             font-family: BYekan, serif !important;
-        }
+         }
+
 
 
 
@@ -545,7 +563,7 @@
     </div>
 </div>
 
-<footer class="text-white pt-4">
+<footer class="footer text-white pt-4">
     <div class="container-fluid p-0">
         <div class="row align-items-center py-4" dir="rtl" style="background-color: #312f2e">
             <!-- Info Section -->
