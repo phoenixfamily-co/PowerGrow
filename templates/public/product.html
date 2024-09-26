@@ -897,8 +897,6 @@
 
     const thisDate = jalaali.j2d(year, month, monthDay)
 
-    console.log(isEnable)
-
 
     {% for x in participants.all %}
 
@@ -920,13 +918,18 @@
     capacityNumber.innerHTML = `${counter}/${parseInt(capacity)}`
 
 
-    if (parseInt(counter) < parseInt(capacity)) {
-        registerButton.disabled = false;
-        registerButton.innerHTML = "ثبت نام کنید";
-    } else {
-        registerButton.disabled = true;
-        registerButton.innerHTML = "ظرفیت تکمیل است";
-}
+    if (isEnable===true) {
+        if (parseInt(counter) < parseInt(capacity)) {
+            registerButton.disabled = false;
+            registerButton.innerHTML = "ثبت نام کنید";
+        } else {
+            registerButton.disabled = true;
+            registerButton.innerHTML = "ظرفیت تکمیل است";
+        }
+    }else {
+         registerButton.disabled = true;
+        registerButton.innerHTML = "دوره منقضی شده است";
+    }
 
     card.appendChild(registerButton)
 
