@@ -356,10 +356,7 @@ footer {
             const username = '+98' + document.getElementById('number').value.trim()
             const password = document.getElementById('password').value
 
-            console.log(username)
-            console.log(password)
-
-                const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
                 const response = await fetch("{% url 'user:login_api' %}", {
                     method: 'POST',
