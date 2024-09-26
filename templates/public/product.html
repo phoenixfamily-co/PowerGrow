@@ -982,12 +982,11 @@
     let counter = 0;
     const capacity = parseInt("{{product.capacity}}");
     const course = "{{ product.id }}";
-    const isActive = "{{ product.active | default: 'false' }}"; // Use the product's active status or default to "false"
+    const isActive = "{{ product.active }}"; // Get the active status from the product as a string
     const card = document.getElementById("card");
     const capacityNumber = document.getElementById("number");
     const registerButton = document.getElementById("registerButton");
 
-    const thisDate = jalaali.j2d(year, month, monthDay);
 
     {% for x in participants.all %}
         const userEndYear = parseInt("{{ x.endDay.month.year.number }}");
