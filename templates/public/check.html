@@ -4,11 +4,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token }}">
 <script src="https://kit.fontawesome.com/f872c5c890.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.css" />
 <script src="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.js"></script>
 
-        <title>پرداخت موفقیت امیز</title>
+        <title>تایید پرداخت</title>
 
 
 
@@ -28,128 +29,67 @@
         		 url("/static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */
         		 url("/static/fonts/BYekan.ttf")  format('truetype') /* Safari, Android, iOS */
 		}
-        * {
-            box-sizing: border-box
-        }
 
-             html{
-                 position: relative;
-                 font-family: BYekan, serif !important;
+            html, body {
+                margin: 0;
+                padding: 0 ;
+                overflow-x: hidden;
+                background: #312f2e;
+                font-family: BYekan, serif !important;
         }
-
-            body {
+            .logoHolder {
+                width: 100%;
+                position: absolute;
+                margin-top: 20px;
+                left: 0;
                 display: flex;
-                direction: rtl;
-                justify-content: center;
+                z-index: 10 !important;
+                direction: ltr;
                 align-items: center;
-                flex-direction: column;
-                background: #282a36;
-                color: #fff;
+                justify-content: center;
             }
-
-             .logoHolder {
-                 position: absolute;
-                 top: 0;
-                 justify-items: center;
-                 justify-content: center;
-                 margin-top: 1%;
-                 display: inline-flex;
-                 direction: ltr;
-             }
 
         .logo {
             width: 50px;
             height: 50px;
             border-radius: 25px;
-            direction: ltr
 
         }
 
         .typography {
-            margin-top: 10px;
             color: white;
+            font-size: 20px;
             margin-left: 10px;
-            font-size: 20px
 
         }
 
-            ul {
-            list-style-type: none;
-        }
+            .card_holder {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: auto;
+                background: transparent; /* رنگ پس‌زمینه صفحه */
+}
 
-           .card {
-               width: 35%;
-               height: auto;
-               border-radius: 1rem;
-               margin-top: 100px;
-               margin-bottom: 100px;
-               background: #f6efe7;
-               color: black;
-               left: 0;
-               right: 0;
-           }
-
-        .card-button {
-            height: 50px;
-            margin-top: 5%;
-            margin-bottom: 5%;
-            width: 90%;
-            background: #e4633a;
-            border-color: transparent;
-            color: white;
-            cursor: pointer;
-        }
-         .list-group-item-fixed {
-             width: auto;
-             margin-top: 4%;
-             padding-bottom: 4%;
-        }
-        .list-group-left {
-            text-align: center;
-            float: left;
-            display: inline;
-            width: 40%;
-        }
-        .list-group-right {
-            text-align: right;
-            float: right;
-            display: inline;
-            width: 35%;
-        }
-
-         .list-group-center {
-             text-align: center;
-             display: inline-block;
-             align-items: center;
-             justify-content: center;
-             color: green;
-             width: 100%;
-        }
-
-        div.list-group-right {
-            width: 55%;
-            display: inline-flex;
-        }
-
-        #zarinpal{
-            pointer-events: none;
-            cursor: none;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: auto;
-            flex-direction: column;
-        }
-            #zarinpal img {
-                width: 80px;
+            .card {
+                border-radius: 1rem;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* اضافه کردن سایه برای زیبایی */
+                background-color: #f7f0e8;
             }
 
-        @media screen and (max-width: 600px) {
-            .card {
-               width: 90%;
+            .list-group-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 40px; /* فاصله افقی بین h6 ها */
+            }
 
-           }
-        }
+            #registerButton {
+                width: calc(100% - 20px); /* عرض دکمه 100% منهای 20px (10px فاصله از چپ و راست) */
+                margin: 10px; /* 10px فاصله از چپ و راست */
+                background-color: #E16539;
+                color: white;
+            }
 
 </style>
 
@@ -164,138 +104,72 @@
 
 </div>
 
+   <div class="card_holder my-5">
+    <div class="card mt-5">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
+                <h6 class="mb-0 text-end">نام دوره:</h6>
+                <h6 class="mb-0">{{ participants.course.title }}</h6>
+            </li>
 
+            <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
+                <h6 class="mb-0 text-end">نام مربی:</h6>
+                <h6 class="mb-0 text-start">{{ participants.course.name }}</h6>
+            </li>
 
-<div class="card" id="card">
+            <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
+                <h6 class="mb-0 text-end">جنسیت دوره:</h6>
+                <h6 class="mb-0 text-start">{{ participants.course.gender }}</h6>
+            </li>
 
-     <ul class="list-group list-group-flush">
-        <li class="list-group-item-fixed">
-            <h6 class="list-group-right">
-                نام دوره:
-            </h6>
-            <h6 class="list-group-left">
-                {{ participants.course.title }}
-            </h6>
-        </li>
-    </ul>
+            <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
+                <h6 class="mb-0 text-end">روزهای برگزاری:</h6>
+                <h6 class="mb-0text-start">{{ participants.day.title}}</h6>
+            </li>
 
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item-fixed">
-            <h6 class="list-group-right">
-                جنسیت دوره:
-            </h6>
-            <h6 id="startDay" class="list-group-left">
-               {{ participants.course.gender }}
-            </h6>
-        </li>
-    </ul>
+            <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
+                <h6 class="mb-0">ساعت برگزاری:</h6>
+                <h6 class="mb-0 text-start">{{ participants.course.time }}</h6>
+            </li>
 
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item-fixed">
-            <h6 class="list-group-right">
-                روزها برگزاری:
-            </h6>
-            <h6 id="startTime" class="list-group-left">
-                {{ participants.day.title}}
-            </h6>
-        </li>
-    </ul>
+            <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
+                <h6 class="mb-0 text-end">تاریخ شروع:</h6>
+                <h6 class="mb-0 text-start"> {{ participants.startDay.month.year.number }}/{{ participants.startDay.month.number }}/{{ participants.startDay.number }}</h6>
+            </li>
 
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item-fixed">
-            <h6 class="list-group-right">
-                نام مربی:
-            </h6>
-            <h6 class="list-group-left">
-                {{ participants.course.name }}
-            </h6>
-        </li>
-    </ul>
+            <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
+                <h6 class="mb-0 text-end">تعداد جلسات:</h6>
+                <h6 class="mb-0 text-start">{{ participants.session.number }} جلسه</h6>
+            </li>
 
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item-fixed">
-            <h6 class="list-group-right">
-                ساعت برگزاری:
-            </h6>
-            <h6 id="price" class="list-group-left">
-                {{ participants.course.time }}
-            </h6>
-        </li>
-    </ul>
+            <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
+                <h6 class="mb-0 text-end">شهریه ثابت:</h6>
+                <h6 class="mb-0 text-start">{{ participants.day.tuition }} تومان</h6>
+            </li>
 
-     <ul class="list-group list-group-flush">
-        <li class="list-group-item-fixed">
-            <h6 class="list-group-right">
-                تاریخ شروع:
-            </h6>
-            <h6 id="start" class="list-group-left">
-                {{ participants.startDay.month.year.number }}/{{ participants.startDay.month.number }}/{{ participants.startDay.number }}
-            </h6>
-        </li>
-    </ul>
+            <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
+                <h6 class="mb-0 text-end">تخفیف:</h6>
+                <h6 class="mb-0 text-start">{{ participants.day.off }}%%</h6>
+            </li>
 
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item-fixed">
-            <h6 class="list-group-right">
-               تعداد جلسات:
-            </h6>
-            <h6 class="list-group-left">
-                {{ participants.session.number }} جلسه
-            </h6>
-        </li>
-    </ul>
+            <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
+                <h6 class="mb-0 text-end">قیمت نهایی:</h6>
+                <h6 id="final" class="mb-0 text-start">
+                    {{ participants.price }} تومان
+                </h6>
+            </li>
+        </ul>
 
-     <ul class="list-group list-group-flush">
-        <li class="list-group-item-fixed">
-            <h6 class="list-group-right">
-               شهریه ثابت:
-            </h6>
-            <h6 class="list-group-left">
-                {{ participants.day.tuition }} تومان
-            </h6>
-        </li>
-    </ul>
+        <div class="text-center justify-content-center my-3" style="color:#5cb85c;">
+            پرداخت شما با موفقیت انجام شد
+        </div>
 
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item-fixed">
-            <h6 class="list-group-right">
-               تخفیف:
-            </h6>
-            <h6 class="list-group-left">
-                {{ participants.day.off }}%
-            </h6>
-        </li>
-    </ul>
-
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item-fixed">
-            <h6 class="list-group-right">
-               قیمت نهایی:
-            </h6>
-            <h6 id="final" class="list-group-left">
-                {{ participants.price }} تومان
-            </h6>
-        </li>
-    </ul>
-
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item-fixed list-group-center ">
-            <h4>
-               پرداخت با موفقیت انجام شد
-            </h4>
-
-        </li>
-    </ul>
-
-    <ul class="list-group list-group-flush">
-        <li>
-             <button id="registerButton" class="card-button" onclick="window.location.replace('{% url 'product:product' participants.course.id%}')">
-        تایید
+        <div class="d-flex justify-content-center">
+            <button id="registerButton" class="card-button" onclick="window.location.replace('{% url 'product:product' participants.course.id%}')">
+                تایید
              </button>
-        </li>
-    </ul>
-
-
+        </div>
+    </div>
 </div>
 
 </body>
