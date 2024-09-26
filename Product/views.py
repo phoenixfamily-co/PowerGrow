@@ -367,10 +367,10 @@ class ParticipationView(viewsets.ViewSet):
 
                 day = week.title.split("،")
                 ids = Day.objects.filter(name__in=day, month__number__gte=start.month.number,
-                                         month__year__number__gte=start.month.year.number, holiday=False) \
-                          .exclude(month__number=start.month.number, number__lt=start.number) \
+                                         month__year__number__gte=start.month.year.number, holiday=False).exclude(
+                    month__number=start.month.number,
+                    number__lt=start.number) \
                           .order_by('pk').values_list('pk', flat=True)[:int(session.number)]
-
                 end = Day.objects.filter(pk__in=list(ids)).last()
 
                 # Create participant using serializer
