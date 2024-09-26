@@ -885,7 +885,7 @@
     let counter = 0
     let capacity = "{{product.capacity}}";
     let course = "{{ product.id }}";
-    let isEnable = "{{ product.active }}"
+    let isEnable = ("{{ product.active }}"?.toLowerCase?.() === 'true');
     const card = document.getElementById("card")
     const capacityNumber = document.getElementById("number")
     const registerButton = document.getElementById("registerButton")
@@ -897,7 +897,7 @@
 
     const thisDate = jalaali.j2d(year, month, monthDay)
 
-    console.log("Boolean(isEnable)")
+    console.log(isEnable)
 
 
     {% for x in participants.all %}
