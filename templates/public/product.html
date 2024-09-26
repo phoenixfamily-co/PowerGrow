@@ -880,6 +880,7 @@
 
 </script>
 
+
 <script>
     const session = document.getElementById("number");
     const week = document.getElementById("week");
@@ -979,42 +980,53 @@
 </script>
 
 <script>
-    let counter = 0;
-    const capacity = parseInt("{{product.capacity}}");
-    const course = "{{ product.id }}";
-    const card = document.getElementById("card");
-    const capacityNumber = document.getElementById("number");
-    const registerButton = document.getElementById("registerButton");
 
-    let final_price;
+    let counter = 0
+    let capacity = "{{product.capacity}}";
+    let course = "{{ product.id }}";
+    const card = document.getElementById("card")
+    const capacityNumber = document.getElementById("number")
+    const registerButton = document.getElementById("registerButton")
+    let final_price
 
-    const thisDate = jalaali.j2d(year, month, monthDay);
+    const thisDate = jalaali.j2d(year, month, monthDay)
+
 
     {% for x in participants.all %}
-        const userEndYear = parseInt("{{ x.endDay.month.year.number }}");
-        const userEndMonth = parseInt("{{ x.endDay.month.number }}");
-        const userEndDay = parseInt("{{ x.endDay.number }}");
 
-        const userEnd = jalaali.j2d(userEndYear, userEndMonth, userEndDay);
+        var userEndYear = parseInt("{{ x.endDay.month.year.number }}");
+        var userEndMonth = parseInt("{{ x.endDay.month.number }}");
+        var userEndDay = parseInt("{{ x.endDay.number }}");
 
-        if (userEnd > 0 && userEnd >= thisDate) {
-            counter++;
+        var userEnd = jalaali.j2d(userEndYear, userEndMonth, userEndDay)
+
+        if (0<userEnd){
+            if(userEnd>=thisDate) {
+                counter = counter + 1
+            }
         }
+
     {% endfor %}
 
-    capacityNumber.innerHTML = `${counter}/${capacity}`;
 
-    const isEnabled = counter < capacity;  // Boolean variable for button state
-    registerButton.disabled = !isEnabled;
-    registerButton.innerHTML = isEnabled ? "ثبت نام کنید" : "ظرفیت تکمیل است";
+    capacityNumber.innerHTML = `${counter}/${parseInt(capacity)}`
 
-    card.appendChild(registerButton);
 
-    registerButton.addEventListener('click', () => {
-        window.location.assign(`/product/payment/${course}/${sessionId}/${dayId}/${currentDayId}`);
-    });
+    if (parseInt(counter) < parseInt(capacity)) {
+        registerButton.disabled = false;
+        registerButton.innerHTML = "ثبت نام کنید";
+    } else {
+        registerButton.disabled = true;
+        registerButton.innerHTML = "ظرفیت تکمیل است";
+}
+
+    card.appendChild(registerButton)
+
+    registerButton.addEventListener('click', function () {
+        window.location.assign(`/product/payment/${course}/${sessionId}/${dayId}/${currentDayId}`)
+    })
+
 </script>
-
 
 </body>
 </html>
