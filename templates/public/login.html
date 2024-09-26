@@ -359,9 +359,6 @@ footer {
             console.log(username)
             console.log(password)
 
-
-            try {
-
                 const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
                 const response = await fetch("{% url 'user:login_api' %}", {
@@ -404,11 +401,6 @@ footer {
                 } else {
                     alert("نام کاربری یا پسورد اشتباه است");
                 }
-            } catch (error) {
-                console.error("Error during login:", error);
-                alert("خطایی در ارتباط با سرور پیش آمد. لطفاً دوباره تلاش کنید.");
-            }
-
         });
     } else {
         console.error("Submit button not found");
