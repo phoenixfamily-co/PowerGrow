@@ -21,48 +21,11 @@
 		}
 
             body {
-                font-family: "Poppins", sans-serif;
+                font-family: BYekan, serif !important;
                 display: flex;
                 flex-direction: column;
-                background: #282a36;
+                background: #312f2e;
                 color: #fff;
-            }
-
-
-            .otp-field {
-                flex-direction: row;
-                column-gap: 10px;
-                display: inline-block;
-               align-content: center;
-                align-items: center;
-                text-align: center;
-                justify-content: center;
-            }
-
-            .otp-field input {
-                width: 45px;
-                font-size: 32px;
-                padding: 10px;
-                text-align: center;
-                border-radius: 5px;
-                margin: 2px;
-                border: 2px solid #55525c;
-                background: #21232d;
-                font-weight: bold;
-                color: #fff;
-                outline: none;
-                transition: all 0.1s;
-            }
-
-            .otp-field input:focus {
-                border: 2px solid #E16539;
-                box-shadow: 0 0 2px 2px #E165396a;
-            }
-
-            .disabled {
-                opacity: 0.5;
-                cursor: none;
-                pointer-events: none;
             }
 
             .logoHolder {
@@ -91,25 +54,25 @@
 
         }
 
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-          -webkit-appearance: none;
-          margin: 0;
-        }
 
-        /* Firefox */
-        input[type=number] {
-          -moz-appearance: textfield;
-        }
-        .br-on-mobile {
-            display: none;
-        }
+.card {
+    margin-top: 100px;
+     background-color: #f7f0e8;
+    color: #333;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
 
-        @media screen and (max-width: 768px) {
-            .br-on-mobile {
-                display: block;
-            }
-        }
+h3 {
+    margin-bottom: 20px;
+}
+
+.btn-primary {
+    background-color: #E16539;
+    border: none;
+}
+
 
 </style>
 
@@ -124,46 +87,25 @@
 
 </div>
 
-
-<h2 style="position: relative; margin-top: 150px ;display: flex ;vertical-align: middle;padding-right: 10px ; align-content: center;
-                align-items: center;
-                text-align: center;
-                justify-content: center;" dir="rtl">شماره موبایل خود را بدون 0 وارد کنید</h2>
-
-<div class="otp-field">
-    <label>
-        <input type="number" maxlength="1" />
-    </label>
-    <label>
-        <input type="number" maxlength="1" />
-    </label>
-     <label>
-        <input type="number" maxlength="1" />
-    </label>
-    <label>
-        <input type="number" maxlength="1" />
-    </label>
-    <label>
-        <input class="space" type="number" maxlength="1" />
-    </label>
-    <br class="br-on-mobile"/>
-    <label>
-        <input type="number" maxlength="1" />
-    </label>
-    <label>
-        <input type="number" maxlength="1" />
-    </label>
-    <label>
-        <input type="number" maxlength="1" />
-    </label>
-     <label>
-        <input type="number" maxlength="1" />
-    </label>
-    <label>
-        <input type="number" maxlength="1" />
-    </label>
-
-</div>
+   <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mt-5">
+                    <div class="card-body text-center">
+                        <h3>فراموشی رمز عبور</h3>
+                        <p class="lead">فراموشی رمز عبور</p>
+                        <p>شماره موبایل خود را وارد کنید</p>
+                        <form>
+                            <div class="form-group">
+                                <input type="number" class="form-control" id="number" placeholder="Your e-mail address">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">بازیابی</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 
