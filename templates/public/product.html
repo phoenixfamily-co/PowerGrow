@@ -987,12 +987,6 @@
     const capacityNumber = document.getElementById("number");
     const registerButton = document.getElementById("registerButton");
 
-    const today = new Date().toLocaleDateString('fa-IR').split('/');
-    const year = parseInt(today[0].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728)));
-    const month = parseInt(today[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728)));
-    const monthDay = parseInt(today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728)));
-
-    const thisDate = jalaali.j2d(year, month, monthDay);
 
     {% for x in participants.all %}
         const userEndYear = parseInt("{{ x.endDay.month.year.number }}");
