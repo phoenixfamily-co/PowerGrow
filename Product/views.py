@@ -373,7 +373,6 @@ class ParticipationView(viewsets.ViewSet):
                           .order_by('pk').values_list('pk', flat=True)[:int(session.number)]
                 end = Day.objects.filter(pk__in=list(ids)).last()
 
-                # Create participant using serializer
                 participant_data = {
                     'title': data["title"],
                     'description': data["description"],
@@ -394,19 +393,15 @@ class ParticipationView(viewsets.ViewSet):
                     return Response({'payment': ZP_API_STARTPAY, 'authority': str(response_data['Authority'])},
                                     status=status.HTTP_201_CREATED)
                 else:
-                    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+                    return Response({'error': 'Validation failed', 'details': serializer.errors},
+                                    status=status.HTTP_400_BAD_REQUEST)
 
             else:
                 return Response({'error': 'Payment request failed'}, status=status.HTTP_400_BAD_REQUEST)
 
-        except requests.exceptions.RequestException as e:
-            return Response({'error': f'Request failed: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-        except (Sessions.DoesNotExist, Days.DoesNotExist, Day.DoesNotExist, Course.DoesNotExist) as e:
-            return Response({'error': f'Invalid data: {str(e)}'}, status=status.HTTP_400_BAD_REQUEST)
-        except json.JSONDecodeError:
-            return Response({'error': 'Failed to decode response JSON'}, status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
-            return Response({'error': f'An unexpected error occurred: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            return Response({'error': 'An unexpected error occurred', 'details': str(e)},
+                            status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class ManagerParticipationView(viewsets.ModelViewSet):

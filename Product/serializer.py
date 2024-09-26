@@ -19,8 +19,11 @@ class RegisterParticipantsSerializer(serializers.ModelSerializer):
 class ParticipantsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Participants
-        required_fields = ['price', 'description', 'session', 'day', 'startDay', 'course', 'title']
-        exclude = ['datetime']
+        fields = ['title', 'description', 'startDay', 'endDay', 'session', 'day', 'price', 'user', 'course',
+                  'authority', 'success']
+
+    def create(self, validated_data):
+        return Participants.objects.create(**validated_data)
 
 
 class ParticipantsUserSerializer(serializers.ModelSerializer):
