@@ -880,6 +880,58 @@
 
 </script>
 
+<script>
+
+    let counter = 0
+    let capacity = "{{product.capacity}}";
+    let course = "{{ product.id }}";
+    const card = document.getElementById("card")
+    const capacityNumber = document.getElementById("number")
+    const registerButton = document.getElementById("registerButton")
+    let final_price
+
+    let year = parseInt(today[0].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
+    let month = parseInt(today[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
+    let monthDay = parseInt(today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
+
+    const thisDate = jalaali.j2d(year, month, monthDay)
+
+
+    {% for x in participants.all %}
+
+        var userEndYear = parseInt("{{ x.endDay.month.year.number }}");
+        var userEndMonth = parseInt("{{ x.endDay.month.number }}");
+        var userEndDay = parseInt("{{ x.endDay.number }}");
+
+        var userEnd = jalaali.j2d(userEndYear, userEndMonth, userEndDay)
+
+        if (0<userEnd){
+            if(userEnd>=thisDate) {
+                counter = counter + 1
+            }
+        }
+
+    {% endfor %}
+
+
+    capacityNumber.innerHTML = `${counter}/${parseInt(capacity)}`
+
+
+    if (parseInt(counter) < parseInt(capacity)) {
+        registerButton.disabled = false;
+        registerButton.innerHTML = "ثبت نام کنید";
+    } else {
+        registerButton.disabled = true;
+        registerButton.innerHTML = "ظرفیت تکمیل است";
+}
+
+    card.appendChild(registerButton)
+
+    registerButton.addEventListener('click', function () {
+        window.location.assign(`/product/payment/${course}/${sessionId}/${dayId}/${currentDayId}`)
+    })
+
+</script>
 
 <script>
     const session = document.getElementById("number");
@@ -976,55 +1028,6 @@
 
 
     }
-
-</script>
-
-<script>
-
-    let counter = 0
-    let capacity = "{{product.capacity}}";
-    let course = "{{ product.id }}";
-    const card = document.getElementById("card")
-    const capacityNumber = document.getElementById("number")
-    const registerButton = document.getElementById("registerButton")
-    let final_price
-
-    const thisDate = jalaali.j2d(year, month, monthDay)
-
-
-    {% for x in participants.all %}
-
-        var userEndYear = parseInt("{{ x.endDay.month.year.number }}");
-        var userEndMonth = parseInt("{{ x.endDay.month.number }}");
-        var userEndDay = parseInt("{{ x.endDay.number }}");
-
-        var userEnd = jalaali.j2d(userEndYear, userEndMonth, userEndDay)
-
-        if (0<userEnd){
-            if(userEnd>=thisDate) {
-                counter = counter + 1
-            }
-        }
-
-    {% endfor %}
-
-
-    capacityNumber.innerHTML = `${counter}/${parseInt(capacity)}`
-
-
-    if (parseInt(counter) < parseInt(capacity)) {
-        registerButton.disabled = false;
-        registerButton.innerHTML = "ثبت نام کنید";
-    } else {
-        registerButton.disabled = true;
-        registerButton.innerHTML = "ظرفیت تکمیل است";
-}
-
-    card.appendChild(registerButton)
-
-    registerButton.addEventListener('click', function () {
-        window.location.assign(`/product/payment/${course}/${sessionId}/${dayId}/${currentDayId}`)
-    })
 
 </script>
 
