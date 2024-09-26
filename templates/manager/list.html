@@ -5,6 +5,8 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <meta name="csrf-token" content="{{ csrf_token }}">
+
     <script src="https://kit.fontawesome.com/f872c5c890.js" crossorigin="anonymous"></script>
 
      <script src="https://cdn.jsdelivr.net/npm/jalaali-js/dist/jalaali.js"></script>
@@ -671,83 +673,94 @@
 </script>
 
 <script>
-    let calendarPopup = document.getElementById("calendarPopup")
-    let endDayPopup = document.getElementById("endDayPopup")
-    let exit = document.getElementById("exit")
-    let _exit = document.getElementById("_exit")
-    let courseId
-    let participantId
+    const calendarPopup = document.getElementById("calendarPopup");
+    const endDayPopup = document.getElementById("endDayPopup");
+    const exit = document.getElementById("exit");
+    const _exit = document.getElementById("_exit");
+    let courseId, participantId;
 
-        const cookieValue = document.cookie
-        .split("; ")
-        .find((row) => row.startsWith("token="))
-        ?.split("=")[1];
+    function togglePopup(popup) {
+        popup.classList.toggle("show");
+    }
 
-    function submit(course,participant) {
-        courseId = course
-        participantId = participant
-        calendarPopup.classList.toggle("show");
-        getSession(course)
-
+    function submit(course, participant) {
+        courseId = course;
+        participantId = participant;
+        togglePopup(calendarPopup);
+        getSession(course);
     }
 
     function showPopup(participant) {
-        participantId = participant
-        endDayPopup.classList.toggle("show");
+        participantId = participant;
+        togglePopup(endDayPopup);
     }
 
-    function apply(){
+    async function apply() {
+        try {
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-          const response = fetch("/product/api/admin/participate/" + participantId + "/"+ sessionId + "/" + dayId + "/" + currentDayId +"/update/", {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization' :  `token ${cookieValue}`
-            },
-        })
+            const response = await fetch(`/product/api/admin/participate/${participantId}/${sessionId}/${dayId}/${currentDayId}/update/`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken,
+                }
+            });
 
-        calendarPopup.classList.remove("show");
-        window.location.reload()
+            if (response.ok) {
+                closeCalendarPopup();
+            } else {
+                alert(response.statusText)
+            }
+        } catch (error) {
+            console.error("Error during login:", error);
+            alert("خطایی در ارتباط با سرور پیش آمد. لطفاً دوباره تلاش کنید.");
+        }
     }
 
     async function update() {
+        try {
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            const param = {endDay: currentDayId};
 
-        const param = {
-            "endDay": `${currentDayId}`,
+            const response = await fetch(`/product/api/end/${participantId}/`, {
+                method: 'PUT',
+                headers: {'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken,
+                },
+                body: JSON.stringify(param)
+            });
+
+            if (response.ok) {
+                closeEndDayPopup();
+            } else {
+                alert(response.statusText)
+            }
+        } catch (error) {
+            console.error("Error during login:", error);
+            alert("خطایی در ارتباط با سرور پیش آمد. لطفاً دوباره تلاش کنید.");
         }
-
-        const response = fetch("/product/api/end/" + participantId + "/", {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `token ${cookieValue}`
-            },
-            body: JSON.stringify(param)
-        });
-        endDayPopup.classList.remove("show");
-        window.location.reload()
-
     }
-        window.addEventListener("click", function (event) {
-            if (event.target === calendarPopup) {
-                calendarPopup.classList.remove("show");
-            }
-            if (event.target === endDayPopup) {
-                endDayPopup.classList.remove("show");
-            }
-        });
 
-        exit.addEventListener("click", function () {
-            calendarPopup.classList.remove("show");
+    function closeCalendarPopup() {
+        calendarPopup.classList.remove("show");
+        window.location.reload();
+    }
 
-        })
+    function closeEndDayPopup() {
+        endDayPopup.classList.remove("show");
+        window.location.reload();
+    }
 
-         _exit.addEventListener("click", function () {
-            endDayPopup.classList.remove("show");
+    window.addEventListener("click", (event) => {
+        if (event.target === calendarPopup) closeCalendarPopup();
+        if (event.target === endDayPopup) closeEndDayPopup();
+    });
 
-        })
-
+    exit.addEventListener("click", closeCalendarPopup);
+    _exit.addEventListener("click", closeEndDayPopup);
 </script>
+
 
 <script>
 
