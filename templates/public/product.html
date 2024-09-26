@@ -885,6 +885,7 @@
     let counter = 0
     let capacity = "{{product.capacity}}";
     let course = "{{ product.id }}";
+    let isEnable = "{{ product.active }}"
     const card = document.getElementById("card")
     const capacityNumber = document.getElementById("number")
     const registerButton = document.getElementById("registerButton")
@@ -895,6 +896,8 @@
     let monthDay = parseInt(today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
 
     const thisDate = jalaali.j2d(year, month, monthDay)
+
+    console.log(isEnable)
 
 
     {% for x in participants.all %}
