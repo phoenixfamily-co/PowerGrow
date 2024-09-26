@@ -19,7 +19,7 @@ class RegisterParticipantsSerializer(serializers.ModelSerializer):
 class ParticipantsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Participants
-        read_only_fields = ['created', 'endDay']
+        required_fields = ['price', 'description', 'session', 'day', 'startDay', 'course', 'title']
         exclude = ['datetime']
 
 
@@ -147,7 +147,6 @@ class ChangeActiveSerializer(serializers.ModelSerializer):
         return instance
 
 
-
 class ChangeTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
@@ -233,4 +232,3 @@ class ChangeCourseSerializer(serializers.ModelSerializer):
         instance.save()
 
         return instance
-
