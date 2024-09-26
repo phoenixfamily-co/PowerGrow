@@ -982,11 +982,13 @@
     let counter = 0;
     const capacity = parseInt("{{product.capacity}}");
     const course = "{{ product.id }}";
-    const isActive = true; // Get the active status from the product as a string
     const card = document.getElementById("card");
     const capacityNumber = document.getElementById("number");
     const registerButton = document.getElementById("registerButton");
 
+    let final_price;
+
+    const thisDate = jalaali.j2d(year, month, monthDay);
 
     {% for x in participants.all %}
         const userEndYear = parseInt("{{ x.endDay.month.year.number }}");
@@ -1002,20 +1004,16 @@
 
     capacityNumber.innerHTML = `${counter}/${capacity}`;
 
-    const isFull = counter >= capacity;  // Determine if the course capacity is full
-    const isEnabled = (isActive === "true") && !isFull;  // Button state based on course activity and capacity
+    const isEnabled = counter < capacity;  // Boolean variable for button state
     registerButton.disabled = !isEnabled;
-    registerButton.innerHTML = isEnabled ? "ثبت نام کنید" : (isActive === "true" ? "ظرفیت تکمیل است" : "دوره منقضی شده است");
+    registerButton.innerHTML = isEnabled ? "ثبت نام کنید" : "ظرفیت تکمیل است";
 
     card.appendChild(registerButton);
 
     registerButton.addEventListener('click', () => {
-        if (isEnabled) {
-            window.location.assign(`/product/payment/${course}/${sessionId}/${dayId}/${currentDayId}`);
-        }
+        window.location.assign(`/product/payment/${course}/${sessionId}/${dayId}/${currentDayId}`);
     });
 </script>
-
 
 
 </body>
