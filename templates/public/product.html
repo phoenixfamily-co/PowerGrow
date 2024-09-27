@@ -587,6 +587,7 @@
                 <div class="form-group my-5">
                     <label for="session">تعداد جلسات در ماه را انتخاب کنید:</label>
                     <select class="form-control mt-1" name="session" id="session">
+                        <option value="" disabled selected>جلسه را انتخاب کنید</option>
                         {% for x in session %}
                             <option value="{{ x.id }}">{{ x.number }} جلسه </option>
                         {% endfor %}
@@ -595,7 +596,7 @@
                 <div class="form-group my-5">
                     <label for="week">روزهای برگزاری در هفته را مشخص کنید:</label>
                     <select class="form-control mt-1" name="week" id="week">
-                        <option value="">لطفاً جلسه را اول انتخاب کنید</option>
+                        <option value="">لطفاً اول جلسه را انتخاب کنید</option>
                     </select>
                 </div>
             </div>
