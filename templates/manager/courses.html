@@ -400,14 +400,15 @@ input[type=submit] {
             <tr>
                 <th scope="row">{{ x.id }}</th>
                 <td class="text-center">
-                    <i class="fa fa-times text-danger" aria-hidden="true" style="cursor: pointer" title="حذف" onclick="window.open('{% url 'product:course-detail' x.id %}')"></i>
+                    <i class="fa fa-eye text-warning" aria-hidden="true" style="cursor: pointer" title="مشاهده" onclick="window.open('{% url 'product:product_view' x.id %}')"></i>
                 </td>
                 <td class="text-center">
                     <i class="fa fa-pencil text-warning" aria-hidden="true" style="cursor: pointer" title="ویرایش" onclick="window.open('{% url 'product:course-detail' x.id %}')"></i>
                 </td>
-                <td>
-                    <a href="{% url 'product:product_view' x.id %}" style="text-decoration: underline; cursor: pointer">مشاهده دوره</a>
+                 <td class="text-center">
+                    <i class="fa fa-times text-danger" aria-hidden="true" style="cursor: pointer" title="حذف" onclick="window.open('{% url 'product:course-detail' x.id %}')"></i>
                 </td>
+                <td>{{ x.title }}</td>
                 <td>{{ x.name }}</td>
                 <td>{{ x.gender }}</td>
                 <td>{{ x.type }}</td>
