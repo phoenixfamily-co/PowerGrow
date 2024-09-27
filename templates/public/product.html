@@ -892,15 +892,19 @@
         const priceDisplay = document.getElementById('price');
         const offDisplay = document.getElementById('off');
         const finalDisplay = document.getElementById('final');
+        let sessionId = 0
+        let dayId = 0
+
 
 
         // در بارگذاری اولیه
         if (sessionSelect.value) {
             sessionNumberDisplay.textContent = sessionSelect.options[sessionSelect.selectedIndex].text;
+            sessionId = sessionSelect.value
         }
 
         sessionSelect.addEventListener('change', function() {
-            const sessionId = this.value;
+            sessionId = this.value;
             sessionNumberDisplay.textContent = this.options[this.selectedIndex].text;
 
             fetch(`{% url 'product:get_days_for_session' %}?session_id=${sessionId}`)
@@ -919,6 +923,7 @@
                     // اگر گزینه‌ای وجود دارد، مقدار daysSessionDisplay را به‌روز کن
                     if (weekSelect.options.length > 0) {
                         daysSessionDisplay.textContent = weekSelect.options[0].text; // مقدار پیش‌فرض
+                        dayId = weekSelect.options[0].value
                         priceDisplay.textContent = weekSelect.options[0].getAttribute('data-custom1') + ' تومان '
                         offDisplay.textContent = weekSelect.options[0].getAttribute('data-custom2') + '%'
                         finalDisplay.textContent = weekSelect.options[0].getAttribute('data-custom1') + ' تومان '
@@ -926,6 +931,7 @@
                     } else {
                         daysSessionDisplay.textContent = ''; // در صورتی که گزینه‌ای وجود نداشته باشد
                         offDisplay.textContent = ''
+                        dayId=0
                         priceDisplay.textContent = ''
                         finalDisplay.textContent = ''
                     }
@@ -938,9 +944,11 @@
             priceDisplay.textContent = weekSelect.options[this.selectedIndex].getAttribute('data-custom1') + ' تومان '
             offDisplay.textContent = weekSelect.options[this.selectedIndex].getAttribute('data-custom2') + '%'
             finalDisplay.textContent = weekSelect.options[this.selectedIndex].getAttribute('data-custom1') + ' تومان '
+            dayId = weekSelect.options[this.selectedIndex].value
         });
     });
 </script>
+
 
 <script>
 
@@ -996,8 +1004,30 @@
     card.appendChild(registerButton)
 
     registerButton.addEventListener('click', function () {
-        window.location.assign(`/product/payment/${course}/${sessionId}/${dayId}/${currentDayId}`)
-    })
+    const errors = validateInputs(sessionId, dayId);
+
+    if (errors.length > 0) {
+        alert(errors.join("\n")); // نمایش همه خطاها به صورت یکجا
+    } else {
+        // انتقال به صفحه پرداخت
+        window.location.assign(`/product/payment/${course}/${sessionId}/${dayId}/${currentDayId}`);
+    }
+});
+
+// تابع برای بررسی ورودی‌ها
+function validateInputs(sessionId, dayId) {
+    const errors = [];
+
+    if (sessionId === 0) {
+        errors.push("لطفا اول جلسه را انتخاب کنید");
+    }
+    if (dayId === 0) {
+        errors.push("لطفا روز را انتخاب کنید");
+    }
+
+    return errors;
+}
+
 
 </script>
 
