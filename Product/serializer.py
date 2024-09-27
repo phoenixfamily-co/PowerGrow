@@ -17,15 +17,8 @@ class ManagerParticipantsSerializer(serializers.ModelSerializer):
             'user',  # کاربر
             'course',  # دوره
             'success'  # وضعیت موفقیت
+            'created',
         ]
-
-    def validate(self, data):
-        # بررسی صحت فیلدها
-        required_fields = ['title', 'description', 'session', 'day', 'startDay', 'price', 'user', 'course']
-        for field in required_fields:
-            if field not in data:
-                raise serializers.ValidationError(f'Missing field: {field}')
-        return data
 
     def create(self, validated_data):
         return Participants.objects.create(**validated_data)
@@ -41,6 +34,7 @@ class ManagerParticipantsSerializer(serializers.ModelSerializer):
         instance.user = validated_data.get('user', instance.user)
         instance.course = validated_data.get('course', instance.course)
         instance.success = validated_data.get('success', instance.success)
+        instance.created = validated_data.get('created', instance.created)
         instance.save()
         return instance
 
@@ -48,7 +42,7 @@ class ManagerParticipantsSerializer(serializers.ModelSerializer):
 class ParticipantsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Participants
-        fields = ['title', 'description', 'startDay', 'endDay', 'session', 'day', 'price', 'user', 'course',
+        fields = ['description', 'startDay', 'endDay', 'session', 'day', 'price', 'user', 'course',
                   'authority', 'success']
 
     def create(self, validated_data):

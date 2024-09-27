@@ -32,7 +32,7 @@ def category_view(request, pk):
     about = AboutUs.objects.first()  # Assuming there's only one AboutUs instance
     sport = get_object_or_404(Sport, id=pk)  # Ensure the sport exists
     courses = Course.objects.filter(sport=sport, active=True)
-    sports= Sport.objects.all()
+    sports = Sport.objects.all()
 
     context = {
         "about": about,
@@ -491,9 +491,8 @@ class ParticipationCreateView(viewsets.ViewSet):
 
     def create(self, request):
         data = request.data
-
         # Validate required fields
-        required_fields = ['price', 'description', 'session', 'day', 'startDay', 'course', 'title']
+        required_fields = ['price', 'session', 'day', 'startDay', 'course']
         for field in required_fields:
             if field not in data:
                 return Response({'error': f'Missing field: {field}'}, status=status.HTTP_400_BAD_REQUEST)
@@ -525,7 +524,6 @@ class ParticipationCreateView(viewsets.ViewSet):
                 end = Day.objects.filter(pk__in=list(ids)).last()
 
                 participant_data = {
-                    'title': data["title"],
                     'description': data["description"],
                     'startDay': start.id,
                     'endDay': end.id,
@@ -560,11 +558,55 @@ class ManagerParticipationView(viewsets.ViewSet):
     permission_classes = [IsAdminUser]
 
     def create(self, request):
-        serializer = self.serializer_class(data=request.data)
-        if serializer.is_valid():
+        data = request.data
+        # Validate required fields
+        required_fields = ['price', 'session', 'day', 'startDay', 'course']
+        for field in required_fields:
+            if field not in data:
+                return Response({'error': f'Missing field: {field}'}, status=status.HTTP_400_BAD_REQUEST)
+
+        course = Course.objects.filter(id=self.kwargs['id']).first()
+        user = User.objects.filter(number=self.kwargs['user']).first()
+        start = Day.objects.filter(id=self.kwargs['start']).first()
+        week = Days.objects.filter(id=self.kwargs['day']).first()
+        session = Session.objects.filter(id=self.kwargs['session']).first()
+
+        day = week.title.split("،")
+
+        startIds = Day.objects.filter(name__in=day, month__number__gte=start.month.number,
+                                 month__year__number__gte=start.month.year.number, holiday=False).exclude(
+            month__number=start.month.number,
+            number__lt=start.number) \
+                  .order_by('pk').values_list('pk', flat=True)[:int(session.number)]
+        startDay = Day.objects.filter(pk__in=list(startIds)).first()
+
+        endIds = Day.objects.filter(name__in=day, month__number__gte=start.month.number,
+                                 month__year__number__gte=start.month.year.number, holiday=False).exclude(
+            month__number=start.month.number,
+            number__lt=start.number) \
+                  .order_by('pk').values_list('pk', flat=True)[:int(session.number)]
+        endDay = Day.objects.filter(pk__in=list(endIds)).last()
+
+        participant_data = {
+            'description': data["description"],
+            'startDay': startDay.id,
+            'endDay': endDay.id,
+            'session': session.id,
+            'day': week.id,
+            'price': data["price"],
+            'user': user,
+            'course': course.id,
+            'success': True,
+            'created': request.user.id
+        }
+
+        serializer = self.serializer_class(data=participant_data)
+        if serializer.is_valid(raise_exception=True):
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(status=status.HTTP_201_CREATED)
+        else:
+            return Response({'error': 'Validation failed', 'details': serializer.errors},
+                            status=status.HTTP_400_BAD_REQUEST)
 
     def update(self, request, pk):
         try:
