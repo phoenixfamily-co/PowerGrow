@@ -406,7 +406,7 @@ class SportDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         sport_id = self.kwargs.get('pk')
-        return super().get_queryset().filter(session=sport_id)
+        return super().get_queryset().all()
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
