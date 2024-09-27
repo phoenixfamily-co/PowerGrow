@@ -615,6 +615,7 @@
             </div>
 </div>
 
+
 <footer class="footer text-white pt-4">
     <div class="container-fluid p-0">
         <div class="row align-items-center py-4" dir="rtl" style="background-color: #312f2e">
@@ -888,6 +889,9 @@
         const weekSelect = document.getElementById('week');
         const sessionNumberDisplay = document.getElementById('sessionNumber');
         const daysSessionDisplay = document.getElementById('daySession');
+        const priceDisplay = document.getElementById('price');
+        const offDisplay = document.getElementById('off');
+        const finalDisplay = document.getElementById('final');
 
         // در بارگذاری اولیه
         if (sessionSelect.value) {
@@ -902,18 +906,20 @@
                 .then(response => response.json())
                 .then(data => {
                     weekSelect.innerHTML = ''; // پاک کردن گزینه‌های قبلی
-                    data.forEach(day => {
+                    data.days.forEach(day => {
                         const option = document.createElement('option');
                         option.value = day.id;
                         option.textContent = day.title;
                         weekSelect.appendChild(option);
                     });
 
-                    // اگر گزینه‌ای وجود دارد، مقدار daysSessionDisplay را به‌روز کن
+                    // به‌روزرسانی مقادیر اولیه
                     if (weekSelect.options.length > 0) {
                         daysSessionDisplay.textContent = weekSelect.options[0].text; // مقدار پیش‌فرض
+                        updatePriceInfo(data.pricing); // به‌روزرسانی قیمت‌ها با داده‌های جدید
                     } else {
                         daysSessionDisplay.textContent = ''; // در صورتی که گزینه‌ای وجود نداشته باشد
+                        resetPriceInfo(); // ریست کردن قیمت‌ها
                     }
                 })
                 .catch(error => console.error('Error:', error));
@@ -921,16 +927,32 @@
 
         weekSelect.addEventListener('change', function() {
             daysSessionDisplay.textContent = this.options[this.selectedIndex].text;
+
+            // به‌روزرسانی قیمت‌ها بر اساس روز انتخاب‌شده
+            const selectedDayId = this.value;
+            fetch(`{% url 'product:get_pricing_for_day' %}?day_id=${selectedDayId}`)
+                .then(response => response.json())
+                .then(data => {
+                    updatePriceInfo(data); // به‌روزرسانی قیمت‌ها
+                })
+                .catch(error => console.error('Error:', error));
         });
+
+        // تابع برای به‌روزرسانی قیمت‌ها
+        function updatePriceInfo(pricing) {
+            priceDisplay.textContent = pricing.price || 'نامشخص';
+            offDisplay.textContent = pricing.off || 'نامشخص';
+            finalDisplay.textContent = pricing.price || 'نامشخص';
+        }
+
+        // تابع برای ریست کردن قیمت‌ها
+        function resetPriceInfo() {
+            priceDisplay.textContent = '';
+            offDisplay.textContent = '';
+            finalDisplay.textContent = '';
+        }
     });
 </script>
-
-
- {#function changePrice(price, off) {#}
-        {#    final_price = (parseInt(price) - (parseInt(off) / 100 * parseInt(price)))#}
-        {#    final.innerHTML = final_price.toString() + " " + "تومان"#}
-        {#    cost.innerHTML = parseInt(price) + " " + "تومان"#}
-        {#    offset.innerHTML = off.toString() + "%"#}
 
 
 <script>
