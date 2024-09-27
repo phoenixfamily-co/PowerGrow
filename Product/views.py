@@ -379,6 +379,10 @@ class CourseDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = CourseSerializer
     permission_classes = [IsAdminUser]
 
+    def get_queryset(self):
+        course_id = self.kwargs.get('pk')
+        return super().get_queryset().filter(pk=course_id)
+
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
         instance.delete()
@@ -403,6 +407,10 @@ class SportDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Sport.objects.all()
     serializer_class = SportSerializer
     permission_classes = [IsAdminUser]
+
+    def get_queryset(self):
+        sport_id = self.kwargs.get('pk')
+        return super().get_queryset().filter(pk=sport_id)
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
