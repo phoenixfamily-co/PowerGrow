@@ -1,19 +1,48 @@
 from rest_framework import serializers
-from .models import Course, Days, Sport, Sessions, Participants
+from .models import Course, Days, Sport, Session, Participants
 
 
 class ManagerParticipantsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Participants
-        read_only_fields = ['authority', 'success', 'created', 'course', 'startDay', 'session', 'day', 'endDay', 'user']
-        exclude = ['datetime']
+        fields = [
+            'id',  # شناسه
+            'title',  # عنوان
+            'description',  # توضیحات
+            'session',  # جلسه
+            'day',  # روز
+            'startDay',  # روز شروع
+            'endDay',  # روز پایان
+            'price',  # قیمت
+            'user',  # کاربر
+            'course',  # دوره
+            'success'  # وضعیت موفقیت
+        ]
 
+    def validate(self, data):
+        # بررسی صحت فیلدها
+        required_fields = ['title', 'description', 'session', 'day', 'startDay', 'price', 'user', 'course']
+        for field in required_fields:
+            if field not in data:
+                raise serializers.ValidationError(f'Missing field: {field}')
+        return data
 
-class RegisterParticipantsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Participants
-        read_only_fields = ['authority', 'success', 'created', 'user', 'startDay', 'session', 'day', 'endDay']
-        exclude = ['datetime']
+    def create(self, validated_data):
+        return Participants.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        instance.title = validated_data.get('title', instance.title)
+        instance.description = validated_data.get('description', instance.description)
+        instance.session = validated_data.get('session', instance.session)
+        instance.day = validated_data.get('day', instance.day)
+        instance.startDay = validated_data.get('startDay', instance.startDay)
+        instance.endDay = validated_data.get('endDay', instance.endDay)
+        instance.price = validated_data.get('price', instance.price)
+        instance.user = validated_data.get('user', instance.user)
+        instance.course = validated_data.get('course', instance.course)
+        instance.success = validated_data.get('success', instance.success)
+        instance.save()
+        return instance
 
 
 class ParticipantsSerializer(serializers.ModelSerializer):
@@ -22,38 +51,15 @@ class ParticipantsSerializer(serializers.ModelSerializer):
         fields = ['title', 'description', 'startDay', 'endDay', 'session', 'day', 'price', 'user', 'course',
                   'authority', 'success']
 
+    def validate(self, data):
+        required_fields = ['price', 'session', 'day', 'startDay', 'course', 'title']
+        for field in required_fields:
+            if field not in data:
+                raise serializers.ValidationError(f'Missing field: {field}')
+        return data
+
     def create(self, validated_data):
         return Participants.objects.create(**validated_data)
-
-
-class ParticipantsUserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Participants
-        fields = ['user']
-
-
-class ChangeDaySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Participants
-        fields = ['endDay']
-
-    def update(self, instance, validated_data):
-        instance.endDay = validated_data.get("endDay", instance.endDay)
-        instance.save()
-
-        return instance
-
-
-class ChangeDescriptionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Participants
-        fields = ['description']
-
-    def update(self, instance, validated_data):
-        instance.description = validated_data.get("description", instance.description)
-        instance.save()
-
-        return instance
 
 
 class DaysSerializer(serializers.ModelSerializer):
@@ -63,11 +69,16 @@ class DaysSerializer(serializers.ModelSerializer):
         model = Days
         fields = "__all__"
 
+    def create(self, validated_data):
+        return Days.objects.create(**validated_data)
 
-class UpdateDaysSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Days
-        fields = ["title", "off", "tuition"]
+    def update(self, instance, validated_data):
+        instance.title = validated_data.get('title', instance.title)
+        instance.tuition = validated_data.get('tuition', instance.tuition)
+        instance.off = validated_data.get('off', instance.off)
+        instance.session = validated_data.get('session', instance.session)
+        instance.save()
+        return instance
 
 
 class SessionSerializer(serializers.ModelSerializer):
@@ -75,14 +86,17 @@ class SessionSerializer(serializers.ModelSerializer):
     participants = ParticipantsSerializer(read_only=True, many=True)
 
     class Meta:
-        model = Sessions
+        model = Session
         fields = "__all__"
 
+    def create(self, validated_data):
+        return Session.objects.create(**validated_data)
 
-class UpdateSessionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Sessions
-        fields = ["number"]
+    def update(self, instance, validated_data):
+        instance.number = validated_data.get('number', instance.number)
+        instance.course = validated_data.get('course', instance.course)
+        instance.save()
+        return instance
 
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -93,6 +107,24 @@ class CourseSerializer(serializers.ModelSerializer):
         model = Course
         exclude = ['datetime']
 
+    def create(self, validated_data):
+        return Course.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        instance.title = validated_data.get('title', instance.title)
+        instance.name = validated_data.get('name', instance.name)
+        instance.type = validated_data.get('type', instance.type)
+        instance.time = validated_data.get('time', instance.time)
+        instance.description = validated_data.get('description', instance.description)
+        instance.image = validated_data.get('image', instance.image)
+        instance.selected = validated_data.get('selected', instance.selected)
+        instance.capacity = validated_data.get('capacity', instance.capacity)
+        instance.gender = validated_data.get('gender', instance.gender)
+        instance.sport = validated_data.get('sport', instance.sport)
+        instance.active = validated_data.get('active', instance.active)
+        instance.save()
+        return instance
+
 
 class SportSerializer(serializers.ModelSerializer):
     courses = CourseSerializer(read_only=True, many=True)
@@ -101,137 +133,10 @@ class SportSerializer(serializers.ModelSerializer):
         model = Sport
         fields = "__all__"
 
-
-class ChangeNameSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Course
-        fields = ['name']
+    def create(self, validated_data):
+        return Sport.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
-        instance.name = validated_data.get("name", instance.name)
+        instance.title = validated_data.get('title', instance.title)
         instance.save()
-
-        return instance
-
-
-class ChangeTitleSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Course
-        fields = ['title']
-
-    def update(self, instance, validated_data):
-        instance.title = validated_data.get("title", instance.title)
-        instance.save()
-
-        return instance
-
-
-class ChangeGenderSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Course
-        fields = ['gender']
-
-    def update(self, instance, validated_data):
-        instance.gender = validated_data.get("gender", instance.gender)
-        instance.save()
-
-        return instance
-
-
-class ChangeActiveSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Course
-        fields = ['active']
-
-    def update(self, instance, validated_data):
-        instance.active = validated_data.get("active", instance.active)
-        instance.save()
-
-        return instance
-
-
-class ChangeTypeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Course
-        fields = ['type']
-
-    def update(self, instance, validated_data):
-        instance.type = validated_data.get("type", instance.type)
-        instance.save()
-
-        return instance
-
-
-class ChangeTimeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Course
-        fields = ['time']
-
-    def update(self, instance, validated_data):
-        instance.time = validated_data.get("time", instance.time)
-        instance.save()
-
-        return instance
-
-
-class ChangeSportSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Course
-        fields = ['sport']
-
-    def update(self, instance, validated_data):
-        instance.sport = validated_data.get("sport", instance.sport)
-        instance.save()
-
-        return instance
-
-
-class ChangeCapacitySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Course
-        fields = ['capacity']
-
-    def update(self, instance, validated_data):
-        instance.capacity = validated_data.get("capacity", instance.capacity)
-        instance.save()
-
-        return instance
-
-
-class UpdateCourseSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Course
-        fields = ['image', 'selected', 'description']
-
-    def update(self, instance, validated_data):
-        instance.image = validated_data.get("image", instance.image)
-        instance.selected = validated_data.get("selected", instance.selected)
-        instance.description = validated_data.get("description", instance.description)
-
-        instance.save()
-
-        return instance
-
-
-class ChangePriceSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Participants
-        fields = ['price']
-
-    def update(self, instance, validated_data):
-        instance.price = validated_data.get("price", instance.price)
-        instance.save()
-
-        return instance
-
-
-class ChangeCourseSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Participants
-        fields = ['course']
-
-    def update(self, instance, validated_data):
-        instance.course = validated_data.get("course", instance.course)
-        instance.save()
-
         return instance

@@ -1,10 +1,9 @@
 import requests
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.http import HttpResponse
-from django.template import loader
+from django.shortcuts import get_object_or_404, render
 from django.views.decorators.cache import cache_page
-from rest_framework import viewsets, filters, generics, status
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework import viewsets, generics, status
+from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from rest_framework.utils import json
@@ -27,477 +26,73 @@ ZP_API_STARTPAY = f"https://{sandbox}.zarinpal.com/pg/StartPay/"
 CallbackURL = 'https://powergrow.net/product/verify/'
 
 
-def product_view(request, pk):
-    about = AboutUs.objects.values().first()
-    sport = Sport.objects.all().values()
-    product = Course.objects.get(id=pk)
-    participants = Participants.objects.filter(course__pk=pk, user__is_teacher=False,
-                                               user__is_superuser=False, user__is_staff=False,
-                                               price__gt=0, success=True)
+@cache_page(60 * 15)
+def category_view(request, pk):
+    about = AboutUs.objects.first()  # Assuming there's only one AboutUs instance
+    sport = get_object_or_404(Sport, id=pk)  # Ensure the sport exists
+    courses = Course.objects.filter(sport=sport, active=True)
 
-    template = loader.get_template('public/product.html')
+    context = {
+        "about": about,
+        "sport": sport,
+        "course": courses,
+        "title": sport,  # Directly using the sport object
+        "id": pk
+    }
+
+    return render(request, 'public/category.html', context)
+
+
+@cache_page(60 * 15)
+def product_view(request, pk):
+    about = AboutUs.objects.first()
+    sport = Sport.objects.all()
+    product = get_object_or_404(Course, id=pk)
+    participants = Participants.objects.filter(
+        course=product,
+        user__is_teacher=False,
+        user__is_superuser=False,
+        user__is_staff=False,
+        price__gt=0,
+        success=True
+    )
+
     context = {
         "about": about,
         "product": product,
         "participants": participants,
         "sport": sport,
-
     }
-    return HttpResponse(template.render(context, request))
+
+    return render(request, 'public/product.html', context)
 
 
 @session_auth_required
 def payment_view(request, pk, session, day, start):
-    about = AboutUs.objects.values().first()
-    product = Course.objects.filter(id=pk).values().first()
-    sessions = Sessions.objects.filter(id=session).values().first()
-    days = Days.objects.filter(id=day).values().first()
-    day = Day.objects.get(id=start)
-    template = loader.get_template('public/payment.html')
+    about = AboutUs.objects.first()  # Assuming there's only one AboutUs instance
+    product = get_object_or_404(Course, id=pk)
+    sessions = get_object_or_404(Session, id=session)
+    days = get_object_or_404(Days, id=day)
+    start_day = get_object_or_404(Day, id=start)
+
     context = {
         "about": about,
         "product": product,
         "session": sessions,
         "day": days,
-        "start": day,
+        "start": start_day,
     }
-    return HttpResponse(template.render(context, request))
 
+    return render(request, 'public/payment.html', context)
 
-def check_view(request, pk, session, day):
-    product = Course.objects.filter(id=pk).values().first()
-    sessions = Sessions.objects.filter(id=session).values().first()
-    days = Days.objects.filter(id=day).values().first()
-    template = loader.get_template('public/check.html')
-    context = {
-        "product": product,
-        "session": sessions,
-        "days": days,
 
-    }
-    return HttpResponse(template.render(context, request))
-
-
-@cache_page(60 * 15)
-def category_view(request, pk):
-    template = loader.get_template('public/category.html')
-    about = AboutUs.objects.values().first()
-    sport = Sport.objects.all()
-    course = Course.objects.all().filter(sport=pk, active=True).values()
-    context = {
-        "about": about,
-        "sport": sport,
-        "course": course,
-        "title": sport.filter(id=pk).values().first(),
-        "id": pk
-    }
-    return HttpResponse(template.render(context, request))
-
-
-@cache_page(60 * 15)
-def sports_view(request):
-    template = loader.get_template('manager/sports.html')
-    sport = Sport.objects.all()
-    about = AboutUs.objects.values().first()
-    context = {
-        "about": about,
-        "sport": sport,
-    }
-    return HttpResponse(template.render(context, request))
-
-
-def admin_sports_view(request):
-    template = loader.get_template('secretary/sports.html')
-    sport = Sport.objects.all()
-    about = AboutUs.objects.values().first()
-    context = {
-        "about": about,
-        "sport": sport,
-    }
-    return HttpResponse(template.render(context, request))
-
-
-def courses_view(request):
-    template = loader.get_template('manager/courses.html')
-    course = Course.objects.all().order_by("-pk")
-    about = AboutUs.objects.values().first()
-    user = User.objects.all()
-    p = Paginator(course, 50)
-    page_number = request.GET.get('page')
-    try:
-        page_obj = p.get_page(page_number)  # returns the desired page object
-    except PageNotAnInteger:
-        # if page_number is not an integer then assign the first page
-        page_obj = p.page(1)
-    except EmptyPage:
-        # if page is empty then return last page
-        page_obj = p.page(p.num_pages)
-
-    context = {
-        "about": about,
-        'page_obj': page_obj,
-        "user": user
-    }
-    return HttpResponse(template.render(context, request))
-
-
-def admin_courses_view(request):
-    template = loader.get_template('secretary/courses.html')
-    course = Course.objects.all()
-    about = AboutUs.objects.values().first()
-    context = {
-        "about": about,
-        "course": course,
-    }
-    return HttpResponse(template.render(context, request))
-
-
-def user_courses_view(request, pk):
-    template = loader.get_template('user/course.html')
-    about = AboutUs.objects.values().first()
-    participants = Participants.objects.filter(user=pk, success=True).all()
-
-    context = {
-        "about": about,
-        "participants": participants,
-    }
-    return HttpResponse(template.render(context, request))
-
-
-def teacher_courses_view(request, pk):
-    template = loader.get_template('teacher/courses.html')
-    about = AboutUs.objects.values().first()
-    participants = Participants.objects.filter(user=pk).all()
-    context = {
-        "about": about,
-        "participants": participants,
-        "user": pk,
-    }
-    return HttpResponse(template.render(context, request))
-
-
-def session_view(request):
-    template = loader.get_template('manager/sessions.html')
-    session = Sessions.objects.all()
-    about = AboutUs.objects.values().first()
-
-    p = Paginator(session, 50)
-    page_number = request.GET.get('page')
-    try:
-        page_obj = p.get_page(page_number)  # returns the desired page object
-    except PageNotAnInteger:
-        # if page_number is not an integer then assign the first page
-        page_obj = p.page(1)
-    except EmptyPage:
-        # if page is empty then return last page
-        page_obj = p.page(p.num_pages)
-
-    context = {
-        "about": about,
-        'page_obj': page_obj,
-    }
-    return HttpResponse(template.render(context, request))
-
-
-def admin_session_view(request):
-    template = loader.get_template('secretary/sessions.html')
-    session = Sessions.objects.all()
-    about = AboutUs.objects.values().first()
-    context = {
-        "about": about,
-        "session": session,
-    }
-    return HttpResponse(template.render(context, request))
-
-
-def day_view(request):
-    template = loader.get_template('manager/days.html')
-    day = Days.objects.all()
-    about = AboutUs.objects.values().first()
-
-    p = Paginator(day, 50)
-    page_number = request.GET.get('page')
-    try:
-        page_obj = p.get_page(page_number)  # returns the desired page object
-    except PageNotAnInteger:
-        # if page_number is not an integer then assign the first page
-        page_obj = p.page(1)
-    except EmptyPage:
-        # if page is empty then return last page
-        page_obj = p.page(p.num_pages)
-    context = {
-        "about": about,
-        'page_obj': page_obj,
-    }
-    return HttpResponse(template.render(context, request))
-
-
-def admin_day_view(request):
-    template = loader.get_template('secretary/days.html')
-    day = Days.objects.all()
-    about = AboutUs.objects.values().first()
-    context = {
-        "about": about,
-        "day": day,
-    }
-    return HttpResponse(template.render(context, request))
-
-
-def teacher_user_list(request, pk, user):
-    about = AboutUs.objects.values().first()
-    template = loader.get_template('teacher/users.html')
-    course = Course.objects.get(id=pk)
-    user = User.objects.get(id=user)
-    size = course.participants.values()
-    context = {
-        "about": about,
-        "course": course,
-        "user": user,
-        "size": len(list(size)),
-
-    }
-    return HttpResponse(template.render(context, request))
-
-
-def manager_user_list(request, pk):
-    about = AboutUs.objects.values().first()
-    template = loader.get_template('manager/list.html')
-    course = Course.objects.get(id=pk)
-    size = course.participants.values()
-    context = {
-        "about": about,
-        "course": course,
-        "size": len(list(size)),
-
-    }
-    return HttpResponse(template.render(context, request))
-
-
-class CourseView(viewsets.ModelViewSet):
-    queryset = Course.objects.all()
-    serializer_class = CourseSerializer
-
-
-class SearchView(viewsets.generics.ListAPIView):
-    queryset = Course.objects.all()
-    serializer_class = CourseSerializer
-    filter_backends = [filters.SearchFilter]
-    search_fields = ['name', 'title']
-
-    def get_queryset(self):
-        return Course.objects.filter(sport=self.kwargs['pk'])
-
-
-class DaysView(viewsets.ModelViewSet):
-    queryset = Days.objects.all()
-    serializer_class = DaysSerializer
-
-    def get_queryset(self):
-        queryset = Days.objects.filter(session=self.kwargs.get('pk'))
-        return queryset
-
-    def destroy(self, request, *args, **kwargs):
-        queryset = Days.objects.filter(id=self.kwargs.get('pk'))
-        queryset.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-    def update(self, request, *args, **kwargs):
-        Days.objects.filter(id=kwargs.get('pk')).update(title=self.request.data['title'],
-                                                        tuition=self.request.data['tuition'],
-                                                        off=self.request.data['off'],
-                                                        end=self.request.data['end'],
-                                                        session=self.request.data['session'])
-        return Response(status=status.HTTP_202_ACCEPTED)
-
-
-class SessionView(viewsets.ModelViewSet):
-    queryset = Sessions.objects.all()
-    serializer_class = SessionSerializer
-
-    def get_queryset(self):
-        queryset = Sessions.objects.filter(course=self.kwargs.get('pk'))
-        return queryset
-
-    def destroy(self, request, *args, **kwargs):
-        queryset = Sessions.objects.get(id=kwargs.get('pk'))
-        queryset.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-    def update(self, request, *args, **kwargs):
-        Sessions.objects.filter(id=kwargs.get('pk')).update(number=self.request.data['number'])
-        return Response(status=status.HTTP_202_ACCEPTED)
-
-
-class ParticipationView(viewsets.ViewSet):
-    queryset = Participants.objects.all()
-    serializer_class = ParticipantsSerializer
-    permission_classes = [IsAuthenticated]
-
-    def list(self):
-        queryset = Participants.objects.filter(user=self.request.user)
-        serializer = self.serializer_class(queryset, many=True)
-        return Response(serializer.data)
-
-    def create(self, request):
-        data = request.data
-
-        # Validate required fields
-        required_fields = ['price', 'description', 'session', 'day', 'startDay', 'course', 'title']
-        for field in required_fields:
-            if field not in data:
-                return Response({'error': f'Missing field: {field}'}, status=status.HTTP_400_BAD_REQUEST)
-
-        authority_data = {
-            "MerchantID": settings.MERCHANT,
-            "Amount": data["price"],
-            "phone": str(request.user.number),
-            "Description": data["description"],
-            "CallbackURL": CallbackURL,
-        }
-
-        try:
-            response = requests.post(ZP_API_REQUEST, json=authority_data, timeout=10)
-            response_data = response.json()
-
-            if response_data.get('Status') == 100:
-                session = Sessions.objects.filter(id=data["session"]).first()
-                week = Days.objects.filter(id=data["day"]).first()
-                start = Day.objects.filter(id=data["startDay"]).first()
-                course = Course.objects.get(id=data["course"])
-
-                day = week.title.split("،")
-                ids = Day.objects.filter(name__in=day, month__number__gte=start.month.number,
-                                         month__year__number__gte=start.month.year.number, holiday=False).exclude(
-                    month__number=start.month.number,
-                    number__lt=start.number) \
-                          .order_by('pk').values_list('pk', flat=True)[:int(session.number)]
-                end = Day.objects.filter(pk__in=list(ids)).last()
-
-                participant_data = {
-                    'title': data["title"],
-                    'description': data["description"],
-                    'startDay': start.id,
-                    'endDay': end.id,
-                    'session': session.id,
-                    'day': week.id,
-                    'price': data["price"],
-                    'user': request.user.id,
-                    'course': course.id,
-                    'authority': str(response_data['Authority']),
-                    'success': False
-                }
-
-                serializer = self.serializer_class(data=participant_data)
-                if serializer.is_valid():
-                    serializer.save()
-                    return Response({'payment': ZP_API_STARTPAY, 'authority': str(response_data['Authority'])},
-                                    status=status.HTTP_201_CREATED)
-                else:
-                    return Response({'error': 'Validation failed', 'details': serializer.errors},
-                                    status=status.HTTP_400_BAD_REQUEST)
-
-            else:
-                return Response({'error': 'Payment request failed'}, status=status.HTTP_400_BAD_REQUEST)
-
-        except Exception as e:
-            return Response({'error': 'An unexpected error occurred', 'details': str(e)},
-                            status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-
-class ManagerParticipationView(viewsets.ModelViewSet):
-    queryset = Participants.objects.all()
-    serializer_class = ManagerParticipantsSerializer
-    permission_classes = [IsAuthenticated]
-
-    def perform_create(self, serializer):
-        data = self.request.data
-        course = Course.objects.filter(id=self.kwargs['id']).first()
-        user = User.objects.filter(number=self.kwargs['user']).first()
-        start = Day.objects.filter(id=self.kwargs['start']).first()
-        week = Days.objects.filter(id=self.kwargs['day']).first()
-        session = Sessions.objects.filter(id=self.kwargs['session']).first()
-        if data["price"]:
-            price = data["price"]
-        else:
-            price = 0
-        day = week.title.split("،")
-        ids = Day.objects.filter(name__in=day, month__number__gte=start.month.number,
-                                 month__year__number__gte=start.month.year.number, holiday=False).exclude(
-            month__number=start.month.number,
-            number__lt=start.number) \
-                  .order_by('pk').values_list('pk', flat=True)[:int(session.number)]
-        end = Day.objects.filter(pk__in=list(ids)).last()
-
-        participants = Participants.objects.update_or_create(title=data["title"],
-                                                             description=data["description"],
-                                                             session=session,
-                                                             day=week,
-                                                             endDay=end,
-                                                             startDay=start,
-                                                             price=price,
-                                                             user=user,
-                                                             course=course,
-                                                             success=True,
-                                                             created=self.request.user)
-        serializer = ParticipantsSerializer(participants)
-        return Response(serializer.data)
-
-    def update(self, request, *args, **kwargs):
-        session = Sessions.objects.get(id=kwargs.get('session'))
-        days = Days.objects.get(id=kwargs.get('day'))
-        start = Day.objects.get(id=kwargs.get('start'))
-        day = days.title.split("،")
-        ids = Day.objects.filter(name__in=day, month__number__gte=start.month.number,
-                                 month__year__number__gte=start.month.year.number, holiday=False).exclude(
-            month__number=start.month.number,
-            number__lt=start.number) \
-            .order_by('pk').values_list('pk', flat=True)[:int(session.number)]
-        end = Day.objects.filter(pk__in=list(ids)).last()
-
-        Participants.objects.filter(id=kwargs.get('id')).update(session=session,
-                                                                day=days,
-                                                                startDay=start,
-                                                                endDay=end)
-        return Response(status=status.HTTP_202_ACCEPTED)
-
-
-@permission_classes([IsAdminUser])
-class ChangeDayView(generics.UpdateAPIView, ):
-    queryset = Participants.objects.all()
-    lookup_field = "pk"
-    serializer_class = ChangeDaySerializer
-
-
-@permission_classes([IsAdminUser])
-class ChangeDescriptionView(generics.UpdateAPIView, ):
-    queryset = Participants.objects.all()
-    lookup_field = "pk"
-    serializer_class = ChangeDescriptionSerializer
-
-
-@permission_classes([IsAdminUser])
-class SportView(viewsets.ModelViewSet):
-    queryset = Sport.objects.all()
-    serializer_class = SportSerializer
-
-
-class CourseUserView(generics.ListAPIView):
-    queryset = Participants.objects.all()
-    serializer_class = ParticipantsUserSerializer
-    lookup_field = "id"
-
-
-@api_view(('GET',))
+@api_view(['GET'])
 def verify(request):
-    participants = Participants.objects.get(authority=request.GET.get('Authority', ''))
-    about = AboutUs.objects.values().first()
-    sport = Sport.objects.all().values()
+    authority = request.GET.get('Authority', '')
+    participants = get_object_or_404(Participants, authority=authority)
 
-    context = {
-        "about": about,
-        "sport": sport,
-        "participants": participants
-    }
+    about = AboutUs.objects.first()  # Assuming there's only one AboutUs instance
+    sport = Sport.objects.all()
 
     authority_data = {
         "MerchantID": settings.MERCHANT,
@@ -508,111 +103,474 @@ def verify(request):
     data = json.dumps(authority_data)
     headers = {'content-type': 'application/json', 'content-length': str(len(data))}
     response = requests.post(ZP_API_VERIFY, data=data, headers=headers)
-    response = response.json()
-    if response['Status'] == 100:
-        template = loader.get_template('public/check.html')
+    response_data = response.json()
+
+    if response_data.get('Status') == 100:
         participants.success = True
         participants.save()
-        return HttpResponse(template.render(context, request))
+        return render(request, 'public/check.html', {
+            "about": about,
+            "sport": sport,
+            "participants": participants
+        })
     else:
-        template = loader.get_template('public/error.html')
         participants.delete()
-        return HttpResponse(template.render(context, request))
+        return render(request, 'public/error.html', {
+            "about": about,
+            "sport": sport,
+            "participants": participants
+        })
 
 
-@permission_classes([IsAdminUser])
-class ChangeCourseTitle(generics.UpdateAPIView, ):
+@cache_page(60 * 15)
+def manager_sports_view(request):
+    sport = Sport.objects.all()
+    about = AboutUs.objects.values().first()
+    context = {
+        "about": about,
+        "sport": sport,
+    }
+    return render(request, 'manager/sports.html', context)
+
+
+def admin_sports_view(request):
+    sport = Sport.objects.all()
+    about = AboutUs.objects.first()
+    context = {
+        "about": about,
+        "sport": sport,
+    }
+    return render(request, 'admin/sports.html', context)
+
+
+def manager_courses_view(request):
+    # بارگذاری اطلاعات دوره‌ها و اطلاعات اضافی
+    courses = Course.objects.all().order_by("-pk")
+    about = AboutUs.objects.first()
+    users = User.objects.all()
+
+    # پیاده‌سازی pagination
+    paginator = Paginator(courses, 50)
+    page_number = request.GET.get('page')
+
+    try:
+        page_obj = paginator.get_page(page_number)
+    except (PageNotAnInteger, EmptyPage):
+        page_obj = paginator.page(1)  # اگر شماره صفحه معتبر نبود، به صفحه اول برگردیم
+
+    # آماده‌سازی context برای الگو
+    context = {
+        "about": about,
+        "page_obj": page_obj,
+        "users": users
+    }
+
+    # استفاده از render برای بارگذاری الگو
+    return render(request, 'manager/courses.html', context)
+
+
+def admin_courses_view(request):
+    courses = Course.objects.all().order_by("-pk")
+    about = AboutUs.objects.first()
+    users = User.objects.all()
+
+    # پیاده‌سازی pagination
+    paginator = Paginator(courses, 50)
+    page_number = request.GET.get('page')
+
+    try:
+        page_obj = paginator.get_page(page_number)
+    except (PageNotAnInteger, EmptyPage):
+        page_obj = paginator.page(1)  # اگر شماره صفحه معتبر نبود، به صفحه اول برگردیم
+
+    # آماده‌سازی context برای الگو
+    context = {
+        "about": about,
+        "page_obj": page_obj,
+        "users": users
+    }
+
+    # استفاده از render برای بارگذاری الگو
+    return render(request, 'admin/courses.html', context)
+
+
+def teacher_courses_view(request, pk):
+    # بارگذاری اطلاعات مربوط به AboutUs
+    about = AboutUs.objects.first()
+
+    # بارگذاری شرکت‌کنندگان مربوط به معلم
+    participants = Participants.objects.filter(user=pk)
+
+    # آماده‌سازی context برای الگو
+    context = {
+        "about": about,
+        "participants": participants,
+        "user": pk,
+    }
+
+    # استفاده از render برای بارگذاری الگو
+    return render(request, 'teacher/courses.html', context)
+
+
+def user_courses_view(request, pk):
+    # بارگذاری اطلاعات مربوط به AboutUs
+    about = AboutUs.objects.first()
+
+    # بارگذاری شرکت‌کنندگان مربوط به کاربر
+    participants = Participants.objects.filter(user_id=pk, success=True)
+
+    # آماده‌سازی context برای الگو
+    context = {
+        "about": about,
+        "participants": participants,
+    }
+
+    # استفاده از render برای بارگذاری الگو
+    return render(request, 'user/course.html', context)
+
+
+def manager_session_view(request):
+    # بارگذاری اطلاعات مربوط به AboutUs
+    about = AboutUs.objects.first()
+
+    # بارگذاری تمامی جلسات
+    sessions = Session.objects.all()
+
+    # پیاده‌سازی pagination
+    paginator = Paginator(sessions, 50)
+    page_number = request.GET.get('page')
+
+    try:
+        page_obj = paginator.get_page(page_number)
+    except (PageNotAnInteger, EmptyPage):
+        page_obj = paginator.page(1)  # اگر شماره صفحه معتبر نبود، به صفحه اول برگردیم
+
+    # آماده‌سازی context برای الگو
+    context = {
+        "about": about,
+        "page_obj": page_obj,
+    }
+
+    # استفاده از render برای بارگذاری الگو
+    return render(request, 'manager/sessions.html', context)
+
+
+def admin_session_view(request):
+    # بارگذاری اطلاعات مربوط به AboutUs
+    about = AboutUs.objects.first()
+
+    # بارگذاری تمامی جلسات
+    sessions = Session.objects.all()
+
+    # آماده‌سازی context برای الگو
+    context = {
+        "about": about,
+        "sessions": sessions,
+    }
+
+    # استفاده از render برای بارگذاری الگو
+    return render(request, 'admin/sessions.html', context)
+
+
+def manager_days_view(request):
+    # بارگذاری اطلاعات مربوط به AboutUs
+    about = AboutUs.objects.first()
+
+    # بارگذاری تمامی روزها
+    days = Days.objects.all()
+
+    # پیاده‌سازی pagination
+    paginator = Paginator(days, 50)
+    page_number = request.GET.get('page')
+
+    try:
+        page_obj = paginator.get_page(page_number)
+    except (PageNotAnInteger, EmptyPage):
+        page_obj = paginator.page(1)  # اگر شماره صفحه معتبر نبود، به صفحه اول برگردیم
+
+    # آماده‌سازی context برای الگو
+    context = {
+        "about": about,
+        "page_obj": page_obj,
+    }
+
+    # استفاده از render برای بارگذاری الگو
+    return render(request, 'manager/days.html', context)
+
+
+def admin_days_view(request):
+    # بارگذاری اطلاعات مربوط به AboutUs
+    about = AboutUs.objects.first()
+
+    # بارگذاری تمامی روزها
+    days = Days.objects.all()
+
+    # آماده‌سازی context برای الگو
+    context = {
+        "about": about,
+        "days": days,  # تغییر نام به 'days' برای وضوح بیشتر
+    }
+
+    # استفاده از render برای بارگذاری الگو
+    return render(request, 'admin/days.html', context)
+
+
+def manager_user_list(request, pk):
+    # بارگذاری اطلاعات مربوط به AboutUs
+    about = AboutUs.objects.first()
+
+    # بارگذاری دوره با استفاده از get_object_or_404
+    course = get_object_or_404(Course, id=pk)
+
+    # محاسبه تعداد شرکت‌کنندگان
+    participant_count = course.participants.count()
+
+    # آماده‌سازی context برای الگو
+    context = {
+        "about": about,
+        "course": course,
+        "size": participant_count,
+    }
+
+    # استفاده از render برای بارگذاری الگو
+    return render(request, 'manager/list.html', context)
+
+
+def teacher_user_list(request, pk, user_id):
+    # بارگذاری اطلاعات مربوط به AboutUs
+    about = AboutUs.objects.first()
+
+    # بارگذاری دوره و کاربر با استفاده از get_object_or_404
+    course = get_object_or_404(Course, id=pk)
+    user = get_object_or_404(User, id=user_id)
+
+    # محاسبه تعداد شرکت‌کنندگان
+    participant_count = course.participants.count()
+
+    # آماده‌سازی context برای الگو
+    context = {
+        "about": about,
+        "course": course,
+        "user": user,
+        "size": participant_count,
+    }
+
+    # استفاده از render برای بارگذاری الگو
+    return render(request, 'teacher/users.html', context)
+
+
+class CourseListCreateView(generics.ListCreateAPIView):
     queryset = Course.objects.all()
-    lookup_field = "pk"
-    serializer_class = ChangeTitleSerializer
+    serializer_class = CourseSerializer
+    permission_classes = [IsAdminUser]
 
 
-@permission_classes([IsAdminUser])
-class ChangeCourseName(generics.UpdateAPIView, ):
+class CourseDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Course.objects.all()
-    lookup_field = "pk"
-    serializer_class = ChangeNameSerializer
+    serializer_class = CourseSerializer
+    permission_classes = [IsAdminUser]
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        instance.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@permission_classes([IsAdminUser])
-class ChangeCourseGender(generics.UpdateAPIView, ):
-    queryset = Course.objects.all()
-    lookup_field = "pk"
-    serializer_class = ChangeGenderSerializer
+class SportListCreateView(generics.ListCreateAPIView):
+    queryset = Sport.objects.all()
+    serializer_class = SportSerializer
+    permission_classes = [IsAdminUser]
 
 
-@permission_classes([IsAdminUser])
-class ChangeCourseActive(generics.UpdateAPIView, ):
-    queryset = Course.objects.all()
-    lookup_field = "pk"
-    serializer_class = ChangeActiveSerializer
+class SportDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Sport.objects.all()
+    serializer_class = SportSerializer
+    permission_classes = [IsAdminUser]
+
+    def get_queryset(self):
+        sport_id = self.kwargs.get('pk')
+        return super().get_queryset().filter(session=sport_id)
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        instance.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@permission_classes([IsAdminUser])
-class ChangeCourseType(generics.UpdateAPIView, ):
-    queryset = Course.objects.all()
-    lookup_field = "pk"
-    serializer_class = ChangeTypeSerializer
-
-
-@permission_classes([IsAdminUser])
-class ChangeCourseTime(generics.UpdateAPIView, ):
-    queryset = Course.objects.all()
-    lookup_field = "pk"
-    serializer_class = ChangeTimeSerializer
-
-
-@permission_classes([IsAdminUser])
-class ChangeCourseCapacity(generics.UpdateAPIView, ):
-    queryset = Course.objects.all()
-    lookup_field = "pk"
-    serializer_class = ChangeCapacitySerializer
-
-
-@permission_classes([IsAdminUser])
-class ChangeCourseSport(generics.UpdateAPIView, ):
-    queryset = Course.objects.all()
-    lookup_field = "pk"
-    serializer_class = ChangeSportSerializer
-
-
-@permission_classes([IsAdminUser])
-class UpdateCourse(generics.UpdateAPIView, ):
-    queryset = Course.objects.all()
-    lookup_field = "pk"
-    serializer_class = UpdateCourseSerializer
-
-
-@permission_classes([IsAdminUser])
-class ChangeParticipantsPrice(generics.UpdateAPIView, ):
-    queryset = Participants.objects.all()
-    lookup_field = "pk"
-    serializer_class = ChangePriceSerializer
-
-
-@permission_classes([IsAdminUser])
-class ChangeParticipantsDescription(generics.UpdateAPIView, ):
-    queryset = Participants.objects.all()
-    lookup_field = "pk"
-    serializer_class = ChangeDescriptionSerializer
-
-
-@permission_classes([IsAdminUser])
-class ChangeParticipantsCourse(generics.UpdateAPIView, ):
-    queryset = Participants.objects.all()
-    lookup_field = "pk"
-    serializer_class = ChangeCourseSerializer
-
-
-@permission_classes([IsAdminUser])
-class ChangeSessionCourse(generics.UpdateAPIView, ):
-    queryset = Sessions.objects.all()
-    lookup_field = "pk"
-    serializer_class = UpdateSessionSerializer
-
-
-@permission_classes([IsAdminUser])
-class ChangeDaysCourse(generics.UpdateAPIView, ):
+class DaysListCreateView(generics.ListCreateAPIView):
     queryset = Days.objects.all()
-    lookup_field = "pk"
-    serializer_class = UpdateDaysSerializer
+    serializer_class = DaysSerializer
+    permission_classes = [IsAdminUser]
+
+
+class DaysDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Days.objects.all()
+    serializer_class = DaysSerializer
+    permission_classes = [IsAdminUser]
+
+    def get_queryset(self):
+        session_id = self.kwargs.get('pk')
+        return super().get_queryset().filter(session=session_id)
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        instance.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class SessionListCreateView(generics.ListCreateAPIView):
+    queryset = Session.objects.all()
+    serializer_class = SessionSerializer
+    permission_classes = [IsAdminUser]
+
+
+class SessionDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Session.objects.all()
+    serializer_class = SessionSerializer
+    permission_classes = [IsAdminUser]
+
+    def get_queryset(self):
+        course_id = self.kwargs.get('pk')  # فرض بر این است که شما ID دوره را از URL دریافت می‌کنید
+        return super().get_queryset().filter(course=course_id)
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        instance.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ParticipationCreateView(generics.CreateAPIView):
+    serializer_class = ParticipantsSerializer
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        request_data = self.request.data
+
+        authority_data = {
+            "MerchantID": settings.MERCHANT,
+            "Amount": request_data["price"],
+            "phone": str(self.request.user.number),
+            "Description": request_data["description"],
+            "CallbackURL": CallbackURL,
+        }
+
+        try:
+            response = requests.post(ZP_API_REQUEST, json=authority_data, timeout=10)
+            response_data = response.json()
+
+            if response_data.get('Status') == 100:
+                session = Session.objects.get(id=request_data["session"])
+                week = Days.objects.get(id=request_data["day"])
+                start = Day.objects.get(id=request_data["startDay"])
+                course = Course.objects.get(id=request_data["course"])
+
+                day = week.title.split("،")
+                ids = Day.objects.filter(
+                    name__in=day,
+                    month__number__gte=start.month.number,
+                    month__year__number__gte=start.month.year.number,
+                    holiday=False
+                ).exclude(
+                    month__number=start.month.number,
+                    number__lt=start.number
+                ).order_by('pk').values_list('pk', flat=True)[:int(session.number)]
+
+                end = Day.objects.filter(pk__in=list(ids)).last()
+
+                participant_data = {
+                    'title': request_data["title"],
+                    'description': request_data["description"],
+                    'startDay': start.id,
+                    'endDay': end.id,
+                    'session': session.id,
+                    'day': week.id,
+                    'price': request_data["price"],
+                    'user': self.request.user.id,
+                    'course': course.id,
+                    'authority': str(response_data['Authority']),
+                    'success': False
+                }
+
+                serializer = self.get_serializer(data=participant_data)
+                if serializer.is_valid(raise_exception=True):
+                    serializer.save()
+                    return Response({
+                        'payment': ZP_API_STARTPAY,
+                        'authority': str(response_data['Authority'])
+                    }, status=status.HTTP_201_CREATED)
+                else:
+                    return Response({'error': 'Validation failed', 'details': serializer.errors},
+                                    status=status.HTTP_400_BAD_REQUEST)
+
+            else:
+                return Response({'error': 'Payment request failed'}, status=status.HTTP_400_BAD_REQUEST)
+
+        except ValueError as ve:
+            return Response({'error': str(ve)}, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response({'error': 'An unexpected error occurred', 'details': str(e)},
+                            status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+class ManagerParticipationView(viewsets.ViewSet):
+    serializer_class = ManagerParticipantsSerializer
+    permission_classes = [IsAdminUser]
+
+    def create(self, request):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def update(self, request, pk):
+        try:
+            participant = Participants.objects.get(pk=pk)
+        except Participants.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        serializer = self.serializer_class(participant, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def destroy(self, request, pk):
+        try:
+            participant = Participants.objects.get(pk=pk)
+            participant.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except Participants.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)

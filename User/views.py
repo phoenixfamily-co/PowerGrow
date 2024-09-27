@@ -151,7 +151,7 @@ def teacher_home_view(request, pk):
 @cache_page(60 * 15)
 def secretary_home_view(request, pk):
     about = AboutUs.objects.values().first()
-    template = loader.get_template('secretary/dashboard.html')
+    template = loader.get_template('admin/dashboard.html')
     user = User.objects.all().get(id=pk)
     context = {
         "about": about,
@@ -231,7 +231,7 @@ def user_view(request):
 
 
 def admin_user_view(request):
-    template = loader.get_template('secretary/users.html')
+    template = loader.get_template('admin/users.html')
     about = AboutUs.objects.values().first()
     user = User.objects.all()
     p = Paginator(user, 50)

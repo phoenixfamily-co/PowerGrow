@@ -85,7 +85,7 @@ def gym_view(request):
 def admin_gym_view(request):
     about = AboutUs.objects.values().first()
     gym = Gym.objects.all()
-    template = loader.get_template('secretary/gyms.html')
+    template = loader.get_template('admin/gyms.html')
     context = {
         "about": about,
         "gym": gym,
@@ -125,7 +125,7 @@ def admin_reserve_view(request):
     about = AboutUs.objects.values().first()
     reserve = Reservations.objects.filter(success=True).all()
     gym = Gym.objects.all().first()
-    template = loader.get_template('secretary/reserves.html')
+    template = loader.get_template('admin/reserves.html')
     p = Paginator(reserve, 50)
     page_number = request.GET.get('page')
     try:

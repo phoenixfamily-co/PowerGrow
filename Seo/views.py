@@ -26,7 +26,7 @@ def news_view(request):
 def admin_news_view(request):
     about = AboutUs.objects.values().first()
     news = News.objects.all().order_by('-pk')
-    template = loader.get_template('secretary/news.html')
+    template = loader.get_template('admin/news.html')
     context = {
         "news": news,
         "about": about,

@@ -225,7 +225,7 @@
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
         try {
-            const response = await fetch("{% url 'product:participate' %}", {
+            const response = await fetch("{% url 'product:create-participation' %}", {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
