@@ -890,7 +890,7 @@
         sessionSelect.addEventListener('change', function() {
             const sessionId = this.value;
 
-            fetch(`{% url 'get_days_for_session' %}?session_id=${sessionId}`)
+            fetch(`{% url 'product:get_days_for_session' %}?session_id=${sessionId}`)
                 .then(response => response.json())
                 .then(data => {
                     weekSelect.innerHTML = ''; // پاک کردن گزینه‌های قبلی
