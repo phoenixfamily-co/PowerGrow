@@ -595,13 +595,13 @@
                 remove.innerHTML = "حذف"
                 remove.classList.add("edit")
                 remove.onclick = function () {
-                    window.open('{% url 'product:delete-admin-participate' x.id %}')
+                    window.open('{% url 'product:course-detail' x.id %}')
                 }
                   var transport = document.createElement("th")
                 transport.innerHTML = "انتقال"
                 transport.classList.add("edit")
                 transport.onclick = function () {
-                    window.open('{% url 'product:update-participants-course' x.id %}')
+                    window.open('{% url 'product:course-detail' x.id %}')
                 }
                 var name = document.createElement("td")
                 name.innerHTML = "{{x.user.name}}"
@@ -630,15 +630,10 @@
                var price = document.createElement("td")
                 price.innerHTML = " {{x.price}} تومان"
                 price.classList.add("edit")
-                price.onclick = function () {
-                    window.open('{% url 'product:update-participants_price' x.id %}')
-                }
+
                 var description = document.createElement("td")
                 description.innerHTML = "{{x.description}}"
-                description.classList.add("edit")
-                description.onclick = function () {
-                    window.open('{% url 'product:update-participants-description' x.id %}')
-                }
+
                 tr.appendChild(id)
                 tr.appendChild(remove)
                 tr.appendChild(transport)
