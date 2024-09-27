@@ -601,7 +601,7 @@
                 transport.innerHTML = "انتقال"
                 transport.classList.add("edit")
                 transport.onclick = function () {
-                    window.open('{% url 'product:course-detail' x.id %}')
+                    window.open('{% url 'product:manager-participation' x.id %}')
                 }
                 var name = document.createElement("td")
                 name.innerHTML = "{{x.user.name}}"
