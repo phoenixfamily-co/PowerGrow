@@ -910,7 +910,7 @@
                     data.forEach(day => {
                         const option = document.createElement('option');
                         option.value = day.id;
-                        option.setAttribute('data-custom1', `${day.price}`)
+                        option.setAttribute('data-custom1', `${day.tuition}`)
                         option.setAttribute('data-custom2', `${day.off}`)
                         option.textContent = day.title;
                         weekSelect.appendChild(option);
