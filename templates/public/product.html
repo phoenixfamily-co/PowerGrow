@@ -888,6 +888,7 @@
         const sessionSelect = document.getElementById('session');
         const weekSelect = document.getElementById('week');
         const sessionNumberDisplay = document.getElementById('sessionNumber');
+        const daysSessionDisplay = document.getElementById('daySession');
 
         sessionSelect.addEventListener('change', function() {
             const sessionId = this.value;
@@ -917,6 +918,9 @@
     {#        offset.innerHTML = off.toString() + "%"#}
     {##}
 
+        weekSelect.addEventListener('change', function() {
+            sessionNumberDisplay.textContent = this.options[this.selectedIndex].text;
+         });
 
     });
 
