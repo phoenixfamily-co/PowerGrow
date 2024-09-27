@@ -480,11 +480,11 @@ class SessionDetailView(generics.RetrieveUpdateDestroyAPIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class ParticipationCreateView(generics.CreateAPIView):
+class ParticipationCreateView(viewsets.ViewSet):
     serializer_class = ParticipantsSerializer
     permission_classes = [IsAuthenticated]
 
-    def perform_create(self, serializer):
+    def create(self, request):
         request_data = self.request.data
 
         authority_data = {
