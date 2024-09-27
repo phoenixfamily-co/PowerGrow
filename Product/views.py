@@ -404,10 +404,6 @@ class SportDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = SportSerializer
     permission_classes = [IsAdminUser]
 
-    def get_queryset(self):
-        sport_id = self.kwargs.get('pk')
-        return super().get_queryset().all()
-
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
         instance.delete()
