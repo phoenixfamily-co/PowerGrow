@@ -509,13 +509,13 @@
                 remove.innerHTML = "حذف"
                 remove.classList.add("edit")
                 remove.onclick = function () {
-                    window.open('{% url 'product:delete-admin-participate' x.id %}')
+                    window.open('{% url 'product:course-detail' x.id %}')
                 }
                  var transport = document.createElement("th")
                 transport.innerHTML = "انتقال"
                 transport.classList.add("edit")
                 transport.onclick = function () {
-                    window.open('{% url 'product:update-participants-course' x.id %}')
+                    window.open('{% url 'product:course-detail' x.id %}')
                 }
                 var name = document.createElement("td")
                 name.innerHTML = "{{x.user.name}}"
