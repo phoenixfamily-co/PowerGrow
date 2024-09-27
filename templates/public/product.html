@@ -887,9 +887,11 @@
     document.addEventListener('DOMContentLoaded', function() {
         const sessionSelect = document.getElementById('session');
         const weekSelect = document.getElementById('week');
+        const sessionNumberDisplay = document.getElementById('sessionNumber');
 
         sessionSelect.addEventListener('change', function() {
             const sessionId = this.value;
+            sessionNumberDisplay.textContent = this.innerText
 
             fetch(`{% url 'product:get_days_for_session' %}?session_id=${sessionId}`)
                 .then(response => response.json())
