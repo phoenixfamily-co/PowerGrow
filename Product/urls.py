@@ -37,9 +37,13 @@ urlpatterns = [
     path('api/manager/participations/',
          ManagerParticipationView.as_view({'post': 'create'}),
          name='manager-create-participation'),
-    path('api/manager/participations/<int:pk>/',
-         ManagerParticipationView.as_view({'put': 'update', 'delete': 'destroy'}),
+    path('api/manager/participations/update/<int:pk>/',
+         ManagerParticipationView.as_view({'put': 'update'}),
          name='manager-update-participation'),
+    path('api/manager/participations/delete/<int:pk>/',
+         ManagerParticipationView.as_view({'delete': 'destroy'}),
+         name='manager-delete-participation'),
+
 
     path('get-days-for-session/', get_days_for_session, name='get_days_for_session'),
 ]
