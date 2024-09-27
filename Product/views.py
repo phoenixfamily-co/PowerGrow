@@ -48,7 +48,7 @@ def product_view(request, pk):
     about = AboutUs.objects.first()
     sport = Sport.objects.all()
     product = get_object_or_404(Course, id=pk)
-    session = Session.objects.all().filter(course_id=pk)
+    session = Session.objects.all().filter(course_id=pk).order_by("number")
     participants = Participants.objects.filter(
         course=product,
         user__is_teacher=False,
