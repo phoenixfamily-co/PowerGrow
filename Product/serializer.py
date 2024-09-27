@@ -51,13 +51,6 @@ class ParticipantsSerializer(serializers.ModelSerializer):
         fields = ['title', 'description', 'startDay', 'endDay', 'session', 'day', 'price', 'user', 'course',
                   'authority', 'success']
 
-    def validate(self, data):
-        required_fields = ['price', 'session', 'day', 'startDay', 'course', 'title']
-        for field in required_fields:
-            if field not in data:
-                raise serializers.ValidationError(f'Missing field: {field}')
-        return data
-
     def create(self, validated_data):
         return Participants.objects.create(**validated_data)
 

@@ -481,17 +481,24 @@ class SessionDetailView(generics.RetrieveUpdateDestroyAPIView):
 
 
 class ParticipationCreateView(viewsets.ViewSet):
+    queryset = Participants.objects.all()
     serializer_class = ParticipantsSerializer
     permission_classes = [IsAuthenticated]
 
     def create(self, request):
-        request_data = self.request.data
+        data = request.data
+
+        # Validate required fields
+        required_fields = ['price', 'description', 'session', 'day', 'startDay', 'course', 'title']
+        for field in required_fields:
+            if field not in data:
+                return Response({'error': f'Missing field: {field}'}, status=status.HTTP_400_BAD_REQUEST)
 
         authority_data = {
             "MerchantID": settings.MERCHANT,
-            "Amount": request_data["price"],
-            "phone": str(self.request.user.number),
-            "Description": request_data["description"],
+            "Amount": data["price"],
+            "phone": str(request.user.number),
+            "Description": data["description"],
             "CallbackURL": CallbackURL,
         }
 
@@ -500,45 +507,38 @@ class ParticipationCreateView(viewsets.ViewSet):
             response_data = response.json()
 
             if response_data.get('Status') == 100:
-                session = Session.objects.get(id=request_data["session"])
-                week = Days.objects.get(id=request_data["day"])
-                start = Day.objects.get(id=request_data["startDay"])
-                course = Course.objects.get(id=request_data["course"])
+                session = Session.objects.filter(id=data["session"]).first()
+                week = Days.objects.filter(id=data["day"]).first()
+                start = Day.objects.filter(id=data["startDay"]).first()
+                course = Course.objects.get(id=data["course"])
 
                 day = week.title.split("،")
-                ids = Day.objects.filter(
-                    name__in=day,
-                    month__number__gte=start.month.number,
-                    month__year__number__gte=start.month.year.number,
-                    holiday=False
-                ).exclude(
+                ids = Day.objects.filter(name__in=day, month__number__gte=start.month.number,
+                                         month__year__number__gte=start.month.year.number, holiday=False).exclude(
                     month__number=start.month.number,
-                    number__lt=start.number
-                ).order_by('pk').values_list('pk', flat=True)[:int(session.number)]
-
+                    number__lt=start.number) \
+                          .order_by('pk').values_list('pk', flat=True)[:int(session.number)]
                 end = Day.objects.filter(pk__in=list(ids)).last()
 
                 participant_data = {
-                    'title': request_data["title"],
-                    'description': request_data["description"],
+                    'title': data["title"],
+                    'description': data["description"],
                     'startDay': start.id,
                     'endDay': end.id,
                     'session': session.id,
                     'day': week.id,
-                    'price': request_data["price"],
-                    'user': self.request.user.id,
+                    'price': data["price"],
+                    'user': request.user.id,
                     'course': course.id,
                     'authority': str(response_data['Authority']),
                     'success': False
                 }
 
-                serializer = self.get_serializer(data=participant_data)
+                serializer = self.serializer_class(data=participant_data)
                 if serializer.is_valid(raise_exception=True):
                     serializer.save()
-                    return Response({
-                        'payment': ZP_API_STARTPAY,
-                        'authority': str(response_data['Authority'])
-                    }, status=status.HTTP_201_CREATED)
+                    return Response({'payment': ZP_API_STARTPAY, 'authority': str(response_data['Authority'])},
+                                    status=status.HTTP_201_CREATED)
                 else:
                     return Response({'error': 'Validation failed', 'details': serializer.errors},
                                     status=status.HTTP_400_BAD_REQUEST)
@@ -546,12 +546,9 @@ class ParticipationCreateView(viewsets.ViewSet):
             else:
                 return Response({'error': 'Payment request failed'}, status=status.HTTP_400_BAD_REQUEST)
 
-        except ValueError as ve:
-            return Response({'error': str(ve)}, status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
             return Response({'error': 'An unexpected error occurred', 'details': str(e)},
                             status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
 
 class ManagerParticipationView(viewsets.ViewSet):
     serializer_class = ManagerParticipantsSerializer
