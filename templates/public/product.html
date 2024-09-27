@@ -930,7 +930,7 @@
 
             // به‌روزرسانی قیمت‌ها بر اساس روز انتخاب‌شده
             const selectedDayId = this.value;
-            fetch(`{% url 'product:get_days_for_session' %}?day_id=${selectedDayId}`)
+            fetch(`{% url 'product:get_days_for_session' %}?session_id==${sessionId}`)
                 .then(response => response.json())
                 .then(data => {
                     updatePriceInfo(data); // به‌روزرسانی قیمت‌ها
