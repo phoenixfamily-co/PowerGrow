@@ -590,7 +590,9 @@
                 <div class="form-group my-5">
                     <label for="session">تعداد جلسات در ماه را انتخاب کنید:</label>
                     <select class="form-control mt-1" name="session" id="session">
-                        <!-- گزینه‌ها از سمت سرور می‌آیند -->
+                        {% for x in session %}
+                            <option value="{{ x.id }}">{{ x.number }} جلسه </option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="form-group my-5">
@@ -601,6 +603,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
 
@@ -893,78 +896,10 @@
     let dayId;
 
 
-
-    async function getSession() {
-
-
-        const response = await fetch(`/product/api/sessions/${course}/`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-
-        const result = await response.json()
-        if (response.status === 200) {
-            const res = JSON.stringify(result)
-            const sum = JSON.parse(res)
-            const size = JSON.parse(res).length
-            sessionList.innerHTML = ''
-            week.innerHTML = ''
-            sessionNumber.innerHTML = ''
-            daySession.innerHTML = ''
-            for (let i = 0; i < size; i++) {
-                const item = document.createElement("option")
-                item.innerHTML = sum[i].number + ' جلسه '
-                item.setAttribute("id", sum[i].id)
-                sessionList.appendChild(item)
-            }
-            await getWeeks(sum[0].id)
-            sessionNumber.innerHTML = sum[0].number + ' جلسه '
-            sessionId = sum[0].id
-        }
-    }
-
         sessionList.addEventListener('change', function () {
             sessionNumber.innerHTML = this.value
             sessionId = this.options[this.options.selectedIndex].id
             getWeeks(this.options[this.options.selectedIndex].id)
-        })
-
-    async function getWeeks(query) {
-
-        const response = await fetch(`/product/api/days/${query}/`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-
-        const result = await response.json()
-        if (response.status === 200) {
-            const res = JSON.stringify(result)
-            const sum = JSON.parse(res)
-            const size = JSON.parse(res).length
-            week.innerHTML = ''
-            daySession.innerHTML = ''
-            for (let i = 0; i < size; i++) {
-                const item = document.createElement("option")
-                item.innerHTML = sum[i].title
-                item.setAttribute("id", sum[i].id)
-                week.appendChild(item)
-            }
-            daySession.innerHTML = sum[0].title
-            dayId = sum[0].id
-            changePrice(sum[0].tuition, sum[0].off)
-
-        }
-    }
-
-      week.addEventListener('change', function () {
-          daySession.innerHTML = this.value
-          dayId = this.options[this.options.selectedIndex].id
-            changePrice(sum[this.options.selectedIndex].tuition, sum[this.options.selectedIndex].off)
-
         })
 
     function changePrice(price, off){
@@ -977,6 +912,10 @@
     }
 
 </script>
+
+
+
+
 
 <script>
 
