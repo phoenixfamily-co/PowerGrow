@@ -883,19 +883,20 @@
 
 
 <script>
-
     document.addEventListener('DOMContentLoaded', function() {
         const sessionSelect = document.getElementById('session');
         const weekSelect = document.getElementById('week');
         const sessionNumberDisplay = document.getElementById('sessionNumber');
         const daysSessionDisplay = document.getElementById('daySession');
 
+        // در بارگذاری اولیه
+        if (sessionSelect.value) {
+            sessionNumberDisplay.textContent = sessionSelect.options[sessionSelect.selectedIndex].text;
+        }
+
         sessionSelect.addEventListener('change', function() {
             const sessionId = this.value;
-            sessionNumberDisplay.textContent = this.innerText
-
-             sessionNumberDisplay.textContent = this.options[this.selectedIndex].text;
-
+            sessionNumberDisplay.textContent = this.options[this.selectedIndex].text;
 
             fetch(`{% url 'product:get_days_for_session' %}?session_id=${sessionId}`)
                 .then(response => response.json())
@@ -907,26 +908,29 @@
                         option.textContent = day.title;
                         weekSelect.appendChild(option);
                     });
+
+                    // اگر گزینه‌ای وجود دارد، مقدار daysSessionDisplay را به‌روز کن
+                    if (weekSelect.options.length > 0) {
+                        daysSessionDisplay.textContent = weekSelect.options[0].text; // مقدار پیش‌فرض
+                    } else {
+                        daysSessionDisplay.textContent = ''; // در صورتی که گزینه‌ای وجود نداشته باشد
+                    }
                 })
                 .catch(error => console.error('Error:', error));
         });
 
-    {#    function changePrice(price, off){#}
-    {#        final_price = (parseInt(price) - (parseInt(off) / 100 * parseInt(price)))#}
-    {#        final.innerHTML = final_price.toString() + " " + "تومان"#}
-    {#        cost.innerHTML = parseInt(price) + " " + "تومان"#}
-    {#        offset.innerHTML = off.toString() + "%"#}
-    {##}
-
         weekSelect.addEventListener('change', function() {
             daysSessionDisplay.textContent = this.options[this.selectedIndex].text;
-         });
-
+        });
     });
-
 </script>
 
 
+ {#function changePrice(price, off) {#}
+        {#    final_price = (parseInt(price) - (parseInt(off) / 100 * parseInt(price)))#}
+        {#    final.innerHTML = final_price.toString() + " " + "تومان"#}
+        {#    cost.innerHTML = parseInt(price) + " " + "تومان"#}
+        {#    offset.innerHTML = off.toString() + "%"#}
 
 
 <script>
