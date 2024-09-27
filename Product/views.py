@@ -345,13 +345,13 @@ def manager_user_list(request, pk):
     return render(request, 'manager/list.html', context)
 
 
-def teacher_user_list(request, pk, user_id):
+def teacher_user_list(request, pk, id):
     # بارگذاری اطلاعات مربوط به AboutUs
     about = AboutUs.objects.first()
 
     # بارگذاری دوره و کاربر با استفاده از get_object_or_404
     course = get_object_or_404(Course, id=pk)
-    user = get_object_or_404(User, id=user_id)
+    user = get_object_or_404(User, id=id)
 
     # محاسبه تعداد شرکت‌کنندگان
     participant_count = course.participants.count()
