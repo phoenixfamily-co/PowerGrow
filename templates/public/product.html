@@ -10,13 +10,10 @@
     <link rel="stylesheet" href="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.css">
     <script type="text/javascript"
             src="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.js"></script>
-
-
-       <script src="https://cdn.jsdelivr.net/npm/jalaali-js/dist/jalaali.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jalaali-js/dist/jalaali.min.js"></script>
-
-<script src="https://unpkg.com/jalaali-js/dist/jalaali.js"></script>
-<script src="https://unpkg.com/jalaali-js/dist/jalaali.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jalaali-js/dist/jalaali.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jalaali-js/dist/jalaali.min.js"></script>
+    <script src="https://unpkg.com/jalaali-js/dist/jalaali.js"></script>
+    <script src="https://unpkg.com/jalaali-js/dist/jalaali.min.js"></script>
 
 
 
@@ -598,9 +595,7 @@
                 <div class="form-group my-5">
                     <label for="week">روزهای برگزاری در هفته را مشخص کنید:</label>
                     <select class="form-control mt-1" name="week" id="week">
-                        {% for x in days %}
-                            <option value="{{ x.id }}">{{ x.title }}</option>
-                        {% endfor %}
+
                     </select>
                 </div>
             </div>
@@ -885,36 +880,41 @@
 
 </script>
 
+
 <script>
-    const session = document.getElementById("number");
-    const week = document.getElementById("week");
-    const sessionList = document.getElementById("session");
-    const daySession = document.getElementById("daySession");
-    const sessionNumber = document.getElementById("sessionNumber");
-    const final = document.getElementById("final");
-    const offset = document.getElementById("off");
-    const cost = document.getElementById("price");
-    let sessionId;
-    let dayId;
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const sessionSelect = document.getElementById('session');
+        const weekSelect = document.getElementById('week');
+
+        sessionSelect.addEventListener('change', function() {
+            const sessionId = this.value;
+
+            fetch(`{% url 'get_days_for_session' %}?session_id=${sessionId}`)
+                .then(response => response.json())
+                .then(data => {
+                    weekSelect.innerHTML = ''; // پاک کردن گزینه‌های قبلی
+                    data.forEach(day => {
+                        const option = document.createElement('option');
+                        option.value = day.id;
+                        option.textContent = day.title;
+                        weekSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        });
+
+    {#    function changePrice(price, off){#}
+    {#        final_price = (parseInt(price) - (parseInt(off) / 100 * parseInt(price)))#}
+    {#        final.innerHTML = final_price.toString() + " " + "تومان"#}
+    {#        cost.innerHTML = parseInt(price) + " " + "تومان"#}
+    {#        offset.innerHTML = off.toString() + "%"#}
+    {##}
 
 
-        sessionList.addEventListener('change', function () {
-            sessionNumber.innerHTML = this.value
-            sessionId = this.options[this.options.selectedIndex].id
-            getWeeks(this.options[this.options.selectedIndex].id)
-        })
-
-    function changePrice(price, off){
-        final_price = (parseInt(price) - (parseInt(off) / 100 * parseInt(price)))
-        final.innerHTML = final_price.toString() + " " + "تومان"
-        cost.innerHTML = parseInt(price) + " " + "تومان"
-        offset.innerHTML = off.toString() + "%"
-
-
-    }
+    });
 
 </script>
-
 
 
 

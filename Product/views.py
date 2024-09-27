@@ -1,5 +1,6 @@
 import requests
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.views.decorators.cache import cache_page
 from rest_framework import viewsets, generics, status
@@ -49,7 +50,6 @@ def product_view(request, pk):
     sport = Sport.objects.all()
     product = get_object_or_404(Course, id=pk)
     session = Session.objects.all().filter(course_id=pk).order_by("number")
-    days = Days.objects.all().filter(course_id=pk).order_by("pk")
     participants = Participants.objects.filter(
         course=product,
         user__is_teacher=False,
@@ -65,11 +65,15 @@ def product_view(request, pk):
         "participants": participants,
         "sport": sport,
         "session": session,
-        "days": days,
-
     }
 
     return render(request, 'public/product.html', context)
+
+
+def get_days_for_session(request):
+    session_id = request.GET.get('session_id')
+    days = Days.objects.filter(session_id=session_id).values('id', 'title', 'tuition', 'off')
+    return JsonResponse(list(days), safe=False)
 
 
 @session_auth_required
