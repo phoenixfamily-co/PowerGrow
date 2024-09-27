@@ -1003,30 +1003,18 @@
     card.appendChild(registerButton)
 
     registerButton.addEventListener('click', function () {
-    const errors = validateInputs(sessionId, dayId);
 
-    if (errors.length > 0) {
-        alert(errors.join("\n")); // نمایش همه خطاها به صورت یکجا
-    } else {
-        // انتقال به صفحه پرداخت
-        window.location.assign(`/product/payment/${course}/${sessionId}/${dayId}/${currentDayId}`);
-    }
-});
+        if (sessionId !==0 && dayId !==0) {
+            window.location.assign(`/product/payment/${course}/${sessionId}/${dayId}/${currentDayId}`)
+        }else if (sessionId===0){
+            alert("لطفا اول جلسه را انتخاب کنید")
+        }else if (dayId===0){
+            alert("لطفا روز را انتخاب کنید")
+        }else {
+             alert("تمامی موارد الزامی است")
+        }
 
-// تابع برای بررسی ورودی‌ها
-function validateInputs(sessionId, dayId) {
-    const errors = [];
-
-    if (sessionId === 0) {
-        errors.push("لطفا اول جلسه را انتخاب کنید");
-    }
-    if (dayId === 0) {
-        errors.push("لطفا روز را انتخاب کنید");
-    }
-
-    return errors;
-}
-
+    })
 
 </script>
 
