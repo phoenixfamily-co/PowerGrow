@@ -49,6 +49,7 @@ def product_view(request, pk):
     sport = Sport.objects.all()
     product = get_object_or_404(Course, id=pk)
     session = Session.objects.all().filter(course_id=pk).order_by("number")
+    days = Days.objects.all().filter(course_id=pk).order_by("pk")
     participants = Participants.objects.filter(
         course=product,
         user__is_teacher=False,
