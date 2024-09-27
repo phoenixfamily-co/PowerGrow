@@ -893,6 +893,7 @@
         const offDisplay = document.getElementById('off');
         const finalDisplay = document.getElementById('final');
 
+
         // در بارگذاری اولیه
         if (sessionSelect.value) {
             sessionNumberDisplay.textContent = sessionSelect.options[sessionSelect.selectedIndex].text;
@@ -906,20 +907,27 @@
                 .then(response => response.json())
                 .then(data => {
                     weekSelect.innerHTML = ''; // پاک کردن گزینه‌های قبلی
-                    data.days.forEach(day => {
+                    data.forEach(day => {
                         const option = document.createElement('option');
                         option.value = day.id;
+                        option.setAttribute('data-custom1', `${day.price}`)
+                        option.setAttribute('data-custom2', `${day.off}`)
                         option.textContent = day.title;
                         weekSelect.appendChild(option);
                     });
 
-                    // به‌روزرسانی مقادیر اولیه
+                    // اگر گزینه‌ای وجود دارد، مقدار daysSessionDisplay را به‌روز کن
                     if (weekSelect.options.length > 0) {
                         daysSessionDisplay.textContent = weekSelect.options[0].text; // مقدار پیش‌فرض
-                        updatePriceInfo(data.pricing); // به‌روزرسانی قیمت‌ها با داده‌های جدید
+                        priceDisplay.textContent = weekSelect.options[0].getAttribute('data-custom1') + ' تومان '
+                        offDisplay.textContent = weekSelect.options[0].getAttribute('data-custom2') + '%'
+                        finalDisplay.textContent = weekSelect.options[0].getAttribute('data-custom1') + ' تومان '
+
                     } else {
                         daysSessionDisplay.textContent = ''; // در صورتی که گزینه‌ای وجود نداشته باشد
-                        resetPriceInfo(); // ریست کردن قیمت‌ها
+                        offDisplay.textContent = ''
+                        priceDisplay.textContent = ''
+                        finalDisplay.textContent = ''
                     }
                 })
                 .catch(error => console.error('Error:', error));
@@ -927,33 +935,12 @@
 
         weekSelect.addEventListener('change', function() {
             daysSessionDisplay.textContent = this.options[this.selectedIndex].text;
-
-            // به‌روزرسانی قیمت‌ها بر اساس روز انتخاب‌شده
-            const selectedDayId = this.value;
-            fetch(`{% url 'product:get_days_for_session' %}?session_id==${sessionId}`)
-                .then(response => response.json())
-                .then(data => {
-                    updatePriceInfo(data); // به‌روزرسانی قیمت‌ها
-                })
-                .catch(error => console.error('Error:', error));
+            priceDisplay.textContent = weekSelect.options[this.selectedIndex].getAttribute('data-custom1') + ' تومان '
+            offDisplay.textContent = weekSelect.options[this.selectedIndex].getAttribute('data-custom2') + '%'
+            finalDisplay.textContent = weekSelect.options[this.selectedIndex].getAttribute('data-custom1') + ' تومان '
         });
-
-        // تابع برای به‌روزرسانی قیمت‌ها
-        function updatePriceInfo(pricing) {
-            priceDisplay.textContent = pricing.price || 'نامشخص';
-            offDisplay.textContent = pricing.off || 'نامشخص';
-            finalDisplay.textContent = pricing.price || 'نامشخص';
-        }
-
-        // تابع برای ریست کردن قیمت‌ها
-        function resetPriceInfo() {
-            priceDisplay.textContent = '';
-            offDisplay.textContent = '';
-            finalDisplay.textContent = '';
-        }
     });
 </script>
-
 
 <script>
 
