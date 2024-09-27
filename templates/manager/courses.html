@@ -66,31 +66,51 @@
                margin-top: 40px;
            }
 
-           .navbar.navbar-dark.bg-dark li a{
-            color: #fff;
-        }
+           .search-bar-container {
+    display: flex;
+    justify-content: center;  /* مرکز کردن نوار جستجو */
+    margin: 20px auto;  /* فاصله از بالا و پایین */
+    width: 100%;  /* نوار جستجو تمام عرض را بگیرد */
+}
 
-          .navbar.navbar-dark.bg-dark a:hover{
-              color: grey;
-        }
+.search-form {
+    display: flex;
+    width: 80%;  /* نوار جستجو به اندازه 80% عرض صفحه یا کانتینر شود */
+    max-width: 1200px;  /* حداکثر عرض */
+    position: relative;  /* برای کنترل دکمه جستجو */
+}
 
-       .nav.navbar-nav li a {
-           color: #fff;
-           text-decoration: none;
-       }
+.search-input {
+    flex: 1;  /* به نوار جستجو اجازه می‌دهد تمام فضای در دسترس را پر کند */
+    padding: 10px 15px;  /* فاصله داخلی */
+    border: 2px solid #ccc;  /* حاشیه خاکستری */
+    border-radius: 25px;  /* گوشه‌های گرد */
+    outline: none;
+    font-size: 16px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);  /* سایه خفیف */
+    transition: border-color 0.3s;
+}
 
-        .nav.navbar-nav a:hover {
-            color: grey;
-        }
+.search-input:focus {
+    border-color: #007bff;  /* رنگ حاشیه وقتی روی فیلد کلیک می‌شود */
+}
 
-        .nav-pills > li > a.active {
-            background-color: #E16539 !important;
-        }
+.search-button {
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    right: 10px;  /* فاصله از سمت راست */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #007bff;
+    cursor: pointer;
+    font-size: 18px;
+}
 
-          .fa.fa-times{
-              color: red;
-             cursor: pointer
-           }
+.search-button:hover {
+    color: #0056b3;
+}
+
 
           .month {
             width: 100%;
@@ -349,6 +369,21 @@ input[type=submit] {
     <div class="typography">PowerGrow</div>
 
 </div>
+
+<div class="search-bar-container">
+    <form class="search-form" action="{% url 'product:search' %}" method="get">
+        <input type="text" class="search-input" placeholder="جستجو..." name="q">
+        <button type="submit" class="search-button"><i class="fa fa-search"></i></button>
+    </form>
+</div>
+
+<!-- جدول شما بعد از نوار جستجو -->
+<div class="table-responsive">
+    <table class="table">
+        <!-- محتوای جدول -->
+    </table>
+</div>
+
 
 
 <div class="pagination-container">
