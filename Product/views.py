@@ -439,7 +439,7 @@ class DaysDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         session_id = self.kwargs.get('pk')
-        return super().get_queryset().filter(session=session_id)
+        return super().get_queryset().filter(pk=session_id)
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
