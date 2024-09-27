@@ -598,7 +598,9 @@
                 <div class="form-group my-5">
                     <label for="week">روزهای برگزاری در هفته را مشخص کنید:</label>
                     <select class="form-control mt-1" name="week" id="week">
-                        <!-- گزینه‌ها از سمت سرور می‌آیند -->
+                        {% for x in days %}
+                            <option value="{{ x.id }}">{{ x.title }}</option>
+                        {% endfor %}
                     </select>
                 </div>
             </div>

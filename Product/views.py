@@ -64,7 +64,9 @@ def product_view(request, pk):
         "product": product,
         "participants": participants,
         "sport": sport,
-        "session" : session,
+        "session": session,
+        "days": days,
+
     }
 
     return render(request, 'public/product.html', context)
