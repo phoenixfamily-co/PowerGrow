@@ -147,9 +147,9 @@
     <a class="nav-link" aria-current="page" href='{% url 'home:home' %}'>صفحه اصلی</a>
   </li>
   <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">{{ title.title }}</a>
+    <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">{{ sport.title }}</a>
     <ul class="dropdown-menu">
-         {% for x in sport %}
+         {% for x in sports %}
              <li><a class="dropdown-item" href="{% url 'product:category_view' x.id %}">{{ x.title }}</a></li>
          {% endfor %}
     </ul>

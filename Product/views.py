@@ -31,13 +31,13 @@ def category_view(request, pk):
     about = AboutUs.objects.first()  # Assuming there's only one AboutUs instance
     sport = get_object_or_404(Sport, id=pk)  # Ensure the sport exists
     courses = Course.objects.filter(sport=sport, active=True)
+    sports= Sport.objects.all()
 
     context = {
         "about": about,
         "sport": sport,
         "course": courses,
-        "title": sport,  # Directly using the sport object
-        "id": pk
+        "sports": sports  # اضافه کردن لیست ورزش‌ها به کانتکست
     }
 
     return render(request, 'public/category.html', context)
