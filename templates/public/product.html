@@ -893,6 +893,9 @@
             const sessionId = this.value;
             sessionNumberDisplay.textContent = this.innerText
 
+             sessionNumberDisplay.textContent = this.options[this.selectedIndex].text;
+
+
             fetch(`{% url 'product:get_days_for_session' %}?session_id=${sessionId}`)
                 .then(response => response.json())
                 .then(data => {
