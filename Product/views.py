@@ -550,6 +550,7 @@ class ParticipationCreateView(viewsets.ViewSet):
             return Response({'error': 'An unexpected error occurred', 'details': str(e)},
                             status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+
 class ManagerParticipationView(viewsets.ViewSet):
     serializer_class = ManagerParticipantsSerializer
     permission_classes = [IsAdminUser]
