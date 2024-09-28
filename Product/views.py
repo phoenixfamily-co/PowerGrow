@@ -159,7 +159,7 @@ def manager_courses_view(request):
     users = User.objects.all()
 
     # پیاده‌سازی pagination
-    paginator = Paginator(courses, 50)
+    paginator = Paginator(courses, 100)
     page_number = request.GET.get('page')
 
     try:
