@@ -87,12 +87,9 @@ class SessionSerializer(serializers.ModelSerializer):
 
 
 class CourseSerializer(serializers.ModelSerializer):
-    sessions = SessionSerializer(read_only=True, many=True)
-    participants = ParticipantsSerializer(read_only=True, many=True)
-
     class Meta:
         model = Course
-        exclude = ['datetime', 'sessions', 'participants']
+        exclude = ['datetime',]
 
     def create(self, validated_data):
         return Course.objects.create(**validated_data)
