@@ -100,12 +100,20 @@ class CourseSerializer(serializers.ModelSerializer):
         instance.type = validated_data.get('type', instance.type)
         instance.time = validated_data.get('time', instance.time)
         instance.description = validated_data.get('description', instance.description)
-        instance.image = validated_data.get('image', instance.image)
+
+        image = validated_data.get('image')
+        if image is not None:  # اگر فیلد تصویر ارسال شده باشد
+            instance.image = image  # مقدار جدید را اعمال کن
+
         instance.selected = validated_data.get('selected', instance.selected)
         instance.capacity = validated_data.get('capacity', instance.capacity)
         instance.gender = validated_data.get('gender', instance.gender)
         instance.sport = validated_data.get('sport', instance.sport)
-        instance.active = validated_data.get('active', instance.active)
+
+        active = validated_data.get('active')
+        if active is not None:
+            instance.active = active
+
         instance.save()
         return instance
 
