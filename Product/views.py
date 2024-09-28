@@ -386,11 +386,6 @@ class CourseDetailView(generics.RetrieveUpdateDestroyAPIView):
     def get_queryset(self):
         course_id = self.kwargs.get('pk')
         return super().get_queryset().filter(pk=course_id)
-
-    def retrieve(self, request, *args, **kwargs):
-        # برگرداندن خطای 403 به جای داده‌ها
-        return Response({"detail": "Not allowed to view this resource."}, status=status.HTTP_403_FORBIDDEN)
-
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
         instance.delete()
