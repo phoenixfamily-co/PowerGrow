@@ -378,7 +378,7 @@ class CourseListCreateView(generics.CreateAPIView):
     permission_classes = [IsAdminUser]
 
 
-class CourseDetailView(generics.UpdateAPIView):
+class CourseDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
     permission_classes = [IsAdminUser]
