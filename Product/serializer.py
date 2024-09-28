@@ -89,7 +89,7 @@ class SessionSerializer(serializers.ModelSerializer):
 class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
-        exclude = ['datetime',]
+        exclude = ['datetime']
 
     def create(self, validated_data):
         return Course.objects.create(**validated_data)
