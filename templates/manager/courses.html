@@ -187,8 +187,18 @@
 
                 <td>{{ x.title }}</td>
                 <td>{{ x.name }}</td>
-                <td>{{ x.gender }}</td>
-                <td>{{ x.type }}</td>
+                <td>  {% if course.gender == "male" %}
+                    مرد
+                {% elif course.gender == "female" %}
+                    زن
+                {% endif %}</td>
+                <td> {% if course.type == "public" %}
+                    عمومی
+                {% elif course.type == "private" %}
+                    خصوصی
+                {% elif course.type == "semi_private" %}
+                    نیمه خصوصی
+                {% endif %}</td>
                 <td>{{ x.capacity }}</td>
                 <td>{{ x.sport.title }}</td>
                 <td class="text-center">
