@@ -241,19 +241,18 @@
 
 <script>
 
-   let today = new Date().toLocaleDateString('fa-IR-u-nu-latn');
-   let parts = today.split('/'); // فرض می‌کنیم که فرمت "YYYY/MM/DD" است
-
-   let year = parseInt(parts[0].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728)));
-   let month = parseInt(parts[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728)));
-   let day = parseInt(parts[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728)));
-
-
-
     document.addEventListener('DOMContentLoaded', function() {
 
         let table = document.getElementById('myTable');
         let rows = table.getElementsByTagName('tr');
+
+         let today = new Date().toLocaleDateString('fa-IR-u-nu-latn');
+         let parts = today.split('/'); // فرض می‌کنیم که فرمت "YYYY/MM/DD" است
+
+        let year = parseInt(parts[0].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728)));
+        let month = parseInt(parts[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728)));
+        let day = parseInt(parts[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728)));
+
 
 
         console.log(year, month, day);
