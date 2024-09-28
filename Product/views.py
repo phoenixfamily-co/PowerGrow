@@ -329,7 +329,7 @@ def manager_user_list(request, pk):
     about = AboutUs.objects.first()
 
     # بارگذاری دوره با استفاده از get_object_or_404
-    participants = get_object_or_404(Participants, course=pk)
+    participants = Participants.objects.all().filter(course_id=pk)
 
     paginator = Paginator(participants, 100)
     page_number = request.GET.get('page')
