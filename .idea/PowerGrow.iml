@@ -32,6 +32,9 @@
     <orderEntry type="library" name="jalali-moment" level="application" />
     <orderEntry type="library" name="jalaali-js" level="application" />
     <orderEntry type="library" name="f872c5c890" level="application" />
+    <orderEntry type="library" name="bootstrap" level="application" />
+    <orderEntry type="library" name="jquery-3.5.1.slim" level="application" />
+    <orderEntry type="library" name="@popperjs/core" level="application" />
   </component>
   <component name="PyDocumentationSettings">
     <option name="format" value="PLAIN" />

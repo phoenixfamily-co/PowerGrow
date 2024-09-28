@@ -1,7 +1,7 @@
 import requests
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import JsonResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.views.decorators.cache import cache_page
 from rest_framework import viewsets, generics, status
 from rest_framework.decorators import api_view
@@ -370,6 +370,20 @@ def teacher_user_list(request, pk, id):
 
     # استفاده از render برای بارگذاری الگو
     return render(request, 'teacher/users.html', context)
+
+
+def update_course(request, pk):
+    course = get_object_or_404(Course, pk=pk)
+
+    if request.method == 'POST':
+        serializer = CourseSerializer(course, data=request.POST, files=request.FILES)
+        if serializer.is_valid():
+            serializer.save()
+            return redirect('product:manager_courses')  # به صفحه لیست دوره‌ها برگرد
+    else:
+        serializer = CourseSerializer(course)
+
+    return render(request, 'manager/update_course.html', {'course': serializer.data})
 
 
 class CourseListCreateView(generics.CreateAPIView):
