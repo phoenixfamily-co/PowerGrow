@@ -339,14 +339,10 @@ def manager_user_list(request, pk):
     except (PageNotAnInteger, EmptyPage):
         page_obj = paginator.page(1)  # اگر شماره صفحه معتبر نبود، به صفحه اول برگردیم
 
-    # محاسبه تعداد شرکت‌کنندگان
-    participant_count = course.participants.count()
-
     # آماده‌سازی context برای الگو
     context = {
         "about": about,
         "page_obj": page_obj,
-        "size": participant_count,
     }
 
     # استفاده از render برای بارگذاری الگو
