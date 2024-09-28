@@ -174,6 +174,7 @@
                 <th>تعداد جلسه ها</th>
                 <th>پرداختی</th>
                 <th>توضیحات</th>
+                 <th>وضعیت</th>
             </tr>
         </thead>
         <tbody>
@@ -197,6 +198,13 @@
                 <td>{{ x.session.number }}</td>
                 <td>{{ x.price }} تومان </td>
                 <td>{{ x.description }}</td>
+                <td class="text-center">
+                    {% if x.user.is_active %}
+                        <i class="fa fa-check-circle text-success"></i>
+                    {% else %}
+                        <i class="fa fa-ban text-danger"></i>
+                    {% endif %}
+                </td>
             </tr>
             {% endfor %}
         </tbody>
