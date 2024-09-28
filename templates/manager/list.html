@@ -192,7 +192,7 @@
                 <td>{{ x.user.birthdate }}</td>
                 <td>{{ x.datetime }}</td>
                 <td>{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}</td>
-                <td>{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}</td>
+                <td data-end-date="{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}">{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}</td>
                 <td> </td>
                  <td>{{ x.day.title }}</td>
                 <td>{{ x.session.number }}</td>
@@ -236,6 +236,27 @@
     }
 });
 
+</script>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var today = new Date().toLocaleDateString('fa-IR-u-nu-latn');
+        var table = document.getElementById('myTable');
+        var rows = table.getElementsByTagName('tr');
+
+        for (var i = 1; i < rows.length; i++) { // شروع از 1 برای نادیده گرفتن هدر
+            var endDateCell = rows[i].querySelector('td[data-end-date]'); // فرض می‌کنیم که تاریخ پایان در یک سلول با data-end-date قرار دارد
+            if (endDateCell) {
+                var endDate = new Date(endDateCell.getAttribute('data-end-date'));
+
+                if (endDate < today) {
+                    var statusCell = rows[i].querySelector('td:last-child'); // فرض می‌کنیم آخرین سلول وضعیت است
+                    statusCell.innerHTML = '<i class="fa fa-exclamation-circle text-warning" title="تاریخ پایان گذشته"></i>'; // تغییر به آیکون دلخواه
+                }
+            }
+        }
+    });
 </script>
 
 </body>
