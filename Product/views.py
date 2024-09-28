@@ -386,6 +386,7 @@ class CourseDetailView(generics.RetrieveUpdateDestroyAPIView):
     def get_queryset(self):
         course_id = self.kwargs.get('pk')
         return super().get_queryset().filter(pk=course_id)
+
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
         instance.delete()
