@@ -20,13 +20,23 @@
          label {
         color: white;  /* تغییر رنگ متن لیبل به سفید */
     }
+          .custom-btn {
+            background-color: #E16539; /* رنگ دلخواه */
+            border: none; /* حذف حاشیه */
+        }
+        .custom-btn:hover {
+               background-color: #a84e2c; /* تغییر رنگ در حالت hover */
+               color: #c4c4c4; /* رنگ برای حالت هاور */
+        }
+        .margin-bottom {
+            margin-bottom: 20px; /* فاصله از پایین */
+        }
 
     </style>
 
 </head>
 <body>
     <div class="container mt-5">
-        <h2>به‌روزرسانی دوره</h2>
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-group">
@@ -87,7 +97,7 @@
                 <input type="checkbox" id="active" name="active" {% if course.active %}checked{% endif %}>
             </div>
 
-            <button type="submit" class="btn btn-primary">به‌روزرسانی دوره</button>
+            <button type="submit" class="btn custom-btn margin-bottom">به‌روزرسانی دوره</button>
         </form>
     </div>
 
