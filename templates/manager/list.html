@@ -193,7 +193,7 @@
                 <td>{{ x.user.birthdate }}</td>
                 <td>{{ x.datetime }}</td>
                 <td>{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}</td>
-                <td data-end-date="{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}">{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}</td>
+                <td data-end-year="{{ x.endDay.month.year.number}}" data-end-month = "{{ x.endDay.month.number }}" data-end-day="{{ x.endDay.number }}">{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}</td>
                 <td> </td>
                  <td>{{ x.day.title }}</td>
                 <td>{{ x.session.number }}</td>
@@ -241,21 +241,34 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var today = moment(); // تاریخ امروز به میلادی
         var table = document.getElementById('myTable');
         var rows = table.getElementsByTagName('tr');
+
+        let year = parseInt(today[0].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
+        let month = parseInt(today[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
+        let day = parseInt(today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
+
+        const thisDate = jalaali.j2d(year, month, day)
+
 
         for (var i = 1; i < rows.length; i++) { // شروع از 1 برای نادیده گرفتن هدر
             var endDateCell = rows[i].querySelector('td[data-end-date]');
 
             if (endDateCell) {
                 // دریافت تاریخ پایان شمسی
-                var endDateStr = endDateCell.getAttribute('data-end-date');
-                // تبدیل تاریخ شمسی به تاریخ میلادی
-                var endDate = moment.from(endDateStr, 'jalali');
+                var endYearStr = endDateCell.getAttribute('data-end-year');
+                var endMonthStr = endDateCell.getAttribute('data-end-month');
+                var endDayStr = endDateCell.getAttribute('data-end-day');
+
+                 var userEndYear = parseInt(endYearStr);
+                 var userEndMonth = parseInt(endMonthStr);
+                 var userEndDay = parseInt(endDayStr);
+
+                 var userEnd = jalaali.j2d(userEndYear, userEndMonth, userEndDay)
+
 
                 // بررسی اینکه آیا تاریخ پایان گذشته است
-                if (endDate.isBefore(today)) {
+                if (userEnd<thisDate) {
                     var statusCell = rows[i].querySelector('td:last-child'); // فرض می‌کنیم آخرین سلول وضعیت است
                     statusCell.innerHTML = '<i class="fa fa-exclamation-circle text-warning" title="تاریخ پایان گذشته"></i>'; // تغییر به آیکون دلخواه
                 }
