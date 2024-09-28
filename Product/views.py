@@ -372,13 +372,13 @@ def teacher_user_list(request, pk, id):
     return render(request, 'teacher/users.html', context)
 
 
-class CourseListCreateView(generics.ListCreateAPIView):
+class CourseListCreateView(generics.CreateAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
     permission_classes = [IsAdminUser]
 
 
-class CourseDetailView(generics.RetrieveUpdateDestroyAPIView):
+class CourseDetailView(generics.UpdateAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
     permission_classes = [IsAdminUser]
@@ -578,17 +578,17 @@ class ManagerParticipationView(viewsets.ViewSet):
         day = week.title.split("،")
 
         startIds = Day.objects.filter(name__in=day, month__number__gte=start.month.number,
-                                 month__year__number__gte=start.month.year.number, holiday=False).exclude(
+                                      month__year__number__gte=start.month.year.number, holiday=False).exclude(
             month__number=start.month.number,
             number__lt=start.number) \
-                  .order_by('pk').values_list('pk', flat=True)[:int(session.number)]
+                       .order_by('pk').values_list('pk', flat=True)[:int(session.number)]
         startDay = Day.objects.filter(pk__in=list(startIds)).first()
 
         endIds = Day.objects.filter(name__in=day, month__number__gte=start.month.number,
-                                 month__year__number__gte=start.month.year.number, holiday=False).exclude(
+                                    month__year__number__gte=start.month.year.number, holiday=False).exclude(
             month__number=start.month.number,
             number__lt=start.number) \
-                  .order_by('pk').values_list('pk', flat=True)[:int(session.number)]
+                     .order_by('pk').values_list('pk', flat=True)[:int(session.number)]
         endDay = Day.objects.filter(pk__in=list(endIds)).last()
 
         participant_data = {

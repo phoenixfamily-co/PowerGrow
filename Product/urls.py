@@ -24,7 +24,7 @@ urlpatterns = [
     path('api/sports/', SportListCreateView.as_view(), name='sport-list-create'),
     path('api/sports/<int:pk>/', SportDetailView.as_view(), name='sport-detail'),
 
-    path('api/courses/', CourseListCreateView.as_view(), name='course-list-create'),
+    path('api/courses/', CourseListCreateView.as_view(), name='course-create'),
     path('api/courses/<int:pk>/', CourseDetailView.as_view(), name='course-detail'),
 
     path('api/days/', DaysListCreateView.as_view(), name='day-list-create'),
