@@ -378,7 +378,7 @@ def update_course(request, pk):
     if request.method == 'POST':
         # دریافت داده‌ها و فایل‌ها
         serializer = CourseSerializer(course, data=request.POST)
-        if serializer.is_valid():
+        if serializer.is_valid(raise_exception=True):
             # به‌روزرسانی تصویر
             if 'image' in request.FILES:
                 course.image = request.FILES['image']
