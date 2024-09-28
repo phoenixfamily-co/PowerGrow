@@ -241,11 +241,12 @@
 
 <script>
 
+    let today = new Date().toLocaleDateString('fa-IR-u-nu-latn');
+
       let year = parseInt(today[0].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
       let month = parseInt(today[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
       let day = parseInt(today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
 
-      let today = new Date().toLocaleDateString('fa-IR');
 
     document.addEventListener('DOMContentLoaded', function() {
 
