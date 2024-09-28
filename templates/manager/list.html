@@ -250,6 +250,8 @@
         let month = parseInt(today[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
         let day = parseInt(today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
 
+        console.log(`${year}/${month}/${day}`)
+
         const thisDate = jalaali.j2d(year, month, day)
 
 
@@ -266,14 +268,12 @@
                  var userEndMonth = parseInt(endMonthStr);
                  var userEndDay = parseInt(endDayStr);
 
-                 console.log(`${userEndYear}/${userEndMonth}/${userEndDay}`)
-
                  var userEnd = jalaali.j2d(userEndYear, userEndMonth, userEndDay)
 
 
                 // بررسی اینکه آیا تاریخ پایان گذشته است
-                if (userEnd<thisDate) {
-                    var statusCell = rows[i].querySelector('td:last-child'); // فرض می‌کنیم آخرین سلول وضعیت است
+                if (userEnd>=thisDate) {
+
                 }
             }else {
                 console.log("not found")
