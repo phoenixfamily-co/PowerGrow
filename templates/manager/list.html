@@ -178,7 +178,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for x in course.participants.all %}
+            {% for x in page_obj.object_list %}
             <tr>
                 <th scope="row">{{ x.id }}</th>
                 <td class="text-center">

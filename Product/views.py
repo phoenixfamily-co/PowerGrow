@@ -329,7 +329,15 @@ def manager_user_list(request, pk):
     about = AboutUs.objects.first()
 
     # بارگذاری دوره با استفاده از get_object_or_404
-    course = get_object_or_404(Course, id=pk)
+    participants = get_object_or_404(Participants, course=pk)
+
+    paginator = Paginator(participants, 100)
+    page_number = request.GET.get('page')
+
+    try:
+        page_obj = paginator.get_page(page_number)
+    except (PageNotAnInteger, EmptyPage):
+        page_obj = paginator.page(1)  # اگر شماره صفحه معتبر نبود، به صفحه اول برگردیم
 
     # محاسبه تعداد شرکت‌کنندگان
     participant_count = course.participants.count()
@@ -337,7 +345,7 @@ def manager_user_list(request, pk):
     # آماده‌سازی context برای الگو
     context = {
         "about": about,
-        "course": course,
+        "page_obj": page_obj,
         "size": participant_count,
     }
 
