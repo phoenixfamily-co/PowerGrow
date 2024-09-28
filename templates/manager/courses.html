@@ -178,11 +178,13 @@
                     <i class="fa fa-times text-danger" aria-hidden="true" style="cursor: pointer" title="حذف" onclick="window.open('{% url 'product:course-detail' x.id %}')"></i>
                 </td>
                 <td class="text-center">
-                    <i class="fa fa-solid fa-address-book" aria-hidden="true" style="cursor: pointer" title="لیست" onclick="window.open('{% url 'product:product_view' x.id %}')"></i>
+                    <i class="fa fa-solid fa-square-plus" aria-hidden="true" style="cursor: pointer" title="ثبت نام" onclick="window.open('{% url 'product:manager-create-participation'%}')"></i>
                 </td>
+
                 <td class="text-center">
-                    <i class="fa fa-solid fa-square-plus" aria-hidden="true" style="cursor: pointer" title="ثبت نام" onclick="window.open('{% url 'product:course-detail' x.id %}')"></i>
+                    <i class="fa fa-solid fa-address-book" aria-hidden="true" style="cursor: pointer" title="لیست" onclick="window.location.assign('{% url 'product:manager_user_list' x.id %}')"></i>
                 </td>
+
                 <td>{{ x.title }}</td>
                 <td>{{ x.name }}</td>
                 <td>{{ x.gender }}</td>
