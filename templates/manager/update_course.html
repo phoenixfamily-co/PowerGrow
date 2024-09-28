@@ -23,10 +23,12 @@
 
             <div class="form-group">
                 <label for="type">نوع:</label>
-                <select class="form-control" id="type" name="type" required>
-                    <option value="public" {% if course.type == "public" %}selected{% endif %}>عمومی</option>
-                    <option value="private" {% if course.type == "private" %}selected{% endif %}>خصوصی</option>
-                </select>
+                 <label for="type">نوع:</label>
+            <select class="form-control" id="type" name="type" required>
+                <option value="public" {% if course.type == "public" %}selected{% endif %}>عمومی</option>
+                <option value="private" {% if course.type == "private" %}selected{% endif %}>خصوصی</option>
+                <option value="semi_private" {% if course.type == "semi_private" %}selected{% endif %}>نیمه خصوصی</option>  <!-- گزینه جدید -->
+            </select>
             </div>
 
             <div class="form-group">

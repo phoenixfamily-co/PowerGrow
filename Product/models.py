@@ -5,15 +5,15 @@ from Calendar.models import Day
 from PowerGrow import settings
 from User.models import User
 
-TYPE_CHOICE = (
-    ('خصوصی', 'private'),
-    ('نیمه خصوصی', 'semiprivate'),
-    ('عمومی', 'public')
-)
-GENDER_CHOICE = (
-    ('آقایان', 'men'),
-    ('بانوان', 'women'),
-)
+TYPE_CHOICE = [
+    ('public', 'عمومی'),
+    ('private', 'خصوصی'),
+    ('semi_private', 'نیمه خصوصی'),  # گزینه جدید
+]
+GENDER_CHOICE = [
+    ('male', 'مرد'),
+    ('female', 'زن'),
+]
 
 
 class Sport(models.Model):
