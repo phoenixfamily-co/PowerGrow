@@ -268,11 +268,13 @@
 
                  var userEnd = jalaali.j2d(userEndYear, userEndMonth, userEndDay)
 
+                console.log("ok")
+
+
 
                 // بررسی اینکه آیا تاریخ پایان گذشته است
                 if (userEnd<thisDate) {
                     var statusCell = rows[i].querySelector('td:last-child'); // فرض می‌کنیم آخرین سلول وضعیت است
-                    console.log("ok")
                 }
             }else {
                 console.log("not found")
