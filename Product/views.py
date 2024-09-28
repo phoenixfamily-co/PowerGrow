@@ -376,8 +376,12 @@ def update_course(request, pk):
     course = get_object_or_404(Course, pk=pk)
 
     if request.method == 'POST':
-        serializer = CourseSerializer(course, data=request.POST, files=request.FILES)
+        # دریافت داده‌ها و فایل‌ها
+        serializer = CourseSerializer(course, data=request.POST)
         if serializer.is_valid():
+            # به‌روزرسانی تصویر
+            if 'image' in request.FILES:
+                course.image = request.FILES['image']
             serializer.save()
             return redirect('product:manager_courses')  # به صفحه لیست دوره‌ها برگرد
     else:
