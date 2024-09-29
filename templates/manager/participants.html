@@ -140,7 +140,7 @@
                 <select class="form-control" id="startDay" required>
                     <option value="">انتخاب کنید</option>
                     {% for x in day %}
-                            <option dir="rtl" value="{{ x.id }}">{{ x.number }}/{{ x.month.number }}/{{ x.month.year.number }}</option>
+                            <option dir="rtl" value="{{ x.id }}">{{ x.month.year.number }}/{{ x.month.number }}/{{ x.number }}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -149,7 +149,7 @@
                 <select class="form-control" id="endDay" required>
                     <option value="">انتخاب کنید</option>
                     {% for x in day %}
-                        <option dir="rtl" value="{{ x.id }}">{{ x.number }}/{{ x.month.number }}/{{ x.month.year.number }}</option>
+                            <option dir="rtl" value="{{ x.id }}">{{ x.month.year.number }}/{{ x.month.number }}/{{ x.number }}</option>
                     {% endfor %}
                 </select>
             </div>
