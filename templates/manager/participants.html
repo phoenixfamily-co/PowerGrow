@@ -189,7 +189,7 @@
                 endDay: document.getElementById('endDay').value,
                 price: document.getElementById('price').value,
                 user: document.getElementById('user').value,
-                course: document.getElementById('course').value
+                course: "{{ course.id }}"
             };
 
             fetch('/api/manager/participations/', {
