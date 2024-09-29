@@ -380,9 +380,6 @@ def update_course(request, pk):
         # دریافت داده‌ها و فایل‌ها
         serializer = CourseSerializer(course, data=request.POST)
         if serializer.is_valid(raise_exception=True):
-            # به‌روزرسانی تصویر
-            if 'image' in request.FILES:
-                course.image = request.FILES['image']
             serializer.save()
             return redirect('product:manager_courses')  # به صفحه لیست دوره‌ها برگرد
     else:
