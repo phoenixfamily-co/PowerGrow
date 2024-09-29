@@ -229,60 +229,60 @@ button:hover {
 
 </div>
 
-
-  <div class="container py-5 h-100" style="margin-top: 100px">
+  <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-        <div class="card bg-dark text-white" style="border-radius: 1rem">
-          <div class="card-body p-5 text-center">
-            <div class="mb-md-5 mt-md-4 pb-5">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card text-white" style="border-radius: 1rem; background-color: #312f2e;">
+                <div class="card-body p-5 text-center">
+                    <h2 class="fw-bold mb-2 text-uppercase">ثبت نام</h2>
+                    <p class="text-white-50 mb-4">لطفا اطلاعات خود را وارد کنید</p>
+                    <form>
+                        <div class="form-outline form-white mb-4">
+                            <input type="text" id="name" class="form-control form-control-lg" placeholder="نام و نام خانوادگی" required />
+                            <label class="form-label" for="name">نام و نام خانوادگی</label>
+                        </div>
 
-              <h2 class="fw-bold mb-2 text-uppercase">ثبت نام</h2>
-              <p class="text-white-50 mb-5">لطفا اطلاعات خود را وارد کنید</p>
+                        <div class="form-outline form-white mb-4">
+                            <input type="tel" id="phone" class="form-control form-control-lg" placeholder="9123456780" maxlength="10" required />
+                            <label class="form-label" for="phone">موبایل</label>
+                        </div>
 
-              <div class="form-outline form-white mb-4">
-                <input type="text" id="name" class="form-control form-control-lg" placeholder="نام و نام خانوادگی"  required/>
-                <label class="form-label" for="name">نام و نام خانوادگی</label>
-              </div>
+                        <div class="form-outline form-white mb-4">
+                            <input type="text" id="birthdate" class="form-control form-control-lg" placeholder="تاریخ تولد" data-jdp required />
+                            <label class="form-label" for="birthdate">تاریخ تولد</label>
+                        </div>
 
-                <div class="form-outline form-white mb-4">
-                <input type="tel" id="phone" class="form-control form-control-lg" placeholder="9123456780" maxlength="10" required />
-                <label class="form-label" for="phone">موبایل</label>
-              </div>
+                        <div class="form-outline form-white mb-4 position-relative">
+                            <input type="password" id="password1" autocomplete="new-password" class="form-control form-control-lg" placeholder="رمز عبور" minlength="6" required />
+                            <label class="form-label" for="password1">رمز عبور</label>
+                            <span id="eye1" class="position-absolute" style="right: 15px; top: 40%; transform: translateY(-40%); cursor: pointer;">
+                                <i class="fa fa-eye" aria-hidden="true" style="color: black;"></i>
+                            </span>
+                        </div>
 
-                <div class="form-outline form-white mb-4">
-                <input type="text" id="birthdate" class="form-control form-control-lg" placeholder="تاریخ تولد"  data-jdp required/>
-                <label class="form-label" for="birthdate">تاریخ تولد</label>
-              </div>
+                        <div class="form-outline form-white mb-4 position-relative">
+                            <input type="password" id="password2" autocomplete="new-password" class="form-control form-control-lg" placeholder="تکرار رمز عبور" minlength="6" required />
+                            <label class="form-label" for="password2">تکرار رمز عبور</label>
+                            <span id="eye2" class="position-absolute" style="right: 15px; top: 40%; transform: translateY(-40%); cursor: pointer;">
+                                <i class="fa fa-eye" aria-hidden="true" style="color: black;"></i>
+                            </span>
+                        </div>
 
-              <div class="form-outline form-white mb-4">
-                  <input type="password" id="password1" autocomplete="new-password" class="form-control form-control-lg" placeholder="رمز عبور" style="-webkit-text-security: disc" minlength="6" required/>
-                  <i id="eye1" class="fa fa-eye"></i>
-                  <label class="form-label" for="password1">رمز عبور</label>
-              </div>
+                        <p class="small mb-4">
+                            <a class="text-white-50" href="{% url 'user:forget' %}">فراموشی رمز عبور؟</a>
+                        </p>
 
-                <div class="form-outline form-white mb-4">
-                  <input type="password" id="password2" autocomplete="new-password" class="form-control form-control-lg" placeholder="تکرار رمز عبور" style="-webkit-text-security: disc" minlength="6" required/>
-                  <i id="eye2" class="fa fa-eye"></i>
-                  <label class="form-label" for="password2">تکرار رمز عبور</label>
-              </div>
+                        <button id="submit" class="btn btn-outline-light btn-lg px-5" type="submit">ثبت نام</button>
+                    </form>
 
-              <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="{% url 'user:forget' %}">فراموشی رمز عبور ؟</a></p>
-
-              <button id="submit" class="btn btn-outline-light btn-lg px-5" type="submit">ثبت نام</button>
-
+                    <p class="mt-4 mb-0">اکانت دارید؟
+                        <a href="{% url 'user:login' %}" class="text-white-50 fw-bold">وارد شوید</a>
+                    </p>
+                </div>
             </div>
-
-            <div>
-              <p class="mb-0">اکانت دارید؟ <a href="{% url 'user:login' %}" class="text-white-50 fw-bold">وارد شوید</a>
-              </p>
-            </div>
-
-          </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
 
 <footer class="text-white pt-4">
     <div class="container-fluid p-0">
