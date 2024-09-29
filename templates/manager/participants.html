@@ -186,12 +186,12 @@
     async function getAllUser() {
         const userList = [];
 
-        {% for x in user %}
-            let number = "{{ x.number }}".replace("+98", "");
-            userList.push(number);
+        {% for x in user.all %}
+            let phone = "{{ x.number }}".replace("+98", "");
+            userList.push(phone);
         {% endfor %}
 
-        autocomplete(document.getElementById("user"), userList);
+        autocomplete(document.getElementById("myInput"), userList);
     }
 
     function autocomplete(input, arr) {
@@ -280,7 +280,6 @@
         getAllUser();
     });
 </script>
-
 
 
 
