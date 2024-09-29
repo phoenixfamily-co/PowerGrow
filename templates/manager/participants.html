@@ -79,7 +79,6 @@
             max-height: 150px;
             overflow-y: auto;
             background-color: white;
-            width: 400px;
             box-sizing: border-box;
         }
 
@@ -234,6 +233,7 @@ function setupAutocomplete(input, arr) {
 
         // ایجاد div برای نمایش نتایج
         const autocompleteList = document.createElement("div");
+        autocompleteList.setAttribute("class", "form-control");
         autocompleteList.setAttribute("class", "autocomplete-items");
         this.parentNode.appendChild(autocompleteList); // اضافه کردن به parent
 
