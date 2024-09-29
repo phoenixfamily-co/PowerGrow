@@ -93,7 +93,7 @@
                 <select class="form-control" id="session" required>
                     <option value="" disabled selected>انتخاب کنید</option>
                      {% for x in course.sessions.all %}
-                            <option value="{{ x.id }}"> جلسه {{ x.number }}</option>
+                            <option dir="rtl" value="{{ x.id }}"> جلسه {{ x.number }}</option>
                         {% endfor %}
                 </select>
             </div>
@@ -102,7 +102,7 @@
                 <select class="form-control" id="day" required>
                     <option value="" disabled selected>انتخاب کنید</option>
                     {% for x in day %}
-                            <option value="{{ x.id }}">{{ x.title }}</option>
+                            <option dir="rtl" value="{{ x.id }}">{{ x.title }} {{ x.session }} جلسه </option>
                         {% endfor %}
                 </select>
             </div>
