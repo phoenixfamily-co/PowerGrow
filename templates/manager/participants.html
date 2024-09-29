@@ -126,7 +126,9 @@
                 <label for="user">:کاربر</label>
                 <select class="form-control" id="user" required>
                     <option value="">انتخاب کنید</option>
-                    <!-- گزینه‌های کاربران باید با جاوااسکریپت پر شوند -->
+                     {% for x in user %}
+                            <option value="{{ x.id }}">{{ x.number }}</option>
+                        {% endfor %}
                 </select>
             </div>
             <button type="submit" class="btn custom-btn margin-bottom">ثبت</button>
