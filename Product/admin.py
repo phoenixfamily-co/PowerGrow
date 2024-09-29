@@ -16,6 +16,10 @@ class SportAdmin(admin.ModelAdmin):
 class ParticipantsAdmin(admin.ModelAdmin):
     list_display = ('title', 'day')  # اینجا نمایش عنوان و روز
     autocomplete_fields = ('day',)  # اضافه کردن قابلیت autocomplete برای فیلد day
-    ordering = ('-id',)  # مرتب‌سازی بر اساس ID جدیدترین به قدیمی‌ترین
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == "day":
+            kwargs["queryset"] = Day.objects.all().order_by('-id')  # مرتب‌سازی بر اساس ID
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
 
