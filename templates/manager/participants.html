@@ -93,7 +93,7 @@
                 <select class="form-control" id="session" required>
                     <option value="" disabled selected>انتخاب کنید</option>
                      {% for x in course.sessions.all %}
-                            <option dir="rtl" value="{{ x.id }}"> جلسه {{ x.number }}</option>
+                            <option dir="rtl" value="{{ x.id }}">{{ x.number }}  جلسه </option>
                         {% endfor %}
                 </select>
             </div>
