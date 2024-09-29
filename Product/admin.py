@@ -7,6 +7,18 @@ class CourseAdmin(admin.ModelAdmin):
     list_display = ('title', 'sport')  # نمایش عنوان و ورزش در لیست
 
 
+@admin.register(Days)
+class DaysAdmin(admin.ModelAdmin):
+    list_display = ('title', 'tuition', 'off', 'session')  # یا فیلدهای دیگری که می‌خواهی نمایش بدهی
+    search_fields = ('title',)
+
+
+@admin.register(Session)
+class SessionAdmin(admin.ModelAdmin):
+    list_display = ('number', 'course')
+    search_fields = ('number',)
+
+
 @admin.register(Sport)
 class SportAdmin(admin.ModelAdmin):
     list_display = ('title',)  # نمایش نام ورزش در لیست
