@@ -186,7 +186,7 @@
     async function getAllUser() {
         const userList = [];
 
-        {% for x in user.all %}
+        {% for x in user %}
             const phone = "{{ x.number }}".replace("+98", "");
             userList.push(phone);
         {% endfor %}
