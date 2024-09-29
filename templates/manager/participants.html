@@ -45,7 +45,10 @@
         }
 
          .form-control {
-             text-align: right;  /* راست‌چین کردن متن در فیلدهای فرم */
+             width: 100%; /* یا هر مقدار دلخواه دیگری مانند px، em، rem */
+             max-width: 400px; /* حداکثر عرض */
+             margin: 0 auto; /* مرکز کردن اگر نیاز دارید */
+             text-align: right;
          }
 
          label {
@@ -65,8 +68,7 @@
         }
 
         .container {
-            max-width: 400px; /* حداکثر عرض */
-            margin: 0 auto;
+            margin-top: 50px;
         }
 
         .autocomplete-items {
