@@ -71,22 +71,22 @@
         .autocomplete-items {
             position: absolute;
             border: 1px solid #d3d3d3;
-            border-bottom: none;
-            border-top: none;
+            border-radius: 4px;
             z-index: 99;
-            max-height: 150px; /* حداکثر ارتفاع لیست */
-            overflow-y: auto; /* اسکرول عمودی */
-            background-color: white; /* پس‌زمینه */
-            box-sizing: border-box; /* شامل حاشیه در اندازه */
+            max-height: 150px;
+            overflow-y: auto;
+            background-color: white;
+            width: calc(100% - 2px);
+            box-sizing: border-box;
         }
 
         .autocomplete-items div {
-            padding: 10px; /* فضای داخلی */
-            cursor: pointer; /* نشانگر ماوس */
+            padding: 10px;
+            cursor: pointer;
         }
 
         .autocomplete-items div:hover {
-            background-color: #e9e9e9; /* تغییر رنگ در هاور */
+            background-color: #e9e9e9;
         }
 
     </style>
@@ -148,10 +148,11 @@
             </div>
             <div class="form-group">
                 <label for="user">:کاربر</label>
-                <input class="form-control" dir="ltr" id="user" type="number" name="user" placeholder="شماره همراه : 9123456789">
+                <input class="form-control" dir="ltr" id="user" type="number" name="user" placeholder="شماره همراه : 9123456789" autocomplete="off">
             </div>
             <button type="submit" class="btn custom-btn margin-bottom">ثبت</button>
         </form>
+    <div id="autocomplete-list" class="autocomplete-items"></div>
     </div>
 
     <script>
@@ -203,107 +204,94 @@
         });
     </script>
 
-
 <script>
+
     async function getAllUser() {
-        const userList = [];
-        let phone
+    const userList = [];
+    let phone;
 
-        {% for x in user.all %}
-            phone = "{{ x.number }}".replace("+98", "");
-            userList.push(phone);
-        {% endfor %}
+    {% for x in user.all %}
+        phone = "{{ x.number }}".replace("+98", "");
+        userList.push(phone);
+    {% endfor %}
 
-        autocomplete(document.getElementById("user"), userList);
-    }
+    setupAutocomplete(document.getElementById("user"), userList);
+}
 
-    function autocomplete(input, arr) {
-        let currentFocus = -1;
+function setupAutocomplete(input, arr) {
+    let currentFocus = -1;
 
-        input.addEventListener("input", function() {
-            closeAllLists();
-            const val = this.value;
+    input.addEventListener("input", function() {
+        const val = this.value;
+        closeAllLists();
+        if (!val) return false;
 
-            if (!val) return false;
-
-            const autocompleteList = createAutocompleteList(this);
-            arr.forEach(item => {
-                if (item.substr(0, val.length).toUpperCase() === val.toUpperCase()) {
-                    const itemDiv = createAutocompleteItem(item, input);
-                    autocompleteList.appendChild(itemDiv);
-                }
-            });
-        });
-
-        input.addEventListener("keydown", function(e) {
-            const items = document.getElementById(this.id + "autocomplete-list").getElementsByTagName("div");
-            if (items) {
-                if (e.keyCode === 40) { // down
-                    currentFocus++;
-                    addActive(items);
-                } else if (e.keyCode === 38) { // up
-                    currentFocus--;
-                    addActive(items);
-                } else if (e.keyCode === 13) { // enter
-                    e.preventDefault();
-                    if (currentFocus > -1) items[currentFocus].click();
-                }
+        const autocompleteList = document.getElementById("autocomplete-list");
+        arr.forEach(item => {
+            if (item.substr(0, val.length).toUpperCase() === val.toUpperCase()) {
+                const itemDiv = document.createElement("div");
+                itemDiv.innerHTML = `<strong>${item.substr(0, val.length)}</strong>${item.substr(val.length)}`;
+                itemDiv.innerHTML += `<input type='hidden' value='${item}'>`;
+                itemDiv.addEventListener("click", function() {
+                    input.value = this.getElementsByTagName("input")[0].value;
+                    closeAllLists();
+                });
+                autocompleteList.appendChild(itemDiv);
             }
         });
-
-        document.addEventListener("click", function(e) {
-            closeAllLists(e.target);
-        });
-    }
-
-    function createAutocompleteList(input) {
-        const div = document.createElement("DIV");
-        div.setAttribute("id", input.id + "autocomplete-list");
-        div.setAttribute("class", "autocomplete-items");
-        input.parentNode.appendChild(div);
-        return div;
-    }
-
-    function createAutocompleteItem(item, input) {
-        const div = document.createElement("DIV");
-        div.innerHTML = `<strong>${item.substr(0, input.value.length)}</strong>${item.substr(input.value.length)}`;
-        div.innerHTML += `<input type='hidden' value='${item}'>`;
-        div.addEventListener("click", function() {
-            input.value = this.getElementsByTagName("input")[0].value;
-            closeAllLists();
-        });
-        return div;
-    }
-
-    function addActive(items) {
-        if (!items) return;
-        removeActive(items);
-        if (currentFocus >= items.length) currentFocus = 0;
-        if (currentFocus < 0) currentFocus = items.length - 1;
-        items[currentFocus].classList.add("autocomplete-active");
-    }
-
-    function removeActive(items) {
-        for (let item of items) {
-            item.classList.remove("autocomplete-active");
-        }
-    }
-
-    function closeAllLists(exceptElement) {
-        const items = document.getElementsByClassName("autocomplete-items");
-        for (let i = 0; i < items.length; i++) {
-            if (exceptElement !== items[i] && exceptElement !== inp) {
-                items[i].parentNode.removeChild(items[i]);
-            }
-        }
-    }
-
-    // Run the getAllUser function when the document is fully loaded
-    document.addEventListener("DOMContentLoaded", function() {
-        getAllUser();
     });
-</script>
 
+    input.addEventListener("keydown", function(e) {
+        const items = document.getElementById("autocomplete-list").getElementsByTagName("div");
+        if (items.length > 0) {
+            if (e.keyCode === 40) { // down
+                currentFocus++;
+                addActive(items);
+            } else if (e.keyCode === 38) { // up
+                currentFocus--;
+                addActive(items);
+            } else if (e.keyCode === 13) { // enter
+                e.preventDefault();
+                if (currentFocus > -1) items[currentFocus].click();
+            }
+        }
+    });
+
+    document.addEventListener("click", function(e) {
+        closeAllLists(e.target);
+    });
+}
+
+function addActive(items) {
+    if (!items) return;
+    removeActive(items);
+    if (currentFocus >= items.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = items.length - 1;
+    items[currentFocus].classList.add("autocomplete-active");
+}
+
+function removeActive(items) {
+    for (let item of items) {
+        item.classList.remove("autocomplete-active");
+    }
+}
+
+function closeAllLists(exceptElement) {
+    const items = document.getElementsByClassName("autocomplete-items");
+    for (let i = 0; i < items.length; i++) {
+        if (exceptElement !== items[i] && exceptElement !== document.getElementById("user")) {
+            items[i].parentNode.removeChild(items[i]);
+        }
+    }
+}
+
+// Run the getAllUser function when the document is fully loaded
+document.addEventListener("DOMContentLoaded", function() {
+    getAllUser();
+});
+
+
+</script>
 
 
 </body>
