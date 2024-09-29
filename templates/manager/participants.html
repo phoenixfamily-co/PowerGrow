@@ -187,8 +187,8 @@
         const userList = [];
 
         {% for x in user %}
-            const phone = "{{ x.number }}".replace("+98", "");
-            userList.push(phone);
+            const number = "{{ x.number }}".replace("+98", "");
+            userList.push(number);
         {% endfor %}
 
         autocomplete(document.getElementById("user"), userList);
