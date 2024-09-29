@@ -84,18 +84,17 @@
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-group">
-                <label for="title">عنوان:</label>
+                <label for="title">:عنوان</label>
                 <input type="text" class="form-control" id="title" name="title" value="{{ course.title }}" required>
             </div>
 
             <div class="form-group">
-                <label for="name">نام مربی:</label>
+                <label for="name">:نام مربی</label>
                 <input type="text" class="form-control" id="name" name="name" value="{{ course.name }}" required>
             </div>
 
             <div class="form-group">
-                <label for="type">نوع:</label>
-                 <label for="type">نوع:</label>
+                <label for="type">:نوع</label>
             <select class="form-control" id="type" name="type" required>
                 <option value="public" {% if course.type == "public" %}selected{% endif %}>عمومی</option>
                 <option value="private" {% if course.type == "private" %}selected{% endif %}>خصوصی</option>
@@ -104,27 +103,27 @@
             </div>
 
             <div class="form-group">
-                <label for="description">توضیحات:</label>
+                <label for="description">:توضیحات</label>
                 <textarea class="form-control" id="description" name="description">{{ course.description }}</textarea>
             </div>
 
             <div class="form-group">
-                <label for="image">تصویر:</label>
+                <label for="image">:تصویر</label>
                 <input type="file" class="form-control" id="image" name="image">
             </div>
 
             <div class="form-group">
                 <input type="checkbox" id="selected" name="selected" {% if course.selected %}checked{% endif %}>
-                <label for="selected">منتخب:</label>
+                <label for="selected">:منتخب</label>
             </div>
 
             <div class="form-group">
-                <label for="capacity">ظرفیت:</label>
+                <label for="capacity">:ظرفیت</label>
                 <input type="number" class="form-control" id="capacity" name="capacity" value="{{ course.capacity }}">
             </div>
 
             <div class="form-group">
-                <label for="gender">جنسیت:</label>
+                <label for="gender">:جنسیت</label>
                 <select class="form-control" id="gender" name="gender">
                     <option value="male" {% if course.gender == "male" %}selected{% endif %}>مرد</option>
                     <option value="female" {% if course.gender == "female" %}selected{% endif %}>زن</option>
@@ -132,7 +131,7 @@
             </div>
 
             <div class="form-group">
-                <label for="active">فعال:</label>
+                <label for="active">:فعال</label>
                 <input type="checkbox" id="active" name="active" {% if course.active %}checked{% endif %}>
             </div>
 
