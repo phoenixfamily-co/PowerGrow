@@ -81,36 +81,37 @@
 <div class="container">
         <form id="participant-form">
             <div class="form-group">
-                <label for="title">عنوان:</label>
+                <label for="title">:عنوان</label>
                 <input type="text" class="form-control" id="title" required>
             </div>
             <div class="form-group">
-                <label for="description">توضیحات:</label>
+                <label for="description">:توضیحات</label>
                 <textarea class="form-control" id="description" rows="3" required></textarea>
             </div>
             <div class="form-group">
-                <label for="session">جلسه:</label>
+                <label for="session">:تعداد جلسه</label>
                 <select class="form-control" id="session" required>
                     <option value="">انتخاب کنید</option>
-                    <!-- گزینه‌های جلسات باید با جاوااسکریپت پر شوند -->
+
+
                 </select>
             </div>
             <div class="form-group">
-                <label for="day">روز:</label>
+                <label for="day">:روزها هفته</label>
                 <select class="form-control" id="day" required>
                     <option value="">انتخاب کنید</option>
                     <!-- گزینه‌های روزها باید با جاوااسکریپت پر شوند -->
                 </select>
             </div>
             <div class="form-group">
-                <label for="startDay">روز شروع:</label>
+                <label for="startDay">:روز شروع</label>
                 <select class="form-control" id="startDay" required>
                     <option value="">انتخاب کنید</option>
                     <!-- گزینه‌های روزهای شروع باید با جاوااسکریپت پر شوند -->
                 </select>
             </div>
             <div class="form-group">
-                <label for="endDay">روز پایان:</label>
+                <label for="endDay">:روز پایان</label>
                 <select class="form-control" id="endDay" required>
                     <option value="">انتخاب کنید</option>
                     <!-- گزینه‌های روزهای پایان باید با جاوااسکریپت پر شوند -->
@@ -121,17 +122,10 @@
                 <input type="number" class="form-control" id="price" required>
             </div>
             <div class="form-group">
-                <label for="user">کاربر:</label>
+                <label for="user">:کاربر</label>
                 <select class="form-control" id="user" required>
                     <option value="">انتخاب کنید</option>
                     <!-- گزینه‌های کاربران باید با جاوااسکریپت پر شوند -->
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="course">دوره:</label>
-                <select class="form-control" id="course" required>
-                    <option value="">انتخاب کنید</option>
-                    <!-- گزینه‌های دوره‌ها باید با جاوااسکریپت پر شوند -->
                 </select>
             </div>
             <button type="submit" class="btn custom-btn margin-bottom">ثبت</button>
@@ -186,5 +180,6 @@
             });
         });
     </script>
+
 </body>
 </html>
