@@ -16,7 +16,7 @@ class ManagerParticipantsSerializer(serializers.ModelSerializer):
             'price',  # قیمت
             'user',  # کاربر
             'course',  # دوره
-            'success'  # وضعیت موفقیت
+            'success',  # وضعیت موفقیت
             'created',
         ]
 
