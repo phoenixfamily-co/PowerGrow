@@ -123,7 +123,6 @@ def verify(request):
             "participants": participants
         })
     else:
-        participants.delete()
         return render(request, 'public/error.html', {
             "about": about,
             "sport": sport,
