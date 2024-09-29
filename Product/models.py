@@ -19,6 +19,9 @@ GENDER_CHOICE = [
 class Sport(models.Model):
     title = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.title  # به جای ID، نام ورزش را نمایش می‌دهد
+
 
 class Course(models.Model):
     title = models.TextField(blank=True, null=True, verbose_name='عنوان')
@@ -34,6 +37,9 @@ class Course(models.Model):
     active = models.BooleanField(blank=True, null=True, verbose_name='فعال')
     sport = models.ForeignKey(Sport, on_delete=models.CASCADE, related_name='courses', null=True, blank=True,
                               verbose_name='ورزش')
+
+    def __str__(self):
+        return self.title  # به جای ID، نام ورزش را نمایش می‌دهد
 
 
 class Session(models.Model):

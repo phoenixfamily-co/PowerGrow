@@ -7,3 +7,13 @@ class ParticipantsAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Participants, ParticipantsAdmin)
+
+
+@admin.register(Course)
+class CourseAdmin(admin.ModelAdmin):
+    list_display = ('title', 'sport')  # نمایش عنوان و ورزش در لیست
+
+
+@admin.register(Sport)
+class SportAdmin(admin.ModelAdmin):
+    list_display = ('name',)  # نمایش نام ورزش در لیست
