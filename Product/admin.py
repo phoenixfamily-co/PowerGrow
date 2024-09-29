@@ -32,10 +32,7 @@ class ParticipantsAdmin(admin.ModelAdmin):
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
 
-        if obj:  # اگر یک Participant موجود باشد
-            form.base_fields['day'].queryset = Days.objects.filter(session__course=obj.course)
-            form.base_fields['session'].queryset = Session.objects.filter(course=obj.course)
-        elif 'course' in request.GET:  # اگر دوره‌ای در GET وجود داشته باشد
+        if 'course' in request.GET:  # اگر دوره‌ای در GET وجود داشته باشد
             course_id = request.GET['course']
             form.base_fields['day'].queryset = Days.objects.filter(session__course_id=course_id)
             form.base_fields['session'].queryset = Session.objects.filter(course_id=course_id)
