@@ -93,7 +93,7 @@
                 <select class="form-control" id="session" required>
                     <option value="" disabled selected>انتخاب کنید</option>
                      {% for x in course.sessions.all %}
-                            <option value="{{ x.id }}">{{ x.number }} جلسه </option>
+                            <option value="{{ x.id }}"> جلسه {{ x.number }}</option>
                         {% endfor %}
                 </select>
             </div>
@@ -101,7 +101,7 @@
                 <label for="day">:روزها هفته</label>
                 <select class="form-control" id="day" required>
                     <option value="">انتخاب کنید</option>
-                    <!-- گزینه‌های روزها باید با جاوااسکریپت پر شوند -->
+                    <option value="">لطفاً اول جلسه را انتخاب کنید</option>
                 </select>
             </div>
             <div class="form-group">
