@@ -149,8 +149,7 @@
             </div>
             <div class="form-group">
                 <label for="user">:کاربر</label>
-                <input class="form-control" dir="ltr" id="user" type="number" name="user" placeholder="شماره همراه : 9123456789" autocomplete="off">
-                <div id="autocomplete-list" class="autocomplete-items"></div>
+                <input class="form-control" dir="ltr" id="user" type="number" name="user" placeholder="شماره همراه : 9123456789">
             </div>
             <button type="submit" class="btn custom-btn margin-bottom">ثبت</button>
         </form>
@@ -207,28 +206,28 @@
 
 <script>
 
+async function getAllUser() {
+    const userList = [];
+    let phone;
+
+    {% for x in user.all %}
+        phone = "{{ x.number }}".replace("+98", "");
+        userList.push(phone);
+    {% endfor %}
+
+    setupAutocomplete(document.getElementById("user"), userList);
+}
+
 function setupAutocomplete(input, arr) {
     let currentFocus = -1;
 
     input.addEventListener("input", function() {
         const val = this.value;
         closeAllLists();
-        if (!val) return false;
-
-        let autocompleteList = document.getElementById("autocomplete-list");
-        // اگر لیست وجود ندارد، آن را ایجاد کنید
-        if (!autocompleteList) {
-            autocompleteList = document.createElement("div");
-            autocompleteList.setAttribute("id", "autocomplete-list");
-            autocompleteList.setAttribute("class", "autocomplete-items");
-            this.parentNode.appendChild(autocompleteList);
-        } else {
-            autocompleteList.innerHTML = ''; // لیست را پاک کنید
-        }
+        if (!val) return;
 
         arr.forEach(item => {
             if (item.substr(0, val.length).toLowerCase() === val.toLowerCase()) {
-
                 const itemDiv = document.createElement("div");
                 itemDiv.innerHTML = `<strong>${item.substr(0, val.length)}</strong>${item.substr(val.length)}`;
                 itemDiv.innerHTML += `<input type='hidden' value='${item}'>`;
@@ -236,13 +235,14 @@ function setupAutocomplete(input, arr) {
                     input.value = this.getElementsByTagName("input")[0].value;
                     closeAllLists();
                 });
-                autocompleteList.appendChild(itemDiv);
+                // اضافه کردن itemDiv به input
+                input.parentNode.appendChild(itemDiv);
             }
         });
     });
 
     input.addEventListener("keydown", function(e) {
-        const items = document.getElementById("autocomplete-list").getElementsByTagName("div");
+        const items = input.parentNode.getElementsByTagName("div");
         if (items.length > 0) {
             if (e.keyCode === 40) { // down
                 currentFocus++;
@@ -260,8 +260,35 @@ function setupAutocomplete(input, arr) {
     document.addEventListener("click", function(e) {
         closeAllLists(e.target);
     });
+
+    function closeAllLists(exceptElement) {
+        const items = input.parentNode.getElementsByTagName("div");
+        for (let i = 0; i < items.length; i++) {
+            if (exceptElement !== items[i] && exceptElement !== input) {
+                items[i].parentNode.removeChild(items[i]);
+            }
+        }
+    }
+
+    function addActive(items) {
+        if (!items) return;
+        removeActive(items);
+        if (currentFocus >= items.length) currentFocus = 0;
+        if (currentFocus < 0) currentFocus = items.length - 1;
+        items[currentFocus].classList.add("autocomplete-active");
+    }
+
+    function removeActive(items) {
+        for (let item of items) {
+            item.classList.remove("autocomplete-active");
+        }
+    }
 }
 
+// Run the getAllUser function when the document is fully loaded
+document.addEventListener("DOMContentLoaded", function() {
+    getAllUser();
+});
 
 </script>
 
