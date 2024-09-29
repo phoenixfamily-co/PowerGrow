@@ -392,7 +392,7 @@ def create_participants(request, course_id):  # تغییر نام پارامتر
     about = AboutUs.objects.first()
     course = get_object_or_404(Course, id=course_id)  # بارگذاری دوره با ID مربوطه
 
-    return render(request, 'manager/update_course.html', {'course': course, 'about': about})
+    return render(request, 'manager/participants.html', {'course': course, 'about': about})
 
 
 class CourseListCreateView(generics.CreateAPIView):
