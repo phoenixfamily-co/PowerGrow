@@ -388,12 +388,11 @@ def update_course(request, pk):
     return render(request, 'manager/update_course.html', {'course': serializer.data,'about':about})
 
 
-def create_participants(request, pk):
+def create_participants(request, course_id):  # تغییر نام پارامتر به course_id
     about = AboutUs.objects.first()
+    course = get_object_or_404(Course, id=course_id)  # بارگذاری دوره با ID مربوطه
 
-    return render(request, 'manager/update_course.html', {'course': pk, 'about':about})
-
-
+    return render(request, 'manager/update_course.html', {'course': course, 'about': about})
 
 
 class CourseListCreateView(generics.CreateAPIView):
