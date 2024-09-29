@@ -3,6 +3,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views.decorators.cache import cache_page
+from django.views.generic import TemplateView
 from rest_framework import viewsets, generics, status
 from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
@@ -385,6 +386,14 @@ def update_course(request, pk):
         serializer = CourseSerializer(course)
 
     return render(request, 'manager/update_course.html', {'course': serializer.data,'about':about})
+
+
+def create_participants(request, pk):
+    about = AboutUs.objects.first()
+
+    return render(request, 'manager/update_course.html', {'course': pk, 'about':about})
+
+
 
 
 class CourseListCreateView(generics.CreateAPIView):

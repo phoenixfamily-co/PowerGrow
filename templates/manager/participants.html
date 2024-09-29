@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ثبت شرکت‌کنندگان</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            direction: rtl; /* تنظیم راست به چپ */
+        }
+        .container {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2 class="text-center">ثبت شرکت‌کنندگان</h2>
+        form id="participant-form">
+    <input type="hidden" id="course-id" value="{{ course.id }}">
+
+    <label for="title">عنوان:</label>
+    <input type="text" id="title" name="title" required>
+
+    <label for="description">شرح:</label>
+    <textarea id="description" name="description"></textarea>
+
+    <label for="session">جلسه:</label>
+    <select id="session" name="session" required>
+        <!-- گزینه‌های جلسات را اینجا بارگذاری کن -->
+    </select>
+
+    <label for="day">روز:</label>
+    <select id="day" name="day" required>
+        <!-- گزینه‌های روزها را اینجا بارگذاری کن -->
+    </select>
+
+    <label for="startDay">روز شروع:</label>
+    <select id="startDay" name="startDay" required>
+        <!-- گزینه‌های روز شروع را اینجا بارگذاری کن -->
+    </select>
+
+    <label for="endDay">روز پایان:</label>
+    <select id="endDay" name="endDay" required>
+        <!-- گزینه‌های روز پایان را اینجا بارگذاری کن -->
+    </select>
+
+    <label for="price">قیمت:</label>
+    <input type="number" id="price" name="price" required>
+
+    <button type="submit">ثبت</button>
+</form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // جاوااسکریپت برای پر کردن گزینه‌ها
+        // اینجا باید API ها را برای دریافت داده‌های جلسات، روزها و دوره‌ها فراخوانی کنی و گزینه‌ها را پر کنی
+        // به عنوان مثال:
+        document.addEventListener('DOMContentLoaded', function () {
+            // مثال برای پر کردن گزینه‌ها
+            const sessionSelect = document.getElementById('session');
+            const daySelect = document.getElementById('day');
+            // ...و همینطور برای دیگر فیلدها
+        });
+
+        // ارسال فرم
+        document.getElementById('participant-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            // جمع‌آوری داده‌ها و ارسال به API
+            const data = {
+                title: document.getElementById('title').value,
+                description: document.getElementById('description').value,
+                session: document.getElementById('session').value,
+                day: document.getElementById('day').value,
+                startDay: document.getElementById('startDay').value,
+                endDay: document.getElementById('endDay').value,
+                price: document.getElementById('price').value,
+                user: document.getElementById('user').value,
+                course: document.getElementById('course').value
+            };
+
+            fetch('/api/manager/participations/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('شرکت‌کننده با موفقیت ثبت شد!');
+                    // فرم را پاک کن یا به صفحه دیگر برو
+                } else {
+                    alert('خطا: ' + data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
