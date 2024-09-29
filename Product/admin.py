@@ -16,4 +16,6 @@ class SportAdmin(admin.ModelAdmin):
 class ParticipantsAdmin(admin.ModelAdmin):
     list_display = ('title', 'day')  # اینجا نمایش عنوان و روز
     autocomplete_fields = ('day',)  # اضافه کردن قابلیت autocomplete برای فیلد day
+    ordering = ('-id',)  # مرتب‌سازی بر اساس ID جدیدترین به قدیمی‌ترین
+
 
