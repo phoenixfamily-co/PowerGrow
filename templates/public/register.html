@@ -342,25 +342,16 @@ button:hover {
     </div>
 </footer>
 
+
 <script>
-    const passwordInput1 = document.getElementById("password1")
-    const passwordInput2 = document.getElementById("password2")
-    const eye1 = document.getElementById("eye1")
-    const eye2 = document.getElementById("eye2")
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('password');
 
-    eye1.addEventListener("click", function() {
-        this.classList.toggle("fa-eye-slash")
-        const type = passwordInput1.getAttribute("type") === "password" ? "text" : "password"
-        passwordInput1.setAttribute("type", type)
-    })
-
-        eye2.addEventListener("click", function() {
-            this.classList.toggle("fa-eye-slash")
-            const type = passwordInput2.getAttribute("type") === "password" ? "text" : "password"
-            passwordInput2.setAttribute("type", type)
-        })
-
-
+    togglePassword.addEventListener('click', function () {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        this.querySelector('i').classList.toggle('fa-eye-slash');
+    });
 </script>
 
 
