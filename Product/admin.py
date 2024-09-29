@@ -16,4 +16,4 @@ class CourseAdmin(admin.ModelAdmin):
 
 @admin.register(Sport)
 class SportAdmin(admin.ModelAdmin):
-    list_display = ('name',)  # نمایش نام ورزش در لیست
+    list_display = ('title',)  # نمایش نام ورزش در لیست
