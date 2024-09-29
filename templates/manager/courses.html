@@ -187,16 +187,16 @@
 
                 <td>{{ x.title }}</td>
                 <td>{{ x.name }}</td>
-                <td>  {% if course.gender == "male" %}
+                <td>  {% if x.course.gender == "male" %}
                     مرد
-                {% elif course.gender == "female" %}
+                {% elif x.course.gender == "female" %}
                     زن
                 {% endif %}</td>
-                <td> {% if course.type == "public" %}
+                <td> {% if x.course.type == "public" %}
                     عمومی
-                {% elif course.type == "private" %}
+                {% elif x.course.type == "private" %}
                     خصوصی
-                {% elif course.type == "semi_private" %}
+                {% elif x.course.type == "semi_private" %}
                     نیمه خصوصی
                 {% endif %}</td>
                 <td>{{ x.capacity }}</td>
