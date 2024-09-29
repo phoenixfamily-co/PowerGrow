@@ -343,6 +343,7 @@ def manager_user_list(request, pk):
     context = {
         "about": about,
         "page_obj": page_obj,
+        "course_id": pk
     }
 
     # استفاده از render برای بارگذاری الگو
