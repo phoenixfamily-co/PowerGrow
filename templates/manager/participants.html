@@ -6,15 +6,76 @@
     <title>ثبت شرکت‌کنندگان</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            direction: rtl; /* تنظیم راست به چپ */
+
+         body {
+            text-align: right;  /* راست‌چین کردن متن */
+            background: #312f2e;
+
         }
+
+         .logoHolder {
+            width: 100%;
+            position: relative;
+            margin-top: 20px;
+            left: 0;
+            display: flex;
+            z-index: 10 !important;
+            direction: ltr;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+
+        }
+
+        .typography {
+            color: white;
+            font-size: 20px;
+            margin-left: 10px;
+
+        }
+
+
+         .form-control {
+             text-align: right;  /* راست‌چین کردن متن در فیلدهای فرم */
+         }
+
+         label {
+        color: white;  /* تغییر رنگ متن لیبل به سفید */
+    }
+          .custom-btn {
+            background-color: #E16539; /* رنگ دلخواه */
+            border: none; /* حذف حاشیه */
+              color: white;
+        }
+        .custom-btn:hover {
+               background-color: #a84e2c; /* تغییر رنگ در حالت hover */
+               color: #c4c4c4; /* رنگ برای حالت هاور */
+        }
+        .margin-bottom {
+            margin-bottom: 20px; /* فاصله از پایین */
+        }
+
         .container {
             margin-top: 50px;
         }
     </style>
 </head>
 <body>
+
+<div class="logoHolder">
+
+    <img alt="" src="/media/{{ about.logo }}" class="logo">
+    <div class="typography">PowerGrow</div>
+
+</div>
+
+
 
     <div class="container">
         <h2 class="text-center">ثبت شرکت‌کنندگان</h2>
@@ -50,13 +111,14 @@
     <label for="price">قیمت:</label>
     <input type="number" id="price" name="price" required>
 
-    <button type="submit">ثبت</button>
+    <button type="submit" class="btn custom-btn margin-bottom">ثبت</button>
 </form>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <script>
         // جاوااسکریپت برای پر کردن گزینه‌ها
         // اینجا باید API ها را برای دریافت داده‌های جلسات، روزها و دوره‌ها فراخوانی کنی و گزینه‌ها را پر کنی
