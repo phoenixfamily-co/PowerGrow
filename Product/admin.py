@@ -32,7 +32,4 @@ class ParticipantsAdmin(admin.ModelAdmin):
         return form
 
 
-admin.site.register(Participants, ParticipantsAdmin)
-
-
 
