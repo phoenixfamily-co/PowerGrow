@@ -386,16 +386,18 @@ def update_course(request, pk):
     else:
         serializer = CourseSerializer(course)
 
-    return render(request, 'manager/update_course.html', {'course': serializer.data,'about':about})
+    return render(request, 'manager/update_course.html', {'course': serializer.data, 'about': about})
 
 
 def create_participants(request, course_id):  # تغییر نام پارامتر به course_id
     about = AboutUs.objects.first()
     user = User.objects.all()
     course = get_object_or_404(Course, id=course_id)  # بارگذاری دوره با ID مربوطه
-    day = Days.objects.filter(session__course=course_id)
+    days = Days.objects.filter(session__course=course_id)
+    day = Day.objects.all().order_by('-pk')
 
-    return render(request, 'manager/participants.html', {'course': course, 'about': about, 'user': user, 'day':day})
+    return render(request, 'manager/participants.html',
+                  {'course': course, 'about': about, 'user': user, 'days': days, 'day': day})
 
 
 class CourseListCreateView(generics.CreateAPIView):

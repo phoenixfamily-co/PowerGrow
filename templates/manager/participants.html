@@ -130,7 +130,7 @@
                 <label for="day">:روزها هفته</label>
                 <select class="form-control" id="day" required>
                     <option value="" disabled selected>انتخاب کنید</option>
-                    {% for x in day %}
+                    {% for x in days %}
                             <option dir="rtl" value="{{ x.id }}">{{ x.title }} {{ x.session }} جلسه </option>
                         {% endfor %}
                 </select>
@@ -139,14 +139,18 @@
                 <label for="startDay">:روز شروع</label>
                 <select class="form-control" id="startDay" required>
                     <option value="">انتخاب کنید</option>
-                    <!-- گزینه‌های روزهای شروع باید با جاوااسکریپت پر شوند -->
+                    {% for x in day %}
+                            <option dir="rtl" value="{{ x.id }}">{{ x.number }}/{{ x.month.number }}/{{ x.month.year.number }}</option>
+                    {% endfor %}
                 </select>
             </div>
             <div class="form-group">
                 <label for="endDay">:روز پایان</label>
                 <select class="form-control" id="endDay" required>
                     <option value="">انتخاب کنید</option>
-                    <!-- گزینه‌های روزهای پایان باید با جاوااسکریپت پر شوند -->
+                    {% for x in day %}
+                        <option dir="rtl" value="{{ x.id }}">{{ x.number }}/{{ x.month.number }}/{{ x.month.year.number }}</option>
+                    {% endfor %}
                 </select>
             </div>
             <div class="form-group">
