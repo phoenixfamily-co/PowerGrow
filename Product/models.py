@@ -22,17 +22,18 @@ class Sport(models.Model):
 
 class Course(models.Model):
     title = models.TextField(blank=True, null=True, verbose_name='عنوان')
-    name = models.CharField(max_length=100, blank=True, null=True)
-    type = models.CharField(max_length=100, choices=TYPE_CHOICE, default='public')
+    name = models.CharField(max_length=100, blank=True, null=True, verbose_name='نام مربی')
+    type = models.CharField(max_length=100, choices=TYPE_CHOICE, default='public', verbose_name='نوع دوره')
     time = models.TextField(blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
-    image = models.ImageField(upload_to="images/", blank=True, null=True)
-    selected = models.BooleanField(default=False, blank=True, null=True)
-    capacity = models.IntegerField(blank=True, null=True)
-    gender = models.CharField(max_length=10, choices=GENDER_CHOICE)
+    description = models.TextField(blank=True, null=True, verbose_name='توضیحات')
+    image = models.ImageField(upload_to="images/", blank=True, null=True, verbose_name='تصویر')
+    selected = models.BooleanField(default=False, blank=True, null=True, verbose_name='منتخب')
+    capacity = models.IntegerField(blank=True, null=True, verbose_name='ظرفیت')
+    gender = models.CharField(max_length=10, choices=GENDER_CHOICE, verbose_name='جنسیت')
     datetime = models.DateTimeField(default=timezone.now)
-    active = models.BooleanField(blank=True, null=True)
-    sport = models.ForeignKey(Sport, on_delete=models.CASCADE, related_name='courses', null=True, blank=True)
+    active = models.BooleanField(blank=True, null=True, verbose_name='فعال')
+    sport = models.ForeignKey(Sport, on_delete=models.CASCADE, related_name='courses', null=True, blank=True,
+                              verbose_name='ورزش')
 
 
 class Session(models.Model):
