@@ -91,9 +91,10 @@
             <div class="form-group">
                 <label for="session">:تعداد جلسه</label>
                 <select class="form-control" id="session" required>
-                    <option value="">انتخاب کنید</option>
-
-
+                    <option value="" disabled selected>انتخاب کنید</option>
+                     {% for x in course.sessions.all %}
+                            <option value="{{ x.id }}">{{ x.number }} جلسه </option>
+                        {% endfor %}
                 </select>
             </div>
             <div class="form-group">
