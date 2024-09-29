@@ -376,7 +376,6 @@ def update_course(request, pk):
     course = get_object_or_404(Course, pk=pk)
     about = AboutUs.objects.first()
 
-
     if request.method == 'POST':
         # دریافت داده‌ها و فایل‌ها
         serializer = CourseSerializer(course, data=request.POST)

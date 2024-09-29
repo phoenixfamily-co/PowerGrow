@@ -98,7 +98,6 @@ class CourseSerializer(serializers.ModelSerializer):
         instance.title = validated_data.get('title', instance.title)
         instance.name = validated_data.get('name', instance.name)
         instance.type = validated_data.get('type', instance.type)
-        instance.time = validated_data.get('time', instance.time)
         instance.description = validated_data.get('description', instance.description)
         instance.image = validated_data.get('image')
         instance.selected = validated_data.get('selected', instance.selected)

@@ -89,7 +89,7 @@
             </div>
 
             <div class="form-group">
-                <label for="name">نام:</label>
+                <label for="name">نام مربی:</label>
                 <input type="text" class="form-control" id="name" name="name" value="{{ course.name }}" required>
             </div>
 
@@ -104,11 +104,6 @@
             </div>
 
             <div class="form-group">
-                <label for="time">زمان:</label>
-                <input type="text" class="form-control" id="time" name="time" value="{{ course.time }}">
-            </div>
-
-            <div class="form-group">
                 <label for="description">توضیحات:</label>
                 <textarea class="form-control" id="description" name="description">{{ course.description }}</textarea>
             </div>
@@ -119,7 +114,7 @@
             </div>
 
             <div class="form-group">
-                <label for="selected">انتخاب شده:</label>
+                <label for="selected">منتخب:</label>
                 <input type="checkbox" id="selected" name="selected" {% if course.selected %}checked{% endif %}>
             </div>
 
