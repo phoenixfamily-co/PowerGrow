@@ -67,6 +67,29 @@
         .container {
             margin-top: 50px;
         }
+
+        .autocomplete-items {
+            position: absolute;
+            border: 1px solid #d3d3d3;
+            border-bottom: none;
+            border-top: none;
+            z-index: 99;
+            /* تنظیم ارتفاع و اسکرول */
+            max-height: 150px; /* حداکثر ارتفاع لیست */
+            overflow-y: auto; /* اسکرول عمودی */
+            background-color: white; /* پس‌زمینه */
+            width: 100%; /* عرض کامل */
+        }
+
+        .autocomplete-items div {
+            padding: 10px; /* فضای داخلی */
+            cursor: pointer; /* نشانگر ماوس */
+        }
+
+        .autocomplete-items div:hover {
+            background-color: #e9e9e9; /* تغییر رنگ در هاور */
+        }
+
     </style>
 </head>
 <body>
