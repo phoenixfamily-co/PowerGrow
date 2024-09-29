@@ -74,11 +74,11 @@
             border-bottom: none;
             border-top: none;
             z-index: 99;
-            /* تنظیم ارتفاع و اسکرول */
             max-height: 150px; /* حداکثر ارتفاع لیست */
             overflow-y: auto; /* اسکرول عمودی */
             background-color: white; /* پس‌زمینه */
-            width: 100%; /* عرض کامل */
+            width: calc(100% - 2px); /* عرض برابر با ورودی به علاوه حاشیه */
+            box-sizing: border-box; /* شامل حاشیه در اندازه */
         }
 
         .autocomplete-items div {
