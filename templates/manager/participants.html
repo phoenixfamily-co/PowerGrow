@@ -40,7 +40,6 @@
 
         }
 
-
          .form-control {
              text-align: right;  /* راست‌چین کردن متن در فیلدهای فرم */
          }
@@ -76,43 +75,42 @@
 </div>
 
 
-
     <div class="container">
         <h2 class="text-center">ثبت شرکت‌کنندگان</h2>
-        form id="participant-form">
-    <input type="hidden" id="course-id" value="{{ course.id }}">
+        <form id="participant-form">
+            <input type="hidden" id="course-id" value="{{ course.id }}">
 
-    <label for="title">عنوان:</label>
-    <input type="text" id="title" name="title" required>
+            <label for="title">عنوان:</label>
+            <input type="text" id="title" name="title" required>
 
-    <label for="description">شرح:</label>
-    <textarea id="description" name="description"></textarea>
+            <label for="description">شرح:</label>
+            <textarea id="description" name="description"></textarea>
 
-    <label for="session">جلسه:</label>
-    <select id="session" name="session" required>
+            <label for="session">جلسه:</label>
+            <select id="session" name="session" required>
         <!-- گزینه‌های جلسات را اینجا بارگذاری کن -->
-    </select>
+            </select>
 
-    <label for="day">روز:</label>
-    <select id="day" name="day" required>
+            <label for="day">روز:</label>
+            <select id="day" name="day" required>
         <!-- گزینه‌های روزها را اینجا بارگذاری کن -->
-    </select>
+            </select>
 
-    <label for="startDay">روز شروع:</label>
-    <select id="startDay" name="startDay" required>
+            <label for="startDay">روز شروع:</label>
+            <select id="startDay" name="startDay" required>
         <!-- گزینه‌های روز شروع را اینجا بارگذاری کن -->
-    </select>
+            </select>
 
-    <label for="endDay">روز پایان:</label>
-    <select id="endDay" name="endDay" required>
+            <label for="endDay">روز پایان:</label>
+            <select id="endDay" name="endDay" required>
         <!-- گزینه‌های روز پایان را اینجا بارگذاری کن -->
-    </select>
+            </select>
 
-    <label for="price">قیمت:</label>
-    <input type="number" id="price" name="price" required>
+            <label for="price">قیمت:</label>
+            <input type="number" id="price" name="price" required>
 
-    <button type="submit" class="btn custom-btn margin-bottom">ثبت</button>
-</form>
+            <button type="submit" class="btn custom-btn margin-bottom">ثبت</button>
+        </form>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
