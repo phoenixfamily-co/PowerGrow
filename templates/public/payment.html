@@ -140,7 +140,15 @@
 
              <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
                 <h6 class="mb-0 text-end">نوع دوره:</h6>
-                <h6 class="mb-0 text-start">{{ product.type }}</h6>
+                <h6 class="mb-0 text-start">
+                    {% if product.type == "public" %}
+                    عمومی
+                    {% elif product.type == "private" %}
+                    خصوصی
+                    {% elif product.type == "semi_private" %}
+                    نیمه خصوصی
+                {% endif %}
+                </h6>
             </li>
 
             <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">

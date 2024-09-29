@@ -127,7 +127,14 @@
 
              <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
                 <h6 class="mb-0 text-end">نوع دوره:</h6>
-                <h6 class="mb-0 text-start">{{ participants.course.type }}</h6>
+                <h6 class="mb-0 text-start">
+                    {% if participants.course.type == "public" %}
+                    عمومی
+                    {% elif participants.course.type == "private" %}
+                    خصوصی
+                    {% elif participants.course.type == "semi_private" %}
+                    نیمه خصوصی
+                {% endif %}</h6>
             </li>
 
             <li class="list-group-item d-flex justify-content-between align-items-center" dir="rtl">
