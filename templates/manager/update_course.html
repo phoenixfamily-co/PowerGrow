@@ -13,6 +13,34 @@
 
         }
 
+         .logoHolder {
+            width: 100%;
+            position: relative;
+            margin-top: 20px;
+            left: 0;
+            display: flex;
+            z-index: 10 !important;
+            direction: ltr;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+
+        }
+
+        .typography {
+            color: white;
+            font-size: 20px;
+            margin-left: 10px;
+
+        }
+
+
          .form-control {
              text-align: right;  /* راست‌چین کردن متن در فیلدهای فرم */
          }
@@ -36,6 +64,19 @@
 
 </head>
 <body>
+
+<div class="logoHolder">
+
+    <img alt="" src="/media/{{ about.logo }}" class="logo">
+    <div class="typography">PowerGrow</div>
+
+</div>
+
+   <div class="search-bar-container">
+    <input type="text" id="searchInput" class="search-input" placeholder="جستجو...">
+   </div>
+
+
     <div class="container mt-5">
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
