@@ -2,13 +2,6 @@ from django.contrib import admin
 from .models import *
 
 
-class ParticipantsAdmin(admin.ModelAdmin):
-    autocomplete_fields = ['user']
-
-
-admin.site.register(Participants, ParticipantsAdmin)
-
-
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
     list_display = ('title', 'sport')  # نمایش عنوان و ورزش در لیست
@@ -17,3 +10,10 @@ class CourseAdmin(admin.ModelAdmin):
 @admin.register(Sport)
 class SportAdmin(admin.ModelAdmin):
     list_display = ('title',)  # نمایش نام ورزش در لیست
+
+
+@admin.register(Participants)
+class ParticipantsAdmin(admin.ModelAdmin):
+    list_display = ('title', 'day')  # اینجا نمایش عنوان و روز
+    autocomplete_fields = ('day',)  # اضافه کردن قابلیت autocomplete برای فیلد day
+

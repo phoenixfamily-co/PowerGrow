@@ -46,12 +46,18 @@ class Session(models.Model):
     number = models.IntegerField(blank=True, null=True)
     course = models.ForeignKey(Course, on_delete=models.SET_NULL, related_name='sessions', null=True, blank=True)
 
+    def __str__(self):
+        return self.number
+
 
 class Days(models.Model):
     title = models.TextField(blank=True, null=True)
     tuition = models.IntegerField()
     off = models.IntegerField(blank=True, null=True)
     session = models.ForeignKey(Session, on_delete=models.CASCADE, related_name='days', null=True, blank=True)
+
+    def __str__(self):
+        return self.title
 
 
 class Participants(models.Model):
