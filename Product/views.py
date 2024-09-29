@@ -393,8 +393,9 @@ def create_participants(request, course_id):  # تغییر نام پارامتر
     about = AboutUs.objects.first()
     user = User.objects.all()
     course = get_object_or_404(Course, id=course_id)  # بارگذاری دوره با ID مربوطه
+    day = Days.objects.filter(session__course=course_id)
 
-    return render(request, 'manager/participants.html', {'course': course, 'about': about, 'user':user})
+    return render(request, 'manager/participants.html', {'course': course, 'about': about, 'user':user, 'day':day})
 
 
 class CourseListCreateView(generics.CreateAPIView):
