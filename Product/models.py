@@ -21,7 +21,7 @@ class Sport(models.Model):
 
 
 class Course(models.Model):
-    title = models.TextField(blank=True, null=True)
+    title = models.TextField(blank=True, null=True, verbose_name='عنوان')
     name = models.CharField(max_length=100, blank=True, null=True)
     type = models.CharField(max_length=100, choices=TYPE_CHOICE, default='public')
     time = models.TextField(blank=True, null=True)
