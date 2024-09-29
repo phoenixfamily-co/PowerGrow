@@ -374,6 +374,8 @@ def teacher_user_list(request, pk, id):
 
 def update_course(request, pk):
     course = get_object_or_404(Course, pk=pk)
+    about = AboutUs.objects.first()
+
 
     if request.method == 'POST':
         # دریافت داده‌ها و فایل‌ها
@@ -387,7 +389,7 @@ def update_course(request, pk):
     else:
         serializer = CourseSerializer(course)
 
-    return render(request, 'manager/update_course.html', {'course': serializer.data})
+    return render(request, 'manager/update_course.html', {'course': serializer.data,'about':about})
 
 
 class CourseListCreateView(generics.CreateAPIView):
