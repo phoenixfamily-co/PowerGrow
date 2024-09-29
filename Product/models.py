@@ -47,7 +47,7 @@ class Session(models.Model):
     course = models.ForeignKey(Course, on_delete=models.SET_NULL, related_name='sessions', null=True, blank=True)
 
     def __str__(self):
-        return self.number
+        return f"{self.number}"
 
 
 class Days(models.Model):
