@@ -226,7 +226,8 @@ function setupAutocomplete(input, arr) {
         }
 
         arr.forEach(item => {
-            if (item.substr(0, val.length).toUpperCase() === val.toUpperCase()) {
+            if (item.substr(0, val.length).toLowerCase() === val.toLowerCase()) {
+
                 const itemDiv = document.createElement("div");
                 itemDiv.innerHTML = `<strong>${item.substr(0, val.length)}</strong>${item.substr(val.length)}`;
                 itemDiv.innerHTML += `<input type='hidden' value='${item}'>`;
