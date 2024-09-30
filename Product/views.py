@@ -408,7 +408,7 @@ def update_participant_view(request, participant_id):
         'participant': participant,
         'course': course,
         'days': days,
-        'all_days': Days.objects.all(),  # برای روزهای شروع و پایان
+        'all_days': Day.objects.all(),  # برای روزهای شروع و پایان
     }
     return render(request, 'manager/update_participants.html', context)
 
