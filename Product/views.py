@@ -548,17 +548,24 @@ class ParticipationCreateView(viewsets.ViewSet):
                 course = Course.objects.get(id=data["course"])
 
                 day = week.title.split("،")
-                ids = Day.objects.filter(name__in=day, month__number__gte=start.month.number,
-                                         month__year__number__gte=start.month.year.number, holiday=False).exclude(
+                startIds = Day.objects.filter(name__in=day, month__number__gte=start.month.number,
+                                              month__year__number__gte=start.month.year.number, holiday=False).exclude(
                     month__number=start.month.number,
                     number__lt=start.number) \
-                          .order_by('pk').values_list('pk', flat=True)[:int(session.number)]
-                end = Day.objects.filter(pk__in=list(ids)).last()
+                               .order_by('pk').values_list('pk', flat=True)[:int(session.number)]
+                startDay = Day.objects.filter(pk__in=list(startIds)).first()
+
+                endIds = Day.objects.filter(name__in=day, month__number__gte=start.month.number,
+                                            month__year__number__gte=start.month.year.number, holiday=False).exclude(
+                    month__number=start.month.number,
+                    number__lt=start.number) \
+                             .order_by('pk').values_list('pk', flat=True)[:int(session.number)]
+                endDay = Day.objects.filter(pk__in=list(endIds)).last()
 
                 participant_data = {
                     'description': data["description"],
-                    'startDay': start.id,
-                    'endDay': end.id,
+                    'startDay': startDay.id,
+                    'endDay': endDay.id,
                     'session': session.id,
                     'day': week.id,
                     'price': data["price"],
@@ -592,7 +599,7 @@ class ManagerParticipationView(viewsets.ViewSet):
     def create(self, request, course):
         data = request.data
         # Validate required fields
-        required_fields = ['price', 'session', 'day', 'startDay']
+        required_fields = ['price', 'session', 'day', 'startDay', 'user']
         for field in required_fields:
             if field not in data:
                 return Response({'error': f'Missing field: {field}'}, status=status.HTTP_400_BAD_REQUEST)

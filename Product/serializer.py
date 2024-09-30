@@ -23,17 +23,13 @@ class ManagerParticipantsSerializer(serializers.ModelSerializer):
         return Participants.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
-        instance.title = validated_data.get('title', instance.title)
         instance.description = validated_data.get('description', instance.description)
         instance.session = validated_data.get('session', instance.session)
         instance.day = validated_data.get('day', instance.day)
         instance.startDay = validated_data.get('startDay', instance.startDay)
         instance.endDay = validated_data.get('endDay', instance.endDay)
         instance.price = validated_data.get('price', instance.price)
-        instance.user = validated_data.get('user', instance.user)
         instance.course = validated_data.get('course', instance.course)
-        instance.success = validated_data.get('success', instance.success)
-        instance.created = validated_data.get('created', instance.created)
         instance.save()
         return instance
 
