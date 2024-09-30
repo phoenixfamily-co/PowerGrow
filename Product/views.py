@@ -286,10 +286,10 @@ def manager_days_view(request):
     about = AboutUs.objects.first()
 
     # بارگذاری تمامی روزها
-    days = Days.objects.all()
+    days = Days.objects.all().order_by('-pk')
 
     # پیاده‌سازی pagination
-    paginator = Paginator(days, 50)
+    paginator = Paginator(days, 100)
     page_number = request.GET.get('page')
 
     try:
