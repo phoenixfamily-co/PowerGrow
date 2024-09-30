@@ -404,11 +404,14 @@ def update_participant_view(request, participant_id):
     participant = get_object_or_404(Participants, id=participant_id)
     course = participant.course  # فرض بر این است که participant به course مرتبط است
     days = Days.objects.filter(session__course=course.pk)  # تمام روزها را برای انتخاب
+    about = AboutUs.objects.first()
+
     context = {
         'participant': participant,
         'course': course,
         'days': days,
         'all_days': Day.objects.all(),  # برای روزهای شروع و پایان
+        'about':about
     }
     return render(request, 'manager/update_participants.html', context)
 
