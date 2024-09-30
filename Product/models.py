@@ -27,7 +27,7 @@ class Course(models.Model):
     title = models.TextField(blank=True, null=True, verbose_name='عنوان')
     name = models.CharField(max_length=100, blank=True, null=True, verbose_name='نام مربی')
     type = models.CharField(max_length=100, choices=TYPE_CHOICE, default='public', verbose_name='نوع دوره')
-    time = models.TextField(blank=True, null=True)
+    time = models.TextField(blank=True, null=True,verbose_name='زمان')
     description = models.TextField(blank=True, null=True, verbose_name='توضیحات')
     image = models.ImageField(upload_to="images/", blank=True, null=True, verbose_name='تصویر')
     selected = models.BooleanField(default=False, blank=True, null=True, verbose_name='منتخب')
