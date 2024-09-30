@@ -592,19 +592,18 @@ class ManagerParticipationView(viewsets.ViewSet):
     def create(self, request):
         data = request.data
         # Validate required fields
-        required_fields = ['price', 'session', 'day', 'startDay', 'course']
+        required_fields = ['price', 'session', 'day', 'startDay']
         for field in required_fields:
             if field not in data:
                 return Response({'error': f'Missing field: {field}'}, status=status.HTTP_400_BAD_REQUEST)
 
-        course = Course.objects.filter(id=self.kwargs['id']).first()
-        user = User.objects.filter(number=self.kwargs['user']).first()
-        start = Day.objects.filter(id=self.kwargs['start']).first()
-        week = Days.objects.filter(id=self.kwargs['day']).first()
-        session = Session.objects.filter(id=self.kwargs['session']).first()
+        course = Course.objects.filter(id=self.kwargs['course']).first()
+        user = User.objects.filter(number=data["user"]).first()
+        week = Days.objects.filter(id=data["day"]).first()
+        start = Day.objects.filter(id=data["startDay"]).first()
+        session = Session.objects.filter(id=data["session"]).first()
 
         day = week.title.split("،")
-
         startIds = Day.objects.filter(name__in=day, month__number__gte=start.month.number,
                                       month__year__number__gte=start.month.year.number, holiday=False).exclude(
             month__number=start.month.number,

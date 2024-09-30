@@ -7,7 +7,6 @@ class ManagerParticipantsSerializer(serializers.ModelSerializer):
         model = Participants
         fields = [
             'id',  # شناسه
-            'title',  # عنوان
             'description',  # توضیحات
             'session',  # جلسه
             'day',  # روز
