@@ -189,10 +189,9 @@
                 endDay: document.getElementById('endDay').value,
                 price: document.getElementById('price').value,
                 user: document.getElementById('user').value,
-                course: "{{ course.id }}"
             };
 
-            fetch('/api/manager/participations/', {
+            fetch('{% url 'product:manager-create-participation' course.id %}', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
