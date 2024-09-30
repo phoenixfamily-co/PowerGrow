@@ -1,9 +1,8 @@
 import requests
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import JsonResponse
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import get_object_or_404, render
 from django.views.decorators.cache import cache_page
-from django.views.generic import TemplateView
 from rest_framework import viewsets, generics, status
 from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
