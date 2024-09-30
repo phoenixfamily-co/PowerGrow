@@ -168,6 +168,8 @@
 
         };
 
+        console.log(data.active)
+
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
         fetch(`{% url 'product:manager-update-course' course.id %}`, {
