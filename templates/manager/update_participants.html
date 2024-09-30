@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>به‌روزرسانی مشارکت</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+
+         body {
+            text-align: right;  /* راست‌چین کردن متن */
+            background: #312f2e;
+        }
+
+         .logoHolder {
+            width: 100%;
+            position: relative;
+            margin-top: 20px;
+            left: 0;
+            display: flex;
+            z-index: 10 !important;
+            direction: ltr;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+
+        }
+
+        .typography {
+            color: white;
+            font-size: 20px;
+            margin-left: 10px;
+
+        }
+
+         .form-control {
+             text-align: right;
+         }
+
+         label {
+             display: block; /* باعث می‌شود که لیبل‌ها به صورت بلاک نمایش داده شوند و بالای ورودی قرار بگیرند */
+             margin-bottom: 5px; /* فاصله پایین لیبل */
+             color: white; /* رنگ متن */
+             text-align: right; /* راست‌چین کردن متن */
+         }
+          .custom-btn {
+            background-color: #E16539; /* رنگ دلخواه */
+            border: none; /* حذف حاشیه */
+              color: white;
+        }
+        .custom-btn:hover {
+               background-color: #a84e2c; /* تغییر رنگ در حالت hover */
+               color: #c4c4c4; /* رنگ برای حالت هاور */
+        }
+        .margin-bottom {
+            margin-bottom: 20px; /* فاصله از پایین */
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .autocomplete-items {
+            position: absolute;
+            border: 1px solid #d3d3d3;
+            border-radius: 4px;
+            z-index: 99;
+            width: 75%;
+            max-height: 150px;
+            overflow-y: auto;
+            background-color: white;
+            box-sizing: border-box;
+        }
+
+        .autocomplete-items div {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .autocomplete-items div:hover {
+            background-color: #e9e9e9;
+        }
+
+        .autocomplete-active {
+            background-color: #e9e9e9; /* رنگ پس‌زمینه وقتی روی آیتم هاور می‌شود */
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="logoHolder">
+
+    <img alt="" src="/media/{{ about.logo }}" class="logo">
+    <div class="typography">PowerGrow</div>
+
+</div>
+
+<div class="container">
+    <h2>به‌روزرسانی مشارکت</h2>
+    <form id="update-participant-form">
+        <input type="hidden" id="participantId" value="{{ participant.id }}">
+
+        <div class="form-group">
+            <label for="description">:توضیحات</label>
+            <textarea class="form-control" id="description" rows="3" required>{{ participant.description }}</textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="session">:تعداد جلسه</label>
+            <select class="form-control" id="session" required>
+                <option value="" disabled selected>انتخاب کنید</option>
+                {% for session in course.sessions.all %}
+                    <option value="{{ session.id }}" {% if session.id == participant.session.id %}selected{% endif %}>
+                        {{ session.number }} جلسه
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="day">:روزها هفته</label>
+            <select class="form-control" id="day" required>
+                <option value="" disabled selected>انتخاب کنید</option>
+                {% for day in days %}
+                    <option value="{{ day.id }}" {% if day.id == participant.day.id %}selected{% endif %}>
+                        {{ day.title }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="startDay">:روز شروع</label>
+            <select class="form-control" id="startDay" required>
+                <option value="">انتخاب کنید</option>
+                {% for day in all_days %}
+                    <option value="{{ day.id }}" {% if day.id == participant.startDay.id %}selected{% endif %}>
+                        {{ day.title }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="endDay">:روز پایان</label>
+            <select class="form-control" id="endDay" required>
+                <option value="">انتخاب کنید</option>
+                {% for day in all_days %}
+                    <option value="{{ day.id }}" {% if day.id == participant.endDay.id %}selected{% endif %}>
+                        {{ day.title }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button type="submit" class="btn custom-btn margin-bottom">به‌روزرسانی</button>
+    </form>
+</div>
+
+</body>
+</html>

@@ -400,6 +400,19 @@ def create_participants(request, course_id):  # تغییر نام پارامتر
                   {'course': course, 'about': about, 'user': user, 'days': days, 'day': day})
 
 
+def update_participant_view(request, participant_id):
+    participant = get_object_or_404(Participants, id=participant_id)
+    course = participant.course  # فرض بر این است که participant به course مرتبط است
+    days = Days.objects.filter(session__course=course.pk)  # تمام روزها را برای انتخاب
+    context = {
+        'participant': participant,
+        'course': course,
+        'days': days,
+        'all_days': Days.objects.all(),  # برای روزهای شروع و پایان
+    }
+    return render(request, 'manager/update_participants.html', context)
+
+
 class CourseListCreateView(generics.CreateAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer

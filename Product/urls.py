@@ -22,6 +22,7 @@ urlpatterns = [
     path('teacher/users/<int:pk>/<int:id>/', teacher_user_list, name='teacher_user_list'),
     path('course/update/<int:pk>/', update_course, name='update_course'),
     path('participants/create/<int:course_id>/', create_participants, name='participants-form'),  # URL برای نمایش فرم
+    path('update-participant/<int:participant_id>/', update_participant_view, name='update-participant'),
 
     path('api/sports/', SportListCreateView.as_view(), name='sport-list-create'),
     path('api/sports/<int:pk>/', SportDetailView.as_view(), name='sport-detail'),
