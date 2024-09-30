@@ -458,7 +458,7 @@ class SportDetailView(generics.RetrieveUpdateDestroyAPIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class DaysListCreateView(generics.ListCreateAPIView):
+class DaysListCreateView(generics.CreateAPIView):
     queryset = Days.objects.all()
     serializer_class = DaysSerializer
     permission_classes = [IsAdminUser]
@@ -487,7 +487,7 @@ class DaysDetailView(generics.RetrieveUpdateDestroyAPIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class SessionListCreateView(generics.ListCreateAPIView):
+class SessionListCreateView(generics.CreateAPIView):
     queryset = Session.objects.all()
     serializer_class = SessionSerializer
     permission_classes = [IsAdminUser]
