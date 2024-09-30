@@ -589,7 +589,7 @@ class ManagerParticipationView(viewsets.ViewSet):
     serializer_class = ManagerParticipantsSerializer
     permission_classes = [IsAdminUser]
 
-    def create(self, request,course):
+    def create(self, request, course):
         data = request.data
         # Validate required fields
         required_fields = ['price', 'session', 'day', 'startDay']
@@ -634,7 +634,7 @@ class ManagerParticipationView(viewsets.ViewSet):
         serializer = self.serializer_class(data=participant_data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
-            return Response(status=status.HTTP_201_CREATED)
+            return Response(status=status.HTTP_201_CREATED,)
         else:
             return Response({'error': 'Validation failed', 'details': serializer.errors},
                             status=status.HTTP_400_BAD_REQUEST)

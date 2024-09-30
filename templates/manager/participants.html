@@ -225,8 +225,8 @@
     let phone;
 
     {% for x in user.all %}
-        phone = "{{ x.number }}".replace("+98", "");
-        userList.push(phone);
+        {#phone = "{{ x.number }}".replace("+98", "");#}
+        userList.push("{{ x.number }}");
     {% endfor %}
 
     setupAutocomplete(document.getElementById("user"), userList);
