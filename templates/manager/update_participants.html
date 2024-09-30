@@ -119,9 +119,9 @@
             <label for="session">:تعداد جلسه</label>
             <select class="form-control" id="session" required>
                 <option value="" disabled selected>انتخاب کنید</option>
-                {% for session in course.sessions.all %}
-                    <option value="{{ session.id }}" {% if session.id == participant.session.id %}selected{% endif %}>
-                        {{ session.number }} جلسه
+                {% for x in course.sessions.all %}
+                    <option value="{{ x.id }}" {% if x.id == participant.session.id %}selected{% endif %}>
+                        {{ x.number }} جلسه
                     </option>
                 {% endfor %}
             </select>
@@ -131,9 +131,9 @@
             <label for="day">:روزها هفته</label>
             <select class="form-control" id="day" required>
                 <option value="" disabled selected>انتخاب کنید</option>
-                {% for day in days %}
-                    <option value="{{ day.id }}" {% if day.id == participant.day.id %}selected{% endif %}>
-                        {{ day.title }}
+                {% for x in days %}
+                    <option value="{{ x.id }}" {% if x.id == participant.day.id %}selected{% endif %}>
+                        {{ x.title }}
                     </option>
                 {% endfor %}
             </select>
@@ -144,7 +144,7 @@
             <select class="form-control" id="startDay" required>
                 <option value="">انتخاب کنید</option>
                 {% for x in day %}
-                    <option value="{{ day.id }}" {% if x.id == participant.startDay.id %}selected{% endif %}>
+                    <option value="{{ x.id }}" {% if x.id == participant.startDay.id %}selected{% endif %}>
                         {{ x.name }} {{ x.month.year.number }}/{{ x.month.number }}/{{ x.number }}
                     </option>
                 {% endfor %}
@@ -156,8 +156,20 @@
             <select class="form-control" id="endDay" required>
                 <option value="">انتخاب کنید</option>
                 {% for x in day %}
-                    <option value="{{ day.id }}" {% if x.id == participant.endDay.id %}selected{% endif %}>
+                    <option value="{{ x.id }}" {% if x.id == participant.endDay.id %}selected{% endif %}>
                         {{ x.name }} {{ x.month.year.number }}/{{ x.month.number }}/{{ x.number }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+     <div class="form-group">
+            <label for="endDay">:دوره</label>
+            <select class="form-control" id="endDay" required>
+                <option value="">انتخاب کنید</option>
+                {% for x in course %}
+                    <option value="{{ x.id }}" {% if x.id == participant.course.id %}selected{% endif %}>
+                        {{ x.title }}
                     </option>
                 {% endfor %}
             </select>
@@ -172,7 +184,6 @@
     document.getElementById('update-participant-form').addEventListener('submit', function(event) {
         event.preventDefault();
 
-        const participantId = document.getElementById('participantId').value;
         const data = {
             description: document.getElementById('description').value,
             session: document.getElementById('session').value,

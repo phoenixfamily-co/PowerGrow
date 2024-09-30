@@ -402,7 +402,7 @@ def create_participants(request, course_id):  # تغییر نام پارامتر
 
 def update_participant_view(request, participant_id):
     participant = get_object_or_404(Participants, id=participant_id)
-    course = participant.course  # فرض بر این است که participant به course مرتبط است
+    course = Course.objects.all()  # فرض بر این است که participant به course مرتبط است
     days = Days.objects.filter(session__course=course.pk)  # تمام روزها را برای انتخاب
     day = Day.objects.all().order_by('-pk')
     about = AboutUs.objects.first()
