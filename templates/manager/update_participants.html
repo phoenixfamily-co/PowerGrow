@@ -167,5 +167,45 @@
     </form>
 </div>
 
+
+<script>
+    document.getElementById('update-participant-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const participantId = document.getElementById('participantId').value;
+        const data = {
+            description: document.getElementById('description').value,
+            session: document.getElementById('session').value,
+            day: document.getElementById('day').value,
+            startDay: document.getElementById('startDay').value,
+            endDay: document.getElementById('endDay').value,
+        };
+
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+        fetch(`{% url 'product:update-participant' participant.id %}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken,
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('مشارکت با موفقیت به‌روزرسانی شد!');
+                // به صفحه دیگر برو یا فرم را پاک کن
+            } else {
+                return response.json().then(errorData => {
+                    alert('خطا: ' + JSON.stringify(errorData));
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+</script>
+
 </body>
 </html>
