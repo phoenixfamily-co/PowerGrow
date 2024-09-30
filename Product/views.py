@@ -246,7 +246,7 @@ def manager_session_view(request):
     sessions = Session.objects.all()
 
     # پیاده‌سازی pagination
-    paginator = Paginator(sessions, 50)
+    paginator = Paginator(sessions, 100)
     page_number = request.GET.get('page')
 
     try:
