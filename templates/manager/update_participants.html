@@ -194,7 +194,7 @@
 
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-        fetch(`{% url 'product:update-participant' participant.id %}`, {
+        fetch(`{% url 'product:manager-update-participation' participant.id %}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
