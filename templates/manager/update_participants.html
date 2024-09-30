@@ -144,7 +144,7 @@
             <select class="form-control" id="startDay" required>
                 <option value="">انتخاب کنید</option>
                 {% for x in day %}
-                    <option value="{{ day.id }}" {% if day.id == participant.startDay.id %}selected{% endif %}>
+                    <option value="{{ day.id }}" {% if x.id == participant.startDay.id %}selected{% endif %}>
                         {{ x.name }} {{ x.month.year.number }}/{{ x.month.number }}/{{ x.number }}
                     </option>
                 {% endfor %}
@@ -156,7 +156,7 @@
             <select class="form-control" id="endDay" required>
                 <option value="">انتخاب کنید</option>
                 {% for x in day %}
-                    <option value="{{ day.id }}" {% if day.id == participant.endDay.id %}selected{% endif %}>
+                    <option value="{{ day.id }}" {% if x.id == participant.endDay.id %}selected{% endif %}>
                         {{ x.name }} {{ x.month.year.number }}/{{ x.month.number }}/{{ x.number }}
                     </option>
                 {% endfor %}
