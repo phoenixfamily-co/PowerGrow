@@ -143,7 +143,7 @@
             <label for="startDay">:روز شروع</label>
             <select class="form-control" id="startDay" required>
                 <option value="">انتخاب کنید</option>
-                {% for day in all_days %}
+                {% for day in day %}
                     <option value="{{ day.id }}" {% if day.id == participant.startDay.id %}selected{% endif %}>
                         {{ x.name }} {{ x.month.year.number }}/{{ x.month.number }}/{{ x.number }}
                     </option>
@@ -155,7 +155,7 @@
             <label for="endDay">:روز پایان</label>
             <select class="form-control" id="endDay" required>
                 <option value="">انتخاب کنید</option>
-                {% for day in all_days %}
+                {% for day in day %}
                     <option value="{{ day.id }}" {% if day.id == participant.endDay.id %}selected{% endif %}>
                         {{ x.name }} {{ x.month.year.number }}/{{ x.month.number }}/{{ x.number }}
                     </option>
