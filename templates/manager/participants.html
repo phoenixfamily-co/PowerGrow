@@ -208,8 +208,10 @@
                     alert('شرکت‌کننده با موفقیت ثبت شد!');
                     // فرم را پاک کن یا به صفحه دیگر برو
                 } else {
-                    alert('خطا: ' + data.error);
-                }
+                    return response.json().then(errorData => {
+                        alert('خطا: ' + JSON.stringify(errorData));
+        });
+    }
             })
             .catch(error => {
                 console.error('Error:', error);
