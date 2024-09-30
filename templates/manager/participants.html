@@ -203,9 +203,8 @@
                 },
                 body: JSON.stringify(data)
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
+            .then(response => {
+                if (response.ok) {
                     alert('شرکت‌کننده با موفقیت ثبت شد!');
                     // فرم را پاک کن یا به صفحه دیگر برو
                 } else {
