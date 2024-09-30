@@ -625,7 +625,7 @@ class ManagerParticipationView(viewsets.ViewSet):
             'session': session.id,
             'day': week.id,
             'price': data["price"],
-            'user': user,
+            'user': user.id,
             'course': course.id,
             'success': True,
             'created': request.user.id
