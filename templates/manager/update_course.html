@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>به‌روزرسانی دوره</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+
 
       <style>
         body {
@@ -82,7 +84,7 @@
 
 
     <div class="container mt-5">
-        <form method="POST" enctype="multipart/form-data">
+        <form id="update-course-form">
             {% csrf_token %}
             <div class="form-group">
                 <label for="title">:عنوان</label>
@@ -92,6 +94,11 @@
             <div class="form-group">
                 <label for="name">:نام مربی</label>
                 <input type="text" class="form-control" id="name" name="name" value="{{ course.name }}" required>
+            </div>
+
+        <div class="form-group">
+                <label for="time">:زمان</label>
+                <input type="text" class="form-control" id="time" name="time" value="{{ course.time }}" required>
             </div>
 
             <div class="form-group">
@@ -143,5 +150,49 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+<script>
+    document.getElementById('update-participant-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const data = {
+            title: document.getElementById('title').value,
+            name: document.getElementById('name').value,
+            type: document.getElementById('type').value,
+            timee: document.getElementById('time').value,
+            description: document.getElementById('description').value,
+            endDay: document.getElementById('endDay').value,
+            selected: document.getElementById('selected').value,
+            capacity: document.getElementById('capacity').value,
+            active: document.getElementById('active').value,
+
+        };
+
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+        fetch(`{% url 'product:manager-update-course' course.id %}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken,
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('اطلاعات با موفقیت به‌روزرسانی شد!');
+                // به صفحه دیگر برو یا فرم را پاک کن
+            } else {
+                return response.json().then(errorData => {
+                    alert('خطا: ' + JSON.stringify(errorData));
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+</script>
 </body>
 </html>

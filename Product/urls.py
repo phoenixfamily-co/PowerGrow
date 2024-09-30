@@ -21,14 +21,15 @@ urlpatterns = [
     path('manager/users/<int:pk>/', manager_user_list, name='manager_user_list'),
     path('teacher/users/<int:pk>/<int:id>/', teacher_user_list, name='teacher_user_list'),
     path('course/update/<int:pk>/', update_course, name='update_course'),
-    path('participants/create/<int:course_id>/', create_participants, name='participants-form'),  # URL برای نمایش فرم
-    path('update-participant/<int:participant_id>/', update_participant_view, name='update-participant'),
+    path('participants/create/<int:course_id>/', create_participants, name='create-participant'),  # URL برای نمایش فرم
+    path('participants/update/<int:participant_id>/', update_participant_view, name='update-participant'),
 
     path('api/sports/', SportListCreateView.as_view(), name='sport-list-create'),
     path('api/sports/<int:pk>/', SportDetailView.as_view(), name='sport-detail'),
 
-    path('api/courses/', CourseListCreateView.as_view(), name='course-create'),
-    path('api/courses/<int:pk>/', CourseDetailView.as_view(), name='course-detail'),
+    path('api/courses/', CourseListCreateView.as_view(), name='manager-create-course'),
+    path('api/courses/update/<int:pk>/', CourseDetailView.as_view({'put': 'update'}), name='manager-update-course'),
+    path('api/courses/delete/<int:pk>/', CourseDetailView.as_view({'delete': 'destroy'}), name='manager-delete-course'),
 
     path('api/days/', DaysListCreateView.as_view(), name='day-list-create'),
     path('api/days/<int:pk>/', DaysDetailView.as_view(), name='day-detail'),
@@ -46,7 +47,5 @@ urlpatterns = [
     path('api/manager/participations/delete/<int:pk>/',
          ManagerParticipationView.as_view({'delete': 'destroy'}),
          name='manager-delete-participation'),
-
-
     path('get-days-for-session/', get_days_for_session, name='get_days_for_session'),
 ]

@@ -377,16 +377,12 @@ def update_course(request, pk):
     course = get_object_or_404(Course, pk=pk)
     about = AboutUs.objects.first()
 
-    if request.method == 'POST':
-        # دریافت داده‌ها و فایل‌ها
-        serializer = CourseSerializer(course, data=request.POST)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return redirect('product:manager_courses')  # به صفحه لیست دوره‌ها برگرد
-    else:
-        serializer = CourseSerializer(course)
+    context = {
+        'course': course,
+        'about': about,
+    }
 
-    return render(request, 'manager/update_course.html', {'course': serializer.data, 'about': about})
+    return render(request, 'manager/update_course.html', context)
 
 
 def create_participants(request, course_id):  # تغییر نام پارامتر به course_id
@@ -396,8 +392,15 @@ def create_participants(request, course_id):  # تغییر نام پارامتر
     days = Days.objects.filter(session__course=course_id)
     day = Day.objects.all().order_by('-pk')
 
-    return render(request, 'manager/participants.html',
-                  {'course': course, 'about': about, 'user': user, 'days': days, 'day': day})
+    context = {
+        'course': course,
+        'days': days,
+        'day': day,  # برای روزهای شروع و پایان
+        'about': about,
+        'user': user
+    }
+
+    return render(request, 'manager/participants.html', context)
 
 
 def update_participant_view(request, participant_id):
@@ -411,7 +414,7 @@ def update_participant_view(request, participant_id):
     context = {
         'participant': participant,
         'course': course,
-        'session':session,
+        'session': session,
         'days': days,
         'day': day,  # برای روزهای شروع و پایان
         'about': about
@@ -425,27 +428,30 @@ class CourseListCreateView(generics.CreateAPIView):
     permission_classes = [IsAdminUser]
 
 
-class CourseDetailView(generics.DestroyAPIView):
+class CourseDetailView(viewsets.ViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
     permission_classes = [IsAdminUser]
 
-    def get_queryset(self):
-        course_id = self.kwargs.get('pk')
-        return super().get_queryset().filter(pk=course_id)
+    def update(self, request, pk):
+        try:
+            course = Course.objects.get(pk=pk)
+        except Course.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
-    def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        instance.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-    def update(self, request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        serializer = self.serializer_class(course, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
+            return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def destroy(self, request, pk):
+        try:
+            course = Course.objects.get(pk=pk)
+            course.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except Course.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
 
 class SportListCreateView(generics.ListCreateAPIView):
@@ -660,7 +666,7 @@ class ManagerParticipationView(viewsets.ViewSet):
         serializer = self.serializer_class(data=participant_data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
-            return Response(status=status.HTTP_201_CREATED,)
+            return Response(status=status.HTTP_201_CREATED, )
         else:
             return Response({'error': 'Validation failed', 'details': serializer.errors},
                             status=status.HTTP_400_BAD_REQUEST)
