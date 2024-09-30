@@ -243,7 +243,7 @@ def manager_session_view(request):
     about = AboutUs.objects.first()
 
     # بارگذاری تمامی جلسات
-    sessions = Session.objects.all()
+    sessions = Session.objects.all().order_by('-pk')
 
     # پیاده‌سازی pagination
     paginator = Paginator(sessions, 100)
