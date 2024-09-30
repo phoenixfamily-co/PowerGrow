@@ -145,7 +145,7 @@
 
 
 <div class="table-actions">
-    <button class="btn add-data-button" onclick="window.open('{% url 'product:course-create' %}')">افزودن دوره</button>
+    <button class="btn add-data-button" onclick="window.open('{% url 'product:manager-create-course' %}')">افزودن دوره</button>
 </div>
 
 <div class="table-responsive" dir="rtl">
@@ -176,7 +176,7 @@
                     <i class="fa fa-pencil text-warning" aria-hidden="true" style="cursor: pointer" title="ویرایش" onclick="window.open('{% url 'product:update_course' x.id %}')"></i>
                 </td>
                  <td class="text-center">
-                    <i class="fa fa-times text-danger" aria-hidden="true" style="cursor: pointer" title="حذف" onclick="window.open('{% url 'product:course-detail' x.id %}')"></i>
+                    <i class="fa fa-times text-danger" aria-hidden="true" style="cursor: pointer" title="حذف" onclick="window.open('{% url 'product:manager-delete-course' x.id %}')"></i>
                 </td>
                 <td class="text-center">
                     <i class="fa fa-solid fa-square-plus" aria-hidden="true" style="cursor: pointer" title="ثبت نام" onclick="window.open('{% url 'product:participants-form' x.id%}')"></i>
