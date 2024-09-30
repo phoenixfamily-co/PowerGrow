@@ -589,7 +589,7 @@ class ManagerParticipationView(viewsets.ViewSet):
     serializer_class = ManagerParticipantsSerializer
     permission_classes = [IsAdminUser]
 
-    def create(self, request):
+    def create(self, request,course):
         data = request.data
         # Validate required fields
         required_fields = ['price', 'session', 'day', 'startDay']
@@ -597,7 +597,7 @@ class ManagerParticipationView(viewsets.ViewSet):
             if field not in data:
                 return Response({'error': f'Missing field: {field}'}, status=status.HTTP_400_BAD_REQUEST)
 
-        course = Course.objects.filter(id=self.kwargs['course']).first()
+        course = Course.objects.filter(id=course).first()  # استفاده از پارامتر course
         user = User.objects.filter(number=data["user"]).first()
         week = Days.objects.filter(id=data["day"]).first()
         start = Day.objects.filter(id=data["startDay"]).first()
