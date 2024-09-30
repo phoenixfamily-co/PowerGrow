@@ -403,6 +403,7 @@ def create_participants(request, course_id):  # تغییر نام پارامتر
 def update_participant_view(request, participant_id):
     participant = get_object_or_404(Participants, id=participant_id)
     course = Course.objects.all()  # فرض بر این است که participant به course مرتبط است
+    session = Session.objects.filter(course_id=participant.course.id)  # تمام روزها را برای انتخاب
     days = Days.objects.filter(session__course=participant.course.id)  # تمام روزها را برای انتخاب
     day = Day.objects.all().order_by('-pk')
     about = AboutUs.objects.first()
@@ -410,6 +411,7 @@ def update_participant_view(request, participant_id):
     context = {
         'participant': participant,
         'course': course,
+        'session':session,
         'days': days,
         'day': day,  # برای روزهای شروع و پایان
         'about': about

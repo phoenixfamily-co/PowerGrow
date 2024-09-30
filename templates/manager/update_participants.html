@@ -119,7 +119,7 @@
             <label for="session">:تعداد جلسه</label>
             <select class="form-control" id="session" required>
                 <option value="" disabled selected>انتخاب کنید</option>
-                {% for x in course.sessions.all %}
+                {% for x in session %}
                     <option value="{{ x.id }}" {% if x.id == participant.session.id %}selected{% endif %}>
                         {{ x.number }} جلسه
                     </option>
