@@ -148,7 +148,7 @@
                 <option value="">انتخاب کنید</option>
                 {% for day in all_days %}
                     <option value="{{ day.id }}" {% if day.id == participant.startDay.id %}selected{% endif %}>
-                        {{ day.title }}
+                        {{ x.name }} {{ x.month.year.number }}/{{ x.month.number }}/{{ x.number }}
                     </option>
                 {% endfor %}
             </select>
@@ -160,7 +160,7 @@
                 <option value="">انتخاب کنید</option>
                 {% for day in all_days %}
                     <option value="{{ day.id }}" {% if day.id == participant.endDay.id %}selected{% endif %}>
-                        {{ day.title }}
+                        {{ x.name }} {{ x.month.year.number }}/{{ x.month.number }}/{{ x.number }}
                     </option>
                 {% endfor %}
             </select>
