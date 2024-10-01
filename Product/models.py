@@ -47,7 +47,7 @@ class Session(models.Model):
     course = models.ForeignKey(Course, on_delete=models.SET_NULL, related_name='sessions', null=True, blank=True)
 
     def __str__(self):
-        return f"{self.course} {self.number} جلسه "
+        return f"جلسه{self.number}{self.course}"
 
 
 class Days(models.Model):
