@@ -527,14 +527,6 @@ class SessionDetailView(viewsets.ViewSet):
     serializer_class = SessionSerializer
     permission_classes = [IsAdminUser]
 
-    def destroy(self, request, pk):
-        try:
-            session = Session.objects.get(pk=pk)
-            session.delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
-        except Participants.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
-
     def update(self, request, pk):
         try:
             session = Session.objects.get(pk=pk)
@@ -546,6 +538,14 @@ class SessionDetailView(viewsets.ViewSet):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def destroy(self, request, pk):
+        try:
+            session = Session.objects.get(pk=pk)
+            session.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except Participants.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
 
 class ParticipationCreateView(viewsets.ViewSet):
