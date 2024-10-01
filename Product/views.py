@@ -453,32 +453,35 @@ class CourseDetailView(viewsets.ViewSet):
             return Response(status=status.HTTP_404_NOT_FOUND)
 
 
-class SportListCreateView(generics.ListCreateAPIView):
+class SportListCreateView(generics.CreateAPIView):
     queryset = Sport.objects.all()
     serializer_class = SportSerializer
     permission_classes = [IsAdminUser]
 
 
-class SportDetailView(generics.RetrieveUpdateDestroyAPIView):
+class SportDetailView(viewsets.ViewSet):
     queryset = Sport.objects.all()
     serializer_class = SportSerializer
     permission_classes = [IsAdminUser]
 
-    def get_queryset(self):
-        sport_id = self.kwargs.get('pk')
-        return super().get_queryset().filter(pk=sport_id)
+    def destroy(self, request, pk):
+        try:
+            sport = Sport.objects.get(pk=pk)
+            sport.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except Participants.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
-    def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        instance.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    def update(self, request, pk):
+        try:
+            sport = Sport.objects.get(pk=pk)
+        except Sport.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
-    def update(self, request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        serializer = self.serializer_class(sport, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
+            return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -488,26 +491,29 @@ class DaysListCreateView(generics.CreateAPIView):
     permission_classes = [IsAdminUser]
 
 
-class DaysDetailView(generics.RetrieveUpdateDestroyAPIView):
+class DaysDetailView(viewsets.ViewSet):
     queryset = Days.objects.all()
     serializer_class = DaysSerializer
     permission_classes = [IsAdminUser]
 
-    def get_queryset(self):
-        session_id = self.kwargs.get('pk')
-        return super().get_queryset().filter(pk=session_id)
+    def destroy(self, request, pk):
+        try:
+            days = Days.objects.get(pk=pk)
+            days.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except Participants.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
-    def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        instance.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    def update(self, request, pk):
+        try:
+            days = Days.objects.get(pk=pk)
+        except Days.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
-    def update(self, request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        serializer = self.serializer_class(days, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
+            return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -517,26 +523,29 @@ class SessionListCreateView(generics.CreateAPIView):
     permission_classes = [IsAdminUser]
 
 
-class SessionDetailView(generics.RetrieveUpdateDestroyAPIView):
+class SessionDetailView(viewsets.ViewSet):
     queryset = Session.objects.all()
     serializer_class = SessionSerializer
     permission_classes = [IsAdminUser]
 
-    def get_queryset(self):
-        course_id = self.kwargs.get('pk')  # فرض بر این است که شما ID دوره را از URL دریافت می‌کنید
-        return super().get_queryset().filter(course=course_id)
+    def destroy(self, request, pk):
+        try:
+            session = Session.objects.get(pk=pk)
+            session.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except Participants.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
-    def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        instance.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    def update(self, request, pk):
+        try:
+            session = Session.objects.get(pk=pk)
+        except Session.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
-    def update(self, request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        serializer = self.serializer_class(session, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
+            return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 

@@ -24,18 +24,21 @@ urlpatterns = [
     path('participants/create/<int:course_id>/', create_participants, name='create-participant'),  # URL برای نمایش فرم
     path('participants/update/<int:participant_id>/', update_participant_view, name='update-participant'),
 
-    path('api/sports/', SportListCreateView.as_view(), name='sport-list-create'),
-    path('api/sports/<int:pk>/', SportDetailView.as_view(), name='sport-detail'),
+    path('api/sports/', SportListCreateView.as_view(), name='manager-create-sport'),
+    path('api/sports/update/<int:pk>/', SportDetailView.as_view({'put': 'update'}), name='manager-update-sport'),
+    path('api/sports/delete/<int:pk>/', SportDetailView.as_view({'delete': 'destroy'}), name='manager-delete-sport'),
 
     path('api/courses/', CourseListCreateView.as_view(), name='manager-create-course'),
     path('api/courses/update/<int:pk>/', CourseDetailView.as_view({'put': 'update'}), name='manager-update-course'),
     path('api/courses/delete/<int:pk>/', CourseDetailView.as_view({'delete': 'destroy'}), name='manager-delete-course'),
 
-    path('api/days/', DaysListCreateView.as_view(), name='day-list-create'),
-    path('api/days/<int:pk>/', DaysDetailView.as_view(), name='day-detail'),
+    path('api/days/', DaysListCreateView.as_view(), name='manager-create-day'),
+    path('api/days/update/<int:pk>/', DaysDetailView.as_view({'put': 'update'}), name='manager-update-day'),
+    path('api/days/delete/<int:pk>/', DaysDetailView.as_view({'delete': 'destroy'}), name='manager-delete-day'),
 
-    path('api/sessions/', SessionListCreateView.as_view(), name='sessions-list-create'),
-    path('api/sessions/<int:pk>/', SessionDetailView.as_view(), name='session-detail'),
+    path('api/sessions/', SessionListCreateView.as_view(), name='manager-create-session'),
+    path('api/sessions/<int:pk>/', SessionDetailView.as_view({'put': 'update'}), name='manager-update-session'),
+    path('api/sessions/<int:pk>/', SessionDetailView.as_view({'delete': 'destroy'}), name='manager-delete-session'),
 
     path('api/participations/', ParticipationCreateView.as_view({'post': 'create'}), name='create-participation'),
     path('api/manager/participations/<int:course>/',
