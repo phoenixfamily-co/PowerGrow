@@ -130,7 +130,6 @@ def verify(request):
         })
 
 
-@cache_page(60 * 15)
 def manager_sports_view(request):
     sport = Sport.objects.all()
     about = AboutUs.objects.values().first()
