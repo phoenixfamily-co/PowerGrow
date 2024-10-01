@@ -56,8 +56,6 @@ class Days(models.Model):
     off = models.IntegerField(blank=True, null=True)
     session = models.ForeignKey(Session, on_delete=models.CASCADE, related_name='days', null=True, blank=True)
 
-    def __str__(self):
-        return f"{self.title} {self.session.course.title}"
 
 
 class Participants(models.Model):
