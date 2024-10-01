@@ -204,6 +204,10 @@
                         <p><a style="text-decoration: none" class="text-dark">زمان دوره</a></p>
                         <p class="text-dark" style="width: 65%; text-align: left">{{ x.time }}</p>
                     </div>
+                <div class="d-flex justify-content-between">
+                        <p><a style="text-decoration: none" class="text-dark">نوع دوره</a></p>
+                        <p class="text-dark" style="width: 65%; text-align: left">{{ x.type }}</p>
+                    </div>
                     <p class="d-flex justify-content-center align-items-center text-dark mb-2" style="text-align: center;">مناسب برای  {% if x.gender == "male" %}
                     آقایان
                     {% elif x.gender == "female" %}
