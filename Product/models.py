@@ -47,7 +47,7 @@ class Session(models.Model):
     course = models.ForeignKey(Course, on_delete=models.SET_NULL, related_name='sessions', null=True, blank=True)
 
     def __str__(self):
-        return f"{self.number}"
+        return f"{self.number} جلسه {self.course.title}"
 
 
 class Days(models.Model):
@@ -57,7 +57,7 @@ class Days(models.Model):
     session = models.ForeignKey(Session, on_delete=models.CASCADE, related_name='days', null=True, blank=True)
 
     def __str__(self):
-        return self.title
+        return f"{self.title} {self.session.course.title}"
 
 
 class Participants(models.Model):
