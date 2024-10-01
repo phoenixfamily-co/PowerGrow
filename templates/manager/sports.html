@@ -145,7 +145,7 @@
 
 
 <div class="table-actions">
-    <button class="btn add-data-button" onclick="window.open('{% url 'product:manager-create-sport' %}')">افزودن روز</button>
+    <button class="btn add-data-button" onclick="window.open('{% url 'product:manager-create-sport' %}')">افزودن ورزش</button>
 </div>
 
 <div class="table-responsive" dir="rtl">
@@ -158,7 +158,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for x in page_obj.object_list %}
+            {% for x in sport %}
             <tr>
                 <th scope="row">{{ x.id }}</th>
                 <td class="text-center">
