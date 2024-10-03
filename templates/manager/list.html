@@ -273,8 +273,9 @@
                 // بررسی اینکه آیا تاریخ پایان گذشته است
                 if (userEnd<thisDate) {
                      var statusCell = rows[i].querySelector('td:last-child'); // فرض می‌کنیم آخرین سلول وضعیت است
-                    statusCell.innerHTML = '<i class="fa fa-exclamation-circle text-warning" title="تاریخ پایان گذشته"></i>'; // تغییر به آیکون دلخواه
-
+                    if(statusCell.innerHTML.includes('fa-check-circle')) {
+                        statusCell.innerHTML = '<i class="fa fa-exclamation-circle text-warning" title="تاریخ پایان گذشته"></i>'; // تغییر به آیکون دلخواه
+                    }
                 }
             }
         }
