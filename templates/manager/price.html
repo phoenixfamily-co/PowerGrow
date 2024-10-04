@@ -90,6 +90,27 @@
                border-color: #E16539; /* رنگ حاشیه وقتی روی فیلد کلیک می‌شود */
            }
 
+             .table-actions {
+                display: flex;
+                justify-content: flex-end; /* دکمه در سمت راست قرار می‌گیرد */
+                margin-top: 20px;
+            }
+
+              .add-data-button {
+               background-color: #E16539;
+               color: white;
+               padding: 10px 20px;
+               border: none;
+               border-radius: 5px;
+               cursor: pointer;
+               font-size: 16px;
+               transition: background-color 0.3s;
+           }
+           .add-data-button:hover {
+               background-color: #a84e2c; /* تغییر رنگ در حالت hover */
+               color: #c4c4c4;
+           }
+
 
     </style>
 </head>
@@ -120,6 +141,10 @@
         <a class="btn btn-outline-light mx-1" href="?page={{page_obj.previous_page_number}}"><i class="fa fa-chevron-right"></i></a>
     {% endif %}
 
+</div>
+
+<div class="table-actions">
+    <button class="btn add-data-button" onclick="window.open('{% url 'calendar:create_day' %}')">افزودن تاریخ</button>
 </div>
 
 
