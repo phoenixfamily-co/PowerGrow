@@ -42,3 +42,8 @@ class Time(models.Model):
     price = models.IntegerField(default=695000)
     off = models.IntegerField(default=0)
     day = models.ForeignKey(Day, on_delete=models.CASCADE, related_name='times', null=True, blank=True)
+
+    def __str__(self):
+        # فرض بر این است که شماره روز و شماره ماه و سال را می‌خواهیم نمایش دهیم
+        year = self.day.month.year.number if self.day.month else "Unknown Year"
+        return f"{year}/{self.day.month.number}/{self.day.number} : {self.time}"  # به فرمت YYYY/MM/DD
