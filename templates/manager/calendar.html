@@ -176,6 +176,7 @@
                 <td>{{ x.name }}</td>
                 <td>{{ x.month.name }}</td>
                 <td>{{ x.month.year.number }}</td>
+                <td>{{ x.description}}</td>
                  <td class="text-center">
                     {% if x.holiday %}
                         <i class="fa fa-check-circle text-success"></i>
@@ -183,7 +184,6 @@
                         <i class="fa fa-ban text-danger"></i>
                     {% endif %}
                 </td>
-                <td>{{ x.description}}</td>
 
             </tr>
             {% endfor %}
