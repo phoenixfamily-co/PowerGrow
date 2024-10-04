@@ -212,7 +212,7 @@ def user_view(request):
     about = AboutUs.objects.values().first()
     template = loader.get_template('manager/users.html')
     user = User.objects.all()
-    p = Paginator(user, 50)
+    p = Paginator(user, 150)
     page_number = request.GET.get('page')
     try:
         page_obj = p.get_page(page_number)  # returns the desired page object
