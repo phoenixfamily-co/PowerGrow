@@ -145,7 +145,7 @@
 
 
 <div class="table-actions">
-    <button class="btn add-data-button" onclick="window.open('{% url 'product:manager-create-course' %}')">افزودن تاریخ</button>
+    <button class="btn add-data-button" onclick="window.open('{% url 'calendar:create_day' %}')">افزودن تاریخ</button>
 </div>
 
 <div class="table-responsive" dir="rtl">
@@ -167,7 +167,7 @@
             <tr>
                 <th scope="row">{{ x.id }}</th>
                 <td class="text-center">
-                    <i class="fa fa-pencil text-warning" aria-hidden="true" style="cursor: pointer" title="ویرایش" onclick="window.open('{% url 'calendar:cost' x.id %}')"></i>
+                    <i class="fa fa-pencil text-warning" aria-hidden="true" style="cursor: pointer" title="ویرایش" onclick="window.open('{% url 'calendar:description' x.id %}')"></i>
                 </td>
                  <td class="text-center">
                     <i class="fa fa-times text-danger" aria-hidden="true" style="cursor: pointer" title="حذف" onclick="window.open('{% url 'calendar:day_delete' x.id %}')"></i>
