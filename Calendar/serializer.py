@@ -8,6 +8,7 @@ class TimeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Time
+        read_only_fields = ['res_id']
         fields = "__all__"
 
 
