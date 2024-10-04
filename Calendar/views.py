@@ -197,14 +197,13 @@ class TimeView(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         data = self.request.data
-        day = Day.objects.get(id=self.kwargs["pk"])
         time = Time.objects.update_or_create(
             time=data["time"],
             duration=data["duration"],
             reserved=bool(self.request.POST.get('reserved', False)),
             price=data["price"],
             off=data["off"],
-            day=day
+            day=data["day"]
 
         )
         serializer = TimeSerializer(time)

@@ -8,7 +8,6 @@ class TimeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Time
-        read_only_fields = ['day']
         fields = "__all__"
 
 
