@@ -27,11 +27,12 @@ class Month(models.Model):
 
 
 class Day(models.Model):
-    number = models.IntegerField(blank=True, null=True)
-    name = models.CharField(blank=True, null=True, max_length=20)
-    description = models.TextField(blank=True, null=True)
-    holiday = models.BooleanField(blank=True, null=True)
-    month = models.ForeignKey(Month, on_delete=models.CASCADE, related_name='days', null=True, blank=True)
+    number = models.IntegerField(blank=True, null=True, verbose_name="شماره روز")
+    name = models.CharField(blank=True, null=True, max_length=20, verbose_name="نام روز در هفته")
+    description = models.TextField(blank=True, null=True, verbose_name="توضیحات مناسبت")
+    holiday = models.BooleanField(blank=True, null=True,  verbose_name="تعطیلات")
+    month = models.ForeignKey(Month, on_delete=models.CASCADE, related_name='days', null=True, blank=True,
+                              verbose_name="ماه")
 
     def __str__(self):
         # فرض بر این است که شماره روز و شماره ماه و سال را می‌خواهیم نمایش دهیم
