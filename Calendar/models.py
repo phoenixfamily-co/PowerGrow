@@ -20,6 +20,11 @@ class Month(models.Model):
     max = models.IntegerField(blank=True, null=True)
     year = models.ForeignKey(Year, on_delete=models.CASCADE, related_name='months', null=True, blank=True)
 
+    def __str__(self):
+        # فرض بر این است که شماره روز و شماره ماه و سال را می‌خواهیم نمایش دهیم
+        year = self.year.number if self and self.year else "Unknown Year"
+        return f"{year}-{self.number}"  # به فرمت YYYY/MM/DD
+
 
 class Day(models.Model):
     number = models.IntegerField(blank=True, null=True)
