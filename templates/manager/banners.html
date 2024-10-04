@@ -145,7 +145,7 @@
 
 
 <div class="table-actions">
-    <button class="btn add-data-button" onclick="window.open('{% url 'product:manager-create-course' %}')">افزودن دوره</button>
+    <button class="btn add-data-button" onclick="window.open('{% url 'home:create_slider' %}')">افزودن بنر</button>
 </div>
 
 <div class="table-responsive" dir="rtl">
@@ -166,7 +166,7 @@
                     <i class="fa fa-eye text-info" aria-hidden="true" style="cursor: pointer" title="مشاهده" onclick="window.open('{% get_media_prefix %}/{{ x.image }}')"></i>
                 </td>
                 <td class="text-center">
-                    <i class="fa fa-pencil text-warning" aria-hidden="true" style="cursor: pointer" title="ویرایش" onclick="window.open('{% url 'product:update_course' x.id %}')"></i>
+                    <i class="fa fa-pencil text-warning" aria-hidden="true" style="cursor: pointer" title="ویرایش" onclick="window.open('{% url 'home:update_slider' x.id %}')"></i>
                 </td>
                  <td class="text-center">
                     <i class="fa fa-times text-danger" aria-hidden="true" style="cursor: pointer" title="حذف" onclick="window.open('{% url 'home:delete-slider' x.id %}')"></i>
