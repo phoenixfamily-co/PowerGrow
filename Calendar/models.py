@@ -38,7 +38,7 @@ class Time(models.Model):
     time = models.TimeField(blank=True, null=True, verbose_name="زمان")
     duration = models.IntegerField(blank=True, null=True, verbose_name="مدت به دقیقه")
     reserved = models.BooleanField(blank=True, null=True,verbose_name="رزرو شده")
-    res_id = models.IntegerField(blank=True,null=True)
+    res_id = models.IntegerField(blank=True, null=True)
     price = models.IntegerField(default=695000, verbose_name="قیمت")
     off = models.IntegerField(default=0, verbose_name="تخفیف")
     day = models.ForeignKey(Day, on_delete=models.CASCADE, related_name='times', null=True, blank=True, verbose_name="تاریخ")
