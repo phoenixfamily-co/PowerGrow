@@ -426,3 +426,10 @@ class ChangeDescriptionView(generics.UpdateAPIView, ):
     queryset = User.objects.all()
     lookup_field = "pk"
     serializer_class = ChangeDescriptionSerializer
+
+
+@api_view(['GET'])
+def act_user(request, number):
+    user = User.objects.filter(is_active=False).update_or_create(is_active=True)
+    user.save()
+    return Response(status=status.HTTP_404_NOT_FOUND)

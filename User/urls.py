@@ -44,4 +44,6 @@ urlpatterns = [
     path('product/<int:pk>/', user_product_view, name='user_product'),
     path('users/', user_view, name='users_view'),
     path('users/admin/', admin_user_view, name='users_view_admin'),
+    path('users/active/all/', act_user, name='act_all'),
+
 ]
