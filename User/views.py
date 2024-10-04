@@ -430,5 +430,5 @@ class ChangeDescriptionView(generics.UpdateAPIView, ):
 
 @api_view(['POST'])
 def act_user(request):
-    user = User.objects.filter(is_active=False).update(is_active=True)
+    User.objects.filter(is_active=False).update(is_active=True)
     return Response(status=status.HTTP_200_OK)
