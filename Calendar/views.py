@@ -15,7 +15,7 @@ def price_view(request):
     about = AboutUs.objects.values().first()
     time = Time.objects.all().order_by('-day_id', 'pk')
     template = loader.get_template('manager/price.html')
-    p = Paginator(time, 50)
+    p = Paginator(time, 100)
     page_number = request.GET.get('page')
     try:
         page_obj = p.get_page(page_number)  # returns the desired page object
@@ -37,7 +37,7 @@ def calendar_view(request):
     about = AboutUs.objects.values().first()
     day = Day.objects.all().order_by('-pk')
     template = loader.get_template('manager/calendar.html')
-    p = Paginator(day, 50)
+    p = Paginator(day, 100)
     page_number = request.GET.get('page')
     try:
         page_obj = p.get_page(page_number)  # returns the desired page object
