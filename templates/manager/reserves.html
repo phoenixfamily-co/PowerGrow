@@ -145,7 +145,7 @@
 
 
 <div class="table-actions">
-    <button class="btn add-data-button" onclick="window.open('{% url 'product:manager-create-course' %}')">افزودن دوره</button>
+    <button class="btn add-data-button" onclick="window.open('{% url 'reservation:reserve' %}')">افزودن رزرو</button>
 </div>
 
 <div class="table-responsive" dir="rtl">
@@ -171,7 +171,7 @@
             <tr>
                 <th scope="row">{{ x.id }}</th>
                 <td class="text-center">
-                    <i class="fa fa-pencil text-warning" aria-hidden="true" style="cursor: pointer" title="ویرایش" onclick="window.open('{% url 'product:update_course' x.id %}')"></i>
+                    <i class="fa fa-pencil text-warning" aria-hidden="true" style="cursor: pointer" title="ویرایش" onclick="window.open('{% url 'reservation:update-admin-reserve' x.time.id x.id %}')"></i>
                 </td>
                  <td class="text-center">
                     <i class="fa fa-times text-danger" aria-hidden="true" style="cursor: pointer" title="حذف" onclick="window.open('{% url 'reservation:delete-admin-reserve' x.time.id x.id %}')"></i>
