@@ -23,7 +23,7 @@ class Month(models.Model):
     def __str__(self):
         # فرض بر این است که شماره روز و شماره ماه و سال را می‌خواهیم نمایش دهیم
         year = self.year.number if self and self.year else "Unknown Year"
-        return f"{year}-{self.number}"  # به فرمت YYYY/MM/DD
+        return f"{year}-{self.name}"  # به فرمت YYYY/MM/DD
 
 
 class Day(models.Model):
