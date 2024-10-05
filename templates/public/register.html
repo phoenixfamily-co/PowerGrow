@@ -394,10 +394,13 @@ button:hover {
         time: false,
     });
 
-    const form = document.getElementById('registrationForm');
+    document.addEventListener('DOMContentLoaded', () => {
 
-    form.addEventListener("submit", async function (event) {
-        event.preventDefault();  // جلوگیری از ارسال فرم به طور پیش‌فرض
+    const submit = document.getElementById('submit');
+
+    if (submit) { // چک کردن وجود دکمه
+        submit.addEventListener('click', async (event) => {
+            event.preventDefault(); // جلوگیری از ارسال پیش‌فرض فرم
 
         const name = document.getElementById('name').value;
         const username = document.getElementById('phone').value;
@@ -423,13 +426,15 @@ button:hover {
             "gender": "تعریف نشده",
         };
 
-        const response = await fetch('{% url 'user:create-user' %}', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(param)
-        });
+
+        try {
+            const response = await fetch('{% url 'user:create-user' %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(param)
+            });
 
         if (response.status === 201) {
             window.location.assign(`{% url 'user:login' %}`);
@@ -438,7 +443,15 @@ button:hover {
             const errorMessage = errorData.error || "خطای ناشناخته، لطفا دوباره تلاش کنید."; // پیام خطا را استخراج کنید
             alert(errorMessage); // نمایش پیام خطا
         }
+         } catch (error) {
+                console.error("Error during login:", error);
+                alert("خطایی در ارتباط با سرور پیش آمد. لطفاً دوباره تلاش کنید.");
+            }
     });
+    }
+
+    });
+
 </script>
 
 </body>
