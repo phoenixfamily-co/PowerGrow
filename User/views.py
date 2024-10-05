@@ -7,6 +7,8 @@ from django.template import loader
 from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_exempt
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from rest_framework.generics import get_object_or_404
+
 from About.models import AboutUs
 from Product.models import *
 from User.serializer import *
@@ -126,7 +128,7 @@ def pass_view(request, number):
 def user_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('user/dashboard.html')
-    user = User.objects.all().get(id=pk)
+    user = get_object_or_404(User, id=pk)
     context = {
         "about": about,
         "user": user,
@@ -138,7 +140,7 @@ def user_home_view(request, pk):
 def teacher_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('teacher/dashboard.html')
-    user = User.objects.all().get(id=pk)
+    user = get_object_or_404(User, id=pk)
     context = {
         "about": about,
         "user": user
@@ -150,7 +152,7 @@ def teacher_home_view(request, pk):
 def secretary_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('admin/dashboard.html')
-    user = get_user_model()
+    user = get_object_or_404(User, id=pk)
     context = {
         "about": about,
         "user": user
@@ -163,7 +165,7 @@ def secretary_home_view(request, pk):
 def manager_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('manager/dashboard.html')
-    user = get_user_model()
+    user = get_object_or_404(User, id=pk)
     context = {
         "about": about,
         "user": user
@@ -174,7 +176,7 @@ def manager_home_view(request, pk):
 def profile_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('public/profile.html')
-    user = get_user_model()
+    user = get_object_or_404(User, id=pk)
     context = {
         "about": about,
         "user": user

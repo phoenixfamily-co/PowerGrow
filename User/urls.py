@@ -21,7 +21,7 @@ urlpatterns = [
     path('salary/<int:pk>/', salary_view, name='salary'),
     path('home/manager/users/', users_view, name='users_view'),
     path('create/user/', UserView.as_view({'post': 'create'}), name='create-user'),  # ثبت‌نام و به‌روزرسانی پروفایل
-    path('update/user/<int:user_id>/', UserView.as_view({'put': 'update'}), name='user-delete'),  # حذف کاربر
+    path('update/user/<int:user_id>/', UserView.as_view({'put': 'update'}), name='user-update'),  # حذف کاربر
     path('delete/user/<int:user_id>/', UserView.as_view({'delete': 'destroy'}), name='user-delete'),  # حذف کاربر
 ]
 

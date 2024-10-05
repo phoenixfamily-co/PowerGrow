@@ -182,10 +182,10 @@
                     {% endif %}
                 </td>
                 <td class="text-center">
-                    <i class="fa fa-pencil text-warning" aria-hidden="true" style="cursor: pointer" title="ویرایش" onclick="window.open('{% url 'product:update_course' x.id %}')"></i>
+                    <i class="fa fa-pencil text-warning" aria-hidden="true" style="cursor: pointer" title="ویرایش" onclick="window.open('{% url 'user:user-update' x.id %}')"></i>
                 </td>
                  <td class="text-center">
-                    <i class="fa fa-times text-danger" aria-hidden="true" style="cursor: pointer" title="حذف" onclick="window.open('{% url 'product:manager-delete-course' x.id %}')"></i>
+                    <i class="fa fa-times text-danger" aria-hidden="true" style="cursor: pointer" title="حذف" onclick="window.open('{% url 'user:user-delete' x.id %}')"></i>
                 </td>
                 <td>{{ x.name}}</td>
                 <td dir="auto">{{ x.number}}</td>
