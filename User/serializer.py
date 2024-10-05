@@ -21,7 +21,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('number', 'password', 'name', 'birthdate')  # می‌توانید فیلدهای دلخواه را اضافه کنید
+        fields = ('number', 'name', 'birthdate')  # می‌توانید فیلدهای دلخواه را اضافه کنید
         extra_kwargs = {
             'password': {'write_only': True}
         }
