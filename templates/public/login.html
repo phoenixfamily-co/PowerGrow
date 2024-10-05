@@ -401,7 +401,8 @@ footer {
                 }
             } catch (error) {
                 console.error("Error during login:", error);
-                alert("خطایی در ارتباط با سرور پیش آمد. لطفاً دوباره تلاش کنید.");
+                alert("خطایی در ارتباط با سرور پیش آمد. لطفاً دوباره تلاش کنید." +
+                    `${error}`);
             }
         });
     } else {
