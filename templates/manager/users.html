@@ -13,7 +13,6 @@
 
         <title>مدیریت کاربران</title>
 
-
     <style>
 
            @font-face {
@@ -172,7 +171,15 @@
             <tr>
                 <th scope="row">{{ x.id }}</th>
                 <td class="text-center">
-                    <i class="fa fa-eye text-info" aria-hidden="true" style="cursor: pointer" title="مشاهده حقوق" onclick="window.open('{% url 'product:product_view' x.id %}')"></i>
+                     {% if x.is_staff %}
+                         <i class="fa fa-eye text-info" aria-hidden="true" style="cursor: pointer" title="مشاهده" onclick="window.open('{% url 'user:manager_home' x.id %}')"></i>
+                    {% elif x.is_superuser %}
+                         <i class="fa fa-eye text-info" aria-hidden="true" style="cursor: pointer" title="مشاهده" onclick="window.open('{% url 'user:admin_home' x.id %}')"></i>
+                    {% elif x.is_teacher %}
+                         <i class="fa fa-eye text-info" aria-hidden="true" style="cursor: pointer" title="مشاهده" onclick="window.open('{% url 'user:teacher_home' x.id %}')"></i>
+                        {% else %}
+                         <i class="fa fa-eye text-info" aria-hidden="true" style="cursor: pointer" title="مشاهده" onclick="window.open('{% url 'user:user_home' x.id %}')"></i>
+                    {% endif %}
                 </td>
                 <td class="text-center">
                     <i class="fa fa-pencil text-warning" aria-hidden="true" style="cursor: pointer" title="ویرایش" onclick="window.open('{% url 'product:update_course' x.id %}')"></i>
@@ -185,11 +192,11 @@
                 <td>{{ x.birthdate}}</td>
                 <td>{{ x.datetime }}</td>
                 <td>
-                    {% if x.is_staff == True %}
+                    {% if x.is_staff %}
                         مدیر
-                    {% elif x.is_superuser == True %}
+                    {% elif x.is_superuser%}
                         منشی
-                    {% elif x.is_teacher == True %}
+                    {% elif x.is_teacher %}
                         مربی
                         {% else %}
                         شاگرد
