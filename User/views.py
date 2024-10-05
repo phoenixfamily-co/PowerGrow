@@ -10,11 +10,15 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from About.models import AboutUs
 from Product.models import *
 from User.serializer import *
-from User.models import *
 from rest_framework import status, viewsets
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
-from django.contrib.auth.models import User
+try:
+    from django.contrib.auth import get_user_model
+except ImportError: # django < 1.5
+    from django.contrib.auth.models import User
+else:
+    User = get_user_model()
 
 
 def login_view(request):
@@ -134,7 +138,7 @@ def user_home_view(request, pk):
 def teacher_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('teacher/dashboard.html')
-    user = get_user_model()
+    user = User.objects.all().get(id=pk)
     context = {
         "about": about,
         "user": user
@@ -203,8 +207,9 @@ def salary_view(request, pk):
 
 
 def users_view(request):
+    template = loader.get_template('manager/users.html')
     about = AboutUs.objects.values().first()
-    user = get_user_model().objects.all()  # به دست آوردن تمام کاربران
+    user = User.objects.all()
     p = Paginator(user, 1000)  # ایجاد Paginator با queryset کاربران
     page_number = request.GET.get('page')
 
@@ -221,7 +226,7 @@ def users_view(request):
         "about": about,
         'page_obj': page_obj
     }
-    return render(request, 'manager/users.html', context)
+    return HttpResponse(template.render(context, request))
 
 
 class UserView(viewsets.ViewSet):
