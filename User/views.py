@@ -233,7 +233,7 @@ class UserView(viewsets.ViewSet):
     permission_classes = (AllowAny,)  # برای ثبت‌نام، در ابتدا می‌توانیم AllowAny را قرار دهیم
     serializer_class = RegisterSerializer  # برای ثبت‌نام
 
-    def post(self, request):
+    def create(self, request):
         # ثبت‌نام کاربر
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
@@ -242,7 +242,7 @@ class UserView(viewsets.ViewSet):
                             status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def put(self, request):
+    def update(self, request):
         # به‌روزرسانی پروفایل کاربر
         self.permission_classes = (IsAuthenticated,)  # مجوزها برای به‌روزرسانی
         user = request.user  # کاربر فعلی
@@ -254,7 +254,7 @@ class UserView(viewsets.ViewSet):
 
         return Response(profile_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request, user_id):
+    def destroy(self, request, user_id):
         # حذف کاربر (تنها برای مدیران)
         self.permission_classes = (IsAdminUser,)  # فقط مدیران می‌توانند کاربر را حذف کنند
         try:
