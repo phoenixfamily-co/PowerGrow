@@ -425,11 +425,12 @@ button:hover {
             "password": pass1,
             "name": name,
             "birthdate": birthdate,
-            "gender": "تعریف نشده",
         };
 
 
         try {
+
+            console.log(param)
 
             const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
