@@ -38,7 +38,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     number = PhoneNumberField(unique=True, verbose_name="شماره تلفن")
     email = models.EmailField(blank=True, null=True, verbose_name="ایمیل")
     is_staff = models.BooleanField(default=False, verbose_name="مدیر")
-    is_active = models.BooleanField(default=False, verbose_name='فعال')
+    is_active = models.BooleanField(default=True, verbose_name='فعال')
     is_superuser = models.BooleanField(default=False, verbose_name='منشی')
     is_teacher = models.BooleanField(default=False, verbose_name='مربی')
     birthdate = models.CharField(max_length=10, default=timezone.now, verbose_name='تاریخ تولد')

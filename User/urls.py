@@ -11,38 +11,18 @@ urlpatterns = [
     path('login/api/', custom_login, name='login_api'),
     path('logout/api/', custom_logout, name='logout_api'),  # ثبت ویو logout
     path('register/', register_view, name='register'),
-    path('register/api/', RegisterView.as_view(), name="api_register"),
-    path('register/manager/api/', AdminRegisterUser.as_view({'post': 'create'}), name="admin_register"),
-    path('register/admin/api/', SecretaryRegisterUser.as_view({'post': 'create'}), name="secretary_register"),
-    path('verification/<str:number>/', verification_view, name='verification'),
-    path('verification/api/<str:number>/', get_verification, name="api_verification"),
-    path('verification/api/<str:number>/activate/', ActivateAccount.as_view(), name='activate_account'),
     path('forget/', forget_view, name="forget"),
-    path('forget/api/<str:number>/', get_user, name="api_forget"),
     path('verification/password/<str:number>/', pass_view, name='password'),
-    path('verification/password/api/<str:number>/', ChangePasswordView.as_view(), name='auth_change_password'),
-    path('salary/api/<int:pk>/', ChangeSalaryView.as_view(), name='change_salary'),
-    path('debt/api/<int:pk>/', ChangeDebtView.as_view(), name='change_debt'),
-    path('change/name/api/<int:pk>/', ChangeNameView.as_view(), name='change_name'),
-    path('change/number/api/<int:pk>/', ChangeNumberView.as_view(), name='change_number'),
-    path('change/birth/api/<int:pk>/', ChangeBirthView.as_view(), name='change_birth'),
-    path('change/pass/api/<int:pk>/', ChangePassView.as_view(), name='change_pass'),
-    path('change/description/api/<int:pk>/', ChangeDescriptionView.as_view(), name='change_description'),
-    path('update/<str:number>/', UpdateProfile.as_view(), name='update_profile'),
-    path('delete/<int:id>/', DeleteAccount.as_view(), name='delete_profile'),
-    path('get/<str:number>/', GetAccount.as_view(), name='get_profile'),
-    path('all/', GetAllAccount.as_view(), name='get_all_profiles'),
-    path('access/<str:number>/', ManagePermission.as_view(), name='manage_access'),
-    path('access/<str:number>/admin/', ManageAccess.as_view(), name='manage_access_secretary'),
     path('home/user/<int:pk>/', user_home_view, name='user_home'),
     path('home/teacher/<int:pk>/', teacher_home_view, name='teacher_home'),
     path('home/admin/<int:pk>/', secretary_home_view, name='admin_home'),
     path('home/manager/<int:pk>/', manager_home_view, name='manager_home'),
     path('profile/<int:pk>/', profile_view, name='profile'),
     path('salary/<int:pk>/', salary_view, name='salary'),
-    path('reservation/<int:pk>/', user_gym_view, name='user_gym'),
-    path('product/<int:pk>/', user_product_view, name='user_product'),
     path('users/', user_view, name='users_view'),
-    path('users/admin/', admin_user_view, name='users_view_admin'),
-
+    path('create/user/', UserView.as_view({'post': 'create'}), name='create-user'),  # ثبت‌نام و به‌روزرسانی پروفایل
+    path('update/user/<int:user_id>/', UserView.as_view({'put': 'update'}), name='user-delete'),  # حذف کاربر
+    path('delete/user/<int:user_id>/', UserView.as_view({'delete': 'destroy'}), name='user-delete'),  # حذف کاربر
 ]
+
+

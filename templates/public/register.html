@@ -390,52 +390,55 @@ button:hover {
 
 
 <script>
-
-      jalaliDatepicker.startWatch({
+    jalaliDatepicker.startWatch({
         time: false,
     });
 
+    const form = document.getElementById('registrationForm');
 
-    const submit = document.getElementById('submit');
-    const name = document.getElementById('name');
-    const username = document.getElementById('phone');
-    const birthdate = document.getElementById('birthdate');
-    const pass1 = document.getElementById('password1');
-    const pass2 = document.getElementById('password2');
+    form.addEventListener("submit", async function (event) {
+        event.preventDefault();  // جلوگیری از ارسال فرم به طور پیش‌فرض
 
-    submit.addEventListener("click", async function (event) {
-        if (birthdate.value !=="" && name.value !=="") {
-            if (pass1.value === pass2.value) {
+        const name = document.getElementById('name').value;
+        const username = document.getElementById('phone').value;
+        const birthdate = document.getElementById('birthdate').value;
+        const pass1 = document.getElementById('password1').value;
+        const pass2 = document.getElementById('password2').value;
 
-                const param = {
-                    "number": `+98${username.value}`,
-                    "password": pass1.value,
-                    "name": name.value,
-                    "birthdate": birthdate.value,
-                    "gender": "تعریف نشده",
-                }
-
-                const response = await fetch('api/', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(param)
-                });
-                if (response.status === 201) {
-                    window.location.assign(('../verification/' + '+98' + username.value + '/').toString())
-                } else {
-                    alert("نام کاربری قبلا ثبت نام شده است")
-                }
-            } else {
-                alert("پسورد ها یکسان نیستند")
-            }
+        if (!name || !birthdate) {
+            alert("تمامی فیلد ها الزامی میباشد");
+            return;
         }
-        else {
-            alert("تمامی فیلد ها الزامی میباشد")
-        }
-});
 
+        if (pass1 !== pass2) {
+            alert("پسورد ها یکسان نیستند");
+            return;
+        }
+
+        const param = {
+            "number": `+98${username}`,
+            "password": pass1,
+            "name": name,
+            "birthdate": birthdate,
+            "gender": "تعریف نشده",
+        };
+
+        const response = await fetch('api/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(param)
+        });
+
+        if (response.status === 201) {
+            window.location.assign(`{% url 'user:login' %}`);
+        } else {
+            const errorData = await response.json(); // استخراج داده‌های خطا
+            const errorMessage = errorData.error || "خطای ناشناخته، لطفا دوباره تلاش کنید."; // پیام خطا را استخراج کنید
+            alert(errorMessage); // نمایش پیام خطا
+        }
+    });
 </script>
 
 </body>

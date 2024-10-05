@@ -1,23 +1,21 @@
 import json
 
+import requests
 from django.contrib.auth import login, authenticate, logout
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect
 from django.template import loader
 from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_exempt
-from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import generics, status, viewsets, filters
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import AllowAny, IsAdminUser
-from rest_framework.response import Response
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-
 from About.models import AboutUs
 from Product.models import *
-from Reservation.models import Reservations
 from User.serializer import *
 from User.models import *
+from rest_framework import generics, status, viewsets
+from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
+from rest_framework.response import Response
+from django.contrib.auth.models import User
 
 
 def login_view(request):
@@ -45,6 +43,34 @@ def login_view(request):
         return HttpResponse(template.render(context, request))
 
 
+def custom_login(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)  # داده‌ها از JSON خوانده می‌شوند
+        username = data.get('username')
+        password = data.get('password')
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return JsonResponse({
+                'message': 'Login successful',
+                'user': {
+                    'id': user.id,
+                    'is_staff': user.is_staff,
+                    'is_superuser': user.is_superuser,
+                    'is_teacher': user.is_teacher
+                }
+            }, status=200)
+        return JsonResponse({'error': 'Invalid credentials'}, status=400)
+    return JsonResponse({'error': 'Invalid request'}, status=400)
+
+
+def custom_logout(request):
+    logout(request)  # خروج کاربر
+
+    return redirect('user:login')
+
+
 @csrf_exempt
 @cache_page(60 * 15)
 def register_view(request):
@@ -59,17 +85,18 @@ def register_view(request):
     return HttpResponse(template.render(context, request))
 
 
-def verification_view(request, number):
-    about = AboutUs.objects.values().first()
-    data = {'to': number}
-    response = requests.post('https://console.melipayamak.com/api/send/otp/d15bf0639e874ecebb5040b599cb8af6', json=data)
-    template = loader.get_template('public/verification.html')
-    context = {
-        "number": number,
-        "about": about,
-        "response": response.json()
-    }
-    return HttpResponse(template.render(context, request))
+# def verification_view(request, number):
+#     about = AboutUs.objects.values().first()
+#     data = {'to': number}
+#     response = requests.post('https://console.melipayamak.com/api/send/otp/d15bf0639e874ecebb5040b599cb8af6',
+#                              json=data)
+#     template = loader.get_template('public/verification.html')
+#     context = {
+#         "number": number,
+#         "about": about,
+#         "response": response.json()
+#     }
+#     return HttpResponse(template.render(context, request))
 
 
 def forget_view(request):
@@ -105,44 +132,12 @@ def user_home_view(request, pk):
 
 
 @cache_page(60 * 15)
-def user_gym_view(request, pk):
-    about = AboutUs.objects.values().first()
-    template = loader.get_template('user/gym.html')
-    reservation = Reservations.objects.get(id=pk)
-    sport = Sport.objects.all().values()
-    context = {
-        "about": about,
-        "reservation": reservation,
-        "sport": sport,
-    }
-    return HttpResponse(template.render(context, request))
-
-
-@cache_page(60 * 15)
-def user_product_view(request, pk):
-    about = AboutUs.objects.values().first()
-    template = loader.get_template('user/product.html')
-    participants = Participants.objects.get(id=pk)
-    sport = Sport.objects.all().values()
-    size = Participants.objects.filter(course__pk=participants.course.id).values()
-    context = {
-        "about": about,
-        "participants": participants,
-        "size": len(list(size)),
-        "sport": sport,
-
-    }
-    return HttpResponse(template.render(context, request))
-
-
-@cache_page(60 * 15)
 def teacher_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('teacher/dashboard.html')
     user = User.objects.all().get(id=pk)
     context = {
         "about": about,
-        "id": pk,
         "user": user
     }
     return HttpResponse(template.render(context, request))
@@ -230,199 +225,37 @@ def user_view(request):
     return HttpResponse(template.render(context, request))
 
 
-def admin_user_view(request):
-    template = loader.get_template('admin/users.html')
-    about = AboutUs.objects.values().first()
-    user = User.objects.all()
-    p = Paginator(user, 50)
-    page_number = request.GET.get('page')
-    try:
-        page_obj = p.get_page(page_number)  # returns the desired page object
-    except PageNotAnInteger:
-        # if page_number is not an integer then assign the first page
-        page_obj = p.page(1)
-    except EmptyPage:
-        # if page is empty then return last page
-        page_obj = p.page(p.num_pages)
+class UserView(viewsets.ViewSet):
+    permission_classes = (AllowAny,)  # برای ثبت‌نام، در ابتدا می‌توانیم AllowAny را قرار دهیم
+    serializer_class = RegisterSerializer  # برای ثبت‌نام
 
-    context = {
-        "about": about,
-        'page_obj': page_obj
-    }
-    return HttpResponse(template.render(context, request))
+    def post(self, request):
+        # ثبت‌نام کاربر
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()
+            return Response({"message": "User registered successfully!", "user_id": user.id},
+                            status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def put(self, request):
+        # به‌روزرسانی پروفایل کاربر
+        self.permission_classes = (IsAuthenticated,)  # مجوزها برای به‌روزرسانی
+        user = request.user  # کاربر فعلی
+        profile_serializer = UserProfileSerializer(user, data=request.data)
 
-def custom_login(request):
-    if request.method == 'POST':
-        data = json.loads(request.body)  # داده‌ها از JSON خوانده می‌شوند
-        username = data.get('username')
-        password = data.get('password')
-        user = authenticate(request, username=username, password=password)
+        if profile_serializer.is_valid():
+            profile_serializer.save()
+            return Response({"message": "Profile updated successfully!"}, status=status.HTTP_200_OK)
 
-        if user is not None:
-            login(request, user)
-            return JsonResponse({
-                'message': 'Login successful',
-                'user': {
-                    'id': user.id,
-                    'is_staff': user.is_staff,
-                    'is_superuser': user.is_superuser,
-                    'is_teacher': user.is_teacher
-                }
-            }, status=200)
-        return JsonResponse({'error': 'Invalid credentials'}, status=400)
-    return JsonResponse({'error': 'Invalid request'}, status=400)
+        return Response(profile_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
-def custom_logout(request):
-    logout(request)  # خروج کاربر
-
-    return redirect('user:login')
-
-
-class RegisterView(generics.CreateAPIView):
-    queryset = User.objects.all()
-    permission_classes = (AllowAny,)
-    serializer_class = RegisterSerializer
-
-
-@permission_classes([IsAdminUser])
-class UpdateProfile(generics.UpdateAPIView, ):
-    queryset = User.objects.all()
-    lookup_field = "number"
-    serializer_class = UpdateProfileSerializer
-
-
-@permission_classes([IsAdminUser])
-class AdminRegisterUser(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = AdminRegisterSerializer
-
-
-@permission_classes([IsAdminUser])
-class SecretaryRegisterUser(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = SecretaryRegisterSerializer
-
-
-class ChangePasswordView(generics.UpdateAPIView, ):
-    queryset = User.objects.all()
-    lookup_field = "number"
-    permission_classes = (AllowAny,)
-    serializer_class = ChangePasswordSerializer
-
-
-@permission_classes([IsAdminUser])
-class ChangeSalaryView(generics.UpdateAPIView, ):
-    queryset = User.objects.all()
-    lookup_field = "pk"
-    permission_classes = (AllowAny,)
-    serializer_class = ChangeSalarySerializer
-
-
-@permission_classes([IsAdminUser])
-class ChangeDebtView(generics.UpdateAPIView, ):
-    queryset = User.objects.all()
-    lookup_field = "pk"
-    permission_classes = (AllowAny,)
-    serializer_class = ChangeDebtSerializer
-
-
-@permission_classes([IsAdminUser])
-class DeleteAccount(generics.UpdateAPIView, ):
-    queryset = User.objects.all()
-    lookup_field = "id"
-    permission_classes = (AllowAny,)
-    serializer_class = DeleteAccountSerializer
-
-
-class ActivateAccount(generics.UpdateAPIView, ):
-    queryset = User.objects.all()
-    lookup_field = "number"
-    serializer_class = DeleteAccountSerializer
-
-
-@api_view(['GET'])
-def get_user(request, number):
-    user = User.objects.filter(number=number)
-    ser = GetAccountSerializer(user, many=True)
-    if not user:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-    else:
-        return Response(ser.data, status=status.HTTP_200_OK)
-
-
-@api_view(['GET'])
-def get_verification(request, number):
-    user = User.objects.filter(number=number).values().first()
-    if user["is_active"]:
-        return Response(status=status.HTTP_200_OK)
-    else:
-        return Response(status=status.HTTP_401_UNAUTHORIZED)
-
-
-@permission_classes([IsAdminUser])
-class GetAccount(generics.ListAPIView, ):
-    queryset = User.objects.all()
-    lookup_field = "number"
-    serializer_class = GetAccountSerializer
-
-    def get_queryset(self):
-        queryset = User.objects.filter(number=self.kwargs.get('number'))
-        return queryset
-
-
-class GetAllAccount(generics.ListCreateAPIView, ):
-    queryset = User.objects.all()
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    search_fields = ["name", "number"]
-    serializer_class = GetAccountSerializer
-
-
-@permission_classes([IsAdminUser])
-class ManagePermission(generics.UpdateAPIView, ):
-    queryset = User.objects.all()
-    lookup_field = "number"
-    serializer_class = ManagePermissionSerializer
-
-
-@permission_classes([IsAdminUser])
-class ManageAccess(generics.UpdateAPIView, ):
-    queryset = User.objects.all()
-    lookup_field = "number"
-    serializer_class = ManageAccessSerializer
-
-
-@permission_classes([IsAdminUser])
-class ChangeNameView(generics.UpdateAPIView, ):
-    queryset = User.objects.all()
-    lookup_field = "pk"
-    serializer_class = ChangeNameSerializer
-
-
-@permission_classes([IsAdminUser])
-class ChangeNumberView(generics.UpdateAPIView, ):
-    queryset = User.objects.all()
-    lookup_field = "pk"
-    serializer_class = ChangeNumberSerializer
-
-
-@permission_classes([IsAdminUser])
-class ChangeBirthView(generics.UpdateAPIView, ):
-    queryset = User.objects.all()
-    lookup_field = "pk"
-    serializer_class = ChangeBirthSerializer
-
-
-@permission_classes([IsAdminUser])
-class ChangePassView(generics.UpdateAPIView, ):
-    queryset = User.objects.all()
-    lookup_field = "pk"
-    serializer_class = ChangePasswordSerializer
-
-
-@permission_classes([IsAdminUser])
-class ChangeDescriptionView(generics.UpdateAPIView, ):
-    queryset = User.objects.all()
-    lookup_field = "pk"
-    serializer_class = ChangeDescriptionSerializer
+    def delete(self, request, user_id):
+        # حذف کاربر (تنها برای مدیران)
+        self.permission_classes = (IsAdminUser,)  # فقط مدیران می‌توانند کاربر را حذف کنند
+        try:
+            user = User.objects.get(id=user_id)  # پیدا کردن کاربر بر اساس ID
+            user.delete()  # حذف کاربر
+            return Response({"message": "User deleted successfully!"}, status=status.HTTP_204_NO_CONTENT)
+        except User.DoesNotExist:
+            return Response({"error": "User not found."}, status=status.HTTP_404_NOT_FOUND)
