@@ -423,7 +423,7 @@ button:hover {
             "gender": "تعریف نشده",
         };
 
-        const response = await fetch('api/', {
+        const response = await fetch('{% url 'user:create-user' %}', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
