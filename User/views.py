@@ -205,7 +205,7 @@ def salary_view(request, pk):
 def user_view(request):
     about = AboutUs.objects.values().first()
     template = loader.get_template('manager/users.html')
-    user = User.objects.all()
+    user = get_user_model()
     p = Paginator(user, 1000)
     page_number = request.GET.get('page')
     try:
