@@ -34,14 +34,14 @@ class CustomAccountManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    name = models.CharField(verbose_name="نام نام خانوادگی")
+    name = models.TextField(verbose_name="نام نام خانوادگی")
     number = PhoneNumberField(unique=True, verbose_name="شماره تلفن")
     email = models.EmailField(blank=True, null=True, verbose_name="ایمیل")
     is_staff = models.BooleanField(default=False, verbose_name="مدیر")
     is_active = models.BooleanField(default=True, verbose_name='فعال')
     is_superuser = models.BooleanField(default=False, verbose_name='منشی')
     is_teacher = models.BooleanField(default=False, verbose_name='مربی')
-    birthdate = models.CharField(default=timezone.now, verbose_name='تاریخ تولد')
+    birthdate = models.TextField(default=timezone.now, verbose_name='تاریخ تولد')
     salary = models.CharField(max_length=20, choices=SALARY_CHOICE, blank=True, null=True)
     fee = models.IntegerField(null=True, blank=True)
     situation = models.CharField(max_length=20, choices=DEBT_CHOICE, blank=True, null=True)
