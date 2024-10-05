@@ -43,18 +43,18 @@ class Course(models.Model):
 
 
 class Session(models.Model):
-    number = models.IntegerField(blank=True, null=True)
-    course = models.ForeignKey(Course, on_delete=models.SET_NULL, related_name='sessions', null=True, blank=True)
+    number = models.IntegerField(blank=True, null=True, verbose_name="تعداد جلسات")
+    course = models.ForeignKey(Course, on_delete=models.SET_NULL, related_name='sessions', null=True, blank=True, verbose_name="دوره")
 
     def __str__(self):
         return f"{self.course}-{self.number} جلسه "
 
 
 class Days(models.Model):
-    title = models.TextField(blank=True, null=True)
-    tuition = models.IntegerField()
-    off = models.IntegerField(blank=True, null=True)
-    session = models.ForeignKey(Session, on_delete=models.CASCADE, related_name='days', null=True, blank=True)
+    title = models.TextField(blank=True, null=True, verbose_name="روز هفته")
+    tuition = models.IntegerField(verbose_name="شهریه")
+    off = models.IntegerField(blank=True, null=True, verbose_name="تخفیف")
+    session = models.ForeignKey(Session, on_delete=models.CASCADE, related_name='days', null=True, blank=True, verbose_name="جلسه")
 
 
 class Participants(models.Model):
