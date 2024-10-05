@@ -365,7 +365,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (response.ok) {
                     window.location.reload()
-
+                }else {
+                    const errorData = await response.json();
+                    alert(errorData.message || "خطا در ورود. لطفاً دوباره تلاش کنید.");
                 }
         });
     } else {

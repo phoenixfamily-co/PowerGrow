@@ -57,14 +57,9 @@ def custom_login(request):
 
         if user is not None:
             login(request, user)
-            if request.user.is_staff:
-                return redirect(f'/user/home/manager/{request.user.id}/')
-            elif request.user.is_superuser:
-                return redirect(f'/user/home/admin/{request.user.id}/')
-            elif request.user.is_teacher:
-                return redirect(f'/user/home/teacher/{request.user.id}/')
-            else:
-                return redirect(f'/user/home/user/{request.user.id}/')
+            if user is not None:
+                login(request, user)
+                return JsonResponse({'status': 'success'}, status=200)
 
         return JsonResponse({'error': 'Invalid credentials'}, status=400)
     return JsonResponse({'error': 'Invalid request'}, status=400)
