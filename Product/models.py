@@ -39,7 +39,7 @@ class Course(models.Model):
                               verbose_name='ورزش')
 
     def __str__(self):
-        return f"{self.pk}-{self.title}"  # به جای ID، نام ورزش را نمایش می‌دهد
+        return f"{self.title}-{self.pk}"  # به جای ID، نام ورزش را نمایش می‌دهد
 
 
 class Session(models.Model):
