@@ -392,62 +392,60 @@ button:hover {
 
 
 <script>
-    jalaliDatepicker.startWatch({
+
+        jalaliDatepicker.startWatch({
         time: false,
     });
 
-    document.addEventListener('DOMContentLoaded', () => {
 
+document.addEventListener('DOMContentLoaded', () => {
     const submit = document.getElementById('submit');
 
     if (submit) { // چک کردن وجود دکمه
         submit.addEventListener('click', async (event) => {
             event.preventDefault(); // جلوگیری از ارسال پیش‌فرض فرم
 
-        const name = document.getElementById('name').value;
-        const username = document.getElementById('phone').value;
-        const birthdate = document.getElementById('birthdate').value;
-        const pass1 = document.getElementById('password1').value;
-        const pass2 = document.getElementById('password2').value;
+            const name = document.getElementById('name').value.trim();
+            const username = document.getElementById('phone').value.trim();
+            const birthdate = document.getElementById('birthdate').value;
+            const pass1 = document.getElementById('password1').value;
+            const pass2 = document.getElementById('password2').value;
 
-        if (!name || !birthdate) {
-            alert("تمامی فیلد ها الزامی میباشد");
-            return;
-        }
+            // بررسی تطابق پسوردها
+            if (pass1 !== pass2) {
+                alert("پسوردها یکسان نیستند");
+                return;
+            }
 
-        if (pass1 !== pass2) {
-            alert("پسورد ها یکسان نیستند");
-            return;
-        }
-
-        const param = {
-            "number": `+98${username}`,
-            "password": pass1,
-            "name": name,
-            "birthdate": birthdate,
-        };
-
-            console.log(param)
+            const param = {
+                "number": `+98${username}`,
+                "password": pass1,
+                "name": name,
+                "birthdate": birthdate,
+            };
 
             const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-            const response = await fetch('{% url 'user:create-user' %}', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': csrfToken, // اضافه کردن CSRF token
-                },
-                body: JSON.stringify(param)
-            }).then(response => {
-                if (response.status === 201) {
+                const response = await fetch('{% url 'user:create-user' %}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrfToken, // اضافه کردن CSRF token
+                    },
+                    body: JSON.stringify(param)
+                });
+
+                if (response.ok) { // اگر وضعیت پاسخ موفقیت‌آمیز بود
                     window.location.assign(`{% url 'user:login' %}`);
+                } else {
+                    const errorData = await response.json();
+                    alert(errorData.message || "خطا در ثبت‌نام. لطفاً دوباره تلاش کنید.");
                 }
-            }).catch((error) => console.error('Error:', error));
-
-    });
+        });
+    } else {
+        console.error("Submit button not found");
     }
-    });
-
+});
 </script>
 
 </body>
