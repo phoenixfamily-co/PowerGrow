@@ -244,10 +244,10 @@ class UserView(viewsets.ViewSet):
                             status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def update(self, request):
+    def update(self, request, user_id):
         # به‌روزرسانی پروفایل کاربر
         self.permission_classes = (IsAuthenticated,)  # مجوزها برای به‌روزرسانی
-        user = request.user  # کاربر فعلی
+        user = User.objects.get(id=user_id)  # کاربر فعلی
         profile_serializer = UserProfileSerializer(user, data=request.data)
 
         if profile_serializer.is_valid():
