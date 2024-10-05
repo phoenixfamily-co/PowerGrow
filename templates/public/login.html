@@ -368,8 +368,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     alert(errorData.message || "نام کاربری یا پسورد اشتباه است");
                     return; // خروج از تابع در صورت بروز خطا
                 }
-
                 const data = await response.json();
+                window.location.reload()
                 console.log('Success:', data);
                 // می‌توانید کارهای بیشتری با داده موفقیت انجام دهید، مثلاً ریدایرکت
         });
