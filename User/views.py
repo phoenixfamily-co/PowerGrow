@@ -56,6 +56,7 @@ def custom_login(request):
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
+            login(request, user)
             if user.is_staff:
                 return redirect(f'/user/home/manager/{request.user.id}/')
             elif user.is_superuser:
