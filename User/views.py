@@ -57,16 +57,21 @@ def custom_login(request):
 
         if user is not None:
             login(request, user)
+            # تعیین URL ریدایرکت بر اساس نوع کاربر
             if user.is_staff:
-                return redirect(f'/user/home/manager/{request.user.id}/')
+                redirect_url = f'/user/home/manager/{request.user.id}/'
             elif user.is_superuser:
-                return redirect(f'/user/home/admin/{request.user.id}/')
+                redirect_url = f'/user/home/admin/{request.user.id}/'
             elif user.is_teacher:
-                return redirect(f'/user/home/teacher/{request.user.id}/')
+                redirect_url = f'/user/home/teacher/{request.user.id}/'
             else:
-                return redirect(f'/user/home/user/{request.user.id}/')
+                redirect_url = f'/user/home/user/{request.user.id}/'
+
+            # برگرداندن URL ریدایرکت به عنوان JSON
+            return JsonResponse({'redirect_url': redirect_url}, status=200)
 
         return JsonResponse({'error': 'Invalid credentials'}, status=400)
+
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
 

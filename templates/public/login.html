@@ -354,24 +354,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-                const response = await fetch("{% url 'user:login_api' %}", {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRFToken': csrfToken, // اضافه کردن CSRF token
-                    },
-                    body: JSON.stringify({ username: username, password: password }) // ارسال username و password
-                });
+            fetch('/your/api/endpoint/', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': csrfToken,
+    },
+    body: JSON.stringify({ username, password })
+})
+.then(response => {
+    if (response.ok) {
+        return response.json();
+    } else {
+        throw new Error('Invalid credentials');
+    }
+})
+.then(data => {
+    if (data.redirect_url) {
+        window.location.href = data.redirect_url;  // ریدایرکت به URL
+    }
+})
+.catch(error => {
+    alert(error.message || 'خطا در ورود. لطفاً دوباره تلاش کنید.');
+});
 
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    alert(errorData.message || "نام کاربری یا پسورد اشتباه است");
-                    return; // خروج از تابع در صورت بروز خطا
-                }
-                const data = await response.json();
-                window.location.reload()
-                console.log('Success:', data);
-                // می‌توانید کارهای بیشتری با داده موفقیت انجام دهید، مثلاً ریدایرکت
         });
     } else {
         console.error("Submit button not found");
