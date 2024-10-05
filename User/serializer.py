@@ -27,7 +27,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
         }
 
     def update(self, instance, validated_data):
-        instance.number = validated_data.get('email', instance.email)
+        instance.number = validated_data.get('number', instance.number)
         instance.name = validated_data.get('name', instance.name)
         instance.birthdate = validated_data.get('birthdate', instance.birthdate)
 
