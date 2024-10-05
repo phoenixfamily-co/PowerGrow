@@ -363,15 +363,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: JSON.stringify({ username: username, password: password }) // ارسال username و password
                 });
 
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    alert(errorData.message || "نام کاربری یا پسورد اشتباه است");
-                    return; // خروج از تابع در صورت بروز خطا
+                if (response.ok) {
+                    window.location.reload()
+
                 }
-                const data = await response.json();
-                window.location.reload()
-                console.log('Success:', data);
-                // می‌توانید کارهای بیشتری با داده موفقیت انجام دهید، مثلاً ریدایرکت
         });
     } else {
         console.error("Submit button not found");
