@@ -347,7 +347,6 @@ footer {
        const submit = document.getElementById('submit');
        let redirectUrl;
 
-
     if (submit) { // چک کردن وجود دکمه
         submit.addEventListener('click', async (event) => {
             event.preventDefault(); // جلوگیری از ارسال پیش‌فرض فرم
@@ -355,60 +354,29 @@ footer {
             const username = '+98' + document.getElementById('number').value.trim()
             const password = document.getElementById('password').value
 
-            try {
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-                const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            const response = await fetch("{% url 'user:login_api' %}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken, // اضافه کردن CSRF token
 
-                const response = await fetch("{% url 'user:login_api' %}", {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRFToken': csrfToken, // اضافه کردن CSRF token
-
-                    },
-                    body: JSON.stringify({ username: username, password: password }) // ارسال username و password
-                });
-                const result = await response.json();
-                JSON.stringify(result)
-
-                if (response.ok) { // چک کردن وضعیت پاسخ
-                    JSON.stringify(result)
-
-                    const userRole = result.user
-
-                    if (!userRole) {
-                        alert("کاربری یافت نشد");
-                        return;
-                    }
-
-                    const userId = userRole.id; // شناسه کاربر
-                    // دسترسی به ویژگی‌ها
-                    const isStaff = userRole.is_staff;
-                    const isSuperuser = userRole.is_superuser;
-                    const isTeacher = userRole.is_teacher;
-                    if (isStaff) {
-                        redirectUrl = `/user/home/manager/${userId}/`;
-                    } else if (isSuperuser) {
-                        redirectUrl = `/user/home/admin/${userId}/`;
-                    } else if (isTeacher) {
-                        redirectUrl = `/user/home/teacher/${userId}/`;
-                    } else {
-                        redirectUrl = `/user/home/user/${userId}/`;
-                    }
-                    window.location.assign(redirectUrl);
-                } else {
+                },
+                body: JSON.stringify({ username: username, password: password }) // ارسال username و password
+            }).then(response => {
+                if (!response.ok) {
                     alert("نام کاربری یا پسورد اشتباه است");
                 }
-            } catch (error) {
-                console.error("Error during login:", error);
-                alert("خطایی در ارتباط با سرور پیش آمد. لطفاً دوباره تلاش کنید." +
-                    `${error}`);
-            }
+                return response.json();
+            })
+            .then(data => console.log('Success:', data))
+                .catch((error) => console.error('Error:', error));
         });
     } else {
         console.error("Submit button not found");
     }
-});
+   });
 
 </script>
 

@@ -1,8 +1,8 @@
 import json
 
-from django.contrib.auth import login, authenticate, logout, get_user_model
+from django.contrib.auth import login, authenticate, logout
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from django.template import loader
 from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_exempt
@@ -57,15 +57,15 @@ def custom_login(request):
 
         if user is not None:
             login(request, user)
-            return JsonResponse({
-                'message': 'Login successful',
-                'user': {
-                    'id': user.id,
-                    'is_staff': user.is_staff,
-                    'is_superuser': user.is_superuser,
-                    'is_teacher': user.is_teacher
-                }
-            }, status=200)
+            if user.is_staff:
+                return redirect(f'/user/home/manager/{request.user.id}/')
+            elif user.is_superuser:
+                return redirect(f'/user/home/admin/{request.user.id}/')
+            elif user.is_teacher:
+                return redirect(f'/user/home/teacher/{request.user.id}/')
+            else:
+                return redirect(f'/user/home/user/{request.user.id}/')
+
         return JsonResponse({'error': 'Invalid credentials'}, status=400)
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
