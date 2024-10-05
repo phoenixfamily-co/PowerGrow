@@ -202,7 +202,7 @@ def salary_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
-def user_view(request):
+def users_view(request):
     about = AboutUs.objects.values().first()
     user = get_user_model().objects.all()  # به دست آوردن تمام کاربران
     p = Paginator(user, 1000)  # ایجاد Paginator با queryset کاربران
