@@ -2,7 +2,7 @@ import json
 
 from django.contrib.auth import login, authenticate, logout, get_user_model
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.template import loader
 from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_exempt
@@ -119,10 +119,10 @@ def pass_view(request, number):
 
 
 @cache_page(60 * 15)
-def user_home_view(request):
+def user_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('user/dashboard.html')
-    user = get_user_model()
+    user = User.objects.all().get(id=pk)
     context = {
         "about": about,
         "user": user,
@@ -131,7 +131,7 @@ def user_home_view(request):
 
 
 @cache_page(60 * 15)
-def teacher_home_view(request):
+def teacher_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('teacher/dashboard.html')
     user = get_user_model()
@@ -143,7 +143,7 @@ def teacher_home_view(request):
 
 
 @cache_page(60 * 15)
-def secretary_home_view(request):
+def secretary_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('admin/dashboard.html')
     user = get_user_model()
@@ -156,7 +156,7 @@ def secretary_home_view(request):
 
 
 @cache_page(60 * 15)
-def manager_home_view(request):
+def manager_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('manager/dashboard.html')
     user = get_user_model()
@@ -170,7 +170,7 @@ def manager_home_view(request):
 def profile_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('public/profile.html')
-    user = User.objects.filter(id=pk).values().first()
+    user = get_user_model()
     context = {
         "about": about,
         "user": user
@@ -181,7 +181,7 @@ def profile_view(request, pk):
 def salary_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('teacher/salary.html')
-    user = User.objects.get(id=pk)
+    user = get_user_model()
     ids = User.objects.filter(id=pk).values_list("participants__course__id", flat=True)
     size = User.objects.filter(id=pk).values_list("participants__course", flat=True)
     participants = Participants.objects.filter(course_id__in=ids, user__is_teacher=False,
@@ -202,26 +202,28 @@ def salary_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
+
+
 def user_view(request):
     about = AboutUs.objects.values().first()
-    template = loader.get_template('manager/users.html')
-    user = get_user_model()
-    p = Paginator(user, 1000)
+    user = get_user_model().objects.all()  # به دست آوردن تمام کاربران
+    p = Paginator(user, 1000)  # ایجاد Paginator با queryset کاربران
     page_number = request.GET.get('page')
+
     try:
-        page_obj = p.get_page(page_number)  # returns the desired page object
+        page_obj = p.get_page(page_number)  # بازگشت صفحه مورد نظر
     except PageNotAnInteger:
-        # if page_number is not an integer then assign the first page
+        # اگر page_number عدد صحیح نباشد، صفحه اول را assign کن
         page_obj = p.page(1)
     except EmptyPage:
-        # if page is empty then return last page
+        # اگر صفحه خالی باشد، آخرین صفحه را برگردان
         page_obj = p.page(p.num_pages)
 
     context = {
         "about": about,
         'page_obj': page_obj
     }
-    return HttpResponse(template.render(context, request))
+    return render(request, 'manager/users.html', context)
 
 
 class UserView(viewsets.ViewSet):
