@@ -119,10 +119,10 @@ def pass_view(request, number):
 
 
 @cache_page(60 * 15)
-def user_home_view(request, pk):
+def user_home_view(request):
     about = AboutUs.objects.values().first()
     template = loader.get_template('user/dashboard.html')
-    user = User.objects.all().get(id=pk)
+    user = get_user_model()
     context = {
         "about": about,
         "user": user,
@@ -131,7 +131,7 @@ def user_home_view(request, pk):
 
 
 @cache_page(60 * 15)
-def teacher_home_view(request, pk):
+def teacher_home_view(request):
     about = AboutUs.objects.values().first()
     template = loader.get_template('teacher/dashboard.html')
     user = get_user_model()
@@ -143,10 +143,10 @@ def teacher_home_view(request, pk):
 
 
 @cache_page(60 * 15)
-def secretary_home_view(request, pk):
+def secretary_home_view(request):
     about = AboutUs.objects.values().first()
     template = loader.get_template('admin/dashboard.html')
-    user = User.objects.all().get(id=pk)
+    user = get_user_model()
     context = {
         "about": about,
         "user": user
@@ -156,7 +156,7 @@ def secretary_home_view(request, pk):
 
 
 @cache_page(60 * 15)
-def manager_home_view(request, pk):
+def manager_home_view(request):
     about = AboutUs.objects.values().first()
     template = loader.get_template('manager/dashboard.html')
     user = get_user_model()
