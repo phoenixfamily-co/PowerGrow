@@ -1,7 +1,6 @@
 import json
 
-import requests
-from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth import login, authenticate, logout, get_user_model
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect
 from django.template import loader
@@ -12,7 +11,7 @@ from About.models import AboutUs
 from Product.models import *
 from User.serializer import *
 from User.models import *
-from rest_framework import generics, status, viewsets
+from rest_framework import status, viewsets
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from django.contrib.auth.models import User
@@ -135,7 +134,7 @@ def user_home_view(request, pk):
 def teacher_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('teacher/dashboard.html')
-    user = User.objects.all().get(id=pk)
+    user = get_user_model()
     context = {
         "about": about,
         "user": user
@@ -160,7 +159,7 @@ def secretary_home_view(request, pk):
 def manager_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('manager/dashboard.html')
-    user = User.objects.all().get(id=pk)
+    user = get_user_model()
     context = {
         "about": about,
         "user": user
