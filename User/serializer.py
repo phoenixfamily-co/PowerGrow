@@ -40,3 +40,11 @@ class ChangeUserAccessSerializer(serializers.ModelSerializer):
         model = User
         fields = ('is_staff', 'is_superuser', 'is_teacher', 'is_active')  # می‌توانید فیلدهای دلخواه را اضافه کنید
 
+    def update(self, instance, validated_data):
+        instance.is_staff = validated_data.get('is_staff', instance.is_staff)
+        instance.is_superuser = validated_data.get('is_superuser', instance.is_superuser)
+        instance.is_teacher = validated_data.get('is_teacher', instance.is_teacher)
+        instance.is_active = validated_data.get('is_active', instance.is_active)
+        instance.save()
+        return instance
+
