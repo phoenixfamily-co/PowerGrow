@@ -48,3 +48,16 @@ class ChangeUserAccessSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
+
+class ChangeUserSalarySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('salary', 'fee', 'situation', 'is_active')  # می‌توانید فیلدهای دلخواه را اضافه کنید
+
+    def update(self, instance, validated_data):
+        instance.salary = validated_data.get('salary', instance.salary)
+        instance.fee = validated_data.get('fee', instance.fee)
+        instance.situation = validated_data.get('situation', instance.situation)
+        instance.debt = validated_data.get('debt', instance.debt)
+        instance.save()
+        return instance

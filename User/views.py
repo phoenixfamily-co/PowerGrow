@@ -312,3 +312,26 @@ class ChangeUserAccessView(UpdateAPIView):
         serializer.save()  # از متد save سریالایزر استفاده می‌کنیم
 
         return Response({"detail": "User access has been updated successfully."}, status=status.HTTP_200_OK)
+
+
+class ChangeUserSalaryView(UpdateAPIView):
+    serializer_class = ChangeUserSalarySerializer
+    permission_classes = [IsAdminUser]
+
+    def get_object(self):
+        user_id = self.kwargs['user_id']
+        try:
+            return User.objects.get(id=user_id)
+        except User.DoesNotExist:
+            return None
+
+    def update(self, request, *args, **kwargs):
+        user = self.get_object()
+        if user is None:
+            return Response({"detail": "User not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = self.get_serializer(user, data=request.data)  # اضافه کردن partial=True برای بروزرسانی جزئی
+        serializer.is_valid(raise_exception=True)
+        serializer.save()  # از متد save سریالایزر استفاده می‌کنیم
+
+        return Response({"detail": "User access has been updated successfully."}, status=status.HTTP_200_OK)

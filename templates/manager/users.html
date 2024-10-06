@@ -195,7 +195,7 @@
                     <i class="fa-solid fa-fingerprint" aria-hidden="true" style="cursor: pointer" title="دسترسی" onclick="window.open('{% url 'user:change-user-access' x.id %}')"></i>
                 </td>
             <td class="text-center">
-                    <i class="fa-solid fa-sack-dollar text-success" aria-hidden="true" style="cursor: pointer" title="حقوق" onclick="window.open('{% url 'user:user-update' x.id %}')"></i>
+                    <i class="fa-solid fa-sack-dollar text-success" aria-hidden="true" style="cursor: pointer" title="حقوق" onclick="window.open('{% url 'user:change-user-salary' x.id %}')"></i>
                 </td>
                 <td>{{ x.name}}</td>
                 <td dir="auto">{{ x.number}}</td>

@@ -25,6 +25,7 @@ urlpatterns = [
     path('delete/user/<int:user_id>/', UserView.as_view({'delete': 'destroy'}), name='user-delete'),  # حذف کاربر
     path('change-password/<int:user_id>/', ChangePasswordView.as_view(), name='change-password'),
     path('change-access/<int:user_id>/', ChangeUserAccessView.as_view(), name='change-user-access'),
+    path('change-salary/<int:user_id>/', ChangeUserAccessView.as_view(), name='change-user-salary'),
 
 ]
 
