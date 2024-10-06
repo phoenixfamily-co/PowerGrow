@@ -21,13 +21,9 @@ class RegisterSerializer(serializers.ModelSerializer):
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('number', 'name', 'birthdate')  # می‌توانید فیلدهای دلخواه را اضافه کنید
-        extra_kwargs = {
-            'password': {'write_only': True}
-        }
+        fields = ('name', 'birthdate')  # می‌توانید فیلدهای دلخواه را اضافه کنید
 
     def update(self, instance, validated_data):
-        instance.number = validated_data.get('number', instance.number)
         instance.name = validated_data.get('name', instance.name)
         instance.birthdate = validated_data.get('birthdate', instance.birthdate)
 
