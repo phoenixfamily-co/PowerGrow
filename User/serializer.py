@@ -36,8 +36,7 @@ class ChangePasswordSerializer(serializers.Serializer):
 
 
 class ChangeUserAccessSerializer(serializers.Serializer):
-    is_staff = serializers.BooleanField(required=True)
-    is_superuser = serializers.BooleanField(required=True)
-    is_teacher = serializers.BooleanField(required=True)
-    is_active = serializers.BooleanField(required=True)
+    class Meta:
+        model = User
+        fields = ('is_staff', 'is_superuser', 'is_teacher', 'is_active')  # می‌توانید فیلدهای دلخواه را اضافه کنید
 
