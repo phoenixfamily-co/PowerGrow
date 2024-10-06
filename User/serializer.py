@@ -27,8 +27,5 @@ class UserProfileSerializer(serializers.ModelSerializer):
         instance.name = validated_data.get('name', instance.name)
         instance.birthdate = validated_data.get('birthdate', instance.birthdate)
 
-        if 'password' in validated_data:
-            instance.password = make_password(validated_data['password'])
-
         instance.save()
         return instance
