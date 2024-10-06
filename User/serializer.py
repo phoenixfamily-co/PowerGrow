@@ -35,7 +35,7 @@ class ChangePasswordSerializer(serializers.Serializer):
     new_password = serializers.CharField(required=True)
 
 
-class ChangeUserAccessSerializer(serializers.Serializer):
+class ChangeUserAccessSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('is_staff', 'is_superuser', 'is_teacher', 'is_active')  # می‌توانید فیلدهای دلخواه را اضافه کنید
