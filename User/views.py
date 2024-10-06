@@ -307,8 +307,7 @@ class ChangeUserAccessView(UpdateAPIView):
         if user is None:
             return Response({"detail": "User not found."}, status=status.HTTP_404_NOT_FOUND)
 
-        serializer = self.get_serializer(user, data=request.data,
-                                         partial=True)  # اضافه کردن partial=True برای بروزرسانی جزئی
+        serializer = self.get_serializer(user, data=request.data)  # اضافه کردن partial=True برای بروزرسانی جزئی
         serializer.is_valid(raise_exception=True)
         serializer.save()  # از متد save سریالایزر استفاده می‌کنیم
 
