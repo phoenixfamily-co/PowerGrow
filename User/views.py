@@ -15,7 +15,6 @@ from User.serializer import *
 from rest_framework import status, viewsets, generics
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
-from django.contrib.auth import update_session_auth_hash
 
 
 try:
@@ -308,14 +307,9 @@ class ChangeUserAccessView(UpdateAPIView):
         if user is None:
             return Response({"detail": "User not found."}, status=status.HTTP_404_NOT_FOUND)
 
-        serializer = self.get_serializer(data=request.data)
+        serializer = self.get_serializer(user, data=request.data,
+                                         partial=True)  # اضافه کردن partial=True برای بروزرسانی جزئی
         serializer.is_valid(raise_exception=True)
-
-        user.is_staff = serializer.validated_data['is_staff']
-        user.is_superuser = serializer.validated_data['is_superuser']
-        user.is_teacher = serializer.validated_data['is_teacher']
-        user.is_active = serializer.validated_data['is_active']
-
-        user.save()
+        serializer.save()  # از متد save سریالایزر استفاده می‌کنیم
 
         return Response({"detail": "User access has been updated successfully."}, status=status.HTTP_200_OK)
