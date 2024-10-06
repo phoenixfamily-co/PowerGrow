@@ -290,3 +290,32 @@ class ChangePasswordView(UpdateAPIView):
         user.set_password(new_password)
         user.save()
         return Response({"detail": "Password has been changed successfully."}, status=status.HTTP_200_OK)
+
+
+class ChangeUserAccessView(UpdateAPIView):
+    serializer_class = ChangeUserAccessSerializer
+    permission_classes = [IsAdminUser]
+
+    def get_object(self):
+        user_id = self.kwargs['user_id']
+        try:
+            return User.objects.get(id=user_id)
+        except User.DoesNotExist:
+            return None
+
+    def update(self, request, *args, **kwargs):
+        user = self.get_object()
+        if user is None:
+            return Response({"detail": "User not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        user.is_staff = serializer.validated_data['is_staff']
+        user.is_superuser = serializer.validated_data['is_superuser']
+        user.is_teacher = serializer.validated_data['is_teacher']
+        user.is_active = serializer.validated_data['is_active']
+
+        user.save()
+
+        return Response({"detail": "User access has been updated successfully."}, status=status.HTTP_200_OK)

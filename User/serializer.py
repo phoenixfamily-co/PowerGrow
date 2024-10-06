@@ -33,3 +33,11 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
 class ChangePasswordSerializer(serializers.Serializer):
     new_password = serializers.CharField(required=True)
+
+
+class ChangeUserAccessSerializer(serializers.Serializer):
+    is_staff = serializers.BooleanField(required=True)
+    is_superuser = serializers.BooleanField(required=True)
+    is_teacher = serializers.BooleanField(required=True)
+    is_active = serializers.BooleanField(required=True)
+
