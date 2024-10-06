@@ -174,7 +174,7 @@
                 <option value="">انتخاب کنید</option>
                 {% for x in course %}
                     <option value="{{ x.id }}" {% if x.id == participant.course.id %}selected{% endif %}>
-                        {{ x.id }}-{{ x.title }}
+                        {{ x.title }}-{{ x.id }}
                     </option>
                 {% endfor %}
             </select>
