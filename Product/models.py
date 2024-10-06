@@ -44,7 +44,7 @@ class Course(models.Model):
 
 class Session(models.Model):
     number = models.IntegerField(blank=True, null=True, verbose_name="تعداد جلسات")
-    course = models.ForeignKey(Course, on_delete=models.SET_NULL, related_name='sessions', null=True, blank=True, verbose_name="دوره")
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='sessions', null=True, blank=True, verbose_name="دوره")
 
     def __str__(self):
         return f"{self.course}-{self.number} جلسه "
