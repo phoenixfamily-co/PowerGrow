@@ -52,7 +52,7 @@ class ChangeUserAccessSerializer(serializers.ModelSerializer):
 class ChangeUserSalarySerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('salary', 'fee', 'situation', 'is_active')  # می‌توانید فیلدهای دلخواه را اضافه کنید
+        fields = ('salary', 'fee', 'situation', 'debt')  # می‌توانید فیلدهای دلخواه را اضافه کنید
 
     def update(self, instance, validated_data):
         instance.salary = validated_data.get('salary', instance.salary)
