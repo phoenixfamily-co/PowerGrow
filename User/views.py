@@ -12,12 +12,13 @@ from rest_framework.generics import get_object_or_404
 from About.models import AboutUs
 from Product.models import *
 from User.serializer import *
-from rest_framework import status, viewsets
+from rest_framework import status, viewsets, generics
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
+
 try:
     from django.contrib.auth import get_user_model
-except ImportError: # django < 1.5
+except ImportError:  # django < 1.5
     from django.contrib.auth.models import User
 else:
     User = get_user_model()
@@ -226,12 +227,12 @@ def users_view(request):
     return HttpResponse(template.render(context, request))
 
 
-class UserView(viewsets.ViewSet):
-    permission_classes = (AllowAny,)  # برای ثبت‌نام، در ابتدا می‌توانیم AllowAny را قرار دهیم
-    serializer_class = RegisterSerializer  # برای ثبت‌نام
+class UserCreateView(generics.CreateAPIView):
+    queryset = Session.objects.all()
+    serializer_class = RegisterSerializer
+    permission_classes = [AllowAny]
 
-    def create(self, request):
-        # ثبت‌نام کاربر
+    def create(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
@@ -239,21 +240,21 @@ class UserView(viewsets.ViewSet):
                             status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+class UserView(viewsets.ViewSet):
+    permission_classes = [IsAuthenticated]  # برای ثبت‌نام، در ابتدا می‌توانیم AllowAny را قرار دهیم
+    serializer_class = UserProfileSerializer  # برای ثبت‌نام
+
     def update(self, request, user_id):
-        # به‌روزرسانی پروفایل کاربر
-        self.permission_classes = (IsAuthenticated,)  # مجوزها برای به‌روزرسانی
         user = User.objects.get(id=user_id)  # کاربر فعلی
-        profile_serializer = UserProfileSerializer(user, data=request.data)
+        serializer = self.serializer_class(user, data=request.data)
 
-        if profile_serializer.is_valid():
-            profile_serializer.save()
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
             return Response({"message": "Profile updated successfully!"}, status=status.HTTP_200_OK)
-
-        return Response(profile_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def destroy(self, request, user_id):
-        # حذف کاربر (تنها برای مدیران)
-        self.permission_classes = (IsAdminUser,)  # فقط مدیران می‌توانند کاربر را حذف کنند
         try:
             user = User.objects.get(id=user_id)  # پیدا کردن کاربر بر اساس ID
             user.delete()  # حذف کاربر

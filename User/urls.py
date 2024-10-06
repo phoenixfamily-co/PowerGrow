@@ -11,6 +11,7 @@ urlpatterns = [
     path('login/api/', custom_login, name='login_api'),
     path('logout/api/', custom_logout, name='logout_api'),  # ثبت ویو logout
     path('register/', register_view, name='register'),
+    path('register/api/', UserCreateView.as_view(), name='create-user'),  # ثبت‌نام و به‌روزرسانی پروفایل
     path('forget/', forget_view, name="forget"),
     path('verification/password/<str:number>/', pass_view, name='password'),
     path('home/user/<int:pk>/', user_home_view, name='user_home'),
@@ -20,7 +21,6 @@ urlpatterns = [
     path('profile/<int:pk>/', profile_view, name='profile'),
     path('salary/<int:pk>/', salary_view, name='salary'),
     path('home/manager/users/', users_view, name='users_view'),
-    path('create/user/', UserView.as_view({'post': 'create'}), name='create-user'),  # ثبت‌نام و به‌روزرسانی پروفایل
     path('update/user/<int:user_id>/', UserView.as_view({'put': 'update'}), name='user-update'),  # حذف کاربر
     path('delete/user/<int:user_id>/', UserView.as_view({'delete': 'destroy'}), name='user-delete'),  # حذف کاربر
 ]
