@@ -349,7 +349,7 @@ document.addEventListener('DOMContentLoaded', () => {
         submit.addEventListener('click', async (event) => {
             event.preventDefault(); // جلوگیری از ارسال پیش‌فرض فرم
 
-            const username = '+98' + document.getElementById('number').value.trim();
+            const username = '+98' + document.getElementById('number').value
             const password = document.getElementById('password').value;
 
             const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -367,7 +367,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     window.location.reload()
                 }else {
                     const errorData = await response.json();
-                    alert(errorData.message || "خطا در ورود. لطفاً دوباره تلاش کنید.");
+                    alert(errorData.error || "خطا در ورود. لطفاً دوباره تلاش کنید."); // نمایش پیام خطا
                 }
         });
     } else {

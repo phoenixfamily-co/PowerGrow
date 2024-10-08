@@ -52,19 +52,26 @@ def login_view(request):
 
 def custom_login(request):
     if request.method == 'POST':
-        data = json.loads(request.body)  # داده‌ها از JSON خوانده می‌شوند
+        data = json.loads(request.body)
         username = data.get('username')
         password = data.get('password')
+
+        # بررسی وجود کاربر
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            return JsonResponse({'error': 'نام کاربری موجود نیست'}, status=400)
+
+        # احراز هویت کاربر
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
             login(request, user)
-            if user is not None:
-                login(request, user)
-                return JsonResponse({'status': 'success'}, status=200)
+            return JsonResponse({'status': 'success'}, status=200)
 
-        return JsonResponse({'error': 'Invalid credentials'}, status=400)
-    return JsonResponse({'error': 'Invalid request'}, status=400)
+        return JsonResponse({'error': 'پسورد اشتباه است'}, status=400)
+
+    return JsonResponse({'error': 'درخواست نامعتبر است'}, status=400)
 
 
 def custom_logout(request):
