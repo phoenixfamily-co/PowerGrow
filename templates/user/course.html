@@ -151,9 +151,9 @@
                 <td class="text-center">
                     <i class="fa fa-eye text-info" aria-hidden="true" style="cursor: pointer" title="مشاهده" onclick="window.open('{% url 'product:product_view' x.course.id %}')"></i>
                 </td>
-                <td>{{ x.title }}</td>
-                <td>{{ x.name }}</td>
-                <td>{{ x.time }}</td>
+                <td>{{ x.course.title }}</td>
+                <td>{{ x.course.name }}</td>
+                <td>{{ x.course.time }}</td>
                 <td>
                     {% if x.gender == "male" %}
                     آقایان
@@ -162,21 +162,21 @@
                     {% endif %}
                 </td>
                 <td>
-                    {% if x.type == "public" %}
+                    {% if x.course.type == "public" %}
                     عمومی
-                    {% elif x.type == "private" %}
+                    {% elif x.course.type == "private" %}
                     خصوصی
-                    {% elif x.type == "semi_private" %}
+                    {% elif x.course.type == "semi_private" %}
                     نیمه خصوصی
                 {% endif %}
                 </td>
-                <td>{{ x.capacity }}</td>
-                <td>{{ x.sport.title }}</td>
+                <td>{{ x.course.capacity }}</td>
+                <td>{{ x.course.sport.title }}</td>
                 <td class="text-center">
-                    {% if x.active %}
-                        <i title="فعال" class="fa fa-check-circle text-success"></i>
+                    {% if x.success %}
+                        <i title="معتبر" class="fa fa-check-circle text-success"></i>
                     {% else %}
-                        <i title="غیرفعال" class="fa fa-ban text-danger"></i>
+                        <i title="ناموفق" class="fa fa-ban text-danger"></i>
                     {% endif %}
                 </td>
             </tr>
