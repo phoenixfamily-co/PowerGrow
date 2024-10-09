@@ -627,7 +627,6 @@ class ParticipationCreateView(viewsets.ViewSet):
 
 class ManagerParticipationView(viewsets.ViewSet):
     serializer_class = ManagerParticipantsSerializer
-    permission_classes = [IsSuperUser | IsAdminUser]
 
     def create(self, request, course):
         data = request.data
