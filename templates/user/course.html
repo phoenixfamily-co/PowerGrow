@@ -137,9 +137,11 @@
                 <th>نام دوره</th>
                 <th>نام مربی</th>
                 <th>زمان</th>
-                <th>جنسیت</th>
+                <th>شروع</th>
+                <th>پایان</th>
+                <th>روز</th>
+                <th>جلسه</th>
                 <th>نوع</th>
-                <th>ورزش</th>
                 <th>پرداختی</th>
                 <th>وضعیت</th>
             </tr>
@@ -154,14 +156,11 @@
                 <td>{{ x.course.title }}</td>
                 <td>{{ x.course.name }}</td>
                 <td>{{ x.course.time }}</td>
-                <td>
-                    {% if x.gender == "male" %}
-                    آقایان
-                    {% elif x.gender == "female" %}
-                    بانوان
-                    {% endif %}
-                </td>
-                <td>
+                <td>{{ x.startDay }}</td>
+                <td>{{ x.endDay }}</td>
+                <td>{{ x.day }}</td>
+                <td>{{ x.session }}</td>
+                 <td>
                     {% if x.course.type == "public" %}
                     عمومی
                     {% elif x.course.type == "private" %}
@@ -170,7 +169,6 @@
                     نیمه خصوصی
                 {% endif %}
                 </td>
-                <td>{{ x.course.sport.title }}</td>
                 <td>{{ x.price }}</td>
                 <td class="text-center">
                     {% if x.success %}
