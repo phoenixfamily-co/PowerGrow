@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.views.decorators.cache import cache_page
 from rest_framework import viewsets, generics, status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, action
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from rest_framework.utils import json
@@ -627,7 +627,7 @@ class ParticipationCreateView(viewsets.ViewSet):
 
 class ManagerParticipationView(viewsets.ViewSet):
     serializer_class = ManagerParticipantsSerializer
-    permission_classes = [IsAdminUserOrStaff]
+    permission_classes = [IsSuperUser | IsAdminUser]
 
     def create(self, request, course):
         data = request.data
@@ -691,6 +691,7 @@ class ManagerParticipationView(viewsets.ViewSet):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    @action(methods=['delete'], detail=True, permission_classes=[IsAdminUser])
     def destroy(self, request, pk):
         try:
             participant = Participants.objects.get(pk=pk)
