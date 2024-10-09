@@ -199,27 +199,32 @@
 
 <script>
 
-    document.getElementById('todayButton').addEventListener('submit', function() {
-        var filter, table, tr, td, i, j, txtValue;
-        filter = "پنجشنبه"
-        table = document.getElementById('myTable');
-        tr = table.getElementsByTagName('tr');
+    document.getElementById('todayButton').addEventListener('click', function() {
+    // دریافت روز فعلی
+    const daysOfWeek = ["یکشنبه", "دوشنبه", "سه‌شنبه", "چهارشنبه", "پنجشنبه", "جمعه"];
+    const today = new Date();
+    const currentDay = daysOfWeek[today.getDay()]; // 0 = یکشنبه, 1 = دوشنبه, ...
 
-        for (i = 1; i < tr.length; i++) {
-            tr[i].style.display = "none"; // همه ردیف‌ها ابتدا مخفی می‌شوند
-            td = tr[i].getElementsByTagName('td');
+    var table = document.getElementById('myTable');
+    var tr = table.getElementsByTagName('tr');
 
-            for (j = 0; j < td.length; j++) { // هر سلول را بررسی می‌کنیم
-                if (td[j]) {
-                    txtValue = td[j].textContent || td[j].innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = ""; // اگر متن مورد نظر پیدا شد، ردیف نمایش داده شود
-                        break;
-                    }
+    for (var i = 1; i < tr.length; i++) {
+        tr[i].style.display = "none"; // همه ردیف‌ها ابتدا مخفی می‌شوند
+        var td = tr[i].getElementsByTagName('td');
+
+        for (var j = 0; j < td.length; j++) {
+            if (td[j]) {
+                var txtValue = td[j].textContent || td[j].innerText;
+
+                // بررسی اگر روز فعلی در سلول "روز" موجود باشد
+                if (txtValue.includes(currentDay)) {
+                    tr[i].style.display = ""; // اگر روز فعلی پیدا شد، ردیف نمایش داده شود
+                    break;
                 }
             }
         }
-    })
+    }
+});
 
 </script>
 
