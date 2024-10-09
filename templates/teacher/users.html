@@ -139,7 +139,7 @@
    </div>
 
 <div class="table-actions">
-    <button id="todayButon" class="btn add-data-button">لیست امروز</button>
+    <button id="todayButton" class="btn add-data-button">لیست امروز</button>
 </div>
 
 <div class="table-responsive" dir="rtl">
@@ -198,7 +198,8 @@
 
 
 <script>
-    document.getElementById('searchInput').addEventListener('submit', function() {
+
+    document.getElementById('todayButton').addEventListener('submit', function() {
         var filter, table, tr, td, i, j, txtValue;
         filter = "پنجشنبه"
         table = document.getElementById('myTable');
