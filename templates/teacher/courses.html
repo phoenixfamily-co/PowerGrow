@@ -157,9 +157,9 @@
                     <i class="fa fa-solid fa-address-book" aria-hidden="true" style="cursor: pointer" title="لیست" onclick="window.location.assign('{% url 'product:teacher_user_list' x.course.id %}')"></i>
                 </td>
 
-                <td>{{ x.title }}</td>
-                <td>{{ x.name }}</td>
-                <td>{{ x.time }}</td>
+                <td>{{ x.course.title }}</td>
+                <td>{{ x.course.name }}</td>
+                <td>{{ x.course.time }}</td>
                 <td>
                     {% if x.gender == "male" %}
                     آقایان
@@ -168,18 +168,18 @@
                     {% endif %}
                 </td>
                 <td>
-                    {% if x.type == "public" %}
+                    {% if x.course.type == "public" %}
                     عمومی
-                    {% elif x.type == "private" %}
+                    {% elif x.course.type == "private" %}
                     خصوصی
-                    {% elif x.type == "semi_private" %}
+                    {% elif x.course.type == "semi_private" %}
                     نیمه خصوصی
                 {% endif %}
                 </td>
-                <td>{{ x.capacity }}</td>
-                <td>{{ x.sport.title }}</td>
+                <td>{{ x.course.capacity }}</td>
+                <td>{{ x.course.sport.title }}</td>
                 <td class="text-center">
-                    {% if x.active %}
+                    {% if x.course.active %}
                         <i title="فعال" class="fa fa-check-circle text-success"></i>
                     {% else %}
                         <i title="غیرفعال" class="fa fa-ban text-danger"></i>
