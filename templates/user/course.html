@@ -260,9 +260,11 @@
 
                 // بررسی اینکه آیا تاریخ پایان گذشته است
                 if (userEnd<thisDate) {
-                     var statusCell = rows[i].querySelector('td:last-child'); // فرض می‌کنیم آخرین سلول وضعیت است
+                    var statusCell = rows[i].querySelector('td:last-child'); // فرض می‌کنیم آخرین سلول وضعیت است
+                    var descriptionCell = rows[i].querySelector('td:nth-last-child(2)')
                     if(statusCell.innerHTML.includes('fa-check-circle')) {
                         statusCell.innerHTML = '<i class="fa fa-exclamation-circle text-warning" title="منقضی شده"></i>'; // تغییر به آیکون دلخواه
+                        descriptionCell.innerHTML = 'منثضی شده'
                     }
                 }
             }
