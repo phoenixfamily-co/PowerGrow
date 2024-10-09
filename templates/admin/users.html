@@ -7,17 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://kit.fontawesome.com/f872c5c890.js" crossorigin="anonymous"></script>
 
-
     {% load bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
 
-        <title>مدیریت دوره ها</title>
-
+        <title>مدیریت کاربران</title>
 
     <style>
-
-
 
            @font-face {
             font-family: BYekan;
@@ -27,20 +23,24 @@
             src: url("/static/fonts/BYekan.woff") format('woff'),
             url("/static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */ url("../../static/fonts/BYekan.ttf") format('truetype') /* Safari, Android, iOS */
         }
-
-             * {
-            box-sizing: border-box
+           html, body {
+            margin: 0;
+            padding: 0 ;
+            background: #312f2e;
+            overflow-x: hidden;
+            font-family: BYekan, serif !important;
         }
 
-           .logoHolder {
-               width: 50px;
-               position: absolute;
-               left: 0;
-               right: 0;
-               margin-right: 55%;
-               margin-top: 1%;
-               z-index: 10 !important;
-               direction: ltr;
+        .logoHolder {
+            width: 100%;
+            position: relative;
+            margin-top: 20px;
+            left: 0;
+            display: flex;
+            z-index: 10 !important;
+            direction: ltr;
+            align-items: center;
+            justify-content: center;
 
         }
 
@@ -48,276 +48,73 @@
             width: 50px;
             height: 50px;
             border-radius: 25px;
-            position: absolute;
-            direction: ltr
 
         }
 
         .typography {
-            position: absolute;
-            margin-left: 60px;
-            margin-top: 20%;
-            color: white;
-            font-size: 20px
-
-        }
-           html {
-               min-height: 100%;
-               position: relative;
-               font-family: BYekan, serif !important;
-           }
-
-           body {
-               direction: rtl;
-               background: #282a36;
-
-           }
-
-           .navbar.navbar-dark.bg-dark li a{
-            color: #fff;
-        }
-
-          .navbar.navbar-dark.bg-dark a:hover{
-              color: grey;
-        }
-
-       .nav.navbar-nav li a {
-           color: #fff;
-           text-decoration: none;
-       }
-
-        .nav.navbar-nav a:hover {
-            color: grey;
-        }
-
-        .nav-pills > li > a.active {
-            background-color: #E16539 !important;
-        }
-
-          .fa.fa-times{
-              color: red;
-             cursor: pointer
-           }
-
-          .form-control:focus {
-              border-color: #E16539;
-              box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
-          }
-
-            .month {
-            width: 100%;
-            height: 25%;
-            float: right;
-            background: #e4633a;
-            text-align: center;
-            border-top-left-radius: 1rem
-        }
-
-        .month ul {
-            margin: 0;
-            padding: 0;
-        }
-
-        .month ul li {
             color: white;
             font-size: 20px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
-
-        .month .prev {
-            float: right;
-            margin-top: 20px;
-            cursor: pointer;
-        }
-
-        .month .next {
-            float: left;
-            margin-top: 20px;
-            cursor: pointer;
-        }
-
-        .weekdays {
-            margin: 0;
-            padding: 5px 0;
-            background-color: #ddd;
-            direction: rtl;
-            border-top-left-radius: 1rem
-        }
-
-        .weekdays li {
-          display: inline-block;
-          width: 12.6%;
-          color: #666;
-          text-align: center;
-        }
-
-        .days {
-            padding: 5px 0;
-            margin: 0;
-            direction: rtl;
-            border-bottom-left-radius: 20px;
-        }
-
-        .days li {
-            list-style-type: none;
-            display: inline-block;
-            width: 13.3%;
-            text-align: center;
-            margin-bottom: 1px;
-            font-size:16px;
-            color: #000000;
-            cursor: pointer;
-        }
-        .activeButton {
-            border-radius: 50px;
-            background: #1a5bbc;
-            color: white !important
-        }
-
-         .holidayButton {
-            border-radius: 50px;
-            color: #ff0c0c !important;
-             cursor: pointer;
-        }
-
-         .disActiveButton{
-
-             cursor: none;
-             pointer-events: none;
-             opacity:0.6;
-         }
-
-        .disabled-button{
-            height: 50px;
-            margin-top: 4%;
-            margin-right: 5%;
-            margin-bottom: 4%;
-            width: 90%;
-            opacity: 0.5;
-            background: #e4633a;
-            border-color: transparent;
-            color: white;
-            cursor: none;
-            pointer-events: none;
-        }
-
-
-        .product-img{
-            width: 70%;
-            height: 30rem;
-            float: right;
-            border-radius: 1rem 0 0 1rem;
+            margin-left: 10px;
 
         }
-         .list-group-item-fixed {
-             width: auto;
-             margin-top: 3.5%;
-             padding-bottom: 3.5%;
-        }
-        .list-group-left {
-            text-align: center;
-            float: left;
-            display: inline;
-            width: 40%;
-        }
-        .list-group-right {
-            text-align: right;
-            float: right;
-            display: inline;
-            width: 35%;
-        }
-
-        div.list-group-right {
-            width: 55%;
-            display: inline-flex;
-        }
-
-          .date-time{
-            width: 70%;
-            float: right;
-            margin-top: 15px;
-            display: inline;
-        }
-
-        .date-picker{
-            width: 50%;
-            height: 300px;
-            background: #FFFFFF ;
-            float: right;
-            border-top-left-radius: 1rem;
-            border-bottom-left-radius: 1rem;
-        }
-
-         .time-picker{
-            width: 49%;
-            height: 300px;
-            background: #FFFFFF ;
-            float: left;
-            border-radius: 1rem ;
-        }
-
-           .show {
-            display: block;
-            visibility: visible;
-            -webkit-animation: fadeIn 1s;
-            animation: fadeIn 1s;
-        }
 
 
-          ul {
-            list-style-type: none;
-        }
+           .pagination-container {
+               display: flex;
+               justify-content: center;
+           }
 
-          .time-body{
-            margin-right: 5%;
-            margin-top: 10%;
-        }
+           .search-bar-container {
+               display: flex;
+               justify-content: center; /* مرکز کردن نوار جستجو */
+               margin: 50px auto; /* فاصله از بالا و پایین */
+               width: 80%; /* نوار جستجو تمام عرض را بگیرد */
+               direction: rtl;
+           }
 
-          .register{
-              text-decoration: underline ;
-              cursor: pointer;
-              color: red;
-          }
-
-          .edit{
-              text-decoration: underline ;
-              cursor: pointer;
-              color: white;
-          }
-
-            .number{
-              color: white;
+           .search-input {
+               flex: 1; /* به نوار جستجو اجازه می‌دهد تمام فضای در دسترس را پر کند */
+               padding: 10px 15px; /* فاصله داخلی */
+               border: 2px solid #ccc; /* حاشیه خاکستری */
+               border-radius: 25px; /* گوشه‌های گرد */
+               outline: none;
+               font-size: 16px;
+               box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* سایه خفیف */
+               transition: border-color 0.3s;
                text-align: right;
            }
 
-
-           .disable{
-               color: #8c8c8c
+           .search-input:focus {
+               border-color: #E16539; /* رنگ حاشیه وقتی روی فیلد کلیک می‌شود */
            }
 
 
-    </style>
 
+            .table-actions {
+                display: flex;
+                justify-content: flex-end; /* دکمه در سمت راست قرار می‌گیرد */
+                margin-top: 20px;
+            }
+
+           .add-data-button {
+               background-color: #E16539;
+               color: white;
+               padding: 10px 20px;
+               border: none;
+               border-radius: 5px;
+               cursor: pointer;
+               font-size: 16px;
+               transition: background-color 0.3s;
+           }
+           .add-data-button:hover {
+               background-color: #a84e2c; /* تغییر رنگ در حالت hover */
+               color: #c4c4c4;
+           }
+
+    </style>
 </head>
 <body>
 
-
-<nav class="navbar navbar-dark bg-dark">
-  <div class="container-fluid" style="vertical-align: center">
-<ul class="nav nav-pills">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href='javascript: window.open("{% url 'user:secretary_register' %}")'>اضافه کردن</a>
-  </li>
-</ul>
-
-  <ul class="nav nav-pills navbar-left">
-      <li class="nav-item">
-    <a class="nav-link" aria-current="page" href='javascript: history.go(-1)'>برگشت</a>
-  </li>
-    </ul>
-  </div>
-</nav>
 
 <div class="logoHolder">
 
@@ -326,211 +123,129 @@
 
 </div>
 
-  <div style=" margin-top:150px ; margin-left: 50px ; margin-right: 50px" class="form-outline" data-mdb-input-init>
-    <input type="search" placeholder="شماره تلفن ، نام نام خانوادگی و . . ." id="searchInput" class="form-control" />
-    <label class="form-label" for="form1">Search</label>
-  </div>
+   <div class="search-bar-container">
+    <input type="text" id="searchInput" class="search-input" placeholder="جستجو...">
+   </div>
 
 
-<center>
-        {%if page_obj.has_previous %} {# whether the previous page exists #}
-            <a style="color: white" href="?page={{page_obj.previous_page_number}}"><</a> {# link to the prev page #}
-        {% endif %}
-        <span style="color: white"> صفحه {{page_obj.number}}</span> {# the current page number #}
+<div class="pagination-container">
 
-        {%if page_obj.has_next %} {# whether the next page exists #}
-            <a style="color:white;" href="?page={{page_obj.next_page_number}}">></a> {# link to the next page #}
-        {% endif %}
-    </center>
+    {% if page_obj.has_next %}
+        <a class="btn btn-outline-light mx-1" href="?page={{page_obj.next_page_number}}"><i class="fa fa-chevron-left"></i></a>
+    {% endif %}
 
-<div class="table-responsive">
-<table id="table" class="table" style="color: white ; margin-top: 20px">
-  <thead>
-    <tr>
-        <th scope="col">#</th>
-        <th scope="col"> </th>
-        <th scope="col"> </th>
-        <th scope="col">نام و نام خانوادگی</th>
-        <th scope="col">شماره تلفن</th>
-        <th scope="col">تاریخ تولد</th>
-        <th scope="col">تاریخ ثبت نام</th>
-        <th scope="col">دسترسی</th>
-        <th scope="col">نوع حقوق</th>
-        <th scope="col">مقدار حقوق</th>
-        <th scope="col">نوع حساب</th>
-        <th scope="col">مقدار حساب</th>
-        <th scope="col">توضیحات</th>
-        <th scope="col">ثبت شده توسط</th>
-        <th scope="col">وضعیت</th>
+    <span class="btn btn-outline-light disabled mx-1">صفحه {{ page_obj.number }}</span>
 
+   {% if page_obj.has_previous %}
+        <a class="btn btn-outline-light mx-1" href="?page={{page_obj.previous_page_number}}"><i class="fa fa-chevron-right"></i></a>
+    {% endif %}
 
-    </tr>
-  </thead>
-  <tbody>
-  {% for x in page_obj.object_list %}
-    <tr>
-        <th scope="row">{{ x.id }}</th>
-        <th onclick="window.open('{% url 'user:delete_profile' x.id %}')"><i class="fa fa-times" aria-hidden="true" style="cursor: pointer"></i></th>
-        <th onclick="window.open('{% url 'user:change_pass' x.id %}')"><i class="fa fa-pencil" aria-hidden="true" style="cursor: pointer"></i></th>
-        <td >{{ x.name}}</td>
-        <td style="text-align: right" dir="auto">{{ x.number}}</td>
-        <td >{{ x.birthdate}}</td>
-        <td>{{ x.datetime }}</td>
-    <td>
-        {% if x.is_staff == True %}
-            مدیر
-        {% elif x.is_superuser == True %}
-            منشی
-        {% elif x.is_teacher == True %}
-            مربی
-            {% else %}
-            شاگرد
-        {% endif %}
-    </td>
-
-        <td>{{ x.salary}}</td>
-        <td>{{ x.fee}}</td>
-        <td>{{ x.situation}}</td>
-        <td>{{ x.debt}}</td>
-        <td >{{ x.description}}</td>
-        <td>{{ x.created.name}}</td>
-        <td> {% if x.is_active == True %}
-            فعال
-            {% else %}
-            غیرفعال
-        {% endif %}</td>
-    </tr>
-   {% endfor %}
-  </tbody>
-</table>
 </div>
 
-</body>
+
+<div class="table-actions">
+    <button class="btn add-data-button" onclick="window.open('{% url 'user:create-user' %}')">ثبت نام</button>
+</div>
+
+<div class="table-responsive" dir="rtl">
+    <table id="myTable" class="table table-hover table-bordered table-dark">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th colspan="3" class="text-center">تنظیمات</th>
+                <th scope="col">نام و نام خانوادگی</th>
+                <th scope="col">شماره تلفن</th>
+                <th scope="col">تاریخ تولد</th>
+                <th scope="col">تاریخ ثبت نام</th>
+                <th scope="col">دسترسی</th>
+                <th scope="col">نوع حقوق</th>
+                <th scope="col">مقدار حقوق</th>
+                <th scope="col">وضعیت حساب</th>
+                <th scope="col">مقدار حساب</th>
+                <th scope="col">وضعیت</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for x in page_obj.object_list %}
+            <tr>
+                <th scope="row">{{ x.id }}</th>
+                <td class="text-center">
+                     {% if x.is_staff %}
+                         <i class="fa fa-eye text-info" aria-hidden="true" style="cursor: pointer" title="مشاهده" onclick="window.open('{% url 'user:manager_home' x.id %}')"></i>
+                    {% elif x.is_superuser %}
+                         <i class="fa fa-eye text-info" aria-hidden="true" style="cursor: pointer" title="مشاهده" onclick="window.open('{% url 'user:admin_home' x.id %}')"></i>
+                    {% elif x.is_teacher %}
+                         <i class="fa fa-eye text-info" aria-hidden="true" style="cursor: pointer" title="مشاهده" onclick="window.open('{% url 'user:teacher_home' x.id %}')"></i>
+                        {% else %}
+                         <i class="fa fa-eye text-info" aria-hidden="true" style="cursor: pointer" title="مشاهده" onclick="window.open('{% url 'user:user_home' x.id %}')"></i>
+                    {% endif %}
+                </td>
+                <td class="text-center">
+                    <i class="fa fa-pencil text-warning" aria-hidden="true" style="cursor: pointer" title="ویرایش" onclick="window.open('{% url 'user:user-update' x.id %}')"></i>
+                </td>
+            <td class="text-center">
+                    <i class="fa-solid fa-key text-warning" aria-hidden="true" style="cursor: pointer" title="پسورد" onclick="window.open('{% url 'user:change-password' x.id %}')"></i>
+                </td>
+                <td>{{ x.name}}</td>
+                <td dir="auto">{{ x.number}}</td>
+                <td>{{ x.birthdate}}</td>
+                <td>{{ x.datetime }}</td>
+                <td>
+                    {% if x.is_staff %}
+                        مدیر
+                    {% elif x.is_superuser%}
+                        منشی
+                    {% elif x.is_teacher %}
+                        مربی
+                        {% else %}
+                        شاگرد
+                    {% endif %}
+                </td>
+
+                <td>{{ x.salary}}</td>
+                <td>{{ x.fee}}</td>
+                <td>{{ x.situation}}</td>
+                <td>{{ x.debt}}</td>
+                <td class="text-center">
+                    {% if x.is_active %}
+                        <i title="فعال" class="fa fa-check-circle text-success"></i>
+                    {% else %}
+                        <i title="غیرفعال" class="fa fa-ban text-danger"></i>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 
 <script>
-    let input = document.getElementById("searchInput")
-    let myTable = document.getElementById('table').getElementsByTagName('tbody')[0];
 
+    document.getElementById('searchInput').addEventListener('keyup', function() {
+    var input, filter, table, tr, td, i, j, txtValue;
+    input = document.getElementById('searchInput');
+    filter = input.value.toUpperCase();
+    table = document.getElementById('myTable');
+    tr = table.getElementsByTagName('tr');
 
-     const cookieValue = document.cookie
-        .split("; ")
-        .find((row) => row.startsWith("token="))
-        ?.split("=")[1];
+    for (i = 1; i < tr.length; i++) {
+        tr[i].style.display = "none"; // همه ردیف‌ها ابتدا مخفی می‌شوند
+        td = tr[i].getElementsByTagName('td');
 
-
-    input.addEventListener("change", async function () {
-        let inputs = input.value.toLowerCase()
-
-        myTable.innerHTML = ''
-
-        if (input.value.length===0){
-
-            window.location.reload()
-
-        }else {
-            const response = await fetch(`/user/all/?search=${inputs}`, {
-                method: 'GET',
-                 headers: {
-            'Authorization': `token  ${cookieValue}`,
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-            });
-            const result = await response.json()
-
-            let tr = document.createElement("tr")
-            let id = document.createElement("th")
-            id.innerHTML = result[0].id
-            let deactive = document.createElement("th")
-            deactive.innerHTML = "مسدودسازی"
-            deactive.classList.add("register")
-            deactive.onclick = function () {
-                window.open(`/user/delete/${result[0].id}/`)
+        for (j = 0; j < td.length; j++) { // هر سلول را بررسی می‌کنیم
+            if (td[j]) {
+                txtValue = td[j].textContent || td[j].innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = ""; // اگر متن مورد نظر پیدا شد، ردیف نمایش داده شود
+                    break;
+                }
             }
-            let edit = document.createElement("th")
-            edit.innerHTML = "تغییر پسورد"
-            edit.classList.add("edit")
-            edit.onclick = function () {
-                window.open(`/user/change/pass/api/${result[0].id}/`)
-            }
-
-            let name = document.createElement("td")
-            name.innerHTML = result[0].name
-
-            let number = document.createElement("td")
-            number.innerHTML = result[0].number
-            number.dir = "auto"
-            number.classList.add("number")
-
-            let birthdate = document.createElement("td")
-            birthdate.innerHTML = result[0].birthdate
-
-            let datetime = document.createElement("td")
-            datetime.innerHTML = result[0].datetime
-            let access = document.createElement("td")
-            if (result[0].is_staff === true) {
-                access.innerHTML = "مدیر"
-            } else if (result[0].is_superuser === true) {
-                access.innerHTML = "منشی"
-
-            } else if (result[0].is_teacher === true) {
-                access.innerHTML = "مربی"
-
-            } else {
-                access.innerHTML = "شاگرد"
-            }
-
-            let salary = document.createElement("td")
-            salary.innerHTML = result[0].salary
-
-            let fee = document.createElement("td")
-            fee.innerHTML = result[0].fee
-
-            let situation = document.createElement("td")
-            situation.innerHTML = result[0].situation
-
-            let debt = document.createElement("td")
-            debt.innerHTML = result[0].debt
-
-            let description = document.createElement("td")
-            description.innerHTML = result[0].description
-
-            let creator = document.createElement("td")
-            creator.innerHTML = result[0].created
-            let active = document.createElement("td")
-            if (result[0].is_active ===true) {
-                active.innerHTML = "فعال"
-            }
-            else{
-                active.innerHTML = "غیرفعال"
-
-            }
-
-
-            tr.appendChild(id)
-            tr.appendChild(deactive)
-            tr.appendChild(edit)
-            tr.appendChild(name)
-            tr.appendChild(number)
-            tr.appendChild(birthdate)
-            tr.appendChild(datetime)
-            tr.appendChild(access)
-            tr.appendChild(salary)
-            tr.appendChild(fee)
-            tr.appendChild(situation)
-            tr.appendChild(debt)
-            tr.appendChild(description)
-            tr.appendChild(creator)
-            tr.appendChild(active)
-
-            myTable.appendChild(tr)
-
         }
-
-    })
-
+    }
+});
 
 </script>
 
+</body>
 
 </html>

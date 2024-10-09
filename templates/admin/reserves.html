@@ -6,9 +6,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://kit.fontawesome.com/f872c5c890.js" crossorigin="anonymous"></script>
+
     {% load bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
+
+        <title>مدیریت رزرو ها</title>
+
 
     <style>
 
@@ -20,20 +24,24 @@
             src: url("/static/fonts/BYekan.woff") format('woff'),
             url("/static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */ url("../../static/fonts/BYekan.ttf") format('truetype') /* Safari, Android, iOS */
         }
-
-             * {
-            box-sizing: border-box
+           html, body {
+            margin: 0;
+            padding: 0 ;
+            background: #312f2e;
+            overflow-x: hidden;
+            font-family: BYekan, serif !important;
         }
 
-           .logoHolder {
-               width: 50px;
-               position: absolute;
-               left: 0;
-               right: 0;
-               margin-right: 55%;
-               margin-top: 1%;
-               z-index: 10 !important;
-               direction: ltr;
+        .logoHolder {
+            width: 100%;
+            position: relative;
+            margin-top: 20px;
+            left: 0;
+            display: flex;
+            z-index: 10 !important;
+            direction: ltr;
+            align-items: center;
+            justify-content: center;
 
         }
 
@@ -41,241 +49,73 @@
             width: 50px;
             height: 50px;
             border-radius: 25px;
-            position: absolute;
-            direction: ltr
 
         }
 
         .typography {
-            position: absolute;
-            margin-left: 60px;
-            margin-top: 20%;
-            color: white;
-            font-size: 20px
-
-        }
-           html {
-               min-height: 100%;
-               position: relative;
-               font-family: BYekan, serif !important;
-           }
-
-           body {
-               direction: rtl;
-               background: #282a36;
-
-           }
-
-           .navbar.navbar-dark.bg-dark li a{
-            color: #fff;
-        }
-
-          .navbar.navbar-dark.bg-dark a:hover{
-              color: grey;
-        }
-
-       .nav.navbar-nav li a {
-           color: #fff;
-           text-decoration: none;
-       }
-
-        .nav.navbar-nav a:hover {
-            color: grey;
-        }
-
-        .nav-pills > li > a.active {
-            background-color: #E16539 !important;
-        }
-
-
-         .fa.fa-times{
-              color:  red;
-             cursor: pointer
-           }
-
-          ul {
-            list-style-type: none;
-        }
-
-         .month {
-             width: 100%;
-             height: 25%;
-             float: right;
-             background: #e4633a;
-             text-align: center;
-
-        }
-
-        .month ul {
-            margin: 0;
-            padding: 0;
-        }
-
-        .month ul li {
             color: white;
             font-size: 20px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
+            margin-left: 10px;
 
-        .month .prev {
-            float: right;
-            margin-top: 20px;
-            cursor: pointer;
-        }
-
-        .month .next {
-            float: left;
-            margin-top: 20px;
-            cursor: pointer;
-        }
-
-        .weekdays {
-            margin: 0;
-            padding: 5px 0;
-            background-color: #ddd;
-            direction: rtl;
-            border-top-left-radius: 1rem
-        }
-
-        .weekdays li {
-          display: inline-block;
-          width: 12.6%;
-          color: #666;
-          text-align: center;
-        }
-
-        .days {
-            padding: 5px 0;
-            margin: 0;
-            direction: rtl;
-            border-bottom-left-radius: 20px;
-        }
-
-        .days li {
-            list-style-type: none;
-            display: inline-block;
-            width: 13.3%;
-            text-align: center;
-            margin-bottom: 1px;
-            font-size:16px;
-            color: #000000;
-            cursor: pointer;
-        }
-        .activeButton {
-            border-radius: 50px;
-            background: #1a5bbc;
-            color: white !important
-        }
-
-         .holidayButton {
-             border-radius: 50px;
-             color: #ff0c0c !important;
-             cursor: pointer;
-        }
-
-         .disActiveButton{
-             cursor: none;
-             pointer-events: none;
-             opacity:0.6;
-         }
-
-
-         .times {
-             padding: 10px 0;
-             margin-right: 15px;
-             line-height: 50px;
-         }
-
-        .simpleTime {
-            height: 60px;
-            text-align: center;
-            font-size:16px;
-            color: #000000;
-            line-height: 60px;
-            vertical-align: center;
-            background: #afb6b6;
-            cursor: pointer;
-        }
-
-        .selectedTime{
-            height: 60px;
-            text-align: center;
-            font-size:16px;
-            vertical-align: center;
-            line-height: 60px;
-            color: white !important;
-            background: #1a5bbc !important;
-            cursor: none;
-            pointer-events: none;
         }
 
 
-        .reservedTime{
-            height: 60px;
-            text-align: center;
-            font-size:16px;
-            position: relative;
-            color: white !important;
-            vertical-align: center;
-            line-height: 60px;
-            background: #ff0c0c !important;
-        }
+           .pagination-container {
+               display: flex;
+               justify-content: center;
+           }
 
-        .date-picker{
-            width: 50%;
-            height: 300px;
-            background: #FFFFFF ;
-            float: right;
-        }
+           .search-bar-container {
+               display: flex;
+               justify-content: center; /* مرکز کردن نوار جستجو */
+               margin: 50px auto; /* فاصله از بالا و پایین */
+               width: 80%; /* نوار جستجو تمام عرض را بگیرد */
+               direction: rtl;
+           }
 
-        .time-picker{
-            width: 49%;
-            background: #FFFFFF ;
-            float: left;
-        }
+           .search-input {
+               flex: 1; /* به نوار جستجو اجازه می‌دهد تمام فضای در دسترس را پر کند */
+               padding: 10px 15px; /* فاصله داخلی */
+               border: 2px solid #ccc; /* حاشیه خاکستری */
+               border-radius: 25px; /* گوشه‌های گرد */
+               outline: none;
+               font-size: 16px;
+               box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* سایه خفیف */
+               transition: border-color 0.3s;
+               text-align: right;
+           }
 
-         .show {
-            display: block;
-            visibility: visible;
-            -webkit-animation: fadeIn 1s;
-            animation: fadeIn 1s;
-        }
+           .search-input:focus {
+               border-color: #E16539; /* رنگ حاشیه وقتی روی فیلد کلیک می‌شود */
+           }
 
-.reservedTime .tooltiptext {
-    visibility:hidden;
-    width: auto;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    position: absolute;
-    z-index: 1;
-    top: 100%;
-    left: 10%;
-}
 
-.reservedTime:hover .tooltiptext {
-  visibility: visible !important;
-}
+
+            .table-actions {
+                display: flex;
+                justify-content: flex-end; /* دکمه در سمت راست قرار می‌گیرد */
+                margin-top: 20px;
+            }
+
+           .add-data-button {
+               background-color: #E16539;
+               color: white;
+               padding: 10px 20px;
+               border: none;
+               border-radius: 5px;
+               cursor: pointer;
+               font-size: 16px;
+               transition: background-color 0.3s;
+           }
+           .add-data-button:hover {
+               background-color: #a84e2c; /* تغییر رنگ در حالت hover */
+               color: #c4c4c4;
+           }
 
     </style>
-    <title>PowerGrow</title>
 </head>
 <body>
 
-
-<nav class="navbar navbar-dark bg-dark">
-  <div class="container-fluid" style="vertical-align: center">
-
-  <ul class="nav nav-pills navbar-left">
-      <li class="nav-item">
-    <a class="nav-link" aria-current="page" href='javascript: history.go(-1)'>برگشت</a>
-  </li>
-    </ul>
-  </div>
-</nav>
 
 <div class="logoHolder">
 
@@ -284,67 +124,107 @@
 
 </div>
 
-<center style="margin-top: 100px">
-        {%if page_obj.has_previous %} {# whether the previous page exists #}
-            <a style="color: white" href="?page={{page_obj.previous_page_number}}"><</a> {# link to the prev page #}
-        {% endif %}
-        <span style="color: white"> صفحه {{page_obj.number}}</span> {# the current page number #}
-
-        {%if page_obj.has_next %} {# whether the next page exists #}
-            <a style="color:white;" href="?page={{page_obj.next_page_number}}">></a> {# link to the next page #}
-        {% endif %}
-    </center>
+   <div class="search-bar-container">
+    <input type="text" id="searchInput" class="search-input" placeholder="جستجو...">
+   </div>
 
 
-<div class="table-responsive" style="margin-top: 50px">
+<div class="pagination-container">
 
-<table class="table" style="color: white">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">نام سالن</th>
-        <th scope="col">توضیحات</th>
-        <th scope="col">زمان شروع</th>
-        <th scope="col">تاریخ پایان</th>
-        <th scope="col">تعطیلات</th>
-        <th scope="col">تعداد جلسه</th>
-        <th scope="col">قرارداد</th>
-        <th scope="col">قیمت</th>
-        <th scope="col">شماره موبایل</th>
-        <th scope="col">نام نام خانوداگی</th>
-        <th scope="col">ساخته شده توسط</th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for x in page_obj.object_list %}
-    <tr>
-      <th scope="row">{{ x.id }}</th>
-      <td>{{ x.gym.title }}</td>
-        <td>{{ x.description }}</td>
-        <td style="direction: ltr ; text-align: right">{{ x.time.day.month.year.number }}/{{ x.time.day.month.number }}/{{ x.time.day.number }} | {{ x.time.time | date:"G:i:s"}} </td>
-        <td style="direction: ltr ; text-align: right">{{ x.endDate.day.month.year.number }}/{{ x.endDate.day.month.number }}/{{ x.endDate.day.number }} | {{ x.endDate.time | date:"G:i:s"}} </td>
-        <td>
-            {% if x.holiday == True %}
-                محاسبه نشود
-                {% else %}
-                محاسبه شود
-            {% endif %}
-        </td>
-        <td>{{ x.session }}</td>
-          <td> <a href='{% url 'reservation:generate_pdf' x.id x.endDate.id %}'>
-                مشاهده قرارداد
-            </a>
-        </td>
-        <td>{{ x.price }}</td>
-        <td style="text-align: right" dir="auto">{{ x.user.number }}</td>
-        <td>{{ x.user.name }}</td>
-        <td>{{ x.created.name }}</td>
-    </tr>
-   {% endfor %}
-  </tbody>
-</table>
+    {% if page_obj.has_next %}
+        <a class="btn btn-outline-light mx-1" href="?page={{page_obj.next_page_number}}"><i class="fa fa-chevron-left"></i></a>
+    {% endif %}
+
+    <span class="btn btn-outline-light disabled mx-1">صفحه {{ page_obj.number }}</span>
+
+   {% if page_obj.has_previous %}
+        <a class="btn btn-outline-light mx-1" href="?page={{page_obj.previous_page_number}}"><i class="fa fa-chevron-right"></i></a>
+    {% endif %}
+
 </div>
 
 
+<div class="table-actions">
+    <button class="btn add-data-button" onclick="window.open('{% url 'reservation:reserve' %}')">افزودن رزرو</button>
+</div>
+
+<div class="table-responsive" dir="rtl">
+    <table id="myTable" class="table table-hover table-bordered table-dark">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th colspan="1" class="text-center">تنظیمات</th>
+                <th scope="col">نام سالن</th>
+                <th scope="col">توضیحات</th>
+                <th scope="col">زمان شروع</th>
+                <th scope="col">زمان پایان</th>
+                <th scope="col">تعطیلات</th>
+                <th scope="col">تعداد جلسه</th>
+                <th scope="col">قرارداد</th>
+                <th scope="col">قیمت</th>
+                <th scope="col">شماره موبایل</th>
+                <th scope="col">نام نام خانوداگی</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for x in page_obj.object_list %}
+            <tr>
+                <th scope="row">{{ x.id }}</th>
+                <td class="text-center">
+                    <i class="fa fa-pencil text-warning" aria-hidden="true" style="cursor: pointer" title="ویرایش" onclick="window.open('{% url 'reservation:update-admin-reserve' x.time.id x.id %}')"></i>
+                </td>
+                <td>{{ x.gym.title }}</td>
+                <td>{{ x.description }}</td>
+                <td>{{ x.time.day.month.year.number }}/{{ x.time.day.month.number }}/{{ x.time.day.number }} | {{ x.time.time | date:"G:i:s"}} </td>
+                <td>{{ x.endDate.day.month.year.number }}/{{ x.endDate.day.month.number }}/{{ x.endDate.day.number }} | {{ x.endDate.time | date:"G:i:s"}} </td>
+                <td>
+                    {% if x.holiday == True %}
+                        محاسبه نشود
+                        {% else %}
+                        محاسبه شود
+                    {% endif %}
+                </td>
+                <td>{{ x.session }}</td>
+                  <td> <a href='{% url 'reservation:generate_pdf' x.id x.endDate.id %}'>
+                        مشاهده قرارداد
+                    </a>
+                </td>
+                <td>{{ x.price }}</td>
+                <td dir="auto">{{ x.user.number }}</td>
+                <td>{{ x.user.name }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+
+    document.getElementById('searchInput').addEventListener('keyup', function() {
+    var input, filter, table, tr, td, i, j, txtValue;
+    input = document.getElementById('searchInput');
+    filter = input.value.toUpperCase();
+    table = document.getElementById('myTable');
+    tr = table.getElementsByTagName('tr');
+
+    for (i = 1; i < tr.length; i++) {
+        tr[i].style.display = "none"; // همه ردیف‌ها ابتدا مخفی می‌شوند
+        td = tr[i].getElementsByTagName('td');
+
+        for (j = 0; j < td.length; j++) { // هر سلول را بررسی می‌کنیم
+            if (td[j]) {
+                txtValue = td[j].textContent || td[j].innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = ""; // اگر متن مورد نظر پیدا شد، ردیف نمایش داده شود
+                    break;
+                }
+            }
+        }
+    }
+});
+
+</script>
+
 </body>
+
 </html>
