@@ -691,7 +691,7 @@ class ManagerParticipationView(viewsets.ViewSet):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    @action(methods=['delete'], detail=True, permission_classes=[IsAdminUser])
+    @action(detail=False, methods=['delete'], permission_classes=[IsAdminUser])
     def destroy(self, request, pk):
         try:
             participant = Participants.objects.get(pk=pk)
