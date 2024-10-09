@@ -146,7 +146,7 @@ def teacher_home_view(request, pk):
 
 
 @cache_page(60 * 15)
-def secretary_home_view(request, pk):
+def admin_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('admin/dashboard.html')
     user = get_object_or_404(User, id=pk)
@@ -205,8 +205,31 @@ def salary_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
-def users_view(request):
+def manager_users_view(request):
     template = loader.get_template('manager/users.html')
+    about = AboutUs.objects.values().first()
+    user = User.objects.all()
+    p = Paginator(user, 500)  # ایجاد Paginator با queryset کاربران
+    page_number = request.GET.get('page')
+
+    try:
+        page_obj = p.get_page(page_number)  # بازگشت صفحه مورد نظر
+    except PageNotAnInteger:
+        # اگر page_number عدد صحیح نباشد، صفحه اول را assign کن
+        page_obj = p.page(1)
+    except EmptyPage:
+        # اگر صفحه خالی باشد، آخرین صفحه را برگردان
+        page_obj = p.page(p.num_pages)
+
+    context = {
+        "about": about,
+        'page_obj': page_obj
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def admin_users_view(request):
+    template = loader.get_template('admin/users.html')
     about = AboutUs.objects.values().first()
     user = User.objects.all()
     p = Paginator(user, 500)  # ایجاد Paginator با queryset کاربران

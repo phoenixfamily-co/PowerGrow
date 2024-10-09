@@ -365,6 +365,32 @@ def manager_user_list(request, pk):
     return render(request, 'manager/list.html', context)
 
 
+def admin_user_list(request, pk):
+    # بارگذاری اطلاعات مربوط به AboutUs
+    about = AboutUs.objects.first()
+
+    # بارگذاری دوره با استفاده از get_object_or_404
+    participants = Participants.objects.all().filter(course_id=pk)
+
+    paginator = Paginator(participants, 100)
+    page_number = request.GET.get('page')
+
+    try:
+        page_obj = paginator.get_page(page_number)
+    except (PageNotAnInteger, EmptyPage):
+        page_obj = paginator.page(1)  # اگر شماره صفحه معتبر نبود، به صفحه اول برگردیم
+
+    # آماده‌سازی context برای الگو
+    context = {
+        "about": about,
+        "page_obj": page_obj,
+        "course_id": pk
+    }
+
+    # استفاده از render برای بارگذاری الگو
+    return render(request, 'manager/list.html', context)
+
+
 def teacher_user_list(request, pk, id):
     # بارگذاری اطلاعات مربوط به AboutUs
     about = AboutUs.objects.first()
