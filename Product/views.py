@@ -430,7 +430,7 @@ class CourseListCreateView(generics.CreateAPIView):
 class CourseDetailView(viewsets.ViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsAdminUserOrStaff]
 
     def update(self, request, pk):
         try:
@@ -627,6 +627,7 @@ class ParticipationCreateView(viewsets.ViewSet):
 
 class ManagerParticipationView(viewsets.ViewSet):
     serializer_class = ManagerParticipantsSerializer
+    permission_classes = [IsSuperUser | IsAdminUser]
 
     def create(self, request, course):
         data = request.data
@@ -690,7 +691,6 @@ class ManagerParticipationView(viewsets.ViewSet):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    @action(detail=False, methods=['delete'], permission_classes=[IsAdminUser])
     def destroy(self, request, pk):
         try:
             participant = Participants.objects.get(pk=pk)
