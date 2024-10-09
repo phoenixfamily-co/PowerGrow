@@ -133,7 +133,7 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th colspan="1" class="text-center">تنظیمات</th>
+                <th colspan="1" class="text-center">مشاهده دوره</th>
                 <th>نام دوره</th>
                 <th>نام مربی</th>
                 <th>زمان</th>
@@ -141,6 +141,7 @@
                 <th>نوع</th>
                 <th>ظرفیت</th>
                 <th>ورزش</th>
+                <th>پرداختی</th>
                 <th>وضعیت</th>
             </tr>
         </thead>
@@ -172,6 +173,7 @@
                 </td>
                 <td>{{ x.course.capacity }}</td>
                 <td>{{ x.course.sport.title }}</td>
+                <td>{{ x.price }}</td>
                 <td class="text-center">
                     {% if x.success %}
                         <i title="معتبر" class="fa fa-check-circle text-success"></i>
