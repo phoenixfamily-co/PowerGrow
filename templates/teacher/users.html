@@ -146,7 +146,6 @@
     <table id="myTable" class="table table-hover table-bordered table-dark">
         <thead>
             <tr>
-                <th>مرتبه</th>
                 <th>#</th>
                 <th>نام و نام خانوادگی</th>
                 <th>تاریخ شروع</th>
@@ -158,8 +157,7 @@
         <tbody>
             {% for x in participants %}
             <tr>
-                <th scope="row">{{ forloop.counter }}</th>
-                <th>{{ x.id }}</th>
+                <th scope="row">{{ x.id }}</th>
                 <td>{{ x.user.name }}</td>
                 <td>{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}</td>
                 <td data-end-year="{{ x.endDay.month.year.number}}" data-end-month = "{{ x.endDay.month.number }}" data-end-day="{{ x.endDay.number }}">{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}</td>
