@@ -207,7 +207,7 @@ def teacher_courses_view(request, pk):
     about = AboutUs.objects.first()
 
     # بارگذاری شرکت‌کنندگان مربوط به معلم
-    participants = Participants.objects.filter(user_id=pk)
+    participants = Participants.objects.filter(user_id=pk).order_by('-pk')
 
     # آماده‌سازی context برای الگو
     context = {
