@@ -5,16 +5,26 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <meta name="csrf-token" content="{{ csrf_token }}">
+
     <script src="https://kit.fontawesome.com/f872c5c890.js" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jalaali-js/dist/jalaali.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jalaali-js/dist/jalaali.min.js"></script>
+    <script src="https://unpkg.com/jalaali-js/dist/jalaali.js"></script>
+    <script src="https://unpkg.com/jalaali-js/dist/jalaali.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jalaali-moment/2.0.0/jalaali-moment.min.js"></script>
+
+
 
     {% load bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
 
-        <title>مدیریت دوره ها</title>
+        <title>لیست دوره ها</title>
 
 
-    <style>
+   <style>
 
            @font-face {
             font-family: BYekan;
@@ -114,8 +124,8 @@
 
     </style>
 </head>
-<body>
 
+<body>
 
 <div class="logoHolder">
 
@@ -145,7 +155,7 @@
 
 
 <div class="table-actions">
-    <button class="btn add-data-button" onclick="window.open('{% url 'product:manager-create-course' %}')">افزودن دوره</button>
+    <button class="btn add-data-button" onclick="window.open('{% url 'product:create-participant' course_id %}')">ثبت نام</button>
 </div>
 
 <div class="table-responsive" dir="rtl">
@@ -153,16 +163,18 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th colspan="2" class="text-center">تنظیمات</th>
-                <th colspan="2" class="text-center">عملیات</th>
-                <th>نام دوره</th>
-                <th>نام مربی</th>
-                <th>زمان</th>
-                <th>جنسیت</th>
-                <th>نوع</th>
-                <th>ظرفیت</th>
-                <th>ورزش</th>
-                <th>وضعیت</th>
+                <th colspan="1" class="text-center">تنظیمات</th>
+                <th>نام و نام خانوادگی</th>
+                <th>شماره تلفن</th>
+                <th>تاریخ تولد</th>
+                <th>تاریخ ثبت</th>
+                <th>تاریخ شروع</th>
+                <th>تاریخ پایان</th>
+                <th>روز</th>
+                <th>جلسه</th>
+                <th>پرداختی</th>
+                <th>توضیحات</th>
+                 <th>وضعیت</th>
             </tr>
         </thead>
         <tbody>
@@ -170,45 +182,23 @@
             <tr>
                 <th scope="row">{{ x.id }}</th>
                 <td class="text-center">
-                    <i class="fa fa-eye text-info" aria-hidden="true" style="cursor: pointer" title="مشاهده" onclick="window.open('{% url 'product:product_view' x.id %}')"></i>
+                    <i class="fa fa-pencil text-warning" aria-hidden="true" style="cursor: pointer" title="ویرایش" onclick="window.open('{% url 'product:update-participant' x.id %}')"></i>
                 </td>
+                <td>{{ x.user.name }}</td>
+                <td dir="ltr">{{ x.user.number }}</td>
+                <td>{{ x.user.birthdate }}</td>
+                <td>{{ x.datetime }}</td>
+                <td>{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}</td>
+                <td data-end-year="{{ x.endDay.month.year.number}}" data-end-month = "{{ x.endDay.month.number }}" data-end-day="{{ x.endDay.number }}">{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}</td>
+                 <td>{{ x.day.title }}</td>
+                <td>{{ x.session.number }}</td>
+                <td>{{ x.price }} تومان </td>
+                <td>{{ x.description }}</td>
                 <td class="text-center">
-                    <i class="fa fa-pencil text-warning" aria-hidden="true" style="cursor: pointer" title="ویرایش" onclick="window.open('{% url 'product:update_course' x.id %}')"></i>
-                </td>
-                <td class="text-center">
-                    <i class="fa fa-solid fa-square-plus" aria-hidden="true" style="cursor: pointer" title="ثبت نام" onclick="window.open('{% url 'product:create-participant' x.id%}')"></i>
-                </td>
-
-                <td class="text-center">
-                    <i class="fa fa-solid fa-address-book" aria-hidden="true" style="cursor: pointer" title="لیست" onclick="window.location.assign('{% url 'product:admin_user_list' x.id %}')"></i>
-                </td>
-
-                <td>{{ x.title }}</td>
-                <td>{{ x.name }}</td>
-                <td>{{ x.time }}</td>
-                <td>
-                    {% if x.gender == "male" %}
-                    آقایان
-                    {% elif x.gender == "female" %}
-                    بانوان
-                    {% endif %}
-                </td>
-                <td>
-                    {% if x.type == "public" %}
-                    عمومی
-                    {% elif x.type == "private" %}
-                    خصوصی
-                    {% elif x.type == "semi_private" %}
-                    نیمه خصوصی
-                {% endif %}
-                </td>
-                <td>{{ x.capacity }}</td>
-                <td>{{ x.sport.title }}</td>
-                <td class="text-center">
-                    {% if x.active %}
-                        <i class="fa fa-check-circle text-success"></i>
+                    {% if x.success %}
+                        <i class="fa fa-check-circle text-success" title="معتبر"></i>
                     {% else %}
-                        <i class="fa fa-ban text-danger"></i>
+                        <i class="fa fa-ban text-danger" title="پرداخت ناموفق"></i>
                     {% endif %}
                 </td>
             </tr>
@@ -244,6 +234,50 @@
 
 </script>
 
-</body>
+<script>
 
+    document.addEventListener('DOMContentLoaded', function() {
+
+        let table = document.getElementById('myTable');
+        let rows = table.getElementsByTagName('tr');
+
+        let today = new Date().toLocaleDateString('fa-IR-u-nu-latn');
+        let parts = today.split('/'); // فرض می‌کنیم که فرمت "YYYY/MM/DD" است
+
+        let year = parseInt(parts[0].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728)));
+        let month = parseInt(parts[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728)));
+        let day = parseInt(parts[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728)));
+
+        const thisDate = jalaali.j2d(year, month, day)
+
+
+        for (var i = 1; i < rows.length; i++) { // شروع از 1 برای نادیده گرفتن هدر
+            var endDateCell = rows[i].querySelector('td[data-end-year]');
+
+            if (endDateCell) {
+                // دریافت تاریخ پایان شمسی
+                var endYearStr = endDateCell.getAttribute('data-end-year');
+                var endMonthStr = endDateCell.getAttribute('data-end-month');
+                var endDayStr = endDateCell.getAttribute('data-end-day');
+
+                 var userEndYear = parseInt(endYearStr);
+                 var userEndMonth = parseInt(endMonthStr);
+                 var userEndDay = parseInt(endDayStr);
+
+                 var userEnd = jalaali.j2d(userEndYear, userEndMonth, userEndDay)
+
+
+                // بررسی اینکه آیا تاریخ پایان گذشته است
+                if (userEnd<thisDate) {
+                     var statusCell = rows[i].querySelector('td:last-child'); // فرض می‌کنیم آخرین سلول وضعیت است
+                    if(statusCell.innerHTML.includes('fa-check-circle')) {
+                        statusCell.innerHTML = '<i class="fa fa-exclamation-circle text-warning" title="تاریخ پایان گذشته"></i>'; // تغییر به آیکون دلخواه
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+</body>
 </html>

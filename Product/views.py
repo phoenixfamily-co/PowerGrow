@@ -388,7 +388,7 @@ def admin_user_list(request, pk):
     }
 
     # استفاده از render برای بارگذاری الگو
-    return render(request, 'manager/list.html', context)
+    return render(request, 'admin/list.html', context)
 
 
 def teacher_user_list(request, pk, id):

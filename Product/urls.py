@@ -19,6 +19,7 @@ urlpatterns = [
     path('manager/days/', manager_days_view, name='manager_days'),
     path('admin/days/', admin_days_view, name='admin_days'),
     path('manager/users/<int:pk>/', manager_user_list, name='manager_user_list'),
+    path('admin/users/<int:pk>/', admin_user_list, name='admin_user_list'),
     path('teacher/users/<int:pk>/<int:id>/', teacher_user_list, name='teacher_user_list'),
     path('course/update/<int:pk>/', update_course, name='update_course'),
     path('participants/create/<int:course_id>/', create_participants, name='create-participant'),  # URL برای نمایش فرم
