@@ -395,7 +395,9 @@ def teacher_user_list(request, pk):
     # بارگذاری اطلاعات مربوط به AboutUs
     about = AboutUs.objects.first()
 
-    participants = Participants.objects.all().filter(course_id=pk, success=True).order_by('startDay')
+    participants = Participants.objects.all().filter(course_id=pk, success=True, user__is_teacher=False,
+                                                     user__is_superuser=False,
+                                                     user__is_staff=False).order_by('startDay')
 
     # آماده‌سازی context برای الگو
     context = {
