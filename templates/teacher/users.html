@@ -202,10 +202,9 @@
     document.getElementById('todayButton').addEventListener('click', function() {
 
     // دریافت روز فعلی
-    const daysOfWeek = ["یکشنبه", "دوشنبه", "سه‌شنبه", "چهارشنبه", "پنجشنبه", "جمعه"];
+    const daysOfWeek = ["یکشنبه", "دوشنبه", "سه ‌شنبه", "چهارشنبه", "پنجشنبه", "جمعه"];
     const today = new Date();
-    {#daysOfWeek[today.getDay()]; // 0 = یکشنبه, 1 = دوشنبه, ...#}
-    const currentDay = "سه شنبه"
+    const currentDay = daysOfWeek[today.getDay()]; // 0 = یکشنبه, 1 = دوشنبه, ...
 
     var table = document.getElementById('myTable');
     var tr = table.getElementsByTagName('tr');
