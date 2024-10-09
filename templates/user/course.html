@@ -143,6 +143,7 @@
                 <th>جلسه</th>
                 <th>نوع</th>
                 <th>پرداختی</th>
+                <th>توضیحات</th>
                 <th>وضعیت</th>
             </tr>
         </thead>
@@ -170,6 +171,13 @@
                 {% endif %}
                 </td>
                 <td>{{ x.price }}</td>
+            <td class="text-center">
+                    {% if x.success %}
+                        تایید شده
+                    {% else %}
+                        رد شده
+                    {% endif %}
+                </td>
                 <td class="text-center">
                     {% if x.success %}
                         <i title="معتبر" class="fa fa-check-circle text-success"></i>
