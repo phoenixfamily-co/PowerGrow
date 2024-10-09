@@ -161,9 +161,9 @@
                 <td>{{ x.course.name }}</td>
                 <td>{{ x.course.time }}</td>
                 <td>
-                    {% if x.gender == "male" %}
+                    {% if x.course.gender == "male" %}
                     آقایان
-                    {% elif x.gender == "female" %}
+                    {% elif x.course.gender == "female" %}
                     بانوان
                     {% endif %}
                 </td>
