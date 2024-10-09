@@ -462,7 +462,7 @@ class SportListCreateView(generics.CreateAPIView):
 class SportDetailView(viewsets.ViewSet):
     queryset = Sport.objects.all()
     serializer_class = SportSerializer
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsAdminUserOrStaff]
 
     def destroy(self, request, pk):
         try:
@@ -494,7 +494,7 @@ class DaysListCreateView(generics.CreateAPIView):
 class DaysDetailView(viewsets.ViewSet):
     queryset = Days.objects.all()
     serializer_class = DaysSerializer
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsAdminUserOrStaff]
 
     def destroy(self, request, pk):
         try:
@@ -526,7 +526,7 @@ class SessionListCreateView(generics.CreateAPIView):
 class SessionDetailView(viewsets.ViewSet):
     queryset = Session.objects.all()
     serializer_class = SessionSerializer
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsAdminUserOrStaff]
 
     def update(self, request, pk):
         try:
@@ -627,7 +627,7 @@ class ParticipationCreateView(viewsets.ViewSet):
 
 class ManagerParticipationView(viewsets.ViewSet):
     serializer_class = ManagerParticipantsSerializer
-    permission_classes = [IsSuperUser | IsAdminUser]
+    permission_classes = [IsAdminUserOrStaff]
 
     def create(self, request, course):
         data = request.data
