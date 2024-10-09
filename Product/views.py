@@ -268,12 +268,21 @@ def admin_session_view(request):
     about = AboutUs.objects.first()
 
     # بارگذاری تمامی جلسات
-    sessions = Session.objects.all()
+    sessions = Session.objects.all().order_by('-pk')
+
+    # پیاده‌سازی pagination
+    paginator = Paginator(sessions, 100)
+    page_number = request.GET.get('page')
+
+    try:
+        page_obj = paginator.get_page(page_number)
+    except (PageNotAnInteger, EmptyPage):
+        page_obj = paginator.page(1)  # اگر شماره صفحه معتبر نبود، به صفحه اول برگردیم
 
     # آماده‌سازی context برای الگو
     context = {
         "about": about,
-        "sessions": sessions,
+        "page_obj": page_obj,
     }
 
     # استفاده از render برای بارگذاری الگو
@@ -311,15 +320,22 @@ def admin_days_view(request):
     about = AboutUs.objects.first()
 
     # بارگذاری تمامی روزها
-    days = Days.objects.all()
+    days = Days.objects.all().order_by('-pk')
+
+    # پیاده‌سازی pagination
+    paginator = Paginator(days, 100)
+    page_number = request.GET.get('page')
+
+    try:
+        page_obj = paginator.get_page(page_number)
+    except (PageNotAnInteger, EmptyPage):
+        page_obj = paginator.page(1)  # اگر شماره صفحه معتبر نبود، به صفحه اول برگردیم
 
     # آماده‌سازی context برای الگو
     context = {
         "about": about,
-        "days": days,  # تغییر نام به 'days' برای وضوح بیشتر
+        "page_obj": page_obj,
     }
-
-    # استفاده از render برای بارگذاری الگو
     return render(request, 'admin/days.html', context)
 
 
