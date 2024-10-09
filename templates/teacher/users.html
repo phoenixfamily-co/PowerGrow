@@ -201,12 +201,11 @@
 
     document.getElementById('todayButton').addEventListener('click', function() {
 
-        console.log("دکمه کلیک شد"); // بررسی کنیم که آیا کلیک انجام می‌شود
-
     // دریافت روز فعلی
     const daysOfWeek = ["یکشنبه", "دوشنبه", "سه‌شنبه", "چهارشنبه", "پنجشنبه", "جمعه"];
     const today = new Date();
-    const currentDay = daysOfWeek[today.getDay()]; // 0 = یکشنبه, 1 = دوشنبه, ...
+    {#daysOfWeek[today.getDay()]; // 0 = یکشنبه, 1 = دوشنبه, ...#}
+    const currentDay = "یکشنبه"
 
     var table = document.getElementById('myTable');
     var tr = table.getElementsByTagName('tr');
