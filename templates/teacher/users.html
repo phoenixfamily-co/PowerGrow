@@ -5,14 +5,15 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <meta name="csrf-token" content="{{ csrf_token }}">
+
     <script src="https://kit.fontawesome.com/f872c5c890.js" crossorigin="anonymous"></script>
 
-
-     <script src="https://cdn.jsdelivr.net/npm/jalaali-js/dist/jalaali.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jalaali-js/dist/jalaali.min.js"></script>
-
-<script src="https://unpkg.com/jalaali-js/dist/jalaali.js"></script>
-<script src="https://unpkg.com/jalaali-js/dist/jalaali.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jalaali-js/dist/jalaali.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jalaali-js/dist/jalaali.min.js"></script>
+    <script src="https://unpkg.com/jalaali-js/dist/jalaali.js"></script>
+    <script src="https://unpkg.com/jalaali-js/dist/jalaali.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jalaali-moment/2.0.0/jalaali-moment.min.js"></script>
 
 
 
@@ -20,12 +21,10 @@
     {% bootstrap_css %}
     {% bootstrap_javascript %}
 
-        <title>مدیریت دوره ها</title>
+        <title>لیست دوره ها</title>
 
 
-    <style>
-
-
+   <style>
 
            @font-face {
             font-family: BYekan;
@@ -35,20 +34,24 @@
             src: url("/static/fonts/BYekan.woff") format('woff'),
             url("/static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */ url("../../static/fonts/BYekan.ttf") format('truetype') /* Safari, Android, iOS */
         }
-
-             * {
-            box-sizing: border-box
+           html, body {
+            margin: 0;
+            padding: 0 ;
+            background: #312f2e;
+            overflow-x: hidden;
+            font-family: BYekan, serif !important;
         }
 
-           .logoHolder {
-               width: 50px;
-               position: absolute;
-               left: 0;
-               right: 0;
-               margin-right: 55%;
-               margin-top: 1%;
-               z-index: 10 !important;
-               direction: ltr;
+        .logoHolder {
+            width: 100%;
+            position: relative;
+            margin-top: 20px;
+            left: 0;
+            display: flex;
+            z-index: 10 !important;
+            direction: ltr;
+            align-items: center;
+            justify-content: center;
 
         }
 
@@ -56,78 +59,73 @@
             width: 50px;
             height: 50px;
             border-radius: 25px;
-            position: absolute;
-            direction: ltr
 
         }
 
         .typography {
-            position: absolute;
-            margin-left: 60px;
-            margin-top: 20%;
             color: white;
-            font-size: 20px
+            font-size: 20px;
+            margin-left: 10px;
 
         }
-           html {
-               min-height: 100%;
-               position: relative;
-               font-family: BYekan, serif !important;
+
+
+           .pagination-container {
+               display: flex;
+               justify-content: center;
            }
 
-           body {
+           .search-bar-container {
+               display: flex;
+               justify-content: center; /* مرکز کردن نوار جستجو */
+               margin: 50px auto; /* فاصله از بالا و پایین */
+               width: 80%; /* نوار جستجو تمام عرض را بگیرد */
                direction: rtl;
-               background: #282a36;
-
            }
 
-           .navbar.navbar-dark.bg-dark li a{
-            color: #fff;
-        }
-
-          .navbar.navbar-dark.bg-dark a:hover{
-              color: grey;
-        }
-
-       .nav.navbar-nav li a {
-           color: #fff;
-           text-decoration: none;
-       }
-
-        .nav.navbar-nav a:hover {
-            color: grey;
-        }
-
-        .nav-pills > li > a.active {
-            background-color: #E16539 !important;
-        }
-
-          .fa.fa-times{
-              color: red;
-             cursor: pointer
+           .search-input {
+               flex: 1; /* به نوار جستجو اجازه می‌دهد تمام فضای در دسترس را پر کند */
+               padding: 10px 15px; /* فاصله داخلی */
+               border: 2px solid #ccc; /* حاشیه خاکستری */
+               border-radius: 25px; /* گوشه‌های گرد */
+               outline: none;
+               font-size: 16px;
+               box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* سایه خفیف */
+               transition: border-color 0.3s;
+               text-align: right;
            }
 
+           .search-input:focus {
+               border-color: #E16539; /* رنگ حاشیه وقتی روی فیلد کلیک می‌شود */
+           }
+
+
+
+            .table-actions {
+                display: flex;
+                justify-content: flex-end; /* دکمه در سمت راست قرار می‌گیرد */
+                margin-top: 20px;
+            }
+
+           .add-data-button {
+               background-color: #E16539;
+               color: white;
+               padding: 10px 20px;
+               border: none;
+               border-radius: 5px;
+               cursor: pointer;
+               font-size: 16px;
+               transition: background-color 0.3s;
+           }
+           .add-data-button:hover {
+               background-color: #a84e2c; /* تغییر رنگ در حالت hover */
+               color: #c4c4c4;
+           }
 
     </style>
 </head>
-<body onload="insertTable()">
 
-
-<nav class="navbar navbar-dark bg-dark">
-  <div class="container-fluid" style="vertical-align: center">
-<ul class="nav nav-pills">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href='javascript:filterList()'>لیست امروز</a>
-  </li>
-</ul>
-
-  <ul class="nav nav-pills navbar-left">
-      <li class="nav-item">
-    <a class="nav-link" aria-current="page" href='javascript: history.go(-1)'>برگشت</a>
-  </li>
-    </ul>
-  </div>
-</nav>
+<body>
 
 <div class="logoHolder">
 
@@ -136,186 +134,112 @@
 
 </div>
 
-<div class="table-responsive">
+   <div class="search-bar-container">
+    <input type="text" id="searchInput" class="search-input" placeholder="جستجو...">
+   </div>
 
-<table id="table" class="table" style="color: white ; margin-top: 100px">
-  <thead>
-    <tr>
-        <th scope="col">#</th>
-        <th scope="col">نام و نام خانوادگی</th>
-        <th scope="col">تاریخ شروع</th>
-        <th scope="col">تاریخ پایان</th>
-         <th scope="col">روزهای برگزاری</th>
-        <th scope="col">تعداد جلسه ها</th>
-    </tr>
-  </thead>
-  <tbody>
-{#  {% for x in course.participants.all %}#}
-{#      {% if x.user.is_teacher != True %}#}
-{#    <tr>#}
-{#        <th scope="row">{{ forloop.counter }}</th>#}
-{#        <td>{{ x.user.name }}</td>#}
-{#        <td>{{ x.user.number }}</td>#}
-{#        <td>{{ x.user.birthdate }}</td>#}
-{#        <td>{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}</td>#}
-{#        <td>{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}</td>#}
-{#        <td>{{ x.day.title }}</td>#}
-{#        <td>{{ x.session.number }}</td>#}
-{#        <td>{{ x.description }}</td>#}
-{#    </tr>#}
-{#       {% endif %}#}
-{##}
-{#   {% endfor %}#}
-  </tbody>
-</table>
+<div class="table-actions">
+    <button class="btn add-data-button">لیست امروز</button>
 </div>
-</body>
+
+<div class="table-responsive" dir="rtl">
+    <table id="myTable" class="table table-hover table-bordered table-dark">
+        <thead>
+            <tr>
+                <th>مرتبه</th>
+                <th>#</th>
+                <th>نام و نام خانوادگی</th>
+                <th>تاریخ شروع</th>
+                <th>تاریخ پایان</th>
+                <th>روز</th>
+                <th>جلسه</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for x in participants %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <th>{{ x.id }}</th>
+                <td>{{ x.user.name }}</td>
+                <td>{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}</td>
+                <td data-end-year="{{ x.endDay.month.year.number}}" data-end-month = "{{ x.endDay.month.number }}" data-end-day="{{ x.endDay.number }}">{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}</td>
+                 <td>{{ x.day.title }}</td>
+                <td>{{ x.session.number }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 
 <script>
 
-    let table = document.getElementById('table');
-    let body = table.getElementsByTagName('tbody')[0];
-    let today = new Date().toLocaleDateString('fa-IR');
-    today = today.split('/')
-    let currentDay
-    const d = new Date();
-    let day = d.getDay();
-    let year = parseInt(today[0].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
-    let month = parseInt(today[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
-    let monthDay = parseInt(today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
+    document.getElementById('searchInput').addEventListener('keyup', function() {
+    var input, filter, table, tr, td, i, j, txtValue;
+    input = document.getElementById('searchInput');
+    filter = input.value.toUpperCase();
+    table = document.getElementById('myTable');
+    tr = table.getElementsByTagName('tr');
 
-    const thisDate = jalaali.j2d(year, month, monthDay)
+    for (i = 1; i < tr.length; i++) {
+        tr[i].style.display = "none"; // همه ردیف‌ها ابتدا مخفی می‌شوند
+        td = tr[i].getElementsByTagName('td');
 
-    switch (day) {
-        case 0:
-            currentDay="یکشنبه"
-            break
-        case 1:
-            currentDay="دوشنبه"
-            break
-        case 2:
-            currentDay="سه شنبه"
-            break
-        case 3:
-            currentDay="چهارشنبه"
-            break
-        case 4:
-            currentDay="پنجشنبه"
-            break
-        case 5:
-            currentDay="جمعه"
-            break
-        case 6:
-            currentDay="شنبه"
-            break
-    }
-
-
-    function insertTable() {
-
-        body.innerHTML = ' '
-
-        {% for x in course.participants.all %}
-
-            {% if x.success == True %}
-
-
-            if (parseInt("{{x.user.id}}") !== parseInt("{{ user.id }}") ) {
-
-                  var userEndYear = parseInt("{{ x.endDay.month.year.number }}");
-                 var userEndMonth = parseInt("{{ x.endDay.month.number }}");
-                 var userEndDay = parseInt("{{ x.endDay.number }}");
-
-                 var userDay = jalaali.j2d(userEndYear, userEndMonth, userEndDay)
-
-                if(userDay>0) {
-                    if (userDay >= thisDate) {
-                        var tr = document.createElement("tr")
-                        var id = document.createElement("th")
-                        id.innerHTML = "{{ forloop.counter }}"
-                        var name = document.createElement("td")
-                        name.innerHTML = "{{x.user.name}}"
-                        var startDay = document.createElement("td")
-                        startDay.innerHTML = "{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}"
-                        var endDay = document.createElement("td")
-                        endDay.innerHTML = "{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}"
-                        var dayTitle = document.createElement("td")
-                        dayTitle.innerHTML = "{{x.day.title}}"
-                        var sessionNumber = document.createElement("td")
-                        sessionNumber.innerHTML = "{{x.session.number}}"
-
-                        tr.appendChild(id)
-                        tr.appendChild(name)
-                        tr.appendChild(startDay)
-                        tr.appendChild(endDay)
-                        tr.appendChild(dayTitle)
-                        tr.appendChild(sessionNumber)
-                        body.appendChild(tr)
-                    }
-                }
-            }
-
-            {% endif %}
-        {% endfor %}
-
-    }
-
-
-    function filterList() {
-
-        body.innerHTML = ' '
-
-
-        {% for x in course.participants.all %}
-
-            {% if x.success == True %}
-
-            if ("{{x.user.id}}" !== "{{ user.id }}" ){
-
-            if (currentDay === "{{x.day.title}}" || "{{x.day.title}}".split("،").includes(currentDay)) {
-
-
-                 var userEndYear = parseInt("{{ x.endDay.month.year.number }}");
-                 var userEndMonth = parseInt("{{ x.endDay.month.number }}");
-                 var userEndDay = parseInt("{{ x.endDay.number }}");
-
-                 var userDay = jalaali.j2d(userEndYear, userEndMonth, userEndDay)
-
-                if(userDay>0) {
-                    if (userDay >= thisDate) {
-
-                        var tr = document.createElement("tr")
-                        var id = document.createElement("th")
-                        id.innerHTML = "{{ forloop.counter }}"
-                        var name = document.createElement("td")
-                        name.innerHTML = "{{x.user.name}}"
-                        var startDay = document.createElement("td")
-                        startDay.innerHTML = "{{ x.startDay.month.year.number }}/{{ x.startDay.month.number }}/{{ x.startDay.number }}"
-                        var endDay = document.createElement("td")
-                        endDay.innerHTML = "{{ x.endDay.month.year.number }}/{{ x.endDay.month.number }}/{{ x.endDay.number }}"
-                        var dayTitle = document.createElement("td")
-                        dayTitle.innerHTML = "{{x.day.title}}"
-                        var sessionNumber = document.createElement("td")
-                        sessionNumber.innerHTML = "{{x.session.number}}"
-
-                        tr.appendChild(id)
-                        tr.appendChild(name)
-                        tr.appendChild(startDay)
-                        tr.appendChild(endDay)
-                        tr.appendChild(dayTitle)
-                        tr.appendChild(sessionNumber)
-                        body.appendChild(tr)
-                    }
+        for (j = 0; j < td.length; j++) { // هر سلول را بررسی می‌کنیم
+            if (td[j]) {
+                txtValue = td[j].textContent || td[j].innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = ""; // اگر متن مورد نظر پیدا شد، ردیف نمایش داده شود
+                    break;
                 }
             }
         }
-
-            {% endif %}
-
-        {% endfor %}
-
     }
+});
 
 </script>
 
+<script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+
+        let table = document.getElementById('myTable');
+        let rows = table.getElementsByTagName('tr');
+
+        let today = new Date().toLocaleDateString('fa-IR-u-nu-latn');
+        let parts = today.split('/'); // فرض می‌کنیم که فرمت "YYYY/MM/DD" است
+
+        let year = parseInt(parts[0].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728)));
+        let month = parseInt(parts[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728)));
+        let day = parseInt(parts[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728)));
+
+        const thisDate = jalaali.j2d(year, month, day)
+
+        for (var i = 1; i < rows.length; i++) { // شروع از 1 برای نادیده گرفتن هدر
+            var endDateCell = rows[i].querySelector('td[data-end-year]');
+
+            if (endDateCell) {
+                // دریافت تاریخ پایان شمسی
+                var endYearStr = endDateCell.getAttribute('data-end-year');
+                var endMonthStr = endDateCell.getAttribute('data-end-month');
+                var endDayStr = endDateCell.getAttribute('data-end-day');
+
+                 var userEndYear = parseInt(endYearStr);
+                 var userEndMonth = parseInt(endMonthStr);
+                 var userEndDay = parseInt(endDayStr);
+
+                 var userEnd = jalaali.j2d(userEndYear, userEndMonth, userEndDay)
+
+
+                // بررسی اینکه آیا تاریخ پایان گذشته است
+                if (userEnd<thisDate) {
+                    table.deleteRow(i); // حذف سطر فعلی
+                    i--; // کاهش اندیس به دلیل حذف سطر
+                }
+            }
+        }
+    });
+
+</script>
+
+</body>
 </html>

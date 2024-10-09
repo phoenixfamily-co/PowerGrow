@@ -207,7 +207,7 @@ def teacher_courses_view(request, pk):
     about = AboutUs.objects.first()
 
     # بارگذاری شرکت‌کنندگان مربوط به معلم
-    participants = Participants.objects.filter(user=pk)
+    participants = Participants.objects.filter(user_id=pk)
 
     # آماده‌سازی context برای الگو
     context = {
@@ -391,23 +391,16 @@ def admin_user_list(request, pk):
     return render(request, 'admin/list.html', context)
 
 
-def teacher_user_list(request, pk, id):
+def teacher_user_list(request, pk):
     # بارگذاری اطلاعات مربوط به AboutUs
     about = AboutUs.objects.first()
 
-    # بارگذاری دوره و کاربر با استفاده از get_object_or_404
-    course = get_object_or_404(Course, id=pk)
-    user = get_object_or_404(User, id=id)
-
-    # محاسبه تعداد شرکت‌کنندگان
-    participant_count = course.participants.count()
+    participants = Participants.objects.all().filter(course_id=pk, success=True).order_by('startDay')
 
     # آماده‌سازی context برای الگو
     context = {
         "about": about,
-        "course": course,
-        "user": user,
-        "size": participant_count,
+        "participants": participants,
     }
 
     # استفاده از render برای بارگذاری الگو
