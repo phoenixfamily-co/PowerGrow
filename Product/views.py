@@ -15,6 +15,7 @@ from User.models import *
 from Product.serializer import *
 from django.conf import settings
 import json
+from PowerGrow.permissions import *
 
 if settings.SANDBOX:
     sandbox = 'sandbox'
@@ -423,7 +424,7 @@ def update_participant_view(request, participant_id):
 class CourseListCreateView(generics.CreateAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsAdminUserOrStaff]
 
 
 class CourseDetailView(viewsets.ViewSet):
@@ -455,7 +456,7 @@ class CourseDetailView(viewsets.ViewSet):
 class SportListCreateView(generics.CreateAPIView):
     queryset = Sport.objects.all()
     serializer_class = SportSerializer
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsAdminUserOrStaff]
 
 
 class SportDetailView(viewsets.ViewSet):
@@ -487,7 +488,7 @@ class SportDetailView(viewsets.ViewSet):
 class DaysListCreateView(generics.CreateAPIView):
     queryset = Days.objects.all()
     serializer_class = DaysSerializer
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsAdminUserOrStaff]
 
 
 class DaysDetailView(viewsets.ViewSet):
@@ -519,7 +520,7 @@ class DaysDetailView(viewsets.ViewSet):
 class SessionListCreateView(generics.CreateAPIView):
     queryset = Session.objects.all()
     serializer_class = SessionSerializer
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsAdminUserOrStaff]
 
 
 class SessionDetailView(viewsets.ViewSet):
@@ -626,7 +627,7 @@ class ParticipationCreateView(viewsets.ViewSet):
 
 class ManagerParticipationView(viewsets.ViewSet):
     serializer_class = ManagerParticipantsSerializer
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsAdminUserOrStaff]
 
     def create(self, request, course):
         data = request.data
