@@ -149,7 +149,7 @@
         <tbody>
             {% for x in participants %}
             <tr>
-                <th scope="row">{{ x.course.id }}</th>
+                <th scope="row">{{ x.id }}</th>
                 <td class="text-center">
                     <i class="fa fa-eye text-info" aria-hidden="true" style="cursor: pointer" title="مشاهده" onclick="window.open('{% url 'product:product_view' x.course.id %}')"></i>
                 </td>
