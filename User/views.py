@@ -56,14 +56,14 @@ def custom_login(request):
     if request.method == 'POST':
         try:
             data = json.loads(request.body)
-            username = data.get('username')
+            number = data.get('username')  # دریافت شماره به عنوان username
             password = data.get('password')
 
-            # بررسی وجود کاربر
-            user = User.objects.get(username=username)
+            # بررسی وجود کاربر با استفاده از number
+            user = User.objects.get(number=number)
 
             # اعتبارسنجی پسورد
-            user = authenticate(request, username=username, password=password)
+            user = authenticate(request, username=user.username, password=password)  # استفاده از username واقعی کاربر در authenticate
             if user is not None:
                 login(request, user)
                 return JsonResponse({'status': 'success'}, status=200)
@@ -76,9 +76,6 @@ def custom_login(request):
             return JsonResponse({'error': 'فرمت JSON نامعتبر است'}, status=400)
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=500)
-
-    return JsonResponse({'error': 'درخواست نامعتبر است'}, status=400)
-
 
 
 @csrf_exempt
