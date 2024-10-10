@@ -63,7 +63,7 @@ def custom_login(request):
             user = User.objects.get(number=number)
 
             # اعتبارسنجی پسورد
-            user = authenticate(request, username=user.username, password=password)  # استفاده از username واقعی کاربر در authenticate
+            user = authenticate(request, username=number, password=password)
             if user is not None:
                 login(request, user)
                 return JsonResponse({'status': 'success'}, status=200)
