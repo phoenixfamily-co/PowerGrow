@@ -7,11 +7,14 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 from About.models import AboutUs
 from Calendar.models import Day
+from PowerGrow.decorators import session_auth_required
 from Product.models import Course
 from Seo.models import News
 from Seo.serializer import NewsSerializer
+from PowerGrow.permissions import *
 
 
+@session_auth_required
 def news_view(request):
     about = AboutUs.objects.values().first()
     news = News.objects.all().order_by('-pk')
@@ -22,7 +25,7 @@ def news_view(request):
     }
     return HttpResponse(template.render(context, request))
 
-
+@session_auth_required
 def admin_news_view(request):
     about = AboutUs.objects.values().first()
     news = News.objects.all().order_by('-pk')
@@ -34,10 +37,10 @@ def admin_news_view(request):
     return HttpResponse(template.render(context, request))
 
 
-@permission_classes([IsAdminUser])
 class NewsApi(viewsets.ModelViewSet):
     queryset = News.objects.all()
     serializer_class = NewsSerializer
+    permission_classes = [IsAdminUserOrStaff]
 
     def perform_create(self, serializer):
         data = self.request.data

@@ -1,21 +1,24 @@
 import requests
+from django.contrib.auth import get_user_model
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.views.decorators.cache import cache_page
 from rest_framework import viewsets, generics, status
-from rest_framework.decorators import api_view, action
-from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.decorators import api_view
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.utils import json
 from About.models import AboutUs
 from Calendar.models import Day
 from PowerGrow.decorators import session_auth_required
-from User.models import *
 from Product.serializer import *
 from django.conf import settings
 import json
 from PowerGrow.permissions import *
+
+User = get_user_model()
+
 
 if settings.SANDBOX:
     sandbox = 'sandbox'
@@ -131,6 +134,7 @@ def verify(request):
         })
 
 
+@session_auth_required
 def manager_sports_view(request):
     sport = Sport.objects.all()
     about = AboutUs.objects.values().first()
@@ -141,6 +145,7 @@ def manager_sports_view(request):
     return render(request, 'manager/sports.html', context)
 
 
+@session_auth_required
 def admin_sports_view(request):
     sport = Sport.objects.all()
     about = AboutUs.objects.first()
@@ -151,6 +156,7 @@ def admin_sports_view(request):
     return render(request, 'admin/sports.html', context)
 
 
+@session_auth_required
 def manager_courses_view(request):
     # بارگذاری اطلاعات دوره‌ها و اطلاعات اضافی
     courses = Course.objects.all().order_by("-pk")
@@ -177,6 +183,7 @@ def manager_courses_view(request):
     return render(request, 'manager/courses.html', context)
 
 
+@session_auth_required
 def admin_courses_view(request):
     courses = Course.objects.all().order_by("-pk")
     about = AboutUs.objects.first()
@@ -202,6 +209,7 @@ def admin_courses_view(request):
     return render(request, 'admin/courses.html', context)
 
 
+@session_auth_required
 def teacher_courses_view(request, pk):
     # بارگذاری اطلاعات مربوط به AboutUs
     about = AboutUs.objects.first()
@@ -220,6 +228,7 @@ def teacher_courses_view(request, pk):
     return render(request, 'teacher/courses.html', context)
 
 
+@session_auth_required
 def user_courses_view(request, pk):
     # بارگذاری اطلاعات مربوط به AboutUs
     about = AboutUs.objects.first()
@@ -237,6 +246,7 @@ def user_courses_view(request, pk):
     return render(request, 'user/course.html', context)
 
 
+@session_auth_required
 def manager_session_view(request):
     # بارگذاری اطلاعات مربوط به AboutUs
     about = AboutUs.objects.first()
@@ -263,6 +273,7 @@ def manager_session_view(request):
     return render(request, 'manager/sessions.html', context)
 
 
+@session_auth_required
 def admin_session_view(request):
     # بارگذاری اطلاعات مربوط به AboutUs
     about = AboutUs.objects.first()
@@ -289,6 +300,7 @@ def admin_session_view(request):
     return render(request, 'admin/sessions.html', context)
 
 
+@session_auth_required
 def manager_days_view(request):
     # بارگذاری اطلاعات مربوط به AboutUs
     about = AboutUs.objects.first()
@@ -315,6 +327,7 @@ def manager_days_view(request):
     return render(request, 'manager/days.html', context)
 
 
+@session_auth_required
 def admin_days_view(request):
     # بارگذاری اطلاعات مربوط به AboutUs
     about = AboutUs.objects.first()
@@ -339,6 +352,7 @@ def admin_days_view(request):
     return render(request, 'admin/days.html', context)
 
 
+@session_auth_required
 def manager_user_list(request, pk):
     # بارگذاری اطلاعات مربوط به AboutUs
     about = AboutUs.objects.first()
@@ -365,6 +379,7 @@ def manager_user_list(request, pk):
     return render(request, 'manager/list.html', context)
 
 
+@session_auth_required
 def admin_user_list(request, pk):
     # بارگذاری اطلاعات مربوط به AboutUs
     about = AboutUs.objects.first()
@@ -391,6 +406,7 @@ def admin_user_list(request, pk):
     return render(request, 'admin/list.html', context)
 
 
+@session_auth_required
 def teacher_user_list(request, pk):
     # بارگذاری اطلاعات مربوط به AboutUs
     about = AboutUs.objects.first()
@@ -409,6 +425,7 @@ def teacher_user_list(request, pk):
     return render(request, 'teacher/users.html', context)
 
 
+@session_auth_required
 def update_course(request, pk):
     course = get_object_or_404(Course, pk=pk)
     about = AboutUs.objects.first()
@@ -421,6 +438,7 @@ def update_course(request, pk):
     return render(request, 'manager/update_course.html', context)
 
 
+@session_auth_required
 def create_participants(request, course_id):  # تغییر نام پارامتر به course_id
     about = AboutUs.objects.first()
     user = User.objects.all()
@@ -439,6 +457,7 @@ def create_participants(request, course_id):  # تغییر نام پارامتر
     return render(request, 'manager/participants.html', context)
 
 
+@session_auth_required
 def update_participant_view(request, participant_id):
     participant = get_object_or_404(Participants, id=participant_id)
     course = Course.objects.all()  # فرض بر این است که participant به course مرتبط است

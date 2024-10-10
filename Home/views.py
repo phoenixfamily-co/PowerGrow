@@ -1,16 +1,16 @@
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework import viewsets
-from rest_framework.decorators import permission_classes
-from rest_framework.permissions import IsAuthenticated
-
 from Product.models import Course, Sport
 from About.models import AboutUs
 from django.template import loader
 from .serializer import *
 from django.http import HttpResponse
 from django.views.decorators.cache import cache_page
+from PowerGrow.permissions import *
 
 
 @cache_page(60 * 15)
+@csrf_exempt
 def home_view(request):
     images = Slider.objects.all().order_by("datetime").values()
     selected = Course.objects.filter(selected=True , active=True).order_by("datetime").values()
@@ -29,6 +29,7 @@ def home_view(request):
 
 
 @cache_page(60 * 15)
+@csrf_exempt
 def slider_view(request):
     about = AboutUs.objects.values().first()
     slider = Slider.objects.all().values()
@@ -40,7 +41,7 @@ def slider_view(request):
     return HttpResponse(template.render(context, request))
 
 
-@permission_classes([IsAuthenticated])
 class SliderView(viewsets.ModelViewSet):
     queryset = Slider.objects.all()
     serializer_class = SliderSerializer
+    permission_classes = [IsAdminUserOrStaff]

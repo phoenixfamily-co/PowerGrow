@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.template import loader
 from django.views.decorators.cache import cache_page
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework import viewsets
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
@@ -12,6 +13,7 @@ from About.models import AboutUs
 
 
 @cache_page(60 * 15)
+@csrf_exempt
 def about_view(request):
     about = AboutUs.objects.values().first()
     sport = Sport.objects.all().values()
@@ -24,10 +26,10 @@ def about_view(request):
     return HttpResponse(template.render(context, request))
 
 
-@permission_classes([IsAdminUser])
 class About(viewsets.ModelViewSet):
     queryset = AboutUs.objects.all()
     serializer_class = AboutSerializer
+    permission_classes = [IsAdminUser]
 
     def create(self, request, *args, **kwargs):
         AboutUs.objects.all().delete()

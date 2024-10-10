@@ -1,6 +1,6 @@
 import json
 
-from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth import login, authenticate, logout, get_user_model
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect
 from django.template import loader
@@ -17,12 +17,7 @@ from rest_framework import status, viewsets, generics
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 
-try:
-    from django.contrib.auth import get_user_model
-except ImportError:  # django < 1.5
-    from django.contrib.auth.models import User
-else:
-    User = get_user_model()
+User = get_user_model()
 
 
 @csrf_exempt

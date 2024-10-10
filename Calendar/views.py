@@ -2,15 +2,18 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponse
 from django.template import loader
 from rest_framework import viewsets, generics, status
-from rest_framework.decorators import permission_classes
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
+from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
+
+from PowerGrow.decorators import session_auth_required
 from Product.models import *
 from Reservation.models import *
 from About.models import AboutUs
 from Calendar.serializer import *
+from PowerGrow.permissions import *
 
 
+@session_auth_required
 def price_view(request):
     about = AboutUs.objects.values().first()
     time = Time.objects.all().order_by('-day_id', 'pk')
@@ -33,6 +36,7 @@ def price_view(request):
     return HttpResponse(template.render(context, request))
 
 
+@session_auth_required
 def calendar_view(request):
     about = AboutUs.objects.values().first()
     day = Day.objects.all().order_by('-pk')
@@ -55,6 +59,7 @@ def calendar_view(request):
     return HttpResponse(template.render(context, request))
 
 
+@session_auth_required
 def teacher_calendar_view(request, pk):
     about = AboutUs.objects.values().first()
     user = User.objects.get(id=pk)
@@ -83,6 +88,7 @@ def teacher_calendar_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
+@session_auth_required
 def user_calendar_view(request, pk):
     about = AboutUs.objects.values().first()
     user = User.objects.get(id=pk)
@@ -143,10 +149,10 @@ class YearView(viewsets.ModelViewSet):
         return query_set
 
 
-@permission_classes([IsAuthenticated])
 class MonthView(viewsets.ModelViewSet):
     queryset = Month.objects.all()
     serializer_class = MonthSerializer
+    permission_classes = [IsAdminUserOrStaff]
 
     def perform_create(self, serializer):
         data = self.request.data
@@ -161,10 +167,11 @@ class MonthView(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 
-@permission_classes([IsAuthenticated])
 class DayView(viewsets.ModelViewSet):
     queryset = Day.objects.all()
     serializer_class = DaySerializer
+    permission_classes = [IsAdminUserOrStaff]
+
 
     def perform_create(self, serializer):
         data = self.request.data
@@ -219,10 +226,11 @@ class TimeView(viewsets.ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-@permission_classes([IsAdminUser])
 class CostView(viewsets.ModelViewSet):
     queryset = Time.objects.all()
     serializer_class = ChangeCostSerializer
+    permission_classes = [IsAdminUserOrStaff]
+
 
     def update(self, request, *args, **kwargs):
         time = Time.objects.get(id=kwargs.get('id'))
@@ -235,17 +243,17 @@ class CostView(viewsets.ModelViewSet):
         return Response(status=status.HTTP_202_ACCEPTED)
 
 
-@permission_classes([IsAdminUser])
 class ChangeDescriptionView(generics.UpdateAPIView, ):
     queryset = Day.objects.all()
     lookup_field = "id"
     serializer_class = ChangeDescriptionSerializer
+    permission_classes = [IsAdminUserOrStaff]
 
 
-@permission_classes([IsAdminUser])
 class Reset(viewsets.ModelViewSet):
     queryset = Time.objects.all()
     serializer_class = TimeSerializer
+    permission_classes = [IsAdminUser]
 
     def update(self, request, *args, **kwargs):
         Time.objects.all().update(reserved=False)
