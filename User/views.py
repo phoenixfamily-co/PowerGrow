@@ -50,21 +50,33 @@ def login_view(request):
         return HttpResponse(template.render(context, request))
 
 
+from django.contrib.auth import authenticate, login
+from django.http import JsonResponse
+from django.contrib.auth.models import User
+import json
+
+
 def custom_login(request):
     if request.method == 'POST':
         data = json.loads(request.body)  # داده‌ها از JSON خوانده می‌شوند
         username = data.get('username')
         password = data.get('password')
-        user = authenticate(request, username=username, password=password)
 
+        # بررسی وجود کاربر
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            return JsonResponse({'error': 'کاربر وجود ندارد'}, status=404)
+
+        # اعتبارسنجی پسورد
+        user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            if user is not None:
-                login(request, user)
-                return JsonResponse({'status': 'success'}, status=200)
+            return JsonResponse({'status': 'success'}, status=200)
+        else:
+            return JsonResponse({'error': 'پسورد اشتباه است'}, status=400)
 
-        return JsonResponse({'error': 'Invalid credentials'}, status=400)
-    return JsonResponse({'error': 'Invalid request'}, status=400)
+    return JsonResponse({'error': 'درخواست نامعتبر است'}, status=400)
 
 
 def custom_logout(request):
