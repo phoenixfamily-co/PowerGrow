@@ -10,6 +10,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from rest_framework.generics import get_object_or_404, UpdateAPIView
 
 from About.models import AboutUs
+from PowerGrow.decorators import session_auth_required
 from Product.models import *
 from User.serializer import *
 from rest_framework import status, viewsets, generics
@@ -128,6 +129,7 @@ def pass_view(request, number):
 
 
 @cache_page(60 * 15)
+@session_auth_required
 def user_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('user/dashboard.html')
@@ -140,6 +142,7 @@ def user_home_view(request, pk):
 
 
 @cache_page(60 * 15)
+@session_auth_required
 def teacher_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('teacher/dashboard.html')
@@ -152,6 +155,7 @@ def teacher_home_view(request, pk):
 
 
 @cache_page(60 * 15)
+@session_auth_required
 def admin_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('admin/dashboard.html')
@@ -165,6 +169,7 @@ def admin_home_view(request, pk):
 
 
 @cache_page(60 * 15)
+@session_auth_required
 def manager_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('manager/dashboard.html')
