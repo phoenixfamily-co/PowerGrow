@@ -54,25 +54,31 @@ def login_view(request):
 @csrf_exempt
 def custom_login(request):
     if request.method == 'POST':
-        data = json.loads(request.body)  # داده‌ها از JSON خوانده می‌شوند
-        username = data.get('username')
-        password = data.get('password')
-
-        # بررسی وجود کاربر
         try:
+            data = json.loads(request.body)
+            username = data.get('username')
+            password = data.get('password')
+
+            # بررسی وجود کاربر
             user = User.objects.get(username=username)
+
+            # اعتبارسنجی پسورد
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return JsonResponse({'status': 'success'}, status=200)
+            else:
+                return JsonResponse({'error': 'پسورد اشتباه است'}, status=400)
+
         except User.DoesNotExist:
             return JsonResponse({'error': 'کاربر وجود ندارد'}, status=404)
-
-        # اعتبارسنجی پسورد
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return JsonResponse({'status': 'success'}, status=200)
-        else:
-            return JsonResponse({'error': 'پسورد اشتباه است'}, status=400)
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'فرمت JSON نامعتبر است'}, status=400)
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=500)
 
     return JsonResponse({'error': 'درخواست نامعتبر است'}, status=400)
+
 
 
 @csrf_exempt
