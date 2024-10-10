@@ -328,7 +328,6 @@ class ChangePasswordView(UpdateAPIView):
         return Response({"detail": "Password has been changed successfully."}, status=status.HTTP_200_OK)
 
 
-@session_auth_required
 class ChangeUserAccessView(UpdateAPIView):
     serializer_class = ChangeUserAccessSerializer
     permission_classes = [IsAdminUser]
