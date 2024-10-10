@@ -162,6 +162,7 @@
                 <th scope="col">مقدار حقوق</th>
                 <th scope="col">وضعیت حساب</th>
                 <th scope="col">مقدار حساب</th>
+                <th scope="col">توضیحات</th>
                 <th scope="col">وضعیت</th>
             </tr>
         </thead>
@@ -206,6 +207,11 @@
                 <td>{{ x.fee}}</td>
                 <td>{{ x.situation}}</td>
                 <td>{{ x.debt}}</td>
+                <td>
+                     {{ x.description }}
+                    <br>
+                    {{ x.created.name }}
+                </td>
                 <td class="text-center">
                     {% if x.is_active %}
                         <i title="فعال" class="fa fa-check-circle text-success"></i>

@@ -275,6 +275,9 @@ class UserCreateView(generics.CreateAPIView):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
+            if request.user.is_authenticated:
+                user.created = request.user  # مقداردهی فیلد created
+                user.save()  # ذخیره تغییرات
             return Response({"message": "User registered successfully!", "user_id": user.id},
                             status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
