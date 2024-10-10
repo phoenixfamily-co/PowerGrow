@@ -50,12 +50,6 @@ def login_view(request):
         return HttpResponse(template.render(context, request))
 
 
-from django.contrib.auth import authenticate, login
-from django.http import JsonResponse
-from django.contrib.auth.models import User
-import json
-
-
 def custom_login(request):
     if request.method == 'POST':
         data = json.loads(request.body)  # داده‌ها از JSON خوانده می‌شوند
