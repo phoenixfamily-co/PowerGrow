@@ -25,6 +25,7 @@ def news_view(request):
     }
     return HttpResponse(template.render(context, request))
 
+
 @session_auth_required
 def admin_news_view(request):
     about = AboutUs.objects.values().first()
@@ -46,7 +47,7 @@ class NewsApi(viewsets.ModelViewSet):
         data = self.request.data
         title = data["title"]
         description = data["description"]
-        date = Day.objects.filter(id=self.kwargs['day']).first()
+        date = Day.objects.filter(id=data["day"]).first()
         course = Course.objects.filter(id=data["course"]).first()
         news = News.objects.update_or_create(title=title, description=description, date=date, course=course)
 
