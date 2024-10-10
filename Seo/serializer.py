@@ -7,5 +7,4 @@ class NewsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = News
-        read_only_fields = ['date']
         fields = "__all__"
