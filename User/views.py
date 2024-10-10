@@ -17,7 +17,6 @@ from rest_framework import status, viewsets, generics
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 
-
 try:
     from django.contrib.auth import get_user_model
 except ImportError:  # django < 1.5
@@ -181,6 +180,7 @@ def manager_home_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
+@session_auth_required
 def profile_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('public/profile.html')
@@ -192,6 +192,7 @@ def profile_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
+@session_auth_required
 def salary_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('teacher/salary.html')
@@ -216,6 +217,7 @@ def salary_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
+@session_auth_required
 def manager_users_view(request):
     template = loader.get_template('manager/users.html')
     about = AboutUs.objects.values().first()
@@ -239,6 +241,7 @@ def manager_users_view(request):
     return HttpResponse(template.render(context, request))
 
 
+@session_auth_required
 def admin_users_view(request):
     template = loader.get_template('admin/users.html')
     about = AboutUs.objects.values().first()
@@ -325,6 +328,7 @@ class ChangePasswordView(UpdateAPIView):
         return Response({"detail": "Password has been changed successfully."}, status=status.HTTP_200_OK)
 
 
+@session_auth_required
 class ChangeUserAccessView(UpdateAPIView):
     serializer_class = ChangeUserAccessSerializer
     permission_classes = [IsAdminUser]
