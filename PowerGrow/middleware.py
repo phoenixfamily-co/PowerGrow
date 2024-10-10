@@ -18,7 +18,7 @@ class SessionAuthMiddleware:
     def __call__(self, request):
         # بررسی مسیرهای غیر حفاظتی
         for path in self.non_auth_paths:
-            if re.match(r'^/your-path/[\d]+/$', request.path):
+            if request.path.startswith(path) or re.match(r'^/your-path/[\d]+/$', request.path):
                 return self.get_response(request)
 
         if not request.user.is_authenticated:
