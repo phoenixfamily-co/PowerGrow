@@ -66,7 +66,7 @@ def custom_login(request):
                 return JsonResponse({'error': 'پسورد اشتباه است'}, status=400)
 
         except User.DoesNotExist:
-            return JsonResponse({'error': 'کاربر وجود ندارد'}, status=404)
+            return JsonResponse({'error': 'نام کاربری وجود ندارد'}, status=404)
         except json.JSONDecodeError:
             return JsonResponse({'error': 'فرمت JSON نامعتبر است'}, status=400)
         except Exception as e:
