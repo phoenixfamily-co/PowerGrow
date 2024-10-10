@@ -174,7 +174,7 @@
                 <th>جلسه</th>
                 <th>پرداختی</th>
                 <th>توضیحات</th>
-                 <th>وضعیت</th>
+                <th>وضعیت</th>
             </tr>
         </thead>
         <tbody>
@@ -196,7 +196,10 @@
                  <td>{{ x.day.title }}</td>
                 <td>{{ x.session.number }}</td>
                 <td>{{ x.price }} تومان </td>
-                <td>{{ x.description }}</td>
+                <td>
+                    {{ x.description }}
+                    ثبت شده توسط{{ x.created }}
+                </td>
                 <td class="text-center">
                     {% if x.success %}
                         <i class="fa fa-check-circle text-success" title="معتبر"></i>
