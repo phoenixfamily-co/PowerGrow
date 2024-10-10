@@ -25,6 +25,7 @@ else:
     User = get_user_model()
 
 
+@csrf_exempt
 def login_view(request):
     about = AboutUs.objects.values().first()
     template = loader.get_template('public/login.html')
@@ -50,6 +51,7 @@ def login_view(request):
         return HttpResponse(template.render(context, request))
 
 
+@csrf_exempt
 def custom_login(request):
     if request.method == 'POST':
         data = json.loads(request.body)  # داده‌ها از JSON خوانده می‌شوند
