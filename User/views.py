@@ -75,6 +75,7 @@ def custom_login(request):
     return JsonResponse({'error': 'درخواست نامعتبر است'}, status=400)
 
 
+@csrf_exempt
 def custom_logout(request):
     logout(request)  # خروج کاربر
 
