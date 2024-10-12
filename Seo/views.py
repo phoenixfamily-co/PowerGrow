@@ -59,7 +59,7 @@ def admin_news_view(request):
     return render(request, 'admin/news.html', context)
 
 
-@session_auth_required
+@session_teacher_required
 def teacher_news_view(request):
     about = AboutUs.objects.values().first()
     news = News.objects.all().order_by('-pk')

@@ -209,7 +209,7 @@ def admin_courses_view(request):
     return render(request, 'admin/courses.html', context)
 
 
-@session_auth_required
+@session_teacher_required
 def teacher_courses_view(request, pk):
     # بارگذاری اطلاعات مربوط به AboutUs
     about = AboutUs.objects.first()
@@ -406,7 +406,7 @@ def admin_user_list(request, pk):
     return render(request, 'admin/list.html', context)
 
 
-@session_auth_required
+@session_teacher_required
 def teacher_user_list(request, pk):
     # بارگذاری اطلاعات مربوط به AboutUs
     about = AboutUs.objects.first()

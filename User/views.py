@@ -138,7 +138,7 @@ def user_home_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
-@session_auth_required
+@session_teacher_required
 def teacher_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('teacher/dashboard.html')
@@ -187,7 +187,7 @@ def profile_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
-@session_auth_required
+@session_teacher_required
 def salary_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('teacher/salary.html')
