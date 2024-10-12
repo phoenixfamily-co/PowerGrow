@@ -29,6 +29,7 @@ urlpatterns = [
     path('update/profile/', ProfileView.as_view({'put': 'update'}), name='update_profile'),
 
     path('change-password/<int:user_id>/', ChangePasswordView.as_view(), name='change-password'),
+    path('profile/change-password/', ChangeProfilePasswordView.as_view(), name='change-profile-password'),
 
     path('change-access/<int:user_id>/', ChangeUserAccessView.as_view(), name='change-user-access'),
     path('change-salary/<int:user_id>/', ChangeUserSalaryView.as_view(), name='change-user-salary'),

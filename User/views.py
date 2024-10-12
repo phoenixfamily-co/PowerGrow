@@ -384,6 +384,30 @@ class ChangePasswordView(UpdateAPIView):
         return Response({"detail": "پسورد با موفقیت تغییر کرد"}, status=status.HTTP_200_OK)
 
 
+class ChangeProfilePasswordView(UpdateAPIView):
+    serializer_class = ChangePasswordSerializer
+    permission_classes = [IsAuthenticated]
+
+    def update(self, request, *args, **kwargs):
+        user = self.request.user
+        if user is None:
+            return Response({"detail": "User not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        old_password = request.data.get("old_password")
+
+        if not user.check_password(old_password):
+            return Response({"detail": "پسورد فعلی اشتباه است."}, status=status.HTTP_400_BAD_REQUEST)
+
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        new_password = serializer.validated_data['new_password']
+
+        user.set_password(new_password)
+        user.save()
+        return Response({"detail": "پسورد با موفقیت تغییر کرد"}, status=status.HTTP_200_OK)
+
+
 class ChangeUserAccessView(UpdateAPIView):
     serializer_class = ChangeUserAccessSerializer
     permission_classes = [IsAdminUser]
