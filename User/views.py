@@ -327,7 +327,7 @@ class ChangeNumberView(UpdateAPIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
 
-        return Response({"detail": "Password has been changed successfully."}, status=status.HTTP_200_OK)
+        return Response({"detail": "نام کاربری با موفقیت تغییر کرد"}, status=status.HTTP_200_OK)
 
 
 class ChangePasswordView(UpdateAPIView):
@@ -354,7 +354,7 @@ class ChangePasswordView(UpdateAPIView):
 
         user.set_password(new_password)
         user.save()
-        return Response({"detail": "Password has been changed successfully."}, status=status.HTTP_200_OK)
+        return Response({"detail": "پسورد با موفقیت تغییر کرد"}, status=status.HTTP_200_OK)
 
 
 class ChangeUserAccessView(UpdateAPIView):
