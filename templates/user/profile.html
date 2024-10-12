@@ -214,6 +214,7 @@
                 .then(response => {
                     if (response.ok) {
                         alert('پسورد با موفقیت تفییر کرد.');
+                        window.location.reload()
             } else {
                 return response.json().then(errorData => {
                     alert('خطا: ' + JSON.stringify(errorData));
