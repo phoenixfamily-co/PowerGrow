@@ -77,6 +77,10 @@
                 <label for="username">شماره تلفن</label>
                 <input type="tel" class="form-control" id="username" value="{{ user.number }}" disabled>
             </div>
+             <div class="form-group">
+                <label for="fullname">نام و نام خانوادگی</label>
+                <input type="text" class="form-control" id="fullname" value="{{ user.name }}">
+            </div>
             <div class="form-group">
                 <label for="birthdate">تاریخ تولد</label>
                 <input type="text" class="form-control" id="birthdate" value="{{ user.birthdate }}">
@@ -85,10 +89,15 @@
                 <label for="email">ایمیل</label>
                 <input type="email" class="form-control" id="email" value="{{ user.email }}">
             </div>
-            <div class="form-group">
-                <label for="fullname">نام و نام خانوادگی</label>
-                <input type="text" class="form-control" id="fullname" value="{{ user.name }}">
+             <div class="form-group">
+                <label for="fullname">وضعیت حساب</label>
+                <input type="text" class="form-control" id="fullname" value="{{ user.situation }}" disabled>
             </div>
+             <div class="form-group">
+                <label for="fullname">مقدار حساب</label>
+                <input type="text" class="form-control" id="fullname" value="{{ user.debt }} تومان " disabled>
+            </div>
+
             <button type="button" class="btn custom-btn">ویرایش اطلاعات</button>
             <button type="button" class="btn custom-btn" data-toggle="modal" data-target="#changePasswordModal">تغییر پسورد</button>
         </form>
