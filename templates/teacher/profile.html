@@ -139,15 +139,24 @@
                     <div class="form-group">
                         <label for="currentPassword">پسورد فعلی</label>
                         <input type="password" class="form-control" id="currentPassword" required>
+                        <span id="eye1" class="position-absolute" style="right: 15px; top: 40%; transform: translateY(-40%); cursor: pointer;">
+                                <i class="fa fa-eye" aria-hidden="true" style="color: black;"></i>
+                            </span>
                     </div>
                     <div class="form-group">
                         <label for="newPassword">پسورد جدید</label>
                         <input type="password" class="form-control" id="newPassword" required>
+                        <span id="eye2" class="position-absolute" style="right: 15px; top: 40%; transform: translateY(-40%); cursor: pointer;">
+                                <i class="fa fa-eye" aria-hidden="true" style="color: black;"></i>
+                            </span>
                     </div>
                     <div class="form-group">
                         <label for="confirmPassword">تأیید پسورد جدید</label>
                         <input type="password" class="form-control" id="confirmPassword" required>
                     </div>
+                    <span id="eye3" class="position-absolute" style="right: 15px; top: 40%; transform: translateY(-40%); cursor: pointer;">
+                                <i class="fa fa-eye" aria-hidden="true" style="color: black;"></i>
+                            </span>
                 </form>
             </div>
             <div class="modal-footer">
@@ -157,6 +166,31 @@
         </div>
     </div>
 </div>
+
+<script>
+    const togglePassword1 = document.getElementById('eye1');
+    const togglePassword2 = document.getElementById('eye2');
+    const togglePassword3 = document.getElementById('eye3');
+
+
+    const passwordInput1 = document.getElementById('currentPassword');
+    const passwordInput2 = document.getElementById('newPassword');
+    const passwordInput3 = document.getElementById('confirmPassword');
+
+
+
+    togglePassword1.addEventListener('click', function () {
+        const type = passwordInput1.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput1.setAttribute('type', type);
+        this.querySelector('i').classList.toggle('fa-eye-slash');
+    });
+
+      togglePassword2.addEventListener('click', function () {
+        const type = passwordInput2.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput2.setAttribute('type', type);
+        this.querySelector('i').classList.toggle('fa-eye-slash');
+    });
+</script>
 
 <script>
 
