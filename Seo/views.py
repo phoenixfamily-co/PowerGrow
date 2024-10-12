@@ -75,12 +75,23 @@ def teacher_news_view(request):
 def user_news_view(request):
     about = AboutUs.objects.values().first()
     news = News.objects.all().order_by('-pk')
-    template = loader.get_template('user/news.html')
+
+    # بررسی اینکه آیا کاربر اخبار را خوانده است یا نه
+    if request.user.is_authenticated:
+        if not request.session.get('has_read_news'):
+            # علامت‌گذاری اخبار به عنوان خوانده شده برای کاربر
+            for item in news:
+                if item.is_new_for_user(request.user):
+                    item.users_who_read.add(request.user)
+                    item.save()
+            # تنظیم سشن برای اینکه کاربر اخبار را خوانده است
+            request.session['has_read_news'] = True
+
     context = {
         "news": news,
         "about": about,
     }
-    return HttpResponse(template.render(context, request))
+    return render(request, 'user/news.html', context)
 
 
 class NewsApi(viewsets.ModelViewSet):

@@ -135,6 +135,7 @@
         <thead>
             <tr>
                 <th>#</th>
+                <th>وضعیت</th>
                 <th scope="col">تاریخ</th>
                 <th scope="col">نام</th>
                 <th scope="col">توضیحات</th>
@@ -147,6 +148,11 @@
             {% for x in news %}
             <tr>
                 <th scope="row">{{ x.id }}</th>
+                <th>
+                    {% if x.is_new_for_user(request.user) %}
+                    <span class="badge badge-danger">New</span>
+                    {% endif %}
+                </th>
                 <td>{{ x.date.month.year.number }}/{{ x.date.month.number }}/{{ x.date.number }}</td>
                 <td>{{ x.title }}</td>
                 <td>{{ x.description }}</td>
