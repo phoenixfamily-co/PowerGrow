@@ -14,7 +14,37 @@
         body {
             background-color: #312f2e;
             color: white;
+            text-align: right;  /* راست‌چین کردن متن */
+
         }
+
+        .logoHolder {
+            width: 100%;
+            position: relative;
+            margin-top: 20px;
+            left: 0;
+            display: flex;
+            z-index: 10 !important;
+            direction: ltr;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+
+        }
+
+        .typography {
+            color: white;
+            font-size: 20px;
+            margin-left: 10px;
+
+        }
+
         .card {
             background-color: rgba(255, 255, 255, 0.1);
         }
@@ -29,9 +59,16 @@
 </head>
 <body>
 
+<div class="logoHolder">
+
+    <img alt="" src="/media/{{ about.logo }}" class="logo">
+    <div class="typography">PowerGrow</div>
+
+</div>
+
+
 <div class="container mt-5">
     <div class="card p-4">
-        <h3 class="text-center">پروفایل کاربر</h3>
         <form>
             <div class="form-group">
                 <label for="username">نام کاربری</label>
