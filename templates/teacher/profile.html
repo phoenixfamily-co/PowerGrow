@@ -107,7 +107,7 @@
                 <input type="text" class="form-control" id="fullname" value="{{ user.debt }} تومان " disabled>
             </div>
 
-            <button type="button" class="btn custom-btn">ویرایش اطلاعات</button>
+            <button type="button" class="btn custom-btn">ثبت اطلاعات</button>
             <button type="button" class="btn custom-btn" data-toggle="modal" data-target="#changePasswordModal">تغییر پسورد</button>
         </form>
     </div>
@@ -146,6 +146,49 @@
         </div>
     </div>
 </div>
+
+<script>
+
+     jalaliDatepicker.startWatch({
+        time: false,
+    });
+
+    document.getElementById('profileForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+            const userData = {
+                birthdate: document.getElementById('birthdate').value,
+                email: document.getElementById('email').value,
+                name: document.getElementById('fullname').value
+            };
+
+
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+            fetch('{% url 'user:update_profile' %}', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken,
+                },
+                body: JSON.stringify(userData)
+            })
+            .then(response => {
+                if (response.ok) {
+                window.location.reload()
+            } else {
+                return response.json().then(errorData => {
+                    alert('خطا: ' + JSON.stringify(errorData));
+                });
+            }
+            })
+            .catch(error => {
+                console.error('Error updating profile:', error);
+                alert('خطا در به‌روزرسانی اطلاعات.');
+            });
+        });
+
+</script>
 
 </body>
 </html>
