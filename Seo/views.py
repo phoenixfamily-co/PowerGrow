@@ -15,7 +15,7 @@ from PowerGrow.permissions import *
 
 
 @session_auth_required
-def news_view(request):
+def manager_news_view(request):
     about = AboutUs.objects.values().first()
     news = News.objects.all().order_by('-pk')
     template = loader.get_template('manager/news.html')
@@ -38,20 +38,34 @@ def admin_news_view(request):
     return HttpResponse(template.render(context, request))
 
 
-class NewsApi(viewsets.ModelViewSet):
+@session_auth_required
+def teacher_news_view(request):
+    about = AboutUs.objects.values().first()
+    news = News.objects.all().order_by('-pk')
+    template = loader.get_template('teacher/news.html')
+    context = {
+        "news": news,
+        "about": about,
+    }
+    return HttpResponse(template.render(context, request))
+
+
+@session_auth_required
+def user_news_view(request):
+    about = AboutUs.objects.values().first()
+    news = News.objects.all().order_by('-pk')
+    template = loader.get_template('user/news.html')
+    context = {
+        "news": news,
+        "about": about,
+    }
+    return HttpResponse(template.render(context, request))
+
+
+class NewsApi(viewsets.ViewSet):
     queryset = News.objects.all()
     serializer_class = NewsSerializer
     permission_classes = [IsAdminUserOrStaff]
 
-    def perform_create(self, serializer):
-        data = self.request.data
-        title = data["title"]
-        description = data["description"]
-        date = Day.objects.filter(id=data["date"]).first()
-        course = Course.objects.filter(id=data["course"]).first()
-        news = News.objects.update_or_create(title=title, description=description, date=date, course=course)
-
-        serializer = NewsSerializer(news)
-        return Response(serializer.data)
 
 
