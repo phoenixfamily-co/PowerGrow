@@ -10,6 +10,7 @@ from rest_framework.generics import get_object_or_404, UpdateAPIView
 from About.models import AboutUs
 from PowerGrow.decorators import *
 from Product.models import *
+from Seo.models import News
 from User.serializer import *
 from rest_framework import status, viewsets, generics
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
@@ -131,10 +132,15 @@ def user_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('user/dashboard.html')
     user = get_object_or_404(User, id=pk)
+    news_items = News.objects.all()
+    unread_news = [news for news in news_items if news.is_new_for_user(request.user)]
+
     context = {
         "about": about,
         "user": user,
+        'unread_news_count': len(unread_news),
     }
+
     return HttpResponse(template.render(context, request))
 
 
