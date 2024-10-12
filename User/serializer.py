@@ -18,7 +18,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         return user
 
 
-class UserProfileSerializer(serializers.ModelSerializer):
+class ManagerProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('name', 'birthdate', 'description')  # می‌توانید فیلدهای دلخواه را اضافه کنید
@@ -27,6 +27,20 @@ class UserProfileSerializer(serializers.ModelSerializer):
         instance.name = validated_data.get('name', instance.name)
         instance.birthdate = validated_data.get('birthdate', instance.birthdate)
         instance.description = validated_data.get('description', instance.description)
+
+        instance.save()
+        return instance
+
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('name', 'birthdate', 'email')  # می‌توانید فیلدهای دلخواه را اضافه کنید
+
+    def update(self, instance, validated_data):
+        instance.name = validated_data.get('name', instance.name)
+        instance.birthdate = validated_data.get('birthdate', instance.birthdate)
+        instance.email = validated_data.get('email', instance.description)
 
         instance.save()
         return instance

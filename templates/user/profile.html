@@ -6,6 +6,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <meta name="csrf-token" content="{{ csrf_token }}">
+
     <title>پروفایل کاربر</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -72,7 +74,7 @@
 
 <div class="container mt-5">
     <div class="card p-4">
-        <form>
+        <form id="profileForm">
             <div class="form-group">
                 <label for="username">شماره تلفن</label>
                 <input type="tel" class="form-control" id="username" value="{{ user.number }}" disabled>
@@ -97,8 +99,7 @@
                 <label for="fullname">مقدار حساب</label>
                 <input type="text" class="form-control" id="fullname" value="{{ user.debt }} تومان " disabled>
             </div>
-
-            <button type="button" class="btn custom-btn">ویرایش اطلاعات</button>
+            <button type="submit" class="btn custom-btn">ویرایش اطلاعات</button>
             <button type="button" class="btn custom-btn" data-toggle="modal" data-target="#changePasswordModal">تغییر پسورد</button>
         </form>
     </div>
@@ -138,5 +139,44 @@
     </div>
 </div>
 
+<script>
+
+    document.getElementById('profileForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+            const userData = {
+                birthdate: document.getElementById('birthdate').value,
+                email: document.getElementById('email').value,
+                name: document.getElementById('fullname').value
+            };
+
+
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+            fetch('{% url 'user:update_profile' %}', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken,
+
+                },
+                body: JSON.stringify(userData)
+            })
+            .then(response => {
+                if (response.ok) {
+                window.location.reload()
+            } else {
+                return response.json().then(errorData => {
+                    alert('خطا: ' + JSON.stringify(errorData));
+                });
+            }
+            })
+            .catch(error => {
+                console.error('Error updating profile:', error);
+                alert('خطا در به‌روزرسانی اطلاعات.');
+            });
+        });
+
+</script>
 </body>
 </html>

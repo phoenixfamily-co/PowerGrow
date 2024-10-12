@@ -25,7 +25,11 @@ urlpatterns = [
     path('home/admin/users/', admin_users_view, name='admin_users_view'),
     path('update/user/<int:user_id>/', UserView.as_view({'put': 'update'}), name='user-update'),  # حذف کاربر
     path('delete/user/<int:user_id>/', UserView.as_view({'delete': 'destroy'}), name='user-delete'),  # حذف کاربر
+
+    path('update/profile/', ProfileView.as_view({'put': 'update'}), name='update_profile'),
+
     path('change-password/<int:user_id>/', ChangePasswordView.as_view(), name='change-password'),
+
     path('change-access/<int:user_id>/', ChangeUserAccessView.as_view(), name='change-user-access'),
     path('change-salary/<int:user_id>/', ChangeUserSalaryView.as_view(), name='change-user-salary'),
     path('change-number/<int:user_id>/', ChangeNumberView.as_view(), name='change-user-number'),
