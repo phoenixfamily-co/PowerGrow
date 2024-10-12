@@ -76,25 +76,14 @@ def user_news_view(request):
     about = AboutUs.objects.values().first()
     news = News.objects.all().order_by('-pk')
 
-    # بررسی اینکه آیا کاربر اخبار را خوانده است یا نه
     if request.user.is_authenticated:
-        if not request.session.get('has_read_news'):
-            for item in news:
-                if item.is_new_for_user(request.user):
-                    item.users_who_read.add(request.user)
-                    item.save()
-            request.session['has_read_news'] = True
-
-    # ایجاد یک لیست جدید برای ارسال به قالب
-    new_news_items = []
-    for item in news:
-        new_news_items.append({
-            'item': item,
-            'is_new': item.is_new_for_user(request.user)
-        })
+        news_items = News.objects.all()
+        for news in news_items:
+            news.users_who_read.add(request.user)
+            news.save()
 
     context = {
-        "news": new_news_items,
+        "news": news,
         "about": about,
     }
     return render(request, 'user/news.html', context)

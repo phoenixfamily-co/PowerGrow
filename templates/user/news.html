@@ -135,7 +135,6 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>وضعیت</th>
                 <th scope="col">تاریخ</th>
                 <th scope="col">نام</th>
                 <th scope="col">توضیحات</th>
@@ -148,13 +147,6 @@
             {% for x in news %}
             <tr>
                 <th scope="row">{{ x.item.id }}</th>
-                <th>
-                    {% if news_info.is_new %}
-                        <span class="badge badge-danger" style="color: red">جدید</span>
-                        {% else %}
-                        خوانده شده
-                    {% endif %}
-                </th>
                 <td>{{ x.item.date.month.year.number }}/{{ x.item.date.month.number }}/{{ x.item.date.number }}</td>
                 <td>{{ x.item.title }}</td>
                 <td>{{ x.item.description }}</td>
