@@ -22,5 +22,6 @@ class News(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     users_who_read = models.ManyToManyField(User, related_name='read_news', blank=True)
 
-    def is_new_for_user(self, user):
-        return user not in self.users_who_read.all()
+    @property
+    def is_new_for_user(self):
+        return lambda user: user not in self.users_who_read.all()

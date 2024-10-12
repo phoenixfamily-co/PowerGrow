@@ -149,8 +149,8 @@
             <tr>
                 <th scope="row">{{ x.id }}</th>
                 <th>
-                    {% if x.is_new_for_user(request.user) %}
-                    <span class="badge badge-danger">New</span>
+                    {% if item.is_new_for_user(request.user) %}
+                    <span class="badge badge-danger">جدید</span>
                     {% endif %}
                 </th>
                 <td>{{ x.date.month.year.number }}/{{ x.date.month.number }}/{{ x.date.number }}</td>
