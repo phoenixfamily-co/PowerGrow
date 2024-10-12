@@ -5,13 +5,13 @@ from django.template import loader
 from rest_framework import viewsets
 
 from About.models import AboutUs
-from PowerGrow.decorators import session_auth_required
+from PowerGrow.decorators import *
 from Seo.models import News
 from Seo.serializer import NewsSerializer
 from PowerGrow.permissions import *
 
 
-@session_auth_required
+@session_staff_required
 def manager_news_view(request):
     about = AboutUs.objects.first()
     news = News.objects.all().order_by('-pk')
@@ -35,7 +35,7 @@ def manager_news_view(request):
     return render(request, 'manager/news.html', context)
 
 
-@session_auth_required
+@session_admin_required
 def admin_news_view(request):
     about = AboutUs.objects.first()
     news = News.objects.all().order_by('-pk')
