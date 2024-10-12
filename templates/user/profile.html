@@ -48,13 +48,16 @@
         .card {
             background-color: rgba(255, 255, 255, 0.1);
         }
-        .btn-custom {
-            background-color: #5cb85c;
+        .custom-btn {
+            background-color: #E16539; /* رنگ دلخواه */
+            border: none; /* حذف حاشیه */
             color: white;
         }
-        .btn-custom:hover {
-            background-color: #4cae4c;
+        .custom-btn:hover {
+               background-color: #a84e2c; /* تغییر رنگ در حالت hover */
+               color: #c4c4c4; /* رنگ برای حالت هاور */
         }
+
     </style>
 </head>
 <body>
@@ -71,66 +74,24 @@
     <div class="card p-4">
         <form>
             <div class="form-group">
-                <label for="username">نام کاربری</label>
-                <input type="text" class="form-control" id="username" value="username@example.com" readonly>
-            </div>
-            <div class="form-group">
-                <label for="phone">شماره تلفن</label>
-                <input type="tel" class="form-control" id="phone" value="+98 912 345 6789">
+                <label for="username">شماره تلفن</label>
+                <input type="tel" class="form-control" id="username" value="{{ user.number }}">
             </div>
             <div class="form-group">
                 <label for="birthdate">تاریخ تولد</label>
-                <input type="date" class="form-control" id="birthdate" value="1990-01-01">
+                <input type="text" class="form-control" id="birthdate" value="{{ user.birthdate }}">
             </div>
             <div class="form-group">
                 <label for="email">ایمیل</label>
-                <input type="email" class="form-control" id="email" value="user@example.com">
+                <input type="email" class="form-control" id="email" value="{{ user.email }}">
             </div>
             <div class="form-group">
                 <label for="fullname">نام و نام خانوادگی</label>
-                <input type="text" class="form-control" id="fullname" value="نام خانوادگی">
+                <input type="text" class="form-control" id="fullname" value="{{ user.name }}">
             </div>
-            <button type="button" class="btn btn-custom" data-toggle="modal" data-target="#editModal">ویرایش اطلاعات</button>
-            <button type="button" class="btn btn-custom" data-toggle="modal" data-target="#changePasswordModal">تغییر پسورد</button>
+            <button type="button" class="btn custom-btn">ویرایش اطلاعات</button>
+            <button type="button" class="btn custom-btn" data-toggle="modal" data-target="#changePasswordModal">تغییر پسورد</button>
         </form>
-    </div>
-</div>
-
-<!-- Modal برای ویرایش اطلاعات -->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editModalLabel">ویرایش اطلاعات</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label for="editPhone">شماره تلفن</label>
-                        <input type="tel" class="form-control" id="editPhone" value="+98 912 345 6789">
-                    </div>
-                    <div class="form-group">
-                        <label for="editBirthdate">تاریخ تولد</label>
-                        <input type="date" class="form-control" id="editBirthdate" value="1990-01-01">
-                    </div>
-                    <div class="form-group">
-                        <label for="editEmail">ایمیل</label>
-                        <input type="email" class="form-control" id="editEmail" value="user@example.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="editFullname">نام و نام خانوادگی</label>
-                        <input type="text" class="form-control" id="editFullname" value="نام خانوادگی">
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
-                <button type="button" class="btn btn-custom">ذخیره تغییرات</button>
-            </div>
-        </div>
     </div>
 </div>
 
