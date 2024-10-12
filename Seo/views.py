@@ -62,10 +62,9 @@ def user_news_view(request):
     return HttpResponse(template.render(context, request))
 
 
-class NewsApi(viewsets.ViewSet):
+class NewsApi(viewsets.ModelViewSet):
     queryset = News.objects.all()
     serializer_class = NewsSerializer
     permission_classes = [IsAdminUserOrStaff]
-
 
 
