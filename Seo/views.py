@@ -1,4 +1,6 @@
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponse
+from django.shortcuts import render
 from django.template import loader
 from flask import Response
 from rest_framework import viewsets
@@ -6,9 +8,7 @@ from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 from About.models import AboutUs
-from Calendar.models import Day
 from PowerGrow.decorators import session_auth_required
-from Product.models import Course
 from Seo.models import News
 from Seo.serializer import NewsSerializer
 from PowerGrow.permissions import *
@@ -16,26 +16,50 @@ from PowerGrow.permissions import *
 
 @session_auth_required
 def manager_news_view(request):
-    about = AboutUs.objects.values().first()
+    about = AboutUs.objects.first()
     news = News.objects.all().order_by('-pk')
-    template = loader.get_template('manager/news.html')
+
+    # پیاده‌سازی pagination
+    paginator = Paginator(news, 100)
+    page_number = request.GET.get('page')
+
+    try:
+        page_obj = paginator.get_page(page_number)
+    except (PageNotAnInteger, EmptyPage):
+        page_obj = paginator.page(1)  # اگر شماره صفحه معتبر نبود، به صفحه اول برگردیم
+
+    # آماده‌سازی context برای الگو
     context = {
-        "news": news,
         "about": about,
+        "page_obj": page_obj,
     }
-    return HttpResponse(template.render(context, request))
+
+    # استفاده از render برای بارگذاری الگو
+    return render(request, 'admin/news.html', context)
 
 
 @session_auth_required
 def admin_news_view(request):
-    about = AboutUs.objects.values().first()
+    about = AboutUs.objects.first()
     news = News.objects.all().order_by('-pk')
-    template = loader.get_template('admin/news.html')
+
+    # پیاده‌سازی pagination
+    paginator = Paginator(news, 100)
+    page_number = request.GET.get('page')
+
+    try:
+        page_obj = paginator.get_page(page_number)
+    except (PageNotAnInteger, EmptyPage):
+        page_obj = paginator.page(1)  # اگر شماره صفحه معتبر نبود، به صفحه اول برگردیم
+
+    # آماده‌سازی context برای الگو
     context = {
-        "news": news,
         "about": about,
+        "page_obj": page_obj,
     }
-    return HttpResponse(template.render(context, request))
+
+    # استفاده از render برای بارگذاری الگو
+    return render(request, 'admin/news.html', context)
 
 
 @session_auth_required
