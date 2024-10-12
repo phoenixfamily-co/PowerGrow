@@ -17,7 +17,7 @@ GENDER_CHOICE = [
 
 
 class Sport(models.Model):
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=50, verbose_name='نام')
 
     def __str__(self):
         return self.title  # به جای ID، نام ورزش را نمایش می‌دهد
