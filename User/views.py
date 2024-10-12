@@ -2,7 +2,6 @@ import json
 
 from django.contrib.auth import login, authenticate, logout, get_user_model
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import redirect
 from django.template import loader
 from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_exempt
@@ -10,7 +9,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from rest_framework.generics import get_object_or_404, UpdateAPIView
 
 from About.models import AboutUs
-from PowerGrow.decorators import session_auth_required
+from PowerGrow.decorators import *
 from Product.models import *
 from User.serializer import *
 from rest_framework import status, viewsets, generics
@@ -156,7 +155,7 @@ def teacher_home_view(request, pk):
 
 
 @cache_page(60 * 15)
-@session_auth_required
+@session_admin_required
 def admin_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('admin/dashboard.html')
@@ -170,7 +169,7 @@ def admin_home_view(request, pk):
 
 
 @cache_page(60 * 15)
-@session_auth_required
+@session_staff_required
 def manager_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('manager/dashboard.html')
@@ -219,7 +218,7 @@ def salary_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
-@session_auth_required
+@session_staff_required
 def manager_users_view(request):
     template = loader.get_template('manager/users.html')
     about = AboutUs.objects.values().first()
@@ -243,7 +242,7 @@ def manager_users_view(request):
     return HttpResponse(template.render(context, request))
 
 
-@session_auth_required
+@session_admin_required
 def admin_users_view(request):
     template = loader.get_template('admin/users.html')
     about = AboutUs.objects.values().first()
