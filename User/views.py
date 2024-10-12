@@ -315,13 +315,14 @@ class ProfileView(viewsets.ViewSet):
     permission_classes = [IsAuthenticated]  # برای ثبت‌نام، در ابتدا می‌توانیم AllowAny را قرار دهیم
     serializer_class = UserProfileSerializer  # برای ثبت‌نام
 
-    def update(self, request, user_id):
-        user = User.objects.get(id=user_id)  # کاربر فعلی
+    def update(self, request):
+        user = self.request.user
         serializer = self.serializer_class(user, data=request.data)
 
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response({"message": "Profile updated successfully!"}, status=status.HTTP_200_OK)
+
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def destroy(self, request, user_id):
