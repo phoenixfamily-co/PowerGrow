@@ -435,7 +435,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     window.location.assign(`{% url 'user:login' %}`);
                 } else {
                     const errorData = await response.json();
-                    alert(errorData.message || "خطا در ثبت‌نام. لطفاً دوباره تلاش کنید.");
+                    alert(errorData.message || "خطا در ثبت ‌نام. لطفاً دوباره تلاش کنید.");
                 }
         });
     } else {
