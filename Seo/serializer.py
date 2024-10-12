@@ -7,6 +7,7 @@ class NewsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = News
+        read_only_fields = ['users_who_read ']
         fields = "__all__"
 
     def create(self, validated_data):
