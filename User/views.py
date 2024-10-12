@@ -334,7 +334,6 @@ class ChangeNumberView(UpdateAPIView):
         return Response({"detail": "نام کاربری با موفقیت تغییر کرد"}, status=status.HTTP_200_OK)
 
 
-
 class ChangePasswordView(UpdateAPIView):
     serializer_class = ChangePasswordSerializer
     permission_classes = [IsAdminUserOrStaff]
