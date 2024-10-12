@@ -194,11 +194,11 @@
 
             <td class="text-center">
                  {% if x.is_staff %}
-                     <i class="fa-solid fa-user text-dark" aria-hidden="true" style="cursor: pointer" title="نام کاربری" onclick="alert('اجازه دسترسی ندارید')"></i>
+                     <i class="fa-solid fa-user text-white" aria-hidden="true" style="cursor: pointer" title="نام کاربری" onclick="alert('اجازه دسترسی ندارید')"></i>
                     {% elif x.is_superuser %}
-                     <i class="fa-solid fa-user text-dark" aria-hidden="true" style="cursor: pointer" title="نام کاربری" onclick="alert('اجازه دسترسی ندارید')"></i>
+                     <i class="fa-solid fa-user text-white" aria-hidden="true" style="cursor: pointer" title="نام کاربری" onclick="alert('اجازه دسترسی ندارید')"></i>
                        {% else %}
-                     <i class="fa-solid fa-user text-dark" aria-hidden="true" style="cursor: pointer" title="نام کاربری" onclick="window.open('{% url 'user:change-user-number' x.id %}')"></i>
+                     <i class="fa-solid fa-user text-white" aria-hidden="true" style="cursor: pointer" title="نام کاربری" onclick="window.open('{% url 'user:change-user-number' x.id %}')"></i>
                     {% endif %}
             </td>
 
