@@ -137,6 +137,9 @@
                 <th scope="col">تاریخ</th>
                 <th scope="col">نام</th>
                 <th scope="col">توضیحات</th>
+                <th scope="col">نام دوره</th>
+                <th scope="col">زمان دوره</th>
+                <th scope="col">نام مربی</th>
             </tr>
         </thead>
         <tbody>
@@ -146,6 +149,9 @@
                 <td>{{ x.date.month.year.number }}/{{ x.date.month.number }}/{{ x.date.number }}</td>
                 <td>{{ x.title }}</td>
                 <td>{{ x.description }}</td>
+                <td>{{ x.course.title }}</td>
+                <td>{{ x.course.time }}</td>
+                <td>{{ x.course.name }}</td>
             </tr>
             {% endfor %}
         </tbody>
