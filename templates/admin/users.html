@@ -152,7 +152,8 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th colspan="3" class="text-center">تنظیمات</th>
+                <th colspan="2" class="text-center">تنظیمات</th>
+                <th colspan="2" class="text-center">عملیات</th>
                 <th scope="col">نام و نام خانوادگی</th>
                 <th scope="col">شماره تلفن</th>
                 <th scope="col">تاریخ تولد</th>
@@ -172,9 +173,9 @@
                 <th scope="row">{{ x.id }}</th>
                 <td class="text-center">
                      {% if x.is_staff %}
-                         <i class="fa fa-eye text-info" aria-hidden="true" style="cursor: pointer" title="مشاهده" onclick="window.open('{% url 'user:manager_home' x.id %}')"></i>
+                         <i class="fa fa-eye text-info" aria-hidden="true" style="cursor: pointer" title="مشاهده" onclick="alert('اجازه دسترسی ندارید')"></i>
                     {% elif x.is_superuser %}
-                         <i class="fa fa-eye text-info" aria-hidden="true" style="cursor: pointer" title="مشاهده" onclick="window.open('{% url 'user:admin_home' x.id %}')"></i>
+                         <i class="fa fa-eye text-info" aria-hidden="true" style="cursor: pointer" title="مشاهده" onclick="alert('اجازه دسترسی ندارید')"></i>
                     {% elif x.is_teacher %}
                          <i class="fa fa-eye text-info" aria-hidden="true" style="cursor: pointer" title="مشاهده" onclick="window.open('{% url 'user:teacher_home' x.id %}')"></i>
                         {% else %}
@@ -182,11 +183,34 @@
                     {% endif %}
                 </td>
                 <td class="text-center">
-                    <i class="fa fa-pencil text-warning" aria-hidden="true" style="cursor: pointer" title="ویرایش" onclick="window.open('{% url 'user:user-update' x.id %}')"></i>
+                       {% if x.is_staff %}
+                           <i class="fa fa-pencil text-warning" aria-hidden="true" style="cursor: pointer" title="ویرایش" onclick="alert('اجازه دسترسی ندارید')"></i>
+                    {% elif x.is_superuser %}
+                           <i class="fa fa-pencil text-warning" aria-hidden="true" style="cursor: pointer" title="ویرایش" onclick="alert('اجازه دسترسی ندارید')"></i>
+                       {% else %}
+                           <i class="fa fa-pencil text-warning" aria-hidden="true" style="cursor: pointer" title="ویرایش" onclick="window.open('{% url 'user:user-update' x.id %}')"></i>
+                    {% endif %}
                 </td>
+
             <td class="text-center">
-                    <i class="fa-solid fa-key text-warning" aria-hidden="true" style="cursor: pointer" title="پسورد" onclick="window.open('{% url 'user:change-password' x.id %}')"></i>
-                </td>
+                 {% if x.is_staff %}
+                     <i class="fa-solid fa-user text-dark" aria-hidden="true" style="cursor: pointer" title="نام کاربری" onclick="alert('اجازه دسترسی ندارید')"></i>
+                    {% elif x.is_superuser %}
+                     <i class="fa-solid fa-user text-dark" aria-hidden="true" style="cursor: pointer" title="نام کاربری" onclick="alert('اجازه دسترسی ندارید')"></i>
+                       {% else %}
+                     <i class="fa-solid fa-user text-dark" aria-hidden="true" style="cursor: pointer" title="نام کاربری" onclick="window.open('{% url 'user:change-user-number' x.id %}')"></i>
+                    {% endif %}
+            </td>
+
+            <td class="text-center">
+                 {% if x.is_staff %}
+                     <i class="fa-solid fa-key text-warning" aria-hidden="true" style="cursor: pointer" title="پسورد" onclick="alert('اجازه دسترسی ندارید')"></i>
+                    {% elif x.is_superuser %}
+                     <i class="fa-solid fa-key text-warning" aria-hidden="true" style="cursor: pointer" title="پسورد" onclick="alert('اجازه دسترسی ندارید')"></i>
+                       {% else %}
+                     <i class="fa-solid fa-key text-warning" aria-hidden="true" style="cursor: pointer" title="پسورد" onclick="window.open('{% url 'user:change-password' x.id %}')"></i>
+                    {% endif %}
+            </td>
                 <td>{{ x.name}}</td>
                 <td dir="auto">{{ x.number}}</td>
                 <td>{{ x.birthdate}}</td>

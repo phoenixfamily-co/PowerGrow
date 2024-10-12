@@ -46,7 +46,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     fee = models.IntegerField(null=True, blank=True, verbose_name="مقدار حقوق")
     situation = models.CharField(max_length=20, choices=DEBT_CHOICE, blank=True, null=True, verbose_name="وضعیت بدهی")
     debt = models.IntegerField(null=True, blank=True, verbose_name="مقدار بدهی")
-    description = models.TextField(null=True, blank=True)
+    description = models.TextField(null=True, blank=True, verbose_name="توضیحات")
     created = models.ForeignKey("self", on_delete=models.CASCADE, null=True, blank=True)
     datetime = models.DateTimeField(default=timezone.now)
     USERNAME_FIELD = 'number'

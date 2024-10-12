@@ -16,6 +16,7 @@ from User.serializer import *
 from rest_framework import status, viewsets, generics
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
+from PowerGrow.permissions import *
 
 User = get_user_model()
 
@@ -305,9 +306,33 @@ class UserView(viewsets.ViewSet):
             return Response({"error": "User not found."}, status=status.HTTP_404_NOT_FOUND)
 
 
+class ChangeNumberView(UpdateAPIView):
+    serializer_class = ChangeNumberSerializer
+    permission_classes = [IsAdminUserOrStaff]
+
+    def get_object(self):
+        # دریافت کاربر با استفاده از ID یا username از URL
+        user_id = self.kwargs['user_id']
+        try:
+            return User.objects.get(id=user_id)
+        except User.DoesNotExist:
+            return None
+
+    def update(self, request, *args, **kwargs):
+        user = self.get_object()
+        if user is None:
+            return Response({"detail": "User not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        return Response({"detail": "Password has been changed successfully."}, status=status.HTTP_200_OK)
+
+
 class ChangePasswordView(UpdateAPIView):
     serializer_class = ChangePasswordSerializer
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsAdminUserOrStaff]
 
     def get_object(self):
         # دریافت کاربر با استفاده از ID یا username از URL

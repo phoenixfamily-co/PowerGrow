@@ -27,6 +27,7 @@ urlpatterns = [
     path('change-password/<int:user_id>/', ChangePasswordView.as_view(), name='change-password'),
     path('change-access/<int:user_id>/', ChangeUserAccessView.as_view(), name='change-user-access'),
     path('change-salary/<int:user_id>/', ChangeUserSalaryView.as_view(), name='change-user-salary'),
+    path('change-number/<int:user_id>/', ChangeNumberView.as_view(), name='change-user-number'),
 
 ]
 

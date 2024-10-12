@@ -36,6 +36,17 @@ class ChangePasswordSerializer(serializers.Serializer):
     new_password = serializers.CharField(required=True)
 
 
+class ChangeNumberSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = 'number'
+
+    def update(self, instance, validated_data):
+        instance.number = validated_data.get('number', instance.number)
+        instance.save()
+        return instance
+
+
 class ChangeUserAccessSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
