@@ -152,7 +152,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn custom-btn" data-dismiss="modal">بستن</button>
-                <button type="button" class="btn custom-btn">تغییر پسورد</button>
+                <button id="changePasswordButton" type="button" class="btn custom-btn">تغییر پسورد</button>
             </div>
         </div>
     </div>
@@ -197,6 +197,45 @@
             .catch(error => {
                 console.error('Error updating profile:', error);
                 alert('خطا در به‌روزرسانی اطلاعات.');
+            });
+        });
+
+</script>
+
+<script>
+
+      document.getElementById('changePasswordButton').addEventListener('click', function() {
+            const oldPassword = document.getElementById('currentPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (newPassword !== confirmPassword) {
+                alert('پسورد جدید و تأیید پسورد جدید مطابقت ندارد.');
+                return;
+            }
+
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+            fetch('{% url 'user:change-profile-password' %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken,
+                },
+                body: JSON.stringify({ old_password: oldPassword, new_password: newPassword })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert('پسورد با موفقیت تفییر کرد.');
+            } else {
+                return response.json().then(errorData => {
+                    alert('خطا: ' + JSON.stringify(errorData));
+                });
+            }
+            })
+            .catch(error => {
+                console.error('Error changing password:', error);
+                alert('خطا در تغییر پسورد.');
             });
         });
 
