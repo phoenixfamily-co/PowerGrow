@@ -147,13 +147,15 @@
         <tbody>
             {% for x in news %}
             <tr>
-                <th scope="row">{{ x.id }}</th>
+                <th scope="row">{{ x.item.id }}</th>
                 <th>
                     {% if news_info.is_new %}
-                        <span class="badge badge-danger">New</span>
+                        <span class="badge badge-danger" style="color: red">جدید</span>
+                        {% else %}
+                        خوانده شده
                     {% endif %}
                 </th>
-                <td>{{ x.item.date.month.year.number }}/{{ x.date.month.number }}/{{ x.date.number }}</td>
+                <td>{{ x.item.date.month.year.number }}/{{ x.item.date.month.number }}/{{ x.item.date.number }}</td>
                 <td>{{ x.item.title }}</td>
                 <td>{{ x.item.description }}</td>
                 <td>{{ x.item.course.title }}</td>
