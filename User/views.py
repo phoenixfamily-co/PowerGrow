@@ -311,7 +311,6 @@ class ChangeNumberView(UpdateAPIView):
     permission_classes = [IsAdminUserOrStaff]
 
     def get_object(self):
-        # دریافت کاربر با استفاده از ID یا username از URL
         user_id = self.kwargs['user_id']
         try:
             return User.objects.get(id=user_id)
@@ -323,11 +322,12 @@ class ChangeNumberView(UpdateAPIView):
         if user is None:
             return Response({"detail": "User not found."}, status=status.HTTP_404_NOT_FOUND)
 
-        serializer = self.get_serializer(data=request.data)
+        serializer = self.get_serializer(user, data=request.data)  # Pass the existing user instance here
         serializer.is_valid(raise_exception=True)
-        serializer.save()
+        serializer.save()  # Now it updates the existing user
 
         return Response({"detail": "نام کاربری با موفقیت تغییر کرد"}, status=status.HTTP_200_OK)
+
 
 
 class ChangePasswordView(UpdateAPIView):
