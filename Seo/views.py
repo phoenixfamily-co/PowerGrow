@@ -74,7 +74,6 @@ def teacher_news_view(request):
 @session_auth_required
 def user_news_view(request):
     about = AboutUs.objects.values().first()
-    news = News.objects.all().order_by('-pk')
 
     if request.user.is_authenticated:
         news_items = News.objects.all()
@@ -82,8 +81,10 @@ def user_news_view(request):
             news.users_who_read.add(request.user)
             news.save()
 
+    news_items = News.objects.all().order_by('-pk')
+
     context = {
-        "news": news,
+        "news": news_items,
         "about": about,
     }
     return render(request, 'user/news.html', context)
