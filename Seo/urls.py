@@ -14,5 +14,6 @@ urlpatterns = [
     path('api/news/create/', NewsApi.as_view({'post': 'create'}), name='create_news'),
     path('api/news/', NewsApi.as_view({'get': 'list'}), name='news'),
     path('api/news/delete/<int:pk>/', NewsApi.as_view({'delete': 'destroy'}), name='destroy_news'),
+    path('api/news/update/<int:pk>/', NewsApi.as_view({'put': 'update'}), name='update_news'),
 
 ]
