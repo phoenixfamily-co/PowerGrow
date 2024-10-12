@@ -39,7 +39,7 @@ class ChangePasswordSerializer(serializers.Serializer):
 class ChangeNumberSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = 'number'
+        fields = ['number']
 
     def update(self, instance, validated_data):
         instance.number = validated_data.get('number', instance.number)
