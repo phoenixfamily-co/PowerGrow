@@ -18,8 +18,8 @@ urlpatterns = [
     path('home/teacher/<int:pk>/', teacher_home_view, name='teacher_home'),
     path('home/admin/<int:pk>/', admin_home_view, name='admin_home'),
     path('home/manager/<int:pk>/', manager_home_view, name='manager_home'),
-    path('teacher-profile/<int:pk>/', teacher_profile_view, name='teacher_profile'),
-    path('user-profile/<int:pk>/', user_profile_view, name='user_profile'),
+    path('teacher-profile/', teacher_profile_view, name='teacher_profile'),
+    path('user-profile/', user_profile_view, name='user_profile'),
     path('salary/<int:pk>/', salary_view, name='salary'),
     path('home/manager/users/', manager_users_view, name='manager_users_view'),
     path('home/admin/users/', admin_users_view, name='admin_users_view'),
@@ -33,7 +33,4 @@ urlpatterns = [
     path('change-access/<int:user_id>/', ChangeUserAccessView.as_view(), name='change-user-access'),
     path('change-salary/<int:user_id>/', ChangeUserSalaryView.as_view(), name='change-user-salary'),
     path('change-number/<int:user_id>/', ChangeNumberView.as_view(), name='change-user-number'),
-
 ]
-
-

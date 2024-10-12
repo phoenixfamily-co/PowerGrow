@@ -176,10 +176,10 @@ def manager_home_view(request, pk):
 
 
 @session_teacher_required
-def teacher_profile_view(request, pk):
+def teacher_profile_view(request):
     about = AboutUs.objects.values().first()
     template = loader.get_template('teacher/profile.html')
-    user = get_object_or_404(User, id=pk)
+    user = request.user
     context = {
         "about": about,
         "user": user
@@ -188,10 +188,10 @@ def teacher_profile_view(request, pk):
 
 
 @session_auth_required
-def user_profile_view(request, pk):
+def user_profile_view(request):
     about = AboutUs.objects.values().first()
     template = loader.get_template('user/profile.html')
-    user = get_object_or_404(User, id=pk)
+    user = request.user
     context = {
         "about": about,
         "user": user
