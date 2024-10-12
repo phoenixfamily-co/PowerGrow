@@ -7,8 +7,10 @@ class NewsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = News
-        read_only_fields = ['users_who_read ']
         fields = "__all__"
+        extra_kwargs = {
+            'users_who_read': {'read_only': True}  # این فیلد فقط خواندنی است
+        }
 
     def create(self, validated_data):
         return News.objects.create(**validated_data)
