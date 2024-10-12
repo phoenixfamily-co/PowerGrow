@@ -187,6 +187,18 @@ def profile_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
+@session_auth_required
+def user_profile_view(request, pk):
+    about = AboutUs.objects.values().first()
+    template = loader.get_template('user/profile.html')
+    user = get_object_or_404(User, id=pk)
+    context = {
+        "about": about,
+        "user": user
+    }
+    return HttpResponse(template.render(context, request))
+
+
 @session_teacher_required
 def salary_view(request, pk):
     about = AboutUs.objects.values().first()

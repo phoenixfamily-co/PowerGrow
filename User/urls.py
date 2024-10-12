@@ -19,6 +19,7 @@ urlpatterns = [
     path('home/admin/<int:pk>/', admin_home_view, name='admin_home'),
     path('home/manager/<int:pk>/', manager_home_view, name='manager_home'),
     path('profile/<int:pk>/', profile_view, name='profile'),
+    path('user-profile/<int:pk>/', user_profile_view, name='user_profile'),
     path('salary/<int:pk>/', salary_view, name='salary'),
     path('home/manager/users/', manager_users_view, name='manager_users_view'),
     path('home/admin/users/', admin_users_view, name='admin_users_view'),
