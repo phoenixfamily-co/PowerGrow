@@ -72,7 +72,7 @@
 
 <div class="container mt-5">
     <div class="card p-4">
-        <form>
+        <form id="profileForm">
             <div class="form-group">
                 <label for="username">شماره تلفن</label>
                 <input type="tel" class="form-control" id="username" value="{{ user.number }}" disabled>
@@ -107,7 +107,7 @@
                 <input type="text" class="form-control" id="fullname" value="{{ user.debt }} تومان " disabled>
             </div>
 
-            <button type="button" class="btn custom-btn">ثبت اطلاعات</button>
+            <button type="submit" class="btn custom-btn">ثبت اطلاعات</button>
             <button type="button" class="btn custom-btn" data-toggle="modal" data-target="#changePasswordModal">تغییر پسورد</button>
         </form>
     </div>
