@@ -149,16 +149,16 @@
             <tr>
                 <th scope="row">{{ x.id }}</th>
                 <th>
-                    {% if item.is_new_for_user(request.user) %}
-                    <span class="badge badge-danger">جدید</span>
+                    {% if news_info.is_new %}
+                        <span class="badge badge-danger">New</span>
                     {% endif %}
                 </th>
-                <td>{{ x.date.month.year.number }}/{{ x.date.month.number }}/{{ x.date.number }}</td>
-                <td>{{ x.title }}</td>
-                <td>{{ x.description }}</td>
-                <td>{{ x.course.title }}</td>
-                <td>{{ x.course.time }}</td>
-                <td>{{ x.course.name }}</td>
+                <td>{{ x.item.date.month.year.number }}/{{ x.date.month.number }}/{{ x.date.number }}</td>
+                <td>{{ x.item.title }}</td>
+                <td>{{ x.item.description }}</td>
+                <td>{{ x.item.course.title }}</td>
+                <td>{{ x.item.course.time }}</td>
+                <td>{{ x.item.course.name }}</td>
             </tr>
             {% endfor %}
         </tbody>

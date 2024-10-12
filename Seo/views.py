@@ -79,16 +79,22 @@ def user_news_view(request):
     # بررسی اینکه آیا کاربر اخبار را خوانده است یا نه
     if request.user.is_authenticated:
         if not request.session.get('has_read_news'):
-            # علامت‌گذاری اخبار به عنوان خوانده شده برای کاربر
             for item in news:
                 if item.is_new_for_user(request.user):
                     item.users_who_read.add(request.user)
                     item.save()
-            # تنظیم سشن برای اینکه کاربر اخبار را خوانده است
             request.session['has_read_news'] = True
 
+    # ایجاد یک لیست جدید برای ارسال به قالب
+    new_news_items = []
+    for item in news:
+        new_news_items.append({
+            'item': item,
+            'is_new': item.is_new_for_user(request.user)
+        })
+
     context = {
-        "news": news,
+        "news": new_news_items,
         "about": about,
     }
     return render(request, 'user/news.html', context)
