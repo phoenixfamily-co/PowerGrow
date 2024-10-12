@@ -2,10 +2,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import loader
-from flask import Response
 from rest_framework import viewsets
-from rest_framework.decorators import permission_classes
-from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 from About.models import AboutUs
 from PowerGrow.decorators import session_auth_required
@@ -35,7 +32,7 @@ def manager_news_view(request):
     }
 
     # استفاده از render برای بارگذاری الگو
-    return render(request, 'admin/news.html', context)
+    return render(request, 'manager/news.html', context)
 
 
 @session_auth_required
