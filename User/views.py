@@ -149,9 +149,14 @@ def teacher_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('teacher/dashboard.html')
     user = get_object_or_404(User, id=pk)
+    news_items = News.objects.all()
+    unread_news = [news for news in news_items if news.is_new_for_user(request.user)]
+
     context = {
         "about": about,
-        "user": user
+        "user": user,
+        'unread_news_count': len(unread_news),
+
     }
     return HttpResponse(template.render(context, request))
 
@@ -161,9 +166,13 @@ def admin_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('admin/dashboard.html')
     user = get_object_or_404(User, id=pk)
+    news_items = News.objects.all()
+    unread_news = [news for news in news_items if news.is_new_for_user(request.user)]
+
     context = {
         "about": about,
-        "user": user
+        "user": user,
+        'unread_news_count': len(unread_news),
 
     }
     return HttpResponse(template.render(context, request))
@@ -174,10 +183,15 @@ def manager_home_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('manager/dashboard.html')
     user = get_object_or_404(User, id=pk)
+    news_items = News.objects.all()
+    unread_news = [news for news in news_items if news.is_new_for_user(request.user)]
+
     context = {
         "about": about,
-        "user": user
+        "user": user,
+        'unread_news_count': len(unread_news),
     }
+
     return HttpResponse(template.render(context, request))
 
 
