@@ -3,7 +3,6 @@ import json
 from django.contrib.auth import login, authenticate, logout, get_user_model
 from django.http import HttpResponse, JsonResponse
 from django.template import loader
-from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_exempt
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from rest_framework.generics import get_object_or_404, UpdateAPIView
@@ -81,7 +80,6 @@ def custom_logout(request):
 
 
 @csrf_exempt
-@cache_page(60 * 15)
 def register_view(request):
     about = AboutUs.objects.values().first()
     template = loader.get_template('public/register.html')
@@ -128,7 +126,6 @@ def pass_view(request, number):
     return HttpResponse(template.render(context, request))
 
 
-@cache_page(60 * 15)
 @session_auth_required
 def user_home_view(request, pk):
     about = AboutUs.objects.values().first()
@@ -141,7 +138,6 @@ def user_home_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
-@cache_page(60 * 15)
 @session_auth_required
 def teacher_home_view(request, pk):
     about = AboutUs.objects.values().first()
@@ -154,7 +150,6 @@ def teacher_home_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
-@cache_page(60 * 15)
 @session_admin_required
 def admin_home_view(request, pk):
     about = AboutUs.objects.values().first()
@@ -168,7 +163,6 @@ def admin_home_view(request, pk):
     return HttpResponse(template.render(context, request))
 
 
-@cache_page(60 * 15)
 @session_staff_required
 def manager_home_view(request, pk):
     about = AboutUs.objects.values().first()
