@@ -147,7 +147,7 @@
 
         .weekdays {
             margin: 0;
-            padding: 1px 0;
+            padding: 2px 0;
             background-color: #ddd;
             direction: rtl;
             text-align: center;
@@ -247,6 +247,8 @@
         <th scope="col"> نام </th>
         <th scope="col">روزهای برگزاری</th>
         <th scope="col">تعداد جلسات</th>
+        <th scope="col">تاریخ شروع</th>
+        <th scope="col">تاریخ پایان</th>
         <th scope="col">زمان </th>
 
     </tr>
@@ -258,6 +260,9 @@
       <td>{{ x.course.title }}</td>
         <td>{{ x.day.title }}</td>
         <td>{{ x.session.number }}</td>
+        <td>{{ x.start }}</td>
+        <td>{{ x.session.number }}</td>
+
         <td>{{ x.course.time }}</td>
     </tr>
    {% endfor %}
