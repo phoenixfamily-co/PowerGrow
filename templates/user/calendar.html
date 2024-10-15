@@ -261,8 +261,8 @@
       <td>{{ x.course.title }}</td>
         <td>{{ x.day.title }}</td>
         <td>{{ x.session.number }}</td>
-        <td>{{ x.start }}</td>
-        <td>{{ x.session.number }}</td>
+        <td>{{ x.startDay }}</td>
+        <td>{{ x.endDay }}</td>
 
         <td>{{ x.course.time }}</td>
     </tr>
@@ -274,6 +274,8 @@
       <td>{{ x.title }}</td>
         <td>{{ x.time.day.name }}</td>
         <td>{{ x.session }}</td>
+        <td>{{ x.time.day }}</td>
+        <td>{{ x.endDate.day }}</td>
         <td>{{ x.time.time | date:"G:i:s"}}</td>
     </tr>
    {% endfor %}
