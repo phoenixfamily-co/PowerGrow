@@ -236,13 +236,15 @@
     async function getAllUser() {
     const userList = [];
     let phone;
+    let userHolder = document.getElementById("user")
+        userHolder.value = "{{ user.number }}".replace("+98", "")
 
     {% for x in user.all %}
         phone = "{{ x.number }}".replace("+98", "");
         userList.push(phone);
     {% endfor %}
 
-    setupAutocomplete(document.getElementById("user"), userList);
+    setupAutocomplete(userHolder, userList);
 }
 
 function setupAutocomplete(input, arr) {
