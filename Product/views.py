@@ -19,7 +19,6 @@ from PowerGrow.permissions import *
 
 User = get_user_model()
 
-
 if settings.SANDBOX:
     sandbox = 'sandbox'
 else:
@@ -465,6 +464,7 @@ def update_participant_view(request, participant_id):
     days = Days.objects.filter(session__course=participant.course.id)  # تمام روزها را برای انتخاب
     day = Day.objects.all().order_by('-pk')
     about = AboutUs.objects.first()
+    user = User.objects.all()
 
     context = {
         'participant': participant,
@@ -472,7 +472,9 @@ def update_participant_view(request, participant_id):
         'session': session,
         'days': days,
         'day': day,  # برای روزهای شروع و پایان
-        'about': about
+        'about': about,
+        'user': user
+
     }
     return render(request, 'manager/update_participants.html', context)
 

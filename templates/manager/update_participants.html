@@ -180,6 +180,11 @@
             </select>
         </div>
 
+        <div class="form-group">
+                <label for="user">:کاربر</label>
+                <input class="form-control" dir="ltr" id="user" type="number" name="user" value="{{ participant.user.number }}" required>
+            </div>
+
         <button type="submit" class="btn custom-btn margin-bottom">به‌روزرسانی</button>
     </form>
 </div>
@@ -197,6 +202,7 @@
             endDay: document.getElementById('endDay').value,
             course: document.getElementById('course').value,
             price: document.getElementById('price').value,
+            user: `+98${document.getElementById('user').value}`,
         };
 
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -224,6 +230,108 @@
         });
     });
 </script>
+
+<script>
+
+    async function getAllUser() {
+    const userList = [];
+    let phone;
+
+    {% for x in user.all %}
+        phone = "{{ x.number }}".replace("+98", "");
+        userList.push(phone);
+    {% endfor %}
+
+    setupAutocomplete(document.getElementById("user"), userList);
+}
+
+function setupAutocomplete(input, arr) {
+    let currentFocus = -1;
+
+    input.addEventListener("input", function() {
+        const val = this.value;
+        closeAllLists();
+        if (!val) return;
+
+        // ایجاد div برای نمایش نتایج
+        const autocompleteList = document.createElement("div");
+        autocompleteList.setAttribute("class", "autocomplete-items");
+        this.parentNode.appendChild(autocompleteList); // اضافه کردن به parent
+
+        let hasResults = false; // متغیری برای بررسی وجود نتایج
+
+        arr.forEach(item => {
+            if (item.substr(0, val.length).toLowerCase() === val.toLowerCase()) {
+                hasResults = true; // اگر نتیجه‌ای پیدا شد
+                const itemDiv = document.createElement("div");
+                itemDiv.innerHTML = `<strong>${item.substr(0, val.length)}</strong>${item.substr(val.length)}`;
+                itemDiv.innerHTML += `<input type='hidden' value='${item}'>`;
+                itemDiv.addEventListener("click", function() {
+                    input.value = this.getElementsByTagName("input")[0].value;
+                    closeAllLists();
+                });
+                autocompleteList.appendChild(itemDiv); // اضافه کردن itemDiv به autocompleteList
+            }
+        });
+
+        if (!hasResults) {
+            const noResultsDiv = document.createElement("div");
+            noResultsDiv.innerHTML = "نتیجه‌ای یافت نشد";
+            autocompleteList.appendChild(noResultsDiv);
+        }
+    });
+
+    input.addEventListener("keydown", function(e) {
+        const items = document.querySelectorAll(".autocomplete-items div");
+        if (items.length > 0) {
+            if (e.keyCode === 40) { // down
+                currentFocus++;
+                addActive(items);
+            } else if (e.keyCode === 38) { // up
+                currentFocus--;
+                addActive(items);
+            } else if (e.keyCode === 13) { // enter
+                e.preventDefault();
+                if (currentFocus > -1) items[currentFocus].click();
+            }
+        }
+    });
+
+    document.addEventListener("click", function(e) {
+        closeAllLists(e.target);
+    });
+
+    function closeAllLists(exceptElement) {
+        const items = document.querySelectorAll(".autocomplete-items");
+        items.forEach(item => {
+            item.parentNode.removeChild(item);
+        });
+    }
+
+    function addActive(items) {
+        if (!items) return;
+        removeActive(items);
+        if (currentFocus >= items.length) currentFocus = 0;
+        if (currentFocus < 0) currentFocus = items.length - 1;
+        items[currentFocus].classList.add("autocomplete-active");
+    }
+
+    function removeActive(items) {
+        items.forEach(item => {
+            item.classList.remove("autocomplete-active");
+        });
+    }
+}
+
+// Run the getAllUser function when the document is fully loaded
+document.addEventListener("DOMContentLoaded", function() {
+    getAllUser();
+});
+
+
+
+</script>
+
 
 </body>
 </html>

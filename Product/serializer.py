@@ -30,6 +30,7 @@ class ManagerParticipantsSerializer(serializers.ModelSerializer):
         instance.endDay = validated_data.get('endDay', instance.endDay)
         instance.price = validated_data.get('price', instance.price)
         instance.course = validated_data.get('course', instance.course)
+        instance.user.number = validated_data.get('user', instance.user.number)
         instance.save()
         return instance
 
