@@ -33,15 +33,7 @@ class ManagerParticipantsSerializer(serializers.ModelSerializer):
         instance.endDay = validated_data.get('endDay', instance.endDay)
         instance.price = validated_data.get('price', instance.price)
         instance.course = validated_data.get('course', instance.course)
-
-        phone_number = validated_data.get('user')
-
-        # جستجو برای کاربر بر اساس شماره تلفن
-        try:
-            user = User.objects.get(number=phone_number)
-            instance.user = user
-        except ObjectDoesNotExist:
-            raise serializers.ValidationError("کاربری با این شماره تلفن یافت نشد.")
+        instance.user = validated_data.get('user', instance.user)
 
         instance.save()
         return instance
