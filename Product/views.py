@@ -743,7 +743,17 @@ class ManagerParticipationView(viewsets.ViewSet):
         except Participants.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
-        serializer = self.serializer_class(participant, data=request.data, partial=True)
+        data = request.data
+
+        # اگر کاربر در داده‌های ارسالی بود (مثلاً شماره تلفن به جای ID)
+        if 'user' in data:
+            user = User.objects.filter(number=data['user']).first()  # جستجو بر اساس شماره تلفن
+            if not user:
+                return Response({'error': 'کاربری با این شماره تلفن یافت نشد.'}, status=status.HTTP_400_BAD_REQUEST)
+            # جایگزین کردن شماره تلفن با شناسه کاربر در داده‌های ارسالی
+            data['user'] = user.id
+
+        serializer = self.serializer_class(participant, data=data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
