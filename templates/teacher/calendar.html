@@ -19,6 +19,8 @@
     {% bootstrap_css %}
     {% bootstrap_javascript %}
 
+        <title>تقویم من</title>
+
     <style>
 
            @font-face {
@@ -30,19 +32,24 @@
             url("/static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */ url("../../static/fonts/BYekan.ttf") format('truetype') /* Safari, Android, iOS */
         }
 
-             * {
-            box-sizing: border-box
-        }
+           html, body {
+               margin: 0;
+               padding: 0;
+               background: #312f2e;
+               overflow-x: hidden;
+               font-family: BYekan, serif !important;
+           }
 
-           .logoHolder {
-               width: 50px;
-               position: absolute;
-               left: 0;
-               right: 0;
-               margin-right: 55%;
-               margin-top: 1%;
-               z-index: 10 !important;
-               direction: ltr;
+        .logoHolder {
+            width: 100%;
+            position: relative;
+            margin-top: 20px;
+            left: 0;
+            display: flex;
+            z-index: 10 !important;
+            direction: ltr;
+            align-items: center;
+            justify-content: center;
 
         }
 
@@ -50,281 +57,154 @@
             width: 50px;
             height: 50px;
             border-radius: 25px;
-            position: absolute;
-            direction: ltr
 
         }
 
         .typography {
-            position: absolute;
-            margin-left: 60px;
-            margin-top: 20%;
-            color: white;
-            font-size: 20px
-
-        }
-           html {
-               min-height: 100%;
-               position: relative;
-               font-family: BYekan, serif !important;
-           }
-
-           body {
-               direction: rtl;
-               background: #282a36;
-
-           }
-            .month {
-                width: 100%;
-                height: 25%;
-                float: right;
-                background: #e4633a;
-                text-align: center;
-                border-top-left-radius: 1rem;
-                border-top-right-radius: 1rem
-
-
-            }
-
-        .month ul {
-            margin: 0;
-            padding: 0;
-        }
-
-        .month ul li {
             color: white;
             font-size: 20px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
-
-        .month .prev {
-            float: right;
-            margin-top: 20px;
-            cursor: pointer;
-        }
-
-        .month .next {
-            float: left;
-            margin-top: 20px;
-            cursor: pointer;
-        }
-
-        .weekdays {
-            margin: 0;
-            padding: 5px 0;
-            background-color: #ddd;
-            direction: rtl;
-            border-top-left-radius: 1rem;
-            border-top-right-radius: 1rem
-
+            margin-left: 10px;
 
         }
 
-        .weekdays li {
-          display: inline-block;
-          width: 12.6%;
-          color: #666;
-          text-align: center;
-        }
-
-        .days {
-            padding: 5px 0;
-            margin: 0;
-            direction: rtl;
-            border-bottom-left-radius: 20px;
-        }
-
-        .days li {
-            list-style-type: none;
-            display: inline-block;
-            width: 13.3%;
-            text-align: center;
-            margin-bottom: 1px;
-            font-size:16px;
-            color: #000000;
-            cursor: pointer;
-        }
         .activeButton {
-            border-radius: 50px;
             background: #1a5bbc;
             color: white !important
         }
 
          .courseButton {
-            border-radius: 50px;
-            background: #e4633a;
+            background: green;
             color: white !important
         }
 
          .holidayButton {
-            border-radius: 50px;
             color: #ff0c0c !important;
-             cursor: pointer;
         }
 
          .disActiveButton{
-
              cursor: none;
              pointer-events: none;
              opacity:0.6;
          }
 
-           .date-time{
-               width: 80%;
-               margin-top: 150px;
-               align-content: center;
-               margin-right: 10%;
-               display: inline-block;
-               align-items: center;
-               justify-content: center;
+          .custom-container {
+             margin-top: 50px;
+             display: flex;
+             justify-content: center;
+             direction: rtl;
+             width: 100%; /* تغییر به 70 درصد */
+}
 
-        }
-
-        .date-picker{
-            width: 50%;
-            height: 300px;
-            float: right;
-            background: #FFFFFF ;
-            border-radius: 1rem ;
+         .date-picker, .time-picker {
+            background: #FFFFFF;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 10px;
         }
 
           .time-picker {
-              width: 49%;
-              height: 300px;
-              float: left;
-              background: #FFFFFF;
-              border-radius: 1rem;
-          }
+                    direction: rtl;
+                    width: 48%; /* کاهش عرض برای جایگذاری در کنار هم */
+                }
 
-          ul {
-            list-style-type: none;
-        }
-
-
-           .navbar.navbar-dark.bg-dark li a{
-            color: #fff;
-        }
-
-          .navbar.navbar-dark.bg-dark a:hover{
-              color: grey;
-        }
-
-       .nav.navbar-nav li a {
-           color: #fff;
-           text-decoration: none;
-       }
-
-        .nav.navbar-nav a:hover {
-            color: grey;
-        }
-
-        .nav-pills > li > a.active {
-            background-color: #E16539 !important;
-        }
-
-           .wrimagecard {
-               margin-top: 0;
-               margin-bottom: 1.5rem;
-               text-align: left;
-               position: relative;
-               background: #fff;
-               box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.15);
-               border-radius: 4px;
-               transition: all 0.3s ease;
-           }
-            .wrimagecard .fa{
-                position: relative;
-                font-size: 70px;
-            }
-            .wrimagecard-topimage_header {
-                padding: 20px;
-            }
-            a.wrimagecard:hover, .wrimagecard-topimage:hover {
-                box-shadow: 2px 4px 8px 0 rgba(46,61,73,0.2);
-            }
-            .wrimagecard-topimage a {
-                width: 100%;
-                height: 100%;
-                display: block;
-            }
-            .wrimagecard-topimage_title {
-                height: 80px;
-                padding: 20px 24px 0.75rem;
-                position: relative;
-            }
-            .wrimagecard-topimage a {
-                border-bottom: none;
-                text-decoration: none;
-                color: #525c65;
-                transition: color 0.3s ease;
-            }
-
+                .date-picker {
+                    width: 48%; /* کاهش عرض برای جایگذاری در کنار هم */
+                }
 
             table {
-  max-height: 280px;
-  overflow: auto;
-  display:inline-block;
-}
+                max-height: 280px;
+                overflow: auto;
+                display: inline-block;
+            }
+
+             .month {
+                 width: 100%;
+                 height: 25%;
+                 background: #e4633a;
+                 text-align: center;
+                 color: white;
+                 padding: 7px 0;
+             }
+
+        .month ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .month ul li {
+            display: inline;
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .month .prev,
+        .month .next {
+            cursor: pointer;
+            font-size: 24px;
+            margin: 0 15px;
+        }
+
+        .weekdays {
+            margin: 0;
+            padding: 1px 0;
+            background-color: #ddd;
+            direction: rtl;
+            text-align: center;
+        }
+
+        .weekdays li {
+            display: inline-block;
+            width: 13%;
+            color: #666;
+            text-align: center;
+        }
+
+        .days {
+            padding: 4px 0;
+            margin: 0;
+            border-bottom-left-radius: 20px;
+            text-align: right;
+            direction: rtl;
+
+        }
+
+        .days li {
+            list-style-type: none;
+            display: inline-block;
+            width: 14.2%;
+            text-align: center;
+            margin-bottom: 1px;
+            font-size: 16px;
+            color: #000;
+            cursor: pointer;
+            padding: 10px 0;
+            transition: background 0.3s;
+        }
 
              @media screen and (max-width: 600px) {
 
-               footer ul li {
-                   margin-top: 10px;
+                .custom-container{
+                   align-items: center;
+                   width: calc(100% - 30px);
+                   flex-wrap: wrap;
+                   justify-content: center;
+                   margin: 50px 15px 0 15px;
+
                }
 
-                .date-time {
-                    width: 100%;
-                    margin-top: 100px;
-                    margin-left: 1%;
-                    margin-right: 1%;
-                    display: inline-block;
-                }
-                 .date-picker {
-                     width: 100%;
-                     height: 300px;
-                     background: #FFFFFF;
-                     border-radius: 1rem;
-                 }
-                 .time-picker {
-                     width: 100%;
-                     height: auto;
-                     background: #FFFFFF;
-                     border-radius: 1rem;
-                     margin-top: 15px;
-                 }
-
-
-                 body{
-                     margin-bottom: 2500px;
-                 }
-
-                  .month {
-                      border-top-right-radius: 1rem
-                  }
-
-                    .weekdays {
-                        border-top-right-radius: 1rem
-                    }
+               .date-picker, .time-picker {
+                width: 100%; /* در اندازه‌های موبایل، عرض کامل */
+                margin: 15px 0; /* فاصله عمودی */
+            }
 
         }
 
 
 
     </style>
-    <title>PowerGrow</title>
 </head>
 <body>
-
-<nav class="navbar navbar-dark bg-dark">
-  <div class="container-fluid" style="vertical-align: center">
-  <ul class="nav nav-pills navbar-left">
-      <li class="nav-item">
-    <a class="nav-link" aria-current="page" href='javascript: history.go(-1)'>برگشت</a>
-  </li>
-    </ul>
-  </div>
-</nav>
 
 <div class="logoHolder">
 
@@ -333,33 +213,29 @@
 
 </div>
 
-<div class="date-time">
-
-<div class="date-picker">
-    <div class="month">
-  <ul>
-    <li id="next" class="prev">&#10094;</li>
-    <li id="prev" class="next">&#10095;</li>
-      <li id="monthTitle"></li>
-    <li>
-      <span id="yearTitle" style="font-size:18px"></span>
-    </li>
-  </ul>
-</div>
-<ul class="weekdays">
-  <li>ش</li>
-  <li>ی</li>
-  <li>د</li>
-  <li>س</li>
-  <li>چ</li>
-  <li>پ</li>
-  <li>ج</li>
-</ul>
-    <ul id="days" class="days">
-
-    </ul>
-
-</div>
+    <div class="custom-container">
+        <div class="date-picker">
+            <div class="month">
+                <ul>
+                    <li id="prev" class="prev">&#10094;</li>
+                    <li id="monthTitle"></li>
+                    <li id="next" class="next">&#10095;</li>
+                </ul>
+                <span id="yearTitle" style="font-size: 18px;"></span>
+            </div>
+            <ul class="weekdays">
+                <li>ش</li>
+                <li>ی</li>
+                <li>د</li>
+                <li>س</li>
+                <li>چ</li>
+                <li>پ</li>
+                <li>ج</li>
+            </ul>
+            <ul id="days" class="days">
+                <!-- روزها از سمت سرور می‌آیند -->
+            </ul>
+        </div>
 
 <div class="time-picker">
 
@@ -369,21 +245,38 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-        <th scope="col"> نام دوره</th>
+        <th scope="col"> نام </th>
         <th scope="col">روزهای برگزاری</th>
         <th scope="col">تعداد جلسات</th>
-        <th scope="col">زمان دوره</th>
+        <th scope="col">تاریخ شروع</th>
+        <th scope="col">تاریخ پایان</th>
+        <th scope="col">زمان </th>
 
     </tr>
   </thead>
   <tbody>
   {% for x in participants %}
     <tr>
-      <th scope="row">{{ forloop.counter}}</th>
+      <th scope="row">{{ x.id }}</th>
       <td>{{ x.course.title }}</td>
         <td>{{ x.day.title }}</td>
         <td>{{ x.session.number }}</td>
+        <td>{{ x.startDay }}</td>
+        <td>{{ x.endDay }}</td>
+
         <td>{{ x.course.time }}</td>
+    </tr>
+   {% endfor %}
+
+   {% for x in reservation %}
+    <tr>
+      <th scope="row">{{ x.id }}</th>
+      <td>{{ x.title }}</td>
+        <td>{{ x.time.day.name }}</td>
+        <td>{{ x.session }}</td>
+        <td>{{ x.time.day }}</td>
+        <td>{{ x.endDate.day }}</td>
+        <td>{{ x.time.time | date:"G:i:s"}}</td>
     </tr>
    {% endfor %}
   </tbody>
@@ -399,8 +292,8 @@
     let calendar = document.getElementById("calendar")
     let monthTitle = document.getElementById("monthTitle")
     let yearTitle = document.getElementById("yearTitle")
-    let prev = document.getElementById("prev")
-    let next = document.getElementById("next")
+    let prev = document.getElementById("next")
+    let next = document.getElementById("prev")
     let days = document.getElementById("days")
     let result
     let monthSize
@@ -413,6 +306,8 @@
     let thisYear = today[0].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
     let monthPosition = currentMonth-1
     let thisList = "{{ thisList }}"
+    let resList = "{{ resList }}"
+
 
     document.addEventListener("DOMContentLoaded", function() {
         getYear()
@@ -549,6 +444,8 @@
 
             }else if (thisList.includes(result[0].months[monthPosition].days[i].id )){
                 dayItem.classList.add("courseButton")
+            }else if (resList.includes(result[0].months[monthPosition].days[i].id )){
+                dayItem.classList.add("courseButton")
             }
             dayItem.innerHTML = result[0].months[monthPosition].days[i].number
             dayItem.setAttribute("itemid",result[0].months[monthPosition].days[i].id)
@@ -557,7 +454,6 @@
     }
 
 </script>
-
 
 
 </html>
