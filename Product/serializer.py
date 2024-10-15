@@ -1,4 +1,7 @@
+from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import serializers
+
+from User.models import User
 from .models import Course, Days, Sport, Session, Participants
 
 
@@ -30,7 +33,16 @@ class ManagerParticipantsSerializer(serializers.ModelSerializer):
         instance.endDay = validated_data.get('endDay', instance.endDay)
         instance.price = validated_data.get('price', instance.price)
         instance.course = validated_data.get('course', instance.course)
-        instance.user = validated_data.get('user', instance.user)
+
+        phone_number = validated_data.get('user')
+
+        # جستجو برای کاربر بر اساس شماره تلفن
+        try:
+            user = User.objects.get(number=phone_number)
+            instance.user = user
+        except ObjectDoesNotExist:
+            raise serializers.ValidationError("کاربری با این شماره تلفن یافت نشد.")
+
         instance.save()
         return instance
 
