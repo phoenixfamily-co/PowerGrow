@@ -140,8 +140,8 @@ button:hover {
          @media only screen and (min-resolution: 3dppx) {
 
              html, body {
-    height: 100%;
-}
+                 height: 100%;
+             }
 
 body {
     min-height: 100%;
@@ -361,7 +361,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 if (response.ok) {
-                    window.location.reload()
+
+                    const userData = await response.json();
+                    if (userData.user.is_staff) {
+                        window.location.assign('{% url 'user:manager_home' userData.user.id %}')
+                    } else if (userData.user.is_superuser) {
+                        window.location.assign('{% url 'user:admin_home' userData.user.id %}')
+                    }else if (userData.user.is_teacher) {
+                        window.location.assign('{% url 'user:teacher_home' userData.user.id %}')
+                    } else {
+                        window.location.assign('{% url 'user:user_home' userData.user.id %}')
+                    }
+
                 }else {
                     const errorData = await response.json();
                     alert(errorData.error || "خطا در ورود. لطفاً دوباره تلاش کنید."); // نمایش پیام خطا

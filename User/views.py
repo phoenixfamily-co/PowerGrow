@@ -29,6 +29,7 @@ def login_view(request):
         "about": about,
         "sport": sport,
     }
+
     if request.user.is_authenticated:
         if request.user.is_staff:
             # ریدایرکت به داشبورد ادمین
@@ -61,7 +62,7 @@ def custom_login(request):
             user = authenticate(request, username=number, password=password)
             if user is not None:
                 login(request, user)
-                return JsonResponse({'status': 'success'}, status=200)
+                return JsonResponse({'status': 'success', 'user': user}, status=200)
             else:
                 return JsonResponse({'error': 'پسورد اشتباه است'}, status=400)
 
