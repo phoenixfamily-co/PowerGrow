@@ -62,7 +62,13 @@ def custom_login(request):
             user = authenticate(request, username=number, password=password)
             if user is not None:
                 login(request, user)
-                return JsonResponse({'status': 'success'}, status=200)
+                user_data = {
+                    'id': user.id,
+                    'is_staff': user.is_staff,
+                    'is_superuser': user.is_superuser,
+                    'is_teacher': user.is_teacher,
+                }
+                return JsonResponse({'status': 'success', 'user': user_data}, status=200)
             else:
                 return JsonResponse({'error': 'پسورد اشتباه است'}, status=400)
 

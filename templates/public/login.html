@@ -361,7 +361,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 if (response.ok) {
-                    window.location.reload()
+                    const userData = await response.json();
+                    if (userData.user.is_staff) {
+                        window.location.assign(`/user/home/manager/${userData.user.id}/`)
+                    } else if (userData.user.is_superuser) {
+                        window.location.assign(`/user/home/admin/${userData.user.id}/`)
+                    } else if (userData.user.is_teacher) {
+                        window.location.assign(`/user/home/teacher/${userData.user.id}/`)
+                    }
+                    else {
+                        window.location.assign(`/user/home/user/${userData.user.id}/`)
+                    }
+
                 }else {
                     const errorData = await response.json();
                     alert(errorData.error || "خطا در ورود. لطفاً دوباره تلاش کنید."); // نمایش پیام خطا
