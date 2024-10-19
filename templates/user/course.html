@@ -227,49 +227,43 @@
 
 <script>
 
-    document.addEventListener('DOMContentLoaded', function() {
+document.getElementById('searchInput').addEventListener('keyup', function() {
+    var input, filter, table, tr, td, i, j, txtValue;
+    input = document.getElementById('searchInput');
+    filter = input.value.toUpperCase().trim().split(" "); // ورودی را به کلمات جداگانه تقسیم می‌کند
+    table = document.getElementById('myTable');
+    tr = table.getElementsByTagName('tr');
 
-        let table = document.getElementById('myTable');
-        let rows = table.getElementsByTagName('tr');
+    for (i = 1; i < tr.length; i++) {
+        tr[i].style.display = "none"; // همه ردیف‌ها ابتدا مخفی می‌شوند
+        td = tr[i].getElementsByTagName('td');
+        var rowMatches = true; // فرض می‌کنیم که ردیف با شرایط جستجو مطابقت دارد
 
-        let today = new Date().toLocaleDateString('fa-IR-u-nu-latn');
-        let parts = today.split('/'); // فرض می‌کنیم که فرمت "YYYY/MM/DD" است
+        for (j = 0; j < filter.length; j++) { // برای هر کلمه جستجو
+            var wordMatched = false; // فرض می‌کنیم که هیچ کلمه‌ای مطابقت ندارد
 
-        let year = parseInt(parts[0].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728)));
-        let month = parseInt(parts[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728)));
-        let day = parseInt(parts[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728)));
-
-        const thisDate = jalaali.j2d(year, month, day)
-
-
-        for (var i = 1; i < rows.length; i++) { // شروع از 1 برای نادیده گرفتن هدر
-            var endDateCell = rows[i].querySelector('td[data-end-year]');
-
-            if (endDateCell) {
-                // دریافت تاریخ پایان شمسی
-                var endYearStr = endDateCell.getAttribute('data-end-year');
-                var endMonthStr = endDateCell.getAttribute('data-end-month');
-                var endDayStr = endDateCell.getAttribute('data-end-day');
-
-                 var userEndYear = parseInt(endYearStr);
-                 var userEndMonth = parseInt(endMonthStr);
-                 var userEndDay = parseInt(endDayStr);
-
-                 var userEnd = jalaali.j2d(userEndYear, userEndMonth, userEndDay)
-
-
-                // بررسی اینکه آیا تاریخ پایان گذشته است
-                if (userEnd<thisDate || !userEnd) {
-                    var statusCell = rows[i].querySelector('td:last-child'); // فرض می‌کنیم آخرین سلول وضعیت است
-                    var descriptionCell = rows[i].querySelector('td:nth-last-child(2)')
-                    if(statusCell.innerHTML.includes('fa-check-circle')) {
-                        statusCell.innerHTML = '<i class="fa fa-exclamation-circle text-warning" title="منقضی شده"></i>'; // تغییر به آیکون دلخواه
-                        descriptionCell.innerHTML = 'منقضی شده'
+            for (let k = 0; k < td.length; k++) { // هر سلول را بررسی می‌کنیم
+                if (td[k]) {
+                    txtValue = td[k].textContent || td[k].innerText;
+                    if (txtValue.toUpperCase().indexOf(filter[j]) > -1) {
+                        wordMatched = true; // اگر کلمه پیدا شد
+                        break;
                     }
                 }
             }
+
+            if (!wordMatched) {
+                rowMatches = false; // اگر هیچ کلمه‌ای در ردیف مطابقت نداشت
+                break;
+            }
         }
-    });
+
+        if (rowMatches) {
+            tr[i].style.display = ""; // اگر ردیف با تمام کلمات مطابقت داشت، نمایش داده شود
+        }
+    }
+});
+
 </script>
 
 </body>

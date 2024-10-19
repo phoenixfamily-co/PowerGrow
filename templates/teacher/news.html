@@ -160,25 +160,39 @@
 
 <script>
 
-    document.getElementById('searchInput').addEventListener('keyup', function() {
+document.getElementById('searchInput').addEventListener('keyup', function() {
     var input, filter, table, tr, td, i, j, txtValue;
     input = document.getElementById('searchInput');
-    filter = input.value.toUpperCase();
+    filter = input.value.toUpperCase().trim().split(" "); // ورودی را به کلمات جداگانه تقسیم می‌کند
     table = document.getElementById('myTable');
     tr = table.getElementsByTagName('tr');
 
     for (i = 1; i < tr.length; i++) {
         tr[i].style.display = "none"; // همه ردیف‌ها ابتدا مخفی می‌شوند
         td = tr[i].getElementsByTagName('td');
+        var rowMatches = true; // فرض می‌کنیم که ردیف با شرایط جستجو مطابقت دارد
 
-        for (j = 0; j < td.length; j++) { // هر سلول را بررسی می‌کنیم
-            if (td[j]) {
-                txtValue = td[j].textContent || td[j].innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = ""; // اگر متن مورد نظر پیدا شد، ردیف نمایش داده شود
-                    break;
+        for (j = 0; j < filter.length; j++) { // برای هر کلمه جستجو
+            var wordMatched = false; // فرض می‌کنیم که هیچ کلمه‌ای مطابقت ندارد
+
+            for (let k = 0; k < td.length; k++) { // هر سلول را بررسی می‌کنیم
+                if (td[k]) {
+                    txtValue = td[k].textContent || td[k].innerText;
+                    if (txtValue.toUpperCase().indexOf(filter[j]) > -1) {
+                        wordMatched = true; // اگر کلمه پیدا شد
+                        break;
+                    }
                 }
             }
+
+            if (!wordMatched) {
+                rowMatches = false; // اگر هیچ کلمه‌ای در ردیف مطابقت نداشت
+                break;
+            }
+        }
+
+        if (rowMatches) {
+            tr[i].style.display = ""; // اگر ردیف با تمام کلمات مطابقت داشت، نمایش داده شود
         }
     }
 });
