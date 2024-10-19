@@ -172,25 +172,27 @@
 
 <script>
 
-    var table = document.getElementById("table");
-    var tr    = table.getElementsByTagName("tr")[7];
-    var th   = tr.getElementsByTagName("th")[1];
-    var th0    = table.getElementsByTagName("tr")[2];
+    let table = document.getElementById("table");
+    let tr    = table.getElementsByTagName("tr")[7];
+    let th   = tr.getElementsByTagName("th")[1];
+    let th0    = table.getElementsByTagName("tr")[2];
     let activeUser   = th0.getElementsByTagName("th")[1];
-    var th1    = table.getElementsByTagName("tr")[3];
+    let th1    = table.getElementsByTagName("tr")[3];
     let canceled   = th1.getElementsByTagName("th")[1];
-    var th2    = table.getElementsByTagName("tr")[8];
+    let th2    = table.getElementsByTagName("tr")[8];
+
     let submit   = th2.getElementsByTagName("th")[1];
-    var price = 0
-    var counter = 0
-    var operator = 0
 
-    var teacherStart
-    var teacherEnd
+    let price = 0
+    let counter = 0
+    let operator = 0
 
-    var debt = 0
+    let teacherStart
+    let teacherEnd
 
-    var salary = 0
+    let debt = 0
+
+    let salary = 0
 
     {% for x in course.all %}
 
@@ -246,13 +248,13 @@
 
                 {% if  z.course.id == x.id %}
 
-                var userStartYear = parseInt("{{ z.startDay.month.year.number }}");
-                 var userStartMonth = parseInt("{{ z.startDay.month.number }}");
-                 var userStartDay = parseInt("{{ z.startDay.number }}");
+                    var userStartYear = parseInt("{{ z.startDay.month.year.number }}");
+                    var userStartMonth = parseInt("{{ z.startDay.month.number }}");
+                    var userStartDay = parseInt("{{ z.startDay.number }}");
 
-                 var userEndYear = parseInt("{{ z.endDay.month.year.number }}");
-                 var userEndMonth = parseInt("{{ z.endDay.month.number }}");
-                 var userEndDay = parseInt("{{ z.endDay.number }}");
+                    var userEndYear = parseInt("{{ z.endDay.month.year.number }}");
+                    var userEndMonth = parseInt("{{ z.endDay.month.number }}");
+                    var userEndDay = parseInt("{{ z.endDay.number }}");
 
                 userStart = jalaali.j2d(userStartYear, userStartMonth, userStartDay)
                 userEnd = jalaali.j2d(userEndYear, userEndMonth, userEndDay)
@@ -287,7 +289,7 @@
 
             {% endif %}
 
-        submit.innerHTML = `1000000`
+        submit.innerHTML = `${salary} تومان `
 
     {% else %}
 
@@ -301,7 +303,7 @@
 
             price = price + parseInt({{ user.debt }})
 
-        submit.innerHTML = `${price} تومان `
+        submit.innerHTML = `1000 تومان `
 
              {% endif %}
 
