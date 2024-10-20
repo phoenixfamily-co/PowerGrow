@@ -107,6 +107,12 @@
                 margin-top: 20px;
             }
 
+            .table-filter {
+                display: flex;
+                justify-content: flex-start; /* دکمه در سمت راست قرار می‌گیرد */
+                margin-top: 20px;
+            }
+
            .add-data-button {
                background-color: #E16539;
                color: white;
@@ -156,6 +162,10 @@
 
 <div class="table-actions">
     <button class="btn add-data-button" onclick="window.open('{% url 'product:create-participant' course_id %}')">ثبت نام</button>
+</div>
+
+<div class="table-filter">
+    <button class="btn add-data-button" onclick="window.open('{% url 'product:create-participant' course_id %}')">لیست امروز</button>
 </div>
 
 <div class="table-responsive" dir="rtl">
