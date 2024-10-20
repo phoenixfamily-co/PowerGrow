@@ -257,15 +257,15 @@
         // فیلتر کردن داده‌ها با توجه به ورودی جستجو
         var filteredData = allUsers.filter(function(user) {
             return (
-                user.name.toUpperCase().includes(input) ||
-                user.number.toUpperCase().includes(input) ||
-                user.birthdate.toUpperCase().includes(input) ||
-                user.datetime.toUpperCase().includes(input) ||
-                user.salary.toUpperCase().includes(input) ||
-                user.fee.toUpperCase().includes(input) ||
-                user.situation.toUpperCase().includes(input) ||
-                user.debt.toUpperCase().includes(input) ||
-                user.description.toUpperCase().includes(input)
+                (user.fields.name && user.fields.name.toUpperCase().includes(input)) ||
+                (user.fields.number && user.fields.number.toUpperCase().includes(input)) ||
+                (user.fields.birthdate && user.fields.birthdate.toUpperCase().includes(input)) ||
+                (user.fields.datetime && user.fields.datetime.toUpperCase().includes(input)) ||
+                (user.fields.salary && user.fields.salary.toUpperCase().includes(input)) ||
+                (user.fields.fee && user.fields.fee.toUpperCase().includes(input)) ||
+                (user.fields.situation && user.fields.situation.toUpperCase().includes(input)) ||
+                (user.fields.debt && user.fields.debt.toUpperCase().includes(input)) ||
+                (user.fields.description && user.fields.description.toUpperCase().includes(input))
             );
         });
 
