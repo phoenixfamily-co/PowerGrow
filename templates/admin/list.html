@@ -103,7 +103,7 @@
 
             .table-actions {
                 display: flex;
-                justify-content: flex-end; /* دکمه در سمت راست قرار می‌گیرد */
+                justify-content: space-between; /* دکمه در سمت راست قرار می‌گیرد */
                 margin-top: 20px;
             }
 
@@ -155,6 +155,7 @@
 
 
 <div class="table-actions">
+    <button class="btn add-data-button" id="todayButton">لیست امروز</button>
     <button class="btn add-data-button" onclick="window.open('{% url 'product:create-participant' course_id %}')">ثبت نام</button>
 </div>
 
@@ -295,6 +296,39 @@ document.getElementById('searchInput').addEventListener('keyup', function() {
             }
         }
     });
+</script>
+
+<script>
+
+document.getElementById('todayButton').addEventListener('click', function() {
+    // دریافت روز فعلی
+    const daysOfWeek = ["یکشنبه", "دوشنبه", "سه‌شنبه", "چهارشنبه", "پنجشنبه", "جمعه"];
+    const today = new Date();
+    const currentDay = daysOfWeek[today.getDay()]; // 0 = یکشنبه, 1 = دوشنبه, ...
+
+    var table = document.getElementById('myTable');
+    var tr = table.getElementsByTagName('tr');
+
+    for (var i = 1; i < tr.length; i++) {
+        tr[i].style.display = "none"; // همه ردیف‌ها ابتدا مخفی می‌شوند
+        var td = tr[i].getElementsByTagName('td');
+        var isSuccess = tr[i].querySelector('.fa-check-circle'); // چک کردن وجود آیکون موفقیت
+
+        for (var j = 0; j < td.length; j++) {
+            if (td[j]) {
+                var txtValue = td[j].textContent || td[j].innerText;
+
+                // بررسی اگر روز فعلی در سلول "روز" موجود باشد و وضعیت معتبر باشد
+                if (txtValue.includes(currentDay) && isSuccess) {
+                    tr[i].style.display = ""; // اگر روز فعلی پیدا شد و وضعیت معتبر بود، ردیف نمایش داده شود
+                    break;
+                }
+            }
+        }
+    }
+});
+
+
 </script>
 
 </body>
