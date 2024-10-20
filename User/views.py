@@ -270,7 +270,8 @@ def manager_users_view(request):
 
     context = {
         "about": about,
-        'page_obj': page_obj
+        'page_obj': page_obj,
+        'all_users': user,  # داده‌های کامل برای جستجو
     }
     return HttpResponse(template.render(context, request))
 

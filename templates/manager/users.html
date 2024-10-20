@@ -239,44 +239,55 @@
 </div>
 
 <script>
+    // ذخیره داده‌های کامل در متغیر جاوااسکریپت
+    var allUsers = {{ all_users|escapejs }};
 
-document.getElementById('searchInput').addEventListener('keyup', function() {
-    var input, filter, table, tr, td, i, j, txtValue;
-    input = document.getElementById('searchInput');
-    filter = input.value.toUpperCase().trim().split(" "); // ورودی را به کلمات جداگانه تقسیم می‌کند
-    table = document.getElementById('myTable');
-    tr = table.getElementsByTagName('tr');
+    // عملکرد جستجو
+    document.getElementById('searchInput').addEventListener('keyup', function() {
+        var input = document.getElementById('searchInput').value.toUpperCase();
+        var table = document.getElementById('myTable');
+        var tr = table.getElementsByTagName('tr');
+        var tbody = table.querySelector('tbody');
 
-    for (i = 1; i < tr.length; i++) {
-        tr[i].style.display = "none"; // همه ردیف‌ها ابتدا مخفی می‌شوند
-        td = tr[i].getElementsByTagName('td');
-        var rowMatches = true; // فرض می‌کنیم که ردیف با شرایط جستجو مطابقت دارد
-
-        for (j = 0; j < filter.length; j++) { // برای هر کلمه جستجو
-            var wordMatched = false; // فرض می‌کنیم که هیچ کلمه‌ای مطابقت ندارد
-
-            for (let k = 0; k < td.length; k++) { // هر سلول را بررسی می‌کنیم
-                if (td[k]) {
-                    txtValue = td[k].textContent || td[k].innerText;
-                    if (txtValue.toUpperCase().indexOf(filter[j]) > -1) {
-                        wordMatched = true; // اگر کلمه پیدا شد
-                        break;
-                    }
-                }
-            }
-
-            if (!wordMatched) {
-                rowMatches = false; // اگر هیچ کلمه‌ای در ردیف مطابقت نداشت
-                break;
-            }
+        // مخفی کردن تمام ردیف‌ها
+        for (var i = 1; i < tr.length; i++) {
+            tr[i].style.display = 'none';
         }
 
-        if (rowMatches) {
-            tr[i].style.display = ""; // اگر ردیف با تمام کلمات مطابقت داشت، نمایش داده شود
-        }
-    }
-});
+        // فیلتر کردن داده‌ها با توجه به ورودی جستجو
+        var filteredData = allUsers.filter(function(user) {
+            return (
+                user.name.toUpperCase().includes(input) ||
+                user.number.toUpperCase().includes(input) ||
+                user.birthdate.toUpperCase().includes(input) ||
+                user.datetime.toUpperCase().includes(input) ||
+                user.salary.toUpperCase().includes(input) ||
+                user.fee.toUpperCase().includes(input) ||
+                user.situation.toUpperCase().includes(input) ||
+                user.debt.toUpperCase().includes(input) ||
+                user.description.toUpperCase().includes(input)
+            );
+        });
 
+        // به روزرسانی جدول با داده‌های فیلتر شده
+        tbody.innerHTML = '';
+        filteredData.forEach(function(user) {
+            var row = tbody.insertRow();
+            row.innerHTML = `
+                <td>${user.id}</td>
+                <td>${user.name}</td>
+                <td>${user.number}</td>
+                <td>${user.birthdate}</td>
+                <td>${user.datetime}</td>
+                <td>${user.salary}</td>
+                <td>${user.fee}</td>
+                <td>${user.situation}</td>
+                <td>${user.debt}</td>
+                <td>${user.description}</td>
+                <td>${user.is_active ? '<i class="fa fa-check-circle text-success" title="فعال"></i>' : '<i class="fa fa-ban text-danger" title="غیرفعال"></i>'}</td>
+            `;
+        });
+    });
 </script>
 
 </body>
