@@ -257,37 +257,6 @@ document.getElementById('searchInput').addEventListener('keyup', function() {
 
 </script>
 
-<script>
-
-    document.getElementById('todayButton').addEventListener('click', function() {
-
-    // دریافت روز فعلی
-    const daysOfWeek = ["یکشنبه", "دوشنبه", "سه ‌شنبه", "چهارشنبه", "پنجشنبه", "جمعه"];
-    const today = new Date();
-    const currentDay = daysOfWeek[today.getDay()]; // 0 = یکشنبه, 1 = دوشنبه, ...
-
-    var table = document.getElementById('myTable');
-    var tr = table.getElementsByTagName('tr');
-
-    for (var i = 1; i < tr.length; i++) {
-        tr[i].style.display = "none"; // همه ردیف‌ها ابتدا مخفی می‌شوند
-        var td = tr[i].getElementsByTagName('td');
-
-        for (var j = 0; j < td.length; j++) {
-            if (td[j]) {
-                var txtValue = td[j].textContent || td[j].innerText;
-
-                // بررسی اگر روز فعلی در سلول "روز" موجود باشد
-                if (txtValue.includes(currentDay) && txtValue.includes("معتبر")) {
-                    tr[i].style.display = ""; // اگر روز فعلی پیدا شد، ردیف نمایش داده شود
-                    break;
-                }
-            }
-        }
-    }
-});
-
-</script>
 
 <script>
 
@@ -332,6 +301,39 @@ document.getElementById('searchInput').addEventListener('keyup', function() {
             }
         }
     });
+</script>
+
+
+<script>
+
+    document.getElementById('todayButton').addEventListener('click', function() {
+
+    // دریافت روز فعلی
+    const daysOfWeek = ["یکشنبه", "دوشنبه", "سه ‌شنبه", "چهارشنبه", "پنجشنبه", "جمعه"];
+    const today = new Date();
+    const currentDay = daysOfWeek[today.getDay()]; // 0 = یکشنبه, 1 = دوشنبه, ...
+
+    var table = document.getElementById('myTable');
+    var tr = table.getElementsByTagName('tr');
+
+    for (var i = 1; i < tr.length; i++) {
+        tr[i].style.display = "none"; // همه ردیف‌ها ابتدا مخفی می‌شوند
+        var td = tr[i].getElementsByTagName('td');
+
+        for (var j = 0; j < td.length; j++) {
+            if (td[j]) {
+                var txtValue = td[j].textContent || td[j].innerText;
+
+                // بررسی اگر روز فعلی در سلول "روز" موجود باشد
+                if (txtValue.includes(currentDay) && txtValue.includes("معتبر")) {
+                    tr[i].style.display = ""; // اگر روز فعلی پیدا شد، ردیف نمایش داده شود
+                    break;
+                }
+            }
+        }
+    }
+});
+
 </script>
 
 </body>
