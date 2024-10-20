@@ -240,7 +240,7 @@
 
 <script>
     // ذخیره داده‌های کامل در متغیر جاوااسکریپت
-    var allUsers = {{ all_users|escapejs }};
+    var allUsers = {{ all_users|safe }};
 
     // عملکرد جستجو
     document.getElementById('searchInput').addEventListener('keyup', function() {
