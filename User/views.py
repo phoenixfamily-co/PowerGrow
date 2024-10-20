@@ -256,7 +256,7 @@ def manager_users_view(request):
     template = loader.get_template('manager/users.html')
     about = AboutUs.objects.values().first()
     user = User.objects.all()
-    p = Paginator(user, 200)  # ایجاد Paginator با queryset کاربران
+    p = Paginator(user, 100)  # ایجاد Paginator با queryset کاربران
     page_number = request.GET.get('page')
 
     try:
