@@ -261,10 +261,10 @@
                 (user.fields.number && user.fields.number.toUpperCase().includes(input)) ||
                 (user.fields.birthdate && user.fields.birthdate.toUpperCase().includes(input)) ||
                 (user.fields.datetime && user.fields.datetime.toUpperCase().includes(input)) ||
-                (user.fields.salary && user.fields.salary.toUpperCase().includes(input)) ||
-                (user.fields.fee && user.fields.fee.toUpperCase().includes(input)) ||
+                (user.fields.salary && user.fields.salary.toString().toUpperCase().includes(input)) ||
+                (user.fields.fee && user.fields.fee.toString().toUpperCase().includes(input)) ||
                 (user.fields.situation && user.fields.situation.toUpperCase().includes(input)) ||
-                (user.fields.debt && user.fields.debt.toUpperCase().includes(input)) ||
+                (user.fields.debt && user.fields.debt.toString().toUpperCase().includes(input)) ||
                 (user.fields.description && user.fields.description.toUpperCase().includes(input))
             );
         });
