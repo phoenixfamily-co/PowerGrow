@@ -85,20 +85,7 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* سایه خفیف */
             transition: border-color 0.3s;
             text-align: right;
-            width: auto;
-        }
-
-        .search-button {
-            position: absolute; /* قرار دادن دکمه در موقعیت مطلق */
-            left: 10px; /* فاصله از سمت چپ */
-            top: 50%; /* مرکز کردن عمودی */
-            transform: translateY(-50%); /* تنظیم عمودی */
-            background: transparent; /* پس‌زمینه شفاف */
-            border: none; /* بدون حاشیه */
-            cursor: pointer; /* تغییر نشانگر ماوس به دست */
-            padding: 0; /* بدون فاصله داخلی */
-            color: #aaa; /* رنگ آیکون */
-            pointer-events: all; /* فعال کردن کلیک روی دکمه */
+            width: 100%;
         }
 
         .search-icon {
@@ -154,9 +141,7 @@
    <div class="search-bar-container">
     <div class="search-input-container">
         <input type="text" id="searchInput" class="search-input" placeholder="جستجو...">
-         <button class="search-button" onclick="">
-            <i class="fa fa-search search-icon"></i>
-        </button>
+        <i class="fa fa-search search-icon"></i>
     </div>
 </div>
 
