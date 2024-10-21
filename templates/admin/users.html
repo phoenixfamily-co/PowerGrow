@@ -64,29 +64,29 @@
                justify-content: center;
            }
 
-           .search-bar-container {
-               display: flex;
-               justify-content: center; /* مرکز کردن نوار جستجو */
-               margin: 50px auto; /* فاصله از بالا و پایین */
-               width: 80%; /* نوار جستجو تمام عرض را بگیرد */
-               direction: rtl;
-           }
+            .search-bar-container {
+                width: 80%; /* عرض نوار جستجو */
+                margin: 50px auto; /* فاصله از بالا و پایین */
+                direction: rtl; /* راست به چپ */
+            }
 
-           .search-input {
-               flex: 1; /* به نوار جستجو اجازه می‌دهد تمام فضای در دسترس را پر کند */
-               padding: 10px 15px; /* فاصله داخلی */
-               border: 2px solid #ccc; /* حاشیه خاکستری */
-               border-radius: 25px; /* گوشه‌های گرد */
-               outline: none;
-               font-size: 16px;
-               box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* سایه خفیف */
-               transition: border-color 0.3s;
-               text-align: right;
-           }
+             .form-control, .btn {
+                 border-radius: 0; /* حذف گردی */
+             }
 
-           .search-input:focus {
-               border-color: #E16539; /* رنگ حاشیه وقتی روی فیلد کلیک می‌شود */
-           }
+             #search-button {
+                 background-color: #E16539; /* رنگ دکمه */
+                 color: white; /* رنگ متن دکمه */
+             }
+
+            #search-button i {
+                color: white; /* رنگ آیکون */
+            }
+
+             .form-control:focus {
+                 border-color: #E16539; /* رنگ حاشیه در حالت فوکوس */
+                 box-shadow: 0 0 5px rgba(225, 101, 57, 0.5); /* سایه برای زیبایی */
+             }
 
 
 
@@ -123,10 +123,16 @@
 
 </div>
 
-   <div class="search-bar-container">
-    <input type="text" id="searchInput" class="search-input" placeholder="جستجو...">
-   </div>
-
+<div class="search-bar-container">
+    <div class="input-group">
+        <input type="text" id="search-input" class="form-control" placeholder="جستجو...">
+        <div class="input-group-append">
+            <button id="search-button" class="btn" type="button">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+</div>
 
 <div class="pagination-container">
 
@@ -250,44 +256,93 @@
 </div>
 
 <script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('search-button').addEventListener('click', function() {
+        const query = document.getElementById('search-input').value;
 
-document.getElementById('searchInput').addEventListener('keyup', function() {
-    var input, filter, table, tr, td, i, j, txtValue;
-    input = document.getElementById('searchInput');
-    filter = input.value.toUpperCase().trim().split(" "); // ورودی را به کلمات جداگانه تقسیم می‌کند
-    table = document.getElementById('myTable');
-    tr = table.getElementsByTagName('tr');
-
-    for (i = 1; i < tr.length; i++) {
-        tr[i].style.display = "none"; // همه ردیف‌ها ابتدا مخفی می‌شوند
-        td = tr[i].getElementsByTagName('td');
-        var rowMatches = true; // فرض می‌کنیم که ردیف با شرایط جستجو مطابقت دارد
-
-        for (j = 0; j < filter.length; j++) { // برای هر کلمه جستجو
-            var wordMatched = false; // فرض می‌کنیم که هیچ کلمه‌ای مطابقت ندارد
-
-            for (let k = 0; k < td.length; k++) { // هر سلول را بررسی می‌کنیم
-                if (td[k]) {
-                    txtValue = td[k].textContent || td[k].innerText;
-                    if (txtValue.toUpperCase().indexOf(filter[j]) > -1) {
-                        wordMatched = true; // اگر کلمه پیدا شد
-                        break;
-                    }
+        fetch(`{% url 'user:user-search' %}?search=${query}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
                 }
-            }
+                return response.json();
+            })
+            .then(data => {
+                // پاک کردن محتویات جدول قبلی
+                const tableBody = document.querySelector('#myTable tbody');
+                tableBody.innerHTML = '';
 
-            if (!wordMatched) {
-                rowMatches = false; // اگر هیچ کلمه‌ای در ردیف مطابقت نداشت
-                break;
-            }
-        }
+                // پر کردن جدول با نتایج جدید
+                data.forEach(user => {
+                    const row = document.createElement('tr');
 
-        if (rowMatches) {
-            tr[i].style.display = ""; // اگر ردیف با تمام کلمات مطابقت داشت، نمایش داده شود
-        }
-    }
+                     const registrationDate = new Date(user.datetime).toLocaleDateString('fa-IR', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit'
+                    });
+
+                    let otherPanel;
+
+                    if (user.is_staff) {
+                        otherPanel = `/user/home/manager/${user.id}/`;
+                    } else if (user.is_superuser) {
+                        otherPanel = `/user/home/admin/${user.id}/`;
+                    } else if (user.is_teacher) {
+                        otherPanel = `/user/home/teacher/${user.id}/`;
+                    } else {
+                        otherPanel = `/user/home/user/${user.id}/`;
+                    }
+
+                    row.innerHTML = `
+                    <th scope="row">${user.id}</th>
+                    <td class="text-center">
+                            <i class="fa fa-eye text-info" aria-hidden="true" style="cursor: pointer" title="مشاهده" onclick="window.open('${otherPanel}')"></i>
+                        </td>
+                        <td class="text-center">
+                            <i class="fa fa-pencil text-warning" aria-hidden="true" style="cursor: pointer" title="ویرایش" onclick="window.open('/user/update/user/${user.id}/')"></i>
+                        </td>
+                        <td class="text-center">
+                            <i class="fa fa-times text-danger" aria-hidden="true" style="cursor: pointer" title="حذف" onclick="window.open('/user/delete/user/${user.id}/')"></i>
+                        </td>
+                        <td class="text-center">
+                            <i class="fa-solid fa-user text-white" aria-hidden="true" style="cursor: pointer" title="نام کاربری" onclick="window.open('/user/change-number/${user.id}/')"></i>
+                        </td>
+                        <td class="text-center">
+                            <i class="fa-solid fa-key text-warning" aria-hidden="true" style="cursor: pointer" title="پسورد" onclick="window.open('/user/change-password/${user.id}/')"></i>
+                        </td>
+                    <td class="text-center">
+                           <i class="fa-solid fa-fingerprint" aria-hidden="true" style="cursor: pointer" title="دسترسی" onclick="window.open('/user/change-access/${user.id}/')"></i>
+                        </td>
+                        <td class="text-center">
+                            <i class="fa-solid fa-sack-dollar text-success" aria-hidden="true" style="cursor: pointer" title="حقوق" onclick="window.open('/user/change-salary/${user.id}/')"></i>
+                        </td>
+                        <td>${user.name}</td>
+                        <td dir="auto">${user.number}</td>
+                        <td>${user.birthdate}</td>
+                        <td>${registrationDate}</td>
+                        <td>${user.is_staff ? 'مدیر' : user.is_superuser ? 'منشی' : user.is_teacher ? 'مربی' : 'شاگرد'}</td>
+                        <td>${user.salary}</td>
+                        <td>${user.fee}</td>
+                        <td>${user.situation}</td>
+                        <td>${user.debt}</td>
+                        <td>
+${user.description}
+<br>
+کاربر ${user.created}
+</td>
+                        <td class="text-center">
+                            ${user.is_active ? '<i title="فعال" class="fa fa-check-circle text-success"></i>' : '<i title="غیرفعال" class="fa fa-ban text-danger"></i>'}
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+    });
 });
-
 </script>
 
 </body>
