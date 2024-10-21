@@ -275,7 +275,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     if (user.is_staff) {
                         otherPanel = `/user/home/manager/${user.id}/`;
-                    } else if (user.is_admin) {
+                    } else if (user.is_superuser) {
                         otherPanel = `/user/home/admin/${user.id}/`;
                     } else if (user.is_teacher) {
                         otherPanel = `/user/home/teacher/${user.id}/`;
