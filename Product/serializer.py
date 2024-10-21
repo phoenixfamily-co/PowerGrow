@@ -1,7 +1,5 @@
-from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import serializers
 
-from User.models import User
 from .models import Course, Days, Sport, Session, Participants
 
 
@@ -50,10 +48,12 @@ class ParticipantsSerializer(serializers.ModelSerializer):
 
 
 class DaysSerializer(serializers.ModelSerializer):
+    participants = ParticipantsSerializer(read_only=True, many=True)
 
     class Meta:
         model = Days
-        fields = ('title', 'session')
+        fields = "__all__"
+        read_only_fields = ('tuition', 'off')
 
     def create(self, validated_data):
         return Days.objects.create(**validated_data)
