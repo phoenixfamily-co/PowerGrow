@@ -6,6 +6,7 @@ from django.shortcuts import get_object_or_404, render
 from django.views.decorators.cache import cache_page
 from rest_framework import viewsets, generics, status
 from rest_framework.decorators import api_view
+from rest_framework.generics import UpdateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.utils import json
@@ -766,3 +767,26 @@ class ManagerParticipationView(viewsets.ViewSet):
             return Response(status=status.HTTP_204_NO_CONTENT)
         except Participants.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+class ChangeDayPriceView(UpdateAPIView):
+    serializer_class = ChangeDayPriceSerializer
+    permission_classes = [IsAdminUserOrStaff]
+
+    def get_object(self):
+        day_id = self.kwargs['day_id']
+        try:
+            return Days.objects.get(id=day_id)
+        except Days.DoesNotExist:
+            return None
+
+    def update(self, request, *args, **kwargs):
+        day = self.get_object()
+        if day is None:
+            return Response({"detail": "day not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = self.get_serializer(day, data=request.data)  # اضافه کردن partial=True برای بروزرسانی جزئی
+        serializer.is_valid(raise_exception=True)
+        serializer.save()  # از متد save سریالایزر استفاده می‌کنیم
+
+        return Response({"detail": "User access has been updated successfully."}, status=status.HTTP_200_OK)

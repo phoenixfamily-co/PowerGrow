@@ -54,15 +54,13 @@ class DaysSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Days
-        fields = "__all__"
+        fields = ('title', 'session')
 
     def create(self, validated_data):
         return Days.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
         instance.title = validated_data.get('title', instance.title)
-        instance.tuition = validated_data.get('tuition', instance.tuition)
-        instance.off = validated_data.get('off', instance.off)
         instance.session = validated_data.get('session', instance.session)
         instance.save()
         return instance
@@ -122,5 +120,17 @@ class SportSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         instance.title = validated_data.get('title', instance.title)
+        instance.save()
+        return instance
+
+
+class ChangeDayPriceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('tuition', 'off')  # می‌توانید فیلدهای دلخواه را اضافه کنید
+
+    def update(self, instance, validated_data):
+        instance.tuition = validated_data.get('tuition', instance.tuition)
+        instance.off = validated_data.get('off', instance.off)
         instance.save()
         return instance

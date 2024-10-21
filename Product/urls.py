@@ -52,4 +52,7 @@ urlpatterns = [
          ManagerParticipationView.as_view({'delete': 'destroy'}),
          name='manager-delete-participation'),
     path('get-days-for-session/', get_days_for_session, name='get_days_for_session'),
+
+    path('change-price/<int:day_id>/', ChangeDayPriceView.as_view(), name='change-day-price'),
+
 ]

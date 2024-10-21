@@ -483,3 +483,5 @@ class ChangeUserSalaryView(UpdateAPIView):
         serializer.save()  # از متد save سریالایزر استفاده می‌کنیم
 
         return Response({"detail": "User access has been updated successfully."}, status=status.HTTP_200_OK)
+
+
