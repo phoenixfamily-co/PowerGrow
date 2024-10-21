@@ -58,33 +58,44 @@
 
         }
 
-           .pagination-container {
-               display: flex;
-               justify-content: center;
-           }
+        .search-bar-container {
+            display: flex;
+            justify-content: center; /* مرکز کردن نوار جستجو */
+            margin: 50px auto; /* فاصله از بالا و پایین */
+            width: 80%; /* نوار جستجو تمام عرض را بگیرد */
+            direction: rtl;
+        }
 
-           .search-bar-container {
-               display: flex;
-               justify-content: center; /* مرکز کردن نوار جستجو */
-               margin: 50px auto; /* فاصله از بالا و پایین */
-               width: 80%; /* نوار جستجو تمام عرض را بگیرد */
-               direction: rtl;
-           }
+        .search-input-container {
+            position: relative; /* برای قرار دادن آیکون در موقعیت مطلق */
+            width: 100%; /* عرض کامل */
+        }
 
-           .search-input {
-               flex: 1; /* به نوار جستجو اجازه می‌دهد تمام فضای در دسترس را پر کند */
-               padding: 10px 15px; /* فاصله داخلی */
-               border: 2px solid #ccc; /* حاشیه خاکستری */
-               outline: none;
-               font-size: 16px;
-               box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* سایه خفیف */
-               transition: border-color 0.3s;
-               text-align: right;
-           }
+        .search-input {
+            flex: 1; /* به نوار جستجو اجازه می‌دهد تمام فضای در دسترس را پر کند */
+            padding: 10px 15px; /* فاصله داخلی */
+            padding-left: 40px; /* فضای سمت چپ برای آیکون */
+            border: 2px solid #ccc; /* حاشیه خاکستری */
+            outline: none;
+            font-size: 16px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* سایه خفیف */
+            transition: border-color 0.3s;
+            text-align: right;
+        }
 
-           .search-input:focus {
-               border-color: #E16539; /* رنگ حاشیه وقتی روی فیلد کلیک می‌شود */
-           }
+        .search-icon {
+            position: absolute; /* قرار دادن آیکون در موقعیت مطلق */
+            left: 10px; /* فاصله از سمت چپ */
+            top: 50%; /* مرکز کردن عمودی */
+            transform: translateY(-50%); /* تنظیم عمودی */
+            color: #aaa; /* رنگ آیکون */
+            pointer-events: none; /* غیر فعال کردن کلیک روی آیکون */
+        }
+
+        .search-input:focus {
+            border-color: #E16539; /* رنگ حاشیه وقتی روی فیلد کلیک می‌شود */
+        }
+
 
             .table-actions {
                 display: flex;
@@ -119,9 +130,13 @@
 
 </div>
 
+
    <div class="search-bar-container">
-       <input type="text" id="searchInput" class="search-input" placeholder="جستجو...">
-   </div>
+    <div class="search-input-container">
+        <input type="text" id="searchInput" class="search-input" placeholder="جستجو...">
+        <i class="fa fa-search search-icon"></i>
+    </div>
+</div>
 
 
 <div class="pagination-container">
