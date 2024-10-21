@@ -271,10 +271,22 @@ document.addEventListener('DOMContentLoaded', function() {
                         day: '2-digit'
                     });
 
+                    let otherPanel;
+
+                    if (user.is_staff) {
+                        otherPanel = `/user/home/manager/${user.id}/`;
+                    } else if (user.is_admin) {
+                        otherPanel = `/user/home/admin/${user.id}/`;
+                    } else if (user.is_teacher) {
+                        otherPanel = `/user/home/teacher/${user.id}/`;
+                    } else {
+                        otherPanel = `/user/home/user/${user.id}/`;
+                    }
+
                     row.innerHTML = `
                     <th scope="row">${user.id}</th>
                     <td class="text-center">
-                            <i class="fa fa-eye text-info" aria-hidden="true" style="cursor: pointer" title="مشاهده" onclick="window.open('/user/home/teacher/${user.id}/')"></i>
+                            <i class="fa fa-eye text-info" aria-hidden="true" style="cursor: pointer" title="مشاهده" onclick="window.open('${otherPanel}')"></i>
                         </td>
                         <td class="text-center">
                             <i class="fa fa-pencil text-warning" aria-hidden="true" style="cursor: pointer" title="ویرایش" onclick="window.open('/user/update/user/${user.id}/')"></i>
