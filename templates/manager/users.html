@@ -69,7 +69,24 @@
                 direction: rtl; /* راست به چپ */
             }
 
+             .form-control, .btn {
+                 border-radius: 0; /* حذف گردی */
+             }
 
+             #search-button {
+                 background-color: #E16539; /* رنگ دکمه */
+                 border: none; /* حذف حاشیه */
+                 color: white; /* رنگ متن دکمه */
+             }
+
+            #search-button i {
+                color: white; /* رنگ آیکون */
+            }
+
+             .form-control:focus {
+                 border-color: #E16539; /* رنگ حاشیه در حالت فوکوس */
+                 box-shadow: 0 0 5px rgba(225, 101, 57, 0.5); /* سایه برای زیبایی */
+             }
 
 
             .table-actions {
