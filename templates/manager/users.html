@@ -63,32 +63,30 @@
                    justify-content: center;
                }
 
-        .search-bar-container {
-            display: flex;
-            justify-content: center; /* مرکز کردن نوار جستجو */
-            margin: 50px auto; /* فاصله از بالا و پایین */
-            width: 80%; /* نوار جستجو تمام عرض را بگیرد */
-            direction: rtl;
-        }
+               .input-group {
+    display: flex; /* برای چیدمان افقی */
+    align-items: center; /* تراز عمودی عناصر */
+}
 
+.form-outline {
+    position: relative; /* برای تنظیمات بعدی */
+}
 
-        .search-input {
-            flex: 1; /* به نوار جستجو اجازه می‌دهد تمام فضای در دسترس را پر کند */
-            padding: 10px 15px 10px 40px;
-            border: 2px solid #ccc; /* حاشیه خاکستری */
-            outline: none;
-            font-size: 16px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* سایه خفیف */
-            transition: border-color 0.3s;
-            text-align: right;
-            width: 100%;
-        }
+.form-control {
+    padding-right: 40px; /* فاصله برای دکمه */
+    text-align: right; /* تراز متن به راست */
+}
 
+#search-button {
+    background-color: #E16539; /* رنگ دکمه */
+    border: none; /* حذف حاشیه */
+    color: white; /* رنگ متن دکمه */
+    margin-left: -40px; /* آوردن دکمه به سمت چپ */
+}
 
-
-        .search-input:focus {
-            border-color: #E16539; /* رنگ حاشیه وقتی روی فیلد کلیک می‌شود */
-        }
+#search-button i {
+    color: white; /* رنگ آیکون */
+}
 
 
             .table-actions {
@@ -128,7 +126,7 @@
 <div class="input-group">
   <div class="form-outline" data-mdb-input-init>
     <input id="search-input" type="search" class="form-control" />
-    <label class="form-label" for="form1">Search</label>
+    <label class="form-label" for="search-input">جستجو</label>
   </div>
   <button id="search-button" type="button" class="btn btn-primary">
     <i class="fas fa-search"></i>
