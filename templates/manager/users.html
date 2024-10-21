@@ -297,8 +297,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         <td>${user.situation}</td>
                         <td>${user.debt}</td>
                         <td>
-${user.description}\n
-${user.created}
+${user.description}
+<br>
+${user.created.name}
 </td>
                         <td class="text-center">
                             ${user.is_active ? '<i title="فعال" class="fa fa-check-circle text-success"></i>' : '<i title="غیرفعال" class="fa fa-ban text-danger"></i>'}
