@@ -58,6 +58,11 @@
 
         }
 
+               .pagination-container {
+                   display: flex;
+                   justify-content: center;
+               }
+
         .search-bar-container {
             display: flex;
             justify-content: center; /* مرکز کردن نوار جستجو */
@@ -89,8 +94,9 @@
             left: 10px; /* فاصله از سمت چپ */
             top: 50%; /* مرکز کردن عمودی */
             transform: translateY(-50%); /* تنظیم عمودی */
-            color: #aaa; /* رنگ آیکون */
             pointer-events: none; /* غیر فعال کردن کلیک روی آیکون */
+            cursor: pointer;
+            color: #E16539;
         }
 
         .search-input:focus {
