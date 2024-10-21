@@ -283,15 +283,36 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
 
                     let otherPanel;
+                    let pass
+                    let number
+                    let update
 
                     if (user.is_staff) {
                         otherPanel = ``;
+                        pass = ''
+                        number = ''
+                        update = ''
+
                     } else if (user.is_superuser) {
                         otherPanel = ``;
+                        pass = ''
+                        number = ''
+                        update = ''
+
                     } else if (user.is_teacher) {
                         otherPanel = `/user/home/teacher/${user.id}/`;
+                        pass = `/user/change-password/${user.id}/`
+                        number = `/user/change-number/${user.id}/`
+                        update = `/user/update/user/${user.id}/`
+
+
                     } else {
                         otherPanel = `/user/home/user/${user.id}/`;
+                        pass = `/user/change-password/${user.id}/`
+                        number = `/user/change-number/${user.id}/`
+                        update = `/user/update/user/${user.id}/`
+
+
                     }
 
                     row.innerHTML = `
@@ -300,14 +321,14 @@ document.addEventListener('DOMContentLoaded', function() {
                             <i class="fa fa-eye text-info" aria-hidden="true" style="cursor: pointer" title="مشاهده" onclick="window.open('${otherPanel}')"></i>
                         </td>
                         <td class="text-center">
-                            <i class="fa fa-pencil text-warning" aria-hidden="true" style="cursor: pointer" title="ویرایش" onclick="window.open('/user/update/user/${user.id}/')"></i>
+                            <i class="fa fa-pencil text-warning" aria-hidden="true" style="cursor: pointer" title="ویرایش" onclick="window.open('${update}')"></i>
                         </td>
 
                         <td class="text-center">
-                            <i class="fa-solid fa-user text-white" aria-hidden="true" style="cursor: pointer" title="نام کاربری" onclick="window.open('/user/change-number/${user.id}/')"></i>
+                            <i class="fa-solid fa-user text-white" aria-hidden="true" style="cursor: pointer" title="نام کاربری" onclick="window.open('${number}')"></i>
                         </td>
                         <td class="text-center">
-                            <i class="fa-solid fa-key text-warning" aria-hidden="true" style="cursor: pointer" title="پسورد" onclick="window.open('/user/change-password/${user.id}/')"></i>
+                            <i class="fa-solid fa-key text-warning" aria-hidden="true" style="cursor: pointer" title="پسورد" onclick="window.open('${pass}')"></i>
                         </td>
 
                         <td>${user.name}</td>
