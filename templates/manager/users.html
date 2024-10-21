@@ -71,11 +71,6 @@
             direction: rtl;
         }
 
-        .search-input-container {
-            position: relative; /* برای قرار دادن آیکون در موقعیت مطلق */
-            width: 100%; /* عرض کامل */
-            background-color: white;
-        }
 
         .search-input {
             flex: 1; /* به نوار جستجو اجازه می‌دهد تمام فضای در دسترس را پر کند */
@@ -86,19 +81,10 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* سایه خفیف */
             transition: border-color 0.3s;
             text-align: right;
-            width: 50%;
+            width: 100%;
         }
 
-        .search-icon {
-            position: absolute; /* قرار دادن آیکون در موقعیت مطلق */
-            left: 10px; /* فاصله از سمت چپ */
-            top: 50%; /* مرکز کردن عمودی */
-            transform: translateY(-50%); /* تنظیم عمودی */
-            pointer-events: none; /* غیر فعال کردن کلیک روی آیکون */
-            cursor: pointer;
-            z-index: 100;
-            color: #E16539;
-        }
+
 
         .search-input:focus {
             border-color: #E16539; /* رنگ حاشیه وقتی روی فیلد کلیک می‌شود */
@@ -140,10 +126,8 @@
 
 
    <div class="search-bar-container">
-    <div class="search-input-container">
         <input type="text" id="searchInput" class="search-input" placeholder="جستجو...">
         <i class="fa fa-search search-icon"></i>
-    </div>
 </div>
 
 
