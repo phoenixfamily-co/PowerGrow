@@ -266,6 +266,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     const row = document.createElement('tr');
 
                     row.innerHTML = `
+                    <td class="text-center">
+
+                           <i class="fa-solid fa-fingerprint" aria-hidden="true" style="cursor: pointer" title="دسترسی" onclick="window.open('{% url 'user:change-user-access' user.id%}} ')"></i>
+                        </td>
+                        <td class="text-center">
+                            <i class="fa-solid fa-sack-dollar text-success" aria-hidden="true" style="cursor: pointer" title="حقوق" onclick="window.open('{% url 'user:change-user-salary' user.id%}')"></i>
+                        </td>
                         <th scope="row">${user.id}</th>
                         <td>${user.name}</td>
                         <td dir="auto">${user.number}</td>
