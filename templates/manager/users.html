@@ -260,33 +260,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 tableBody.innerHTML = '';
 
                 // پر کردن جدول با نتایج جدید
-                data.results.forEach(user => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <th scope="row">${user.id}</th>
-                        <td class="text-center">
-                            <i class="fa fa-eye text-info" style="cursor: pointer" title="مشاهده" onclick="window.open('/user/${user.id}/')"></i>
-                        </td>
-                        <td class="text-center">
-                            <i class="fa fa-pencil text-warning" style="cursor: pointer" title="ویرایش" onclick="window.open('/user/${user.id}/edit/')"></i>
-                        </td>
-                        <td class="text-center">
-                            <i class="fa fa-times text-danger" style="cursor: pointer" title="حذف" onclick="window.open('/user/${user.id}/delete/')"></i>
-                        </td>
-                        <td class="text-center">${user.name}</td>
-                        <td class="text-center">${user.number}</td>
-                        <td class="text-center">${user.birthdate}</td>
-                        <td class="text-center">${user.datetime}</td>
-                        <td class="text-center">${user.is_staff ? 'مدیر' : user.is_superuser ? 'منشی' : user.is_teacher ? 'مربی' : 'شاگرد'}</td>
-                        <td class="text-center">${user.salary}</td>
-                        <td class="text-center">${user.fee}</td>
-                        <td class="text-center">${user.situation}</td>
-                        <td class="text-center">${user.debt}</td>
-                        <td class="text-center">${user.description}</td>
-                        <td class="text-center">${user.is_active ? '<i title="فعال" class="fa fa-check-circle text-success"></i>' : '<i title="غیرفعال" class="fa fa-ban text-danger"></i>'}</td>
-                    `;
-                    tableBody.appendChild(row);
-                });
+
+                 console.log(data)
+
             })
             .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);
