@@ -64,32 +64,29 @@
                justify-content: center;
            }
 
-.search-bar-container {
-    position: relative;
-    width: 300px; /* عرض نوار جستجو */
-}
+           .search-bar-container {
+               display: flex;
+               justify-content: center; /* مرکز کردن نوار جستجو */
+               margin: 50px auto; /* فاصله از بالا و پایین */
+               width: 80%; /* نوار جستجو تمام عرض را بگیرد */
+               direction: rtl;
+           }
 
-.search-input-container {
-    display: flex;
-    align-items: center;
-    border: 1px solid #ccc; /* رنگ حاشیه */
-    border-radius: 5px; /* گرد کردن گوشه‌ها */
-    padding: 5px; /* حاشیه داخلی */
-}
+           .search-input {
+               flex: 1; /* به نوار جستجو اجازه می‌دهد تمام فضای در دسترس را پر کند */
+               padding: 10px 15px; /* فاصله داخلی */
+               border: 2px solid #ccc; /* حاشیه خاکستری */
+               border-radius: 25px; /* گوشه‌های گرد */
+               outline: none;
+               font-size: 16px;
+               box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* سایه خفیف */
+               transition: border-color 0.3s;
+               text-align: right;
+           }
 
-.search-icon {
-    color: #aaa; /* رنگ آیکون */
-    margin-right: 5px; /* فاصله بین آیکون و اینپوت */
-}
-
-.search-input {
-    border: none; /* بدون حاشیه */
-    outline: none; /* بدون حاشیه بیرونی */
-    flex-grow: 1; /* اینپوت تمام عرض را بگیرد */
-    padding: 5px; /* حاشیه داخلی */
-    font-size: 14px; /* اندازه فونت */
-}
-
+           .search-input:focus {
+               border-color: #E16539; /* رنگ حاشیه وقتی روی فیلد کلیک می‌شود */
+           }
 
 
 
@@ -126,12 +123,9 @@
 
 </div>
 
-<div class="search-bar-container">
-    <div class="search-input-container">
-        <i class="fa fa-search search-icon"></i>
-        <input type="text" id="searchInput" class="search-input" placeholder="جستجو...">
-    </div>
-</div>
+   <div class="search-bar-container">
+       <input type="text" id="searchInput" class="search-input" placeholder="جستجو...">
+   </div>
 
 
 <div class="pagination-container">
