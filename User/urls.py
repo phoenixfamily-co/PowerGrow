@@ -34,4 +34,6 @@ urlpatterns = [
     path('change-access/<int:user_id>/', ChangeUserAccessView.as_view(), name='change-user-access'),
     path('change-salary/<int:user_id>/', ChangeUserSalaryView.as_view(), name='change-user-salary'),
     path('change-number/<int:user_id>/', ChangeNumberView.as_view(), name='change-user-number'),
+    path('search/api/', UserSearchView.as_view(), name='user-search'),  # مسیر جستجو
+
 ]

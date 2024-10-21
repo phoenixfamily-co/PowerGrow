@@ -87,3 +87,9 @@ class ChangeUserSalarySerializer(serializers.ModelSerializer):
         instance.debt = validated_data.get('debt', instance.debt)
         instance.save()
         return instance
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'  # یا می‌توانید فیلدهای خاصی را تعیین کنید

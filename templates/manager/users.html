@@ -238,57 +238,63 @@
     </table>
 </div>
 
+
 <script>
-    // ذخیره داده‌های کامل در متغیر جاوااسکریپت
-    var allUsers = {{ all_users|safe }};
 
-    // عملکرد جستجو
-    document.getElementById('searchInput').addEventListener('keyup', function() {
-        var input = document.getElementById('searchInput').value.toUpperCase();
-        var table = document.getElementById('myTable');
-        var tr = table.getElementsByTagName('tr');
-        var tbody = table.querySelector('tbody');
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchInput');
 
-        // مخفی کردن تمام ردیف‌ها
-        for (var i = 1; i < tr.length; i++) {
-            tr[i].style.display = 'none';
-        }
+    searchInput.addEventListener('input', function() {
+        const query = searchInput.value;
 
-        // فیلتر کردن داده‌ها با توجه به ورودی جستجو
-        var filteredData = allUsers.filter(function(user) {
-            return (
-                (user.fields.name && user.fields.name.toUpperCase().includes(input)) ||
-                (user.fields.number && user.fields.number.toUpperCase().includes(input)) ||
-                (user.fields.birthdate && user.fields.birthdate.toUpperCase().includes(input)) ||
-                (user.fields.datetime && user.fields.datetime.toUpperCase().includes(input)) ||
-                (user.fields.salary && user.fields.salary.toString().toUpperCase().includes(input)) ||
-                (user.fields.fee && user.fields.fee.toString().toUpperCase().includes(input)) ||
-                (user.fields.situation && user.fields.situation.toUpperCase().includes(input)) ||
-                (user.fields.debt && user.fields.debt.toString().toUpperCase().includes(input)) ||
-                (user.fields.description && user.fields.description.toUpperCase().includes(input))
-            );
-        });
+        fetch(`/user/search/api/?search=${query}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // پاک کردن محتویات جدول قبلی
+                const tableBody = document.querySelector('#myTable tbody');
+                tableBody.innerHTML = '';
 
-        // به روزرسانی جدول با داده‌های فیلتر شده
-        tbody.innerHTML = '';
-        filteredData.forEach(function(user) {
-            var row = tbody.insertRow();
-            row.innerHTML = `
-                <td>${user.id}</td>
-                <td>${user.name}</td>
-                <td>${user.number}</td>
-                <td>${user.birthdate}</td>
-                <td>${user.datetime}</td>
-                <td>${user.salary}</td>
-                <td>${user.fee}</td>
-                <td>${user.situation}</td>
-                <td>${user.debt}</td>
-                <td>${user.description}</td>
-                <td>${user.is_active ? '<i class="fa fa-check-circle text-success" title="فعال"></i>' : '<i class="fa fa-ban text-danger" title="غیرفعال"></i>'}</td>
-            `;
-        });
+                // پر کردن جدول با نتایج جدید
+                data.results.forEach(user => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <th scope="row">${user.id}</th>
+                        <td class="text-center">
+                            <i class="fa fa-eye text-info" style="cursor: pointer" title="مشاهده" onclick="window.open('/user/${user.id}/')"></i>
+                        </td>
+                        <td class="text-center">
+                            <i class="fa fa-pencil text-warning" style="cursor: pointer" title="ویرایش" onclick="window.open('/user/${user.id}/edit/')"></i>
+                        </td>
+                        <td class="text-center">
+                            <i class="fa fa-times text-danger" style="cursor: pointer" title="حذف" onclick="window.open('/user/${user.id}/delete/')"></i>
+                        </td>
+                        <td class="text-center">${user.name}</td>
+                        <td class="text-center">${user.number}</td>
+                        <td class="text-center">${user.birthdate}</td>
+                        <td class="text-center">${user.datetime}</td>
+                        <td class="text-center">${user.is_staff ? 'مدیر' : user.is_superuser ? 'منشی' : user.is_teacher ? 'مربی' : 'شاگرد'}</td>
+                        <td class="text-center">${user.salary}</td>
+                        <td class="text-center">${user.fee}</td>
+                        <td class="text-center">${user.situation}</td>
+                        <td class="text-center">${user.debt}</td>
+                        <td class="text-center">${user.description}</td>
+                        <td class="text-center">${user.is_active ? '<i title="فعال" class="fa fa-check-circle text-success"></i>' : '<i title="غیرفعال" class="fa fa-ban text-danger"></i>'}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
     });
+});
 </script>
+
 
 </body>
 

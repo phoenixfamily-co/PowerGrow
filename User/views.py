@@ -13,7 +13,7 @@ from PowerGrow.decorators import *
 from Product.models import *
 from Seo.models import News
 from User.serializer import *
-from rest_framework import status, viewsets, generics
+from rest_framework import status, viewsets, generics, filters
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from PowerGrow.permissions import *
@@ -483,5 +483,12 @@ class ChangeUserSalaryView(UpdateAPIView):
         serializer.save()  # از متد save سریالایزر استفاده می‌کنیم
 
         return Response({"detail": "User access has been updated successfully."}, status=status.HTTP_200_OK)
+
+
+class UserSearchView(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name', 'number']
 
 
