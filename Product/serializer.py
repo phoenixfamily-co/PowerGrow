@@ -126,7 +126,7 @@ class SportSerializer(serializers.ModelSerializer):
 
 class ChangeDayPriceSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
+        model = Days
         fields = ('tuition', 'off')  # می‌توانید فیلدهای دلخواه را اضافه کنید
 
     def update(self, instance, validated_data):
