@@ -264,11 +264,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 // پر کردن جدول با نتایج جدید
                 data.forEach(user => {
                     const row = document.createElement('tr');
-
                     row.innerHTML = `
                     <th scope="row">${user.id}</th>
                     <td class="text-center">
-                            <i class="fa fa-eye text-info" aria-hidden="true" style="cursor: pointer" title="مشاهده" onclick="window.open('/user/home/user/${user.id}/')"></i>
+                            <i class="fa fa-eye text-info" aria-hidden="true" style="cursor: pointer" title="مشاهده" onclick="window.open('/user/home/teacher/${user.id}/')"></i>
                         </td>
                         <td class="text-center">
                             <i class="fa fa-pencil text-warning" aria-hidden="true" style="cursor: pointer" title="ویرایش" onclick="window.open('/user/update/user/${user.id}/')"></i>
@@ -297,7 +296,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         <td>${user.fee}</td>
                         <td>${user.situation}</td>
                         <td>${user.debt}</td>
-                        <td>${user.description}</td>
+                        <td>
+${user.description}
+${user.created}
+</td>
                         <td class="text-center">
                             ${user.is_active ? '<i title="فعال" class="fa fa-check-circle text-success"></i>' : '<i title="غیرفعال" class="fa fa-ban text-danger"></i>'}
                         </td>
