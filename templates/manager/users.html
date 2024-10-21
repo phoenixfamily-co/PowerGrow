@@ -247,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function() {
     searchInput.addEventListener('input', function() {
         const query = searchInput.value;
 
-        fetch(`/user/search/api/?search=${query}`)
+        fetch(`{% url 'user:user-search' %}?search=${query}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
