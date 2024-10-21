@@ -274,7 +274,6 @@ def manager_users_view(request):
     context = {
         "about": about,
         'page_obj': page_obj,
-        'all_users': json.dumps(users_json),  # داده‌های کامل برای جستجو
     }
     return HttpResponse(template.render(context, request))
 
