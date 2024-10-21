@@ -88,6 +88,20 @@
                border-color: #E16539; /* رنگ حاشیه وقتی روی فیلد کلیک می‌شود */
            }
 
+           .search-input-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc; /* رنگ حاشیه */
+    border-radius: 5px; /* گرد کردن گوشه‌ها */
+    padding: 5px; /* حاشیه داخلی */
+}
+
+.search-icon {
+    color: #aaa; /* رنگ آیکون */
+    margin-right: 5px; /* فاصله بین آیکون و اینپوت */
+}
+
+
 
 
             .table-actions {
@@ -123,12 +137,12 @@
 
 </div>
 
-   <div class="search-bar-container">
-       <input type="text" id="searchInput" class="search-input" placeholder="جستجو...">
-       <button id="searchButton" class="search-button">
-        <i class="fa fa-search"></i> جستجو
-    </button>
-   </div>
+<div class="search-bar-container">
+    <div class="search-input-container">
+        <i class="fa fa-search search-icon"></i>
+        <input type="text" id="searchInput" class="search-input" placeholder="جستجو...">
+    </div>
+</div>
 
 
 <div class="pagination-container">
