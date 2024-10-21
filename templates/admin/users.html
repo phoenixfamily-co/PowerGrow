@@ -285,9 +285,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     let otherPanel;
 
                     if (user.is_staff) {
-                        otherPanel = `/user/home/manager/${user.id}/`;
+                        otherPanel = ``;
                     } else if (user.is_superuser) {
-                        otherPanel = `/user/home/admin/${user.id}/`;
+                        otherPanel = ``;
                     } else if (user.is_teacher) {
                         otherPanel = `/user/home/teacher/${user.id}/`;
                     } else {
@@ -302,21 +302,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         <td class="text-center">
                             <i class="fa fa-pencil text-warning" aria-hidden="true" style="cursor: pointer" title="ویرایش" onclick="window.open('/user/update/user/${user.id}/')"></i>
                         </td>
-                        <td class="text-center">
-                            <i class="fa fa-times text-danger" aria-hidden="true" style="cursor: pointer" title="حذف" onclick="window.open('/user/delete/user/${user.id}/')"></i>
-                        </td>
+
                         <td class="text-center">
                             <i class="fa-solid fa-user text-white" aria-hidden="true" style="cursor: pointer" title="نام کاربری" onclick="window.open('/user/change-number/${user.id}/')"></i>
                         </td>
                         <td class="text-center">
                             <i class="fa-solid fa-key text-warning" aria-hidden="true" style="cursor: pointer" title="پسورد" onclick="window.open('/user/change-password/${user.id}/')"></i>
                         </td>
-                    <td class="text-center">
-                           <i class="fa-solid fa-fingerprint" aria-hidden="true" style="cursor: pointer" title="دسترسی" onclick="window.open('/user/change-access/${user.id}/')"></i>
-                        </td>
-                        <td class="text-center">
-                            <i class="fa-solid fa-sack-dollar text-success" aria-hidden="true" style="cursor: pointer" title="حقوق" onclick="window.open('/user/change-salary/${user.id}/')"></i>
-                        </td>
+
                         <td>${user.name}</td>
                         <td dir="auto">${user.number}</td>
                         <td>${user.birthdate}</td>
