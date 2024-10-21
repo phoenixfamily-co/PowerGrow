@@ -164,7 +164,7 @@ def manager_courses_view(request):
     users = User.objects.all()
 
     # پیاده‌سازی pagination
-    paginator = Paginator(courses, 100)
+    paginator = Paginator(courses, 150)
     page_number = request.GET.get('page')
 
     try:
@@ -190,7 +190,7 @@ def admin_courses_view(request):
     users = User.objects.all()
 
     # پیاده‌سازی pagination
-    paginator = Paginator(courses, 50)
+    paginator = Paginator(courses, 150)
     page_number = request.GET.get('page')
 
     try:
@@ -255,7 +255,7 @@ def manager_session_view(request):
     sessions = Session.objects.all().order_by('-pk')
 
     # پیاده‌سازی pagination
-    paginator = Paginator(sessions, 100)
+    paginator = Paginator(sessions, 150)
     page_number = request.GET.get('page')
 
     try:
@@ -282,7 +282,7 @@ def admin_session_view(request):
     sessions = Session.objects.all().order_by('-pk')
 
     # پیاده‌سازی pagination
-    paginator = Paginator(sessions, 100)
+    paginator = Paginator(sessions, 150)
     page_number = request.GET.get('page')
 
     try:
@@ -309,7 +309,7 @@ def manager_days_view(request):
     days = Days.objects.all().order_by('-pk')
 
     # پیاده‌سازی pagination
-    paginator = Paginator(days, 100)
+    paginator = Paginator(days, 150)
     page_number = request.GET.get('page')
 
     try:
@@ -336,7 +336,7 @@ def admin_days_view(request):
     days = Days.objects.all().order_by('-pk')
 
     # پیاده‌سازی pagination
-    paginator = Paginator(days, 100)
+    paginator = Paginator(days, 150)
     page_number = request.GET.get('page')
 
     try:
@@ -360,7 +360,7 @@ def manager_user_list(request, pk):
     # بارگذاری دوره با استفاده از get_object_or_404
     participants = Participants.objects.all().filter(course_id=pk).order_by('-endDay', 'startDay')
 
-    paginator = Paginator(participants, 100)
+    paginator = Paginator(participants, 150)
     page_number = request.GET.get('page')
 
     try:
@@ -387,7 +387,7 @@ def admin_user_list(request, pk):
     # بارگذاری دوره با استفاده از get_object_or_404
     participants = Participants.objects.all().filter(course_id=pk).order_by('startDay')
 
-    paginator = Paginator(participants, 100)
+    paginator = Paginator(participants, 150)
     page_number = request.GET.get('page')
 
     try:

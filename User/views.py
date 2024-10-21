@@ -1,7 +1,6 @@
 import json
 
 from django.contrib.auth import login, authenticate, logout, get_user_model
-from django.core.serializers import serialize
 from django.http import HttpResponse, JsonResponse
 from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
@@ -257,7 +256,7 @@ def manager_users_view(request):
     template = loader.get_template('manager/users.html')
     about = AboutUs.objects.values().first()
     user = User.objects.all()
-    p = Paginator(user, 100)  # ایجاد Paginator با queryset کاربران
+    p = Paginator(user, 150)  # ایجاد Paginator با queryset کاربران
     page_number = request.GET.get('page')
 
     try:
@@ -268,8 +267,6 @@ def manager_users_view(request):
     except EmptyPage:
         # اگر صفحه خالی باشد، آخرین صفحه را برگردان
         page_obj = p.page(p.num_pages)
-
-    users_json = json.loads(serialize('json', user))
 
     context = {
         "about": about,
@@ -283,7 +280,7 @@ def admin_users_view(request):
     template = loader.get_template('admin/users.html')
     about = AboutUs.objects.values().first()
     user = User.objects.all()
-    p = Paginator(user, 500)  # ایجاد Paginator با queryset کاربران
+    p = Paginator(user, 150)  # ایجاد Paginator با queryset کاربران
     page_number = request.GET.get('page')
 
     try:
