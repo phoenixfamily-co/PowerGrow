@@ -63,39 +63,10 @@
                justify-content: center;
            }
 
-           .input-group {
-               display: flex; /* برای چیدمان افقی */
-               align-items: center; /* تراز کردن عناصر به صورت هم‌ارتفاع */
-               margin: 0 auto; /* مرکز کردن گروه ورودی */
-               width: 80%;
-               direction: rtl;
-           }
-
-
-        .form-control {
-            padding-right: 40px; /* فاصله برای دکمه */
-            text-align: right; /* تراز متن به راست */
-            height: 50px; /* ارتفاع ورودی */
-            border: 2px solid #ccc; /* حاشیه ورودی */
-            border-radius: 4px; /* گرد کردن گوشه‌ها */
-            outline: none; /* حذف حاشیه داخلی */
-            width: 100%;
-        }
-
-#search-button {
-    background-color: #E16539; /* رنگ دکمه */
-    border: none; /* حذف حاشیه */
-    color: white; /* رنگ متن دکمه */
-    display: flex; /* برای مرکز کردن آیکون */
-    align-items: center; /* تراز عمودی آیکون */
-    justify-content: center; /* مرکز کردن آیکون */
-    border-radius: 4px; /* گرد کردن گوشه‌ها */
-    margin-left: -4px; /* کمی دکمه را به سمت چپ بیاورید */
-}
-
-#search-button i {
-    color: white; /* رنگ آیکون */
-}
+            .search-bar-container {
+                width: 80%; /* عرض نوار جستجو */
+                margin: 50px auto; /* فاصله از بالا و پایین */
+            }
 
 
 
@@ -134,14 +105,15 @@
 </div>
 
 
-<div class="input-group">
-  <div class="form-outline" data-mdb-input-init>
-    <input id="search-input" type="search" class="form-control" />
-    <label class="form-label" for="search-input">جستجو</label>
-  </div>
-  <button id="search-button" type="button" class="btn btn-primary">
-    <i class="fas fa-search"></i>
-  </button>
+<div class="search-bar-container">
+    <div class="input-group">
+        <input type="text" id="search-input" class="form-control" placeholder="جستجو...">
+        <div class="input-group-append">
+            <button id="search-button" class="btn btn-primary" type="button">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
 </div>
 
 <div class="pagination-container">
