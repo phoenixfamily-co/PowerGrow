@@ -50,7 +50,6 @@ class ParticipantsSerializer(serializers.ModelSerializer):
 
 
 class DaysSerializer(serializers.ModelSerializer):
-    participants = ParticipantsSerializer(read_only=True, many=True)
 
     class Meta:
         model = Days
