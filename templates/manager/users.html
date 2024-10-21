@@ -247,10 +247,9 @@
 <script>
 
 document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.getElementById('searchInput');
 
-    searchInput.addEventListener('input', function() {
-        const query = searchInput.value;
+     document.getElementById('search-button').addEventListener('click', function() {
+        const query = document.getElementById('search-input').value;
 
         fetch(`{% url 'user:user-search' %}?search=${query}`)
             .then(response => {
@@ -274,6 +273,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     });
 });
+
 </script>
 
 
