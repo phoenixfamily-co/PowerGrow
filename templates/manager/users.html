@@ -264,6 +264,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 // پر کردن جدول با نتایج جدید
                 data.forEach(user => {
                     const row = document.createElement('tr');
+
+                     const registrationDate = new Date(user.datetime).toLocaleDateString('fa-IR', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit'
+                    });
+
                     row.innerHTML = `
                     <th scope="row">${user.id}</th>
                     <td class="text-center">
@@ -290,7 +297,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <td>${user.name}</td>
                         <td dir="auto">${user.number}</td>
                         <td>${user.birthdate}</td>
-                        <td>${user.datetime}</td>
+                        <td>${registrationDate}</td>
                         <td>${user.is_staff ? 'مدیر' : user.is_superuser ? 'منشی' : user.is_teacher ? 'مربی' : 'شاگرد'}</td>
                         <td>${user.salary}</td>
                         <td>${user.fee}</td>
