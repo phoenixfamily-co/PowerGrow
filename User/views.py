@@ -255,7 +255,7 @@ def salary_view(request, pk):
 def manager_users_view(request):
     template = loader.get_template('manager/users.html')
     about = AboutUs.objects.values().first()
-    user = User.objects.all()
+    user = User.objects.all().order_by('-datetime')
     p = Paginator(user, 150)  # ایجاد Paginator با queryset کاربران
     page_number = request.GET.get('page')
 
@@ -279,7 +279,7 @@ def manager_users_view(request):
 def admin_users_view(request):
     template = loader.get_template('admin/users.html')
     about = AboutUs.objects.values().first()
-    user = User.objects.all()
+    user = User.objects.all().order_by('-datetime')
     p = Paginator(user, 150)  # ایجاد Paginator با queryset کاربران
     page_number = request.GET.get('page')
 
