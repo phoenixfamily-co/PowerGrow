@@ -789,4 +789,4 @@ class ChangeDayPriceView(UpdateAPIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()  # از متد save سریالایزر استفاده می‌کنیم
 
-        return Response({"detail": "User access has been updated successfully."}, status=status.HTTP_200_OK)
+        return Response({"detail": "قیمت با موفقیت بروزرسانی شد"}, status=status.HTTP_200_OK)
