@@ -47,6 +47,17 @@ class ParticipantsSerializer(serializers.ModelSerializer):
         return Participants.objects.create(**validated_data)
 
 
+class DaysCreateSerializer(serializers.ModelSerializer):
+    participants = ParticipantsSerializer(read_only=True, many=True)
+
+    class Meta:
+        model = Days
+        fields = "__all__"
+
+    def create(self, validated_data):
+        return Days.objects.create(**validated_data)
+
+
 class DaysSerializer(serializers.ModelSerializer):
     participants = ParticipantsSerializer(read_only=True, many=True)
 

@@ -546,7 +546,7 @@ class SportDetailView(viewsets.ViewSet):
 
 class DaysListCreateView(generics.CreateAPIView):
     queryset = Days.objects.all()
-    serializer_class = DaysSerializer
+    serializer_class = DaysCreateSerializer
     permission_classes = [IsAdminUserOrStaff]
 
 
