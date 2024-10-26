@@ -308,7 +308,7 @@ document.getElementById('searchInput').addEventListener('keyup', function() {
 
 document.getElementById('todayButton').addEventListener('click', function() {
     // تعریف روزهای هفته با شنبه به عنوان اولین روز
-    const daysOfWeek = ["جمعه","پنجشنبه","چهارشنبه","سه شنبه","دوشنبه","یکشنبه","شنبه"];
+    const daysOfWeek = ["شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنجشنبه", "جمعه"];
     const today = new Date();
     const currentDay = daysOfWeek[today.getDay()]; // 0 = شنبه, 1 = یکشنبه, ...
 
@@ -325,9 +325,10 @@ document.getElementById('todayButton').addEventListener('click', function() {
         for (var j = 0; j < td.length; j++) {
             if (td[j]) {
                 var txtValue = td[j].textContent || td[j].innerText;
+                var daysArray = txtValue.split(',').map(day => day.trim()); // جدا کردن روزها با ',' و حذف فضاها
 
-                // بررسی اگر روز فعلی دقیقاً با مقدار سلول "روز" برابر باشد و وضعیت معتبر باشد
-                if (txtValue.trim() === currentDay && isSuccess) {
+                // بررسی اگر روز فعلی در آرایه daysArray موجود باشد و وضعیت معتبر باشد
+                if (daysArray.includes(currentDay) && isSuccess) {
                     tr[i].style.display = ""; // اگر روز فعلی پیدا شد و وضعیت معتبر بود، ردیف نمایش داده شود
                     break;
                 }
@@ -335,6 +336,7 @@ document.getElementById('todayButton').addEventListener('click', function() {
         }
     }
 });
+
 
 
 
