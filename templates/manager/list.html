@@ -308,11 +308,11 @@ document.getElementById('searchInput').addEventListener('keyup', function() {
 
 document.getElementById('todayButton').addEventListener('click', function() {
     // تعریف روزهای هفته با شنبه به عنوان اولین روز
-    const daysOfWeek = ["جمعه","پنجشنبه","چهارشنبه","سه شنبه","دوشنبه","یکشنبه","شنبه"];
-    const today = new Date()
+    const daysOfWeek = ["یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنجشنبه","جمعه","شنبه"];
+    const today = new Date();
     const currentDay = daysOfWeek[1]; // 0 = شنبه, 1 = یکشنبه, ...
 
-    console.log(currentDay);
+    console.log(today.getDay());
 
     var table = document.getElementById('myTable');
     var tr = table.getElementsByTagName('tr');
