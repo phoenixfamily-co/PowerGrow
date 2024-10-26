@@ -308,7 +308,7 @@ document.getElementById('searchInput').addEventListener('keyup', function() {
 
 document.getElementById('todayButton').addEventListener('click', function() {
     // تعریف روزهای هفته با شنبه به عنوان اولین روز
-    const daysOfWeek = ["شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنجشنبه", "جمعه"];
+    const daysOfWeek = ["جمعه","پنجشنبه","چهارشنبه","سه شنبه","دوشنبه","یکشنبه","شنبه"];
     const today = new Date();
     const currentDay = daysOfWeek[today.getDay()]; // 0 = شنبه, 1 = یکشنبه, ...
 
@@ -336,8 +336,6 @@ document.getElementById('todayButton').addEventListener('click', function() {
         }
     }
 });
-
-
 
 
 </script>
