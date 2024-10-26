@@ -301,10 +301,12 @@ document.getElementById('searchInput').addEventListener('keyup', function() {
 <script>
 
 document.getElementById('todayButton').addEventListener('click', function() {
-    // دریافت روز فعلی
-    const daysOfWeek = ["یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنجشنبه", "جمعه"];
+    // تعریف روزهای هفته با شنبه به عنوان اولین روز
+    const daysOfWeek = ["یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنجشنبه","جمعه","شنبه"];
     const today = new Date();
-    const currentDay = daysOfWeek[today.getDay()]; // 0 = یکشنبه, 1 = دوشنبه, ...
+    const currentDay = daysOfWeek[today.getDay()]; // 0 = شنبه, 1 = یکشنبه, ...
+
+    console.log(today.getDay());
 
     var table = document.getElementById('myTable');
     var tr = table.getElementsByTagName('tr');
@@ -317,9 +319,10 @@ document.getElementById('todayButton').addEventListener('click', function() {
         for (var j = 0; j < td.length; j++) {
             if (td[j]) {
                 var txtValue = td[j].textContent || td[j].innerText;
+                var daysArray = txtValue.split('،').map(day => day.trim()); // جدا کردن روزها با ',' و حذف فضاها
 
-                // بررسی اگر روز فعلی در سلول "روز" موجود باشد و وضعیت معتبر باشد
-                if (txtValue.includes(currentDay) && isSuccess) {
+                // بررسی اگر روز فعلی در آرایه daysArray موجود باشد و وضعیت معتبر باشد
+                if (daysArray.includes(currentDay) && isSuccess) {
                     tr[i].style.display = ""; // اگر روز فعلی پیدا شد و وضعیت معتبر بود، ردیف نمایش داده شود
                     break;
                 }
