@@ -325,7 +325,7 @@ document.getElementById('todayButton').addEventListener('click', function() {
         for (var j = 0; j < td.length; j++) {
             if (td[j]) {
                 var txtValue = td[j].textContent || td[j].innerText;
-                var daysArray = txtValue.split(',').map(day => day.trim()); // جدا کردن روزها با ',' و حذف فضاها
+                var daysArray = txtValue.split('،').map(day => day.trim()); // جدا کردن روزها با ',' و حذف فضاها
 
                 // بررسی اگر روز فعلی در آرایه daysArray موجود باشد و وضعیت معتبر باشد
                 if (daysArray.includes(currentDay) && isSuccess) {
