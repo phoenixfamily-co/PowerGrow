@@ -227,7 +227,6 @@ document.getElementById('todayButton').addEventListener('click', function() {
     for (var i = 1; i < tr.length; i++) {
         tr[i].style.display = "none"; // همه ردیف‌ها ابتدا مخفی می‌شوند
         var td = tr[i].getElementsByTagName('td');
-        var isSuccess = tr[i].querySelector('.fa-check-circle'); // چک کردن وجود آیکون موفقیت
 
         for (var j = 0; j < td.length; j++) {
             if (td[j]) {
@@ -235,7 +234,7 @@ document.getElementById('todayButton').addEventListener('click', function() {
                 var daysArray = txtValue.split('،').map(day => day.trim()); // جدا کردن روزها با ',' و حذف فضاها
 
                 // بررسی اگر روز فعلی در آرایه daysArray موجود باشد و وضعیت معتبر باشد
-                if (daysArray.includes(currentDay) && isSuccess) {
+                if (daysArray.includes(currentDay)) {
                     tr[i].style.display = ""; // اگر روز فعلی پیدا شد و وضعیت معتبر بود، ردیف نمایش داده شود
                     break;
                 }
