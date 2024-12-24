@@ -1,0 +1,201 @@
+{% load static %}
+<!doctype html>
+<html lang="ar">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://kit.fontawesome.com/cf09389368.js" crossorigin="anonymous"></script>    <link rel="stylesheet" href="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.css"/>
+    <script src="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.js"></script>
+
+    <title>تا عید بدنتو بساز</title>
+
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+
+    <style>
+
+        @font-face {
+            font-family: BYekan;
+            font-style: normal;
+            font-weight: normal;
+            src: url("/static/fonts/BYekan.eot");/* IE9 Compat Modes */
+            src: url("/static/fonts/BYekan.woff") format('woff'),
+            url("/static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */ url("../../static/fonts/BYekan.ttf") format('truetype') /* Safari, Android, iOS */
+        }
+
+
+        html, body {
+            margin: 0;
+            padding: 0 ;
+            overflow-x: hidden;
+            font-family: BYekan, serif !important;
+        }
+
+        .logoHolder {
+            width: 100%;
+            position: absolute;
+            margin-top: 20px;
+            left: 0;
+            display: flex;
+            z-index: 10 !important;
+            direction: ltr;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+
+        }
+
+        .typography {
+            color: black;
+            font-size: 20px;
+            margin-left: 10px;
+
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 5px 16px;
+            font-size: 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+
+         .dropdown-menu li a {
+            color: white ;
+             width: 100% ;
+             text-align: right
+        }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-menu li a:hover {
+            background-color: black ;
+        }
+
+         .navbar-nav > li > .dropdown-menu {
+            background-color: #312f2e;
+        }
+
+        .card {
+            background: #f7f0e8;
+        }
+
+        .btn {
+            background-color: #E16539;
+            border-color: transparent;
+            color: white;
+            cursor: pointer;
+        }
+
+        .navbar{
+            direction: rtl;
+            background: #312f2e;
+        }
+
+        .navbar-nav > li {
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .navbar-nav > li a {
+            color: white !important;
+            text-decoration: none;
+       }
+
+        .navbar-nav > li a:hover{
+            color: gray !important;
+       }
+
+        .nav-link.active {
+            color: #E16539!important;
+        }
+
+        .nav-link.disabled {
+            color: #EBEBE4!important;
+        }
+
+         ul {
+            list-style-type: none;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="logoHolder">
+
+    <img alt="" src="{% get_media_prefix%}{{ about.logo }}" class="logo">
+    <div class="typography">PowerGrow</div>
+
+</div>
+
+
+<div class="container-fluid py-5 w-100 mt-5" dir="rtl">
+    <div class="row">
+        {% for x in course %}
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card h-100" style="border-radius: 15px;">
+                <div class="bg-image hover-overlay ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
+                    <img src
+                         style="border-top-left-radius: 15px; border-top-right-radius: 15px; height: 300px; object-fit: fill; width: 100%;"
+                         class="img-fluid img-responsive" alt="product" />
+                </div>
+                <div class="card-body pb-0">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <p><a style="text-decoration: none" class="text-dark">نام دوره</a></p>
+                            <p class="text-dark">نام مربی</p>
+                        </div>
+                        <div>
+                            <p class="text-dark" style="text-align: left">{{ x.title }}</p>
+                            <p class="text-dark" style="text-align: left">{{ x.name }}</p>
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-0" />
+                <div class="card-body pb-0">
+                    <div class="d-flex justify-content-between">
+                        <p><a style="text-decoration: none" class="text-dark">زمان دوره</a></p>
+                        <p class="text-dark" style="width: 65%; text-align: left">{{ x.time }}</p>
+                    </div>
+                <div class="d-flex justify-content-between">
+                        <p><a style="text-decoration: none" class="text-dark">نوع دوره</a></p>
+                        <p class="text-dark" style="width: 65%; text-align: left">
+                            {% if x.type == "public" %}
+                                عمومی
+                            {% elif x.type == "private" %}
+                                خصوصی
+                            {% elif x.type == "semi_private" %}
+                                نیمه خصوصی
+                            {% endif %}</p>
+                </div>
+                    <p class="d-flex justify-content-center align-items-center text-dark mb-2" style="text-align: center;">مناسب برای  {% if x.gender == "male" %}
+                    آقایان
+                    {% elif x.gender == "female" %}
+                    بانوان
+                    {% endif %}</p>
+                </div>
+                <hr class="my-0" />
+                <div class="card-body">
+                    <div style="float: left" class="d-flex align-items-center pb-2 mb-1">
+                        <button type="button" class="btn register-button" onclick="location.assign('{% url "product:product_view" x.id %}')">ثبت نام</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>

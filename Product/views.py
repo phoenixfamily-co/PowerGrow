@@ -49,6 +49,18 @@ def category_view(request, pk):
 
 
 @cache_page(60 * 15)
+def offer_view(request):
+
+    courses = Course.objects.filter(newDay=True, active=True)
+
+    context = {
+        "course": courses,
+    }
+
+    return render(request, 'public/offer.html', context)
+
+
+@cache_page(60 * 15)
 def product_view(request, pk):
     about = AboutUs.objects.first()
     sport = Sport.objects.all()
