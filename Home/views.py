@@ -13,7 +13,8 @@ from PowerGrow.permissions import *
 @csrf_exempt
 def home_view(request):
     images = Slider.objects.all().order_by("datetime").values()
-    selected = Course.objects.filter(selected=True , active=True).order_by("datetime").values()
+    selected = Course.objects.filter(selected=True, active=True).order_by("datetime").values()
+    newDay = Course.objects.filter(newDay=True, active=True).order_by("datetime").values()
     about = AboutUs.objects.values().first()
     sport = Sport.objects.all().values()
     template = loader.get_template('public/home.html')
@@ -23,6 +24,7 @@ def home_view(request):
         "selected": selected,
         "about": about,
         "sport": sport,
+        "newDay": newDay,
 
     }
     return HttpResponse(template.render(context, request))

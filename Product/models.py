@@ -37,6 +37,7 @@ class Course(models.Model):
     active = models.BooleanField(blank=True, null=True, verbose_name='فعال')
     sport = models.ForeignKey(Sport, on_delete=models.CASCADE, related_name='courses', null=True, blank=True,
                               verbose_name='ورزش')
+    newDay = models.BooleanField(default=False, blank=True, null=True, verbose_name='تا عید')
 
     def __str__(self):
         return f"{self.title}-{self.pk}"  # به جای ID، نام ورزش را نمایش می‌دهد
