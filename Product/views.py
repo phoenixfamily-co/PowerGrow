@@ -50,11 +50,13 @@ def category_view(request, pk):
 
 @cache_page(60 * 15)
 def offer_view(request):
-
+    about = AboutUs.objects.first()  # Assuming there's only one AboutUs instance
     courses = Course.objects.filter(newDay=True, active=True)
 
     context = {
         "course": courses,
+        "about": about,
+
     }
 
     return render(request, 'public/offer.html', context)

@@ -126,6 +126,30 @@
             list-style-type: none;
         }
 
+          .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .header::before,
+        .header::after {
+            content: '';
+            flex: 1;
+            border-top: 2px solid #f22d34; /* خط سفید */
+            margin: 0 10px;
+        }
+
+        .header h3 {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-transform: uppercase; /* حروف بزرگ */
+            letter-spacing: 2px; /* فاصله بین حروف */
+            margin: 0;
+        }
+
     </style>
 
 </head>
@@ -138,6 +162,11 @@
     <div class="typography">PowerGrow</div>
 
 </div>
+
+
+ <header class="header mt-2">
+        <h3>تا عید بدنتو بساز</h3>
+    </header>
 
 
 <div class="container-fluid py-5 w-100 mt-5" dir="rtl">
