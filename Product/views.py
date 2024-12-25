@@ -820,7 +820,7 @@ def apply_discount_to_days(request):
         )
 
         # Apply 15% discount to eligible Days
-        updated_count = eligible_days.update(off=F('tuition') * 15 / 100)
+        updated_count = eligible_days.update(off=15)
 
         return Response({
             "message": "Discount applied successfully.",
