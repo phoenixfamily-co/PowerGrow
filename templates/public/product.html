@@ -948,6 +948,9 @@
                         let price = parseFloat(weekSelect.options[this.selectedIndex].getAttribute('data-custom1')); // قیمت اصلی
                         let discount = parseFloat(weekSelect.options[this.selectedIndex].getAttribute('data-custom2')); // درصد تخفیف
 
+                        console.log('Price:', price);
+                        console.log('Discount:', discount);
+
                         let finalPrice = price * (1 - discount / 100);
 
                         finalDisplay.textContent = finalPrice + ' تومان';
@@ -970,6 +973,9 @@
 
             let price = parseFloat(weekSelect.options[this.selectedIndex].getAttribute('data-custom1')); // قیمت اصلی
             let discount = parseFloat(weekSelect.options[this.selectedIndex].getAttribute('data-custom2')); // درصد تخفیف
+
+            console.log('Price:', price);
+            console.log('Discount:', discount);
 
             let finalPrice = price * (1 - discount / 100);
 
