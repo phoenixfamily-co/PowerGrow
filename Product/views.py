@@ -804,3 +804,31 @@ class ChangeDayPriceView(UpdateAPIView):
         serializer.save()  # از متد save سریالایزر استفاده می‌کنیم
 
         return Response({"detail": "قیمت با موفقیت بروزرسانی شد"}, status=status.HTTP_200_OK)
+
+
+@api_view(['POST'])
+def apply_discount_to_days(request):
+    """
+    This API applies a 15% discount to all Days objects linked to Sessions
+    with number 12, which are connected to Courses with newDay=True.
+    """
+    try:
+        # Filter Days objects based on the conditions
+        eligible_days = Days.objects.filter(
+            session__number=12,  # Sessions with number 12
+            session__course__newDay=True  # Courses with newDay=True
+        )
+
+        # Apply 15% discount to eligible Days
+        updated_count = eligible_days.update(off=F('tuition') * 15 / 100)
+
+        return Response({
+            "message": "Discount applied successfully.",
+            "updated_count": updated_count
+        }, status=200)
+
+    except Exception as e:
+        return Response({
+            "error": "An error occurred while applying the discount.",
+            "details": str(e)
+        }, status=500)
