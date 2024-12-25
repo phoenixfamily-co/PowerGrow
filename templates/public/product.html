@@ -945,8 +945,8 @@
                         dayId = weekSelect.options[0].value
                         priceDisplay.textContent = weekSelect.options[0].getAttribute('data-custom1') + ' تومان '
                         offDisplay.textContent = weekSelect.options[0].getAttribute('data-custom2') + '%'
-                        let price = parseFloat(weekSelect.options[this.selectedIndex].getAttribute('data-custom1')); // قیمت اصلی
-                        let discount = parseFloat(weekSelect.options[this.selectedIndex].getAttribute('data-custom2')); // درصد تخفیف
+                        let price = parseInt(weekSelect.options[this.selectedIndex].getAttribute('data-custom1'), 10); // قیمت اصلی
+                        let discount = parseInt(weekSelect.options[this.selectedIndex].getAttribute('data-custom2'), 10); // درصد تخفیف
 
                         console.log('Price:', price);
                         console.log('Discount:', discount);
