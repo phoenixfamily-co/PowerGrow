@@ -950,7 +950,7 @@
 
                         let finalPrice = price * (1 - discount / 100);
 
-                        finalDisplay.textContent = finalPrice.toFixed(2) + ' تومان';
+                        finalDisplay.textContent = finalPrice + ' تومان';
 
                     } else {
                         daysSessionDisplay.textContent = ''; // در صورتی که گزینه‌ای وجود نداشته باشد
@@ -973,7 +973,7 @@
 
             let finalPrice = price * (1 - discount / 100);
 
-            finalDisplay.textContent = finalPrice.toFixed(2) + ' تومان';
+            finalDisplay.textContent = finalPrice + ' تومان';
             dayId = weekSelect.options[this.selectedIndex].value
         });
     });
