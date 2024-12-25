@@ -209,7 +209,7 @@
     const registerButton = document.getElementById("registerButton");
 
     let final_price = (parseInt(price) - (parseInt(off) / 100 * parseInt(price)));
-    final.innerHTML = final_price.toString() + " تومان";
+    final.innerHTML = price.toString() + " تومان";
 
     if (registerButton) {
         registerButton.addEventListener("click", function () {
