@@ -933,8 +933,8 @@
                     data.forEach(day => {
                         const option = document.createElement('option');
                         option.value = day.id;
-                        option.setAttribute('data-custom1', day.tuition)
-                        option.setAttribute('data-custom2', day.off)
+                        option.setAttribute('data-custom1', `${day.tuition}`)
+                        option.setAttribute('data-custom2', `${day.off}`)
                         option.textContent = day.title;
                         weekSelect.appendChild(option);
                     });
@@ -943,17 +943,15 @@
                     if (weekSelect.options.length > 0) {
                         daysSessionDisplay.textContent = weekSelect.options[0].text; // مقدار پیش‌فرض
                         dayId = weekSelect.options[0].value
-                        priceDisplay.textContent = weekSelect.options[0].getAttribute('data-custom1') + ' تومان '
-                        offDisplay.textContent = weekSelect.options[0].getAttribute('data-custom2') + '%'
-                        let price = weekSelect.options[this.selectedIndex].getAttribute('data-custom1'); // قیمت اصلی
-                        let discount = weekSelect.options[this.selectedIndex].getAttribute('data-custom2'); // درصد تخفیف
+                        let price = parseInt(weekSelect.options[0].getAttribute('data-custom1')); // قیمت اصلی
+                        let discount = parseInt(weekSelect.options[0].getAttribute('data-custom2')); // درصد تخفیف
 
-                        console.log('Price:', price);
-                        console.log('Discount:', discount);
+                        priceDisplay.textContent = price + ' تومان '
+                        offDisplay.textContent = discount + '%'
 
-                        {#let finalPrice = price * (1 - discount / 100);#}
-                        {##}
-                        {#finalDisplay.textContent = finalPrice + ' تومان';#}
+                        let finalPrice = price * (1 - discount / 100);
+
+                        finalDisplay.textContent = finalPrice + ' تومان';
 
                     } else {
                         daysSessionDisplay.textContent = ''; // در صورتی که گزینه‌ای وجود نداشته باشد
@@ -968,18 +966,15 @@
 
         weekSelect.addEventListener('change', function() {
             daysSessionDisplay.textContent = this.options[this.selectedIndex].text;
-            priceDisplay.textContent = weekSelect.options[this.selectedIndex].getAttribute('data-custom1') + ' تومان '
-            offDisplay.textContent = weekSelect.options[this.selectedIndex].getAttribute('data-custom2') + '%'
+            let price = parseInt(weekSelect.options[this.selectedIndex].getAttribute('data-custom1')); // قیمت اصلی
+            let discount = parseInt(weekSelect.options[this.selectedIndex].getAttribute('data-custom2')); // درصد تخفیف
 
-            let price = weekSelect.options[this.selectedIndex].getAttribute('data-custom1'); // قیمت اصلی
-            let discount = weekSelect.options[this.selectedIndex].getAttribute('data-custom2'); // درصد تخفیف
+            priceDisplay.textContent = price + ' تومان '
+            offDisplay.textContent = discount + '%'
 
-            console.log('Price:', price);
-            console.log('Discount:', discount);
+            let finalPrice = price * (1 - discount / 100);
 
-            {#let finalPrice = price * (1 - discount / 100);#}
-            {##}
-            {#finalDisplay.textContent = finalPrice + ' تومان';#}
+            finalDisplay.textContent = finalPrice + ' تومان';
 
             dayId = weekSelect.options[this.selectedIndex].value
         });
