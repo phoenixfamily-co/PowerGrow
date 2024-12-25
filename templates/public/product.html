@@ -945,7 +945,12 @@
                         dayId = weekSelect.options[0].value
                         priceDisplay.textContent = weekSelect.options[0].getAttribute('data-custom1') + ' تومان '
                         offDisplay.textContent = weekSelect.options[0].getAttribute('data-custom2') + '%'
-                        finalDisplay.textContent = weekSelect.options[0].getAttribute('data-custom1') + ' تومان '
+                        let price = parseFloat(weekSelect.options[this.selectedIndex].getAttribute('data-custom1')); // قیمت اصلی
+                        let discount = parseFloat(weekSelect.options[this.selectedIndex].getAttribute('data-custom2')); // درصد تخفیف
+
+                        let finalPrice = price * (1 - discount / 100);
+
+                        finalDisplay.textContent = finalPrice.toFixed(2) + ' تومان';
 
                     } else {
                         daysSessionDisplay.textContent = ''; // در صورتی که گزینه‌ای وجود نداشته باشد
@@ -962,7 +967,13 @@
             daysSessionDisplay.textContent = this.options[this.selectedIndex].text;
             priceDisplay.textContent = weekSelect.options[this.selectedIndex].getAttribute('data-custom1') + ' تومان '
             offDisplay.textContent = weekSelect.options[this.selectedIndex].getAttribute('data-custom2') + '%'
-            finalDisplay.textContent = weekSelect.options[this.selectedIndex].getAttribute('data-custom1') + ' تومان '
+
+            let price = parseFloat(weekSelect.options[this.selectedIndex].getAttribute('data-custom1')); // قیمت اصلی
+            let discount = parseFloat(weekSelect.options[this.selectedIndex].getAttribute('data-custom2')); // درصد تخفیف
+
+            let finalPrice = price * (1 - discount / 100);
+
+            finalDisplay.textContent = finalPrice.toFixed(2) + ' تومان';
             dayId = weekSelect.options[this.selectedIndex].value
         });
     });
