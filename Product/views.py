@@ -366,6 +366,58 @@ def admin_days_view(request):
 
 
 @session_staff_required
+def manager_offers_view(request):
+    # بارگذاری اطلاعات مربوط به AboutUs
+    about = AboutUs.objects.first()
+
+    # بارگذاری تمامی روزها
+    days = Days.objects.all().order_by('-pk')
+
+    # پیاده‌سازی pagination
+    paginator = Paginator(days, 150)
+    page_number = request.GET.get('page')
+
+    try:
+        page_obj = paginator.get_page(page_number)
+    except (PageNotAnInteger, EmptyPage):
+        page_obj = paginator.page(1)  # اگر شماره صفحه معتبر نبود، به صفحه اول برگردیم
+
+    # آماده‌سازی context برای الگو
+    context = {
+        "about": about,
+        "page_obj": page_obj,
+    }
+
+    # استفاده از render برای بارگذاری الگو
+    return render(request, 'manager/offers.html', context)
+
+
+@session_admin_required
+def admin_offers_view(request):
+    # بارگذاری اطلاعات مربوط به AboutUs
+    about = AboutUs.objects.first()
+
+    # بارگذاری تمامی روزها
+    days = Days.objects.all().order_by('-pk')
+
+    # پیاده‌سازی pagination
+    paginator = Paginator(days, 150)
+    page_number = request.GET.get('page')
+
+    try:
+        page_obj = paginator.get_page(page_number)
+    except (PageNotAnInteger, EmptyPage):
+        page_obj = paginator.page(1)  # اگر شماره صفحه معتبر نبود، به صفحه اول برگردیم
+
+    # آماده‌سازی context برای الگو
+    context = {
+        "about": about,
+        "page_obj": page_obj,
+    }
+    return render(request, 'admin/offers.html', context)
+
+
+@session_staff_required
 def manager_user_list(request, pk):
     # بارگذاری اطلاعات مربوط به AboutUs
     about = AboutUs.objects.first()
