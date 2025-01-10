@@ -89,6 +89,7 @@ class SessionSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         instance.number = validated_data.get('number', instance.number)
+        instance.active = validated_data.get('active', instance.active)
         instance.course = validated_data.get('course', instance.course)
         instance.save()
         return instance
