@@ -84,15 +84,13 @@ class Participants(models.Model):
 
 class Offers(models.Model):
     TYPE_CHOICES = [
-        ('SPORTS', 'Sports'),
+        ('ALL', 'All'),
         ('SPORT', 'Sport'),
         ('COURSE', 'Course'),
         ('SESSION', 'Session'),
     ]
-    type = models.CharField(max_length=10, choices=TYPE_CHOICES)
-    sport = models.ForeignKey(Sport, on_delete=models.CASCADE, related_name='courses', null=True, blank=True,
-                              verbose_name='ورزش')
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='sessions', null=True, blank=True, verbose_name="دوره")
+    type = models.CharField(max_length=20, choices=TYPE_CHOICES)
+    title = models.IntegerField(blank=True, null=True)
     session = models.IntegerField(default=0, blank=True, null=True, verbose_name="جلسات")
     off = models.IntegerField(blank=True, null=True, verbose_name="تخفیف")
 
