@@ -453,6 +453,20 @@ def update_course(request, pk):
 
 
 @session_admin_required
+def update_session(request, pk):
+    session = get_object_or_404(Session, pk=pk)
+    about = AboutUs.objects.first()
+    course = Course.objects.all()  # فرض بر این است که participant به course مرتبط است
+    context = {
+        'session': session,
+        'course': course,
+        'about': about,
+    }
+
+    return render(request, 'manager/update_sessions.html', context)
+
+
+@session_admin_required
 def create_participants(request, course_id):  # تغییر نام پارامتر به course_id
     about = AboutUs.objects.first()
     user = User.objects.all()

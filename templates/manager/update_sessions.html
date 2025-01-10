@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>به‌روزرسانی جلسه</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+
+
+      <style>
+
+        body {
+            text-align: right;  /* راست‌چین کردن متن */
+            background: #312f2e;
+
+        }
+
+         .logoHolder {
+            width: 100%;
+            position: relative;
+            margin-top: 20px;
+            left: 0;
+            display: flex;
+            z-index: 10 !important;
+            direction: ltr;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+
+        }
+
+        .typography {
+            color: white;
+            font-size: 20px;
+            margin-left: 10px;
+
+        }
+
+
+         .form-control {
+             text-align: right;  /* راست‌چین کردن متن در فیلدهای فرم */
+         }
+
+         label {
+        color: white;  /* تغییر رنگ متن لیبل به سفید */
+    }
+          .custom-btn {
+            background-color: #E16539; /* رنگ دلخواه */
+            border: none; /* حذف حاشیه */
+              color: white;
+        }
+        .custom-btn:hover {
+               background-color: #a84e2c; /* تغییر رنگ در حالت hover */
+               color: #c4c4c4; /* رنگ برای حالت هاور */
+        }
+        .margin-bottom {
+            margin-bottom: 20px; /* فاصله از پایین */
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center; /* تراز عمودی */
+            justify-content: flex-end; /* تراز افقی به راست */
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="logoHolder">
+
+    <img alt="" src="/media/{{ about.logo }}" class="logo">
+    <div class="typography">PowerGrow</div>
+
+</div>
+
+
+
+    <div class="container mt-5">
+        <form id="update-course-form">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="number">:تعداد جلسات</label>
+                <input type="number" class="form-control" id="number" name="number" value="{{ session.number }}">
+            </div>
+
+
+            <div class="form-group">
+                <label for="active">:فعال</label>
+                <input type="checkbox" id="active" name="active" {% if session.active %}checked{% endif %}>
+            </div>
+
+         <div class="form-group">
+            <label for="course">:دوره</label>
+            <select class="form-control" id="course" required>
+                <option value="">انتخاب کنید</option>
+                {% for x in course %}
+                    <option value="{{ x.id }}" {% if x.id == participant.course.id %}selected{% endif %}>
+                        {{ x.title }}-{{ x.id }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+
+            <button type="submit" class="btn custom-btn margin-bottom">به‌روزرسانی دوره</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+<script>
+    document.getElementById('update-course-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const data = {
+            number: document.getElementById('number').value,
+            active: document.getElementById('active').checked,
+            course: document.getElementById('course').value,
+        };
+
+
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+        fetch(`{% url 'product:manager-update-session' session.id %}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken,
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('اطلاعات با موفقیت به‌روزرسانی شد!');
+                // به صفحه دیگر برو یا فرم را پاک کن
+            } else {
+                return response.json().then(errorData => {
+                    alert('خطا: ' + JSON.stringify(errorData));
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+</script>
+</body>
+</html>

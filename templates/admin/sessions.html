@@ -165,7 +165,7 @@
             <tr>
                 <th scope="row">{{ x.id }}</th>
                 <td class="text-center">
-                    <i class="fa fa-pencil text-warning" aria-hidden="true" style="cursor: pointer" title="ویرایش" onclick="window.open('{% url 'product:manager-update-session' x.id %}')"></i>
+                    <i class="fa fa-pencil text-warning" aria-hidden="true" style="cursor: pointer" title="ویرایش" onclick="window.open('{% url 'product:update_session' x.id %}')"></i>
                 </td>
                 <td>{{ x.number }}</td>
                 <td>{{ x.course.id }}</td>
