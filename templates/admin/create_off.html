@@ -88,14 +88,15 @@
         <form id="update-course-form">
             {% csrf_token %}
 
-        <div class="form-group">
-            <label for="type" class="form-label">نوع تخفیف</label>
-            <select class="form-select" id="type" name="type" required>
+            <div class="form-group">
+            <label for="type">نوع تخفیف</label>
+            <select class="form-control" id="type" required>
                 <option value="ALL">همه</option>
                 <option value="SPORT">ورزش</option>
                 <option value="COURSE">دوره</option>
             </select>
-        </div>
+            </div>
+
 
             <div class="form-group">
             <label for="title">محصول</label>
