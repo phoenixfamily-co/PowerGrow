@@ -104,7 +104,7 @@
             <select class="form-control" id="course" required>
                 <option value="">انتخاب کنید</option>
                 {% for x in course %}
-                    <option value="{{ x.id }}" {% if x.id == participant.course.id %}selected{% endif %}>
+                    <option value="{{ x.id }}" {% if x.id == session.course.id %}selected{% endif %}>
                         {{ x.title }}-{{ x.id }}
                     </option>
                 {% endfor %}
