@@ -62,7 +62,6 @@ def offer_view(request):
     return render(request, 'public/offer.html', context)
 
 
-@cache_page(60 * 15)
 def product_view(request, pk):
     about = AboutUs.objects.first()
     sport = Sport.objects.all()
