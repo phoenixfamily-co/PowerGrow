@@ -45,6 +45,7 @@ class Course(models.Model):
 
 class Session(models.Model):
     number = models.IntegerField(blank=True, null=True, verbose_name="تعداد جلسات")
+    active = models.BooleanField(default=True, verbose_name='فعال')
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='sessions', null=True, blank=True, verbose_name="دوره")
 
     def __str__(self):
