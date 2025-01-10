@@ -268,7 +268,7 @@ def manager_session_view(request):
     sessions = Session.objects.all().order_by('-pk')
 
     # پیاده‌سازی pagination
-    paginator = Paginator(sessions, 150)
+    paginator = Paginator(sessions, 250)
     page_number = request.GET.get('page')
 
     try:
@@ -295,7 +295,7 @@ def admin_session_view(request):
     sessions = Session.objects.all().order_by('-pk')
 
     # پیاده‌سازی pagination
-    paginator = Paginator(sessions, 150)
+    paginator = Paginator(sessions, 250)
     page_number = request.GET.get('page')
 
     try:
