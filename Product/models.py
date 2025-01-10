@@ -87,7 +87,6 @@ class Offers(models.Model):
         ('ALL', 'All'),
         ('SPORT', 'Sport'),
         ('COURSE', 'Course'),
-        ('SESSION', 'Session'),
     ]
     type = models.CharField(max_length=20, choices=TYPE_CHOICES)
     title = models.IntegerField(blank=True, null=True)
