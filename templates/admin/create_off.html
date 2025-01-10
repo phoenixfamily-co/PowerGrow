@@ -122,40 +122,39 @@
 
 
 <script>
-    document.getElementById(' ').addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        const data = {
-            number: document.getElementById('number').value,
-            active: document.getElementById('active').checked,
-            course: document.getElementById('course').value,
-        };
-
-
-        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-        fetch(`{% url 'product:manager-update-session' session.id %}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': csrfToken,
-            },
-            body: JSON.stringify(data)
-        })
-        .then(response => {
-            if (response.ok) {
-                alert('اطلاعات با موفقیت به‌روزرسانی شد!');
-                // به صفحه دیگر برو یا فرم را پاک کن
-            } else {
-                return response.json().then(errorData => {
-                    alert('خطا: ' + JSON.stringify(errorData));
-                });
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    });
+    {#document.getElementById(' ').addEventListener('submit', function(event) {#}
+    {#    event.preventDefault();#}
+    {##}
+    {#    const data = {#}
+    {#        number: document.getElementById('number').value,#}
+    {#        active: document.getElementById('active').checked,#}
+    {#        course: document.getElementById('course').value,#}
+    {#    };#}
+    {##}
+    {##}
+    {#    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');#}
+    {##}
+    {#    fetch(`{% url 'product:manager-update-session' session.id %}`, {#}
+    {#        method: 'PUT',#}
+    {#        headers: {#}
+    {#            'Content-Type': 'application/json',#}
+    {#            'X-CSRFToken': csrfToken,#}
+    {#        },#}
+    {#        body: JSON.stringify(data)#}
+    {#    })#}
+    {#    .then(response => {#}
+    {#        if (response.ok) {#}
+    {#            alert('اطلاعات با موفقیت به‌روزرسانی شد!');#}
+    {#            // به صفحه دیگر برو یا فرم را پاک کن#}
+    {#        } else {#}
+    {#            return response.json().then(errorData => {#}
+    {#                alert('خطا: ' + JSON.stringify(errorData));#}
+    {#            });#}
+    {#        }#}
+    {#    })#}
+    {#    .catch(error => {#}
+    {#        console.error('Error:', error);#}
+    {#    });#}
 </script>
 </body>
 </html>
