@@ -29,7 +29,7 @@ urlpatterns = [
     path('session/update/<int:pk>/', update_session, name='update_session'),
     path('participants/create/<int:course_id>/', create_participants, name='create-participant'),  # URL برای نمایش فرم
     path('participants/update/<int:participant_id>/', update_participant_view, name='update-participant'),
-
+    path('off/create/',create_off_view, name='create-off'),
     path('api/sports/', SportListCreateView.as_view(), name='manager-create-sport'),
     path('api/sports/update/<int:pk>/', SportDetailView.as_view({'put': 'update'}), name='manager-update-sport'),
     path('api/sports/delete/<int:pk>/', SportDetailView.as_view({'delete': 'destroy'}), name='manager-delete-sport'),

@@ -519,6 +519,16 @@ def update_session(request, pk):
 
 
 @session_admin_required
+def create_off_view(request):
+    about = AboutUs.objects.first()
+    context = {
+        'about': about,
+    }
+
+    return render(request, 'admin/create_off.html', context)
+
+
+@session_admin_required
 def create_participants(request, course_id):  # تغییر نام پارامتر به course_id
     about = AboutUs.objects.first()
     user = User.objects.all()

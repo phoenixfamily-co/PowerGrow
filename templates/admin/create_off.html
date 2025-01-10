@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>به‌روزرسانی جلسه</title>
+    <title>ساخت تخفیف</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token }}">
 
@@ -88,30 +88,31 @@
         <form id="update-course-form">
             {% csrf_token %}
 
-            <div class="form-group">
-                <label for="number">:تعداد جلسات</label>
-                <input type="number" class="form-control" id="number" name="number" value="{{ session.number }}">
-            </div>
+        <div class="form-group">
+            <label for="type" class="form-label">نوع تخفیف</label>
+            <select class="form-select" id="type" name="type" required>
+                <option value="ALL">همه</option>
+                <option value="SPORT">ورزش</option>
+                <option value="COURSE">دوره</option>
+            </select>
+        </div>
 
-         <div class="form-group">
-            <label for="course">:دوره</label>
-            <select class="form-control" id="course" required>
+            <div class="form-group">
+            <label for="title">محصول</label>
+            <select class="form-control" id="title" required>
                 <option value="">انتخاب کنید</option>
-                {% for x in course %}
-                    <option value="{{ x.id }}" {% if x.id == session.course.id %}selected{% endif %}>
-                        {{ x.title }}-{{ x.id }}
-                    </option>
-                {% endfor %}
             </select>
         </div>
 
              <div class="form-group">
-                <label for="active">:فعال</label>
-                <input type="checkbox" id="active" name="active" {% if session.active %}checked{% endif %}>
-            </div>
+            <label for="session">جلسه</label>
+            <select class="form-control" id="session" required>
+                <option value="">انتخاب کنید</option>
+            </select>
+        </div>
 
 
-            <button type="submit" class="btn custom-btn margin-bottom">به‌روزرسانی جلسه</button>
+            <button type="submit" class="btn custom-btn margin-bottom">ساخت تخفیف </button>
         </form>
     </div>
 
@@ -121,7 +122,7 @@
 
 
 <script>
-    document.getElementById('update-course-form').addEventListener('submit', function(event) {
+    document.getElementById(' ').addEventListener('submit', function(event) {
         event.preventDefault();
 
         const data = {
