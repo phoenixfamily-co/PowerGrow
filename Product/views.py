@@ -13,6 +13,7 @@ from rest_framework.utils import json
 from About.models import AboutUs
 from Calendar.models import Day
 from PowerGrow.decorators import *
+from Product.models import Offers
 from Product.serializer import *
 from django.conf import settings
 import json
@@ -371,10 +372,10 @@ def manager_offers_view(request):
     about = AboutUs.objects.first()
 
     # بارگذاری تمامی روزها
-    days = Days.objects.all().order_by('-pk')
+    offers = Offers.objects.all().order_by('-pk')
 
     # پیاده‌سازی pagination
-    paginator = Paginator(days, 150)
+    paginator = Paginator(offers, 150)
     page_number = request.GET.get('page')
 
     try:
@@ -398,10 +399,10 @@ def admin_offers_view(request):
     about = AboutUs.objects.first()
 
     # بارگذاری تمامی روزها
-    days = Days.objects.all().order_by('-pk')
+    offers = Offers.objects.all().order_by('-pk')
 
     # پیاده‌سازی pagination
-    paginator = Paginator(days, 150)
+    paginator = Paginator(offers, 150)
     page_number = request.GET.get('page')
 
     try:

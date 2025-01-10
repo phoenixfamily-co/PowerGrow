@@ -80,3 +80,22 @@ class Participants(models.Model):
                                 blank=True, null=True)
     authority = models.TextField(unique=True, blank=True, null=True)
     success = models.BooleanField(blank=True, null=True)
+
+
+class Offers(models.Model):
+    TYPE_CHOICES = [
+        ('SPORTS', 'Sports'),
+        ('SPORT', 'Sport'),
+        ('COURSE', 'Course'),
+        ('SESSION', 'Session'),
+    ]
+    type = models.CharField(max_length=10, choices=TYPE_CHOICES)
+    sport = models.ForeignKey(Sport, on_delete=models.CASCADE, related_name='courses', null=True, blank=True,
+                              verbose_name='ورزش')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='sessions', null=True, blank=True, verbose_name="دوره")
+    session = models.ForeignKey(Session, on_delete=models.CASCADE, related_name='days', null=True, blank=True, verbose_name="جلسه")
+    off = models.IntegerField(blank=True, null=True, verbose_name="تخفیف")
+
+
+
+
