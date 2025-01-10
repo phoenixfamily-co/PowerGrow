@@ -93,7 +93,7 @@ class Offers(models.Model):
     sport = models.ForeignKey(Sport, on_delete=models.CASCADE, related_name='courses', null=True, blank=True,
                               verbose_name='ورزش')
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='sessions', null=True, blank=True, verbose_name="دوره")
-    session = models.ForeignKey(Session, on_delete=models.CASCADE, related_name='days', null=True, blank=True, verbose_name="جلسه")
+    session = models.IntegerField(default=0, blank=True, null=True, verbose_name="جلسات")
     off = models.IntegerField(blank=True, null=True, verbose_name="تخفیف")
 
 
