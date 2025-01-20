@@ -52,10 +52,12 @@ def category_view(request, pk):
 @cache_page(60 * 15)
 def offer_view(request):
     about = AboutUs.objects.first()  # Assuming there's only one AboutUs instance
-    courses = Course.objects.filter(newDay=True, active=True)
+
+    day = Days.objects.filter(off__gt=0).order_by('pk').values_list('session__course__id', flat=True)
+    course = Course.objects.filter(pk__in=list(day)).order_by("datetime").values()
 
     context = {
-        "course": courses,
+        "course": course,
         "about": about,
 
     }
