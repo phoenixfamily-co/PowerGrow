@@ -210,7 +210,6 @@
     console.log("Jalaali Date:", thisDate);
 
 
-
     {% for x in course.all %}
 
         {% for y in x.participants.all %}
@@ -227,6 +226,10 @@
 
                 teacherStart = jalaali.j2d(teacherStartYear, teacherStartMonth, teacherStartDay)
                 teacherEnd = jalaali.j2d(teacherEndYear, teacherEndMonth, teacherEndDay)
+
+                console.log("start Date:", teacherStart);
+                console.log("end Date:", teacherEnd);
+
 
                 {% if y.user.salary == "ثابت" %}
 
