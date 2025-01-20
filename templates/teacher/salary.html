@@ -193,6 +193,12 @@
 
     let salary = 0
 
+    let year = parseInt(today[0].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
+    let month = parseInt(today[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
+    let monthDay = parseInt(today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
+
+    const thisDate = jalaali.j2d(year, month, monthDay)
+
     {% for x in course.all %}
 
         {% for y in x.participants.all %}
@@ -259,12 +265,14 @@
                 userEnd = jalaali.j2d(userEndYear, userEndMonth, userEndDay)
 
                   if ( 0 < userEndDay ) {
+                        if(userEnd>=thisDate) {
                       if (teacherStart <= userStart) {
                           if(teacherEnd >= userStart) {
                               counter += 1
                               price += parseInt("{{ z.price }}")
                           }
                       }
+                        }
                   }
 
                 {% endif %}
