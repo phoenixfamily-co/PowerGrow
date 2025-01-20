@@ -180,6 +180,8 @@ class UpdateDaySerializer(serializers.ModelSerializer):
         start_day = attrs.get('startDay')
         end_day = attrs.get('endDay')
 
+        return attrs
+
     def update(self, instance, validated_data):
         instance.startDay = validated_data.get('startDay', instance.startDay)
         instance.endDay = validated_data.get('endDay', instance.endDay)
