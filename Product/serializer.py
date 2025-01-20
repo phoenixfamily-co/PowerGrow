@@ -169,3 +169,16 @@ class OfferSerializer(serializers.ModelSerializer):
 
         instance.save()
         return instance
+
+
+class UpdateDaySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Participants
+        fields = ['startDay', 'endDay']
+
+    def update(self, instance, validated_data):
+        instance.startDay = validated_data.get('startDay', instance.startDay)
+        instance.endDay = validated_data.get('endDay', instance.endDay)
+        instance.save()
+
+        return instance

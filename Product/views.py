@@ -10,6 +10,8 @@ from rest_framework.generics import UpdateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.utils import json
+from rest_framework.views import APIView
+
 from About.models import AboutUs
 from Calendar.models import Day
 from PowerGrow.decorators import *
@@ -939,3 +941,23 @@ class OfferView(viewsets.ViewSet):
             return Response(status=status.HTTP_204_NO_CONTENT)
         except Participants.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+class UpdateAllParticipantsDaysAPIView(UpdateAPIView):
+    def update(self, request, *args, **kwargs):
+
+        serializer = UpdateDaySerializer(data=request.data)
+        if serializer.is_valid():
+            start_day = serializer.validated_data['startDay']
+            end_day = serializer.validated_data['endDay']
+
+            # به‌روزرسانی تمام رکوردهای Participants
+            Participants.objects.all().update(startDay=start_day, endDay=end_day)
+
+            return Response(
+                {"message": "All participants updated successfully!"},
+                status=status.HTTP_200_OK,
+            )
+
+        # در صورت وجود خطا در داده‌های ورودی
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
