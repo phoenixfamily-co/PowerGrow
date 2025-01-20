@@ -195,13 +195,19 @@
 
     let today = new Date().toLocaleDateString('fa-IR');
 
-    let year = parseInt(today[0].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
-    let month = parseInt(today[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
-    let monthDay = parseInt(today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
+    // تبدیل اعداد فارسی به انگلیسی
+    today = today.replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728));
 
-    const thisDate = jalaali.j2d(year, month, monthDay)
+    // استخراج سال، ماه و روز از رشته‌ی تاریخ
+    let [year, month, monthDay] = today.split('/').map(num => parseInt(num));
 
-    console.log(today)
+    // بررسی مقادیر
+    console.log("سال:", year, "ماه:", month, "روز:", monthDay);
+
+    // استفاده از تاریخ جلالی
+    const thisDate = jalaali.j2d(year, month, monthDay);
+
+    console.log("Jalaali Date:", thisDate);
 
 
 
