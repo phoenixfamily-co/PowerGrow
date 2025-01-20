@@ -135,12 +135,12 @@
 
         if (event.target.value === 'SPORT'){
             {% for x in sport %}
-            addOption(productSelect,{{ x.id }},{{ x.title }})
+            addOption(productSelect,{{ x.id }},'{{ x.title }}')
             {% endfor %}
 
         }else if (event.target.value === 'COURSE'){
             {% for x in course %}
-            addOption(productSelect,{{ x.id }},{{ x.title }})
+            addOption(productSelect,{{ x.id }},'{{ x.title }}')
             {% endfor %}
         }
     });
