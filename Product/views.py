@@ -944,7 +944,6 @@ class OfferView(viewsets.ViewSet):
 
 class UpdateAllParticipantsDaysAPIView(UpdateAPIView):
     serializer_class = UpdateDaySerializer
-    permission_classes = [IsAdminUserOrStaff]
 
     def update(self, request, *args, **kwargs):
 
