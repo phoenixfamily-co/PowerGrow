@@ -176,6 +176,10 @@ class UpdateDaySerializer(serializers.ModelSerializer):
         model = Participants
         fields = ['startDay', 'endDay']
 
+    def validate(self, attrs):
+        start_day = attrs.get('startDay')
+        end_day = attrs.get('endDay')
+
     def update(self, instance, validated_data):
         instance.startDay = validated_data.get('startDay', instance.startDay)
         instance.endDay = validated_data.get('endDay', instance.endDay)
