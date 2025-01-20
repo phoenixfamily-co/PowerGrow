@@ -85,7 +85,7 @@
 
 
     <div class="container mt-5">
-        <form id="update-course-form">
+        <form id="offForm">
             {% csrf_token %}
 
             <div class="form-group">
@@ -99,18 +99,21 @@
 
 
             <div class="form-group">
-            <label for="title">محصول</label>
-            <select class="form-control" id="title" required>
+            <label for="product">محصول</label>
+            <select class="form-control" id="product" required>
                 <option value="">انتخاب کنید</option>
             </select>
         </div>
 
-             <div class="form-group">
-            <label for="session">جلسه</label>
-            <select class="form-control" id="session" required>
-                <option value="0">همه جلسات</option>
-            </select>
-        </div>
+            <div class="form-group">
+                 <label for="session">جلسه</label>
+                 <input type="number" class="form-control" id="session" name="session" required>
+            </div>
+
+            <div class="form-group">
+                 <label for="off">تخفیف</label>
+                 <input type="number" class="form-control" id="off" name="off" required>
+            </div>
 
 
             <button type="submit" class="btn custom-btn margin-bottom">ساخت تخفیف </button>
@@ -123,39 +126,65 @@
 
 
 <script>
-    {#document.getElementById(' ').addEventListener('submit', function(event) {#}
-    {#    event.preventDefault();#}
-    {##}
-    {#    const data = {#}
-    {#        number: document.getElementById('number').value,#}
-    {#        active: document.getElementById('active').checked,#}
-    {#        course: document.getElementById('course').value,#}
-    {#    };#}
-    {##}
-    {##}
-    {#    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');#}
-    {##}
-    {#    fetch(`{% url 'product:manager-update-session' session.id %}`, {#}
-    {#        method: 'PUT',#}
-    {#        headers: {#}
-    {#            'Content-Type': 'application/json',#}
-    {#            'X-CSRFToken': csrfToken,#}
-    {#        },#}
-    {#        body: JSON.stringify(data)#}
-    {#    })#}
-    {#    .then(response => {#}
-    {#        if (response.ok) {#}
-    {#            alert('اطلاعات با موفقیت به‌روزرسانی شد!');#}
-    {#            // به صفحه دیگر برو یا فرم را پاک کن#}
-    {#        } else {#}
-    {#            return response.json().then(errorData => {#}
-    {#                alert('خطا: ' + JSON.stringify(errorData));#}
-    {#            });#}
-    {#        }#}
-    {#    })#}
-    {#    .catch(error => {#}
-    {#        console.error('Error:', error);#}
-    {#    });#}
+
+         document.addEventListener("DOMContentLoaded", function () {
+
+             const productSelect = document.getElementById("product");
+
+    document.getElementById('product').addEventListener('change',function (event) {
+
+        if (event.target.value === 'SPORT'){
+            {% for x in sport %}
+            addOption(productSelect,{{ x.id }},{{ x.title }})
+            {% endfor %}
+
+        }else if (event.target.value === 'COURSE'){
+            {% for x in course %}
+            addOption(productSelect,{{ x.id }},{{ x.title }})
+            {% endfor %}
+        }
+    });
+
+    function addOption(selectElement, value, text) {
+        const option = document.createElement("option"); // ایجاد گزینه جدید
+        option.value = value; // تنظیم مقدار
+        option.textContent = text; // تنظیم متن نمایشی
+        selectElement.appendChild(option); // افزودن گزینه به سلکت
+    }
+
+      document.getElementById('offForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // جلوگیری از رفتار پیش‌فرض ارسال فرم
+
+            const form = event.target;
+            const formData = new FormData(form);
+
+            // ارسال درخواست به API
+            fetch('{% url 'product:create-off' %}', {
+                method: 'POST',
+                body: formData,
+
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(data => {
+                    throw new Error(data.detail || 'خطا در ثبت تخفیف');
+                });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    alert('تخفیف با موفقیت ساخته شد');
+                    console.log(data);
+                })
+                .catch(error => {
+                    alert('خطا: ' + error.message);
+                    console.error(error);
+                });
+        });
+
+         });
+
+
 </script>
 </body>
 </html>

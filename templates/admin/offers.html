@@ -154,8 +154,7 @@
                 <th>#</th>
                 <th colspan="2" class="text-center">تنظیمات</th>
                 <th scope="col">نوع تخفیف</th>
-                <th scope="col">شناسه</th>
-                <th scope="col">عنوان تخفیف</th>
+                <th scope="col">محصول</th>
                 <th scope="col">تعداد جلسات</th>
                 <th scope="col">مقدار تخفیف</th>
             </tr>
@@ -171,8 +170,7 @@
                     <i class="fa fa-times text-danger" aria-hidden="true" style="cursor: pointer" title="حذف" onclick="window.open('{% url 'product:manager-delete-day' x.id %}')"></i>
                 </td>
                 <td>{{ x.type }}</td>
-                <td>{{ x.course.id }}</td>
-                <td>{{ x.course.title }}</td>
+                <td>{{ x.product }}</td>
                 {% if x.session == 0 %}
                 <td>تمامی جلسات</td>
                     {% else %}

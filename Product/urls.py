@@ -61,6 +61,6 @@ urlpatterns = [
 
     path('change-price/<int:day_id>/', ChangeDayPriceView.as_view(), name='change-day-price'),
 
-    path('api/apply-discount/', apply_discount_to_days, name='apply-discount'),
+    path('api/offer/', OfferView.as_view({'post': 'create'}), name='create-offer'),
 
 ]

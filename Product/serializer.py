@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Course, Days, Sport, Session, Participants
+from .models import Course, Days, Sport, Session, Participants, Offers
 
 
 class ManagerParticipantsSerializer(serializers.ModelSerializer):
@@ -143,5 +143,29 @@ class ChangeDayPriceSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         instance.tuition = validated_data.get('tuition', instance.tuition)
         instance.off = validated_data.get('off', instance.off)
+        instance.save()
+        return instance
+
+
+class OfferSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Offers
+        fields = [
+            'id',  # شناسه
+            'type',  # توضیحات
+            'product',  # جلسه
+            'session',  # روز
+            'off',  # روز شروع
+        ]
+
+    def create(self, validated_data):
+        return Offers.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        instance.type = validated_data.get('type', instance.type)
+        instance.product = validated_data.get('product', instance.product)
+        instance.session = validated_data.get('session', instance.session)
+        instance.off = validated_data.get('off', instance.off)
+
         instance.save()
         return instance

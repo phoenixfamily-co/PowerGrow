@@ -13,7 +13,6 @@ from rest_framework.utils import json
 from About.models import AboutUs
 from Calendar.models import Day
 from PowerGrow.decorators import *
-from Product.models import Offers
 from Product.serializer import *
 from django.conf import settings
 import json
@@ -521,8 +520,12 @@ def update_session(request, pk):
 @session_admin_required
 def create_off_view(request):
     about = AboutUs.objects.first()
+    sport = Sport.objects.all()
+    course = Course.objects.all().order_by('-pk')
     context = {
         'about': about,
+        'sport': sport,
+        'course': course,
     }
 
     return render(request, 'admin/create_off.html', context)
@@ -882,29 +885,57 @@ class ChangeDayPriceView(UpdateAPIView):
         return Response({"detail": "قیمت با موفقیت بروزرسانی شد"}, status=status.HTTP_200_OK)
 
 
-@api_view(['POST'])
-def apply_discount_to_days(request):
-    """
-    This API applies a 15% discount to all Days objects linked to Sessions
-    with number 12, which are connected to Courses with newDay=True.
-    """
-    try:
-        # Filter Days objects based on the conditions
-        eligible_days = Days.objects.filter(
-            session__number=12,  # Sessions with number 12
-            session__course__newDay=True  # Courses with newDay=True
-        )
+class OfferView(viewsets.ViewSet):
+    serializer_class = OfferSerializer
+    permission_classes = [IsAdminUserOrStaff]
 
-        # Apply 15% discount to eligible Days
-        updated_count = eligible_days.update(off=0)
+    def create(self, request):
+        data = request.data
 
-        return Response({
-            "message": "Discount applied successfully.",
-            "updated_count": updated_count
-        }, status=200)
+        offer_data = {
+            'type': data['type'],
+            'product': data['product'],
+            'session': data['session'],
+            'off': data['off']
 
-    except Exception as e:
-        return Response({
-            "error": "An error occurred while applying the discount.",
-            "details": str(e)
-        }, status=500)
+        }
+
+        try:
+            # Filter Days objects based on the conditions
+            if data['type'] == 'SPORT':
+                eligible_days = Days.objects.filter(
+                    session__number=data['session'],
+                    session__course__sport=data['product']
+                )
+            elif data['type'] == 'COURSE':
+                eligible_days = Days.objects.filter(
+                    session__number=data['session'],
+                    session__course=data['product']
+                )
+            else:
+                eligible_days = Days.objects.filter(
+                    session__number=data['session'],
+                )
+
+            # Apply 15% discount to eligible Days
+            updated_count = eligible_days.update(off=data['off'])
+
+            serializer = self.serializer_class(data=offer_data)
+            if serializer.is_valid(raise_exception=True):
+                serializer.save()
+
+            return Response(updated_count, status=status.HTTP_201_CREATED)
+
+        except Exception as e:
+            return Response({
+                "error": "An error occurred while applying the discount.",
+                "details": str(e)
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+    def destroy(self, request, pk):
+        try:
+            offer = Offers.objects.get(pk=pk)
+            offer.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except Participants.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)

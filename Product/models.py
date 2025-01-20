@@ -89,7 +89,8 @@ class Offers(models.Model):
         ('COURSE', 'Course'),
     ]
     type = models.CharField(max_length=20, choices=TYPE_CHOICES)
-    title = models.IntegerField(blank=True, null=True)
+    product = models.ForeignKey(Sport, on_delete=models.CASCADE, related_name='Offers', null=True, blank=True,
+                              verbose_name='محصول')
     session = models.IntegerField(default=0, blank=True, null=True, verbose_name="جلسات")
     off = models.IntegerField(blank=True, null=True, verbose_name="تخفیف")
 
