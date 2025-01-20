@@ -10,7 +10,6 @@ from rest_framework.generics import UpdateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.utils import json
-from rest_framework.views import APIView
 
 from About.models import AboutUs
 from Calendar.models import Day
@@ -944,6 +943,9 @@ class OfferView(viewsets.ViewSet):
 
 
 class UpdateAllParticipantsDaysAPIView(UpdateAPIView):
+    serializer_class = UpdateDaySerializer
+    permission_classes = [IsAdminUserOrStaff]
+
     def update(self, request, *args, **kwargs):
 
         serializer = UpdateDaySerializer(data=request.data)

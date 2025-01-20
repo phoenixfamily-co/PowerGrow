@@ -63,4 +63,6 @@ urlpatterns = [
 
     path('api/offer/', OfferView.as_view({'post': 'create'}), name='create-offer'),
 
+    path('change-day-salary/<int:day_id>/', UpdateAllParticipantsDaysAPIView.as_view(), name='change-day-salary'),
+
 ]
