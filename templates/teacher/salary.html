@@ -193,7 +193,7 @@
 
     let salary = 0
 
-    let today = new Date().toLocaleDateString('fa-IR');
+    let today = new Date(1403,1,31).toLocaleDateString('fa-IR');
 
     let year = parseInt(today[0].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
     let month = parseInt(today[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
@@ -201,9 +201,6 @@
 
     const thisDate = jalaali.j2d(year, month, monthDay)
 
-    console.log(year)
-    console.log(month)
-    console.log(monthDay)
     console.log(thisDate)
 
 
@@ -270,8 +267,8 @@
                     var userEndMonth = parseInt("{{ z.endDay.month.number }}");
                     var userEndDay = parseInt("{{ z.endDay.number }}");
 
-                userStart = jalaali.j2d(userStartYear, userStartMonth, userStartDay)
-                userEnd = jalaali.j2d(userEndYear, userEndMonth, userEndDay)
+                userStart = jalaali.jalaaliToDateObject(userStartYear, userStartMonth, userStartDay)
+                userEnd = jalaali.jalaaliToDateObject(userEndYear, userEndMonth, userEndDay)
 
                   if ( 0 < userEnd ) {
                       if(thisDate > userEnd) {
