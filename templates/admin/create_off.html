@@ -161,7 +161,7 @@
             const formData = new FormData(form);
 
             // ارسال درخواست به API
-            fetch('{% url 'product:create-off' %}', {
+            fetch('{% url 'product:create-offer' %}', {
                 method: 'POST',
                 body: formData,
 
