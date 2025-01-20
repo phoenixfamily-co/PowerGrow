@@ -227,9 +227,6 @@
                 teacherStart = jalaali.j2d(teacherStartYear, teacherStartMonth, teacherStartDay)
                 teacherEnd = jalaali.j2d(teacherEndYear, teacherEndMonth, teacherEndDay)
 
-                console.log("start teacher Date:", teacherStart);
-                console.log("end teacher Date:", teacherEnd);
-
 
                 {% if y.user.salary == "ثابت" %}
 
@@ -278,9 +275,6 @@
 
                 userStart = jalaali.j2d(userStartYear, userStartMonth, userStartDay)
                 userEnd = jalaali.j2d(userEndYear, userEndMonth, userEndDay)
-
-                    console.log("start user Date:", userStart);
-                console.log("end user Date:", userEnd);
 
                   if ( 0 < userEnd ) {
                       if(thisDate < userEnd) {
