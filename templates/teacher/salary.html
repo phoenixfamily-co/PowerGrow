@@ -276,8 +276,8 @@
                     var userEndMonth = parseInt("{{ z.endDay.month.number }}");
                     var userEndDay = parseInt("{{ z.endDay.number }}");
 
-                userStart = jalaali.jalaaliToDateObject(userStartYear, userStartMonth, userStartDay)
-                userEnd = jalaali.jalaaliToDateObject(userEndYear, userEndMonth, userEndDay)
+                userStart = jalaali.j2d(userStartYear, userStartMonth, userStartDay)
+                userEnd = jalaali.j2d(userEndYear, userEndMonth, userEndDay)
 
                     console.log("start user Date:", userStart);
                 console.log("end user Date:", userEnd);
