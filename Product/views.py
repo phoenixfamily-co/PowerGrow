@@ -904,19 +904,33 @@ class OfferView(viewsets.ViewSet):
         try:
             # Filter Days objects based on the conditions
             if data['type'] == 'SPORT':
-                eligible_days = Days.objects.filter(
-                    session__number=data['session'],
-                    session__course__sport=data['product']
-                )
+                if data['session'] == 0:
+                    eligible_days = Days.objects.filter(
+                        session__course__sport=data['product']
+                    )
+                else:
+                    eligible_days = Days.objects.filter(
+                        session__number=data['session'],
+                        session__course__sport=data['product']
+                    )
             elif data['type'] == 'COURSE':
-                eligible_days = Days.objects.filter(
-                    session__number=data['session'],
-                    session__course=data['product']
-                )
+                if data['session'] == 0:
+                    eligible_days = Days.objects.filter(
+                        session__course=data['product']
+                    )
+                else:
+                    eligible_days = Days.objects.filter(
+                        session__number=data['session'],
+                        session__course=data['product']
+                    )
+
             else:
-                eligible_days = Days.objects.filter(
-                    session__number=data['session'],
-                )
+                if data['session'] == 0:
+                    eligible_days = Days.objects.all()
+                else:
+                    eligible_days = Days.objects.filter(
+                        session__number=data['session'],
+                    )
 
             # Apply 15% discount to eligible Days
             updated_count = eligible_days.update(off=data['off'])
@@ -946,7 +960,6 @@ class UpdateAllParticipantsDaysAPIView(UpdateAPIView):
     serializer_class = UpdateDaySerializer
 
     def update(self, request, *args, **kwargs):
-
         serializer = UpdateDaySerializer(data=request.data)
         if serializer.is_valid():
             start_day = serializer.validated_data['startDay']
