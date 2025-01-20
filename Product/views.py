@@ -953,7 +953,7 @@ class UpdateAllParticipantsDaysAPIView(UpdateAPIView):
             end_day = serializer.validated_data['endDay']
 
             # به‌روزرسانی تمام رکوردهای Participants
-            Participants.objects.filter(user__is_teacher=True).update(startDay=start_day, endDay=end_day)
+            Participants.objects.filter(user__is_teacher=True).update(title=start_day)
 
             return Response(
                 {"message": "All participants updated successfully!"},
