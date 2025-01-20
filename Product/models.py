@@ -85,8 +85,8 @@ class Participants(models.Model):
 class Offers(models.Model):
     TYPE_CHOICES = [
         ('ALL', 'All'),
-        ('SPORT', 'Sport'),
-        ('COURSE', 'Course'),
+        ('SPORT', 'ورزش'),
+        ('COURSE', 'دوره'),
     ]
     type = models.CharField(max_length=20, choices=TYPE_CHOICES)
     product = models.IntegerField(default=0, blank=True, null=True, verbose_name="محصول")
