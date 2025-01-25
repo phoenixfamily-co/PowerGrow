@@ -227,9 +227,6 @@ def user_profile_view(request):
     return HttpResponse(template.render(context, request))
 
 
-from django.db.models import Sum
-
-
 @session_teacher_required
 def salary_view(request, pk):
     about = AboutUs.objects.values().first()
@@ -256,6 +253,8 @@ def salary_view(request, pk):
 
         if not participant_teacher:
             continue  # اگر مربی اطلاعاتی در این دوره ندارد، عبور کند
+
+        participant_session = participant_teacher.session
 
         teacher_start_day_id = participant_teacher.startDay_id
         teacher_end_day_id = participant_teacher.endDay_id
@@ -285,11 +284,17 @@ def salary_view(request, pk):
         # جمع قیمت‌های شرکت‌کننده‌های این دوره
         total_price = participants.aggregate(total_price=Sum('price'))['total_price'] or 0
 
-        # محاسبه حقوق برای این دوره
-        percentage = user.fee  # درصد پرداختی به مربی (۱۰٪)
-        salary = total_price * percentage / 100
-        total_salary += salary
-        total_participants_count += participants_count  # جمع تعداد کل شرکت‌کننده‌ها
+        if user.salary == "ثابت":
+            salary = user.fee * participant_session
+            total_salary += salary
+        elif user.salary == "درصدی":
+            percentage = user.fee
+            salary = total_price * percentage / 100
+            total_salary += salary
+            total_participants_count += participants_count  # جمع تعداد کل شرکت‌کننده‌ها
+        else:
+            salary = 0
+            total_salary = 0
 
         # ذخیره اطلاعات دوره و حقوق مربوط به آن
         course_data.append({
