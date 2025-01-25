@@ -201,13 +201,8 @@
     // استخراج سال، ماه و روز از رشته‌ی تاریخ
     let [year, month, monthDay] = today.split('/').map(num => parseInt(num));
 
-    // بررسی مقادیر
-    console.log("سال:", year, "ماه:", month, "روز:", monthDay);
-
     // استفاده از تاریخ جلالی
     const thisDate = jalaali.j2d(year, month, monthDay);
-
-    console.log("Jalaali Date:", thisDate);
 
 
     {% for x in course.all %}
@@ -282,16 +277,6 @@
                         console.log(price)
 
                     }
-
-
-                  {#if ( 0 < userEnd ) {#}
-                  {#        if (teacherStart <= userStart) {#}
-                  {#            if(teacherEnd >= userStart) {#}
-                  {#                counter += 1#}
-                  {#                price += parseInt("{{ z.price }}")#}
-                  {#                console.log(price)#}
-                  {#            }#}
-                  {#        }#}
 
                 {% endif %}
 
