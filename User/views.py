@@ -295,6 +295,7 @@ def salary_view(request, pk):
         "courses": course_data,  # اطلاعات حقوق و شرکت‌کننده‌ها برای هر دوره
         "total_salary": total_salary,  # حقوق کل مربی
         "total_participants_count": total_participants_count,  # تعداد کل شرکت‌کننده‌های محاسبه‌شده
+        "total_courses": len(course_data)
     }
 
     return HttpResponse(template.render(context, request))
