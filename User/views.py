@@ -286,8 +286,8 @@ def salary_view(request, pk):
         total_price = participants.aggregate(total_price=Sum('price'))['total_price'] or 0
 
         # محاسبه حقوق برای این دوره
-        percentage = user.fee # درصد پرداختی به مربی (۱۰٪)
-        salary = total_price * percentage % 100
+        percentage = user.fee  # درصد پرداختی به مربی (۱۰٪)
+        salary = total_price * percentage / 100
         total_salary += salary
         total_participants_count += participants_count  # جمع تعداد کل شرکت‌کننده‌ها
 
@@ -306,7 +306,7 @@ def salary_view(request, pk):
         "total_salary": total_salary,  # حقوق کل مربی
         "total_participants_count": total_participants_count,  # تعداد کل شرکت‌کننده‌های محاسبه‌شده
         "total_courses": len(course_data),
-        "total_participants" : participants_ids.count(),
+        "total_participants": participants_ids.count(),
         "calculated_participant_data": calculated_participant_data,  # ارسال لیست به قالب
 
     }
