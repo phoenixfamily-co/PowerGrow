@@ -287,7 +287,7 @@ def salary_view(request, pk):
 
         # محاسبه حقوق برای این دوره
         percentage = user.fee # درصد پرداختی به مربی (۱۰٪)
-        salary = total_price * percentage
+        salary = total_price * percentage % 100
         total_salary += salary
         total_participants_count += participants_count  # جمع تعداد کل شرکت‌کننده‌ها
 
