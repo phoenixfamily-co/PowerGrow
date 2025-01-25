@@ -281,6 +281,7 @@
                               if(teacherEnd >= userStart) {
                                   counter += 1
                                   price += parseInt("{{ z.price }}")
+                                  console.log("{{ z.id }} | {{ z.user.name }}")
                               }
                           }
                   }
@@ -312,13 +313,14 @@
 
         price = price * (parseInt("{{ user.fee }}") / 100)
 
+
          {% if user.situation == "بدهکار" %}
 
-            {#price = price - parseInt({{ user.debt }})#}
+            price = price - parseInt({{ user.debt }})
 
              {% elif user.situation == "پستانکار" %}
 
-            {#price = price + parseInt({{ user.debt }})#}
+            price = price + parseInt({{ user.debt }})
 
              {% endif %}
 
