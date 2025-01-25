@@ -285,8 +285,23 @@ def salary_view(request, pk):
         total_price = participants.aggregate(total_price=Sum('price'))['total_price'] or 0
 
         if user.salary == "ثابت":
+            # حقوق ثابت
             salary = user.fee * participant_session
+
+            # فیلتر کردن اخبار کنسلی دوره
+            cancelled_news = News.objects.filter(
+                course=course,
+                title="کنسلی",
+                date__id__gte=teacher_start_day_id,
+                date__id__lte=teacher_end_day_id
+            )
+
+            # کاهش از حقوق برای اخبار کنسلی
+            for news in cancelled_news:
+                salary -= user.fee  # از حقوق ثابت کم کنید
+
             total_salary += salary
+
         elif user.salary == "درصدی":
             percentage = user.fee
             salary = total_price * percentage / 100
