@@ -243,6 +243,7 @@ def salary_view(request, pk):
     # متغیر برای ذخیره حقوق کلی و تعداد کل شرکت‌کننده‌ها
     total_salary = 0
     total_participants_count = 0
+    total_news = 0
     course_data = []
 
     calculated_participant_data = []
@@ -296,6 +297,8 @@ def salary_view(request, pk):
                 date__id__lte=teacher_end_day_id
             )
 
+            total_news = cancelled_news.count()
+
             # کاهش از حقوق برای اخبار کنسلی
             for news in cancelled_news:
                 salary -= user.fee  # از حقوق ثابت کم کنید
@@ -333,6 +336,7 @@ def salary_view(request, pk):
         "total_courses": len(course_data),
         "total_participants": participants_ids.count(),
         "calculated_participant_data": calculated_participant_data,  # ارسال لیست به قالب
+        "total_news": total_news,
 
     }
 
