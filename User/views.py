@@ -248,7 +248,7 @@ def salary_view(request, pk):
     total_participants_count = 0
     course_data = []
 
-    calculated_participant_names = []
+    calculated_participant_data = []
 
     for course in courses:
         # گرفتن شرکت‌کننده‌های این دوره که مربی است
@@ -272,7 +272,12 @@ def salary_view(request, pk):
             startDay_id__lte=teacher_end_day_id
         )
 
-        calculated_participant_names.extend(participants.values_list('price', flat=True))
+        for participant in participants:
+            calculated_participant_data.append({
+                "id": participant.pk,
+                "name": participant.user.name,
+                "price": participant.price
+            })
 
         # تعداد شرکت‌کننده‌های این دوره
         participants_count = participants.count()
@@ -302,7 +307,7 @@ def salary_view(request, pk):
         "total_participants_count": total_participants_count,  # تعداد کل شرکت‌کننده‌های محاسبه‌شده
         "total_courses": len(course_data),
         "total_participants" : participants_ids.count(),
-        "calculated_participant_names": calculated_participant_names,  # ارسال لیست به قالب
+        "calculated_participant_data": calculated_participant_data,  # ارسال لیست به قالب
 
     }
 

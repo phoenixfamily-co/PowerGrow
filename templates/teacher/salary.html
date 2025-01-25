@@ -171,11 +171,9 @@
 
 
 <script>
-    // لیست شرکت‌کنندگانی که در حقوق لحاظ شده‌اند
-    const calculatedParticipantNames = {{ calculated_participant_names|safe }};
-
-    // ارسال اسامی به کنسول
-    console.log("اسامی شرکت‌کنندگانی که در حقوق محاسبه شده‌اند:", calculatedParticipantNames);
+    {% for participant in participant_data %}
+        console.log("نام شرکت‌کننده: {{ participant.name }}, مبلغ: {{ participant.price }});
+    {% endfor %}
 </script>
 
 {#<script>#}
