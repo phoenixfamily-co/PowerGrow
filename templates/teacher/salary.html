@@ -315,11 +315,11 @@
 
          {% if user.situation == "بدهکار" %}
 
-            price = price - parseInt({{ user.debt }})
+            {#price = price - parseInt({{ user.debt }})#}
 
              {% elif user.situation == "پستانکار" %}
 
-            price = price + parseInt({{ user.debt }})
+            {#price = price + parseInt({{ user.debt }})#}
 
              {% endif %}
 
