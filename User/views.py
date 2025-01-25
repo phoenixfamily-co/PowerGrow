@@ -299,6 +299,11 @@ def salary_view(request, pk):
             "salary": salary
         })
 
+    if user.situation == "بدهکار":
+        total_salary = total_salary - user.debt
+    elif user.situation == "پستانکار":
+        total_salary = total_salary + user.debt
+
     context = {
         "about": about,
         "user": user,
