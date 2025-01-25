@@ -1,6 +1,7 @@
 import json
 
 from django.contrib.auth import login, authenticate, logout, get_user_model
+from django.db.models import Sum
 from django.http import HttpResponse, JsonResponse
 from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
@@ -226,27 +227,76 @@ def user_profile_view(request):
     return HttpResponse(template.render(context, request))
 
 
+from django.db.models import Sum
+
+
 @session_teacher_required
 def salary_view(request, pk):
     about = AboutUs.objects.values().first()
     template = loader.get_template('teacher/salary.html')
     user = get_object_or_404(User, id=pk)
-    ids = User.objects.filter(id=pk).values_list("participants__course__id", flat=True)
-    participants = Participants.objects.filter(course_id__in=ids, user__is_teacher=False,
-                                               user__is_superuser=False, user__is_staff=False,
-                                               price__gt=0, success=True)
 
-    course = Course.objects.filter(id__in=ids)
+    # گرفتن آی‌دی دوره‌هایی که مربی در آن‌ها شرکت دارد
+    course_ids = Participants.objects.filter(user=user).values_list('course_id', flat=True)
+
+    # گرفتن همه دوره‌های مربی
+    courses = Course.objects.filter(id__in=course_ids)
+
+    # متغیر برای ذخیره حقوق کلی و تعداد کل شرکت‌کننده‌ها
+    total_salary = 0
+    total_participants_count = 0
+    course_data = []
+
+    for course in courses:
+        # گرفتن شرکت‌کننده‌های این دوره که مربی است
+        participant_teacher = Participants.objects.filter(user=user, course=course).first()
+
+        if not participant_teacher:
+            continue  # اگر مربی اطلاعاتی در این دوره ندارد، عبور کند
+
+        teacher_start_day_id = participant_teacher.startDay_id
+        teacher_end_day_id = participant_teacher.endDay_id
+
+        # فیلتر شرکت‌کننده‌های این دوره بر اساس تاریخ شروع و پایان مربی
+        participants = Participants.objects.filter(
+            course=course,
+            user__is_teacher=False,
+            user__is_superuser=False,
+            user__is_staff=False,
+            price__gt=0,
+            success=True,
+            startDay_id__gte=teacher_start_day_id,
+            startDay_id__lte=teacher_end_day_id
+        )
+
+        # تعداد شرکت‌کننده‌های این دوره
+        participants_count = participants.count()
+
+        # جمع قیمت‌های شرکت‌کننده‌های این دوره
+        total_price = participants.aggregate(total_price=Sum('price'))['total_price'] or 0
+
+        # محاسبه حقوق برای این دوره
+        percentage = 0.1  # درصد پرداختی به مربی (۱۰٪)
+        salary = total_price * percentage
+        total_salary += salary
+        total_participants_count += participants_count  # جمع تعداد کل شرکت‌کننده‌ها
+
+        # ذخیره اطلاعات دوره و حقوق مربوط به آن
+        course_data.append({
+            "course": course,
+            "participants_count": participants_count,
+            "total_price": total_price,
+            "salary": salary
+        })
 
     context = {
         "about": about,
         "user": user,
-        "course": course,
-        "active": participants,
-        "participants": participants.count(),
-        "size": course.count(),
-
+        "courses": course_data,  # اطلاعات حقوق و شرکت‌کننده‌ها برای هر دوره
+        "total_salary": total_salary,  # حقوق کل مربی
+        "total_participants_count": total_participants_count,  # تعداد کل شرکت‌کننده‌های محاسبه‌شده
     }
+
     return HttpResponse(template.render(context, request))
 
 
@@ -485,5 +535,3 @@ class UserSearchView(generics.ListAPIView):
     serializer_class = UserSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['name', 'number']
-
-
