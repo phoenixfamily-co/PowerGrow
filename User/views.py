@@ -254,7 +254,7 @@ def salary_view(request, pk):
         if not participant_teacher:
             continue  # اگر مربی اطلاعاتی در این دوره ندارد، عبور کند
 
-        participant_session = participant_teacher.session
+        participant_session = participant_teacher.session.number
 
         teacher_start_day_id = participant_teacher.startDay_id
         teacher_end_day_id = participant_teacher.endDay_id
