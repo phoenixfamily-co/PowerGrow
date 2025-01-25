@@ -276,15 +276,22 @@
                 userStart = jalaali.j2d(userStartYear, userStartMonth, userStartDay)
                 userEnd = jalaali.j2d(userEndYear, userEndMonth, userEndDay)
 
-                  if ( 0 < userEnd ) {
-                          if (teacherStart <= userStart) {
-                              if(teacherEnd >= userStart) {
-                                  counter += 1
-                                  price += parseInt("{{ z.price }}")
-                                  console.log(price)
-                              }
-                          }
-                  }
+                    if (teacherStart <= userStart && teacherEnd >= userStart){
+                        counter += 1
+                        price += parseInt("{{ z.price }}")
+                        console.log(price)
+
+                    }
+
+
+                  {#if ( 0 < userEnd ) {#}
+                  {#        if (teacherStart <= userStart) {#}
+                  {#            if(teacherEnd >= userStart) {#}
+                  {#                counter += 1#}
+                  {#                price += parseInt("{{ z.price }}")#}
+                  {#                console.log(price)#}
+                  {#            }#}
+                  {#        }#}
 
                 {% endif %}
 
