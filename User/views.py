@@ -238,6 +238,7 @@ def salary_view(request, pk):
 
     # گرفتن آی‌دی دوره‌هایی که مربی در آن‌ها شرکت دارد
     course_ids = Participants.objects.filter(user=user).values_list('course_id', flat=True)
+    participants_ids = Participants.objects.filter(course_id__in=course_ids)
 
     # گرفتن همه دوره‌های مربی
     courses = Course.objects.filter(id__in=course_ids)
@@ -295,7 +296,8 @@ def salary_view(request, pk):
         "courses": course_data,  # اطلاعات حقوق و شرکت‌کننده‌ها برای هر دوره
         "total_salary": total_salary,  # حقوق کل مربی
         "total_participants_count": total_participants_count,  # تعداد کل شرکت‌کننده‌های محاسبه‌شده
-        "total_courses": len(course_data)
+        "total_courses": len(course_data),
+        "total_participants" : participants_ids.count()
     }
 
     return HttpResponse(template.render(context, request))
