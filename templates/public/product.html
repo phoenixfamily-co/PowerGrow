@@ -778,8 +778,10 @@
             },
         });
         result = await response.json()
+        console.log("Response Data:", result); // اینجا مقدار result را بررسی کنید
+
         result = JSON.parse(JSON.stringify(result))
-        monthSize = 12
+        monthSize = result[0].months.length
 
         yearTitle.innerHTML = result[0].number
           if (currentYear<thisYear){
