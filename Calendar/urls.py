@@ -25,6 +25,8 @@ urlpatterns = [
     path('api/description/<int:id>/', ChangeDescriptionView.as_view(), name='description'),
     path('api/time/reset/', Reset.as_view({'put': 'update'}), name='reset'),
 
+    path('api/generate-calendar/', GenerateCalendarAPIView.as_view(), name='generate_calendar'),
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -12,6 +12,10 @@ from About.models import AboutUs
 from Calendar.serializer import *
 from PowerGrow.permissions import *
 
+from rest_framework.views import APIView
+from .models import Year, Month, Day
+
+
 
 @session_auth_required
 def price_view(request):
@@ -259,3 +263,49 @@ class Reset(viewsets.ModelViewSet):
         Time.objects.all().update(reserved=False)
 
         return Response(status=status.HTTP_202_ACCEPTED)
+
+
+PERSIAN_MONTHS = [
+    "فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور",
+    "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"
+]
+
+WEEKDAYS = ["شنبه", "یکشنبه", "دوشنبه", "سه‌شنبه", "چهارشنبه", "پنج‌شنبه", "جمعه"]
+
+
+class GenerateCalendarAPIView(APIView):
+    def post(self, request):
+        """
+        ایجاد تقویم شمسی ۱۴۰۴ با شروع از جمعه و بدون در نظر گرفتن تعطیلی جمعه‌ها
+        """
+        year = 1404
+        leap = False  # 1404 کبیسه نیست
+        days_per_month = [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 29]  # اسفند ۲۹ روزه
+
+        # روز شروع سال 1404 (1 فروردین 1404 جمعه است)
+        start_day_index = WEEKDAYS.index("جمعه")
+
+        # بررسی اینکه سال از قبل ایجاد شده یا نه
+        year_instance, created = Year.objects.get_or_create(number=year, defaults={"leap": leap})
+
+        day_counter = start_day_index  # مقدار اولیه برای شمارش روزهای هفته
+        for month_number, month_name in enumerate(PERSIAN_MONTHS, start=1):
+            max_days = days_per_month[month_number - 1]
+
+            # ایجاد ماه
+            month_instance, _ = Month.objects.get_or_create(
+                number=month_number,
+                year=year_instance,
+                defaults={"name": month_name, "max": max_days}
+            )
+
+            for day_number in range(1, max_days + 1):
+                day_name = WEEKDAYS[day_counter % 7]  # محاسبه نام روز هفته
+                Day.objects.get_or_create(
+                    number=day_number,
+                    month=month_instance,
+                    defaults={"name": day_name, "holiday": False}  # هیچ روزی را تعطیل در نظر نمی‌گیریم
+                )
+                day_counter += 1
+
+        return Response({"message": f"تقویم سال {year} با موفقیت ایجاد شد."}, status=status.HTTP_201_CREATED)
