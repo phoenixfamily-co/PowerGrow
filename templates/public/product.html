@@ -890,7 +890,12 @@
                 startDay.innerHTML = `${result[0].number}/${result[0].months[monthPosition].number}/${result[0].months[monthPosition].days[i].number}`
                 date = `${result[0].number}-${result[0].months[monthPosition].number}-${result[0].months[monthPosition].days[i].number}`
 
-            } else if (new Date(result[0].number, result[0].months[monthPosition].number - 1, result[0].months[monthPosition].days[i].number) < new Date()) {
+            } else if (result[0].months[monthPosition].number === parseInt(currentMonth) &&
+                result[0].months[monthPosition].days[i].number < parseInt(currentDay) &&
+                result[0].number <= parseInt(currentYear)) {
+                dayItem.classList.add("disActiveButton");
+            } else if (result[0].number < parseInt(currentYear) ||
+                (result[0].number === parseInt(currentYear) && result[0].months[monthPosition].number < parseInt(currentMonth))) {
                 dayItem.classList.add("disActiveButton");
             }
             dayItem.innerHTML = result[0].months[monthPosition].days[i].number
