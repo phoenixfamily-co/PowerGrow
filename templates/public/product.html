@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://kit.fontawesome.com/cf09389368.js" crossorigin="anonymous"></script>    <link rel="stylesheet" href="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.css"/>
+    <script src="https://kit.fontawesome.com/cf09389368.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.css"/>
     <script src="https://static.neshan.org/sdk/mapboxgl/v1.13.2/neshan-sdk/v1.0.8/index.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.css">
     <script type="text/javascript"
@@ -15,8 +16,7 @@
     <script src="https://unpkg.com/jalaali-js/dist/jalaali.min.js"></script>
 
 
-
-     <title>دوره {{ product.title }}</title>
+    <title>دوره {{ product.title }}</title>
 
     {% load bootstrap5 %}
     {% bootstrap_css %}
@@ -24,7 +24,7 @@
 
 
     <style>
-         @font-face {
+        @font-face {
             font-family: BYekan;
             font-style: normal;
             font-weight: normal;
@@ -33,21 +33,21 @@
             url("/static/fonts/BYekan.woff") format('woff2'), /* Super Modern Browsers */ url("../../static/fonts/BYekan.ttf") format('truetype') /* Safari, Android, iOS */
         }
 
-         html, body {
+        html, body {
             margin: 0;
-            padding: 0 ;
+            padding: 0;
             overflow-x: hidden;
             background-color: #f7f0e8;
             font-family: BYekan, serif !important;
         }
 
-         body{
-             min-height: 100vh;
-             display: flex;
-             flex-direction: column;
-         }
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
 
-       .logoHolder {
+        .logoHolder {
             width: 100%;
             position: absolute;
             margin-top: 80px;
@@ -82,7 +82,6 @@
         }
 
 
-
         .dropdown:hover {
             display: block;
 
@@ -96,22 +95,22 @@
             display: block;
         }
 
-         .dropdown-menu li a {
-            color: white ;
-             width: 100% ;
-             text-align: right
+        .dropdown-menu li a {
+            color: white;
+            width: 100%;
+            text-align: right
         }
 
         /* Change color of dropdown links on hover */
-          .dropdown-menu li a:hover {
-            background-color: black ;
+        .dropdown-menu li a:hover {
+            background-color: black;
         }
 
-           .navbar-nav > li > .dropdown-menu {
+        .navbar-nav > li > .dropdown-menu {
             background-color: #312f2e;
         }
 
-        .navbar{
+        .navbar {
             direction: rtl;
             background: #312f2e;
             height: 60px;
@@ -125,44 +124,46 @@
         .navbar-nav > li a {
             color: white !important;
             text-decoration: none;
-       }
+        }
 
-        .navbar-nav > li a:hover{
+        .navbar-nav > li a:hover {
             color: gray !important;
-       }
+        }
 
         .nav-link.active {
-            color: #E16539!important;
+            color: #E16539 !important;
         }
 
         .nav-link.disabled {
-            color: #EBEBE4!important;
+            color: #EBEBE4 !important;
         }
 
-       .card_holder {
-           position: fixed; /* برای ثابت نگه‌داشتن */
-           left: 0; /* چسباندن به سمت چپ */
-           margin-top: 60px; /* فاصله از بالای صفحه به اندازه ارتفاع نوار ناوبری */
-           width: 30%; /* عرض کارت هولدر */
-           height: calc(100vh - 60px); /* ارتفاع کل صفحه منهای ارتفاع نوار ناوبری */
-           overflow-y: auto; /* اجازه اسکرول عمودی */
-           background-color: transparent; /* رنگ پس‌زمینه */
-           z-index: 5; /* قرار دادن بالاتر از دیگر عناصر */
-           /* مقداری پدینگ */
-       }
-         .card {
-             background-color: white; /* رنگ پس‌زمینه کارت */
-             border-bottom-left-radius: 1rem; /* گرد کردن گوشه‌ها */
-             border-bottom-right-radius: 1rem; /* گرد کردن گوشه‌ها */
-             width: 100%; /* عرض کامل */
-             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* سایه */
-}
-         .list-group-item {
-             display: flex;
-             justify-content: space-between;
-             align-items: center;
-             gap: 20px;
-         }
+        .card_holder {
+            position: fixed; /* برای ثابت نگه‌داشتن */
+            left: 0; /* چسباندن به سمت چپ */
+            margin-top: 60px; /* فاصله از بالای صفحه به اندازه ارتفاع نوار ناوبری */
+            width: 30%; /* عرض کارت هولدر */
+            height: calc(100vh - 60px); /* ارتفاع کل صفحه منهای ارتفاع نوار ناوبری */
+            overflow-y: auto; /* اجازه اسکرول عمودی */
+            background-color: transparent; /* رنگ پس‌زمینه */
+            z-index: 5; /* قرار دادن بالاتر از دیگر عناصر */
+            /* مقداری پدینگ */
+        }
+
+        .card {
+            background-color: white; /* رنگ پس‌زمینه کارت */
+            border-bottom-left-radius: 1rem; /* گرد کردن گوشه‌ها */
+            border-bottom-right-radius: 1rem; /* گرد کردن گوشه‌ها */
+            width: 100%; /* عرض کامل */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* سایه */
+        }
+
+        .list-group-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
 
 
         .activeButton {
@@ -170,19 +171,19 @@
             color: white !important
         }
 
-         .holidayButton {
+        .holidayButton {
             color: #ff0c0c !important;
-             cursor: pointer;
+            cursor: pointer;
         }
 
-         .disActiveButton{
+        .disActiveButton {
 
-             cursor: none;
-             pointer-events: none;
-             opacity:0.6;
-         }
+            cursor: none;
+            pointer-events: none;
+            opacity: 0.6;
+        }
 
-        .disabled-button{
+        .disabled-button {
             height: 50px;
             margin-top: 4%;
             margin-right: 5%;
@@ -197,21 +198,21 @@
         }
 
 
-        .product-img{
+        .product-img {
             width: 69.3%;
             height: 77.4vh;
             float: right;
             border-bottom-left-radius: 1rem;
         }
 
-         .custom-container {
-             margin-top: 15px;
-             display: flex;
-             justify-content: flex-end;
-             margin-left: auto;
-             direction: rtl;
-             width: 70%; /* تغییر به 70 درصد */
-}
+        .custom-container {
+            margin-top: 15px;
+            display: flex;
+            justify-content: flex-end;
+            margin-left: auto;
+            direction: rtl;
+            width: 70%; /* تغییر به 70 درصد */
+        }
 
         .date-picker, .time-picker {
             background: #FFFFFF;
@@ -221,33 +222,33 @@
             margin: 10px;
         }
 
-          .time-picker {
-                    direction: rtl;
-                    width: 48%; /* کاهش عرض برای جایگذاری در کنار هم */
-                }
+        .time-picker {
+            direction: rtl;
+            width: 48%; /* کاهش عرض برای جایگذاری در کنار هم */
+        }
 
-                .date-picker {
-                    width: 48%; /* کاهش عرض برای جایگذاری در کنار هم */
-                }
+        .date-picker {
+            width: 48%; /* کاهش عرض برای جایگذاری در کنار هم */
+        }
 
 
-         .description-container{
-             display: flex;
-             justify-content: flex-end; /* عناصر را به سمت راست می‌برد */
-             direction: rtl;
-             padding: 10px;
-             background-color: transparent;
-             width:100%
-         }
+        .description-container {
+            display: flex;
+            justify-content: flex-end; /* عناصر را به سمت راست می‌برد */
+            direction: rtl;
+            padding: 10px;
+            background-color: transparent;
+            width: 100%
+        }
 
-          .description{
-              display: flex;
-              justify-content: flex-end; /* عناصر را به سمت راست می‌برد */
-              direction: rtl;
-              margin-left: auto;
-              background-color: white;
-              width:69.2%
-         }
+        .description {
+            display: flex;
+            justify-content: flex-end; /* عناصر را به سمت راست می‌برد */
+            direction: rtl;
+            margin-left: auto;
+            background-color: white;
+            width: 69.2%
+        }
 
 
         .month {
@@ -317,136 +318,135 @@
         }
 
 
-           @media screen and (max-width: 768px) {
+        @media screen and (max-width: 768px) {
 
 
-             .navbar{
-                 height: auto;
-             }
+            .navbar {
+                height: auto;
+            }
 
 
-               .card_holder{
-                   width: calc(100% - 30px);
-                   justify-content: center;
-                   margin: 15px 15px 15px 15px;
-                   position: static;
-                   height: auto;
-                   text-align: center;
-                   align-content: center;
-                   align-items: center;
-                   border-top-left-radius: 1rem;
-                   border-top-right-radius: 1rem;
-               }
+            .card_holder {
+                width: calc(100% - 30px);
+                justify-content: center;
+                margin: 15px 15px 15px 15px;
+                position: static;
+                height: auto;
+                text-align: center;
+                align-content: center;
+                align-items: center;
+                border-top-left-radius: 1rem;
+                border-top-right-radius: 1rem;
+            }
 
-               .card{
-                   border-top-left-radius: 1rem;
-                   width: auto;
-                   border-top-right-radius: 1rem;
-                   position: static;
+            .card {
+                border-top-left-radius: 1rem;
+                width: auto;
+                border-top-right-radius: 1rem;
+                position: static;
 
-               }
+            }
 
-               .custom-container{
-                   align-items: center;
-                   width: calc(100% - 30px);
-                   flex-wrap: wrap;
-                   justify-content: center;
-                   margin: 0 15px 0 15px;
+            .custom-container {
+                align-items: center;
+                width: calc(100% - 30px);
+                flex-wrap: wrap;
+                justify-content: center;
+                margin: 0 15px 0 15px;
 
-               }
+            }
 
-               .date-picker, .time-picker {
+            .date-picker, .time-picker {
                 width: 100%; /* در اندازه‌های موبایل، عرض کامل */
                 margin: 15px 0; /* فاصله عمودی */
             }
 
 
-               .description-container{
-                    width: calc(100% - 30px);
-                    align-items: center;
-                   padding: 0;
-                   justify-content: center;
-                    margin: 0 15px 0 15px;
-                }
+            .description-container {
+                width: calc(100% - 30px);
+                align-items: center;
+                padding: 0;
+                justify-content: center;
+                margin: 0 15px 0 15px;
+            }
 
-               .description{
-                   width: 100%;
-               }
+            .description {
+                width: 100%;
+            }
 
-                .product-img{
-                    width: 100%;
-                    height: 30vh;
-                    border-radius: 0;
-                    margin-bottom: 15px;
-                }
+            .product-img {
+                width: 100%;
+                height: 30vh;
+                border-radius: 0;
+                margin-bottom: 15px;
+            }
 
 
-           }
+        }
 
-         @media only screen and (min-resolution: 3dppx) {
+        @media only screen and (min-resolution: 3dppx) {
 
-             .navbar{
-                 height: auto;
-             }
+            .navbar {
+                height: auto;
+            }
 
-             .card_holder{
-                   width: calc(100% - 30px);
-                   justify-content: center;
-                   margin: 15px 15px 15px 15px;
-                   position: static;
-                   height: auto;
-                   text-align: center;
-                   align-content: center;
-                   align-items: center;
-                   border-top-left-radius: 1rem;
-                   border-top-right-radius: 1rem;
-               }
+            .card_holder {
+                width: calc(100% - 30px);
+                justify-content: center;
+                margin: 15px 15px 15px 15px;
+                position: static;
+                height: auto;
+                text-align: center;
+                align-content: center;
+                align-items: center;
+                border-top-left-radius: 1rem;
+                border-top-right-radius: 1rem;
+            }
 
-               .card{
-                   border-top-left-radius: 1rem;
-                   width: auto;
-                   border-top-right-radius: 1rem;
-                   position: static;
+            .card {
+                border-top-left-radius: 1rem;
+                width: auto;
+                border-top-right-radius: 1rem;
+                position: static;
 
-               }
+            }
 
-               .custom-container{
-                   align-items: center;
-                   width: calc(100% - 30px);
-                   flex-wrap: wrap;
-                   padding: 0;
-                   justify-content: center;
-                   margin: 0 15px 0 15px;
+            .custom-container {
+                align-items: center;
+                width: calc(100% - 30px);
+                flex-wrap: wrap;
+                padding: 0;
+                justify-content: center;
+                margin: 0 15px 0 15px;
 
-               }
+            }
 
-               .date-picker, .time-picker {
+            .date-picker, .time-picker {
                 width: 100%; /* در اندازه‌های موبایل، عرض کامل */
                 margin: 15px 0; /* فاصله عمودی */
             }
 
 
-                 .description-container{
-                    width: calc(100% - 30px);
-                    align-items: center;
-                   justify-content: center;
-                    margin: 0 15px 0 15px;
-                }
+            .description-container {
+                width: calc(100% - 30px);
+                align-items: center;
+                justify-content: center;
+                margin: 0 15px 0 15px;
+            }
 
-                   .description{
-                   width: 100%;
-               }
+            .description {
+                width: 100%;
+            }
 
-                .product-img{
-                    width: 100%;
-                    height: 30vh;
-                    border-radius: 0;
-                    margin-bottom: 15px;
-                }
+            .product-img {
+                width: 100%;
+                height: 30vh;
+                border-radius: 0;
+                margin-bottom: 15px;
+            }
 
 
-
-}
+        }
     </style>
 
 </head>
@@ -454,41 +454,46 @@
 
 <nav class="navbar navbar-dark navbar-expand-lg w-100 ">
 
-  <!-- Toggler/collapsibe Button -->
-  <button style="outline: none; box-shadow: none;" class="navbar-toggler justify-content-center" type="button" data-toggle="collapse" data-bs-toggle="collapse"   data-target="#collapsibleNavbar" data-bs-target="#collapsibleNavbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="" role="button" ><i class="fa fa-bars" aria-hidden="true" style="color:#e6e6ff"></i></span>
-</button>
-  <!-- Navbar links -->
-  <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="nav navbar-nav">
-  <li class="nav-item">
-    <a class="nav-link" aria-current="page" href='{% url 'home:home' %}'>صفحه اصلی</a>
-  </li>
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">{{product.title}}</a>
-    <ul class="dropdown-menu">
-         {% for x in sport %}
-             <li><a class="dropdown-item" href="{% url 'product:category_view' x.id %}">{{ x.title }}</a></li>
-         {% endfor %}
-    </ul>
-  </li>
-  <li class="nav-item disabled">
-    <a class="nav-link disabled" href="{% url 'reservation:reservation' %}">اجاره سالن</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href='{% url 'about:aboutUs'%}'>درباره ما</a>
-  </li>
+    <!-- Toggler/collapsibe Button -->
+    <button style="outline: none; box-shadow: none;" class="navbar-toggler justify-content-center" type="button"
+            data-toggle="collapse" data-bs-toggle="collapse" data-target="#collapsibleNavbar"
+            data-bs-target="#collapsibleNavbar" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="" role="button"><i class="fa fa-bars" aria-hidden="true" style="color:#e6e6ff"></i></span>
+    </button>
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="nav navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href='{% url 'home:home' %}'>صفحه اصلی</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button"
+                   aria-expanded="false">{{ product.title }}</a>
+                <ul class="dropdown-menu">
+                    {% for x in sport %}
+                        <li><a class="dropdown-item" href="{% url 'product:category_view' x.id %}">{{ x.title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+            <li class="nav-item disabled">
+                <a class="nav-link disabled" href="{% url 'reservation:reservation' %}">اجاره سالن</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href='{% url 'about:aboutUs' %}'>درباره ما</a>
+            </li>
 
-     <li class="nav-item">
-    <a class="nav-link" href='{% url 'user:login' %}'>ورود و عضویت</a>
-  </li>
-</ul>
-  </div>
+            <li class="nav-item">
+                <a class="nav-link" href='{% url 'user:login' %}'>ورود و عضویت</a>
+            </li>
+        </ul>
+    </div>
 </nav>
 
 <div class="logoHolder">
 
-    <img alt="" src="{% get_media_prefix%}{{ about.logo }}" class="logo">
+    <img alt="" src="{% get_media_prefix %}{{ about.logo }}" class="logo">
     <div class="typography">PowerGrow</div>
 
 </div>
@@ -504,9 +509,9 @@
                 <h6 class="mb-0 text-end">نام دوره:</h6>
                 <h6 class="mb-0 text-start">{{ product.title }} (
                     {% if product.gender == "male" %}
-                    آقایان
+                        آقایان
                     {% elif product.gender == "female" %}
-                    بانوان
+                        بانوان
                     {% endif %}
                     )
                 </h6>
@@ -517,122 +522,130 @@
                 <h6 class="mb-0 text-start">{{ product.name }}</h6>
             </li>
 
-              <li class="list-group-item d-flex justify-content-between align-items-center mb-1" dir="rtl">
+            <li class="list-group-item d-flex justify-content-between align-items-center mb-1" dir="rtl">
                 <h6 class="mb-0 text-end">نوع دوره:</h6>
                 <h6 class="mb-0 text-start">
                     {% if product.type == "public" %}
-                    عمومی
+                        عمومی
                     {% elif product.type == "private" %}
-                    خصوصی
+                        خصوصی
                     {% elif product.type == "semi_private" %}
-                    نیمه خصوصی
+                        نیمه خصوصی
                     {% endif %}
                 </h6>
             </li>
 
-            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed mb-1" dir="rtl">
+            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed mb-1"
+                dir="rtl">
                 <h6 class="mb-0 text-end">ظرفیت باقی مانده:</h6>
                 <h6 id="number" class="mb-0 text-start"></h6>
             </li>
 
-            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed mb-1" dir="rtl">
+            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed mb-1"
+                dir="rtl">
                 <h6 class="mb-0 text-end">روزهای برگزاری:</h6>
                 <h6 id="daySession" class="mb-0 text-start"></h6>
             </li>
 
-            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed mb-1" dir="rtl">
+            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed mb-1"
+                dir="rtl">
                 <h6 class="mb-0 text-end">ساعت برگزاری:</h6>
                 <h6 class="mb-0 text-start">{{ product.time }}</h6>
             </li>
 
-            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed mb-1" dir="rtl">
+            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed mb-1"
+                dir="rtl">
                 <h6 class="mb-0 text-end">تاریخ شروع:</h6>
                 <h6 id="startDay" class="mb-0 text-start"></h6>
             </li>
 
-            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed mb-1" dir="rtl">
+            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed mb-1"
+                dir="rtl">
                 <h6 class="mb-0 text-end">تعداد جلسات:</h6>
                 <h6 id="sessionNumber" class="mb-0 text-start"></h6>
             </li>
 
-            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed mb-1" dir="rtl">
+            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed mb-1"
+                dir="rtl">
                 <h6 class="mb-0 text-end">شهریه ثابت:</h6>
                 <h6 id="price" class="mb-0 text-start"></h6>
             </li>
 
-            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed mb-1" dir="rtl">
+            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed mb-1"
+                dir="rtl">
                 <h6 class="mb-0 text-end">تخفیف:</h6>
                 <h6 id="off" class="mb-0 text-start"></h6>
             </li>
 
-            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed mb-1" dir="rtl">
+            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-fixed mb-1"
+                dir="rtl">
                 <h6 class="mb-0 text-end">قیمت نهایی:</h6>
                 <h6 id="final" class="mb-0 text-start"></h6>
             </li>
         </ul>
-       <div class="d-flex justify-content-center align-items-center">
-    <button id="registerButton" class="btn mx-3 my-3 w-80" style="background-color:#E16539 ; color: white ">
-        ثبت نام کنید
-    </button>
-</div>
+        <div class="d-flex justify-content-center align-items-center">
+            <button id="registerButton" class="btn mx-3 my-3 w-80" style="background-color:#E16539 ; color: white ">
+                ثبت نام کنید
+            </button>
+        </div>
     </div>
 </div>
 
-    <div class="custom-container">
-        <div class="date-picker">
-            <div class="month">
-                <ul>
-                    <li id="prev" class="prev">&#10094;</li>
-                    <li id="monthTitle"></li>
-                    <li id="next" class="next">&#10095;</li>
-                </ul>
-                <span id="yearTitle" style="font-size: 18px;"></span>
-            </div>
-            <ul class="weekdays">
-                <li>ش</li>
-                <li>ی</li>
-                <li>د</li>
-                <li>س</li>
-                <li>چ</li>
-                <li>پ</li>
-                <li>ج</li>
+<div class="custom-container">
+    <div class="date-picker">
+        <div class="month">
+            <ul>
+                <li id="prev" class="prev">&#10094;</li>
+                <li id="monthTitle"></li>
+                <li id="next" class="next">&#10095;</li>
             </ul>
-            <ul id="days" class="days">
-                <!-- روزها از سمت سرور می‌آیند -->
-            </ul>
+            <span id="yearTitle" style="font-size: 18px;"></span>
         </div>
-
-        <div class="time-picker">
-            <div class="time-body">
-                <div class="form-group my-5">
-                    <label for="session">تعداد جلسات در ماه را انتخاب کنید:</label>
-                    <select class="form-control mt-1" name="session" id="session">
-                        <option value="" disabled selected>جلسه را انتخاب کنید</option>
-                        {% for x in session %}
-                            <option value="{{ x.id }}">{{ x.number }} جلسه </option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class="form-group my-5">
-                    <label for="week">روزهای برگزاری در هفته را مشخص کنید:</label>
-                    <select class="form-control mt-1" name="week" id="week">
-                        <option value="">لطفاً اول جلسه را انتخاب کنید</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
+        <ul class="weekdays">
+            <li>ش</li>
+            <li>ی</li>
+            <li>د</li>
+            <li>س</li>
+            <li>چ</li>
+            <li>پ</li>
+            <li>ج</li>
+        </ul>
+        <ul id="days" class="days">
+            <!-- روزها از سمت سرور می‌آیند -->
+        </ul>
     </div>
+
+    <div class="time-picker">
+        <div class="time-body">
+            <div class="form-group my-5">
+                <label for="session">تعداد جلسات در ماه را انتخاب کنید:</label>
+                <select class="form-control mt-1" name="session" id="session">
+                    <option value="" disabled selected>جلسه را انتخاب کنید</option>
+                    {% for x in session %}
+                        <option value="{{ x.id }}">{{ x.number }} جلسه</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group my-5">
+                <label for="week">روزهای برگزاری در هفته را مشخص کنید:</label>
+                <select class="form-control mt-1" name="week" id="week">
+                    <option value="">لطفاً اول جلسه را انتخاب کنید</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 
 <div class="description-container">
-            <div class="description p-4 border" style="border-radius: 1rem;">
-                <p class="text-end" style="font-size: 20px;">
-                    {% autoescape off %}
-                        {{ product.description|linebreaksbr }}
-                    {% endautoescape %}
-                </p>
-            </div>
+    <div class="description p-4 border" style="border-radius: 1rem;">
+        <p class="text-end" style="font-size: 20px;">
+            {% autoescape off %}
+                {{ product.description|linebreaksbr }}
+            {% endautoescape %}
+        </p>
+    </div>
 </div>
 
 
@@ -671,14 +684,16 @@
             <!-- Logo Section -->
             <div class="col-md-4 text-center mb-4">
                 <h3>PowerGrow</h3>
-                <img class="img-fluid mb-3" style="max-width: 200px; height: auto" src="/media/{{ about.transparent_logo }}" alt="Logo">
+                <img class="img-fluid mb-3" style="max-width: 200px; height: auto"
+                     src="/media/{{ about.transparent_logo }}" alt="Logo">
             </div>
         </div>
 
         <!-- Copyright Section -->
         <div class="row bg-dark">
             <div class="col-md-12 d-flex justify-content-between align-items-center py-3">
-                <a class="mb-0 ms-3" href="https://abbaslotfinasab.com/" style="color: white; text-decoration: none" target="_blank">&copy; <span id="year">2023</span> AbbasLotfinasab, All rights reserved.</a>
+                <a class="mb-0 ms-3" href="https://abbaslotfinasab.com/" style="color: white; text-decoration: none"
+                   target="_blank">&copy; <span id="year">2023</span> AbbasLotfinasab, All rights reserved.</a>
 
                 <div class="d-flex align-items-center ms-auto">
                     <span class="d-inline me-1">Follow us:</span>
@@ -733,39 +748,39 @@
     let currentDayId
     let today = new Date().toLocaleDateString('fa-IR');
     today = today.split('/')
-    let currentDay = today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
-    let currentMonth = today[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
-    let currentYear = today[0].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
-    let thisYear = today[0].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) )
-    let monthPosition = currentMonth-1
+    let currentDay = today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728))
+    let currentMonth = today[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728))
+    let currentYear = today[0].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728))
+    let thisYear = today[0].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728))
+    let monthPosition = currentMonth - 1
 
 
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         getYear()
     });
 
-     next.addEventListener("click", function () {
-            if (monthPosition > 0) {
-                monthPosition = monthPosition - 1
-                getDays(monthPosition)
-            }else if (monthPosition === 0){
-               if(currentYear>1402) {
-                   currentYear = parseInt(currentYear) - 1
-                   getYear(currentYear)
-               }
+    next.addEventListener("click", function () {
+        if (monthPosition > 0) {
+            monthPosition = monthPosition - 1
+            getDays(monthPosition)
+        } else if (monthPosition === 0) {
+            if (currentYear > 1402) {
+                currentYear = parseInt(currentYear) - 1
+                getYear(currentYear)
             }
-        })
+        }
+    })
 
-     prev.addEventListener("click",function () {
-          if (monthPosition<monthSize-1){
-            monthPosition = monthPosition+1
-             getDays(monthPosition)
-        }else if (monthPosition === monthSize-1){
-              if(currentYear<1404) {
-                  currentYear = parseInt(currentYear) + 1
-                  getYear(currentYear)
-              }
-         }
+    prev.addEventListener("click", function () {
+        if (monthPosition < monthSize - 1) {
+            monthPosition = monthPosition + 1
+            getDays(monthPosition)
+        } else if (monthPosition === monthSize - 1) {
+            if (currentYear < 1404) {
+                currentYear = parseInt(currentYear) + 1
+                getYear(currentYear)
+            }
+        }
     })
 
 
@@ -784,27 +799,27 @@
         monthSize = result[0].months.length
 
         yearTitle.innerHTML = result[0].number
-          if (currentYear<thisYear){
-             monthPosition = monthSize-1
-             getDays(monthSize-1)
-         }else if(currentYear === thisYear){
-             monthPosition = currentMonth - 1
-             getDays(monthPosition)
-         }else{
-             monthPosition = 0
-             getDays(monthPosition)
-         }
+        if (currentYear < thisYear) {
+            monthPosition = monthSize - 1
+            getDays(monthSize - 1)
+        } else if (currentYear === thisYear) {
+            monthPosition = currentMonth - 1
+            getDays(monthPosition)
+        } else {
+            monthPosition = 0
+            getDays(monthPosition)
+        }
 
     }
 
 
     function getDays(monthPosition) {
         monthTitle.innerHTML = result[0].months[monthPosition].name
-        days.innerHTML=""
+        days.innerHTML = ""
         startDay.innerHTML = ""
 
         const emptyDay = document.createElement("li")
-                emptyDay.innerHTML = ' '
+        emptyDay.innerHTML = ' '
 
         switch (result[0].months[monthPosition].startDay) {
 
@@ -820,96 +835,97 @@
                 break
 
             case "سه شنبه" :
-               const empty3 = document.createElement("li")
+                const empty3 = document.createElement("li")
                 days.appendChild(empty3)
                 const empty4 = document.createElement("li")
                 days.appendChild(empty4)
                 const empty5 = document.createElement("li")
                 days.appendChild(empty5)
                 break
-             case "چهارشنبه" :
-                 const empty6 = document.createElement("li")
+            case "چهارشنبه" :
+                const empty6 = document.createElement("li")
                 days.appendChild(empty6)
                 const empty7 = document.createElement("li")
                 days.appendChild(empty7)
                 const empty9 = document.createElement("li")
                 days.appendChild(empty9)
-                 const empty10 = document.createElement("li")
+                const empty10 = document.createElement("li")
                 days.appendChild(empty10)
 
                 break
-             case "پنجشنبه" :
+            case "پنجشنبه" :
                 const empty11 = document.createElement("li")
                 days.appendChild(empty11)
                 const empty12 = document.createElement("li")
                 days.appendChild(empty12)
                 const empty13 = document.createElement("li")
                 days.appendChild(empty13)
-                 const empty14 = document.createElement("li")
+                const empty14 = document.createElement("li")
                 days.appendChild(empty14)
-                 const empty15 = document.createElement("li")
+                const empty15 = document.createElement("li")
                 days.appendChild(empty15)
                 break
-             case "جمعه" :
-                  const empty16 = document.createElement("li")
+            case "جمعه" :
+                const empty16 = document.createElement("li")
                 days.appendChild(empty16)
                 const empty17 = document.createElement("li")
                 days.appendChild(empty17)
                 const empty18 = document.createElement("li")
                 days.appendChild(empty18)
-                 const empty19 = document.createElement("li")
+                const empty19 = document.createElement("li")
                 days.appendChild(empty19)
-                 const empty20 = document.createElement("li")
+                const empty20 = document.createElement("li")
                 days.appendChild(empty20)
-                 const empty21 = document.createElement("li")
+                const empty21 = document.createElement("li")
                 days.appendChild(empty21)
                 break
         }
-        for (let i = 0 ; i< result[0].months[monthPosition].days.length ; i++){
+        for (let i = 0; i < result[0].months[monthPosition].days.length; i++) {
             const dayItem = document.createElement("li")
             if (result[0].months[monthPosition].days[i].holiday === true && result[0].months[monthPosition].days[i].number > parseInt(currentDay)) {
                 dayItem.classList.add("holidayButton")
-            }else if ( result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number === parseInt(currentDay))
-            {
+            } else if (result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number === parseInt(currentDay)) {
                 dayItem.classList.add("activeButton")
                 currentDayId = result[0].months[monthPosition].days[i].id
                 startDay.innerHTML = `${result[0].number}/${result[0].months[monthPosition].number}/${result[0].months[monthPosition].days[i].number}`
                 date = `${result[0].number}-${result[0].months[monthPosition].number}-${result[0].months[monthPosition].days[i].number}`
 
-            }else if (result[0].months[monthPosition].number === parseInt(currentMonth) && result[0].months[monthPosition].days[i].number < parseInt(currentDay)  && result[0].number <= parseInt(currentYear)){
-                dayItem.classList.add("disActiveButton")
-            }else if (result[0].number < parseInt(currentYear) ||
-         (result[0].number === parseInt(currentYear) && result[0].months[monthPosition].number < parseInt(currentMonth))) {
+            } else if (result[0].months[monthPosition].number === parseInt(currentMonth) &&
+                result[0].months[monthPosition].days[i].number < parseInt(currentDay) &&
+                result[0].number <= parseInt(currentYear)) {
+                dayItem.classList.add("disActiveButton");
+            } else if (result[0].number < parseInt(currentYear) ||
+                (result[0].number === parseInt(currentYear) && result[0].months[monthPosition].number < parseInt(currentMonth))) {
                 dayItem.classList.add("disActiveButton");
             }
             dayItem.innerHTML = result[0].months[monthPosition].days[i].number
-            dayItem.setAttribute("itemid",result[0].months[monthPosition].days[i].id)
+            dayItem.setAttribute("itemid", result[0].months[monthPosition].days[i].id)
             days.appendChild(dayItem)
         }
-         const buttons = document.querySelectorAll('.days li');
-            Array.from(buttons).forEach(function (button) {
-                button.addEventListener('click', async function () {
-                    const selected = document.querySelectorAll('.activeButton')
-                    Array.from(selected).forEach(function (btn) {
-                        btn.classList.remove("activeButton")
-                    })
-                    button.classList.add("activeButton")
-                    currentDayId = button.getAttribute("itemid")
-                    startDay.innerHTML = `${result[0].number}/${result[0].months[monthPosition].number}/${button.textContent}`
-                    date = `${result[0].number}-${result[0].months[monthPosition].number}-${button.textContent}`
-
+        const buttons = document.querySelectorAll('.days li');
+        Array.from(buttons).forEach(function (button) {
+            button.addEventListener('click', async function () {
+                const selected = document.querySelectorAll('.activeButton')
+                Array.from(selected).forEach(function (btn) {
+                    btn.classList.remove("activeButton")
                 })
+                button.classList.add("activeButton")
+                currentDayId = button.getAttribute("itemid")
+                startDay.innerHTML = `${result[0].number}/${result[0].months[monthPosition].number}/${button.textContent}`
+                date = `${result[0].number}-${result[0].months[monthPosition].number}-${button.textContent}`
+
             })
+        })
     }
 
 </script>
 
 
 <script>
-     let sessionId = 0
-     let dayId = 0
+    let sessionId = 0
+    let dayId = 0
 
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const sessionSelect = document.getElementById('session');
         const weekSelect = document.getElementById('week');
         const sessionNumberDisplay = document.getElementById('sessionNumber');
@@ -925,7 +941,7 @@
             sessionId = sessionSelect.value
         }
 
-        sessionSelect.addEventListener('change', function() {
+        sessionSelect.addEventListener('change', function () {
             sessionId = this.value;
             sessionNumberDisplay.textContent = this.options[this.selectedIndex].text;
 
@@ -959,7 +975,7 @@
                     } else {
                         daysSessionDisplay.textContent = ''; // در صورتی که گزینه‌ای وجود نداشته باشد
                         offDisplay.textContent = ''
-                        dayId=0
+                        dayId = 0
                         priceDisplay.textContent = ''
                         finalDisplay.textContent = ''
                     }
@@ -967,7 +983,7 @@
                 .catch(error => console.error('Error:', error));
         });
 
-        weekSelect.addEventListener('change', function() {
+        weekSelect.addEventListener('change', function () {
             daysSessionDisplay.textContent = this.options[this.selectedIndex].text;
             let price = parseInt(weekSelect.options[this.selectedIndex].getAttribute('data-custom1')); // قیمت اصلی
             let discount = parseInt(weekSelect.options[this.selectedIndex].getAttribute('data-custom2')); // درصد تخفیف
@@ -996,9 +1012,9 @@
     const registerButton = document.getElementById("registerButton")
     let final_price
 
-    let year = parseInt(today[0].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
-    let month = parseInt(today[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
-    let monthDay = parseInt(today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728) ))
+    let year = parseInt(today[0].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728)))
+    let month = parseInt(today[1].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728)))
+    let monthDay = parseInt(today[2].replace(/[۰-۹]/g, w => String.fromCharCode(w.charCodeAt(0) - 1728)))
 
     const thisDate = jalaali.j2d(year, month, monthDay)
 
@@ -1011,8 +1027,8 @@
 
         var userEnd = jalaali.j2d(userEndYear, userEndMonth, userEndDay)
 
-        if (0<userEnd){
-            if(userEnd>=thisDate) {
+        if (0 < userEnd) {
+            if (userEnd >= thisDate) {
                 counter = counter + 1
             }
         }
@@ -1023,7 +1039,7 @@
     capacityNumber.innerHTML = `${counter}/${parseInt(capacity)}`
 
 
-    if (isEnable===true) {
+    if (isEnable === true) {
         if (parseInt(counter) < parseInt(capacity)) {
             registerButton.disabled = false;
             registerButton.innerHTML = "ثبت نام کنید";
@@ -1031,8 +1047,8 @@
             registerButton.disabled = true;
             registerButton.innerHTML = "ظرفیت تکمیل است";
         }
-    }else {
-         registerButton.disabled = true;
+    } else {
+        registerButton.disabled = true;
         registerButton.innerHTML = "دوره منقضی شده است";
     }
 
@@ -1040,14 +1056,14 @@
 
     registerButton.addEventListener('click', function () {
 
-        if (sessionId !==0 && dayId !==0) {
+        if (sessionId !== 0 && dayId !== 0) {
             window.location.assign(`/product/payment/${course}/${sessionId}/${dayId}/${currentDayId}`)
-        }else if (sessionId===0){
+        } else if (sessionId === 0) {
             alert("لطفا اول جلسه را انتخاب کنید")
-        }else if (dayId===0){
+        } else if (dayId === 0) {
             alert("لطفا روز را انتخاب کنید")
-        }else {
-             alert("تمامی موارد الزامی است")
+        } else {
+            alert("تمامی موارد الزامی است")
         }
 
     })
