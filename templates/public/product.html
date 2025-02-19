@@ -750,7 +750,7 @@
                 getDays(monthPosition)
             }else if (monthPosition === 0){
                if(currentYear>1402) {
-                   currentYear = currentYear - 1
+                   currentYear = parseInt(currentYear) - 1
                    getYear(currentYear)
                }
             }
@@ -762,7 +762,7 @@
              getDays(monthPosition)
         }else if (monthPosition === monthSize-1){
               if(currentYear<1404) {
-                  currentYear = currentYear + 1
+                  currentYear = parseInt(currentYear) + 1
                   getYear(currentYear)
               }
          }
