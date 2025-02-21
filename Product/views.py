@@ -1,6 +1,7 @@
 import requests
 from django.contrib.auth import get_user_model
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.views.decorators.cache import cache_page
@@ -806,11 +807,16 @@ class ManagerParticipationView(viewsets.ViewSet):
                        .order_by('pk').values_list('pk', flat=True)[:int(session.number)]
         startDay = Day.objects.filter(pk__in=list(startIds)).first()
 
-        endIds = Day.objects.filter(name__in=day, month__number__gte=start.month.number,
-                                    month__year__number__gte=start.month.year.number, holiday=False).exclude(
-            month__number=start.month.number,
-            number__lt=start.number) \
-                     .order_by('pk').values_list('pk', flat=True)[:int(session.number)]
+        endIds = Day.objects.filter(
+            Q(month__year__number=start.month.year.number,
+              month__number__gte=start.month.number,
+              number__gte=start.number) |
+            Q(month__year__number__gt=start.month.year.number),
+            name__in=day,
+            holiday=False
+        ).order_by('month__year__number', 'month__number', 'number') \
+                     .values_list('pk', flat=True)[:int(session.number)]
+
         endDay = Day.objects.filter(pk__in=list(endIds)).last()
 
         participant_data = {
