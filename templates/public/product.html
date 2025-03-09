@@ -820,6 +820,66 @@ function getDays(monthPosition) {
     const emptyDay = document.createElement("li");
     emptyDay.innerHTML = ' ';
 
+     switch (result[0].months[monthPosition].startDay) {
+
+            case "یکشنبه" :
+                const empty0 = document.createElement("li")
+                days.appendChild(empty0)
+                break
+            case "دوشنبه" :
+                const empty1 = document.createElement("li")
+                days.appendChild(empty1)
+                const empty2 = document.createElement("li")
+                days.appendChild(empty2)
+                break
+
+            case "سه شنبه" :
+                const empty3 = document.createElement("li")
+                days.appendChild(empty3)
+                const empty4 = document.createElement("li")
+                days.appendChild(empty4)
+                const empty5 = document.createElement("li")
+                days.appendChild(empty5)
+                break
+            case "چهارشنبه" :
+                const empty6 = document.createElement("li")
+                days.appendChild(empty6)
+                const empty7 = document.createElement("li")
+                days.appendChild(empty7)
+                const empty9 = document.createElement("li")
+                days.appendChild(empty9)
+                const empty10 = document.createElement("li")
+                days.appendChild(empty10)
+
+                break
+            case "پنجشنبه" :
+                const empty11 = document.createElement("li")
+                days.appendChild(empty11)
+                const empty12 = document.createElement("li")
+                days.appendChild(empty12)
+                const empty13 = document.createElement("li")
+                days.appendChild(empty13)
+                const empty14 = document.createElement("li")
+                days.appendChild(empty14)
+                const empty15 = document.createElement("li")
+                days.appendChild(empty15)
+                break
+            case "جمعه" :
+                const empty16 = document.createElement("li")
+                days.appendChild(empty16)
+                const empty17 = document.createElement("li")
+                days.appendChild(empty17)
+                const empty18 = document.createElement("li")
+                days.appendChild(empty18)
+                const empty19 = document.createElement("li")
+                days.appendChild(empty19)
+                const empty20 = document.createElement("li")
+                days.appendChild(empty20)
+                const empty21 = document.createElement("li")
+                days.appendChild(empty21)
+                break
+        }
+
     for (let i = 0; i < result[0].months[monthPosition].days.length; i++) {
         const dayItem = document.createElement("li");
         const dayNumber = result[0].months[monthPosition].days[i].number;
