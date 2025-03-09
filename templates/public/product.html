@@ -892,18 +892,16 @@
 
             if (result[0].months[monthPosition].days[i].holiday === true && dayNumber > parseInt(currentDay)) {
                 dayItem.classList.add("holidayButton");
-            } else if (yearNumber === parseInt(currentYear) &&
-                monthNumber === parseInt(currentMonth) &&
-                dayNumber === parseInt(currentDay)) {
-                // روز جاری
+            } else if (yearNumber === parseInt(currentYear) && monthNumber === parseInt(currentMonth) && dayNumber === parseInt(currentDay)) {
                 dayItem.classList.add("activeButton");
                 currentDayId = result[0].months[monthPosition].days[i].id;
                 startDay.innerHTML = `${yearNumber}/${monthNumber}/${dayNumber}`;
                 date = `${yearNumber}-${monthNumber}-${dayNumber}`;
-            } else if (yearNumber < parseInt(currentYear) ||
-                (yearNumber === parseInt(currentYear) && monthNumber < parseInt(currentMonth)) ||
-                (yearNumber === parseInt(currentYear) && monthNumber === parseInt(currentMonth) && dayNumber < parseInt(currentDay))) {
-                // فقط روزهای گذشته را غیر فعال کن، نه کل سال آینده
+            } else if (
+                (yearNumber < parseInt(currentYear)) ||  // اگر سال کوچکتر از سال فعلی است، غیرفعال شود
+                (yearNumber === parseInt(currentYear) && monthNumber < parseInt(currentMonth)) || // اگر ماه کوچکتر از ماه فعلی است، غیرفعال شود
+                (yearNumber === parseInt(currentYear) && monthNumber === parseInt(currentMonth) && dayNumber < parseInt(currentDay)) // اگر روز کوچکتر از روز فعلی است، غیرفعال شود
+            ) {
                 dayItem.classList.add("disActiveButton");
             }
 
@@ -911,6 +909,7 @@
             dayItem.setAttribute("itemid", result[0].months[monthPosition].days[i].id);
             days.appendChild(dayItem);
         }
+
 
         const buttons = document.querySelectorAll('.days li');
         Array.from(buttons).forEach(function (button) {
