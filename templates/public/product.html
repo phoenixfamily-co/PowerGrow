@@ -787,129 +787,65 @@
         }
     })
 
-
     async function getYear() {
+    const response = await fetch(`/calendar/api/year/${currentYear}/`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
 
-        const response = await fetch(`/calendar/api/year/${currentYear}/`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-        result = await response.json()
-        console.log("currentYear:", currentYear); // اینجا مقدار result را بررسی کنید
+    result = await response.json();
+    result = JSON.parse(JSON.stringify(result));
+    monthSize = result[0].months.length;
 
-        result = JSON.parse(JSON.stringify(result))
-        monthSize = result[0].months.length
+    yearTitle.innerHTML = result[0].number;
 
-        yearTitle.innerHTML = result[0].number
-        if (currentYear < thisYear) {
-            monthPosition = monthSize - 1
-            getDays(monthSize - 1)
-        } else if (currentYear === thisYear) {
-            monthPosition = currentMonth - 1
-            getDays(monthPosition)
-        } else {
-            monthPosition = 0
-            getDays(monthPosition)
-        }
-
+    if (parseInt(currentYear) < parseInt(thisYear)) {  // اگر سال قبل از سال جاری است، آخرین ماه نمایش داده شود
+        monthPosition = monthSize - 1;
+    } else if (parseInt(currentYear) === parseInt(thisYear)) { // اگر سال جاری است، ماه فعلی نمایش داده شود
+        monthPosition = currentMonth - 1;
+    } else { // اگر سال آینده است، اولین ماه نمایش داده شود
+        monthPosition = 0;
     }
 
+    getDays(monthPosition);
+}
 
-    function getDays(monthPosition) {
-        monthTitle.innerHTML = result[0].months[monthPosition].name
-        days.innerHTML = ""
-        startDay.innerHTML = ""
+function getDays(monthPosition) {
+    monthTitle.innerHTML = result[0].months[monthPosition].name;
+    days.innerHTML = "";
+    startDay.innerHTML = "";
 
-        const emptyDay = document.createElement("li")
-        emptyDay.innerHTML = ' '
+    const emptyDay = document.createElement("li");
+    emptyDay.innerHTML = ' ';
 
-        switch (result[0].months[monthPosition].startDay) {
+    for (let i = 0; i < result[0].months[monthPosition].days.length; i++) {
+        const dayItem = document.createElement("li");
+        const dayNumber = result[0].months[monthPosition].days[i].number;
+        const monthNumber = result[0].months[monthPosition].number;
+        const yearNumber = result[0].number;
 
-            case "یکشنبه" :
-                const empty0 = document.createElement("li")
-                days.appendChild(empty0)
-                break
-            case "دوشنبه" :
-                const empty1 = document.createElement("li")
-                days.appendChild(empty1)
-                const empty2 = document.createElement("li")
-                days.appendChild(empty2)
-                break
-
-            case "سه شنبه" :
-                const empty3 = document.createElement("li")
-                days.appendChild(empty3)
-                const empty4 = document.createElement("li")
-                days.appendChild(empty4)
-                const empty5 = document.createElement("li")
-                days.appendChild(empty5)
-                break
-            case "چهارشنبه" :
-                const empty6 = document.createElement("li")
-                days.appendChild(empty6)
-                const empty7 = document.createElement("li")
-                days.appendChild(empty7)
-                const empty9 = document.createElement("li")
-                days.appendChild(empty9)
-                const empty10 = document.createElement("li")
-                days.appendChild(empty10)
-
-                break
-            case "پنجشنبه" :
-                const empty11 = document.createElement("li")
-                days.appendChild(empty11)
-                const empty12 = document.createElement("li")
-                days.appendChild(empty12)
-                const empty13 = document.createElement("li")
-                days.appendChild(empty13)
-                const empty14 = document.createElement("li")
-                days.appendChild(empty14)
-                const empty15 = document.createElement("li")
-                days.appendChild(empty15)
-                break
-            case "جمعه" :
-                const empty16 = document.createElement("li")
-                days.appendChild(empty16)
-                const empty17 = document.createElement("li")
-                days.appendChild(empty17)
-                const empty18 = document.createElement("li")
-                days.appendChild(empty18)
-                const empty19 = document.createElement("li")
-                days.appendChild(empty19)
-                const empty20 = document.createElement("li")
-                days.appendChild(empty20)
-                const empty21 = document.createElement("li")
-                days.appendChild(empty21)
-                break
-        }
-        for (let i = 0; i < result[0].months[monthPosition].days.length; i++) {
-            const dayItem = document.createElement("li");
-            const dayNumber = result[0].months[monthPosition].days[i].number;
-            const monthNumber = result[0].months[monthPosition].number;
-            const yearNumber = result[0].number;
-
-            if (result[0].months[monthPosition].days[i].holiday === true && dayNumber > parseInt(currentDay)) {
-                dayItem.classList.add("holidayButton");
-            } else if (yearNumber === parseInt(currentYear) && monthNumber === parseInt(currentMonth) && dayNumber === parseInt(currentDay)) {
-                dayItem.classList.add("activeButton");
-                currentDayId = result[0].months[monthPosition].days[i].id;
-                startDay.innerHTML = `${yearNumber}/${monthNumber}/${dayNumber}`;
-                date = `${yearNumber}-${monthNumber}-${dayNumber}`;
-            } else if (
-                (yearNumber < parseInt(currentYear)) ||  // اگر سال کوچکتر از سال فعلی است، غیرفعال شود
-                (yearNumber === parseInt(currentYear) && monthNumber < parseInt(currentMonth)) || // اگر ماه کوچکتر از ماه فعلی است، غیرفعال شود
-                (yearNumber === parseInt(currentYear) && monthNumber === parseInt(currentMonth) && dayNumber < parseInt(currentDay)) // اگر روز کوچکتر از روز فعلی است، غیرفعال شود
-            ) {
-                dayItem.classList.add("disActiveButton");
-            }
-
-            dayItem.innerHTML = dayNumber;
-            dayItem.setAttribute("itemid", result[0].months[monthPosition].days[i].id);
-            days.appendChild(dayItem);
+        if (result[0].months[monthPosition].days[i].holiday === true && dayNumber > parseInt(currentDay)) {
+            dayItem.classList.add("holidayButton");
+        } else if (yearNumber === parseInt(thisYear) && monthNumber === parseInt(currentMonth) && dayNumber === parseInt(currentDay)) {
+            // روز جاری را مشخص کنیم
+            dayItem.classList.add("activeButton");
+            currentDayId = result[0].months[monthPosition].days[i].id;
+            startDay.innerHTML = `${yearNumber}/${monthNumber}/${dayNumber}`;
+            date = `${yearNumber}-${monthNumber}-${dayNumber}`;
+        } else if (
+            (yearNumber < parseInt(thisYear)) || // فقط سال‌های گذشته غیرفعال شود
+            (yearNumber === parseInt(thisYear) && monthNumber < parseInt(currentMonth)) || // فقط ماه‌های گذشته غیر فعال شود
+            (yearNumber === parseInt(thisYear) && monthNumber === parseInt(currentMonth) && dayNumber < parseInt(currentDay)) // روزهای گذشته در همان ماه غیر فعال شوند
+        ) {
+            dayItem.classList.add("disActiveButton");
         }
 
+        dayItem.innerHTML = dayNumber;
+        dayItem.setAttribute("itemid", result[0].months[monthPosition].days[i].id);
+        days.appendChild(dayItem);
+    }
 
         const buttons = document.querySelectorAll('.days li');
         Array.from(buttons).forEach(function (button) {
